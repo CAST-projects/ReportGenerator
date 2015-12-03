@@ -1,3 +1,3 @@
 # ReportGenerator
 
-ReportGenerator generate powerpoint reports from templates and CAST REST API.
+ReportGenerator generate word and powerpoint reports from templates and CAST REST API.
