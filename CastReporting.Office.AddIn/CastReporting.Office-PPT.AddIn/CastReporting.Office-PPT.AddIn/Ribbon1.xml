@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab id="RG_AddIns" label="Report Generator">
+              <group id="Group1" label="My Stuff" visible="true">
+                <toggleButton id="taskPaneToggleButton"
+                        size="large"
+                        label="Report Generator"
+                        screentip="Show or hide the Report Generator task pane"
+                        getPressed="GetPressed"
+                        onAction="HandleTaskPane"/>
+              </group>
+            </tab>
+    </tabs>
+  </ribbon>
+</customUI>
+

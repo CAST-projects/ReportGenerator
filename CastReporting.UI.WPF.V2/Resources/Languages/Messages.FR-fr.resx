@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="lblSelectApplication" xml:space="preserve">
+    <value>Sélectionner une application</value>
+  </data>
+  <data name="lblSelectCurrentSnapshot" xml:space="preserve">
+    <value>Sélectionner un snapshot</value>
+  </data>
+  <data name="btnGenerateReport" xml:space="preserve">
+    <value>Générer un rapport</value>
+  </data>
+  <data name="lblTitleMain" xml:space="preserve">
+    <value>Report Generator</value>
+  </data>
+  <data name="lblSelectPreviousSnapshot" xml:space="preserve">
+    <value>Sélectionner un snapshot plus ancien</value>
+  </data>
+  <data name="lblTitleTemplateSelection" xml:space="preserve">
+    <value>Sélection d'un modèle de document</value>
+  </data>
+  <data name="msgDocumentGenerationSuccess" xml:space="preserve">
+    <value>Rapport généré avec succès !</value>
+  </data>
+  <data name="mnuReporting" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="mnuWSConfiguration" xml:space="preserve">
+    <value>Configuration du WebService</value>
+  </data>
+  <data name="mnuSettings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="lblTitleManageWS" xml:space="preserve">
+    <value>Configuration du Web Service</value>
+  </data>
+  <data name="lblFieldActiveWS" xml:space="preserve">
+    <value>Actif</value>
+  </data>
+  <data name="btnDeleteWS" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="lblFieldWSLogin" xml:space="preserve">
+    <value>Utilisateur</value>
+  </data>
+  <data name="lblFieldWSPassword" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="lblFieldUrlWS" xml:space="preserve">
+    <value>Web Service</value>
+  </data>
+  <data name="btnAddWS" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="btnPingWS" xml:space="preserve">
+    <value>Tester</value>
+  </data>
+  <data name="msgPingServiceFailure" xml:space="preserve">
+    <value>Web service non valide !</value>
+  </data>
+  <data name="msgPingServiceSuccess" xml:space="preserve">
+    <value>Web service valide !</value>
+  </data>
+  <data name="msgReportGenerationSuccess" xml:space="preserve">
+    <value>Génération réalisé avec succès. Cliquer ci-dessous pour ouvrir le document généré</value>
+  </data>
+  <data name="msgGenericError" xml:space="preserve">
+    <value>Une erreur est survenue pendant la génération</value>
+  </data>
+  <data name="msgServiceActivated" xml:space="preserve">
+    <value>L'url du Web Service est activée avec succès !</value>
+  </data>
+  <data name="msgServiceAddedOK" xml:space="preserve">
+    <value>L'url du Web Service est ajoutée avec succès !</value>
+  </data>
+  <data name="msgServiceRemoved" xml:space="preserve">
+    <value>L'url du Web Service est effacée avec succès</value>
+  </data>
+  <data name="msgWSError" xml:space="preserve">
+    <value>Une erreur est survenue pendant le requêtage du Web Service</value>
+  </data>
+  <data name="lblFieldQualityGood" xml:space="preserve">
+    <value>Bonne qualité</value>
+  </data>
+  <data name="lblFieldQualityLow" xml:space="preserve">
+    <value>qualité faible</value>
+  </data>
+  <data name="lblFieldQualityMedium" xml:space="preserve">
+    <value>qualité satisfaisante</value>
+  </data>
+  <data name="lblFieldSizeLimitLarge" xml:space="preserve">
+    <value>Limite grande</value>
+  </data>
+  <data name="lblFieldSizeLimitMedium" xml:space="preserve">
+    <value>Limite  moyenne</value>
+  </data>
+  <data name="lblFieldSizeLimitSmall" xml:space="preserve">
+    <value>Limite  petite</value>
+  </data>
+  <data name="lblTitleApplicationQuality" xml:space="preserve">
+    <value>Définition des seuils pour la qualité d'application</value>
+  </data>
+  <data name="lblTitleApplicationSize" xml:space="preserve">
+    <value>Définition des seuils pour la taille d'une application</value>
+  </data>
+  <data name="btnSaveSettings" xml:space="preserve">
+    <value>Sauvegarder</value>
+  </data>
+  <data name="msgSettingsSaved" xml:space="preserve">
+    <value>Configuration sauvegardée</value>
+  </data>
+  <data name="toolTipUrlWs" xml:space="preserve">
+    <value>Veuillez saisir une url de Web Service valide au format suivant : http://&lt;server&gt;:&lt;port&gt;/&lt;war&gt;/rest</value>
+  </data>
+  <data name="mnuAbout" xml:space="preserve">
+    <value>A propos</value>
+  </data>
+  <data name="mnuQuit" xml:space="preserve">
+    <value>Quitter</value>
+  </data>
+  <data name="btnActiveWS" xml:space="preserve">
+    <value>Activer</value>
+  </data>
+  <data name="lblFieldQualityVeryLow" xml:space="preserve">
+    <value>qualité très faible</value>
+  </data>
+  <data name="lblTitleSettings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="lblTitleMessages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="lblTitleSnapshotSelection" xml:space="preserve">
+    <value>Sélection d'un snapshot</value>
+  </data>
+  <data name="lblTemplatePath" xml:space="preserve">
+    <value>Répertoire modèle</value>
+  </data>
+  <data name="lblTitleApplicationSettings" xml:space="preserve">
+    <value>Paramètres d'application</value>
+  </data>
+  <data name="msgServiceActivatedAddedOK" xml:space="preserve">
+    <value>L'url du Web Service a été ajouté et validé avec succès !</value>
+  </data>
+  <data name="msgServiceAddedAlreadyExist" xml:space="preserve">
+    <value>Cette url de Web Service existe déjà.</value>
+  </data>
+  <data name="msgServiceAddedFailed" xml:space="preserve">
+    <value>Impossible d'ajouter cette url de Web Service. Veuillez saisir une url valide au format suivant http://&lt;server&gt;:&lt;port&gt;/&lt;war&gt;/rest et valider l'utilisateur/mot de passe</value>
+  </data>
+  <data name="lblAboutCopyright" xml:space="preserve">
+    <value>Copyright © CAST</value>
+  </data>
+  <data name="lblAboutTitle" xml:space="preserve">
+    <value>CAST - Report Generator </value>
+  </data>
+  <data name="lblAboutVersion" xml:space="preserve">
+    <value>Version 1.1</value>
+  </data>
+  <data name="toolTipClearMsg" xml:space="preserve">
+    <value>Effacer les messages.</value>
+  </data>
+  <data name="toolTipOpenDirectory" xml:space="preserve">
+    <value>Ouvrir le répertoire.</value>
+  </data>
+  <data name="toolTipRefreshTemplate" xml:space="preserve">
+    <value>Rafraîchir la liste des modèles de document.</value>
+  </data>
+  <data name="toolTipTemplateLb" xml:space="preserve">
+    <value>Vous pouvez double cliquer sur les modèles pour les ouvrir. Vous pourrez alors les modifier.</value>
+  </data>
+  <data name="lblLanguage" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="lblItemEnglish" xml:space="preserve">
+    <value>Anglais</value>
+  </data>
+  <data name="lblItemFrench" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="lblItemSpanish" xml:space="preserve">
+    <value>Espagnol</value>
+  </data>
+</root>

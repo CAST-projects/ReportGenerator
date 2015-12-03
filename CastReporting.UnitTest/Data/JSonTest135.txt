@@ -1,0 +1,35 @@
+﻿[
+	{
+		"number": 68,
+		"date": {
+			"time": 1359846000000
+		},
+		"application": {
+			"href": "ADG705/applications/5",
+			"name": "CASTDatabases"
+		},
+		"applicationSnapshot": {
+			"href": "ADG705/applications/5/snapshots/135",
+			"name": "CASTDatabases"
+		},
+		"applicationResults": [
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "ADG705/quality-indicators/60017/snapshots/135",
+					"name": "Technical Quality Index",
+					"shortName": "TQI",
+					"key": "60017",
+					"gradeAggregators": null
+				},
+				"result": {
+					"grade": 3.3951705762482165,
+					"boundaries": null,
+					"evolutionSummary": null
+				},
+				"technologyResults": [],
+				"moduleResults": []
+			}
+		]
+	}
+]

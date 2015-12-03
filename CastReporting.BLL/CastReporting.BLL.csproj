@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2F09FBCA-1A16-4517-A485-BA2A5C0BC9F4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CastReporting.BLL</RootNamespace>
+    <AssemblyName>CastReporting.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BO\BaseBLL.cs" />
+    <Compile Include="BO\CastDomainBLL.cs" />
+    <Compile Include="BO\ApplicationBLL.cs" />
+    <Compile Include="BO\CommonBLL.cs" />
+    <Compile Include="BO\RuleBLL.cs" />
+    <Compile Include="BO\SettingsBLL.cs" />
+    <Compile Include="BO\SnapshotBLL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatesEnum.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CastReporting.BLL.Computing\CastReporting.BLL.Computing.csproj">
+      <Project>{692f3269-684c-44ed-8f1b-98d458da3f9a}</Project>
+      <Name>CastReporting.BLL.Computing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CastReporting.DAL\CastReporting.Repositories.csproj">
+      <Project>{3c791d3a-83b6-490f-86c8-11fa3076a739}</Project>
+      <Name>CastReporting.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CastReporting.Domain\CastReporting.Domain.csproj">
+      <Project>{e696cc9d-e471-4360-8664-fba3c5b3d375}</Project>
+      <Name>CastReporting.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CastReporting.Repositories.Interfaces\CastReporting.Repositories.Interfaces.csproj">
+      <Project>{bf557781-bd7e-4ec2-bb64-ed7981b4d9d0}</Project>
+      <Name>CastReporting.Repositories.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

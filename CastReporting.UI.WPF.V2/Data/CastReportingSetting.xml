@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<Setting xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ReportingParameter>
+    <ApplicationSizeLimitSupSmall>200000</ApplicationSizeLimitSupSmall>
+    <ApplicationSizeLimitSupMedium>500000</ApplicationSizeLimitSupMedium>
+    <ApplicationSizeLimitSupLarge>1000000</ApplicationSizeLimitSupLarge>
+    <ApplicationQualityVeryLow>2</ApplicationQualityVeryLow>
+    <ApplicationQualityLow>2.8</ApplicationQualityLow>
+    <ApplicationQualityMedium>3.2</ApplicationQualityMedium>
+    <ApplicationQualityGood>3.5</ApplicationQualityGood>
+    <NbResultDefault>5</NbResultDefault>
+  </ReportingParameter>
+  <WSConnections>
+    <WSConnection>
+      <Url>http://highlightdev:9990/Dashboard-WebService/rest/</Url>
+      <CryptedLogin>EsqlQcv8ocQ=</CryptedLogin>
+      <CryptedPassword>EsqlQcv8ocQ=</CryptedPassword>
+      <IsActive>true</IsActive>
+    </WSConnection>
+  </WSConnections>
+</Setting>
