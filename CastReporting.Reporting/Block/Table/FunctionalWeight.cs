@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -40,10 +41,10 @@ namespace CastReporting.Reporting.Block.Table
 
                 const string metricFormat = "N0";
                 var rowData = new List<string>() 
-                    { "Name", "Number"
-                    , "Automated function Points", (automatedFPoints.HasValue ?  automatedFPoints.Value.ToString(metricFormat) : CastReporting.Domain.Constants.No_Value)
-                    , "Decision Points (Total CC)",( decisionPoints.HasValue ?  (decisionPoints.Value).ToString(metricFormat) : CastReporting.Domain.Constants.No_Value)
-                    , "Backfired Function Points", (backFiredFPoints.HasValue ?  (backFiredFPoints.Value).ToString(metricFormat) :CastReporting.Domain.Constants.No_Value)
+                    {  Labels.Name, Labels.Total
+                    , Labels.AutomatedFP, (automatedFPoints.HasValue ?  automatedFPoints.Value.ToString(metricFormat) : CastReporting.Domain.Constants.No_Data)
+                    , Labels.DecisionP,( decisionPoints.HasValue ?  (decisionPoints.Value).ToString(metricFormat) : CastReporting.Domain.Constants.No_Data)
+                    , Labels.BackfiredFP, (backFiredFPoints.HasValue ?  (backFiredFPoints.Value).ToString(metricFormat) :CastReporting.Domain.Constants.No_Data)
                     };
                 resultTable = new TableDefinition
                 {

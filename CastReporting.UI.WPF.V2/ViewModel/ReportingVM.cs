@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -431,6 +431,7 @@ namespace CastReporting.UI.WPF.ViewModel
         private void GenerateReport()
         {
             string tmpReportFile = String.Empty;
+            string tmpReportFileFlexi = String.Empty;
 
             try
             {
@@ -438,7 +439,10 @@ namespace CastReporting.UI.WPF.ViewModel
                 //Create temporary report
                 string workDirectory = SettingsBLL.GetApplicationPath();
                 tmpReportFile = PathUtil.CreateTempCopy(workDirectory, SelectedTemplateFile.FullName);
-
+                if (tmpReportFile.Contains(".xlsx"))
+                {
+                    tmpReportFileFlexi = PathUtil.CreateTempCopyFlexi(workDirectory, SelectedTemplateFile.FullName);
+                }
                 //Build report
                 ReportData reportData = new ReportData()
                 {
@@ -454,9 +458,15 @@ namespace CastReporting.UI.WPF.ViewModel
 
 
                
-                using (IDocumentBuilder docBuilder = BuilderFactory.CreateBuilder(reportData))
+                using (IDocumentBuilder docBuilder = BuilderFactory.CreateBuilder(reportData, tmpReportFileFlexi))
                 {
                     docBuilder.BuildDocument();
+                }
+
+
+                if (tmpReportFile.Contains(".xlsx"))
+                {
+                    tmpReportFile = tmpReportFileFlexi;
                 }
 
                 //Copy report file to the selected destination

@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.BLL.Computing.Properties;
 
@@ -42,7 +43,7 @@ namespace CastReporting.Reporting.Block.Graph
                 List<TechnologyResultDTO> technologyInfos = MeasureUtility.GetTechnoLoc(reportData.CurrentSnapshot, nbResult);
 
                 List<string> rowData = new List<string>();
-                rowData.AddRange(new string[] { "Name", "LOCs" });
+                rowData.AddRange(new string[] { Labels.Name, Labels.LoC });
 
                 foreach (var elt in technologyInfos)
                 {

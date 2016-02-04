@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,8 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using System.Globalization;
-using System.Threading;
+using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Block.Text
 {
@@ -30,12 +29,7 @@ namespace CastReporting.Reporting.Block.Text
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            
-            string result = DateTime.Now.ToLongDateString();
-            if(result !=null)
-            return result;
-
-            return CastReporting.Domain.Constants.No_Value;
+            return DateTime.Now.ToString(Labels.FORMAT_LONG_DATE);
         }
         #endregion METHODS
     }

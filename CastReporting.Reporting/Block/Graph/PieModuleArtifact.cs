@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using CastReporting.BLL.Computing.Properties;
@@ -50,7 +51,7 @@ namespace CastReporting.Reporting.Block.Graph
                  var moduleArtifacts = MeasureUtility.GetModulesMeasure(reportData.CurrentSnapshot, nbResult, Constants.SizingInformations.ArtifactNumber);
 
                  List<string> rowData = new List<string>();
-                 rowData.AddRange(new string[] { "Name", "Artifacts" });
+                 rowData.AddRange(new string[] { Labels.Name, Labels.Artifacts });
           
                  foreach (var mod in moduleArtifacts)
                  {
@@ -62,7 +63,7 @@ namespace CastReporting.Reporting.Block.Graph
                  {
                      HasRowHeaders = true,
                      HasColumnHeaders = false,
-                     NbRows = moduleArtifacts.Count() + 1,
+                     NbRows = moduleArtifacts.Count + 1,
                      NbColumns = 2,
                      Data = rowData
                  };

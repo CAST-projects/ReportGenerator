@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ using DocumentFormat.OpenXml.Packaging;
 using OXD = DocumentFormat.OpenXml.Drawing;
 using OXP = DocumentFormat.OpenXml.Presentation;
 using OXW = DocumentFormat.OpenXml.Wordprocessing;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace CastReporting.Reporting.Builder.BlockProcessing
 {
@@ -56,6 +57,38 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         public static bool IsMatching(string blockType)
         {
             return (BlockTypeName.Equals(blockType));
+        }
+
+        public string GetContent(ReportData client, Dictionary<string, string> options)
+        {
+            return Content(client, options);
+        }
+
+        public void SetContentExcel(ReportData client, Dictionary<string, string> options, string cellReference, Cell cell)
+        {
+            LogHelper.Instance.LogDebugFormat("Start TextBlock generation : Type {0}", this.GetType().Name);
+            Stopwatch treatmentWatch = Stopwatch.StartNew();
+            string content = this.Content(client, options);
+
+            decimal dx;
+            if (decimal.TryParse(content, out dx))
+            {
+                cell.CellValue = new CellValue(dx.ToString("G", NumberFormatInfo.InvariantInfo));
+                cell.DataType = CellValues.Number;
+            }
+            else
+            {
+                cell.CellValue = new CellValue(content);
+                cell.DataType = CellValues.String;
+            }
+            cell.CellReference = cellReference;
+
+            treatmentWatch.Stop();
+            LogHelper.Instance.LogDebugFormat
+                ("End TextBlock generation ({0}) in {1} ms"
+                , this.GetType().Name
+                , treatmentWatch.ElapsedMilliseconds.ToString()
+                );
         }
         public static void BuildContent(ReportData client, OpenXmlPartContainer container, BlockItem block, string blockName, Dictionary<string, string> options)
         {
@@ -108,15 +141,32 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         private static void UpdateWordBlock(OpenXmlPartContainer container, OpenXmlElement block, string content)
         {
             OXW.Text new_text = new OXW.Text(content);
+            if (!string.IsNullOrEmpty(content) && (char.IsWhiteSpace(content[0]) || char.IsWhiteSpace(content[content.Length-1]))) {
+            	new_text.Space = SpaceProcessingModeValues.Preserve;
+            }
             OXW.Run run = new OXW.Run(new_text);
-            run.RunProperties = (OXW.RunProperties)block.Descendants<OXW.RunProperties>().FirstOrDefault().CloneNode(true);
+            OXW.RunProperties originalRunProp = block.Descendants<OXW.RunProperties>().FirstOrDefault();
+            if (originalRunProp != null)
+            {
+            	run.RunProperties = (OXW.RunProperties)originalRunProp.CloneNode(true);
+            }
             OpenXmlElement finalBlock = run;
             var cbcontainer = block.Parent;
             if (null != cbcontainer)
             {
                 cbcontainer.Parent.ReplaceChild(finalBlock, cbcontainer);
             }
-            ((WordprocessingDocument)container).MainDocumentPart.Document.Save();
+            var docPart = container.GetPartsOfType<MainDocumentPart>().FirstOrDefault();
+            if (docPart == null)
+            {
+            	var p = container as OpenXmlPart;
+            	if (p != null)
+            		docPart = p.GetParentParts().FirstOrDefault(_ => _ is MainDocumentPart) as MainDocumentPart;
+            }
+            if (docPart != null)
+            {
+            	docPart.Document.Save();
+            }
         }
         private static void UpdateExcelBlock(OpenXmlPartContainer container, OpenXmlElement block, string content)
         {

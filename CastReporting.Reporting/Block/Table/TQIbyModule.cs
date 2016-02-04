@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 
 
@@ -44,17 +45,15 @@ namespace CastReporting.Reporting.Block.Table
             bool isDisplayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
 
             List<string> rowData = new List<string>();
-            int count = 0;
             rowData.AddRange(isDisplayShortHeader
-                                ? new[] { " ", "Cur TQI", "Prev TQI", "Var" }
-                                : new[] { " ", "Current TQI", "Previous TQI", "Variation" });
+            	? new[] { " ", Labels.TQICur, Labels.TQIPrev, Labels.Var }
+                : new[] { " ", Labels.TQICurrent, Labels.TQIPrevious, Labels.Variation });
 
             var resultCurrentSnapshot = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(reportData.CurrentSnapshot);
             var resultPreviousSnapshot = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(reportData.PreviousSnapshot);
             
-            
-            if (resultCurrentSnapshot != null )
-            {
+            int count = 0;            
+            if (resultCurrentSnapshot != null) {
 
                 if (resultPreviousSnapshot == null) resultPreviousSnapshot = new List<BusinessCriteriaDTO>();
 
@@ -71,23 +70,18 @@ namespace CastReporting.Reporting.Block.Table
                                };
 
 
-                foreach (var result in results.OrderBy(_ => _.Name))
-                {
-                    
+                foreach (var result in results.OrderBy(_ => _.Name)) {
                     rowData.AddRange(new[] {
                             result.Name,
                             result.TqiCurrent.HasValue  ? result.TqiCurrent.Value.ToString(_MetricFormat) : CastReporting.Domain.Constants.No_Value,     
                             result.TqiPrevious.HasValue ? result.TqiPrevious.Value.ToString(_MetricFormat) : CastReporting.Domain.Constants.No_Value,     
                             result.PercentVariation.HasValue ? TableBlock.FormatPercent(result.PercentVariation):CastReporting.Domain.Constants.No_Value,
                         });
+					count++;
                 }
-                count = results.Count();
             }
 
-           
-
-            var resultTable = new TableDefinition
-            {
+            var resultTable = new TableDefinition {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
                 NbRows = count + 1,

@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -178,11 +178,9 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                         // We clean row not having Cell information
                                         int idxRow = 1;
                                         var nbCorrectSeries = allRows.Where(x => x.Descendants(S.c) != null &&
-                                                                                 x.Descendants(S.c).Where(y => y.Attribute(NoNamespace.r) != null &&
-                                                                                                               y.Attribute(NoNamespace.r).Value != "")
-                                                                                                   .Any())
-                                                                     .Select(x => x.Descendants(S.c).Count())
-                                                                     .Max();
+                                                                                 x.Descendants(S.c).Any(y => y.Attribute(NoNamespace.r) != null &&
+                                                                                                               y.Attribute(NoNamespace.r).Value != ""))
+                                                                     .Max(x => x.Descendants(S.c).Count());
                                         for (int ctn = 0; ctn < nbRows; ctn += 1)
                                         {
                                             var oneRow = allRows.ElementAt(ctn);//[ctn];
@@ -586,15 +584,16 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
 
                     // Series in Graph ------------------------------------------------------
                     List<XElement> cSerie = chartCached.Descendants(C.ser).ToList();
+                    var formulaToCheck = new List<XElement>();
                     for (int ctSer = 0; ctSer < cSerie.Count; ctSer += 1)
                     {
                         #region Serie Treatment
                         var oneSerie = cSerie[ctSer];
 
                         // We check if the content as been given for this serie
-                        List<XElement> formulaToCheck = new List<XElement>();
-                        var allSeriesFormula = oneSerie.Descendants(C.numRef).Descendants(C.f).Union(oneSerie.Descendants(C.strRef).Descendants(C.f)).ToList();
-                        formulaToCheck.AddRange(allSeriesFormula);
+                        formulaToCheck.Clear();
+                        formulaToCheck.AddRange(oneSerie.Descendants(C.numRef).Descendants(C.f).Union(oneSerie.Descendants(C.strRef).Descendants(C.f)));
+
                         bool isSerieDeleted = false;
                         foreach (var oneFormula in formulaToCheck)
                         {
@@ -611,6 +610,10 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                 oneSerie.Remove();
                                 break;
                             }
+                            // ignore if mapped to a single cell of first row or first column
+                            if ((endCol - startCol == 0 && endRow - startRow == 0) && (startCol == 1 || startRow == 1))
+                            	continue;
+                            // otherwise this is mapped to a range: update
                             if (startCol == endCol && endRow != content.NbRows) //&& endRow - startRow != 0)
                             {
                                 endRow = content.NbRows; // -startRow;

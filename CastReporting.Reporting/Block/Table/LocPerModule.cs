@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2014 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -46,13 +47,13 @@ namespace CastReporting.Reporting.Block.Table
             int nbTot = 0;
             bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
             List<string> rowData = new List<string>();
-            rowData.AddRange(new string[] { "Module Name", "LOCs" });
+            rowData.AddRange(new string[] { Labels.ModuleName, Labels.LoC });
 
             if (null != reportData &&
                 null != reportData.CurrentSnapshot &&
                 null != reportData.CurrentSnapshot.Modules)
             {
-               var result = reportData.CurrentSnapshot.SizingMeasuresResults.Where(v => v.Reference.Key == (int)Constants.SizingInformations.CodeLineNumber).FirstOrDefault();
+               var result = reportData.CurrentSnapshot.SizingMeasuresResults.FirstOrDefault(v => v.Reference.Key == (int)Constants.SizingInformations.CodeLineNumber);
 
                if (result != null)
                {

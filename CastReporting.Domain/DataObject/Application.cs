@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,6 +42,25 @@ namespace CastReporting.Domain
         /// </summary>
         public IEnumerable<Snapshot> Snapshots { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public IEnumerable<Domain.System> Systems { get; set; }
+        
+        public string SystemNames {
+        	get {
+        		var sb = new StringBuilder();
+        		if (Systems != null) {
+        			 foreach (var sys in Systems) {
+        				if (sb.Length > 0)
+        					sb.Append(", ");
+        				sb.Append(sys.Name);
+        			 }
+        		}
+        		return sb.ToString();
+        	}
+        }
+        
         /// <summary>
         /// 
         /// </summary>

@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -78,14 +79,14 @@ namespace CastReporting.Reporting.Block.Table
                 Int32? variation = (selectedHttVal.HasValue && previousHttVal.HasValue) ? (Int32)(selectedHttVal - previousHttVal) : (Int32?)null;
                
 
-                rowData.AddRange(new string[] { "Cast Complexity", "Current total", "Previous total", "Evol.", "% on total elements" });
+                rowData.AddRange(new string[] { Labels.Complexity, Labels.Current, Labels.Previous, Labels.Evol, Labels.TotalPercent });
                 
                 rowData.AddRange(new string[]
-                    { "High and Very High Complexity"
+                    { Labels.ComplexityHighAndVeryHigh
                     , selectedHttVal.HasValue? selectedHttVal.Value.ToString(_MetricFormat) : Constants.No_Value
                     , previousHttVal.HasValue ? previousHttVal.Value.ToString(_MetricFormat) : Constants.No_Value
                     , variation.HasValue? TableBlock.FormatEvolution((Int32)variation.Value): Constants.No_Value
-                    , (selectedHttVal.HasValue && previousHttVal.HasValue && previousHttVal.Value>0)? TableBlock.FormatPercent(selectedHttVal.Value / selectedTotal.Value, false): Constants.No_Value
+                    , (selectedHttVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)? TableBlock.FormatPercent(selectedHttVal.Value / selectedTotal.Value, false): Constants.No_Value
                     });
                 #endregion Data
 

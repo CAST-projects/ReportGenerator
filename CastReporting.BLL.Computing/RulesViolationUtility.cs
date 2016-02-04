@@ -139,6 +139,7 @@ namespace CastReporting.BLL.Computing
                                                 TotalFailed = _.DetailResult.ViolationRatio.FailedChecks,
                                                 Grade = _.DetailResult.Grade
                                             })
+            							.Distinct(new RuleViolationResultDTO.Comparer())
                                         .OrderByDescending(_ => _.TotalFailed)
                                         .Take(nbTopResult)
                                         .ToList();
@@ -235,7 +236,9 @@ namespace CastReporting.BLL.Computing
 
             var query = snapshot.BusinessCriteriaResults.AsQueryable();
 
-            if (businessCriteriaId != 0) query = query.Where(_ => _.Reference.Key == businessCriteriaId.GetHashCode());
+            if (businessCriteriaId != 0) { 
+            	query = query.Where(_ => _.Reference.Key == businessCriteriaId.GetHashCode());
+            }
 
             switch (rulesViolationType)
             {

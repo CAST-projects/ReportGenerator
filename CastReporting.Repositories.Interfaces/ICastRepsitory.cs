@@ -43,6 +43,11 @@ namespace CastReporting.Repositories.Interfaces
         /// <returns></returns>
         IEnumerable<Snapshot> GetSnapshotsByApplication(string applicationHRef);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Domain.System> GetSystemsByApplication(string applicationHRef);
 
         /// <summary>
         /// 
@@ -158,6 +163,14 @@ namespace CastReporting.Repositories.Interfaces
         /// <param name="businessCriteria"></param>
         /// <returns></returns>
         IEnumerable<Transaction> GetTransactions(string snapshotHref, string businessCriteria, int count);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="snapshotHref"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        IEnumerable<IfpugFunction> GetIfpugFunctions(string snapshotHref, int count);
 
         /// <summary>
         /// 

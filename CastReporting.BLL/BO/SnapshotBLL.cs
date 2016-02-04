@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -208,6 +208,28 @@ namespace CastReporting.BLL
                 return null;
             }
             
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="snapshotHref"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public IEnumerable<IfpugFunction> GetIfpugFunctions(string snapshotHref, int count)
+        {
+            try
+            {
+                using (var castRepsitory = GetRepository())
+                {
+                    return castRepsitory.GetIfpugFunctions(_Snapshot.Href, count);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
         }
 
 

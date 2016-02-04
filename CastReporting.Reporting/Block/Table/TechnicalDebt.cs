@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ using CastReporting.Domain;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 
 
 namespace CastReporting.Reporting.Block.Table
@@ -47,9 +48,9 @@ namespace CastReporting.Reporting.Block.Table
                 
                 //Build Debt row          
                 Double? technicalDebtBuild = MeasureUtility.GetTechnicalDebtMetric(reportData.CurrentSnapshot);
-                rowData.AddRange(new string[] { "Name", "Value" });
+                rowData.AddRange(new string[] { Labels.Name, Labels.Value });
                 rowData.AddRange(new string[] {
-                    displayShortHeader ? "Debt" : "Technical Debt",
+                    displayShortHeader ? Labels.Debt : Labels.TechnicalDebt  + " (" + reportData.CurrencySymbol + ")",
                    technicalDebtBuild.HasValue? technicalDebtBuild.Value.ToString(numberFormat):CastReporting.Domain.Constants.No_Value ,                   
                 });
 
@@ -58,7 +59,7 @@ namespace CastReporting.Reporting.Block.Table
                 Double? technicalDebtadded = MeasureUtility.SumDeltaIndicator(reportData.CurrentSnapshot, reportData.PreviousSnapshot, reportData.Application, Constants.SizingInformations.AddedViolationsTechnicalDebt);
 
                 rowData.AddRange(new string[] {
-                     displayShortHeader ? "Debt added" : "Technical Debt added",
+                     displayShortHeader ? Labels.DebtAdded : Labels.TechnicalDebtAdded + " (" + reportData.CurrencySymbol + ")",
                    technicalDebtadded.HasValue? technicalDebtadded.Value.ToString(numberFormat) : CastReporting.Domain.Constants.No_Value,                   
                 });
 
@@ -66,7 +67,7 @@ namespace CastReporting.Reporting.Block.Table
                 Double? technicalDebtremoved = MeasureUtility.SumDeltaIndicator(reportData.CurrentSnapshot, reportData.PreviousSnapshot, reportData.Application, Constants.SizingInformations.RemovedViolationsTechnicalDebt);
 
                 rowData.AddRange(new string[] {
-                    displayShortHeader ? "Debt removed" : "Technical Debt removed",
+                     displayShortHeader ? Labels.DebtRemoved : Labels.TechnicalDebtRemoved + " (" + reportData.CurrencySymbol + ")",
                    technicalDebtremoved.HasValue? technicalDebtremoved.Value.ToString(numberFormat):CastReporting.Domain.Constants.No_Value,                   
                 });
             }

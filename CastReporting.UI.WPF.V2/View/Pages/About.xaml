@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:label="clr-namespace:CastReporting.UI.WPF.Resources.Languages"
+      xmlns:page="clr-namespace:CastReporting.UI.WPF.View.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="About">
@@ -18,7 +19,7 @@
 
         <TextBlock Text="{x:Static label:Messages.lblAboutTitle}" />
 
-        <TextBlock Text="{x:Static label:Messages.lblAboutVersion}" />
+        <TextBlock Text="{x:Static page:About.lblAboutVersion}" />
         <TextBlock Text="{x:Static label:Messages.lblAboutCopyright}" />
         <Image Source="/CastReporting.UI.WPF;component/Resources/Images/splash.png" Height="403" Width="270"  Margin="38,0,37,0"  />
 

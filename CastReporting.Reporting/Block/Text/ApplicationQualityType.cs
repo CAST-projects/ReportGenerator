@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Configuration;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using System.Globalization;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -58,19 +57,19 @@ namespace CastReporting.Reporting.Block.Text
         {
           
             if (value < reportData.Parameter.ApplicationQualityVeryLow)
-                return "very Low";
+                return Labels.QualityVeryLow;
 
             else if (value < reportData.Parameter.ApplicationQualityLow)
-                return "low";
+                return Labels.QualityLow;
 
             else if (value < reportData.Parameter.ApplicationQualityMedium)
-                return "medium";
+                return Labels.QualityMedium;
 
             else if (value < reportData.Parameter.ApplicationQualityGood)
-                return "good";
+                return Labels.QualityGood;
 
             else
-                return "very Good";
+                return Labels.QualityVeryGood;
         }
         
         #endregion METHODS

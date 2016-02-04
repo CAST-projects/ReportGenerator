@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -84,8 +85,8 @@ namespace CastReporting.Reporting.Block.Table
 
 
                 List<string> rowData = new List<string>();
-                if (displayShortHeader) { rowData.AddRange(new[] { "", "Prog.", "Arch.", "Doc." }); }
-                else { rowData.AddRange(new[] { "", "Programming Practices", "Architectural Design", "Documentation" }); }
+                if (displayShortHeader) { rowData.AddRange(new[] { "", Labels.Prog, Labels.Arch, Labels.Doc }); }
+                else { rowData.AddRange(new[] { "", Labels.ProgrammingPractices, Labels.ArchitecturalDesign, Labels.Documentation }); }
 
                 rowData.AddRange(
                     new[]
@@ -104,7 +105,7 @@ namespace CastReporting.Reporting.Block.Table
                         prevProgrammingPracticesValue.HasValue? prevProgrammingPracticesValue.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value,
                         prevArchitecturalDesignValue.HasValue?prevArchitecturalDesignValue.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value,
                         prevDocumentationValue.HasValue?prevDocumentationValue.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value,
-                        "Variation",
+                        Labels.Variation,
                         varProgrammingPractices.HasValue? TableBlock.FormatPercent(varProgrammingPractices.Value): CastReporting.Domain.Constants.No_Value,
                         varArchitecturalDesign.HasValue?TableBlock.FormatPercent(varArchitecturalDesign.Value): CastReporting.Domain.Constants.No_Value,
                         varDocumentation.HasValue?TableBlock.FormatPercent(varDocumentation.Value): CastReporting.Domain.Constants.No_Value

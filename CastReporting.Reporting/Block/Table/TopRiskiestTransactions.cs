@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 
 
@@ -52,15 +53,15 @@ namespace CastReporting.Reporting.Block.Table
                 nbLimitTop = 10;
             }
 
-            var bc = reportData.CurrentSnapshot.BusinessCriteriaResults.Where(_ => _.Reference.Key == businessCriteria).FirstOrDefault();
+            var bc = reportData.CurrentSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == businessCriteria);
 
             bc.Transactions = reportData.SnapshotExplorer.GetTransactions(reportData.CurrentSnapshot.Href, bc.Reference.Key.ToString(), nbLimitTop);
 
-            List<string> rowData = new List<string>(new string[] { "Transaction Entry Point", "TRI" });
+            List<string> rowData = new List<string>(new string[] { Labels.TransactionEP, Labels.TRI });
             int nbRows = 0;
 
             const string metricFormat = "N0";
-            if (bc.Transactions !=null && bc.Transactions.Count() > 0)
+            if (bc.Transactions !=null && bc.Transactions.Any())
             {
                 foreach (var transaction in bc.Transactions)
                 {
@@ -71,7 +72,7 @@ namespace CastReporting.Reporting.Block.Table
             }
             else
             {
-                rowData.AddRange(new string[] { "No enable item.", string.Empty });
+                rowData.AddRange(new string[] { Labels.NoItem, string.Empty });
             }
 
             resultTable = new TableDefinition

@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,12 +67,16 @@ namespace CastReporting.BLL
             {
                 foreach (var domain in domains)
                 {
-                    applications.AddRange(castRepsitory.GetApplicationsByDomain(domain.Href));
+					var domainApps = castRepsitory.GetApplicationsByDomain(domain.Href);
 
-                    foreach (var app in applications)
+                    foreach (var app in domainApps)
                     {
+						if (string.IsNullOrEmpty(app.Version)) {
                         app.Version = domain.Version;
                     }
+                }
+					
+                    applications.AddRange(domainApps);
                 }
             }
 

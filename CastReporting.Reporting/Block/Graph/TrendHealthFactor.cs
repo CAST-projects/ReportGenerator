@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ using CastReporting.Domain;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,20 +39,26 @@ namespace CastReporting.Reporting.Block.Graph
             int count = 0;
         
             bool hasVerticalZoom = options.ContainsKey("ZOOM");
-            if (!options.ContainsKey("ZOOM") || !Double.TryParse(options["ZOOM"], out stepV))
-            {
+            if (!options.ContainsKey("ZOOM") || !Double.TryParse(options["ZOOM"], out stepV)) {
                 stepV = 1;
             }
           
             var rowData = new List<String>();
-            rowData.AddRange(new string[] { " ", "Trsf", "Chng", "Rbst", "Effi", "Secu", "LoC" });
+			rowData.AddRange(new string[] {
+				" ",
+				Labels.Trans,
+				Labels.Chang,
+				Labels.Robu,
+				Labels.Efcy,
+				Labels.Secu,
+				Labels.LoC
+			});
 
             
             #region Fetch Snapshots
-            if (reportData != null && reportData.Application.Snapshots != null && reportData.Application.Snapshots.Count() > 0)
-            {
-                foreach (Snapshot snapshot in reportData.Application.Snapshots.OrderBy(_ => _.Annotation.Date))
-                {
+			int nbSnapshots = (reportData != null && reportData.Application.Snapshots != null) ? reportData.Application.Snapshots.Count() : 0;
+			if (nbSnapshots > 0) {
+				foreach (Snapshot snapshot in reportData.Application.Snapshots.OrderBy(_ => _.Annotation.Date)) {
                     BusinessCriteriaDTO bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(snapshot);
                     double? locValue = MeasureUtility.GetCodeLineNumber(snapshot);
                     string snapshotDate = snapshot.Annotation.Date.DateSnapShot.HasValue ? snapshot.Annotation.Date.DateSnapShot.Value.ToOADate().ToString() 
@@ -76,14 +83,12 @@ namespace CastReporting.Reporting.Block.Graph
                     maxVVal = Math.Max(maxVVal, values.Max());
                        
                 }
-                count = reportData.Application.Snapshots.Count();
-           
+				count = nbSnapshots;
             }
             #endregion
 
             #region just 1 snapshot
-            if (reportData.Application.Snapshots.Count() == 1)
-            {
+			if (nbSnapshots == 1) {
                 BusinessCriteriaDTO bcGrade = new BusinessCriteriaDTO();
                 bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot);
                 double? locValue = MeasureUtility.GetCodeLineNumber(reportData.CurrentSnapshot);
@@ -115,16 +120,14 @@ namespace CastReporting.Reporting.Block.Graph
 
             #region Graphic Options
             GraphOptions graphOptions = null;
-            if (hasVerticalZoom)
-            {
+            if (hasVerticalZoom) {
                 graphOptions = new GraphOptions() { AxisConfiguration = new AxisDefinition() };
                 graphOptions.AxisConfiguration.VerticalAxisMinimal = MathUtility.GetVerticalMinValue(minVVal, stepV);
                 graphOptions.AxisConfiguration.VerticalAxisMaximal = MathUtility.GetVerticalMaxValue(maxVVal, stepV);
             }
             #endregion Graphic Options
 
-            TableDefinition resultTable = new TableDefinition
-            {
+            TableDefinition resultTable = new TableDefinition {
                 HasRowHeaders = true,
                 HasColumnHeaders = false,
                 NbRows = count+1,

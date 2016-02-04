@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,10 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Runtime.Serialization;
 
 namespace CastReporting.Domain
@@ -23,9 +27,11 @@ namespace CastReporting.Domain
     [DataContract(Name = "system")]
     public class System : CRObject
     {
+        #region Serialized properties
+        #endregion  Serialized properties
+
+
         #region PROPERTIES
-
-
         #endregion PROPERTIES
 
 

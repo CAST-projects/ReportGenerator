@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,8 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using System.Configuration;
-using CastReporting.Domain;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 
 namespace CastReporting.Reporting.Block.Text
@@ -34,8 +33,7 @@ namespace CastReporting.Reporting.Block.Text
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             if (null != reportData &&
-                 null != reportData.CurrentSnapshot)
-            {
+                 null != reportData.CurrentSnapshot) {
 
                 double? codeLineNumber = MeasureUtility.GetCodeLineNumber(reportData.CurrentSnapshot);
 
@@ -57,17 +55,14 @@ namespace CastReporting.Reporting.Block.Text
         /// <returns></returns>
         private static String GetApplicationQualification(ReportData reportData, double value)
         {
-            if (value < reportData.Parameter.ApplicationSizeLimitSupSmall )
-                return "small";
-
+            if (value < reportData.Parameter.ApplicationSizeLimitSupSmall)
+				return Labels.SizeS;
             else if (value < reportData.Parameter.ApplicationSizeLimitSupMedium)
-                return "medium";
-            
+				return Labels.SizeM;
             else if (value < reportData.Parameter.ApplicationSizeLimitSupLarge)
-                return "large";
+				return Labels.SizeL;
             else 
-                return "extra large";
-
+				return Labels.SizeXL;
         }
 
         #endregion METHODS

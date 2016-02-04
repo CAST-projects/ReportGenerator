@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,6 @@ namespace CastReporting.Mediation.Interfaces
         /// <returns></returns>
         string DownloadString(string pUrl, RequestComplexity pComplexity);
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -43,5 +42,21 @@ namespace CastReporting.Mediation.Interfaces
         /// <param name="pComplexity"></param>
         /// <returns></returns>
         string DownloadString(Uri pUri, RequestComplexity pComplexity);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pUrl"></param>
+        /// <param name="pComplexity"></param>
+        /// <returns></returns>
+        string DownloadCsvString(string pUrl, RequestComplexity pComplexity);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pUri"></param>
+        /// <param name="pComplexity"></param>
+        /// <returns></returns>
+        string DownloadCsvString(Uri pUri, RequestComplexity pComplexity);
     }
 }

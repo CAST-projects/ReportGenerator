@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,6 +52,11 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         public static bool IsMatching(string blockType)
         {
             return (BlockTypeName.Equals(blockType));
+        }
+
+        public TableDefinition GetContent(ReportData client, Dictionary<string, string> options)
+        {
+            return Content(client, options);
         }
         public static TableDefinition GetContent(string blockName, ReportData client, Dictionary<string, string> options)
         {
@@ -128,7 +133,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         /// </summary>
         /// <param name="pValue">Numeric value to display</param>
         /// <returns>Displayed text</returns>
-        protected static string FormatEvolution(int pValue)
+        protected static string FormatEvolution(long pValue)
         {
             string sign = (pValue > 0)?"+":"";
 
@@ -154,7 +159,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         protected static string FormatEvolution(double? pValue)
         {
             if(!pValue.HasValue)
-                return CastReporting.Domain.Constants.No_Value;
+				return CastReporting.Domain.Constants.No_Data;
 
             string ret;
             if (pValue.Value > 99)
@@ -244,7 +249,6 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                         if (content.HasColumnHeaders && 0 == nbrow)
                         {
                             cell = headerCells[idx % headerCellsCount].CloneNode(true) as OXW.TableCell;
-
                         }
                         else
                         {
@@ -311,20 +315,23 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 {
                     run = run.CloneNode(true) as OXW.Run;
                     paragraph.RemoveAllChildren<OXW.Run>();
+                }
+                else
+                {
+					run = new OXW.Run();
+				}
                     OXW.Text text = run.Descendants<OXW.Text>().FirstOrDefault();
                     text = (null == text ? new OXW.Text() : text.CloneNode(true) as OXW.Text);
                     run.RemoveAllChildren<OXW.Text>();
                     text.Text = txt;
+				if (!string.IsNullOrEmpty(txt) && (char.IsWhiteSpace(txt[0]) || char.IsWhiteSpace(txt[txt.Length-1]))) {
+					text.Space = SpaceProcessingModeValues.Preserve;
+				}
                     run.Append(text);
                     paragraph.Append(run);
                 }
-                else
-                {
-                    run = new OXW.Run();
-                }
-
             }
-        }
+
         private static void ReplaceWordRun(OXD.Paragraph paragraph, OXD.Run initRun, OXD.Run finalRun)
         {
             if (null != paragraph.Descendants<OXD.Run>())
@@ -368,6 +375,10 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                             {
                                 AddNewGridColumn(table.TableGrid, headerRowTemplate, contentRowTemplate);
                             }
+                        } else if (columns.Count > content.NbColumns) {
+                        	for (int i = content.NbColumns, lim = columns.Count; i < lim; i++) {
+                        		RemoveLastGridColumn(table.TableGrid);
+                        	}
                         }
                         #endregion Column Number Management
 
@@ -431,7 +442,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         private static void AddNewGridColumn(OXD.TableGrid tableGrid, OXD.TableRow headerRow, OXD.TableRow contentRow)
         {
             var columns = tableGrid.Descendants<OXD.GridColumn>();
-            if (null != columns && 0 < columns.Count())
+            if (null != columns && columns.Any())
             {
                 var headerLastCell = headerRow.Descendants<OXD.TableCell>().Last();
                 var contentLastCell = contentRow.Descendants<OXD.TableCell>().Last();
@@ -447,6 +458,12 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             }
         }
 
+		private static void RemoveLastGridColumn(OXD.TableGrid tableGrid)
+		{
+			var lastColumn = tableGrid.Descendants<OXD.GridColumn>().Last();
+			tableGrid.RemoveChild<OXD.GridColumn>(lastColumn);
+		}
+		
         private static int GetWidth(OpenXmlAttribute openXmlAttribute)
         {
             int back = 0;

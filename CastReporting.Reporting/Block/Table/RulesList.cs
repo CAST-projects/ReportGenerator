@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -59,9 +60,10 @@ namespace CastReporting.Reporting.Block.Table
                                               
                 //Build result
                 List<string> rowData = new List<string>();
-                rowData.AddRange(new string[] { "Criticality", "Weight", "Grade", "Technical Criteria", "Rule Name", "# Viol.", "# Ok" });
+                rowData.AddRange(new string[] { Labels.Criticality, Labels.Weight, Labels.Grade, Labels.TechnicalCriterion, Labels.RuleName, Labels.ViolCount, Labels.TotalOk });
 
                 var results = RulesViolationUtility.GetNbViolationByRule(reportData.CurrentSnapshot, reportData.RuleExplorer, businessCriteriasIds, count);
+                int nbRows = 0;
                 foreach (var item in results)
                 {
                     
@@ -71,16 +73,17 @@ namespace CastReporting.Reporting.Block.Table
                     rowData.Add(item.TechnicalCriteraiName);
                     rowData.Add(item.Rule.Name);
 
-                    rowData.Add(item.TotalFailed.HasValue ? item.TotalFailed.Value.ToString("N0") : Constants.No_Value);
+                    rowData.Add(item.TotalFailed.HasValue ? item.TotalFailed.Value.ToString("N0") : Constants.No_Data);
                     rowData.Add(item.TotalChecks.HasValue ? item.TotalChecks.Value.ToString("N0") : Constants.No_Value);                       
                    
+                    nbRows++;
                 }
 
                 TableDefinition resultTable = new TableDefinition
                 {
                     HasRowHeaders = false,
                     HasColumnHeaders = true,
-                    NbRows = results.Count() + 1,
+                    NbRows = nbRows + 1,
                     NbColumns = 7,
                     Data = rowData
                 };

@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2014 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
 namespace CastReporting.Reporting.Block.Text
@@ -31,39 +30,35 @@ namespace CastReporting.Reporting.Block.Text
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            string strRuleId = (options != null && options.ContainsKey("RULID")) ? options["RULID"] : null;
+            string strRuleId = (options != null && options.ContainsKey("RULID")) ? options["RULID"] : "7126";
 
-            if (null != reportData &&
-                 null != reportData.CurrentSnapshot)
-            {
+            if (null != reportData && null != reportData.CurrentSnapshot) {
                 var rule = reportData.RuleExplorer.GetSpecificRule(reportData.Application.DomainId, strRuleId);
                 var currentviolation = reportData.RuleExplorer.GetRulesViolations(reportData.CurrentSnapshot.Href, strRuleId).FirstOrDefault();
 
-                Int32? TotalChecks = null;
+                Int32? totalChecks = null;
                 Int32? failedChecks = null;
 
-                TotalChecks = GetTotalChecks(currentviolation, TotalChecks);
+                totalChecks = GetTotalChecks(currentviolation, totalChecks);
                 failedChecks = GetFailedChecks(currentviolation, failedChecks);
 
                 return string.Format("{0} / {1}", (failedChecks != null && failedChecks.HasValue) ? failedChecks.Value.ToString("N0") : Constants.No_Value,
-                     (TotalChecks != null && TotalChecks.HasValue) ? TotalChecks.Value.ToString("N0") : Constants.No_Value);
+                     (totalChecks != null && totalChecks.HasValue) ? totalChecks.Value.ToString("N0") : Constants.No_Value);
             }
-            return CastReporting.Domain.Constants.No_Value;
+            return Constants.No_Value;
         }
 
-        private static int? GetTotalChecks(Result currentviolation, Int32? TotalChecks)
+		private static int? GetTotalChecks(Result currentviolation, Int32? totalChecks)
         {
-            if (currentviolation != null && currentviolation.ApplicationResults.Count() > 0)
-            {
-                TotalChecks = currentviolation.ApplicationResults[0].DetailResult.ViolationRatio.TotalChecks;
+            if (currentviolation != null && currentviolation.ApplicationResults.Any()) {
+                totalChecks = currentviolation.ApplicationResults[0].DetailResult.ViolationRatio.TotalChecks;
             }
-            return TotalChecks;
+            return totalChecks;
         }
 
         private static int? GetFailedChecks(Result currentviolation, Int32? failedChecks)
         {
-            if (currentviolation != null && currentviolation.ApplicationResults.Count() > 0)
-            {
+            if (currentviolation != null && currentviolation.ApplicationResults.Any()) {
                 failedChecks = currentviolation.ApplicationResults[0].DetailResult.ViolationRatio.FailedChecks;
             }
             return failedChecks;

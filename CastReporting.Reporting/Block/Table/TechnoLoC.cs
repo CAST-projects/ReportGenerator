@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Block.Table
 {
@@ -29,40 +30,70 @@ namespace CastReporting.Reporting.Block.Table
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             #region METHODS
+            int intLOCFlag = 0;
             int nbResult = reportData.Parameter.NbResultDefault;
             int nbTot = 0;
             int nb = 0;
-            if (null != options &&
-                options.ContainsKey("COUNT") &&
-                Int32.TryParse(options["COUNT"], out nb) &&
-                0 < nb)
+            if (null != options && options.ContainsKey("COUNT") && Int32.TryParse(options["COUNT"], out nb) && 0 < nb)
             {
                 nbResult = nb;
             }
 
-            List<string> rowData = new List<string>();
-            rowData.AddRange(new string[] { "Name", "LOCs" });
+            if (null != options && options.ContainsKey("NOSIZE"))
+            {
+                intLOCFlag = 1;
+            }
 
-            if (null != reportData &&
-                null != reportData.CurrentSnapshot &&
-                null != reportData.CurrentSnapshot.Technologies)
+            List<string> rowData = new List<string>();
+
+            if (intLOCFlag == 1)
+            {
+                rowData.AddRange(new string[] { Labels.Name });
+            }
+            else
+            {
+                rowData.AddRange(new string[] { Labels.Name, Labels.LoC });
+            }
+            if (null != reportData && null != reportData.CurrentSnapshot && null != reportData.CurrentSnapshot.Technologies)
             {
                 var technologyInfos = MeasureUtility.GetTechnoLoc(reportData.CurrentSnapshot, nbResult);
 
                 foreach (var elt in technologyInfos)
                 {
-                    rowData.AddRange(new string[] { elt.Name, elt.Value.ToString("N0") });
+                    if (intLOCFlag == 1)
+                    {
+                        rowData.AddRange(new string[] { elt.Name });
+                    }
+                    else
+                    {
+                        rowData.AddRange(new string[] { elt.Name, elt.Value.ToString("N0") });
+                    }
                 }
                 nbTot = technologyInfos.Count;
             }
-            TableDefinition resultTable = new TableDefinition
+            TableDefinition resultTable;
+            if (intLOCFlag == 1)
             {
-                HasRowHeaders = false,
-                HasColumnHeaders = true,
-                NbRows = nbTot + 1,
-                NbColumns = 2,
-                Data = rowData
-            };
+                resultTable = new TableDefinition
+                {
+                    HasRowHeaders = false,
+                    HasColumnHeaders = true,
+                    NbRows = nbTot + 1,
+                    NbColumns = 1,
+                    Data = rowData
+                };
+            }
+            else
+            {
+                resultTable = new TableDefinition
+                {
+                    HasRowHeaders = false,
+                    HasColumnHeaders = true,
+                    NbRows = nbTot + 1,
+                    NbColumns = 2,
+                    Data = rowData
+                };
+            }
             return resultTable;
         }
             #endregion METHODS

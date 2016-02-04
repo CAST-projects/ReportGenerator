@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.Domain;
 
 namespace CastReporting.Reporting.Block.Table
@@ -36,7 +37,7 @@ namespace CastReporting.Reporting.Block.Table
             TableDefinition resultTable = null;
             bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
            List<string> rowData = new List<string>();
-            rowData.AddRange(new string[] { "Name", "Id" });
+            rowData.AddRange(new string[] { Labels.Name, Labels.Id });
 
             if (null != reportData &&
                 null != reportData.CurrentSnapshot)

@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ using CastReporting.Reporting.ReportingModel;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using System;
+using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Block.Table
 {
@@ -67,13 +68,13 @@ namespace CastReporting.Reporting.Block.Table
                 Double? achievementAddedRatio = (nbAchievementAdded.HasValue && nbObjectives.HasValue && nbObjectives.Value != 0) ? (Double)nbAchievementAdded.Value / nbObjectives.Value : (Double?)null;
 
                 //BuildContent header
-                rowData.AddRange(displayShortHeader ? new[] { " ", "Obj.", "Achiev.", "%" }
-                                                    : new[] { " ", "Objectives", "Achievement", "Achievement ratio" });
+                rowData.AddRange(displayShortHeader ? new[] { " ", Labels.Obj, Labels.Achiev, Labels.AchievRatio }
+                                                    : new[] { " ", Labels.Objectives, Labels.Achievement, Labels.AchievementRatio });
 
 
                 //BuildContent "Entire Application" row
                 rowData.AddRange(new string[] {
-                    "Entire Application (whole code)",
+                    Labels.DeliveryWhole,
                     (nbObjectives.HasValue)?nbObjectives.Value.ToString(_MetricFormat):String.Empty,
                     (nbAchievement.HasValue)?nbAchievement.Value.ToString(_MetricFormat):String.Empty,
                     TableBlock.FormatPercent(MathUtility.GetRound(achievementRatio), false)
@@ -82,7 +83,7 @@ namespace CastReporting.Reporting.Block.Table
 
                 //BuildContent "Last Delivery" row          
                 rowData.AddRange(new string[] {
-                    "Last Delivery (new and modified)",
+                     Labels.DeliveryLast,
                      (nbObjectives.HasValue)?nbObjectives.Value.ToString(_MetricFormat):String.Empty,
                      (nbAchievementAdded.HasValue)?nbAchievementAdded.Value.ToString(_MetricFormat):String.Empty,
                      TableBlock.FormatPercent(MathUtility.GetRound(achievementAddedRatio), false)

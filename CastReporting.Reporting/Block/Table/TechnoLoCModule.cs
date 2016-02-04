@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ namespace CastReporting.Reporting.Block.Table
 
             //Set the table header
             rowData.Add("");
-            rowData.AddRange(reportData.CurrentSnapshot.Technologies.ToArray());
+            rowData.AddRange(reportData.CurrentSnapshot.Technologies);
 
             //Set the result by module
             foreach (var mod in reportData.CurrentSnapshot.Modules)
@@ -59,7 +59,7 @@ namespace CastReporting.Reporting.Block.Table
                 {
                     var result = technologyLoc.FirstOrDefault(_ => _.Name == techName);
 
-                    rowData.Add(  (result != null) ? result.Value.ToString(_MetricFormat) : Constants.No_Value);
+                    rowData.Add(  (result != null) ? result.Value.ToString(_MetricFormat) : Constants.No_Data);
                 }               
             }
 
@@ -68,7 +68,7 @@ namespace CastReporting.Reporting.Block.Table
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
                 NbRows = reportData.CurrentSnapshot.Modules.Count() + 1,
-                NbColumns = reportData.CurrentSnapshot.Technologies.Count()  + 1,
+                NbColumns = reportData.CurrentSnapshot.Technologies.Length  + 1,
                 Data = rowData
             };
 

@@ -1,6 +1,6 @@
 ﻿using CastReporting.Domain;
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace CastReporting.Reporting.Block.Table
         /// <returns></returns>
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            string strRuleId = (options != null && options.ContainsKey("RULID"))? options["RULID"] : null;
+            string strRuleId = (options != null && options.ContainsKey("RULID")) ? options["RULID"] : null;
    
             List<string> rowData = new List<string>();
        
@@ -46,27 +47,23 @@ namespace CastReporting.Reporting.Block.Table
             var currentviolation = reportData.RuleExplorer.GetRulesViolations(reportData.CurrentSnapshot.Href, strRuleId).FirstOrDefault();
             Int32? failedChecks = null;
 
-            if (currentviolation != null && currentviolation.ApplicationResults.Count() > 0)
-            {
+            if (currentviolation != null && currentviolation.ApplicationResults.Any()) {
                 failedChecks = currentviolation.ApplicationResults[0].DetailResult.ViolationRatio.FailedChecks;               
             }
 
-            if (rule != null)
-            {
-                rowData.AddRange(new string[]
-                            {
+            if (rule != null) {
+                rowData.AddRange(new string[] {
                                 rule.Name, null,
-                                "Rational", string.IsNullOrWhiteSpace(rule.Rationale) ? Constants.No_Value : rule.Rationale,
-                                "Description", rule.Description,
-                                "Remediation", string.IsNullOrWhiteSpace(rule.Remediation) ? Constants.No_Value : rule.Remediation,
-                                "Violations #", (failedChecks != null && failedChecks.HasValue) ? failedChecks.Value.ToString("N0"):Constants.No_Value,
+					Labels.Rationale, string.IsNullOrWhiteSpace(rule.Rationale) ? Constants.No_Value : rule.Rationale,
+					Labels.Description, rule.Description,
+					Labels.Remediation, string.IsNullOrWhiteSpace(rule.Remediation) ? Constants.No_Value : rule.Remediation,
+					Labels.ViolationsCount, (failedChecks != null && failedChecks.HasValue) ? failedChecks.Value.ToString("N0") : Constants.No_Value,
                             });
             }
                 
 
 
-            TableDefinition back = new TableDefinition
-            {
+			TableDefinition back = new TableDefinition {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
                 NbRows = 5,

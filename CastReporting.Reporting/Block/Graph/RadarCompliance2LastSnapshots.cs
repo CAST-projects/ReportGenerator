@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using System.Globalization;
 using CastReporting.Domain;
@@ -66,19 +67,19 @@ namespace CastReporting.Reporting.Block.Graph
 
                 
                 #region Programming Practices
-                rowData.Add("Prog");
+                rowData.Add(Labels.Prog);
                 rowData.Add(currSnapshotBCDTO.ProgrammingPractices.ToString());
                 if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.ProgrammingPractices.ToString()); }
                 #endregion Programming Practices
 
                 #region Architectural Design
-                rowData.Add("Arch");
+                rowData.Add(Labels.Arch);
                 rowData.Add(currSnapshotBCDTO.ArchitecturalDesign.ToString());
                 if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.ArchitecturalDesign.ToString()); }
                 #endregion Architectural Design
 
                 #region Documentation
-                rowData.Add("Doc");
+                rowData.Add(Labels.Doc);
                 rowData.Add(currSnapshotBCDTO.Documentation.ToString());
                 if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Documentation.ToString()); }
                 #endregion Documentation

@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using System.Globalization;
@@ -45,12 +46,10 @@ namespace CastReporting.Reporting.Block.Graph
                 #endregion Required Options
 
                 List<String> rowData = new List<String>();
-                rowData.AddRange(new string[] { "Technical Debt", "TQI", "Size (kLoC)" });
+                rowData.AddRange(new string[] { Labels.TechnicalDebt + " (" + reportData.CurrencySymbol + ")", Labels.TQI, Labels.Size });
 
                 if (reportData != null &&  reportData.CurrentSnapshot != null)
                 {
-
-                   
 
                     double? TQIValue = 0;
                     double? TechDebtValue = 0;

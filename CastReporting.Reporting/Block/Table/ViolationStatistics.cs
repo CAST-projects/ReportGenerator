@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -65,20 +66,23 @@ namespace CastReporting.Reporting.Block.Table
                 const string metricFormatPrecision = "N2";
                 var rowData = new List<string>() 
                 { 
-                    "Name", "Number", "Critical Violations"
+                    Labels.Name
+	                , Labels.Value
+                    
+                    , Labels.ViolationsCritical
                     , (criticalViolation.HasValue) ? criticalViolation.Value.ToString(metricFormat):Constants.No_Value
 
-                    , "  per File", 
-                    (numCritPerFile.HasValue)? numCritPerFile.Value.ToString(metricFormatPrecision):Constants.No_Value
+                    , "  " + Labels.PerFile
+                    , (numCritPerFile.HasValue)? numCritPerFile.Value.ToString(metricFormatPrecision):Constants.No_Value
 
-                    , "  per kLOC", 
-                    (numCritPerKLOC.HasValue)? numCritPerKLOC.Value.ToString(metricFormatPrecision):Constants.No_Value
+                    , "  " + Labels.PerkLoC
+                    , (numCritPerKLOC.HasValue)? numCritPerKLOC.Value.ToString(metricFormatPrecision):Constants.No_Value
 
-                    , "Complex Objects",
-                    (nbComplexityArtefacts.HasValue)?  nbComplexityArtefacts.Value.ToString(metricFormat):Constants.No_Value
+                    , Labels.ComplexObjects
+                    , (nbComplexityArtefacts.HasValue)?  nbComplexityArtefacts.Value.ToString(metricFormat):Constants.No_Value
                 
-                    , "  with violations",
-                    (nbComplexityArtefactsViolation.HasValue)? nbComplexityArtefactsViolation.Value.ToString(metricFormat):Constants.No_Value
+                    , "  " + Labels.WithViolations
+                    , (nbComplexityArtefactsViolation.HasValue)? nbComplexityArtefactsViolation.Value.ToString(metricFormat):Constants.No_Value
                 };
                 
                 resultTable = new TableDefinition

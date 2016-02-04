@@ -1,9 +1,11 @@
 #define MyAppName "CAST Report Generator"
 #define MyAppShortName "ReportGenerator"
-#define MyAppVersion "1.2.0"
+#define MyAppVersion "1.3.0"
 #define MyAppPublisher "CAST"
 #define MyAppURL "http://www.castsoftware.com/"
 #define MyAppExeName "CastReporting.UI.WPF.exe"
+#define MyAppExe "../CastReporting.UI.WPF.V2/bin/Release/"+MyAppExeName
+#define MyAppCopyright GetFileCopyright(MyAppExe)
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -13,10 +15,13 @@ AppId={{CA781D35-A350-45C7-ABA3-0E79BCB81DBF}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} {#MyAppVersion}
+AppCopyright={#MyAppCopyright}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
+VersionInfoCompany={#MyAppPublisher}
+VersionInfoVersion={#MyAppVersion}
 DefaultDirName={pf32}\CAST\8.1\{#MyAppShortName} {#MyAppVersion}
 DefaultGroupName=CAST 8.1\{#MyAppShortName} {#MyAppVersion}
 OutputBaseFilename=ReportGeneratorSetup

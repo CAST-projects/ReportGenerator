@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
+using CastReporting.Reporting.Languages;
 
 
 namespace CastReporting.Reporting.Block.Table
@@ -106,10 +107,10 @@ namespace CastReporting.Reporting.Block.Table
                 #region Data
                 distributionName = CastComplexityUtility.GetCostComplexityName(reportData.CurrentSnapshot, distributionId.GetHashCode());
 
-                rowData.AddRange(new string[] { distributionName, "Current total", "Previous total", "Evol.", "Evol. %", "% on total elements" });
+                rowData.AddRange(new string[] { distributionName, Labels.Current, Labels.Previous, Labels.Evol, Labels.EvolPercent, Labels.TotalPercent });
                 
                 rowData.AddRange(new string[]
-                    { "Low Complexity"
+                    { Labels.ComplexityLow
                     , selectedLowVal.HasValue ? selectedLowVal.Value.ToString("N0"):Constants.No_Value
                     , previousLowVal.HasValue ? previousLowVal.Value.ToString("N0") : Constants.No_Value
                     , (selectedLowVal.HasValue && previousLowVal.HasValue) ? TableBlock.FormatEvolution((Int32)(selectedLowVal.Value - previousLowVal.Value)): Constants.No_Value
@@ -119,7 +120,7 @@ namespace CastReporting.Reporting.Block.Table
                     });
 
                 rowData.AddRange(new string[]
-                    { "Average Complexity"
+                    { Labels.ComplexityAverage
                     , selectedAveVal.HasValue ? selectedAveVal.Value.ToString("N0"): Constants.No_Value
                     , previousAveVal.HasValue ? previousAveVal.Value.ToString("N0") : Constants.No_Value
                     , (selectedAveVal.HasValue && previousAveVal.HasValue) ? TableBlock.FormatEvolution((Int32)(selectedAveVal.Value - previousAveVal.Value)) : Constants.No_Value
@@ -129,7 +130,7 @@ namespace CastReporting.Reporting.Block.Table
                     });
 
                 rowData.AddRange(new string[]
-                    { "High Complexity"
+                    { Labels.ComplexityHigh
                     , selectedHigVal.Value.ToString("N0")
                     , previousHigVal.HasValue ? previousHigVal.Value.ToString("N0") : Constants.No_Value
                     , previousHigVal.HasValue ? TableBlock.FormatEvolution((Int32)(selectedHigVal.Value - previousHigVal.Value)): Constants.No_Value
@@ -139,7 +140,7 @@ namespace CastReporting.Reporting.Block.Table
                     });
 
                 rowData.AddRange(new string[]
-                    { "Very High Complexity"
+                    { Labels.ComplexityExtreme
                     , selectedVhiVal.HasValue? selectedVhiVal.Value.ToString("N0"): Constants.No_Value
                     , previousVhiVal.HasValue ? previousVhiVal.Value.ToString("N0") : Constants.No_Value
                     , (selectedVhiVal.HasValue && previousVhiVal.HasValue) ? TableBlock.FormatEvolution((Int32)(selectedVhiVal.Value - previousVhiVal.Value)): Constants.No_Value

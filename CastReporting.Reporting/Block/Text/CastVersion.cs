@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2014 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using CastReporting.BLL.Computing;
 
 namespace CastReporting.Reporting.Block.Text
 {
@@ -31,7 +30,7 @@ namespace CastReporting.Reporting.Block.Text
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             if (null != reportData &&
-                  null != reportData.CurrentSnapshot)
+                  null != reportData.Application)
             {
                 string result = reportData.Application.Version;
                 return (result !=null ? result : CastReporting.Domain.Constants.No_Value);

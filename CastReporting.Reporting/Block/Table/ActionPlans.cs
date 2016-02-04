@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,35 +29,35 @@ namespace CastReporting.Reporting.Block.Table
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            int actionPlanCount = 0;
             List<string> rowData = new List<string>();
-            rowData.AddRange(new[] { "Rule", "Still violation (#)", "New violation (#)" });
 
-            if (reportData != null
-                && reportData.CurrentSnapshot != null
-                && reportData.CurrentSnapshot.ActionsPlan != null
-                && reportData.CurrentSnapshot.ActionsPlan.Count() > 0)
-            {
-                foreach (var ActionPlan in reportData.CurrentSnapshot.ActionsPlan)
-                {
+			rowData.AddRange(new[] {
+				Labels.Rule,
+				Labels.ViolationsStill,
+				Labels.ViolationsNew
+			});
+
+			int actionPlanCount = (reportData != null && reportData.CurrentSnapshot != null && reportData.CurrentSnapshot.ActionsPlan != null)
+            	? reportData.CurrentSnapshot.ActionsPlan.Count() 
+            	: 0;
+            if (actionPlanCount > 0) {
+                foreach (var ActionPlan in reportData.CurrentSnapshot.ActionsPlan) {
                     rowData.AddRange
-                        (new string[]
-                            { ActionPlan.RulePattern.Name
+                        (new string[] { ActionPlan.RulePattern.Name
                             , ActionPlan.PendingIssues.ToString("N0")
                             , ActionPlan.AddedIssues.ToString("N0") 
-                            }
-                        );
+                            });
                 }
-                actionPlanCount = reportData.CurrentSnapshot.ActionsPlan.Count();
-            }
-            else
-            {
-                rowData.AddRange(new string[] { "No enable item.", string.Empty, string.Empty });
+            } else {
+				rowData.AddRange(new string[] {
+					Labels.NoItem,
+					string.Empty,
+					string.Empty
+				});
                 actionPlanCount = 1;
             }
 
-            TableDefinition resultTable = new TableDefinition
-            {
+            TableDefinition resultTable = new TableDefinition {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
                 NbRows = actionPlanCount + 1,

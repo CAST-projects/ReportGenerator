@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,13 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using System.Globalization;
 using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Graph
 {
-    [Block("RADAR_HEALTH_FACTOR_2_LAST_SNAPSHOTS")]
+	[Block("RADAR_HEALTH_FACTOR_2_LAST_SNAPSHOTS"), Block("RADAR_HEALTH_FACTOR_2_SNAPSHOTS")]
     class RadarHealthFactor2LastSnapshots : GraphBlock
     {
         
@@ -67,31 +68,31 @@ namespace CastReporting.Reporting.Block.Graph
 
 
                 #region Transferability
-                rowData.Add("Trsf");
+                rowData.Add(Labels.Trans);
                 rowData.Add(currSnapshotBCDTO.Transferability.ToString());
                 if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Transferability.ToString()); }
                 #endregion Transferability
 
                 #region Changeability
-                rowData.Add("Chng");
+                rowData.Add(Labels.Chang);
                 rowData.Add(currSnapshotBCDTO.Changeability.ToString());
                 if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Changeability.ToString()); }
                 #endregion Changeability
 
                 #region Robustness
-                rowData.Add("Rbst");
+                rowData.Add(Labels.Robu);
                 rowData.Add(currSnapshotBCDTO.Robustness.ToString());
                 if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Robustness.ToString()); }
                 #endregion Robustness
 
                 #region Performance
-                rowData.Add("Effi");
+                rowData.Add(Labels.Efcy);
                 rowData.Add(currSnapshotBCDTO.Performance.ToString());
                 if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Performance.ToString()); }
                 #endregion Performance
 
                 #region Security
-                rowData.Add("Secu");
+                rowData.Add(Labels.Secu);
                 rowData.Add(currSnapshotBCDTO.Security.ToString());
                 if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Security.ToString()); }              
                 #endregion Security

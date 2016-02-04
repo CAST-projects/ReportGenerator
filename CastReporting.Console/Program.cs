@@ -195,7 +195,7 @@ namespace CastReporting.Console
                     CurrencySymbol = "$"
                 };
 
-                using (IDocumentBuilder docBuilder = BuilderFactory.CreateBuilder(reportData))
+                using (IDocumentBuilder docBuilder = BuilderFactory.CreateBuilder(reportData, ""))
                 {
                     docBuilder.BuildDocument();
                 }

@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -71,11 +72,11 @@ namespace CastReporting.Reporting.Block.Table
                 #region Data
 
               
-                rowData.AddRange(new string[] { "Cast Complexity", "Artifacts", "w/ violations" });
-                rowData.AddRange(new string[] { "Extreme", nbArtifactVeryHigh.Value.ToString(numberFormat), nbViolationVeryHigh.Value.ToString(numberFormat) });
-                rowData.AddRange(new string[] { "High", nbArtifactHigh.Value.ToString(numberFormat), nbViolationHigh.Value.ToString(numberFormat) });
-                rowData.AddRange(new string[] { "Average", nbArtifactAve.Value.ToString(numberFormat), nbViolationAve.Value.ToString(numberFormat) });
-                rowData.AddRange(new string[] { "Low", nbArtifactLow.Value.ToString(numberFormat), nbViolationLow.Value.ToString(numberFormat) });
+                rowData.AddRange(new string[] { Labels.Complexity, Labels.Artifacts, Labels.WithViolations });
+                rowData.AddRange(new string[] { Labels.CplxExtreme, nbArtifactVeryHigh.Value.ToString(numberFormat), nbViolationVeryHigh.Value.ToString(numberFormat) });
+                rowData.AddRange(new string[] { Labels.CplxHigh, nbArtifactHigh.Value.ToString(numberFormat), nbViolationHigh.Value.ToString(numberFormat) });
+                rowData.AddRange(new string[] { Labels.CplxAverage, nbArtifactAve.Value.ToString(numberFormat), nbViolationAve.Value.ToString(numberFormat) });
+                rowData.AddRange(new string[] { Labels.CplxLow, nbArtifactLow.Value.ToString(numberFormat), nbViolationLow.Value.ToString(numberFormat) });
 
                 #endregion Data
 

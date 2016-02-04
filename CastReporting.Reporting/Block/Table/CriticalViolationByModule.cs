@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -33,9 +34,9 @@ namespace CastReporting.Reporting.Block.Table
         {
             var results = RulesViolationUtility.GetStatViolation(reportData.CurrentSnapshot);
             List<string> rowData = new List<string>();
-            rowData.AddRange(new[] { " ", "TQI", "Robu.", "Efcy.", "Secu.", "Trans.", "Chang." });
+            rowData.AddRange(new[] { " ", Labels.TQI, Labels.Robu, Labels.Efcy, Labels.Secu, Labels.Trans, Labels.Chang });
 
-            rowData.AddRange(new[] { "Current", " ", " ", " ", " ", " ", " " });
+            rowData.AddRange(new[] { Labels.Current, " ", " ", " ", " ", " ", " " });
           
             foreach (var resultModule in results.OrderBy(_ => _.ModuleName))
             {
@@ -63,56 +64,56 @@ namespace CastReporting.Reporting.Block.Table
 
                
             }
-            rowData.AddRange(new[] { "Added", " ", " ", " ", " ", " ", " " });
+            rowData.AddRange(new[] { Labels.ViolationsAdded, " ", " ", " ", " ", " ", " " });
 
             foreach (var resultModule in results.OrderBy(_ => _.ModuleName))
             {
                 rowData.AddRange(new[] {
                           resultModule.ModuleName,
                           (resultModule !=null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].Added.HasValue)?
-                          resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].Added.Value.ToString(_MetricFormat) : Constants.No_Value,
+                          TableBlock.FormatEvolution(resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].Added.Value) : Constants.No_Value,
 
                           (resultModule !=null && resultModule[Constants.BusinessCriteria.Robustness].Added.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Robustness].Added.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          TableBlock.FormatEvolution(resultModule[Constants.BusinessCriteria.Robustness].Added.Value):Constants.No_Value ,
 
                           (resultModule !=null && resultModule[Constants.BusinessCriteria.Performance].Added.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Performance].Added.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          TableBlock.FormatEvolution(resultModule[Constants.BusinessCriteria.Performance].Added.Value):Constants.No_Value ,
 
                           (resultModule !=null && resultModule[Constants.BusinessCriteria.Security].Added.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Security].Added.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          TableBlock.FormatEvolution(resultModule[Constants.BusinessCriteria.Security].Added.Value):Constants.No_Value ,
 
                           (resultModule !=null && resultModule[Constants.BusinessCriteria.Transferability].Added.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Transferability].Added.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          TableBlock.FormatEvolution(resultModule[Constants.BusinessCriteria.Transferability].Added.Value):Constants.No_Value ,
 
                           (resultModule !=null && resultModule[Constants.BusinessCriteria.Changeability].Added.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Changeability].Added.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          TableBlock.FormatEvolution(resultModule[Constants.BusinessCriteria.Changeability].Added.Value):Constants.No_Value ,
 
                         });
 
             }
-            rowData.AddRange(new[] { "Deleted", " ", " ", " ", " ", " ", " " });
+            rowData.AddRange(new[] { Labels.ViolationsRemoved, " ", " ", " ", " ", " ", " " });
 
             foreach (var resultModule in results.OrderBy(_ => _.ModuleName))
             {
                 rowData.AddRange(new[] {
                           resultModule.ModuleName,
                           (resultModule !=null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].Removed.HasValue)?
-                          resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].Removed.Value.ToString(_MetricFormat) : Constants.No_Value,
+                          TableBlock.FormatEvolution(-resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].Removed.Value) : Constants.No_Value,
 
                           (resultModule !=null && resultModule[Constants.BusinessCriteria.Robustness].Removed.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Robustness].Removed.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          TableBlock.FormatEvolution(-resultModule[Constants.BusinessCriteria.Robustness].Removed.Value):Constants.No_Value ,
 
                           (resultModule !=null && resultModule[Constants.BusinessCriteria.Performance].Removed.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Performance].Removed.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          TableBlock.FormatEvolution(-resultModule[Constants.BusinessCriteria.Performance].Removed.Value):Constants.No_Value ,
 
                           (resultModule !=null && resultModule[Constants.BusinessCriteria.Security].Removed.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Security].Removed.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          TableBlock.FormatEvolution(-resultModule[Constants.BusinessCriteria.Security].Removed.Value):Constants.No_Value ,
 
                           (resultModule !=null && resultModule[Constants.BusinessCriteria.Transferability].Removed.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Transferability].Removed.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          TableBlock.FormatEvolution(-resultModule[Constants.BusinessCriteria.Transferability].Removed.Value):Constants.No_Value ,
 
                           (resultModule !=null && resultModule[Constants.BusinessCriteria.Changeability].Removed.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Changeability].Removed.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          TableBlock.FormatEvolution(-resultModule[Constants.BusinessCriteria.Changeability].Removed.Value):Constants.No_Value ,
 
                         });
 
@@ -128,26 +129,7 @@ namespace CastReporting.Reporting.Block.Table
                 Data = rowData
             };
             
-
             return resultTable;
         }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="rowData"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
-        private static string[] ConvertToArray(ViolationSummaryDTO result)
-        {           
-            return new string[] {
-                                  (result !=null && result.Added.HasValue)?result.Added.Value.ToString():string.Empty, 
-                                  (result !=null && result.Removed.HasValue)?result.Removed.Value.ToString():string.Empty, 
-                                  (result !=null && result.Total.HasValue)?result.Total.Value.ToString():string.Empty
-                                };
-        }
     }
-
-
 }

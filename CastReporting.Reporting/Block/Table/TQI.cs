@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 
 
 namespace CastReporting.Reporting.Block.Table
@@ -41,13 +42,13 @@ namespace CastReporting.Reporting.Block.Table
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             List<string> rowData = new List<string>();
-            rowData.AddRange(new[] { "Statistics", "Current", "Previous" });
+            rowData.AddRange(new[] { Labels.Statistics, Labels.Current, Labels.Previous });
 
 
             Double? currentTqi= BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Domain.Constants.BusinessCriteria.TechnicalQualityIndex);
             Double? previousTqi = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.PreviousSnapshot, Domain.Constants.BusinessCriteria.TechnicalQualityIndex);
 
-            rowData.AddRange(new[] { "TQI", 
+            rowData.AddRange(new[] { Labels.TQI, 
                                        currentTqi.HasValue ? currentTqi.Value.ToString(_MetricFormat): String.Empty, 
                                        previousTqi.HasValue ? previousTqi.Value.ToString(_MetricFormat):CastReporting.Domain.Constants.No_Value});
 

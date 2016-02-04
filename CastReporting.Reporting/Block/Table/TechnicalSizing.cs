@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CastReporting.Domain;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 
 namespace CastReporting.Reporting.Block.Table
@@ -31,27 +33,23 @@ namespace CastReporting.Reporting.Block.Table
               #region METHODS
            TableDefinition resultTable = null;
             if (null != reportData &&
-                null != reportData.CurrentSnapshot)
-            {
+                null != reportData.CurrentSnapshot) {
                 double? codeLineNumber = MeasureUtility.GetCodeLineNumber(reportData.CurrentSnapshot);
                 double? fileNumber = MeasureUtility.GetFileNumber(reportData.CurrentSnapshot);
                 double? classNumber = MeasureUtility.GetClassNumber(reportData.CurrentSnapshot);
                 double? sqlArtifactNumber = MeasureUtility.GetSqlArtifactNumber(reportData.CurrentSnapshot);
                 double? tableNumber = MeasureUtility.GetTableNumber(reportData.CurrentSnapshot);
 
-               
-
+				const string noData = Constants.No_Data;
                 const string metricFormat = "N0";
-                var rowData = new List<string>() 
-                    { "Name", "Number"
-                    , "kLOCs", (codeLineNumber.HasValue ? (codeLineNumber.Value/1000).ToString(metricFormat) :CastReporting.Domain.Constants.No_Value)
-                    , "Files", ( fileNumber.HasValue ?  (fileNumber.Value).ToString(metricFormat) : CastReporting.Domain.Constants.No_Value)
-                    , "Classes", (classNumber.HasValue ?  (classNumber.Value).ToString(metricFormat) :CastReporting.Domain.Constants.No_Value)
-                    , "SQL Art.", (sqlArtifactNumber.HasValue ?  (sqlArtifactNumber.Value).ToString(metricFormat) :CastReporting.Domain.Constants.No_Value)
-                    , "  Tables", ( tableNumber.HasValue ?  (tableNumber.Value).ToString(metricFormat) : CastReporting.Domain.Constants.No_Value)
+                var rowData = new List<string>() { Labels.Name, Labels.Value
+                    , Labels.kLoC, (codeLineNumber.HasValue ? (codeLineNumber.Value / 1000).ToString(metricFormat) : noData)
+                    , "  " + Labels.Files, (fileNumber.HasValue ? (fileNumber.Value).ToString(metricFormat) : noData)
+                    , "  " + Labels.Classes, (classNumber.HasValue ? (classNumber.Value).ToString(metricFormat) : noData)
+                    , Labels.ArtifactsSQL, (sqlArtifactNumber.HasValue ? (sqlArtifactNumber.Value).ToString(metricFormat) : noData)
+                    , "  " + Labels.Tables, (tableNumber.HasValue ? (tableNumber.Value).ToString(metricFormat) : noData)
                     };
-                resultTable = new TableDefinition
-                {
+                resultTable = new TableDefinition {
                     HasRowHeaders = false,
                     HasColumnHeaders = true,
                     NbRows = 6,

@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ using CastReporting.Domain;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,32 +34,34 @@ namespace CastReporting.Reporting.Block.Table
         {
             TableDefinition resultTable = null;
             List<string> rowData = new List<string>();
-            int count = reportData.Parameter.NbResultDefault, nbRows = 0, nb = 0;
+            int count = reportData.Parameter.NbResultDefault, nbRows = 0, nbColumns = 0, nb = 0;
             
             IList<string> strMetricId = ((options != null && options.ContainsKey("PAR")) ? options["PAR"] : string.Empty).Split(',');
                         
-            if (null != options && options.ContainsKey("COUNT") && Int32.TryParse(options["COUNT"], out nb) && 0 < nb)
-            {
+            if (null != options && options.ContainsKey("COUNT") && Int32.TryParse(options["COUNT"], out nb) && 0 < nb) {
                 count = nb;
             }
 
-            if (null != reportData && null != reportData.CurrentSnapshot)
-            {
+            if (null != reportData && null != reportData.CurrentSnapshot) {
                 //Result of current snapshot
                 var technicalCriteriasResults = BusinessCriteriaUtility.GetTechnicalCriteriasByBusinessCriterias(reportData.CurrentSnapshot, strMetricId, count);
                 technicalCriteriasResults = technicalCriteriasResults.Take(count).ToList();
-                nbRows = technicalCriteriasResults.Count();
 
                 //Result of previous snapshot
-                IEnumerable<TechnicalCriteriaResultDTO> prevTechnicalCriteriasResults = new List<TechnicalCriteriaResultDTO>();
+                IEnumerable<TechnicalCriteriaResultDTO> prevTechnicalCriteriasResults = null; //new List<TechnicalCriteriaResultDTO>();
                 if (reportData.PreviousSnapshot != null)
                     prevTechnicalCriteriasResults = BusinessCriteriaUtility.GetTechnicalCriteriasByBusinessCriterias(reportData.PreviousSnapshot, strMetricId, count);                
 
-                rowData.AddRange(new[] { "Technical Criteria Name", "Grade", "Evolution" });
-
+                if (prevTechnicalCriteriasResults != null) {
+                	nbColumns = 3;
+                	
+				rowData.AddRange(new[] {
+					Labels.TechnicalCriterionName,
+					Labels.Grade,
+					Labels.Evolution
+				});
                
-                foreach (var grade in technicalCriteriasResults)
-                {
+                foreach (var grade in technicalCriteriasResults) {
                     rowData.Add(grade.Name);
                     rowData.Add((grade.Grade.HasValue) ? grade.Grade.Value.ToString("N2") : Constants.No_Value);
 
@@ -68,22 +71,35 @@ namespace CastReporting.Reporting.Block.Table
                                      select pgrade).FirstOrDefault();
 
                     string evol = Constants.No_Value;
-                    if (prevGrade != null)
-                    {
+                    if (prevGrade != null) {
                         double? variation = MathUtility.GetVariationPercent(grade.Grade, prevGrade.Grade);
                         evol = (variation.HasValue) ? TableBlock.FormatPercent(variation) : Constants.No_Value;
                     }                       
 
                     rowData.Add(evol);
+					nbRows++;
+                }
+                } else {
+                	nbColumns = 2;
+                	
+					rowData.AddRange(new[] {
+						Labels.TechnicalCriterionName,
+						Labels.Grade
+					});
+	               
+	                foreach (var grade in technicalCriteriasResults) {
+	                    rowData.Add(grade.Name);
+	                    rowData.Add((grade.Grade.HasValue) ? grade.Grade.Value.ToString("N2") : Constants.No_Value);
+						nbRows++;
+	                }
                 }
             }
 
-            resultTable = new TableDefinition
-            {
+            resultTable = new TableDefinition {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
                 NbRows = nbRows,
-                NbColumns = 3,
+                NbColumns = nbColumns,
                 Data = rowData
             };
             return resultTable;

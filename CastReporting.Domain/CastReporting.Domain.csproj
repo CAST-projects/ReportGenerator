@@ -45,6 +45,7 @@
     <Compile Include="DataObject\CastDate.cs" />
     <Compile Include="DataObject\Categories.cs" />
     <Compile Include="DataObject\Component.cs" />
+    <Compile Include="DataObject\IfpugFunction.cs" />
     <Compile Include="DataObject\Transaction.cs" />
     <Compile Include="DataObject\EvolutionSummary.cs" />
     <Compile Include="DataObject\RuleDetails.cs" />

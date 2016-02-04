@@ -31,6 +31,24 @@ namespace CastReporting.BLL.Computing
         }
 
 
+        public static Double? GetAddedFunctionPoint(Snapshot snapshot)
+        {
+            return GetSizingMeasure(snapshot, Constants.SizingInformations.AddedFunctionPoints);
+        }
+
+
+        public static Double? GetDeletedFunctionPoint(Snapshot snapshot)
+        {
+            return GetSizingMeasure(snapshot, Constants.SizingInformations.DeletedFunctionPoints);
+        }
+
+
+        public static Double? GetModifiedFunctionPoint(Snapshot snapshot)
+        {
+            return GetSizingMeasure(snapshot, Constants.SizingInformations.ModifiedFunctionPoints);
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -276,6 +294,52 @@ namespace CastReporting.BLL.Computing
                                                                        .Where(_ => !(_.StartsWith("APM") && _.EndsWith("Module")))
                                                              from codeLineNumber in snapshot.SizingMeasuresResults
                                                              where codeLineNumber.Reference.Key == Constants.SizingInformations.CodeLineNumber.GetHashCode() &&
+                                                                   codeLineNumber.DetailResult.Value > 0
+                                                             select new TechnologyResultDTO
+                                                             {
+                                                                 Name = techno,
+                                                                 Value = null == codeLineNumber ? -1 : codeLineNumber.TechnologyResult.Where(_ => _.Technology.Equals(techno)).FirstOrDefault().DetailResult.Value
+
+                                                             }).OrderByDescending(_ => _.Value).Take(nbResult).ToList();
+                return technologyInfos;
+
+            }
+            return null;
+        }
+
+
+        public static List<TechnologyResultDTO> GetTechnoClasses(Snapshot snapshot, int nbResult)
+        {
+            if (null != snapshot && null != snapshot.Technologies && snapshot.SizingMeasuresResults != null)
+            {
+
+                List<TechnologyResultDTO> technologyInfos = (from techno in snapshot.Technologies
+                                                                       .Where(_ => !(_.StartsWith("APM") && _.EndsWith("Module")))
+                                                             from codeLineNumber in snapshot.SizingMeasuresResults
+                                                             where codeLineNumber.Reference.Key == Constants.SizingInformations.ClassNumber.GetHashCode() &&
+                                                                   codeLineNumber.DetailResult.Value > 0
+                                                             select new TechnologyResultDTO
+                                                             {
+                                                                 Name = techno,
+                                                                 Value = null == codeLineNumber ? -1 : codeLineNumber.TechnologyResult.Where(_ => _.Technology.Equals(techno)).FirstOrDefault().DetailResult.Value
+
+                                                             }).OrderByDescending(_ => _.Value).Take(nbResult).ToList();
+                return technologyInfos;
+
+            }
+            return null;
+        }
+
+
+        public static List<TechnologyResultDTO> GetTechnoComplexity(Snapshot snapshot, int nbResult)
+        {
+            if (null != snapshot && null != snapshot.Technologies && snapshot.SizingMeasuresResults != null)
+            {
+
+                List<TechnologyResultDTO> technologyInfos = (from techno in snapshot.Technologies
+                                                                       .Where(_ => !(_.StartsWith("APM") && _.EndsWith("Module")))
+                                                             from codeLineNumber in snapshot.SizingMeasuresResults
+                                                             where codeLineNumber.Reference.Key == Constants.SizingInformations.DecisionPointsNumber.GetHashCode() &&
                                                                    codeLineNumber.DetailResult.Value > 0
                                                              select new TechnologyResultDTO
                                                              {

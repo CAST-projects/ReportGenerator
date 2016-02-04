@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2014 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 
 
@@ -49,23 +50,19 @@ namespace CastReporting.Reporting.Block.Table
             Int32? metricId = (options != null && options.ContainsKey("ID")) ? Convert.ToInt32(options["ID"]) : (Int32?)null;
 
             if (null != reportData &&
-                null != reportData.CurrentSnapshot && metricId.HasValue)
-            {
-                var result = reportData.CurrentSnapshot.BusinessCriteriaResults.Where(r => r.Reference.Key == metricId).FirstOrDefault();
+                null != reportData.CurrentSnapshot && metricId.HasValue) {
+                var result = reportData.CurrentSnapshot.BusinessCriteriaResults.FirstOrDefault(r => r.Reference.Key == metricId);
                 
-                if (result != null)
-                {
+                if (result != null) {
                     string value = Text(metricId.Value);
-                    rowData.AddRange(new string[] { "Techno", value });
-                    foreach (var res in result.TechnologyResult)
-                    {
+                    rowData.AddRange(new string[] { Labels.Techno, value });
+                    foreach (var res in result.TechnologyResult) {
                         rowData.AddRange(new string[] { res.Technology, res.DetailResult.Grade.ToString(_MetricFormat) });
                     }
                     nbTot = result.ModulesResult.Length;
                 }
             }
-            resultTable = new TableDefinition
-            {
+            resultTable = new TableDefinition {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
                 NbRows = nbTot + 1,
@@ -77,63 +74,19 @@ namespace CastReporting.Reporting.Block.Table
 
         static string Text(int value)
         {
-            
             // Begin the switch.
-            switch (value)
-            {
-                case (int)Domain.Constants.BusinessCriteria.TechnicalQualityIndex:
-                    {
-
-                        return "TQI";
-                    }
-                case (int)Domain.Constants.BusinessCriteria.ArchitecturalDesign:
-                    {
-
-                        return "Architectural Design";
-                    }
-                case (int)Domain.Constants.BusinessCriteria.Changeability:
-                    {
-
-                        return "Changeability";
-                    }
-                case (int)Domain.Constants.BusinessCriteria.Documentation:
-                    {
-
-                        return "Documentation";
-                    }
-                case (int)Domain.Constants.BusinessCriteria.Performance:
-                    {
-
-                        return "Efficiency";
-                    }
-                case (int)Domain.Constants.BusinessCriteria.ProgrammingPractices:
-                    {
-
-                        return "Programming Practices";
-                    }
-                case (int)Domain.Constants.BusinessCriteria.Robustness:
-                    {
-
-                        return "Robustness";
-                    }
-                case (int)Domain.Constants.BusinessCriteria.Security:
-                    {
-
-                        return "Security";
-                    }
-                case (int)Domain.Constants.BusinessCriteria.SEIMaintainability:
-                    {
-
-                        return "SEI Maintainability";
-                    }
-                case (int)Domain.Constants.BusinessCriteria.Transferability:
-                    {
-
-                        return "Transferability";
-                    }
-        
-                default:
-                    return "N/A" ;
+            switch (value) {
+				case (int)Domain.Constants.BusinessCriteria.TechnicalQualityIndex:		return Labels.TQI;
+				case (int)Domain.Constants.BusinessCriteria.ArchitecturalDesign:		return Labels.ArchitecturalDesign;
+				case (int)Domain.Constants.BusinessCriteria.Changeability:				return Labels.Changeability;
+				case (int)Domain.Constants.BusinessCriteria.Documentation:				return Labels.Documentation;
+				case (int)Domain.Constants.BusinessCriteria.Performance:				return Labels.Efficiency;
+				case (int)Domain.Constants.BusinessCriteria.ProgrammingPractices:		return Labels.ProgrammingPractices;
+				case (int)Domain.Constants.BusinessCriteria.Robustness:					return Labels.Robustness;
+				case (int)Domain.Constants.BusinessCriteria.Security:					return Labels.Security;
+				case (int)Domain.Constants.BusinessCriteria.SEIMaintainability:			return Labels.SEIMaintainability;
+				case (int)Domain.Constants.BusinessCriteria.Transferability:			return Labels.Transferability;
+        		default:																return CastReporting.Domain.Constants.No_Value + " (" + value +")";
             }
         }
 

@@ -271,7 +271,7 @@
     <value>CAST - Report Generator </value>
   </data>
   <data name="lblAboutVersion" xml:space="preserve">
-    <value>Version 1.1</value>
+    <value>Versione {0}</value>
   </data>
   <data name="toolTipClearMsg" xml:space="preserve">
     <value>Cancella messaggi.</value>

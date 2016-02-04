@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.BLL.Computing.Properties;
 
@@ -40,13 +41,13 @@ namespace CastReporting.Reporting.Block.Table
             {
                 List<string> rowData = reportData.CurrentSnapshot.Modules.Select(x => x.Name).ToList();
 
-                rowData.Insert(0, "Module");
+                rowData.Insert(0, Labels.ModuleName);
 
                 resultTable = new TableDefinition
                 {
                     HasRowHeaders = false,
                     HasColumnHeaders = true,
-                    NbRows = reportData.CurrentSnapshot.Modules.Count() + 1,
+                    NbRows = rowData.Count,
                     NbColumns = 1,
                     Data = rowData
                 };

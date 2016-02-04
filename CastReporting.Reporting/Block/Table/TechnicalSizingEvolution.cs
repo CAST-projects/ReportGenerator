@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CastReporting.Domain;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 
 
@@ -70,42 +72,41 @@ namespace CastReporting.Reporting.Block.Table
 
                 #endregion CastComputing
 
-        
-
+                const string noData = Constants.No_Data;
                 const string metricFormat = "N0";
 
                 var rowData = new List<string>() 
-                    { "Name", "Current", "Previous", "Evolution", "% Evolution"
+                    { Labels.Name, Labels.Current, Labels.Previous, Labels.Evolution, Labels.EvolutionPercent
 
-                    , "kLOCs"
-                    , codeLineNumber.HasValue?  codeLineNumber.Value.ToString(metricFormat):CastReporting.Domain.Constants.No_Value
-                    , codeLineNumberPrev.HasValue? codeLineNumberPrev.Value.ToString(metricFormat) : CastReporting.Domain.Constants.No_Value
-                    , hasPrevious? TableBlock.FormatEvolution((Int32)codeLineNumberEvol.Value) : CastReporting.Domain.Constants.No_Value
-                    , (codeLineNumberPercent.HasValue)? TableBlock.FormatPercent(codeLineNumberPercent.Value): CastReporting.Domain.Constants.No_Value
+                    , Labels.LoC
+                    , codeLineNumber.HasValue?  codeLineNumber.Value.ToString(metricFormat):noData
+                    , codeLineNumberPrev.HasValue? codeLineNumberPrev.Value.ToString(metricFormat) : noData
+                    , hasPrevious? TableBlock.FormatEvolution((Int32)codeLineNumberEvol.Value) : noData
+                    , (codeLineNumberPercent.HasValue)? TableBlock.FormatPercent(codeLineNumberPercent.Value): noData
                    
-                    , "Files"
-                    , fileNumber.HasValue? fileNumber.Value.ToString(metricFormat) :CastReporting.Domain.Constants.No_Value
-                    , fileNumberPrev.HasValue? fileNumberPrev.Value.ToString(metricFormat) : CastReporting.Domain.Constants.No_Value
-                    , hasPrevious? TableBlock.FormatEvolution((Int32)fileNumberEvol.Value) : CastReporting.Domain.Constants.No_Value
-                    , (fileNumberPercent.HasValue)? TableBlock.FormatPercent(fileNumberPercent.Value): CastReporting.Domain.Constants.No_Value
+                    , "   " + Labels.Files
+                    , fileNumber.HasValue? fileNumber.Value.ToString(metricFormat) :noData
+                    , fileNumberPrev.HasValue? fileNumberPrev.Value.ToString(metricFormat) : noData
+                    , hasPrevious? TableBlock.FormatEvolution((Int32)fileNumberEvol.Value) : noData
+                    , (fileNumberPercent.HasValue)? TableBlock.FormatPercent(fileNumberPercent.Value): noData
                     
-                    , "Classes"
-                    ,classNumber.HasValue?  classNumber.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value
-                    , classNumberPrev.HasValue? classNumberPrev.Value.ToString(metricFormat) : CastReporting.Domain.Constants.No_Value
-                    , hasPrevious? TableBlock.FormatEvolution((Int32)classNumberEvol.Value) : CastReporting.Domain.Constants.No_Value
-                    , (classNumberPercent.HasValue)? TableBlock.FormatPercent(classNumberPercent.Value): CastReporting.Domain.Constants.No_Value
+                    , "   " + Labels.Classes
+                    , classNumber.HasValue?  classNumber.Value.ToString(metricFormat): noData
+                    , classNumberPrev.HasValue? classNumberPrev.Value.ToString(metricFormat) : noData
+                    , hasPrevious? TableBlock.FormatEvolution((Int32)classNumberEvol.Value) : noData
+                    , (classNumberPercent.HasValue)? TableBlock.FormatPercent(classNumberPercent.Value): noData
 
-                    , "SQL Art."
-                    , sqlArtifactNumber.HasValue? sqlArtifactNumber.Value.ToString(metricFormat) : CastReporting.Domain.Constants.No_Value
-                    , sqlArtifactNumberPrev.HasValue? sqlArtifactNumberPrev.Value.ToString(metricFormat) : CastReporting.Domain.Constants.No_Value
-                    , hasPrevious? TableBlock.FormatEvolution((Int32)sqlArtifactNumberEvol.Value) : CastReporting.Domain.Constants.No_Value
-                    , (sqlArtifactNumberPercent.HasValue)? TableBlock.FormatPercent(sqlArtifactNumberPercent.Value): CastReporting.Domain.Constants.No_Value
+                    , Labels.ArtifactsSQL
+                    , sqlArtifactNumber.HasValue? sqlArtifactNumber.Value.ToString(metricFormat) : noData
+                    , sqlArtifactNumberPrev.HasValue? sqlArtifactNumberPrev.Value.ToString(metricFormat) : noData
+                    , hasPrevious? TableBlock.FormatEvolution((Int32)sqlArtifactNumberEvol.Value) : noData
+                    , (sqlArtifactNumberPercent.HasValue)? TableBlock.FormatPercent(sqlArtifactNumberPercent.Value): noData
                     
-                    , "  Tables"
-                    , tableNumber.HasValue? tableNumber.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value
-                    , tableNumberPrev.HasValue? tableNumberPrev.Value.ToString(metricFormat) : CastReporting.Domain.Constants.No_Value
-                    , hasPrevious? TableBlock.FormatEvolution((Int32)tableNumberEvol.Value) : CastReporting.Domain.Constants.No_Value
-                    , (tableNumberPercent.HasValue)? TableBlock.FormatPercent(tableNumberPercent.Value): CastReporting.Domain.Constants.No_Value
+                    , "   " + Labels.Tables
+                    , tableNumber.HasValue? tableNumber.Value.ToString(metricFormat): noData
+                    , tableNumberPrev.HasValue? tableNumberPrev.Value.ToString(metricFormat) : noData
+                    , hasPrevious? TableBlock.FormatEvolution((Int32)tableNumberEvol.Value) : noData
+                    , (tableNumberPercent.HasValue)? TableBlock.FormatPercent(tableNumberPercent.Value): noData
                     };
 
                 resultTable = new TableDefinition

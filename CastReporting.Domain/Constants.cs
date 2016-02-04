@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,10 @@ namespace CastReporting.Domain
             TechnicalDebt = 68001,
             TechnicalDebtDensity = 68002,
             AddedViolationsTechnicalDebt =  68901,
-            RemovedViolationsTechnicalDebt =68902
+            RemovedViolationsTechnicalDebt = 68902,
+            ModifiedDataFunctionPoints = 10311,
+            ModifiedTransactionalFunctionPoints = 10312,
+            ModifiedFunctionPoints = 10310
 
         }
         
@@ -207,10 +210,11 @@ namespace CastReporting.Domain
         public const string ControllerName_Transactions = "Transactions";
         public const string ControllerName_CriticalObjectsRanking = "CriticalObjectsRanking";
         public const string No_Value = "N/A";
+		public const string No_Data = "-";
         #endregion CONSTANTS
 
         #region ATTRIBUTES
-        private static object _lock = new object();
+	private readonly static object _lock = new object();
         private static Constants _instance = null;
         #endregion ATTRIBUTES
 

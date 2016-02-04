@@ -1,9 +1,5 @@
-﻿using CastReporting.Domain;
-using CastReporting.Reporting.Atrributes;
-using CastReporting.Reporting.Builder.BlockProcessing;
-using CastReporting.Reporting.ReportingModel;
-/*
- *   Copyright (c) 2014 CAST
+﻿/*
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +16,10 @@ using CastReporting.Reporting.ReportingModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CastReporting.Domain;
+using CastReporting.Reporting.Atrributes;
+using CastReporting.Reporting.Builder.BlockProcessing;
+using CastReporting.Reporting.ReportingModel;
 
 namespace CastReporting.Reporting.Block.Text
 {
@@ -29,18 +29,15 @@ namespace CastReporting.Reporting.Block.Text
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            string strRuleId = (options != null && options.ContainsKey("RULID")) ? options["RULID"] : null;
+            string strRuleId = (options != null && options.ContainsKey("RULID")) ? options["RULID"] : "7164";
 
-            if (null != reportData &&
-                 null != reportData.CurrentSnapshot)
-            {
+            if (null != reportData && null != reportData.CurrentSnapshot) {
                 var rule = reportData.RuleExplorer.GetSpecificRule(reportData.Application.DomainId, strRuleId);
                 var currentviolation = reportData.RuleExplorer.GetRulesViolations(reportData.CurrentSnapshot.Href, strRuleId).FirstOrDefault();
 
                 Int32? TotalChecks = null;
 
-                if (currentviolation != null && currentviolation.ApplicationResults.Count() > 0)
-                {
+                if (currentviolation != null && currentviolation.ApplicationResults.Any()) {
                     TotalChecks = currentviolation.ApplicationResults[0].DetailResult.ViolationRatio.TotalChecks;
                 }
 

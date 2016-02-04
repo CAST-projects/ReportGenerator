@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,6 +50,27 @@ namespace Cast.Util
             File.Copy(templatePath, tempFile);
 
             return tempFile;
+        }
+
+        public static string CreateTempCopyFlexi(string tempFolder, string templatePath)
+        {
+            if (!string.IsNullOrEmpty(tempFolder) && !Directory.Exists(tempFolder))
+                Directory.CreateDirectory(tempFolder);
+
+
+
+            string tempName = string.Format
+                ("~{0}_{1}{2}"
+                , Path.GetFileNameWithoutExtension(templatePath)
+                , DateTime.Now.ToString("yyMMdd_HHmmss")
+                , Path.GetExtension(templatePath)
+                );
+
+            string tempFile = Path.Combine(tempFolder, tempName);
+            File.Copy(templatePath, tempFile);
+
+            return tempFile;
+
         }
 
        

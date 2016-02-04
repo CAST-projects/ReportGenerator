@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.Domain;
 using CastReporting.BLL.Computing;
 
@@ -97,19 +98,19 @@ namespace CastReporting.Reporting.Block.Graph
                 rowData.Add("0");
                 if (hasPreviousSnapshot) { rowData.Add("0"); }
 
-                rowData.Add("Low");
+                rowData.Add(Labels.CplxLow);
                 rowData.Add(selectedLowVal.GetValueOrDefault().ToString());
                 if (hasPreviousSnapshot) { rowData.Add(previousLowVal.GetValueOrDefault().ToString()); }
 
-                rowData.Add("Average");
+                rowData.Add(Labels.CplxAverage);
                 rowData.Add(selectedAveVal.GetValueOrDefault().ToString());
                 if (hasPreviousSnapshot) { rowData.Add(previousAveVal.GetValueOrDefault().ToString()); }
 
-                rowData.Add("High");
+                rowData.Add(Labels.CplxHigh);
                 rowData.Add(selectedHigVal.GetValueOrDefault().ToString());
                 if (hasPreviousSnapshot) { rowData.Add(previousHigVal.GetValueOrDefault().ToString()); }
 
-                rowData.Add("Very High");
+                rowData.Add(Labels.CplxVeryHigh);
                 rowData.Add(selectedVhiVal.GetValueOrDefault().ToString());
                 if (hasPreviousSnapshot) { rowData.Add(previousVhiVal.GetValueOrDefault().ToString()); }
 

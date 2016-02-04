@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,12 @@ namespace CastReporting.UI.WPF
             mainFrame.Navigate(new Uri(string.Format(NavigationPath, "reporting.xaml"), UriKind.RelativeOrAbsolute));
             mainFrame.Navigated += OnFrameNavigated;
 
-            Title = string.Format("{0}-{1}.{2}", Messages.lblTitleMain, Assembly.GetExecutingAssembly().GetName().Version.Major, Assembly.GetExecutingAssembly().GetName().Version.Minor);
+            Version ver = Assembly.GetExecutingAssembly().GetName().Version;
+            if (ver.Build == 0) {
+	            Title = string.Format("{0}-{1}.{2}", Messages.lblTitleMain, ver.Major, ver.Minor);
+            } else {
+	            Title = string.Format("{0}-{1}.{2}.{3}", Messages.lblTitleMain, ver.Major, ver.Minor, ver.Build);
+            }
 
             EventManager.RegisterClassHandler(typeof(TextBox), TextBox.GotFocusEvent, new RoutedEventHandler(TextBox_SelectAllText));
             EventManager.RegisterClassHandler(typeof(TextBox), TextBox.PreviewMouseDownEvent, new MouseButtonEventHandler(TextBox_SelectivelyIgnoreMouseButton));

@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using CastReporting.Domain;
@@ -38,11 +39,13 @@ namespace CastReporting.Repositories
         private const string _query_result_sizing_measures = "{0}/results?sizing-measures=({1})&snapshots=({2})&technologies=({3})&modules=({4})";      
         private const string _query_configuration = "{0}/configuration/snapshots/{1}";
         private const string _query_action_plan = "{0}/action-plan/summary";
+        private const string _query_action_plan2 = "{0}/actionPlan/summary";
         private const string _query_result_rules_violations = "{0}/results?quality-indicators={1}{2}&select=violationRatio&modules=($all)";
         private const string _query_result_quality_distribution_complexity = "{0}/results?quality-indicators=({1})&select=(categories)";
         private const string _query_rule_patterns = "{0}/rule-patterns/{1}";
         private const string _query_rules_details = "{0}/quality-indicators/{1}/snapshots/{2}/base-quality-indicators";
         private const string _query_transactions = "{0}/transactions/{1}?nbRows={2}";
+        private const string _query_ifpug_functions = "{0}/ifpug-functions";
         private const string _query_components = "{0}/components/{1}?nbRows={2}";
         private const string _query_components_by_modules = "{0}/modules/{1}/snapshots/{2}/components/{3}?nbRows={4}";
         
@@ -180,6 +183,13 @@ namespace CastReporting.Repositories
             return this.CallWS<IEnumerable<Transaction>>(requestUrl, RequestComplexity.Standard);
         }
 
+
+        IEnumerable<IfpugFunction> ICastRepsitory.GetIfpugFunctions(string snapshotHref, int count)
+        {
+            var requestUrl = string.Format(_query_ifpug_functions, snapshotHref);
+
+            return this.CallCsvWS<IfpugFunction>(requestUrl, RequestComplexity.Long, count);
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -188,6 +198,16 @@ namespace CastReporting.Repositories
         IEnumerable<Snapshot> ICastRepsitory.GetSnapshotsByApplication(string applicationHRef)
         {
             return this.ListSet<Snapshot>(applicationHRef);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        IEnumerable<Domain.System> ICastRepsitory.GetSystemsByApplication(string applicationHRef)
+        {
+            return this.ListSet<Domain.System>(applicationHRef);
         }
 
         /// <summary>
@@ -259,8 +279,17 @@ namespace CastReporting.Repositories
         IEnumerable<ActionPlan> ICastRepsitory.GetActionPlanBySnapshot(string snapshotHRef)
         {
             var requestUrl = string.Format(_query_action_plan, snapshotHRef);
-
-            return this.CallWS<IEnumerable<ActionPlan>>(requestUrl, RequestComplexity.Standard);
+            var requestUrl2 = string.Format(_query_action_plan2, snapshotHRef);
+            
+            try
+            {
+                return this.CallWS<IEnumerable<ActionPlan>>(requestUrl, RequestComplexity.Standard);
+            }
+            catch (WebException webEx)
+            {
+                // url for action plan has changed in API, and some old versions does not support the 2 format of the url
+                return this.CallWS<IEnumerable<ActionPlan>>(requestUrl2, RequestComplexity.Standard);
+            }
         }
         #endregion ActionPlan
 
@@ -393,7 +422,26 @@ namespace CastReporting.Repositories
             return serializer.ReadObject(ms) as T;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="relativeURL"></param>
+        /// <param name="pComplexity"></param>
+        /// <param name="count">Max items to load from CSV</param>
+        /// <param name="PropNames">Mapping between CSV columns and T members (optional)</param>
+        /// <returns></returns>
+        private IEnumerable<T> CallCsvWS<T>(string relativeURL, RequestComplexity pComplexity, int count, params string[] PropNames) where T : new()
+        {
+            var requestUrl = _CurrentConnection.EndsWith("/") ? _CurrentConnection.Substring(0, _CurrentConnection.Length - 1) : _CurrentConnection;
+            requestUrl += "/";
+            requestUrl += relativeURL.StartsWith("/") ? relativeURL.Substring(1) : relativeURL;
+
+            var csvString = _Client.DownloadCsvString(requestUrl, pComplexity);
        
+            var serializer = new CsvSerializer<T>();
+            return serializer.ReadObjects(csvString, count, PropNames);
+        }
      
         /// <summary>
         /// 

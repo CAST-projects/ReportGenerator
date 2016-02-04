@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ using CastReporting.Domain;
 
 namespace CastReporting.Reporting.Block.Text
 {
-    [Block("APPLICATION_RULE")]
+	[Block("APPLICATION_RULE"), Block("APPLICATION_METRIC")]
     class ApplicationRule : TextBlock
     {
         #region METHODS

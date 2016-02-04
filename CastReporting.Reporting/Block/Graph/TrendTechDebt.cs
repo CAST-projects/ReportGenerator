@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.BLL.Computing.DTO;
 using System.Globalization;
@@ -41,13 +42,17 @@ namespace CastReporting.Reporting.Block.Graph
             int count = 0;
 
             var rowData = new List<String>();
-            rowData.AddRange(new string[] { " ", "Debt removed", "Debt added", "Debt" }); 
+			rowData.AddRange(new string[] {
+				" ",
+				Labels.DebtRemoved + " (" + reportData.CurrencySymbol + ")",
+				Labels.DebtAdded + " (" + reportData.CurrencySymbol + ")",
+				Labels.Debt + " (" + reportData.CurrencySymbol + ")"
+			}); 
 
             #region Fetch Snapshots
-            if ( reportData!=null && reportData.Application!=null &&  reportData.Application.Snapshots != null)
-            {
-                foreach (Snapshot snapshot in reportData.Application.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
-                {
+			int nbSnapshots = (reportData != null && reportData.Application != null) ? reportData.Application.Snapshots.Count() : 0;
+			if (nbSnapshots > 0) {
+				foreach (Snapshot snapshot in reportData.Application.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot)) {
                     double? prevDoubleSnapshotDate = snapshot.Annotation.Date.DateSnapShot.HasValue ? snapshot.Annotation.Date.DateSnapShot.Value.ToOADate() : 0;
                     double? prevRemovedTechDebtValue = MeasureUtility.GetRemovedTechDebtMetric(snapshot);
                     double? prevAddedTechDebtValue = MeasureUtility.GetAddedTechDebtMetric(snapshot);
@@ -60,16 +65,15 @@ namespace CastReporting.Reporting.Block.Graph
                                                 });
                                  
                 }
-                count = reportData.Application.Snapshots.Count();
+				count = nbSnapshots;
             }
             #endregion Previous Snapshots
 
             #region just 1 snapshot
             if (reportData.Application != null && 
                 reportData.Application.Snapshots != null && 
-                reportData.Application.Snapshots.Count() == 1 && 
-                reportData.CurrentSnapshot!=null)
-            {
+			             nbSnapshots == 1 &&
+			             reportData.CurrentSnapshot != null) {
                 double? prevDoubleSnapshotDate = reportData.CurrentSnapshot.Annotation.Date.DateSnapShot.HasValue ? reportData.CurrentSnapshot.Annotation.Date.DateSnapShot.Value.ToOADate() : 0;
                 double? prevRemovedTechDebtValue = MeasureUtility.GetRemovedTechDebtMetric(reportData.CurrentSnapshot);
                 double? prevAddedTechDebtValue = MeasureUtility.GetAddedTechDebtMetric(reportData.CurrentSnapshot);
@@ -85,13 +89,8 @@ namespace CastReporting.Reporting.Block.Graph
             #endregion just 1 snapshot
 
 
-             
 
-           
-
-           
-            TableDefinition resultTable = new TableDefinition
-            {
+            TableDefinition resultTable = new TableDefinition {
                 HasRowHeaders = true,
                 HasColumnHeaders = false,
                 NbRows = count + 1,

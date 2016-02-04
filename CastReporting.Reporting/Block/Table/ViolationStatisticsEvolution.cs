@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -107,31 +108,31 @@ namespace CastReporting.Reporting.Block.Table
                 #endregion evolutionPercMetric
 
                 var rowData = new List<string>() 
-                    { "Name"
-                    , "Current"
-                    , "Previous"
-                    , "% Evolution"
-                    , "Critical Violations"
+                    { Labels.Name
+                    , Labels.Current
+                    , Labels.Previous
+                    , Labels.EvolutionPercent
+                    , Labels.ViolationsCritical
                     , (criticalViolation.HasValue) ?  criticalViolation.Value.ToString(metricFormat):  CastReporting.Domain.Constants.No_Value
                     , (criticalViolationPrev.HasValue) ? criticalViolationPrev.Value.ToString(metricFormat) : CastReporting.Domain.Constants.No_Value
                     , (criticalViolationEvolPerc.HasValue) ? TableBlock.FormatPercent(criticalViolationEvolPerc.Value): CastReporting.Domain.Constants.No_Value
 
-                    , "   per File"
+                    , "  " + Labels.PerFile
                     , (numCritPerFile.HasValue)? numCritPerFile.Value.ToString("N2"):CastReporting.Domain.Constants.No_Value
                     , (numCritPerFilePrev.HasValue)? numCritPerFilePrev.Value.ToString("N2") : CastReporting.Domain.Constants.No_Value
                     , (numCritPerFileEvolPerc.HasValue ) ? TableBlock.FormatPercent(numCritPerFileEvolPerc.Value) : CastReporting.Domain.Constants.No_Value
 
-                    , "   per kLOC"
+                    , "  " + Labels.PerkLoC
                     , (numCritPerKLOC.HasValue)? numCritPerKLOC.Value.ToString("N2") : CastReporting.Domain.Constants.No_Value
                     , (numCritPerKLOCPrev.HasValue)? numCritPerKLOCPrev.Value.ToString("N2") : CastReporting.Domain.Constants.No_Value
                     , (numCritPerKLOCEvolPerc.HasValue) ? TableBlock.FormatPercent(numCritPerKLOCEvolPerc.Value) : CastReporting.Domain.Constants.No_Value
                    
-                    , "Complex Objects"
+                    , Labels.ComplexObjects
                     , HighveryHighCostComplexityArtefacts.HasValue ? HighveryHighCostComplexityArtefacts.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value
                     , HighveryHighCostComplexityArtefactsPrev.HasValue ? HighveryHighCostComplexityArtefactsPrev.Value.ToString(metricFormat) : CastReporting.Domain.Constants.No_Value
                     , HighveryHighCostComplexityArtefactsEvolPerc.HasValue ? TableBlock.FormatPercent(HighveryHighCostComplexityArtefactsEvolPerc.Value) : CastReporting.Domain.Constants.No_Value
                     
-                    , "   with violations"
+                    , "  " + Labels.WithViolations
                     , HighveryHighCostComplexityViolations.HasValue ? HighveryHighCostComplexityViolations.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value
                     , HighveryHighCostComplexityViolationsPrev.HasValue ? HighveryHighCostComplexityViolationsPrev.Value.ToString(metricFormat) : CastReporting.Domain.Constants.No_Value
                     , HighveryHighCostComplexityViolationsEvolPerc.HasValue ? TableBlock.FormatPercent(HighveryHighCostComplexityViolationsEvolPerc.Value) : CastReporting.Domain.Constants.No_Value

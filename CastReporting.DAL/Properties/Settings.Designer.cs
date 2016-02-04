@@ -43,7 +43,7 @@ namespace CastReporting.Repositories.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".docx,.pptx,.potx")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".docx,.pptx,.potx,.xlsx")]
         public string TemplateExtensions {
             get {
                 return ((string)(this["TemplateExtensions"]));

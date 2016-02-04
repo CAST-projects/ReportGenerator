@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CastReporting.Domain;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
-using CastReporting.Domain;
 
 
 namespace CastReporting.Reporting.Block.Table
@@ -63,18 +64,17 @@ namespace CastReporting.Reporting.Block.Table
                                                                                 Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
                                                                                  Constants.CostComplexity.CostComplexityArtifacts_VeryHigh.GetHashCode());
 
-
-                if (selectedLowVal.HasValue && selectedAveVal.HasValue && selectedHigVal.HasValue && selectedVhiVal.HasValue)
-                    selectedTotal = selectedLowVal + selectedAveVal + selectedHigVal + selectedVhiVal;
+                selectedTotal = 0;
+                if (selectedLowVal.HasValue) selectedTotal += selectedLowVal;
+                if (selectedAveVal.HasValue) selectedTotal += selectedAveVal;
+                if (selectedHigVal.HasValue) selectedTotal += selectedHigVal;
+                if (selectedVhiVal.HasValue) selectedTotal += selectedVhiVal;
 
                 #endregion Selected Snapshot
 
                 #region Previous Snapshot
-
-
                 if (hasPreviousSnapshot)
                 {
-
                     previousLowVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
                                                                                   Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
                                                                                   Constants.CostComplexity.CostComplexityArtifacts_Low.GetHashCode());
@@ -87,54 +87,54 @@ namespace CastReporting.Reporting.Block.Table
                     previousVhiVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
                                                                                     Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
                                                                                      Constants.CostComplexity.CostComplexityArtifacts_VeryHigh.GetHashCode());
-
-
                 }
 
                 #endregion Previous Snapshot
 
                 #region Data
                 List<string> rowData = new List<string>();
-                rowData.AddRange(new string[] { "Cast Complexity", "Current total", "Previous total", "Evol.", "Evol. %", "% on total elements" });
+                rowData.AddRange(new string[] { Labels.Complexity, Labels.Current, Labels.Previous,  Labels.Evol, Labels.EvolPercent, Labels.TotalPercent });
+
+                const string noData = Constants.No_Data;
            
                 rowData.AddRange(new string[]
-                    { "Low Complexity"
-                    , selectedLowVal.HasValue ? selectedLowVal.Value.ToString("N0"):Constants.No_Value
-                    , previousLowVal.HasValue ? previousLowVal.Value.ToString("N0") : Constants.No_Value
-                    , (selectedLowVal.HasValue && previousLowVal.HasValue) ? TableBlock.FormatEvolution((Int32)(selectedLowVal.Value - previousLowVal.Value)) : Constants.No_Value
+                    { Labels.ComplexityLow
+                    , selectedLowVal.HasValue ? selectedLowVal.Value.ToString("N0") : noData
+                    , previousLowVal.HasValue ? previousLowVal.Value.ToString("N0") : noData
+                    , (selectedLowVal.HasValue && previousLowVal.HasValue) ? TableBlock.FormatEvolution((Int32)(selectedLowVal.Value - previousLowVal.Value)) : noData
                     , (selectedLowVal.HasValue && previousLowVal.HasValue && previousLowVal.Value !=0)? TableBlock.FormatPercent((selectedLowVal - previousLowVal) / previousLowVal)
-                                                                                                      : Constants.No_Value
-                    , (selectedLowVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)?TableBlock.FormatPercent(selectedLowVal / selectedTotal, false): Constants.No_Value
+                                                                                                      : noData
+                    , (selectedLowVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)?TableBlock.FormatPercent(selectedLowVal / selectedTotal, false): noData
                     });
 
                 rowData.AddRange(new string[]
-                    { "Average Complexity"
-                    , selectedAveVal.HasValue ? selectedAveVal.Value.ToString("N0"):Constants.No_Value
-                    , previousAveVal.HasValue ? previousAveVal.Value.ToString("N0") : Constants.No_Value
-                    , (selectedAveVal.HasValue && previousAveVal.HasValue) ? TableBlock.FormatEvolution((Int32)(selectedAveVal.Value - previousAveVal.Value)) : Constants.No_Value
+                    { Labels.ComplexityAverage
+                    , selectedAveVal.HasValue ? selectedAveVal.Value.ToString("N0"):noData
+                    , previousAveVal.HasValue ? previousAveVal.Value.ToString("N0") : noData
+                    , (selectedAveVal.HasValue && previousAveVal.HasValue) ? TableBlock.FormatEvolution((Int32)(selectedAveVal.Value - previousAveVal.Value)) : noData
                     , (selectedAveVal.HasValue && previousAveVal.HasValue && previousAveVal.Value !=0)? TableBlock.FormatPercent((selectedAveVal - previousAveVal) / previousAveVal)
-                                                                                                      : Constants.No_Value
-                    , (selectedAveVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)?TableBlock.FormatPercent(selectedAveVal / selectedTotal, false): Constants.No_Value
+                                                                                                      : noData
+                    , (selectedAveVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)?TableBlock.FormatPercent(selectedAveVal / selectedTotal, false): noData
                     });
 
                 rowData.AddRange(new string[]
-                    { "High Complexity"
-                    , selectedHigVal.HasValue ? selectedHigVal.Value.ToString("N0"): Constants.No_Value
-                    , previousHigVal.HasValue ? previousHigVal.Value.ToString("N0") : Constants.No_Value
-                    , (selectedHigVal.HasValue && previousHigVal.HasValue) ? TableBlock.FormatEvolution((Int32)(selectedHigVal.Value - previousHigVal.Value)) : Constants.No_Value
+                    { Labels.ComplexityHigh
+                    , selectedHigVal.HasValue ? selectedHigVal.Value.ToString("N0"): noData
+                    , previousHigVal.HasValue ? previousHigVal.Value.ToString("N0") : noData
+                    , (selectedHigVal.HasValue && previousHigVal.HasValue) ? TableBlock.FormatEvolution((Int32)(selectedHigVal.Value - previousHigVal.Value)) : noData
                     , (selectedHigVal.HasValue && previousHigVal.HasValue && previousHigVal.Value !=0)? TableBlock.FormatPercent((selectedHigVal - previousHigVal) / previousHigVal)
-                                                                                                      : Constants.No_Value
-                    , (selectedHigVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)?TableBlock.FormatPercent(selectedHigVal / selectedTotal, false): Constants.No_Value
+                                                                                                      : noData
+                    , (selectedHigVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)?TableBlock.FormatPercent(selectedHigVal / selectedTotal, false): noData
                     });
 
                 rowData.AddRange(new string[]
-                    { "Very High Complexity"
-                    , selectedVhiVal.HasValue ? selectedVhiVal.Value.ToString("N0"): Constants.No_Value
-                    , previousVhiVal.HasValue ? previousVhiVal.Value.ToString("N0") : Constants.No_Value
-                    , previousVhiVal.HasValue ? TableBlock.FormatEvolution((Int32)(selectedVhiVal.Value - previousVhiVal.Value)): Constants.No_Value
+                    { Labels.ComplexityVeryHigh
+                    , selectedVhiVal.HasValue ? selectedVhiVal.Value.ToString("N0"): noData
+                    , previousVhiVal.HasValue ? previousVhiVal.Value.ToString("N0") : noData
+                    , previousVhiVal.HasValue ? TableBlock.FormatEvolution((Int32)(selectedVhiVal.Value - previousVhiVal.Value)): noData
                     , (selectedVhiVal.HasValue && previousVhiVal.HasValue && previousVhiVal.Value !=0)? TableBlock.FormatPercent((selectedVhiVal - previousVhiVal) / previousVhiVal)
-                                                                                                      : Constants.No_Value
-                    , (selectedVhiVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)?TableBlock.FormatPercent(selectedVhiVal / selectedTotal, false): Constants.No_Value
+                                                                                                      : noData
+                    , (selectedVhiVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)?TableBlock.FormatPercent(selectedVhiVal / selectedTotal, false): noData
                     });
 
                 #endregion Data

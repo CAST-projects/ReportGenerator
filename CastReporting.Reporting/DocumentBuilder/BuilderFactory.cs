@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ namespace CastReporting.Reporting.Builder
         /// 
         /// </summary>
         /// <returns></returns>
-        public static IDocumentBuilder CreateBuilder(ReportData client)
+        public static IDocumentBuilder CreateBuilder(ReportData client, string TmpReportFile)
         {
             switch(client.ReportType) 
             { 
@@ -35,7 +35,7 @@ namespace CastReporting.Reporting.Builder
                 case FormatType.PowerPoint:
                     return new PowerpointDocumentBuilder(client); 
                 case FormatType.Excel:
-                    return new ExcelDocumentBuilder(client); 
+                    return new ExcelDocumentBuilder(client, TmpReportFile); 
                 default:
                     return null;
             }

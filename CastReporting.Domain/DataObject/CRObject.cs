@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,26 @@ namespace CastReporting.Domain
         public string Href { get; set; }
 
         
+
+
+
+
+        [DataMember(Name = "adgWebSite")]
+        public string AdgWebSite { get; set; }
+
+
+        [DataMember(Name = "adgDatabase")]
+        public string AdgDatabase { get; set; }
+
+
+        [DataMember(Name = "adgLocalId")]
+        public string AdgLocalId { get; set; }
+
+
+        [DataMember(Name = "adgVersion")]
+        public string AdgVersion { get; set; }
+
+
         [DataMember(Name = "technologies")]
         public string[] Technologies { get; set; }
 

@@ -5,6 +5,7 @@
     <!-- Local properties -->
 	<property environment="env" />
 	<property name="wksp.dir"       value="${env.WORKSPACE}" />
+    <property name="EXT_TOOLS32"    value="\\productfs01\EngTools\external_tools\win32" />
 
 	<property name="Setup" value="${wksp.dir}/ReportGenerator/Setup/ReportGeneratorSetup.exe" />
 
@@ -20,17 +21,17 @@
 		<sequential>
 			<if><not><equals arg1="Inc" arg2="${BUILDNO}"/></not>
 				<then>
-					<exec executable="${wksp.dir}/ReportGenerator/_build/bin/signtool.exe" failonerror="true">
+					<exec executable="${EXT_TOOLS32}/signtool.exe" failonerror="true">
 						<arg value="sign"/>
 						<arg value="/f"/>
-						<arg value="\\frfs02\EngTools\certificates\certif_2018-01-13.pfx"/>
+						<arg value="\\productfs01\EngTools\certificates\certif_2018-01-13.pfx"/>
 						<arg value="/t"/>
 						<arg value="http://timestamp.verisign.com/scripts/timstamp.dll"/>
 						<arg value="/p"/>
 						<arg value="castcast"/>
 						<arg value="@{file}"/>
 					</exec>
-					<exec executable="${wksp.dir}/ReportGenerator/_build/bin/signtool.exe" failonerror="true">
+					<exec executable="${EXT_TOOLS32}/signtool.exe" failonerror="true">
 						<arg value="verify"/>
 						<arg value="/pa"/>
 						<arg value="@{file}"/>

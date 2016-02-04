@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,22 +73,14 @@ namespace CastReporting.Mediation
 
         #endregion CONSTRUCTORS
 
-        #region METHODS
-
-        /// <summary>
-        /// Download String
-        /// </summary>
-        /// <param name="pUrl"></param>
-        /// <param name="pComplexity"></param>
-        /// <returns></returns>
-        public string DownloadString(string pUrl, RequestComplexity pComplexity)
+        private string DownloadContent(string pUrl, string mimeType, RequestComplexity pComplexity)
         {
 
             string result = string.Empty;
 
             try
             {
-                base.Headers.Add(System.Net.HttpRequestHeader.Accept, "application/json");
+                base.Headers.Add(System.Net.HttpRequestHeader.Accept, mimeType);
                 base.Encoding = Encoding.UTF8;
 
                 RequestComplexity previousComplexity = this._CurrentComplexity;
@@ -121,6 +113,18 @@ namespace CastReporting.Mediation
 
             return result;
         }
+        #region METHODS
+
+        /// <summary>
+        /// Download String
+        /// </summary>
+        /// <param name="pUrl"></param>
+        /// <param name="pComplexity"></param>
+        /// <returns></returns>
+        public string DownloadString(string pUrl, RequestComplexity pComplexity)
+        {
+        	return DownloadContent(pUrl, "application/json", pComplexity);
+        }
 
         /// <summary>
         /// Download String by URI
@@ -130,7 +134,37 @@ namespace CastReporting.Mediation
         /// <returns></returns>
         public string DownloadString(Uri pUri, RequestComplexity pComplexity)
         {
-            return DownloadString(pUri.ToString());         
+            return DownloadString(pUri.ToString(), pComplexity);         
+        }
+
+        /// <summary>
+        /// Download Csv String
+        /// </summary>
+        /// <param name="pUrl"></param>
+        /// <param name="pComplexity"></param>
+        /// <returns></returns>
+        public string DownloadCsvString(string pUrl, RequestComplexity pComplexity)
+        {
+            try
+            {
+                return DownloadContent(pUrl, "text/csv", pComplexity);
+            }
+            catch (WebException webEx)
+            {
+                // AIP < 8 sends CSV data as application/vnd.ms-excel
+                return DownloadContent(pUrl, "application/vnd.ms-excel", pComplexity);
+            }
+        }
+
+        /// <summary>
+        /// Download String by URI
+        /// </summary>
+        /// <param name="pUri"></param>
+        /// <param name="pComplexity"></param>
+        /// <returns></returns>
+        public string DownloadCsvString(Uri pUri, RequestComplexity pComplexity)
+        {
+            return DownloadCsvString(pUri.ToString(), pComplexity);
         }
 
         /// <summary>

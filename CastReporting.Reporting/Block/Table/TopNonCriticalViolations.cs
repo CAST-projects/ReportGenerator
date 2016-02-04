@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -37,18 +38,22 @@ namespace CastReporting.Reporting.Block.Table
             int nbLimitTop = 0;
             List<string> rowData = new List<string>();
             
-            rowData.AddRange(new string[] { "Rule Names", "Count" });
+			rowData.AddRange(new string[] {
+				Labels.RuleName,
+				Labels.ViolationsCount
+			});
                                    
             Int32? metricId = (options != null && options.ContainsKey("BC-ID")) ? Convert.ToInt32(options["BC-ID"]) : (Int32?)null;
             if (metricId == null)
                 metricId = (options != null && options.ContainsKey("PAR")) ? Convert.ToInt32(options["PAR"]) : (Int32?)null;
-            if (options  == null || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out nbLimitTop))
-            {
+			if (options == null || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out nbLimitTop)) {
                 nbLimitTop = reportData.Parameter.NbResultDefault;
             }
 
-            if (reportData != null && reportData.CurrentSnapshot!=null && metricId.HasValue)
-            {
+			if (reportData != null && reportData.CurrentSnapshot != null) {
+
+            	if (!metricId.HasValue)
+            		metricId = 0;
 
                 var NonCriticalRulesViolation = RulesViolationUtility.GetRuleViolations(reportData.CurrentSnapshot, 
                                                                                         Constants.RulesViolation.NonCriticalRulesViolation,
@@ -57,22 +62,20 @@ namespace CastReporting.Reporting.Block.Table
                                                                                        nbLimitTop);
 
 
-                if (NonCriticalRulesViolation != null && NonCriticalRulesViolation.Count() > 0)
-                {                    
-                    foreach (var elt in NonCriticalRulesViolation)
-                    {
+                if (NonCriticalRulesViolation != null && NonCriticalRulesViolation.Any()) {                    
+                    foreach (var elt in NonCriticalRulesViolation) {
                         rowData.AddRange(new string[] { elt.Rule.Name, elt.TotalFailed.Value.ToString("N0") });
                     }
+                } else {
+					rowData.AddRange(new string[] {
+						Labels.NoItem,
+						string.Empty
+					});
                 }
-                else
-                {
-                    rowData.AddRange(new string[] { "No enable item.", string.Empty });
-                }
-                nbRows = NonCriticalRulesViolation.Count();
+                nbRows = NonCriticalRulesViolation.Count;
             }
 
-            TableDefinition resultTable = new TableDefinition
-            {
+            TableDefinition resultTable = new TableDefinition {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
                 NbRows = nbRows + 1,

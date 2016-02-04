@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -43,22 +44,25 @@ namespace CastReporting.Reporting.Block.Table
             //List<RuleVariationResultDTO> selected_elements = new List<RuleVariationResultDTO>();
             IEnumerable<RuleVariationResultDTO> selected_elements;
             
-
-            rowData.AddRange(new string[] { "Rule Name", "Current Violations", "Previous Violations", "Evolution", "Grade", "Grade Evolution" });
+			rowData.AddRange(new string[] {
+				Labels.RuleName,
+				Labels.ViolationsCurrent,
+				Labels.ViolationsPrevious,
+				Labels.Evolution,
+				Labels.Grade,
+				Labels.GradeEvolution
+			});
 
             Int32? metricId = (options != null && options.ContainsKey("PAR")) ? Convert.ToInt32(options["PAR"]) : (Int32?)null;
 
-            if (options == null || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out nbLimitTop))
-            {
+            if (options == null || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out nbLimitTop)) {
                 nbLimitTop = reportData.Parameter.NbResultDefault;
             }
-            if (options == null || !options.ContainsKey("C") || !Int32.TryParse(options["C"], out order))
-            {
+            if (options == null || !options.ContainsKey("C") || !Int32.TryParse(options["C"], out order)) {
                 order = 0;
             }
 
-            if (reportData != null && reportData.CurrentSnapshot != null && metricId.HasValue)
-            {
+            if (reportData != null && reportData.CurrentSnapshot != null && metricId.HasValue) {
                 var currentCriticalRulesViolation = RulesViolationUtility.GetAllRuleViolations(reportData.CurrentSnapshot,
                                                                                             Constants.RulesViolation.All,
                                                                                             (Constants.BusinessCriteria)metricId,
@@ -72,12 +76,8 @@ namespace CastReporting.Reporting.Block.Table
                                                                                            : null;
 
 
-                if (currentCriticalRulesViolation != null)
-                {
-                    rowCount = currentCriticalRulesViolation.Count();
-                    
-                    foreach (var item in currentCriticalRulesViolation)
-                    {
+                if (currentCriticalRulesViolation != null) {
+                    foreach (var item in currentCriticalRulesViolation) {
                         //Get previous value
                         var previousitem = (previousCriticalRulesViolation != null) ? previousCriticalRulesViolation.FirstOrDefault(_ => _.Rule.Key == item.Rule.Key) : null;
                         double? previousVal = (previousitem != null && previousitem.TotalFailed.HasValue) ? previousitem.TotalFailed.Value : (double?)null;
@@ -87,8 +87,7 @@ namespace CastReporting.Reporting.Block.Table
                         double? variationVal = (item.TotalFailed.HasValue && previousVal.HasValue) ? (item.TotalFailed.Value - previousVal.Value) : (double?)null;
                         double? variationGrade = (item.TotalFailed.HasValue && previousVal.HasValue) ? (item.Grade.Value - previousGrade.Value) : (double?)null;
 
-                        variationRules.Add(new RuleVariationResultDTO
-                                            {
+                        variationRules.Add(new RuleVariationResultDTO {
                                                 Rule = new RuleDetailsDTO { Name = item.Rule.Name, Key = item.Rule.Key },
                                                 CurrentNbViolations = (item.TotalFailed.HasValue) ? item.TotalFailed.Value : -1,
                                                 PreviousNbViolations = (previousitem != null && previousitem.TotalFailed.HasValue ) ? previousitem.TotalFailed.Value : -1,
@@ -130,18 +129,21 @@ namespace CastReporting.Reporting.Block.Table
                                     , (varRule.GradeEvolution.HasValue && !double.IsNaN(varRule.GradeEvolution.Value)) ? TableBlock.FormatPercent(varRule.GradeEvolution.Value) : Constants.No_Value
                                }
                             );
+						rowCount++;
                     }
-
-                }
-                else
-                {
-                    rowData.AddRange(new string[] { "No enable item.", string.Empty, string.Empty, string.Empty, string.Empty });
+                } else {
+					rowData.AddRange(new string[] {
+						Labels.NoItem,
+						string.Empty,
+						string.Empty,
+						string.Empty,
+						string.Empty
+					});
                     rowCount = 1;
                 }
             }
 
-            resultTable = new TableDefinition
-            {
+            resultTable = new TableDefinition {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
                 NbRows = rowCount + 1,
@@ -150,6 +152,5 @@ namespace CastReporting.Reporting.Block.Table
             };
             return resultTable;
         }
-
     }
 }

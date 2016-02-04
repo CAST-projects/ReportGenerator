@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
@@ -68,7 +69,7 @@ namespace CastReporting.Reporting.Block.Table
 
             if (reportData.CurrentSnapshot != null)
             {               
-                rowData.AddRange(new string[] { "Artefact Name", "PRI" });
+                rowData.AddRange(new string[] { Labels.ArtifactName, Labels.PRI });
                 Constants.BusinessCriteria bizCrit;
                 switch (dataSource)
                 {
@@ -97,7 +98,7 @@ namespace CastReporting.Reporting.Block.Table
             }
 
 
-            if (components != null && components.Count() > 0)
+            if (components != null && components.Any())
             {
                 foreach (var component in components)
                 {
@@ -107,7 +108,7 @@ namespace CastReporting.Reporting.Block.Table
             }
             else
             {
-                rowData.AddRange(new string[] { "No enable item.", string.Empty });
+                rowData.AddRange(new string[] { Labels.NoItem, string.Empty });
             }
 
             resultTable = new TableDefinition

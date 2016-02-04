@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\CsvSerializer.cs" />
     <Compile Include="Helper\SerializerHelper.cs" />
     <Compile Include="Repository\CastRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

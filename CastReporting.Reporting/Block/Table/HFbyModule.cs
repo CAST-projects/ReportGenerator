@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2015 CAST
+ *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Block.Table
 {
@@ -42,8 +43,8 @@ namespace CastReporting.Reporting.Block.Table
 
             List<string> rowData = new List<string>();
             rowData.AddRange(displayShortHeader
-                                ? new[] { " ", "TQI", "Robu.", "Efcy.", "Secu.", "Trans.", "Chang." }
-                                : new[] { " ", "TQI", "Robustness", "Efficiency", "Security", "Transferability", "Changeability" });
+                                ? new[] { " ", Labels.TQI, Labels.Robu, Labels.Efcy, Labels.Secu, Labels.Trans, Labels.Chang }
+                                : new[] { " ", Labels.TQI, Labels.Robustness, Labels.Efficiency, Labels.Security, Labels.Transferability, Labels.Changeability });
 
             
 
@@ -101,7 +102,7 @@ namespace CastReporting.Reporting.Block.Table
                                     }).ToList();
                 
                 rowData.AddRange(new[] {" "," "," "," "," "," "," "});
-                rowData.AddRange(new[] { "Variation", " ", " ", " ", " ", " ", " " });
+                rowData.AddRange(new[] { Labels.Variation, " ", " ", " ", " ", " ", " " });
 
                 foreach (var result in variationList.OrderBy(_ => _.Name))
                 {

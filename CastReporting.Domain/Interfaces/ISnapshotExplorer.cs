@@ -18,6 +18,14 @@ namespace CastReporting.Domain.Interfaces
         /// 
         /// </summary>
         /// <param name="snapshotHref"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        IEnumerable<IfpugFunction> GetIfpugFunctions(string snapshotHref, int count);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="snapshotHref"></param>
         /// <param name="businessCriteria"></param>
         /// <param name="count"></param>
         /// <returns></returns>
