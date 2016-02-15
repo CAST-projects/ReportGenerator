@@ -11,7 +11,7 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{CA781D35-A350-45C7-ABA3-0E79BCB81DBF}
+AppId={{A04C3D55-7138-4689-85C0-66107A4CFAF9}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} {#MyAppVersion}
@@ -22,8 +22,8 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 VersionInfoCompany={#MyAppPublisher}
 VersionInfoVersion={#MyAppVersion}
-DefaultDirName={pf32}\CAST\8.1\{#MyAppShortName} {#MyAppVersion}
-DefaultGroupName=CAST 8.1\{#MyAppShortName} {#MyAppVersion}
+DefaultDirName={pf32}\CAST\{#MyAppShortName} {#MyAppVersion}
+DefaultGroupName={#MyAppName} {#MyAppVersion}
 OutputBaseFilename=ReportGeneratorSetup
 OutputDir=../Setup
 SetupIconFile=../CastReporting.UI.WPF.V2/Resources/Images/cast.ico
