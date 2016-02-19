@@ -39,12 +39,12 @@ namespace CastReporting.Reporting.Block.Graph
             {
                
                 string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);                
-                BusinessCriteriaDTO currSnapshotBCDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot);
+                BusinessCriteriaDTO currSnapshotBCDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, true);
 
                 if (reportData.PreviousSnapshot != null)
                 {
                     prevSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot);
-                    prevSnapshotBCResult = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot);
+                    prevSnapshotBCResult = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot, true);
                 }
                 else
                     if (reportData.Application.Snapshots != null)
@@ -53,7 +53,7 @@ namespace CastReporting.Reporting.Block.Graph
                         if (PreviousSnapshot != null)
                         {
                             prevSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(PreviousSnapshot);
-                            prevSnapshotBCResult = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(PreviousSnapshot);
+                            prevSnapshotBCResult = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(PreviousSnapshot, true);
                         }
                         
                     }

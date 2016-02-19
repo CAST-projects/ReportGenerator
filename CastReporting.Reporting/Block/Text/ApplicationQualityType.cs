@@ -36,7 +36,7 @@ namespace CastReporting.Reporting.Block.Text
             if (null != reportData &&
                 null != reportData.CurrentSnapshot)
             {
-                Double? tqi = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Constants.BusinessCriteria.TechnicalQualityIndex);
+                Double? tqi = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Constants.BusinessCriteria.TechnicalQualityIndex, true);
 
                 if (tqi.HasValue) return GetApplicationQualification(reportData, tqi.Value);
             }

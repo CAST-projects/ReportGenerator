@@ -62,7 +62,7 @@ namespace CastReporting.Reporting.Block.Graph
 			if (nbSnapshots > 0) {
                
                 foreach (Snapshot snapshot in reportData.Application.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot)) {
-                    BusinessCriteriaDTO bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(snapshot);
+                    BusinessCriteriaDTO bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(snapshot, true);
                     double? locValue = MeasureUtility.GetCodeLineNumber(snapshot);
                     string prevSnapshotDate = snapshot.Annotation.Date.DateSnapShot.HasValue ? snapshot.Annotation.Date.DateSnapShot.Value.ToOADate().ToString() 
                                                                                              : string.Empty;
@@ -85,7 +85,7 @@ namespace CastReporting.Reporting.Block.Graph
 
             #region just 1 snapshot
 			if (nbSnapshots == 1) {
-                BusinessCriteriaDTO bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot);
+                BusinessCriteriaDTO bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, true);
                 double? locValue = MeasureUtility.GetCodeLineNumber(reportData.CurrentSnapshot);
                 string prevSnapshotDate = reportData.CurrentSnapshot.Annotation.Date.DateSnapShot.HasValue
                         ? reportData.CurrentSnapshot.Annotation.Date.DateSnapShot.Value.ToOADate().ToString() : string.Empty;
