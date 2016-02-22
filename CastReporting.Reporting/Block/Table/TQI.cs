@@ -45,8 +45,8 @@ namespace CastReporting.Reporting.Block.Table
             rowData.AddRange(new[] { Labels.Statistics, Labels.Current, Labels.Previous });
 
 
-            Double? currentTqi= BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Domain.Constants.BusinessCriteria.TechnicalQualityIndex);
-            Double? previousTqi = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.PreviousSnapshot, Domain.Constants.BusinessCriteria.TechnicalQualityIndex);
+            Double? currentTqi= BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Domain.Constants.BusinessCriteria.TechnicalQualityIndex, true);
+            Double? previousTqi = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.PreviousSnapshot, Domain.Constants.BusinessCriteria.TechnicalQualityIndex, true);
 
             rowData.AddRange(new[] { Labels.TQI, 
                                        currentTqi.HasValue ? currentTqi.Value.ToString(_MetricFormat): String.Empty, 
