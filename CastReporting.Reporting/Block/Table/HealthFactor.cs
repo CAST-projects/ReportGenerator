@@ -57,12 +57,12 @@ namespace CastReporting.Reporting.Block.Table
 
                 #region currSnapshot
                 string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);
-                BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot);
+                BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, false);
                 #endregion  currSnapshot
 
                 #region prevSnapshot
                 string prevSnapshotLabel = hasPreviousSnapshot ? SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot) : CastReporting.Domain.Constants.No_Value;
-                BusinessCriteriaDTO prevSnapshotBisCriDTO = hasPreviousSnapshot ? BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot) : null;
+                BusinessCriteriaDTO prevSnapshotBisCriDTO = hasPreviousSnapshot ? BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot, false) : null;
                  #endregion  prevSnapshot
 
                 List<string> rowData = new List<string>();
@@ -84,42 +84,42 @@ namespace CastReporting.Reporting.Block.Table
 	                #region variation
 					BusinessCriteriaDTO BusinessCriteriaGradesEvol = hasPreviousSnapshot ? (currSnapshotBisCriDTO - prevSnapshotBisCriDTO) : null;
 	                BusinessCriteriaDTO BusinessCriteriaGradesEvolPercent = hasPreviousSnapshot ? (BusinessCriteriaGradesEvol / prevSnapshotBisCriDTO) : null;
-	                #endregion  variation
-             
+                    #endregion  variation
+
                     rowData.AddRange(
                         new[] {
-	                        prevSnapshotLabel,
-	                        prevSnapshotBisCriDTO.TQI.HasValue?prevSnapshotBisCriDTO.TQI.Value.ToString(metricFormat):Constants.No_Value,
-	                        prevSnapshotBisCriDTO.Robustness.HasValue?prevSnapshotBisCriDTO.Robustness.Value.ToString(metricFormat):Constants.No_Value,
-	                        prevSnapshotBisCriDTO.Performance.HasValue?prevSnapshotBisCriDTO.Performance.Value.ToString(metricFormat):Constants.No_Value,
-	                        prevSnapshotBisCriDTO.Security.HasValue?prevSnapshotBisCriDTO.Security.Value.ToString(metricFormat):Constants.No_Value,
-	                        prevSnapshotBisCriDTO.Transferability.HasValue?prevSnapshotBisCriDTO.Transferability.Value.ToString(metricFormat):Constants.No_Value,
-	                        prevSnapshotBisCriDTO.Changeability.HasValue?prevSnapshotBisCriDTO.Changeability.Value.ToString(metricFormat):Constants.No_Value,
-	                    });
+                            prevSnapshotLabel,
+                            prevSnapshotBisCriDTO.TQI.HasValue?prevSnapshotBisCriDTO.TQI.Value.ToString(metricFormat):Constants.No_Value,
+                            prevSnapshotBisCriDTO.Robustness.HasValue?prevSnapshotBisCriDTO.Robustness.Value.ToString(metricFormat):Constants.No_Value,
+                            prevSnapshotBisCriDTO.Performance.HasValue?prevSnapshotBisCriDTO.Performance.Value.ToString(metricFormat):Constants.No_Value,
+                            prevSnapshotBisCriDTO.Security.HasValue?prevSnapshotBisCriDTO.Security.Value.ToString(metricFormat):Constants.No_Value,
+                            prevSnapshotBisCriDTO.Transferability.HasValue?prevSnapshotBisCriDTO.Transferability.Value.ToString(metricFormat):Constants.No_Value,
+                            prevSnapshotBisCriDTO.Changeability.HasValue?prevSnapshotBisCriDTO.Changeability.Value.ToString(metricFormat):Constants.No_Value,
+                        });
                 
 					if (showEvol) {
-						rowData.AddRange(
-							new[] {
-								Labels.Evol,
-								BusinessCriteriaGradesEvol.TQI.HasValue ? TableBlock.FormatEvolution(BusinessCriteriaGradesEvol.TQI.Value) : Constants.No_Value,
-								BusinessCriteriaGradesEvol.Robustness.HasValue ? TableBlock.FormatEvolution(BusinessCriteriaGradesEvol.Robustness.Value) : Constants.No_Value,
-								BusinessCriteriaGradesEvol.Performance.HasValue ? TableBlock.FormatEvolution(BusinessCriteriaGradesEvol.Performance.Value) : Constants.No_Value,
-								BusinessCriteriaGradesEvol.Security.HasValue ? TableBlock.FormatEvolution(BusinessCriteriaGradesEvol.Security.Value) : Constants.No_Value,
-								BusinessCriteriaGradesEvol.Transferability.HasValue ? TableBlock.FormatEvolution(BusinessCriteriaGradesEvol.Transferability.Value) : Constants.No_Value,
-								BusinessCriteriaGradesEvol.Changeability.HasValue ? TableBlock.FormatEvolution(BusinessCriteriaGradesEvol.Changeability.Value) : Constants.No_Value
-							});
+                        rowData.AddRange(
+                            new[] {
+                                Labels.Evol,
+                                BusinessCriteriaGradesEvol.TQI.HasValue ? FormatEvolution(BusinessCriteriaGradesEvol.TQI.Value) : Constants.No_Value,
+                                BusinessCriteriaGradesEvol.Robustness.HasValue ? FormatEvolution(BusinessCriteriaGradesEvol.Robustness.Value) : Constants.No_Value,
+                                BusinessCriteriaGradesEvol.Performance.HasValue ? FormatEvolution(BusinessCriteriaGradesEvol.Performance.Value) : Constants.No_Value,
+                                BusinessCriteriaGradesEvol.Security.HasValue ? FormatEvolution(BusinessCriteriaGradesEvol.Security.Value) : Constants.No_Value,
+                                BusinessCriteriaGradesEvol.Transferability.HasValue ? FormatEvolution(BusinessCriteriaGradesEvol.Transferability.Value) : Constants.No_Value,
+                                BusinessCriteriaGradesEvol.Changeability.HasValue ? FormatEvolution(BusinessCriteriaGradesEvol.Changeability.Value) : Constants.No_Value
+                            });
 					}
 
 					if (showEvolPercent) {
 	                    rowData.AddRange(
 							new[] {
 								Labels.EvolPercent,
-		                        BusinessCriteriaGradesEvolPercent.TQI.HasValue ? TableBlock.FormatPercent(BusinessCriteriaGradesEvolPercent.TQI.Value) : Constants.No_Value,
-		                        BusinessCriteriaGradesEvolPercent.Robustness.HasValue ? TableBlock.FormatPercent(BusinessCriteriaGradesEvolPercent.Robustness.Value) : Constants.No_Value,
-		                        BusinessCriteriaGradesEvolPercent.Performance.HasValue ? TableBlock.FormatPercent(BusinessCriteriaGradesEvolPercent.Performance.Value) : Constants.No_Value,
-		                        BusinessCriteriaGradesEvolPercent.Security.HasValue ? TableBlock.FormatPercent(BusinessCriteriaGradesEvolPercent.Security.Value) : Constants.No_Value,
-		                        BusinessCriteriaGradesEvolPercent.Transferability.HasValue ? TableBlock.FormatPercent(BusinessCriteriaGradesEvolPercent.Transferability.Value) : Constants.No_Value,
-		                        BusinessCriteriaGradesEvolPercent.Changeability.HasValue ? TableBlock.FormatPercent(BusinessCriteriaGradesEvolPercent.Changeability.Value) : Constants.No_Value
+		                        BusinessCriteriaGradesEvolPercent.TQI.HasValue ? FormatPercent(BusinessCriteriaGradesEvolPercent.TQI.Value) : Constants.No_Value,
+		                        BusinessCriteriaGradesEvolPercent.Robustness.HasValue ? FormatPercent(BusinessCriteriaGradesEvolPercent.Robustness.Value) : Constants.No_Value,
+		                        BusinessCriteriaGradesEvolPercent.Performance.HasValue ? FormatPercent(BusinessCriteriaGradesEvolPercent.Performance.Value) : Constants.No_Value,
+		                        BusinessCriteriaGradesEvolPercent.Security.HasValue ? FormatPercent(BusinessCriteriaGradesEvolPercent.Security.Value) : Constants.No_Value,
+		                        BusinessCriteriaGradesEvolPercent.Transferability.HasValue ? FormatPercent(BusinessCriteriaGradesEvolPercent.Transferability.Value) : Constants.No_Value,
+		                        BusinessCriteriaGradesEvolPercent.Changeability.HasValue ? FormatPercent(BusinessCriteriaGradesEvolPercent.Changeability.Value) : Constants.No_Value
 	                    	});
 					}
                 }

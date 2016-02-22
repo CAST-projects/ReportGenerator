@@ -57,11 +57,11 @@ namespace CastReporting.Reporting.Block.Table
 
                 bool hasPreviousSnapshot = null != reportData.PreviousSnapshot && null != reportData.PreviousSnapshot.BusinessCriteriaResults;
                 string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);
-                BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot);
+                BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, true);
 
 
                 string prevSnapshotLabel = hasPreviousSnapshot ? SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot) : CastReporting.Domain.Constants.No_Value;
-                BusinessCriteriaDTO prevSnapshotBisCriDTO = hasPreviousSnapshot ? BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot) : null;
+                BusinessCriteriaDTO prevSnapshotBisCriDTO = hasPreviousSnapshot ? BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot, true) : null;
 
 
                 double? currProgrammingPracticesValue = null != currSnapshotBisCriDTO.ProgrammingPractices ? currSnapshotBisCriDTO.ProgrammingPractices : 1;

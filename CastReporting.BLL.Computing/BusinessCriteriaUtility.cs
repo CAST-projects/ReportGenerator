@@ -74,23 +74,23 @@ namespace CastReporting.BLL.Computing
         /// </summary>
         /// <param name="snapshot"></param>
         /// <returns></returns>
-        public static BusinessCriteriaDTO GetBusinessCriteriaGradesSnapshot(Snapshot snapshot)
+        public static BusinessCriteriaDTO GetBusinessCriteriaGradesSnapshot(Snapshot snapshot, bool Round)
         {
 
             if (null != snapshot)
             {
                 BusinessCriteriaDTO result = new BusinessCriteriaDTO();
                               
-                result.TQI = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.TechnicalQualityIndex);
-                result.Robustness = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Robustness);
-                result.Performance = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Performance);
-                result.Security = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Security);
-                result.Transferability = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Transferability);
-                result.Changeability = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Changeability);
-                result.ProgrammingPractices = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.ProgrammingPractices);
-                result.ArchitecturalDesign = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.ArchitecturalDesign);
-                result.Documentation = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Documentation);
-                result.SEIMaintainability = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.SEIMaintainability);
+                result.TQI = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.TechnicalQualityIndex, Round);
+                result.Robustness = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Robustness, Round);
+                result.Performance = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Performance, Round);
+                result.Security = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Security, Round);
+                result.Transferability = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Transferability, Round);
+                result.Changeability = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Changeability, Round);
+                result.ProgrammingPractices = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.ProgrammingPractices, Round);
+                result.ArchitecturalDesign = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.ArchitecturalDesign, Round);
+                result.Documentation = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Documentation, Round);
+                result.SEIMaintainability = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.SEIMaintainability, Round);
 
                 return result;
             }
@@ -139,16 +139,18 @@ namespace CastReporting.BLL.Computing
         /// </summary>
         /// <param name="snapshot"></param>
         /// <returns></returns>
-        public static Double? GetSnapshotBusinessCriteriaGrade(Snapshot snapshot, Constants.BusinessCriteria bcId)
+        public static Double? GetSnapshotBusinessCriteriaGrade(Snapshot snapshot, Constants.BusinessCriteria bcId, bool Round)
         {
+            double? res = null;
             if (null != snapshot && null != snapshot.BusinessCriteriaResults)
             {
-                var resultTQI = snapshot.BusinessCriteriaResults.SingleOrDefault(_ => _.Reference.Key == bcId.GetHashCode());
-
-                return (resultTQI != null ? MathUtility.GetRound( resultTQI.DetailResult.Grade) : 0);
-
+                var resultBC = snapshot.BusinessCriteriaResults.SingleOrDefault(_ => _.Reference.Key == bcId.GetHashCode());
+                if (resultBC != null)
+                {
+                    res = Round ? MathUtility.GetRound(resultBC.DetailResult.Grade) : resultBC.DetailResult.Grade;
+                }
             }
-            return null;
+            return res;
         }
 
    

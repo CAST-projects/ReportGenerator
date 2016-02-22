@@ -64,8 +64,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Block\Table\IfpugDataFunctions.cs" />
-    <Compile Include="Block\Table\IfpugTransactionFunctions.cs" />
     <Compile Include="Block\Graph\Bubble.cs" />
     <Compile Include="Block\Graph\CastComplexity.cs" />
     <Compile Include="Block\Graph\CastDistribution.cs" />
@@ -96,7 +94,6 @@
     <Compile Include="Block\Table\ListOfAllVersions.cs" />
     <Compile Include="Block\Table\LocPerModule.cs" />
     <Compile Include="Block\Table\ModuleList.cs" />
-    <Compile Include="Block\Table\QuantityEvolution.cs" />
     <Compile Include="Block\Table\RuleImprovementOpportunity.cs" />
     <Compile Include="Block\Table\RuleNameAndDescription.cs" />
     <Compile Include="Block\Table\RulesDescriptionsOfTopCriticalViolations.cs" />

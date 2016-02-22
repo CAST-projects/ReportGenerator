@@ -28,8 +28,6 @@ namespace CastReporting.Reporting.Block.Table
     [Block("HF_BY_MODULE")]
     class HFbyModule : TableBlock
     {
-        private const string _MetricFormat = "N2";
-
         /// <summary>
         /// 
         /// </summary>
@@ -38,6 +36,8 @@ namespace CastReporting.Reporting.Block.Table
         /// <returns></returns>
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
+            string metricFormat = "N2";
+
             bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
             Int32 nbRows = 0;
 
@@ -57,12 +57,12 @@ namespace CastReporting.Reporting.Block.Table
             {
                 rowData.AddRange(new[] {
                             result.Name,
-                            result.TQI.Value.ToString(_MetricFormat),
-                            result.Robustness.Value.ToString(_MetricFormat),
-                            result.Performance.Value.ToString(_MetricFormat),
-                            result.Security.Value.ToString(_MetricFormat),
-                            result.Transferability.Value.ToString(_MetricFormat),
-                            result.Changeability.Value.ToString(_MetricFormat)
+                            result.TQI.Value.ToString(metricFormat),
+                            result.Robustness.Value.ToString(metricFormat),
+                            result.Performance.Value.ToString(metricFormat),
+                            result.Security.Value.ToString(metricFormat),
+                            result.Transferability.Value.ToString(metricFormat),
+                            result.Changeability.Value.ToString(metricFormat)
                         });
             }
 
@@ -80,12 +80,12 @@ namespace CastReporting.Reporting.Block.Table
                 {
                     rowData.AddRange(new[] {
                                 result.Name,
-                                result.TQI.Value.ToString(_MetricFormat),
-                                result.Robustness.Value.ToString(_MetricFormat),
-                                result.Performance.Value.ToString(_MetricFormat),
-                                result.Security.Value.ToString(_MetricFormat),
-                                result.Transferability.Value.ToString(_MetricFormat),
-                                result.Changeability.Value.ToString(_MetricFormat)
+                                result.TQI.Value.ToString(metricFormat),
+                                result.Robustness.Value.ToString(metricFormat),
+                                result.Performance.Value.ToString(metricFormat),
+                                result.Security.Value.ToString(metricFormat),
+                                result.Transferability.Value.ToString(metricFormat),
+                                result.Changeability.Value.ToString(metricFormat)
                             });
                 }
 
@@ -93,12 +93,12 @@ namespace CastReporting.Reporting.Block.Table
 
                 //Variation             
                 var variationList = (from current in resultCurrentSnapshot
-                                    join pevious in resultPreviousSnapshot
-                                    on current.Name equals pevious.Name
+                                    join previous in resultPreviousSnapshot
+                                    on current.Name equals previous.Name
                                     select new
                                     {
                                         current.Name,
-                                        Variation = (current - pevious) / pevious                               
+                                        Variation = (current - previous) / previous                               
                                     }).ToList();
                 
                 rowData.AddRange(new[] {" "," "," "," "," "," "," "});
@@ -108,12 +108,12 @@ namespace CastReporting.Reporting.Block.Table
                 {
                     rowData.AddRange(new[] {
                                 result.Name,
-                                TableBlock.FormatPercent(result.Variation.TQI),
-                                TableBlock.FormatPercent(result.Variation.Robustness),
-                                TableBlock.FormatPercent(result.Variation.Performance),
-                                TableBlock.FormatPercent(result.Variation.Security),
-                                TableBlock.FormatPercent(result.Variation.Transferability),
-                                TableBlock.FormatPercent(result.Variation.Changeability)
+                                FormatPercent(result.Variation.TQI),
+                                FormatPercent(result.Variation.Robustness),
+                                FormatPercent(result.Variation.Performance),
+                                FormatPercent(result.Variation.Security),
+                                FormatPercent(result.Variation.Transferability),
+                                FormatPercent(result.Variation.Changeability)
                             });
                 }
 
