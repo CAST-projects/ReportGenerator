@@ -22,6 +22,10 @@ namespace CastReporting.Domain.Interfaces
         /// <returns></returns>
         IEnumerable<IfpugFunction> GetIfpugFunctions(string snapshotHref, int count);
 
+
+
+        IEnumerable<CastReporting.Domain.MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string RuleId, int count);
+
         /// <summary>
         /// 
         /// </summary>
