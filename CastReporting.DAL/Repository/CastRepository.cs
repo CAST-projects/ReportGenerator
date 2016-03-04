@@ -46,6 +46,7 @@ namespace CastReporting.Repositories
         private const string _query_rules_details = "{0}/quality-indicators/{1}/snapshots/{2}/base-quality-indicators";
         private const string _query_transactions = "{0}/transactions/{1}?nbRows={2}";
         private const string _query_ifpug_functions = "{0}/ifpug-functions";
+        private const string _query_metric_top_artefact = "{0}/violations?rule-pattern={1}";
         private const string _query_components = "{0}/components/{1}?nbRows={2}";
         private const string _query_components_by_modules = "{0}/modules/{1}/snapshots/{2}/components/{3}?nbRows={4}";
         
@@ -189,6 +190,14 @@ namespace CastReporting.Repositories
             var requestUrl = string.Format(_query_ifpug_functions, snapshotHref);
 
             return this.CallCsvWS<IfpugFunction>(requestUrl, RequestComplexity.Long, count);
+        }
+
+
+        IEnumerable<CastReporting.Domain.MetricTopArtifact> ICastRepsitory.GetMetricTopArtefact(string snapshotHref, string RuleId, int count)
+        {
+            var requestUrl = string.Format(_query_metric_top_artefact, snapshotHref, RuleId);
+
+            return this.CallCsvWS<CastReporting.Domain.MetricTopArtifact>(requestUrl, RequestComplexity.Long, count);
         }
         /// <summary>
         /// 

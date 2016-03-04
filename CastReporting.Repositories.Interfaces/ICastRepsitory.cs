@@ -176,6 +176,15 @@ namespace CastReporting.Repositories.Interfaces
         /// 
         /// </summary>
         /// <param name="snapshotHref"></param>
+        /// <param name="RuleId"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        IEnumerable<MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string RuleId, int count);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="snapshotHref"></param>
         /// <param name="businessCriteria"></param>
         /// <param name="count"></param>
         /// <returns></returns>
