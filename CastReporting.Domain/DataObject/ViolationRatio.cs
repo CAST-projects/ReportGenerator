@@ -28,9 +28,9 @@ namespace CastReporting.Domain
         public int FailedChecks { get; set; }
 
         [DataMember(Name = "successfulChecks")]
-        public int SuccessfulChecks { get; set; }
+        public int? SuccessfulChecks { get; set; }
 
         [DataMember(Name = "ratio")]
-        public double Ratio { get; set; }
+        public double? Ratio { get; set; }
     }
 }
