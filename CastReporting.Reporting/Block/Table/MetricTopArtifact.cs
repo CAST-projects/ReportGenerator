@@ -71,14 +71,14 @@ namespace CastReporting.Reporting.Block.Table
             if (idx >= 0)
                 criticalRuleViolations = criticalRuleViolations.Skip(idx).Take(1);
 
+            int nbRows = 0;
+
             foreach (var violation in criticalRuleViolations)
             {
                 IEnumerable<CastReporting.Domain.MetricTopArtifact> metricTopArtefact = reportData.SnapshotExplorer.GetMetricTopArtefact(reportData.CurrentSnapshot.Href, violation.Reference.Key.ToString(), -1);
 
                 rowData.AddRange(new string[] { "Sample Violating Artefacts for Rule '" + violation.Reference.Name + "'", "# " + nbLimitTop + " of " + metricTopArtefact.Count() });
-
-                int nbRows = 0;
-
+                 
                 if (metricTopArtefact != null && metricTopArtefact.Any())
                 {
                     foreach (var metric in metricTopArtefact)
@@ -99,14 +99,12 @@ namespace CastReporting.Reporting.Block.Table
                     rowData.AddRange(new string[] { Labels.NoItem, string.Empty });
                 }
             }
-
-
-
+              
             back = new TableDefinition
             {
                 HasRowHeaders = false,
-                HasColumnHeaders = true,
-                NbRows = nbLimitTop + 1,
+                HasColumnHeaders = false,
+                NbRows = nbRows + 1,
                 NbColumns = 2,
                 Data = rowData
             };
