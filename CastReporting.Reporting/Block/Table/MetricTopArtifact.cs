@@ -77,17 +77,24 @@ namespace CastReporting.Reporting.Block.Table
             {
                 IEnumerable<CastReporting.Domain.MetricTopArtifact> metricTopArtefact = reportData.SnapshotExplorer.GetMetricTopArtefact(reportData.CurrentSnapshot.Href, violation.Reference.Key.ToString(), -1);
 
-                rowData.AddRange(new string[] { "Sample Violating Artefacts for Rule '" + violation.Reference.Name + "'", "# " + nbLimitTop + " of " + metricTopArtefact.Count() });
+				int nbArtefactsDisp = 0;
+				int nbArtefactsCount = 0;
+				if (metricTopArtefact != null) {
+					nbArtefactsCount = metricTopArtefact.Count();
+					nbArtefactsDisp = Math.Min(nbLimitTop, nbArtefactsCount);
+				}
+                rowData.AddRange(new string[] { "Sample Violating Artefacts for Rule '" + violation.Reference.Name + "'", "# " + nbArtefactsDisp + " of " + nbArtefactsCount });
                 nbRows++;
 
-                if (metricTopArtefact != null && metricTopArtefact.Any())
+                if (metricTopArtefact != null && nbArtefactsDisp > 0)
                 {
                     foreach (var metric in metricTopArtefact)
                     {
-                        if (nbRows < nbLimitTop)
+                        if (nbArtefactsDisp > 0)
                         {
                             rowData.AddRange(new string[] { metric.ObjectNameLocation, string.Empty });
-                            nbRows += 1;
+                            nbRows++;
+							nbArtefactsDisp--;
                         }
                         else
                         {
@@ -98,14 +105,20 @@ namespace CastReporting.Reporting.Block.Table
                 else
                 {
                     rowData.AddRange(new string[] { Labels.NoItem, string.Empty });
+					nbRows++;
                 }
             }
               
+            if (nbRows == 0) {		
+                rowData.AddRange(new string[] { Labels.NoItem, string.Empty });
+                nbRows++;
+            }
+            
             back = new TableDefinition
             {
                 HasRowHeaders = false,
-                HasColumnHeaders = false,
-                NbRows = nbRows,
+                HasColumnHeaders = true,
+                NbRows = nbRows - 1,
                 NbColumns = 2,
                 Data = rowData
             };
