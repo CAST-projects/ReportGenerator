@@ -210,10 +210,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Resources\Languages\Messages.DE-de.resx" />
-    <EmbeddedResource Include="Resources\Languages\Messages.IT-it.resx" />
-    <EmbeddedResource Include="Resources\Languages\Messages.ES-es.resx" />
-    <EmbeddedResource Include="Resources\Languages\Messages.FR-fr.resx" />
+    <EmbeddedResource Include="Resources\Languages\Messages.DE-de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Languages\Messages.IT-it.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Languages\Messages.ES-es.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Languages\Messages.FR-fr.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Languages\Messages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
