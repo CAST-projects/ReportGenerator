@@ -78,7 +78,8 @@ namespace CastReporting.Reporting.Block.Table
                 IEnumerable<CastReporting.Domain.MetricTopArtifact> metricTopArtefact = reportData.SnapshotExplorer.GetMetricTopArtefact(reportData.CurrentSnapshot.Href, violation.Reference.Key.ToString(), -1);
 
                 rowData.AddRange(new string[] { "Sample Violating Artefacts for Rule '" + violation.Reference.Name + "'", "# " + nbLimitTop + " of " + metricTopArtefact.Count() });
-                 
+                nbRows++;
+
                 if (metricTopArtefact != null && metricTopArtefact.Any())
                 {
                     foreach (var metric in metricTopArtefact)
@@ -104,7 +105,7 @@ namespace CastReporting.Reporting.Block.Table
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = false,
-                NbRows = nbRows + 1,
+                NbRows = nbRows,
                 NbColumns = 2,
                 Data = rowData
             };
