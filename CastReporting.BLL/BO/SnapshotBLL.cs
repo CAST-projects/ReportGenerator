@@ -232,6 +232,29 @@ namespace CastReporting.BLL
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="snapshotHref"></param>
+        /// <param name="RuleId"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public IEnumerable<CastReporting.Domain.MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string RuleId, int count)
+        {
+            try
+            {
+                using (var castRepsitory = GetRepository())
+                {
+                    return castRepsitory.GetMetricTopArtefact(_Snapshot.Href, RuleId, count);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
 
         /// <summary>
         /// 

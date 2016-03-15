@@ -23,7 +23,7 @@ using CastReporting.BLL.Computing;
 
 namespace CastReporting.Reporting.Block.Text
 {
-    [Block("MEASUREMENT_ADG_WEBSITE")]
+    [Block("DASHBOARD_SERVICE_URL")]
     class ADGWebsite : TextBlock
     {
         #region METHODS

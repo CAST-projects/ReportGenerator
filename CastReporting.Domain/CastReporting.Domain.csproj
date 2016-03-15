@@ -73,6 +73,7 @@
     <Compile Include="DataObject\ViolationRatio.cs" />
     <Compile Include="Interfaces\IRuleExplorer.cs" />
     <Compile Include="Interfaces\ISnapshotExplorer.cs" />
+    <Compile Include="DataObject\MetricTopArtifact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataObject\Result.cs" />
     <Compile Include="DataObject\ResultDetail.cs" />
