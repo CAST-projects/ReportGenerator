@@ -78,7 +78,7 @@ namespace CastReporting.Reporting.Block.Table
                             new string[] {
 								violation.Reference.Name
 	                            , violation.DetailResult.ViolationRatio.FailedChecks > 0 ? ruleDescription.Description : string.Empty
-	                            , violation.DetailResult.ViolationRatio.FailedChecks.ToString("N0")
+	                            , violation.DetailResult.ViolationRatio.FailedChecks > 0 ? violation.DetailResult.ViolationRatio.FailedChecks.ToString() : string.Empty
                             });
 					
 					rowCount++;

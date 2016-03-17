@@ -25,7 +25,7 @@ namespace CastReporting.Domain
         public int TotalChecks { get; set; }
 
         [DataMember(Name = "failedChecks")]
-        public int FailedChecks { get; set; }
+        public int? FailedChecks { get; set; }
 
         [DataMember(Name = "successfulChecks")]
         public int? SuccessfulChecks { get; set; }

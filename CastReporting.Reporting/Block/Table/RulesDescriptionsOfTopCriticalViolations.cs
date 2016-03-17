@@ -79,7 +79,7 @@ namespace CastReporting.Reporting.Block.Table
                                         Labels.Rationale, ruleDescription.Rationale,
                                         Labels.Description, ruleDescription.Description,
                                         Labels.Remediation, string.IsNullOrWhiteSpace(ruleDescription.Remediation) ? Constants.No_Value : ruleDescription.Remediation,
-                                        Labels.ViolationsCount, violation.DetailResult.ViolationRatio.FailedChecks.ToString("N0"),
+                                        Labels.ViolationsCount, violation.DetailResult.ViolationRatio.FailedChecks.ToString(),
                                             " "," "
                                     });
             }
