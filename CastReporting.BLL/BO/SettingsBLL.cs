@@ -103,7 +103,6 @@ namespace CastReporting.BLL
                 else
                 {
                     state = StatesEnum.ConnectionAlreadyExist;
-                    return setting;
                 }
 
 

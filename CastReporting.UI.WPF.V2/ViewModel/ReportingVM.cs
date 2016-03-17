@@ -523,8 +523,6 @@ namespace CastReporting.UI.WPF.ViewModel
             Setting = SettingsBLL.AddConnection(connection, true, out state);
 
             base.MessageManager.OnServiceAdded(connection.Uri == null ? string.Empty : connection.Uri.ToString(), state);
-
-            
         }
     }
 }

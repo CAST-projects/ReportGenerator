@@ -129,6 +129,7 @@ namespace CastReporting.UI.WPF.View
 
                 (this.DataContext as ReportingVM).ActiveCurrentWebService(connection);
             }
+            (this.DataContext as ReportingVM).InitializeFromWS();
             e.Handled = true;
         }
     }
