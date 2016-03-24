@@ -58,7 +58,7 @@ namespace CastReporting.Reporting.Block.Graph
                     if (moduleId > 0)
                     {
 
-                        TQIValue = BusinessCriteriaUtility.GetBusinessCriteriaModuleGrade(reportData.CurrentSnapshot, moduleId, Constants.BusinessCriteria.TechnicalQualityIndex);
+                        TQIValue = BusinessCriteriaUtility.GetBusinessCriteriaModuleGrade(reportData.CurrentSnapshot, moduleId, Constants.BusinessCriteria.TechnicalQualityIndex, true);
                         TechDebtValue = MeasureUtility.GetModuleMeasureGrade(reportData.CurrentSnapshot, moduleId, Constants.SizingInformations.TechnicalDebt);
                         COLValue = MeasureUtility.GetModuleMeasureGrade(reportData.CurrentSnapshot, moduleId, Constants.SizingInformations.CodeLineNumber);
                     }

@@ -35,7 +35,7 @@ namespace CastReporting.BLL.Computing
         /// 
         /// </summary>
         /// <returns></returns>
-        public static List<BusinessCriteriaDTO> GetBusinessCriteriaGradesModules(Snapshot snapshot)
+        public static List<BusinessCriteriaDTO> GetBusinessCriteriaGradesModules(Snapshot snapshot, bool Round)
         {
 
             if (snapshot != null && snapshot.BusinessCriteriaResults != null)
@@ -48,17 +48,17 @@ namespace CastReporting.BLL.Computing
                                                 {
                                                         Name = module.Name,
 
-                                                        TQI = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.TechnicalQualityIndex),
+                                                        TQI = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.TechnicalQualityIndex, Round),
 
-                                                        Robustness = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Robustness),
+                                                        Robustness = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Robustness, Round),
 
-                                                        Performance = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Performance),
+                                                        Performance = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Performance, Round),
 
-                                                        Security = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Security),
+                                                        Security = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Security, Round),
 
-                                                        Changeability = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Changeability),
+                                                        Changeability = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Changeability, Round),
 
-                                                        Transferability = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Transferability),
+                                                        Transferability = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Transferability, Round),
                                                                                     })
                                 .ToList();
               
@@ -105,14 +105,23 @@ namespace CastReporting.BLL.Computing
        /// <param name="moduleHRef"></param>
        /// <param name="bcId"></param>
        /// <returns></returns>
-        public static Double? GetBusinessCriteriaModuleGrade(Snapshot snapshot, string moduleHRef, Constants.BusinessCriteria bcId)
+        public static Double? GetBusinessCriteriaModuleGrade(Snapshot snapshot, string moduleHRef, Constants.BusinessCriteria bcId, bool Round)
         {
-            return snapshot.BusinessCriteriaResults
+                        double? res = null;
+            if (null != snapshot && null != snapshot.BusinessCriteriaResults)
+            {
+                var result = snapshot.BusinessCriteriaResults
                            .Where(_ => _.Reference.Key == (Int32)bcId && _.ModulesResult != null)
                            .SelectMany(_ => _.ModulesResult)
                            .Where(_ => _.Module.Href == moduleHRef && _.DetailResult != null )
-                           .Select(_ => MathUtility.GetRound(_.DetailResult.Grade))
+                           .Select(_ => _.DetailResult.Grade)
                            .FirstOrDefault();
+                if (result != null)
+                {
+                    res = Round ? MathUtility.GetRound(result) : result;
+                }
+            }
+            return res;
         }
 
 
@@ -123,14 +132,23 @@ namespace CastReporting.BLL.Computing
         /// <param name="moduleHRef"></param>
         /// <param name="bcId"></param>
         /// <returns></returns>
-        public static Double? GetBusinessCriteriaModuleGrade(Snapshot snapshot, Int32 moduleId, Constants.BusinessCriteria bcId)
+        public static Double? GetBusinessCriteriaModuleGrade(Snapshot snapshot, Int32 moduleId, Constants.BusinessCriteria bcId, bool Round)
         {
-            return snapshot.BusinessCriteriaResults
+            double? res = null;
+            if (null != snapshot && null != snapshot.BusinessCriteriaResults)
+            {
+                var result = snapshot.BusinessCriteriaResults
                            .Where(_ => _.Reference.Key == (Int32)bcId && _.ModulesResult != null)
                            .SelectMany(_ => _.ModulesResult)
                            .Where(_ => _.Module.Id == moduleId && _.DetailResult != null)
-                           .Select(_ => MathUtility.GetRound(_.DetailResult.Grade))
+                           .Select(_ => _.DetailResult.Grade)
                            .FirstOrDefault();
+                if (result != null)
+                {
+                    res = Round ? MathUtility.GetRound(result) : result;
+                }
+            }
+            return res;
         }
 
 

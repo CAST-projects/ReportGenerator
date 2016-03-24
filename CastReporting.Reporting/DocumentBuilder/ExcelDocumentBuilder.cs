@@ -608,7 +608,7 @@ namespace CastReporting.Reporting.Builder
         {
             if (strBlockName == "HF_BY_MODULE")
             {
-                var resultCurrentSnapshot = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(reportData.CurrentSnapshot);
+                var resultCurrentSnapshot = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(reportData.CurrentSnapshot, false);
                 return resultCurrentSnapshot;
             }
             else

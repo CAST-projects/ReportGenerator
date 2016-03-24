@@ -22,7 +22,7 @@ namespace CastReporting.UnitTest
             selectedSnapshot.Annotation = new Annotation() { Version = "Src 20130210" };
             selectedSnapshot.BusinessCriteriaResults = GetSampleResult(@"Data\JSonTest137.txt").SelectMany(_ => _.ApplicationResults);
 
-            var result = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(selectedSnapshot);
+            var result = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(selectedSnapshot, true);
             
         }
 

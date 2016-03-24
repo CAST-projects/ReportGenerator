@@ -49,7 +49,7 @@ namespace CastReporting.Reporting.Block.Table
             
 
             //Current snpashot
-            var resultCurrentSnapshot = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(reportData.CurrentSnapshot);
+            var resultCurrentSnapshot = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(reportData.CurrentSnapshot, false);
 
             rowData.AddRange(new[] { reportData.CurrentSnapshot.ToString(), " ", " ", " ", " ", " ", " " });
             
@@ -69,7 +69,7 @@ namespace CastReporting.Reporting.Block.Table
             nbRows += resultCurrentSnapshot.Count+2;
 
             //previous snpashot
-            var resultPreviousSnapshot = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(reportData.PreviousSnapshot);
+            var resultPreviousSnapshot = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(reportData.PreviousSnapshot, false);
 
             if(resultPreviousSnapshot != null)
             {
