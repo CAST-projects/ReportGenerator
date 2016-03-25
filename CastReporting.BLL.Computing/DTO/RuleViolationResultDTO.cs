@@ -54,6 +54,20 @@ namespace CastReporting.BLL.Computing
     
     }
 
+    public class RuleViolationsVariationResultDTO
+    {
+        public RuleDetailsDTO Rule { get; set; }
+
+        public Int32? CurrentNbViolations { get; set; }
+
+        public Int32? PreviousNbViolations { get; set; }
+
+        public Double? Variation { get; set; }
+
+        public Double? Ratio { get; set; }
+
+    }
+
 
     public class RuleDetailsDTO
     {
