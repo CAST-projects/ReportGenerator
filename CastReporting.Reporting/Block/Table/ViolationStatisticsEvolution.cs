@@ -40,6 +40,11 @@ namespace CastReporting.Reporting.Block.Table
 
                 double? criticalViolation = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesNumber);
                 double? numCritPerFile = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerFileNumber);
+                string numCritPerFileIfNegative = string.Empty;
+                if (numCritPerFile == -1)
+                    numCritPerFileIfNegative = "N/A";
+                else
+                    numCritPerFileIfNegative = (numCritPerFile.HasValue) ? numCritPerFile.Value.ToString("N2") : CastReporting.Domain.Constants.No_Value;
                 double? numCritPerKLOC = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerKLOCNumber);
 
                 double? veryHighCostComplexityViolations = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot, Constants.
@@ -67,6 +72,11 @@ namespace CastReporting.Reporting.Block.Table
 
                 double? numCritPerFilePrev = MeasureUtility.GetSizingMeasure(reportData.PreviousSnapshot, 
                                                                                     Constants.SizingInformations.ViolationsToCriticalQualityRulesPerFileNumber);
+                string numCritPerFilePrevIfNegative = string.Empty;
+                if (numCritPerFilePrev == -1)
+                    numCritPerFilePrevIfNegative = "N/A";
+                else
+                    numCritPerFilePrevIfNegative = (numCritPerFilePrev.HasValue) ? numCritPerFilePrev.Value.ToString("N2") : CastReporting.Domain.Constants.No_Value;
 
                 double? numCritPerKLOCPrev = MeasureUtility.GetSizingMeasure(reportData.PreviousSnapshot, 
                                                                              Constants.SizingInformations.ViolationsToCriticalQualityRulesPerKLOCNumber);
@@ -118,8 +128,8 @@ namespace CastReporting.Reporting.Block.Table
                     , (criticalViolationEvolPerc.HasValue) ? TableBlock.FormatPercent(criticalViolationEvolPerc.Value): CastReporting.Domain.Constants.No_Value
 
                     , "  " + Labels.PerFile
-                    , (numCritPerFile.HasValue)? numCritPerFile.Value.ToString("N2"):CastReporting.Domain.Constants.No_Value
-                    , (numCritPerFilePrev.HasValue)? numCritPerFilePrev.Value.ToString("N2") : CastReporting.Domain.Constants.No_Value
+                    , numCritPerFileIfNegative
+                    , numCritPerFilePrevIfNegative
                     , (numCritPerFileEvolPerc.HasValue ) ? TableBlock.FormatPercent(numCritPerFileEvolPerc.Value) : CastReporting.Domain.Constants.No_Value
 
                     , "  " + Labels.PerkLoC

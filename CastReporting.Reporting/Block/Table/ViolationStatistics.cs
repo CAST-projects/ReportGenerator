@@ -64,6 +64,13 @@ namespace CastReporting.Reporting.Block.Table
 
                 const string metricFormat = "N0";
                 const string metricFormatPrecision = "N2";
+
+                string numCritPerFileIfNegative = string.Empty;
+                if (numCritPerFile == -1)
+                    numCritPerFileIfNegative = "N/A";
+                else
+                    numCritPerFileIfNegative = (numCritPerFile.HasValue) ? numCritPerFile.Value.ToString(metricFormatPrecision) : Constants.No_Value;
+                
                 var rowData = new List<string>() 
                 { 
                     Labels.Name
@@ -73,7 +80,7 @@ namespace CastReporting.Reporting.Block.Table
                     , (criticalViolation.HasValue) ? criticalViolation.Value.ToString(metricFormat):Constants.No_Value
 
                     , "  " + Labels.PerFile
-                    , (numCritPerFile.HasValue)? numCritPerFile.Value.ToString(metricFormatPrecision):Constants.No_Value
+                    , numCritPerFileIfNegative
 
                     , "  " + Labels.PerkLoC
                     , (numCritPerKLOC.HasValue)? numCritPerKLOC.Value.ToString(metricFormatPrecision):Constants.No_Value
