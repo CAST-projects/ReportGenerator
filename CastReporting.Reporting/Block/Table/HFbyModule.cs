@@ -22,6 +22,7 @@ using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
+using CastReporting.Domain;
 
 namespace CastReporting.Reporting.Block.Table
 {
@@ -57,12 +58,12 @@ namespace CastReporting.Reporting.Block.Table
             {
                 rowData.AddRange(new[] {
                             result.Name,
-                            result.TQI.Value.ToString(metricFormat),
-                            result.Robustness.Value.ToString(metricFormat),
-                            result.Performance.Value.ToString(metricFormat),
-                            result.Security.Value.ToString(metricFormat),
-                            result.Transferability.Value.ToString(metricFormat),
-                            result.Changeability.Value.ToString(metricFormat)
+                            (result.TQI != null && result.TQI.HasValue)? result.TQI.Value.ToString(metricFormat) : Constants.No_Value,
+                            (result.Robustness != null && result.Robustness.HasValue)? result.Robustness.Value.ToString(metricFormat) : Constants.No_Value,
+                            (result.Performance!= null && result.Performance.HasValue)? result.Performance.Value.ToString(metricFormat) : Constants.No_Value,
+                            (result.Security != null && result.Security.HasValue) ? result.Security.Value.ToString(metricFormat) : Constants.No_Value,
+                            (result.Transferability != null && result.Transferability.HasValue)? result.Transferability.Value.ToString(metricFormat) : Constants.No_Value,
+                            (result.Changeability != null && result.Changeability.HasValue) ? result.Changeability.Value.ToString(metricFormat) : Constants.No_Value
                         });
             }
 
@@ -80,12 +81,12 @@ namespace CastReporting.Reporting.Block.Table
                 {
                     rowData.AddRange(new[] {
                                 result.Name,
-                                result.TQI.Value.ToString(metricFormat),
-                                result.Robustness.Value.ToString(metricFormat),
-                                result.Performance.Value.ToString(metricFormat),
-                                result.Security.Value.ToString(metricFormat),
-                                result.Transferability.Value.ToString(metricFormat),
-                                result.Changeability.Value.ToString(metricFormat)
+                            (result.TQI != null && result.TQI.HasValue)? result.TQI.Value.ToString(metricFormat) : Constants.No_Value,
+                            (result.Robustness != null && result.Robustness.HasValue)? result.Robustness.Value.ToString(metricFormat) : Constants.No_Value,
+                            (result.Performance!= null && result.Performance.HasValue)? result.Performance.Value.ToString(metricFormat) : Constants.No_Value,
+                            (result.Security != null && result.Security.HasValue) ? result.Security.Value.ToString(metricFormat) : Constants.No_Value,
+                            (result.Transferability != null && result.Transferability.HasValue)? result.Transferability.Value.ToString(metricFormat) : Constants.No_Value,
+                            (result.Changeability != null && result.Changeability.HasValue) ? result.Changeability.Value.ToString(metricFormat) : Constants.No_Value
                             });
                 }
 
