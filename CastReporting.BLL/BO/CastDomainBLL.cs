@@ -18,6 +18,7 @@ using System.Linq;
 using CastReporting.Domain;
 using CastReporting.Repositories;
 using CastReporting.Repositories.Interfaces;
+using Newtonsoft.Json.Linq;
 
 namespace CastReporting.BLL
 {
@@ -82,5 +83,183 @@ namespace CastReporting.BLL
 
            return applications.OrderBy(_ => _.Name).ToList();
         }
+
+        public class CommonTags
+        {
+            public Application Application { get; set; }
+            public Tagg[] commonTags { get; set; }
+        }
+
+        public class CommonCategoriess
+        {
+            public string key { get; set; }
+            public string label { get; set; }
+            public Tagg[] tags { get; set; }
+        }
+
+        public class Tagg
+        {
+            public string key { get; set; }
+            public string label { get; set; }
+        }
+
+        //public List<string> GetCommonTaggedApplications()
+        //{
+        //    List<string> CommonTaggedApplications = new List<string>();
+
+        //    using (var castRepository = GetRepository())
+        //    {
+        //        string strCommonTagsJson = castRepository.GetCommonTagsJson();
+        //        if (strCommonTagsJson != null)
+        //        {
+        //        }
+        //    }
+
+        //    return CommonTaggedApplications;
+        //}
+
+        public List<Snapshot> GetAllSnapshots(Application[] Applications)
+        {
+            List<Snapshot> Snapshots = new List<Snapshot>();
+            using (var castRepository = GetRepository())
+            {
+                for (int j = 0; j < Applications.Count(); j++)
+                {
+                    Application Appl = Applications[j];
+
+                    int nbSnapshotsEachApp = Appl.Snapshots.Count();
+                    if (nbSnapshotsEachApp > 0)
+                    {
+                        foreach (Snapshot snapshot in Appl.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
+                        {
+                            Snapshots.Add(snapshot);
+                        }
+                    }
+                }
+            }
+            return Snapshots;
+        }
+
+
+        public List<Application> GetCommonTaggedApplications(string strSelectedTag)
+        {
+            List<Application> CommonTaggedApplications = new List<Application>();
+            if (strSelectedTag == null)
+            {
+                using (var castRepository = GetRepository())
+                {
+                    string strCommonTagsJson = castRepository.GetCommonTagsJson();
+                    if (strCommonTagsJson != null)
+                    {
+                        var CommonTags = Newtonsoft.Json.JsonConvert.DeserializeObject<CommonTags[]>(strCommonTagsJson);
+                        if (CommonTags != null && CommonTags.Any())
+                        {
+                            foreach (var ct in CommonTags)
+                            {
+                                Application app = ct.Application;
+                                CommonTaggedApplications.Add(app);
+                                //Tagg[] tags = ct.commonTags;
+                                //foreach (Tagg tag in tags)
+                                //{
+                                //    string strTagLabel = string.IsNullOrEmpty(tag.label) ? " " : tag.label;
+                                //    if (strTagLabel == strSelectedTag)
+                                //    {
+                                //        CommonTaggedApplications.Add(app);
+                                //    }
+                                //}
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                using (var castRepository = GetRepository())
+                {
+                    string strCommonTagsJson = castRepository.GetCommonTagsJson();
+                    if (strCommonTagsJson != null)
+                    {
+                        var CommonTags = Newtonsoft.Json.JsonConvert.DeserializeObject<CommonTags[]>(strCommonTagsJson);
+                        if (CommonTags != null && CommonTags.Any())
+                        {
+                            foreach (var ct in CommonTags)
+                            {
+                                Application app = ct.Application;
+                                Tagg[] tags = ct.commonTags;
+                                foreach (Tagg tag in tags)
+                                {
+                                    string strTagLabel = string.IsNullOrEmpty(tag.label) ? " " : tag.label;
+                                    if (strTagLabel == strSelectedTag)
+                                    {
+                                        CommonTaggedApplications.Add(app);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return CommonTaggedApplications;
+        }
+
+        public List<string> GetTags(string strCategory)
+        { 
+            List<string> Tags = new List<string>();
+             
+            using (var castRepository = GetRepository())
+            {
+                string CommonCategoriesJson = castRepository.GetCommonCategoriesJson();
+                if (CommonCategoriesJson != "")
+                {
+                    var CommonCategorys = Newtonsoft.Json.JsonConvert.DeserializeObject<CommonCategoriess[]>(CommonCategoriesJson);
+
+                    if (CommonCategorys != null && CommonCategorys.Any())
+                    {
+                        foreach (var Category in CommonCategorys)
+                        {
+                            string strKey = string.IsNullOrEmpty(Category.key) ? " " : Category.key;
+                            string strLabelled = string.IsNullOrEmpty(Category.label) ? " " : Category.label;
+                            if (strCategory == strLabelled)
+                            {
+                                Tagg[] tags = (Tagg[])Category.tags;
+                                if (tags.Count() > 0)
+                                {
+                                    foreach (Tagg tag in tags)
+                                    {
+                                        string strTagLabel = string.IsNullOrEmpty(tag.label) ? " " : tag.label;
+                                        Tags.Add(strTagLabel);
+                                    }
+
+
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            return Tags;
+        }
+
+        public List<string> GetCategories()
+        {
+            List<string> Categories = new List<string>();
+
+            using (var castRepository = GetRepository())
+            {
+                var Categoriess = castRepository.GetCommonCategories();
+
+                foreach (var Category in Categoriess)
+                {
+                    string strName = string.IsNullOrEmpty(Category.Name) ? " " : Category.Name;
+
+                    Categories.Add(strName);
+                }
+            }
+
+            return Categories;
+        }
+
     }
 }

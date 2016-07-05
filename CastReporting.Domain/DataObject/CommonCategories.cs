@@ -13,30 +13,21 @@
  * limitations under the License.
  *
  */
-using System.Windows.Controls;
-using CastReporting.UI.WPF.Resources.Languages;
-using CastReporting.UI.WPF.ViewModel;
-using CastReporting.Domain;
+using System;
+using System.Runtime.Serialization;
 
-namespace CastReporting.UI.WPF.View
+namespace CastReporting.Domain
 {
-    /// <summary>
-    /// Interaction logic for SelectWS
-    /// </summary>
-    public partial class SelectWS : Page
-    {
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public SelectWS()
-        {
-            InitializeComponent();
+    [DataContract(Name = "common-categories")]
+    public class CommonCategories
+    {  
+        [DataMember(Name = "key")]
+        public string key { get; set; }
 
-            DataContext = new SelectWSVM();
-             
-        }
-                 
-        
+        [DataMember(Name = "label")]
+        public string Name { get; set; }
+
+        [DataMember(Name = "tags")]
+        public Tag Tags { get; set; }
     }
 }

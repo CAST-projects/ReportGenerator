@@ -103,7 +103,9 @@
 
 
                     <Label Grid.Row="2" Grid.Column="2" Content="{x:Static label:Messages.lblFieldWSPassword}"  HorizontalAlignment="Right" Height="26" Margin="0,6,10,18"  Foreground="White"/>
-                    <TextBox Style="{StaticResource EditBox}" Grid.Row="2" Grid.Column="3" x:Name="txtPassword" Text="{Binding NewConnectionPassword, Mode=TwoWay}" Margin="0,6,2,14" Height="Auto"/>
+                    <TextBox Style="{StaticResource EditBox}" Grid.Row="2" Grid.Column="3" x:Name="txtPassword"  Text="{Binding NewConnectionPassword, Mode=TwoWay}" Margin="0,6,2,14" Height="Auto"/>
+                    
+
 
                     <Button Style="{StaticResource StdButtonStyle}"  Grid.Row="2" Grid.Column="4" Height="Auto" Margin="20,6,-1,12" Width="80"
                                             Content="{x:Static label:Messages.btnAddWS}" 
