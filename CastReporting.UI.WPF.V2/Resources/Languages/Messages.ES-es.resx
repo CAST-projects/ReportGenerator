@@ -139,7 +139,7 @@
     <value>Informe generado con éxito!</value>
   </data>
   <data name="mnuReporting" xml:space="preserve">
-    <value>inicio</value>
+    <value>Inicio</value>
   </data>
   <data name="mnuWSConfiguration" xml:space="preserve">
     <value>Configuración WebService</value>
@@ -296,5 +296,20 @@
   </data>
   <data name="lblItemSpanish" xml:space="preserve">
     <value>Spanish</value>
+  </data>
+  <data name="lblPortfolioCategoriesSelection" xml:space="preserve">
+    <value>Tags Selection</value>
+  </data>
+  <data name="lblSelectPortfolioCategories" xml:space="preserve">
+    <value>Select Category</value>
+  </data>
+  <data name="lblSelectPortfolioTags" xml:space="preserve">
+    <value>Select Tags</value>
+  </data>
+  <data name="lblHeaderApplication" xml:space="preserve">
+    <value>Aplicación</value>
+  </data>
+  <data name="lblHeaderPortfolio" xml:space="preserve">
+    <value>Porfolio</value>
   </data>
 </root>

@@ -22,6 +22,11 @@ namespace CastReporting.Domain.Interfaces
         /// <returns></returns>
         IEnumerable<IfpugFunction> GetIfpugFunctions(string snapshotHref, int count);
 
+        IEnumerable<IfpugFunction> GetIfpugFunctionsEvolutions(string snapshotHref, int count);
+
+        IEnumerable<CommonCategories> GetCommonCategories(WSConnection connection);
+
+        string GetCommonCategoriesJson(WSConnection connection);
 
 
         IEnumerable<CastReporting.Domain.MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string RuleId, int count);

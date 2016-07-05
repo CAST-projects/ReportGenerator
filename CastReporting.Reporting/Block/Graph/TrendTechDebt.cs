@@ -28,9 +28,7 @@ using System.Threading;
 using CastReporting.Domain;
 
 namespace CastReporting.Reporting.Block.Graph
-{
-     
-   
+{ 
     [Block("TREND_TECH_DEBT")]
     class TrendTechDebt : GraphBlock
     {

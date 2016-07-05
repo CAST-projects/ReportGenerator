@@ -22,7 +22,7 @@ namespace CastReporting.Domain
     public class ViolationRatio
     {
         [DataMember(Name = "totalChecks")]
-        public int? TotalChecks { get; set; }
+        public int TotalChecks { get; set; }
 
         [DataMember(Name = "failedChecks")]
         public int? FailedChecks { get; set; }
