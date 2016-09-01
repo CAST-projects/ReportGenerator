@@ -39,6 +39,6 @@ namespace CastReporting.Reporting.Builder
                 default:
                     return null;
             }
-        }
+        } 
     }
 }

@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,6 +51,8 @@
     <Compile Include="BO\RuleBLL.cs" />
     <Compile Include="BO\SettingsBLL.cs" />
     <Compile Include="BO\SnapshotBLL.cs" />
+    <Compile Include="BO\PortfolioBLL.cs" />
+    <Compile Include="BO\PortfolioSnapshotsBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatesEnum.cs" />
   </ItemGroup>
@@ -68,6 +73,9 @@
       <Project>{bf557781-bd7e-4ec2-bb64-ed7981b4d9d0}</Project>
       <Name>CastReporting.Repositories.Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

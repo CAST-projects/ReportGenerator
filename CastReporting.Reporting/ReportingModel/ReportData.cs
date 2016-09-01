@@ -65,6 +65,20 @@ namespace CastReporting.Reporting.ReportingModel
             set; 
         }
 
+        public string Category
+        {
+            get;
+            set;
+        }
+
+        public string Tag
+        {
+            get;
+            set;
+        }
+
+
+
          /// <summary>
         /// 
         /// </summary>
@@ -104,5 +118,22 @@ namespace CastReporting.Reporting.ReportingModel
         /// 
         /// </summary>
         public string CurrencySymbol { get; set; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Application[] Applications
+        {
+            get;
+            set;
+        }
+
+        public Snapshot[] snapshots
+        {
+            get;
+            set;
+        }
+
     }
 }

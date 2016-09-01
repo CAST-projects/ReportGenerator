@@ -46,9 +46,12 @@ namespace CastReporting.Repositories
         private const string _query_rules_details = "{0}/quality-indicators/{1}/snapshots/{2}/base-quality-indicators";
         private const string _query_transactions = "{0}/transactions/{1}?nbRows={2}";
         private const string _query_ifpug_functions = "{0}/ifpug-functions";
+        private const string _query_ifpug_functions_evolutions = "{0}/ifpug-functions-evolution";
         private const string _query_metric_top_artefact = "{0}/violations?rule-pattern={1}";
         private const string _query_components = "{0}/components/{1}?nbRows={2}";
         private const string _query_components_by_modules = "{0}/modules/{1}/snapshots/{2}/components/{3}?nbRows={4}";
+        private const string _query_common_categories = "{0}/AAD/common-categories";
+        private const string _query_tags = "{0}/AAD/tags";
         
         #endregion CONSTANTS
 
@@ -184,6 +187,27 @@ namespace CastReporting.Repositories
             return this.CallWS<IEnumerable<Transaction>>(requestUrl, RequestComplexity.Standard);
         }
 
+        IEnumerable<CommonCategories> ICastRepsitory.GetCommonCategories()
+        {
+            var requestUrl = string.Format(_query_common_categories, "", "");
+
+            return this.CallWS<IEnumerable<CommonCategories>>(requestUrl, RequestComplexity.Standard);
+        }
+
+        string ICastRepsitory.GetCommonCategoriesJson()
+        {
+            var requestUrl = string.Format(_query_common_categories, "", "");
+
+            return this.CallWSJsonOnly(requestUrl, RequestComplexity.Standard); 
+        }
+
+        string ICastRepsitory.GetCommonTagsJson()
+        {
+            var requestUrl = string.Format(_query_tags, "", "");
+
+            return this.CallWSJsonOnly(requestUrl, RequestComplexity.Standard);
+
+        }
 
         IEnumerable<IfpugFunction> ICastRepsitory.GetIfpugFunctions(string snapshotHref, int count)
         {
@@ -192,6 +216,12 @@ namespace CastReporting.Repositories
             return this.CallCsvWS<IfpugFunction>(requestUrl, RequestComplexity.Long, count);
         }
 
+        IEnumerable<IfpugFunction> ICastRepsitory.GetIfpugFunctionsEvolutions(string snapshotHref, int count)
+        {
+            var requestUrl = string.Format(_query_ifpug_functions_evolutions, snapshotHref);
+
+            return this.CallCsvWS<IfpugFunction>(requestUrl, RequestComplexity.Long, count);
+        }
 
         IEnumerable<CastReporting.Domain.MetricTopArtifact> ICastRepsitory.GetMetricTopArtefact(string snapshotHref, string RuleId, int count)
         {
@@ -424,11 +454,22 @@ namespace CastReporting.Repositories
             requestUrl += relativeURL.StartsWith("/") ? relativeURL.Substring(1) : relativeURL;
 
             var jsonString = _Client.DownloadString(requestUrl, pComplexity); 
-
+            
             var serializer = new DataContractJsonSerializer(typeof(T));
             MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
 
             return serializer.ReadObject(ms) as T;
+        }
+
+        private string CallWSJsonOnly(string relativeURL, RequestComplexity pComplexity)
+        {
+            var requestUrl = _CurrentConnection.EndsWith("/") ? _CurrentConnection.Substring(0, _CurrentConnection.Length - 1) : _CurrentConnection;
+            requestUrl += "/";
+            requestUrl += relativeURL.StartsWith("/") ? relativeURL.Substring(1) : relativeURL;
+
+            var jsonString = _Client.DownloadString(requestUrl, pComplexity);
+
+            return jsonString;
         }
 
         /// <summary>

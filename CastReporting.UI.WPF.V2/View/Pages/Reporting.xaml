@@ -14,7 +14,7 @@
     <Page.CommandBindings>
         <CommandBinding Command="Commands:WebServiceCommand.ActivateWebService" CanExecute="ActivateWebService_CanExecute" Executed="ActivateWebService_Executed" />
     </Page.CommandBindings>
-    
+
     <Page.Resources>
         <Style TargetType="{x:Type StackPanel}">
             <Setter Property="Margin" Value="4" />
@@ -33,7 +33,7 @@
                 <TextBlock Text="{Binding Name}" />
             </DockPanel>
         </ControlTemplate>
-        
+
         <DataTemplate x:Key="ComboTemplate" DataType="ComboBoxItem">
             <Control x:Name="theControl" Focusable="False" Template="{StaticResource ExtendedTemplate}" />
             <DataTemplate.Triggers>
@@ -60,9 +60,9 @@
             </Grid.RowDefinitions>
 
 
-			<Border Grid.Row="0" Grid.ColumnSpan="3" Height="Auto" HorizontalAlignment="Stretch" Width="Auto">
-				<Border.Background>
-					<ImageBrush ImageSource="/CastReporting.UI.WPF;component/Resources/Images/connection-bg.jpg"
+            <Border Grid.Row="0" Grid.ColumnSpan="3" Height="Auto" HorizontalAlignment="Stretch" Width="Auto">
+                <Border.Background>
+                    <ImageBrush ImageSource="/CastReporting.UI.WPF;component/Resources/Images/connection-bg.jpg"
 						RenderOptions.BitmapScalingMode="NearestNeighbor"
 						RenderOptions.EdgeMode="Aliased" />
                 </Border.Background>
@@ -100,7 +100,43 @@
                 <ColumnDefinition Width="418*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF2d2d30" Margin="0,0,0,0">
+            <TabControl DockPanel.Dock="Left" BorderBrush="#292829"  Background="Transparent"  Padding="5" Margin="0,0,0,0"
+                    SelectedIndex="{Binding SelectedTab}"  
+                    Grid.Row="0" 
+                    x:Name="Tabs">
+                <TabControl.Resources>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Black" CornerRadius="4,4,0,0" Margin="2,0">
+                                        <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="8,2"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" /> 
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter TargetName="Border" Property="Background" Value="White" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+                    <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding ReloadTemplatesCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TabItem Name="tabApplication"  Header="{x:Static label:Messages.lblHeaderApplication}">
+                    <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF2d2d30" Margin="0,0,0,0">
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
                     <RowDefinition Height="64"/>
@@ -154,14 +190,69 @@
                     <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
                            Content="{x:Static label:Messages.lblSelectPreviousSnapshot}" Visibility="{Binding SelectedItem, ElementName=cbPreviousSnaphots, Converter={StaticResource NullToVisibilityConverter}}" />
                 </Grid>
+
             </Grid>
+                </TabItem>
+
+                <TabItem Name="tabProfile" Header="{x:Static label:Messages.lblHeaderPortfolio}">
+                    <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF2d2d30" Margin="0,0,0,0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70"/>
+                            <RowDefinition Height="64"/>
+                            <RowDefinition Height="64"/>
+                            <RowDefinition Height="64"/>
+                            <RowDefinition Height="64"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Height="50">
+                            <TextBlock Text="{x:Static label:Messages.lblPortfolioCategoriesSelection}" Margin="10,-6,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="21.333" Foreground="White" Height="35"/>
+                            <Canvas  Height="4"  Margin="10,5,0,0">
+                                <Line
+            			X1="0" Y1="0"
+            			X2="68" Y2="0"
+            			Stroke="White"
+            			StrokeThickness="6" HorizontalAlignment="Left" Height="4" Fill="White" Width="82"/>
+                            </Canvas>
+                        </StackPanel>
+
+                        <Grid Grid.Row="1" Margin="20,0,20,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="27*"/>
+                                <ColumnDefinition Width="127*"/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox  x:Name="cbCategories"  ItemsSource="{Binding Categories, Mode=OneWay}"
+                              SelectedValue="{Binding SelectedCategory, Mode=TwoWay}" Grid.ColumnSpan="2" Margin="0,8,0,8">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding LoadTagsCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ComboBox>
+                            <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
+                           Content="{x:Static label:Messages.lblSelectPortfolioCategories}" Visibility="{Binding SelectedItem, ElementName=cbCategories, Converter={StaticResource NullToVisibilityConverter}}" Grid.ColumnSpan="2" Margin="0,16,0,17" />
+                        </Grid>
+
+                        <Grid Grid.Row="2" Margin="20,0,20,0">
+                            <ComboBox x:Name="cbTags" ItemsSource="{Binding Tags, Mode=OneWay}" SelectedValue="{Binding SelectedTag, Mode=TwoWay}"/>
+                            <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
+                           Content="{x:Static label:Messages.lblSelectPortfolioTags}" Visibility="{Binding SelectedItem, ElementName=cbTags, Converter={StaticResource NullToVisibilityConverter}}" />
+                        </Grid>
+
+
+                    </Grid>
+                </TabItem>
+
+            </TabControl>
+
+           
 
             <Grid  Grid.Column="1" DockPanel.Dock="Left" Background="#FF282828">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="44"/>
                     <ColumnDefinition Width="374*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="218*"/>
@@ -171,10 +262,10 @@
                 <Button  ToolTip="{x:Static label:Messages.toolTipRefreshTemplate}" Grid.Row="0" Grid.Column="0" Style="{StaticResource IcoButtonStyle}"
                                     Command="{Binding LoadTemplatesCommand}" 
                                     IsEnabled="{Binding SelectedTemplateFile}" Margin="10,8,0,0">
-                        <Button.Content>
-                            <Image Source="/CastReporting.UI.WPF;component/Resources/Images/refresh.png" VerticalAlignment="Center" HorizontalAlignment="Right" RenderOptions.EdgeMode="Aliased"  Width="30" Height="30"/>
-                        </Button.Content>
-                    </Button>
+                    <Button.Content>
+                        <Image Source="/CastReporting.UI.WPF;component/Resources/Images/refresh.png" VerticalAlignment="Center" HorizontalAlignment="Right" RenderOptions.EdgeMode="Aliased"  Width="30" Height="30"/>
+                    </Button.Content>
+                </Button>
                 <StackPanel Grid.Row="0" Grid.Column="1" Height="50">
                     <TextBlock Text="{x:Static label:Messages.lblTitleTemplateSelection}" Margin="10,0,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="21.333" Foreground="White" Height="35"/>
                     <Canvas  Height="8"  Margin="10,5,0,0">
@@ -194,11 +285,11 @@
                              MouseDoubleClick="OnFileListDoubleClicked"  />
 
                 <StackPanel  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,4,20,4" Width="115">
-                    <Button  Style="{StaticResource StdButtonStyle}" Content="{x:Static label:Messages.btnGenerateReport}" 
+                    <Button Name="btnApplicationReport" Style="{StaticResource StdButtonStyle}" Content="{x:Static label:Messages.btnGenerateReport}" 
                                     Command="{Binding GenerateCommand}" Click="GenerateButtonClicked"
                                     IsEnabled="{Binding IsDataFilledIn}" Margin="0,14,10,15" Width="115" />
+                   
 
-                    
                 </StackPanel>
             </Grid>
         </Grid>

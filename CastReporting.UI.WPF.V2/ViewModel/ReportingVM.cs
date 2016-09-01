@@ -16,6 +16,7 @@
 
 
 using Cast.Util;
+using Cast.Util.Log;
 using CastReporting.BLL;
 using CastReporting.Domain;
 using CastReporting.Reporting.Builder;
@@ -31,6 +32,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Data;
 
 
 
@@ -50,6 +52,15 @@ namespace CastReporting.UI.WPF.ViewModel
         /// 
         /// </summary>
         public ICommand LoadTemplatesCommand { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICommand LoadTagsCommand { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICommand ReloadTemplatesCommand { get; set; }
 
         /// <summary>
         /// 
@@ -104,6 +115,36 @@ namespace CastReporting.UI.WPF.ViewModel
                 base.OnPropertyChanged("Applications");
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private IEnumerable<string> _Categories;
+        public IEnumerable<string> Categories
+        {
+            get { return _Categories; }
+            set
+            {
+                _Categories = value;
+                base.OnPropertyChanged("Categories");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private IEnumerable<string> _Tags;
+        public IEnumerable<string> Tags
+        {
+            get { return _Tags; }
+            set
+            {
+                _Tags = value;
+                base.OnPropertyChanged("Tags");
+            }
+        }
+
+
       
         /// <summary>
         /// 
@@ -174,6 +215,24 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
+        private string _SelectedCategory;
+        public string SelectedCategory
+        {
+            get { return _SelectedCategory; }
+            set
+            {
+                if (value == _SelectedCategory)
+                    return;
+                _SelectedCategory = value;
+
+                base.OnPropertyChanged("SelectedCategory");
+                base.OnPropertyChanged("IsDataFilledIn");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private Snapshot _SelectedSnapshot;
         public Snapshot SelectedSnapshot
         {
@@ -185,6 +244,39 @@ namespace CastReporting.UI.WPF.ViewModel
                 _SelectedSnapshot = value;
 
                 base.OnPropertyChanged("SelectedSnapshot");
+                base.OnPropertyChanged("IsDataFilledIn");
+            }
+        }
+
+        private int _SelectedTab;
+        public int SelectedTab
+        {
+            get { return _SelectedTab; }
+            set
+            {
+                if (value == _SelectedTab)
+                    return;
+                _SelectedTab = value;
+
+                base.OnPropertyChanged("SelectedTab");
+                base.OnPropertyChanged("IsDataFilledIn");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private string _SelectedTag;
+        public string SelectedTag
+        {
+            get { return _SelectedTag; }
+            set
+            {
+                if (value == _SelectedTag)
+                    return;
+                _SelectedTag = value;
+
+                base.OnPropertyChanged("SelectedTag");
                 base.OnPropertyChanged("IsDataFilledIn");
             }
         }
@@ -237,13 +329,20 @@ namespace CastReporting.UI.WPF.ViewModel
         {
             get
             {
-                return _SelectedApplication != null &&
-                       _SelectedSnapshot != null &&
-                       _SelectedTemplateFile != null;
+                if (_SelectedTag != null && _SelectedTemplateFile != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return _SelectedApplication != null &&
+                           _SelectedSnapshot != null &&
+                           _SelectedTemplateFile != null;
+                }
             }
         }
 
-
+        
         /// <summary>
         /// 
         /// </summary>      
@@ -251,11 +350,43 @@ namespace CastReporting.UI.WPF.ViewModel
         {
             get
             {
-                return _SelectedApplication != null &&
-                       _SelectedSnapshot != null &&
-                       _SelectedTemplateFile != null;
+                //if (_SelectedTag != null && _SelectedTemplateFile != null)
+                if (_SelectedTemplateFile != null && _SelectedTab == 1)
+                {
+                    return true;
+                }
+                else if (_SelectedApplication != null && _SelectedSnapshot != null && _SelectedTemplateFile != null && _SelectedTab == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
+
+
+        ///// <summary>
+        ///// 
+        ///// </summary>      
+        //public bool IsDataFilledIn
+        //{
+        //    get
+        //    {
+        //        //if (_SelectedTag != null && _SelectedTemplateFile != null)
+        //        if (_SelectedTemplateFile != null && _SelectedTab==1)
+        //        {
+        //            return true;
+        //        }
+        //        else  
+        //        {
+        //            return _SelectedApplication != null &&
+        //                   _SelectedSnapshot != null &&
+        //                   _SelectedTemplateFile != null;
+        //        } 
+        //    }
+        //}
      
         /// <summary>
         /// 
@@ -285,9 +416,78 @@ namespace CastReporting.UI.WPF.ViewModel
             LoadSnapshotsCommand = new CommandHandler(ExecuteLoadSnapshotsCommand, null);
             LoadPreviousSnapshotsCommand = new CommandHandler(ExecuteLoadPreviousSnapshotsCommand, null);
             LoadTemplatesCommand = new CommandHandler(ExecuteLoadTemplatesCommand, null);
-          
+            LoadTagsCommand = new CommandHandler(ExecuteLoadTagsCommand, null);
+            ReloadTemplatesCommand = new CommandHandler(ExecuteReloadTemplatesCommand, null);
             //Load Tempalte
             LoadTemplatesCommand.Execute(null);
+        }
+        /// <summary>
+        /// Implement Command that Load the templates list
+        /// </summary>
+        void ExecuteReloadTemplatesCommand(object parameter)
+        {
+
+            //if (_SelectedTag != null && _SelectedTemplateFile != null)
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    return _SelectedApplication != null &&
+            //           _SelectedSnapshot != null &&
+            //           _SelectedTemplateFile != null;
+            //}
+            if (SelectedTab == 0)
+            {
+                SelectedCategory = null;
+                _SelectedCategory = null;
+                _SelectedTemplateFile = null;
+                SelectedTemplateFile = null;
+                TemplateFiles = SettingsBLL.GetTemplateFileList();
+            }
+            else
+                if (SelectedTab == 1)
+                {
+                    SelectedApplication = null;
+                    SelectedSnapshot = null;
+                    _SelectedApplication = null;
+                    _SelectedSnapshot = null;
+
+                    
+                    TemplateFiles = SettingsBLL.GetTemplateFileListPortfolio();
+                }
+        }
+        
+
+        /// <summary>
+        /// Implement Command that Load the templates list
+        /// </summary>
+        void ExecuteLoadTagsCommand(object parameter)
+        {
+            if (SelectedCategory != null)
+            {
+                //GetActive Connection           
+                ActiveConnection = (Setting != null) ? Setting.GetActiveConnection() : null;
+
+                //Get list of domains
+                if (_ActiveConnection != null)
+                {
+                    try
+                    {
+                        using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
+                        {
+                            Tags = castDomainBLL.GetTags(SelectedCategory);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        base.MessageManager.OnErrorOccured(ex);
+                    }
+                }
+            }
+            else
+
+                Tags = null;
         }
 
         /// <summary>
@@ -295,7 +495,23 @@ namespace CastReporting.UI.WPF.ViewModel
         /// </summary>
         void ExecuteLoadTemplatesCommand(object parameter)
         {
-            TemplateFiles = SettingsBLL.GetTemplateFileList();
+            if (SelectedTab == 0)
+            {
+                TemplateFiles = SettingsBLL.GetTemplateFileList();
+            }
+            else
+                if (SelectedTab == 1)
+                {
+                    TemplateFiles = SettingsBLL.GetTemplateFileListPortfolio();
+                }
+        }
+
+        /// <summary>
+        /// Implement Command that Load the templates list of Portfolio
+        /// </summary>
+        void ExecuteLoadTemplatesPortfolioCommand(object parameter)
+        {
+            TemplateFiles = SettingsBLL.GetTemplateFileListPortfolio();
         }
 
         /// <summary>
@@ -363,65 +579,196 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <param name="e"></param>
         void BackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            double progressStep = 100 / 4;
-            Stopwatch stopWatchStep = new Stopwatch();
-            Stopwatch stopWatchGlobal = new Stopwatch();
-
-            try
+            if (SelectedTab == 0)
             {
-                stopWatchGlobal.Start();
-                App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), true);
+                double progressStep = 100 / 4;
+                Stopwatch stopWatchStep = new Stopwatch();
+                Stopwatch stopWatchGlobal = new Stopwatch();
 
-                //Set culture for the new thread
-                if(!string.IsNullOrEmpty(Setting.ReportingParameter.CultureName))
+                try
                 {
-                    var culture = new CultureInfo(Setting.ReportingParameter.CultureName);
-                    Thread.CurrentThread.CurrentCulture = culture;
-                    Thread.CurrentThread.CurrentUICulture = culture;
-                }
+                    stopWatchGlobal.Start();
+                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), true);
 
-                //Get result for the Application               
-                stopWatchStep.Restart();
-                ApplicationBLL.BuildApplicationResult(ActiveConnection, SelectedApplication);
-                stopWatchStep.Stop();
-                App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the application", stopWatchStep.Elapsed);
+                    //Set culture for the new thread
+                    if (!string.IsNullOrEmpty(Setting.ReportingParameter.CultureName))
+                    {
+                        var culture = new CultureInfo(Setting.ReportingParameter.CultureName);
+                        Thread.CurrentThread.CurrentCulture = culture;
+                        Thread.CurrentThread.CurrentUICulture = culture;
+                    }
 
-
-                //Get result for the previous snapshot                
-                stopWatchStep.Restart();
-                SnapshotBLL.BuildSnapshotResult(ActiveConnection, SelectedSnapshot, true);
-                stopWatchStep.Stop();
-                App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the selected snapshot", stopWatchStep.Elapsed);
-
-
-                //Get result for the previuos snapshot                
-                if (PreviousSnapshot != null)
-                {
+                    //Get result for the Application               
                     stopWatchStep.Restart();
-                    SnapshotBLL.BuildSnapshotResult(ActiveConnection, PreviousSnapshot, false);
+                    ApplicationBLL.BuildApplicationResult(ActiveConnection, SelectedApplication);
+                    stopWatchStep.Stop();
+                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the application", stopWatchStep.Elapsed);
+
+
+                    //Get result for the previous snapshot                
+                    stopWatchStep.Restart();
+                    SnapshotBLL.BuildSnapshotResult(ActiveConnection, SelectedSnapshot, true);
+                    stopWatchStep.Stop();
+                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the selected snapshot", stopWatchStep.Elapsed);
+
+
+                    //Get result for the previuos snapshot                
+                    if (PreviousSnapshot != null)
+                    {
+                        stopWatchStep.Restart();
+                        SnapshotBLL.BuildSnapshotResult(ActiveConnection, PreviousSnapshot, false);
+                        stopWatchStep.Stop();
+
+                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the previous snapshot", stopWatchStep.Elapsed);
+                    }
+
+                    //Launch generaion               
+                    stopWatchStep.Restart();
+                    GenerateReport();
                     stopWatchStep.Stop();
 
-                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the previous snapshot", stopWatchStep.Elapsed);
+                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
+
+
+                    //Show final message and unlock the screen   
+                    stopWatchGlobal.Stop();
+                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(base.MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
+                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), false);
                 }
-
-                //Launch generaion               
-                stopWatchStep.Restart();
-                GenerateReport();
-                stopWatchStep.Stop();
-
-                App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
-
-
-                //Show final message and unlock the screen   
-                stopWatchGlobal.Stop();
-                App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(base.MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
-                App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), false);
+                catch (Exception ex)
+                {
+                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<Exception>(WorkerThreadException), ex);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<Exception>(WorkerThreadException), ex);
-            }
+                List<Application> Apps = new List<Application>();
+                List<Snapshot> Snapshots = new List<Snapshot>();
+                //if (SelectedTag != null)
+                //{
+                    //GetActive Connection           
+                    ActiveConnection = (Setting != null) ? Setting.GetActiveConnection() : null;
 
+                    //Get list of domains
+                    if (_ActiveConnection != null)
+                    {
+                        try
+                        {
+                            using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
+                            {
+                                Apps = castDomainBLL.GetCommonTaggedApplications(SelectedTag);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            base.MessageManager.OnErrorOccured(ex);
+                        }
+                    }
+                //}
+                //else
+                //{
+                //    Apps = null;
+                //}
+
+
+
+
+
+                if (Apps != null)
+                {
+                    Application[] SelectedApps = Apps.ToArray<Application>(); 
+
+                    double progressStep = 100 / 4;
+                    Stopwatch stopWatchStep = new Stopwatch();
+                    Stopwatch stopWatchGlobal = new Stopwatch();
+
+                    try
+                    {
+                        stopWatchGlobal.Start();
+                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), true);
+
+                        //Set culture for the new thread
+                        if (!string.IsNullOrEmpty(Setting.ReportingParameter.CultureName))
+                        {
+                            var culture = new CultureInfo(Setting.ReportingParameter.CultureName);
+                            Thread.CurrentThread.CurrentCulture = culture;
+                            Thread.CurrentThread.CurrentUICulture = culture;
+                        }
+
+                        //Get result for the Portfolio               
+                        stopWatchStep.Restart();
+                        PortfolioBLL.BuildPortfolioResult(ActiveConnection, SelectedApps);
+                        stopWatchStep.Stop();
+                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the portfolio", stopWatchStep.Elapsed);
+
+                        //GetActive Connection           
+                        ActiveConnection = (Setting != null) ? Setting.GetActiveConnection() : null;
+
+                        //Get list of domains
+                        if (_ActiveConnection != null)
+                        {
+                            try
+                            {
+                                using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
+                                {
+                                    Snapshots = castDomainBLL.GetAllSnapshots(SelectedApps);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                base.MessageManager.OnErrorOccured(ex);
+                            }
+                        }
+
+                        //Get result for each app's latest snapshot
+                        if (Snapshots != null)
+                        {
+                            Snapshot[] SelectedApps_Snapshots = Snapshots.ToArray<Snapshot>();
+
+                            //Get result for all snapshots in Portfolio               
+                            stopWatchStep.Restart();
+                            PortfolioSnapshotsBLL.BuildSnapshotResult(ActiveConnection, SelectedApps_Snapshots, true);
+                            stopWatchStep.Stop();
+                            App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for snapshots in portfolio", stopWatchStep.Elapsed);
+
+
+                            //Launch generaion               
+                            stopWatchStep.Restart();
+                            GenerateReportPortfolio(SelectedApps, SelectedApps_Snapshots);
+                            stopWatchStep.Stop();
+                        }
+
+
+
+
+                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
+
+
+                        //Show final message and unlock the screen   
+                        stopWatchGlobal.Stop();
+                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(base.MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
+                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), false);
+                    }
+                    catch (System.Net.WebException webEx)
+                    {
+                        LogHelper.Instance.LogErrorFormat
+                               ("Request URL '{0}' - Error execution :  {1}"
+                               , ""
+                               , webEx.Message
+                               );
+
+                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Error Generating Report - " + webEx.Message + " - Typically happens when Report Generator does not find REST API (in schema)", stopWatchStep.Elapsed);
+                        stopWatchGlobal.Stop();
+                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), false);
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<Exception>(WorkerThreadException), ex);
+                    }
+                } 
+            }
 
         }
 
@@ -484,7 +831,69 @@ namespace CastReporting.UI.WPF.ViewModel
             }
         }
 
-       
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void GenerateReportPortfolio(Application[] Applications, Snapshot[] ApplicationsSnapshots)
+        {
+            string tmpReportFile = String.Empty;
+            string tmpReportFileFlexi = String.Empty;
+
+            try
+            {
+
+                //Create temporary report
+                string workDirectory = SettingsBLL.GetApplicationPath();
+                tmpReportFile = PathUtil.CreateTempCopy(workDirectory, SelectedTemplateFile.FullName);
+                if (tmpReportFile.Contains(".xlsx"))
+                {
+                    tmpReportFileFlexi = PathUtil.CreateTempCopyFlexi(workDirectory, SelectedTemplateFile.FullName);
+                }
+                //Build report
+                ReportData reportData = new ReportData()
+                {
+                    FileName = tmpReportFile,
+                    Application = null,
+                    CurrentSnapshot = null,
+                    PreviousSnapshot = null,
+                    Parameter = Setting.ReportingParameter,
+                    RuleExplorer = new RuleBLL(ActiveConnection),
+                    SnapshotExplorer = new SnapshotBLL(ActiveConnection, SelectedSnapshot),
+                    CurrencySymbol = "$",
+                    Applications = Applications,
+                    Category = SelectedCategory,
+                    Tag = SelectedTag,
+                    snapshots = ApplicationsSnapshots
+                };
+
+
+
+                using (IDocumentBuilder docBuilder = BuilderFactory.CreateBuilder(reportData, tmpReportFileFlexi))
+                {
+                    docBuilder.BuildDocument();
+                }
+
+
+                if (tmpReportFile.Contains(".xlsx"))
+                {
+                    tmpReportFile = tmpReportFileFlexi;
+                }
+
+                //Copy report file to the selected destination
+                File.Copy(tmpReportFile, ReportFileName, true);
+            }
+            catch (Exception ex)
+            {
+                ReportFileName = String.Empty;
+
+                throw (ex);
+            }
+            finally
+            {
+                if (!String.IsNullOrEmpty(tmpReportFile)) File.Delete(tmpReportFile);
+            }
+        }
 
        
 
@@ -504,6 +913,8 @@ namespace CastReporting.UI.WPF.ViewModel
                     using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
                     {
                         Applications = castDomainBLL.GetApplications();
+                        Categories = castDomainBLL.GetCategories();
+                        SelectedTab = 0;
                     }
                 }
                 catch(Exception ex)
