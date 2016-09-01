@@ -133,7 +133,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         /// </summary>
         /// <param name="pValue">Numeric value to display</param>
         /// <returns>Displayed text</returns>
-        protected static string FormatEvolution(long pValue)
+        public static string FormatEvolution(long pValue)
         {
             string sign = (pValue > 0)?"+":"";
 

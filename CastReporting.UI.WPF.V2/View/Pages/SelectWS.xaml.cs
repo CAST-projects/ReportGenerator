@@ -16,6 +16,7 @@
 using System.Windows.Controls;
 using CastReporting.UI.WPF.Resources.Languages;
 using CastReporting.UI.WPF.ViewModel;
+using CastReporting.Domain;
 
 namespace CastReporting.UI.WPF.View
 {
@@ -32,11 +33,10 @@ namespace CastReporting.UI.WPF.View
         {
             InitializeComponent();
 
-            DataContext = new SelectWSVM();                     
+            DataContext = new SelectWSVM();
+             
         }
-
-
-
+                 
         
     }
 }

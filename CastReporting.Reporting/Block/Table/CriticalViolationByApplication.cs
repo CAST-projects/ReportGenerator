@@ -57,17 +57,15 @@ namespace CastReporting.Reporting.Block.Table
 				if (resultModule != null) {
 					for (int i = 0; i < busCrit.Length; i++) {
 						var crit = busCrit[i];
-                        if (resultModule[crit] != null) { 
-						    if (resultModule[crit].Total.HasValue) {
-							    curVersion[i] += resultModule[crit].Total.Value;
-						    }
-						    if (resultModule[crit].Added.HasValue) {
-							    added[i] += resultModule[crit].Added.Value;
-						    }
-						    if (resultModule[crit].Removed.HasValue) {
-							    removed[i] += resultModule[crit].Removed.Value;
-						    }
-                        }
+						if (resultModule[crit].Total.HasValue) {
+							curVersion[i] += resultModule[crit].Total.Value;
+						}
+						if (resultModule[crit].Added.HasValue) {
+							added[i] += resultModule[crit].Added.Value;
+						}
+						if (resultModule[crit].Removed.HasValue) {
+							removed[i] += resultModule[crit].Removed.Value;
+						}
 					}
 				}
 			}
@@ -98,7 +96,7 @@ namespace CastReporting.Reporting.Block.Table
 					if (resultModule != null) {
 						for (int i = 0; i < busCrit.Length; i++) {
 							var crit = busCrit[i];
-							if (resultModule[crit] != null && resultModule[crit].Total.HasValue) {
+							if (resultModule[crit].Total.HasValue) {
 								prevVersion[i] += resultModule[crit].Total.Value;
 							}
 						}
