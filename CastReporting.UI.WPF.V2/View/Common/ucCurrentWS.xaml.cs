@@ -16,6 +16,7 @@
  */
 using System.Windows;
 using System.Windows.Controls;
+using CastReporting.UI.WPF.ViewModel;
 
 namespace CastReporting.UI.WPF.Common
 {
@@ -61,7 +62,7 @@ namespace CastReporting.UI.WPF.Common
         {
             InitializeComponent();
 
-            this.LayoutRoot.DataContext = this;  
+            this.LayoutRoot.DataContext = this;
         }
     }
 }

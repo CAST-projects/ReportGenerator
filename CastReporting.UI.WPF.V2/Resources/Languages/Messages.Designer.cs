@@ -241,6 +241,24 @@ namespace CastReporting.UI.WPF.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Application.
+        /// </summary>
+        public static string lblHeaderApplication {
+            get {
+                return ResourceManager.GetString("lblHeaderApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portfolio.
+        /// </summary>
+        public static string lblHeaderPortfolio {
+            get {
+                return ResourceManager.GetString("lblHeaderPortfolio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string lblItemEnglish {
@@ -277,6 +295,15 @@ namespace CastReporting.UI.WPF.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tags Selection.
+        /// </summary>
+        public static string lblPortfolioCategoriesSelection {
+            get {
+                return ResourceManager.GetString("lblPortfolioCategoriesSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select application.
         /// </summary>
         public static string lblSelectApplication {
@@ -291,6 +318,24 @@ namespace CastReporting.UI.WPF.Resources.Languages {
         public static string lblSelectCurrentSnapshot {
             get {
                 return ResourceManager.GetString("lblSelectCurrentSnapshot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Category.
+        /// </summary>
+        public static string lblSelectPortfolioCategories {
+            get {
+                return ResourceManager.GetString("lblSelectPortfolioCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Tags.
+        /// </summary>
+        public static string lblSelectPortfolioTags {
+            get {
+                return ResourceManager.GetString("lblSelectPortfolioTags", resourceCulture);
             }
         }
         

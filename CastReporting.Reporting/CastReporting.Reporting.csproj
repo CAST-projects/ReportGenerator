@@ -64,6 +64,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Block\Graph\PortfolioCritViolPerformance.cs" />
+    <Compile Include="Block\Graph\PortfolioQSByCV_LOV.cs" />
+    <Compile Include="Block\Graph\TrendTechDebtPortfolio.cs" />
+    <Compile Include="Block\Table\EFP.cs" />
     <Compile Include="Block\Table\IfpugDataFunctions.cs" />
     <Compile Include="Block\Table\IfpugTransactionFunctions.cs" />
     <Compile Include="Block\Graph\Bubble.cs" />
@@ -97,6 +101,8 @@
     <Compile Include="Block\Table\LocPerModule.cs" />
     <Compile Include="Block\Table\MetricTopArtifact.cs" />
     <Compile Include="Block\Table\ModuleList.cs" />
+    <Compile Include="Block\Table\PortfolioReleasePerformance.cs" />
+    <Compile Include="Block\Table\PortfolioTopRiskiestApps.cs" />
     <Compile Include="Block\Table\QuantityEvolution.cs" />
     <Compile Include="Block\Table\RuleImprovementOpportunity.cs" />
     <Compile Include="Block\Table\RuleNameAndDescription.cs" />
@@ -121,6 +127,7 @@
     <Compile Include="Block\Table\TQIbyTechno.cs" />
     <Compile Include="Block\Table\ViolationStatistics.cs" />
     <Compile Include="Block\Table\ViolationStatisticsEvolution.cs" />
+    <Compile Include="Block\Text\ADGDatabase.cs" />
     <Compile Include="Block\Text\ADGWebsite.cs" />
     <Compile Include="Block\Text\AfpMetricDF.cs" />
     <Compile Include="Block\Text\AfpMetricTF.cs" />
@@ -136,9 +143,16 @@
     <Compile Include="Block\Text\EFPModified.cs" />
     <Compile Include="Block\Text\FailedChecksOnTotalViolationsByRule.cs" />
     <Compile Include="Block\Text\LastSnapshotDate.cs" />
+    <Compile Include="Block\Text\PortfolioCategoryName.cs" />
+    <Compile Include="Block\Text\PortfolioCriticalViolations.cs" />
+    <Compile Include="Block\Text\PortfolioNumberOfApplications.cs" />
+    <Compile Include="Block\Text\PortfolioTagName.cs" />
+    <Compile Include="Block\Text\PortfolioTestBlock.cs" />
     <Compile Include="Block\Text\PreviousSnapshotDate.cs" />
     <Compile Include="Block\Text\RepGenVersion.cs" />
     <Compile Include="Block\Text\SystemName.cs" />
+    <Compile Include="Block\Text\TechDebtVSAFPPortfolio.cs" />
+    <Compile Include="Block\Text\TechDebtVSLOCPortfolio.cs" />
     <Compile Include="Block\Text\TFPlusDF.cs" />
     <Compile Include="Block\Text\TotalChecksByRule.cs" />
     <Compile Include="Block\Text\FailedChecksByRule.cs" />

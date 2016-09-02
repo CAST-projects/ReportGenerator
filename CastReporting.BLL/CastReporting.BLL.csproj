@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +46,8 @@
     <Compile Include="BO\CastDomainBLL.cs" />
     <Compile Include="BO\ApplicationBLL.cs" />
     <Compile Include="BO\CommonBLL.cs" />
+    <Compile Include="BO\PortfolioBLL.cs" />
+    <Compile Include="BO\PortfolioSnapshotsBLL.cs" />
     <Compile Include="BO\RuleBLL.cs" />
     <Compile Include="BO\SettingsBLL.cs" />
     <Compile Include="BO\SnapshotBLL.cs" />

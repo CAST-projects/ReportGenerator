@@ -35,6 +35,11 @@ namespace CastReporting.BLL
             return new CastRepository(Connection);
         }
 
+        protected ICastRepsitory GetRepository(WSConnection Connection)
+        {
+            return new CastRepository(Connection);
+        }
+
 
         /// <summary>
         /// 

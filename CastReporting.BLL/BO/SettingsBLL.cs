@@ -43,6 +43,19 @@ namespace CastReporting.BLL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        static public List<FileInfo> GetTemplateFileListPortfolio()
+        {
+            using (ISettingRepository setttingRepository = new SettingsRepository())
+            {
+                string templateFilePath = setttingRepository.GetSeting().ReportingParameter.TemplatePath;
+
+                return setttingRepository.GetTemplateFileList(templateFilePath + "\\Portfolio");
+            }
+        }
 
         /// <summary>
         /// 
