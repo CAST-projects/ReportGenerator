@@ -197,6 +197,10 @@ namespace CastReporting.BLL.Computing
         {          
             return (Int32?)GetSizingMeasure(snapshot, Constants.SizingInformations.CriticalQualityRulesWithViolationsNewModifiedCodeNumber);
         }
+        public static Int32? GetCriticalViolations(Snapshot snapshot)
+        {//CriticalQualityRulesWithViolationsNumber
+            return (Int32?)GetSizingMeasure(snapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesNumber);
+        }
 
         /// <summary>
         /// 

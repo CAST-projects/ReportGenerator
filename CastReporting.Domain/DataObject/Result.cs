@@ -27,7 +27,7 @@ namespace CastReporting.Domain
         /// 
         /// </summary>
         [DataMember(Name = "number")]
-        public int Number {get; set;}
+        public int? Number {get; set;}
 
 
         /// <summary>
