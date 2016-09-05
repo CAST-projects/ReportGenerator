@@ -24,22 +24,55 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 using CastReporting.BLL;
+using System.Data;
+using CastReporting.Reporting.Atrributes;
+using CastReporting.Reporting.Builder.BlockProcessing;
+using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Languages; 
+using System.Linq; 
+using System.Xml;
 
 namespace CastReporting.UI.WPF.View
 {
     /// <summary>
-    /// Interaction logic for Reporting.xaml
+    /// Interaction logic for Reporting1.xaml
     /// </summary>
     public partial class Reporting : Page
     {
         public Reporting()
         {
-            InitializeComponent();           
+            InitializeComponent();
 
-           this.DataContext = new ReportingVM();
+            this.DataContext = new ReportingVM();
 
-           this.Loaded += OnLoaded;
+            this.Loaded += OnLoaded; 
+
+            //BindCategories();
         }
+
+        private WSConnection _ActiveConnection;
+        public WSConnection ActiveConnection
+        {
+            get
+            {
+                return _ActiveConnection;
+            }
+            set
+            {
+                _ActiveConnection = value;
+            }
+
+        }
+        
+        private readonly System.Windows.Input.CommandBindingCollection _CommandBindings;
+        public System.Windows.Input.CommandBindingCollection CommandBindings
+        {
+            get
+            {
+                return _CommandBindings;
+            }
+        }
+
 
 
         /// <summary>
@@ -65,7 +98,7 @@ namespace CastReporting.UI.WPF.View
 
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Filter = string.Format("*{0}|*{0}", reportingVM.SelectedTemplateFile.Extension);
-            
+
             dialog.DefaultExt = reportingVM.SelectedTemplateFile.Extension;
 
             var settings = SettingsBLL.GetSetting();
@@ -90,7 +123,7 @@ namespace CastReporting.UI.WPF.View
                 (this.DataContext as ReportingVM).ReportFileName = dialog.FileName;
             }
             else
-                (this.DataContext as ReportingVM).ReportFileName = string.Empty;           
+                (this.DataContext as ReportingVM).ReportFileName = string.Empty;
         }
 
         /// <summary>

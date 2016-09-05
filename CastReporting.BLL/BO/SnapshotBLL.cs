@@ -216,6 +216,45 @@ namespace CastReporting.BLL
         /// <param name="snapshotHref"></param>
         /// <param name="count"></param>
         /// <returns></returns>
+        /// 
+        public IEnumerable<CommonCategories> GetCommonCategories(WSConnection Connection)
+        {
+            try
+            {
+                using (var castRepsitory = GetRepository(Connection))
+                {
+                    return castRepsitory.GetCommonCategories();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        public string GetCommonCategoriesJson(WSConnection Connection)
+        {
+            try
+            {
+                using (var castRepsitory = GetRepository(Connection))
+                {
+                    return castRepsitory.GetCommonCategoriesJson();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="snapshotHref"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         public IEnumerable<IfpugFunction> GetIfpugFunctions(string snapshotHref, int count)
         {
             try
@@ -223,6 +262,22 @@ namespace CastReporting.BLL
                 using (var castRepsitory = GetRepository())
                 {
                     return castRepsitory.GetIfpugFunctions(_Snapshot.Href, count);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        public IEnumerable<IfpugFunction> GetIfpugFunctionsEvolutions(string snapshotHref, int count)
+        {
+            try
+            {
+                using (var castRepsitory = GetRepository())
+                {
+                    return castRepsitory.GetIfpugFunctionsEvolutions(_Snapshot.Href, count);
                 }
             }
             catch (Exception ex)
