@@ -14,6 +14,7 @@
  *
  */
 using System.Runtime.Serialization;
+using System;
 
 namespace CastReporting.Domain
 {
@@ -27,7 +28,7 @@ namespace CastReporting.Domain
         /// 
         /// </summary>
         [DataMember(Name = "number")]
-        public int? Number {get; set;}
+        public Int32? Number { get; set; }
 
 
         /// <summary>

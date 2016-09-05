@@ -64,7 +64,6 @@ namespace CastReporting.Repositories
             
             if(string.IsNullOrEmpty(setting.ReportingParameter.TemplatePath))
                 setting.ReportingParameter.TemplatePath = Path.Combine(this.GetApplicationPath(), Settings.Default.TemplateDirectory);
-            
             return setting;
         }
 

@@ -301,10 +301,10 @@
     <value>Tags Selection</value>
   </data>
   <data name="lblSelectPortfolioCategories" xml:space="preserve">
-    <value>Select Category</value>
+    <value>Kategori auswählen</value>
   </data>
   <data name="lblSelectPortfolioTags" xml:space="preserve">
-    <value>Select Tags</value>
+    <value>Tag auswählen</value>
   </data>
   <data name="lblHeaderApplication" xml:space="preserve">
     <value>Application</value>

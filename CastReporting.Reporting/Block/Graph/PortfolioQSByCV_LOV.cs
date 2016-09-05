@@ -47,9 +47,9 @@ namespace CastReporting.Reporting.Block.Graph
             //var rowData = new List<String>();
             rowData.AddRange(new string[] {
 				Labels.TQI ,
-				"CV/KLOC" ,
-				"AFP",
-                "Application"
+				Labels.ViolationsCritical + "/" + Labels.kLoC ,
+				Labels.AutomatedFP,
+                Labels.Application
 			});
 
 

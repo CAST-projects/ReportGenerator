@@ -130,18 +130,7 @@ namespace CastReporting.Reporting.Block.Table
                 double? strPreviousProgrammingAllT = 0;
                 double? strPreviousDocumentAllT = 0;
 
-
-                //double? strCurrentBeforeArchDesignAll = 0;
-                //double? strCurrentBeforeRobuAll = 0;
-                //double? strCurrentBeforeSecuAll = 0;
-                //double? strCurrentBeforePerformanceAll = 0;
-                //double? strCurrentBeforeChangeAll = 0;
-                //double? strCurrentBeforeTransferAll = 0;
-                //double? strCurrentBeforeProgrammingAll = 0;
-                //double? strCurrentBeforeDocumentAll = 0;
-
-
-                rowData.AddRange(new string[] { "Application Quality Measure", "Previous", "Target", "Actual", "SLA Violations" });
+                rowData.AddRange(new string[] { Labels.RuleName, Labels.Previous, Labels.Target, Labels.Achievement, Labels.WithViolations });
                 Snapshot Current = null;
                 Application[] AllApps = reportData.Applications;
                 for (int j = 0; j < AllApps.Count(); j++)
@@ -162,14 +151,14 @@ namespace CastReporting.Reporting.Block.Table
                                     Current = BuiltSnapshot;
                                     BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(BuiltSnapshot, false);
 
-                                    double? strCurrentArchDesign = currSnapshotBisCriDTO.ArchitecturalDesign.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.ArchitecturalDesign.Value) : 0;
-                                    double? strCurrentRobu = currSnapshotBisCriDTO.Robustness.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Robustness.Value) : 0;
-                                    double? strCurrentSecu = currSnapshotBisCriDTO.Security.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Security.Value) : 0;
-                                    double? strCurrentPerformance = currSnapshotBisCriDTO.Performance.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Performance.Value) : 0;
-                                    double? strCurrentChange = currSnapshotBisCriDTO.Changeability.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Changeability.Value) : 0;
-                                    double? strCurrentTransfer = currSnapshotBisCriDTO.Transferability.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Transferability.Value) : 0;
-                                    double? strCurrentProgramming = currSnapshotBisCriDTO.ProgrammingPractices.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.ProgrammingPractices.Value) : 0;
-                                    double? strCurrentDocument = currSnapshotBisCriDTO.Documentation.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Documentation.Value) : 0;
+                                    double? strCurrentArchDesign = currSnapshotBisCriDTO.ArchitecturalDesign.HasValue ? currSnapshotBisCriDTO.ArchitecturalDesign.Value : 0;
+                                    double? strCurrentRobu = currSnapshotBisCriDTO.Robustness.HasValue ? currSnapshotBisCriDTO.Robustness.Value : 0;
+                                    double? strCurrentSecu = currSnapshotBisCriDTO.Security.HasValue ? currSnapshotBisCriDTO.Security.Value : 0;
+                                    double? strCurrentPerformance = currSnapshotBisCriDTO.Performance.HasValue ? currSnapshotBisCriDTO.Performance.Value : 0;
+                                    double? strCurrentChange = currSnapshotBisCriDTO.Changeability.HasValue ? currSnapshotBisCriDTO.Changeability.Value : 0;
+                                    double? strCurrentTransfer = currSnapshotBisCriDTO.Transferability.HasValue ? currSnapshotBisCriDTO.Transferability.Value : 0;
+                                    double? strCurrentProgramming = currSnapshotBisCriDTO.ProgrammingPractices.HasValue ? currSnapshotBisCriDTO.ProgrammingPractices.Value : 0;
+                                    double? strCurrentDocument = currSnapshotBisCriDTO.Documentation.HasValue ? currSnapshotBisCriDTO.Documentation.Value : 0;
 
                                     strCurrentArchDesignAll = strCurrentArchDesignAll + strCurrentArchDesign;
                                     strCurrentRobuAll = strCurrentRobuAll + strCurrentRobu;
@@ -330,213 +319,47 @@ namespace CastReporting.Reporting.Block.Table
                     }
                 }
 
-                //int RemoveApp = 0;
-                //for (int j = 0; j < AllApps.Count(); j++)
-                //{
-                //    int intRecord = 0;
-                //    Application App = AllApps[j];
-
-                //    int nbSnapshotsEachApp = App.Snapshots.Count();
-                //    if (nbSnapshotsEachApp == 1)
-                //    {
-                //        RemoveApp++;
-                //    }
-                //    else
-                //    {
-                //        if (nbSnapshotsEachApp > 0)
-                //        {
-                //            foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
-                //            {
-                //                if (intRecord == 0)
-                //                {
-                //                    intRecord = 1;
-                //                    continue;
-                //                }
-                //                BusinessCriteriaDTO prevSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(snapshot, false);
-
-                //                double? strPreviousArchDesign = prevSnapshotBisCriDTO.ArchitecturalDesign.HasValue ? MathUtility.GetRound(prevSnapshotBisCriDTO.ArchitecturalDesign.Value) : 0;
-                //                double? strPreviousRobu = prevSnapshotBisCriDTO.Robustness.HasValue ? MathUtility.GetRound(prevSnapshotBisCriDTO.Robustness.Value) : 0;
-                //                double? strPreviousSecu = prevSnapshotBisCriDTO.Security.HasValue ? MathUtility.GetRound(prevSnapshotBisCriDTO.Security.Value) : 0;
-                //                double? strPreviousPerformance = prevSnapshotBisCriDTO.Performance.HasValue ? MathUtility.GetRound(prevSnapshotBisCriDTO.Performance.Value) : 0;
-                //                double? strPreviousChange = prevSnapshotBisCriDTO.Changeability.HasValue ? MathUtility.GetRound(prevSnapshotBisCriDTO.Changeability.Value) : 0;
-                //                double? strPreviousTransfer = prevSnapshotBisCriDTO.Transferability.HasValue ? MathUtility.GetRound(prevSnapshotBisCriDTO.Transferability.Value) : 0;
-                //                double? strPreviousProgramming = prevSnapshotBisCriDTO.ProgrammingPractices.HasValue ? MathUtility.GetRound(prevSnapshotBisCriDTO.ProgrammingPractices.Value) : 0;
-                //                double? strPreviousDocument = prevSnapshotBisCriDTO.Documentation.HasValue ? MathUtility.GetRound(prevSnapshotBisCriDTO.Documentation.Value) : 0;
-
-                //                if (strPreviousArchDesignAllT == 0)
-                //                {
-                //                    strPreviousArchDesignAll = strPreviousArchDesignAll + strPreviousArchDesign;
-                //                }
-                //                if (strPreviousRobuAllT == 0)
-                //                {
-                //                    strPreviousRobuAll = strPreviousRobuAll + strPreviousRobu;
-                //                }
-                //                if (strPreviousSecuAllT == 0)
-                //                {
-                //                    strPreviousSecuAll = strPreviousSecuAll + strPreviousSecu;
-                //                }
-                //                if (strPreviousPerformanceAllT == 0)
-                //                {
-                //                    strPreviousPerformanceAll = strPreviousPerformanceAll + strPreviousPerformance;
-                //                }
-                //                if (strPreviousChangeAllT == 0)
-                //                {
-                //                    strPreviousChangeAll = strPreviousChangeAll + strPreviousChange;
-                //                }
-                //                if (strPreviousTransferAllT == 0)
-                //                {
-                //                    strPreviousTransferAll = strPreviousTransferAll + strPreviousTransfer;
-                //                }
-                //                if (strPreviousProgrammingAllT == 0)
-                //                {
-                //                    strPreviousProgrammingAll = strPreviousProgrammingAll + strPreviousProgramming;
-                //                }
-                //                if (strPreviousDocumentAllT == 0)
-                //                {
-                //                    strPreviousDocumentAll = strPreviousDocumentAll + strPreviousDocument;
-                //                }
-                //                break; 
-                //            }
-                //        }
-                //    }
-                //}
-
-                //int intRecord = 0;
-                //if (intFlag == 0) // no snapshot found in the previous quarter
-                //{
-                //    for (int j = 0; j < AllApps.Count(); j++)
-                //    {
-                //        Application App = AllApps[j];
-
-                //        int nbSnapshotsEachApp = App.Snapshots.Count();
-                //        if (nbSnapshotsEachApp > 0)
-                //        {
-                //            foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
-                //            {
-                //                if (intRecord == 0)
-                //                {
-                //                    intRecord = 1;
-                //                    continue;
-                //                }
-                //                Snapshot[] BuiltSnapshots = reportData.snapshots;
-
-                //                foreach (Snapshot BuiltSnapshot in BuiltSnapshots)
-                //                {
-                //                    if (snapshot == BuiltSnapshot)
-                //                    {
-                //                        BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(BuiltSnapshot, false);
-
-                //                        double? strCurrentBeforeArchDesign = currSnapshotBisCriDTO.ArchitecturalDesign.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.ArchitecturalDesign.Value) : 0;
-                //                        double? strCurrentBeforeRobu = currSnapshotBisCriDTO.Robustness.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Robustness.Value) : 0;
-                //                        double? strCurrentBeforeSecu = currSnapshotBisCriDTO.Security.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Security.Value) : 0;
-                //                        double? strCurrentBeforePerformance = currSnapshotBisCriDTO.Performance.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Performance.Value) : 0;
-                //                        double? strCurrentBeforeChange = currSnapshotBisCriDTO.Changeability.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Changeability.Value) : 0;
-                //                        double? strCurrentBeforeTransfer = currSnapshotBisCriDTO.Transferability.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Transferability.Value) : 0;
-                //                        double? strCurrentBeforeProgramming = currSnapshotBisCriDTO.ProgrammingPractices.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.ProgrammingPractices.Value) : 0;
-                //                        double? strCurrentBeforeDocument = currSnapshotBisCriDTO.Documentation.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Documentation.Value) : 0;
-
-                //                        strCurrentBeforeArchDesignAll = strCurrentBeforeArchDesignAll + strCurrentBeforeArchDesign;
-                //                        strCurrentBeforeRobuAll = strCurrentBeforeRobuAll + strCurrentBeforeRobu;
-                //                        strCurrentBeforeSecuAll = strCurrentBeforeSecuAll + strCurrentBeforeSecu;
-                //                        strCurrentBeforePerformanceAll = strCurrentBeforePerformanceAll + strCurrentBeforePerformance;
-                //                        strCurrentBeforeChangeAll = strCurrentBeforeChangeAll + strCurrentBeforeChange;
-                //                        strCurrentBeforeTransferAll = strCurrentBeforeTransferAll + strCurrentBeforeTransfer;
-                //                        strCurrentBeforeProgrammingAll = strCurrentBeforeProgrammingAll + strCurrentBeforeProgramming;
-                //                        strCurrentBeforeDocumentAll = strCurrentBeforeDocumentAll + strCurrentBeforeDocument;
-
-
-
-                //                        break;
-                //                    }
-                //                }
-                //                break;
-                //            }
-                //        }
-                //    }
-                //}
-
-                //if (strCurrentBeforeArchDesignAll > 0)
-                //{
-                //    strCurrentBeforeArchDesignAll = MathUtility.GetRound(strCurrentBeforeArchDesignAll / (AllApps.Count() - RemoveApp));
-                //}
-
-                //if (strCurrentBeforeRobuAll > 0)
-                //{
-                //    strCurrentBeforeRobuAll = MathUtility.GetRound(strCurrentBeforeRobuAll / (AllApps.Count() - RemoveApp));
-                //}
-
-                //if (strCurrentBeforeSecuAll > 0)
-                //{
-                //    strCurrentBeforeSecuAll = MathUtility.GetRound(strCurrentBeforeSecuAll / (AllApps.Count() - RemoveApp));
-                //}
-
-                //if (strCurrentBeforePerformanceAll > 0)
-                //{
-                //    strCurrentBeforePerformanceAll = MathUtility.GetRound(strCurrentBeforePerformanceAll / (AllApps.Count() - RemoveApp));
-                //}
-
-                //if (strCurrentBeforeChangeAll > 0)
-                //{
-                //    strCurrentBeforeChangeAll = MathUtility.GetRound(strCurrentBeforeChangeAll / (AllApps.Count() - RemoveApp));
-                //}
-
-                //if (strCurrentBeforeTransferAll > 0)
-                //{
-                //    strCurrentBeforeTransferAll = MathUtility.GetRound(strCurrentBeforeTransferAll / (AllApps.Count() - RemoveApp));
-                //}
-
-                //if (strCurrentBeforeProgrammingAll > 0)
-                //{
-                //    strCurrentBeforeProgrammingAll = MathUtility.GetRound(strCurrentBeforeProgrammingAll / (AllApps.Count() - RemoveApp));
-                //}
-
-                //if (strCurrentBeforeDocumentAll > 0)
-                //{
-                //    strCurrentBeforeDocumentAll = MathUtility.GetRound(strCurrentBeforeDocumentAll / (AllApps.Count() - RemoveApp));
-                //}
-
-
-
+                
 
 
                 if (strPreviousArchDesignAll > 0)
                 {
-                    strPreviousArchDesignAll = MathUtility.GetRound(strPreviousArchDesignAll / (AllApps.Count() - RemoveApp));
+                    strPreviousArchDesignAll = strPreviousArchDesignAll / (AllApps.Count() - RemoveApp);
                 }
 
                 if (strPreviousRobuAll > 0)
                 {
-                    strPreviousRobuAll = MathUtility.GetRound(strPreviousRobuAll / (AllApps.Count() - RemoveApp));
+                    strPreviousRobuAll = strPreviousRobuAll / (AllApps.Count() - RemoveApp);
                 }
 
                 if (strPreviousSecuAll > 0)
                 {
-                    strPreviousSecuAll = MathUtility.GetRound(strPreviousSecuAll / (AllApps.Count() - RemoveApp));
+                    strPreviousSecuAll = strPreviousSecuAll / (AllApps.Count() - RemoveApp);
                 }
 
                 if (strPreviousPerformanceAll > 0)
                 {
-                    strPreviousPerformanceAll = MathUtility.GetRound(strPreviousPerformanceAll / (AllApps.Count() - RemoveApp));
+                    strPreviousPerformanceAll = strPreviousPerformanceAll / (AllApps.Count() - RemoveApp);
                 }
 
                 if (strPreviousChangeAll > 0)
                 {
-                    strPreviousChangeAll = MathUtility.GetRound(strPreviousChangeAll / (AllApps.Count() - RemoveApp));
+                    strPreviousChangeAll = strPreviousChangeAll / (AllApps.Count() - RemoveApp);
                 }
 
                 if (strPreviousTransferAll > 0)
                 {
-                    strPreviousTransferAll = MathUtility.GetRound(strPreviousTransferAll / (AllApps.Count() - RemoveApp));
+                    strPreviousTransferAll = strPreviousTransferAll / (AllApps.Count() - RemoveApp);
                 }
 
                 if (strPreviousProgrammingAll > 0)
                 {
-                    strPreviousProgrammingAll = MathUtility.GetRound(strPreviousProgrammingAll / (AllApps.Count() - RemoveApp));
+                    strPreviousProgrammingAll = strPreviousProgrammingAll / (AllApps.Count() - RemoveApp);
                 }
 
                 if (strPreviousDocumentAll > 0)
                 {
-                    strPreviousDocumentAll = MathUtility.GetRound(strPreviousDocumentAll / (AllApps.Count() - RemoveApp));
+                    strPreviousDocumentAll = strPreviousDocumentAll / (AllApps.Count() - RemoveApp);
                 }
 
 
@@ -559,14 +382,14 @@ namespace CastReporting.Reporting.Block.Table
                     double? lower = Math.Round((double)SLAs[0] / 100, 2);
                     double? upper = Math.Round((double)SLAs[1] / 100, 2);
 
-                    intRobustnessSLAViol = ((TagIds[0] - MathUtility.GetRound((strCurrentRobuAll / AllApps.Count()))) / TagIds[0] > upper ? 0 : ((TagIds[0] - MathUtility.GetRound((strCurrentRobuAll / AllApps.Count()))) / TagIds[0] > lower ? 50 : 100));
-                    intSecuritySLAViol = ((TagIds[1] - MathUtility.GetRound((strCurrentSecuAll / AllApps.Count()))) / TagIds[1] > upper ? 0 : ((TagIds[1] - MathUtility.GetRound((strCurrentSecuAll / AllApps.Count()))) / TagIds[1] > lower ? 50 : 100));
-                    intChangeabilitySLAViol = ((TagIds[2] - MathUtility.GetRound((strCurrentChangeAll / AllApps.Count()))) / TagIds[2] > upper ? 0 : ((TagIds[2] - MathUtility.GetRound((strCurrentChangeAll / AllApps.Count()))) / TagIds[2] > lower ? 50 : 100));
-                    intTransferabilitySLAViol = ((TagIds[3] - MathUtility.GetRound((strCurrentTransferAll / AllApps.Count()))) / TagIds[3] > upper ? 0 : ((TagIds[3] - MathUtility.GetRound((strCurrentTransferAll / AllApps.Count()))) / TagIds[3] > lower ? 50 : 100));
-                    intProgrammingPracticeSLAViol = ((TagIds[4] - MathUtility.GetRound((strCurrentProgrammingAll / AllApps.Count()))) / TagIds[4] > upper ? 0 : ((TagIds[4] - MathUtility.GetRound((strCurrentProgrammingAll / AllApps.Count()))) / TagIds[4] > lower ? 50 : 100));
-                    intDocumentationSLAViol = ((TagIds[5] - MathUtility.GetRound((strCurrentDocumentAll / AllApps.Count()))) / TagIds[5] > upper ? 0 : ((TagIds[5] - MathUtility.GetRound((strCurrentDocumentAll / AllApps.Count()))) / TagIds[5] > lower ? 50 : 100));
-                    intPerformanceSLAViol = ((TagIds[6] - MathUtility.GetRound((strCurrentPerformanceAll / AllApps.Count()))) / TagIds[6] > upper ? 0 : ((TagIds[6] - MathUtility.GetRound((strCurrentPerformanceAll / AllApps.Count()))) / TagIds[6] > lower ? 50 : 100));
-                    intArchitectureSLAViol = ((TagIds[7] - MathUtility.GetRound((strCurrentArchDesignAll / AllApps.Count()))) / TagIds[7] > upper ? 0 : ((TagIds[7] - MathUtility.GetRound((strCurrentArchDesignAll / AllApps.Count()))) / TagIds[7] > lower ? 50 : 100));
+                    intRobustnessSLAViol = ((TagIds[0] - (strCurrentRobuAll / AllApps.Count())) / TagIds[0] > upper ? 0 : ((TagIds[0] - (strCurrentRobuAll / AllApps.Count())) / TagIds[0] > lower ? 50 : 100));
+                    intSecuritySLAViol = ((TagIds[1] - (strCurrentSecuAll / AllApps.Count())) / TagIds[1] > upper ? 0 : ((TagIds[1] - (strCurrentSecuAll / AllApps.Count())) / TagIds[1] > lower ? 50 : 100));
+                    intChangeabilitySLAViol = ((TagIds[2] - (strCurrentChangeAll / AllApps.Count())) / TagIds[2] > upper ? 0 : ((TagIds[2] - (strCurrentChangeAll / AllApps.Count())) / TagIds[2] > lower ? 50 : 100));
+                    intTransferabilitySLAViol = ((TagIds[3] - (strCurrentTransferAll / AllApps.Count())) / TagIds[3] > upper ? 0 : ((TagIds[3] - (strCurrentTransferAll / AllApps.Count())) / TagIds[3] > lower ? 50 : 100));
+                    intProgrammingPracticeSLAViol = ((TagIds[4] - (strCurrentProgrammingAll / AllApps.Count())) / TagIds[4] > upper ? 0 : ((TagIds[4] - (strCurrentProgrammingAll / AllApps.Count())) / TagIds[4] > lower ? 50 : 100));
+                    intDocumentationSLAViol = ((TagIds[5] - (strCurrentDocumentAll / AllApps.Count())) / TagIds[5] > upper ? 0 : ((TagIds[5] - (strCurrentDocumentAll / AllApps.Count())) / TagIds[5] > lower ? 50 : 100));
+                    intPerformanceSLAViol = ((TagIds[6] - (strCurrentPerformanceAll / AllApps.Count())) / TagIds[6] > upper ? 0 : ((TagIds[6] - (strCurrentPerformanceAll / AllApps.Count())) / TagIds[6] > lower ? 50 : 100));
+                    intArchitectureSLAViol = ((TagIds[7] - (strCurrentArchDesignAll / AllApps.Count())) / TagIds[7] > upper ? 0 : ((TagIds[7] - (strCurrentArchDesignAll / AllApps.Count())) / TagIds[7] > lower ? 50 : 100));
                     
 
                     //if (intFlag == 1)//TagIds[2]
@@ -766,15 +589,6 @@ namespace CastReporting.Reporting.Block.Table
                     CurrDocu = string.Format("{0:0.00}", strCurrentDocumentAll / AllApps.Count());
                     CurrArch = string.Format("{0:0.00}", strCurrentArchDesignAll / AllApps.Count());
 
-                    //CurrRobuB = string.Format("{0:0.00}", strCurrentBeforeRobuAll);
-                    //CurrSecuB = string.Format("{0:0.00}", strCurrentBeforeSecuAll);
-                    //CurrPerfB = string.Format("{0:0.00}", strCurrentBeforePerformanceAll);
-                    //CurrChangeB = string.Format("{0:0.00}", strCurrentBeforeChangeAll);
-                    //CurrTransB = string.Format("{0:0.00}", strCurrentBeforeTransferAll);
-                    //CurrPPB = string.Format("{0:0.00}", strCurrentBeforeProgrammingAll);
-                    //CurrDocuB = string.Format("{0:0.00}", strCurrentBeforeDocumentAll);
-                    //CurrArchB = string.Format("{0:0.00}", strCurrentBeforeArchDesignAll);
-
                     string Tag0 = string.Format("{0:0.00}", TagIds[0]);
                     string Tag1 = string.Format("{0:0.00}", TagIds[1]);
                     string Tag2 = string.Format("{0:0.00}", TagIds[2]);
@@ -793,42 +607,17 @@ namespace CastReporting.Reporting.Block.Table
                     rowData.AddRange(new string[] { "Programming Practice", PrevPP, Tag5, CurrPP, ProgrammingPracticeSLAViol });
                     rowData.AddRange(new string[] { "Documentation", PrevDocu, Tag6, CurrDocu, DocumentationSLAViol });
                     rowData.AddRange(new string[] { "Architecture/Design", PrevArch, Tag7, CurrArch, ArchitectureSLAViol });
-
-                    //if (intFlag == 1)//TagIds[15]
-                    //{
-                    //    rowData.AddRange(new string[] { "Robustness", PrevRobu, Tag0, CurrRobu, RobustnessSLAViol });
-                    //    rowData.AddRange(new string[] { "Security", PrevSecu, Tag1, CurrSecu, SecuritySLAViol });
-                    //    rowData.AddRange(new string[] { "Efficiency", PrevPerf, Tag2, CurrPerf, PerformanceSLAViol });
-                    //    rowData.AddRange(new string[] { "Changeability", PrevChange, Tag3, CurrChange, ChangeabilitySLAViol });
-                    //    rowData.AddRange(new string[] { "Transferability", PrevTrans, Tag4, CurrTrans, TransferabilitySLAViol });
-                    //    rowData.AddRange(new string[] { "Programming Practice", PrevPP, Tag5, CurrPP, ProgrammingPracticeSLAViol });
-                    //    rowData.AddRange(new string[] { "Documentation", PrevDocu, Tag6, CurrDocu, DocumentationSLAViol });
-                    //    rowData.AddRange(new string[] { "Architecture/Design", PrevArch, Tag7, CurrArch, ArchitectureSLAViol });
-                        
-                    //}
-                    //else
-                    //{
-                    //    rowData.AddRange(new string[] { "Robustness", CurrRobuB, Tag0, CurrRobu, RobustnessSLAViol });
-                    //    rowData.AddRange(new string[] { "Security", CurrSecuB, Tag1, CurrSecu, SecuritySLAViol });
-                    //    rowData.AddRange(new string[] { "Efficiency", CurrPerfB, Tag2, CurrPerf, PerformanceSLAViol });
-                    //    rowData.AddRange(new string[] { "Changeability", CurrChangeB, Tag3, CurrChange, ChangeabilitySLAViol });
-                    //    rowData.AddRange(new string[] { "Transferability", CurrTransB, Tag4, CurrTrans, TransferabilitySLAViol });
-                    //    rowData.AddRange(new string[] { "Programming Practice", CurrPPB, Tag5, CurrPP, ProgrammingPracticeSLAViol });
-                    //    rowData.AddRange(new string[] { "Documentation", CurrDocuB, Tag6, CurrDocu, DocumentationSLAViol });
-                    //    rowData.AddRange(new string[] { "Architecture/Design", CurrArchB, Tag7, CurrArch, ArchitectureSLAViol });
-                        
-                    //}
                 }
                 else
                 {
-                    rowData.AddRange(new string[] { "Architecture/Design", " ", " ", " ", MathUtility.GetRound((strCurrentArchDesignAll / AllApps.Count())).ToString() });
-                    rowData.AddRange(new string[] { "Robustness", " ", " ", " ", MathUtility.GetRound((strCurrentRobuAll / AllApps.Count())).ToString() });
-                    rowData.AddRange(new string[] { "Security", " ", " ", " ", MathUtility.GetRound((strCurrentSecuAll / AllApps.Count())).ToString() });
-                    rowData.AddRange(new string[] { "Efficiency", " ", " ", " ", MathUtility.GetRound((strCurrentPerformanceAll / AllApps.Count())).ToString() });
-                    rowData.AddRange(new string[] { "Changeability", " ", " ", " ", MathUtility.GetRound((strCurrentChangeAll / AllApps.Count())).ToString() });
-                    rowData.AddRange(new string[] { "Transferability", " ", " ", " ", MathUtility.GetRound((strCurrentTransferAll / AllApps.Count())).ToString() });
-                    rowData.AddRange(new string[] { "Programming Practice", " ", " ", " ", MathUtility.GetRound((strCurrentProgrammingAll / AllApps.Count())).ToString() });
-                    rowData.AddRange(new string[] { "Documentation", " ", " ", " ", MathUtility.GetRound((strCurrentDocumentAll / AllApps.Count())).ToString() });
+                    rowData.AddRange(new string[] { "Architecture/Design", " ", " ", " ", (strCurrentArchDesignAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { "Robustness", " ", " ", " ", (strCurrentRobuAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { "Security", " ", " ", " ", (strCurrentSecuAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { "Efficiency", " ", " ", " ", (strCurrentPerformanceAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { "Changeability", " ", " ", " ", (strCurrentChangeAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { "Transferability", " ", " ", " ", (strCurrentTransferAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { "Programming Practice", " ", " ", " ", (strCurrentProgrammingAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { "Documentation", " ", " ", " ", (strCurrentDocumentAll / AllApps.Count()).ToString() });
                 }
             }
 

@@ -33,7 +33,7 @@ namespace CastReporting.Repositories
     public class CastRepository : ICastRepsitory
     {
         #region CONSTANTS
-       
+        
         //wow7010/applications/12/results?quality-indicators=(business-criteria,technical-criteria,quality-rules,quality-distributions,quality-measures)&sizing-measures=(technical-size-measures,run-time-statistics,technical-debt-statistics,critical-violation-statistics,functional-weight-measures)&background-facts=(66061,66002,66004,66006,66001,66003,66005,66007)
         private const string _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&snapshots=({2})&modules=({3}))&technologies=({4})&categories=({5})&select=evolutionSummary";
         private const string _query_result_sizing_measures = "{0}/results?sizing-measures=({1})&snapshots=({2})&technologies=({3})&modules=({4})";      
@@ -176,7 +176,7 @@ namespace CastReporting.Repositories
         IEnumerable<Component> ICastRepsitory.GetComponentsByModule(string domainId, int moduleId, int snapshotId, string businessCriteria, int count)
         {
             var requestUrl = string.Format(_query_components_by_modules, domainId, moduleId, snapshotId, businessCriteria, count);
-
+            
             return this.CallWS<IEnumerable<Component>>(requestUrl, RequestComplexity.Standard);
         }
 

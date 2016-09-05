@@ -59,9 +59,9 @@ namespace CastReporting.Reporting.Block.Graph
             var rowData = new List<String>();
             rowData.AddRange(new string[] {
 				" ",
-				"CV - Removed",
-				"CV - Added",
-				"CV - Total"
+				Labels.ViolationsCritical + " - " + Labels.ViolationsRemoved ,
+				Labels.ViolationsCritical + " - " + Labels.ViolationsAdded,
+				Labels.ViolationsCritical + " - " + Labels.Total
 			});
 
             DataTable dtDates = new DataTable();
@@ -121,20 +121,23 @@ namespace CastReporting.Reporting.Block.Graph
                             if (intQuarter == intSnapshotQuarter && intYear == intSnapshotYear)
                             {
                                 var results = RulesViolationUtility.GetStatViolation(snapshot);
-                                foreach (var resultModule in results.OrderBy(_ => _.ModuleName))
+                                foreach (var resultModule in results)
                                 {
-                                    int CriticalViolThisModulePerformanceTotal = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Total.HasValue) ?
-                          resultModule[(Constants.BusinessCriteria)metricId].Total.Value : 0;
+                                    if (resultModule != null)
+                                    {
+                                        int CriticalViolThisModulePerformanceTotal = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Total.HasValue) ?
+                              resultModule[(Constants.BusinessCriteria)metricId].Total.Value : 0;
 
-                                    int CriticalViolThisModulePerformanceAdded = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Added.HasValue) ?
-                          resultModule[(Constants.BusinessCriteria)metricId].Added.Value : 0;
+                                        int CriticalViolThisModulePerformanceAdded = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Added.HasValue) ?
+                              resultModule[(Constants.BusinessCriteria)metricId].Added.Value : 0;
 
-                                    int CriticalViolThisModulePerformanceRemoved = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Removed.HasValue) ?
-                          resultModule[(Constants.BusinessCriteria)metricId].Removed.Value : 0;
+                                        int CriticalViolThisModulePerformanceRemoved = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Removed.HasValue) ?
+                              resultModule[(Constants.BusinessCriteria)metricId].Removed.Value : 0;
 
-                                    RemovedViol = RemovedViol + CriticalViolThisModulePerformanceRemoved;
-                                    AddedViol = AddedViol + CriticalViolThisModulePerformanceAdded;
-                                    TotalViol = TotalViol + CriticalViolThisModulePerformanceTotal;
+                                        RemovedViol = RemovedViol + CriticalViolThisModulePerformanceRemoved;
+                                        AddedViol = AddedViol + CriticalViolThisModulePerformanceAdded;
+                                        TotalViol = TotalViol + CriticalViolThisModulePerformanceTotal;
+                                    }
 
                                 }
                             }

@@ -79,6 +79,16 @@ namespace CastReporting.Domain
          /// <summary>
          /// 
          /// </summary>
+         public string PortfolioFolderNamePath { get; set; }
+
+         /// <summary>
+         /// 
+         /// </summary>
+         public string AADURL { get; set; }
+
+         /// <summary>
+         /// 
+         /// </summary>
          public string CultureName { get; set; }
 
          /// <summary>
@@ -96,6 +106,7 @@ namespace CastReporting.Domain
              ApplicationQualityGood=3.5;
 
              NbResultDefault = 5;
+             PortfolioFolderNamePath = "\\Portfolio";
          }
     }
 }

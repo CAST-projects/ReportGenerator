@@ -62,27 +62,27 @@ namespace CastReporting.Reporting.Block.Table
             {
                 if (metricId == 60012)
                 {
-                    rowData.AddRange(new string[] { "Applications", Labels.ViolationsCritical, Labels.Changeability, "Last Analysis" });
+                    rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Changeability, Labels.SnapshotDate });
                 }
                 else if (metricId == 60014)
                 {
-                    rowData.AddRange(new string[] { "Applications", Labels.ViolationsCritical, "Performance", "Last Analysis" });
+                    rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Efficiency, Labels.SnapshotDate });
                 }
                 else if (metricId == 60013)
                 {
-                    rowData.AddRange(new string[] { "Applications", Labels.ViolationsCritical, Labels.Robustness, "Last Analysis" });
+                    rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Robustness, Labels.SnapshotDate });
                 }
                 else if (metricId == 60016)
                 {
-                    rowData.AddRange(new string[] { "Applications", Labels.ViolationsCritical, Labels.Security, "Last Analysis" });
+                    rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Security, Labels.SnapshotDate });
                 }
                 else if (metricId == 60017)
                 {
-                    rowData.AddRange(new string[] { "Applications", Labels.ViolationsCritical, Labels.TQI, "Last Analysis" });
+                    rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.TQI, Labels.SnapshotDate });
                 }
                 else if (metricId == 60011)
                 {
-                    rowData.AddRange(new string[] { "Applications", Labels.ViolationsCritical, Labels.Transferability, "Last Analysis" });
+                    rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Transferability, Labels.SnapshotDate });
                 }
 
 
@@ -128,27 +128,27 @@ namespace CastReporting.Reporting.Block.Table
 
                                     if (metricId == 60012)
                                     {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Changeability.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Changeability.Value) : 0;
+                                        strCurrentEfficiency = currSnapshotBisCriDTO.Changeability.HasValue ? currSnapshotBisCriDTO.Changeability.Value : 0;
                                     }
                                     else if (metricId == 60014)
                                     {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Performance.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Performance.Value) : 0;
+                                        strCurrentEfficiency = currSnapshotBisCriDTO.Performance.HasValue ? currSnapshotBisCriDTO.Performance.Value : 0;
                                     }
                                     else if (metricId == 60013)
                                     {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Robustness.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Robustness.Value) : 0;
+                                        strCurrentEfficiency = currSnapshotBisCriDTO.Robustness.HasValue ? currSnapshotBisCriDTO.Robustness.Value : 0;
                                     }
                                     else if (metricId == 60016)
                                     {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Security.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Security.Value) : 0;
+                                        strCurrentEfficiency = currSnapshotBisCriDTO.Security.HasValue ? currSnapshotBisCriDTO.Security.Value : 0;
                                     }
                                     else if (metricId == 60017)
                                     {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.TQI.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.TQI.Value) : 0;
+                                        strCurrentEfficiency = currSnapshotBisCriDTO.TQI.HasValue ? currSnapshotBisCriDTO.TQI.Value : 0;
                                     }
                                     else if (metricId == 60011)
                                     {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Transferability.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.Transferability.Value) : 0;
+                                        strCurrentEfficiency = currSnapshotBisCriDTO.Transferability.HasValue ? currSnapshotBisCriDTO.Transferability.Value : 0;
                                     }
 
                                     string strLastAnalysis = Convert.ToDateTime(BuiltSnapshot.Annotation.Date.DateSnapShot.Value).ToString("MMM dd yyyy");

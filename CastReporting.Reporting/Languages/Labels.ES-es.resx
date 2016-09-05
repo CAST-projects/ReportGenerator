@@ -492,4 +492,10 @@
   <data name="FORMAT_SHORT_DATE" xml:space="preserve">
     <value>dd/MM/yyyy</value>
   </data>
+  <data name="Application" xml:space="preserve">
+    <value>Aplicación</value>
+  </data>
+  <data name="Target" xml:space="preserve">
+    <value>Objetivo</value>
+  </data>
 </root>

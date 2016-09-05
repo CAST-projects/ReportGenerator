@@ -304,7 +304,7 @@
     <value>Select Category</value>
   </data>
   <data name="lblSelectPortfolioTags" xml:space="preserve">
-    <value>Select Tags</value>
+    <value>Select Tag</value>
   </data>
   <data name="lblHeaderApplication" xml:space="preserve">
     <value>Application</value>
