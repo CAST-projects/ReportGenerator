@@ -123,7 +123,7 @@ namespace CastReporting.Reporting.Block.Graph
                                 var results = RulesViolationUtility.GetStatViolation(snapshot);
                                 foreach (var resultModule in results)
                                 {
-                                    if (resultModule != null)
+                                    if (resultModule[(Constants.BusinessCriteria)metricId] != null)
                                     {
                                         int CriticalViolThisModulePerformanceTotal = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Total.HasValue) ?
                               resultModule[(Constants.BusinessCriteria)metricId].Total.Value : 0;

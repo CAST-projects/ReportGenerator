@@ -40,7 +40,6 @@ namespace CastReporting.Reporting.Block.Graph
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
 
-            string metricFormat = "N2";
             int count = 0;
 
             List<String> rowData = new List<String>();
