@@ -31,6 +31,7 @@ Compression=lzma
 SolidCompression=yes
 AlwaysShowDirOnReadyPage=true
 ;DirExistsWarning=No
+UninstallDisplayIcon={app}\{#MyAppExeName}
 
 
 [Languages]
@@ -64,6 +65,7 @@ source: "../CastReporting.Console/bin/Release/CastReporting.Console.exe.config";
 source: "../CastReporting.Console/bin/Release/Parameters/*.xml";DestDir: "{app}"; Flags: ignoreversion
 source: "../CastReporting.DAL/CastReportingSetting.xml"; DestDir: "{code:GetSettingsPath}"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates"; Flags: ignoreversion; AfterInstall:SaveSettings()
+Source: "../CastReporting.Reporting\PortfolioTemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio"; Flags: ignoreversion; AfterInstall:SavePortfolioSettings()
 ; NOTE:CastReporting.Reporting/bin/Release
 source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.dll";DestDir: "{app}"; Flags: ignoreversion
 source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.Interactivity.dll";DestDir: "{app}"; Flags: ignoreversion
@@ -140,6 +142,12 @@ begin
     FileReplace(GetSettingsPath(S1) + '\CastReportingSetting.xml','<TemplatePath></TemplatePath>','<TemplatePath>' + GetTempPath(S2) + '\Templates</TemplatePath>'); 
 end;
 
+procedure SavePortfolioSettings();
+var
+  S1, S2 : String;
+begin
+    FileReplace(GetSettingsPath(S1) + '\CastReportingSetting.xml','<PortfolioFolderNamePath></PortfolioFolderNamePath>','<PortfolioFolderNamePath>' + GetTempPath(S2) + '\Templates\Portfolio</PortfolioFolderNamePath>'); 
+end;
 
 // Update ReadyMemo
 function UpdateReadyMemo(Space, NewLine, MemoUserInfoInfo, MemoDirInfo, MemoTypeInfo,

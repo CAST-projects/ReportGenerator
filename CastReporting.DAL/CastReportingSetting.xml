@@ -9,7 +9,7 @@
 		<ApplicationQualityMedium>3.2</ApplicationQualityMedium>
 		<ApplicationQualityGood>3.5</ApplicationQualityGood>
 		<NbResultDefault>5</NbResultDefault>
-		<TemplatePath>\\Portfolio</TemplatePath>
+		<TemplatePath></TemplatePath>
     <PortfolioFolderNamePath></PortfolioFolderNamePath>
     <CultureName>en-US</CultureName>
 	</ReportingParameter>
