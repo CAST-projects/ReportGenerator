@@ -85,6 +85,7 @@ namespace CastReporting.Reporting.Block.Graph
                                     rowData.Add(numCritPerKLOC.GetValueOrDefault().ToString());
                                     rowData.Add(result.GetValueOrDefault().ToString());
                                     rowData.Add(App.Name.ToString());
+
                                     count++;
                                 }
                             }
@@ -93,7 +94,15 @@ namespace CastReporting.Reporting.Block.Graph
                         }
                     }
                 }
+                if (reportData.Applications.Count() == 1)
+                {
+                    rowData.Add("0");
+                    rowData.Add("0");
+                    rowData.Add("0");
+                    rowData.Add("");
 
+                    count++;
+                }
 
             }
             #endregion Fetch SnapshotsPF

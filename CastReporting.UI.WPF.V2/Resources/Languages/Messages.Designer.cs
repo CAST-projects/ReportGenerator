@@ -295,7 +295,7 @@ namespace CastReporting.UI.WPF.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tags Selection.
+        ///   Looks up a localized string similar to Tag Selection.
         /// </summary>
         public static string lblPortfolioCategoriesSelection {
             get {
