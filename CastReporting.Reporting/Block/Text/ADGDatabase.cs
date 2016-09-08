@@ -26,6 +26,7 @@ namespace CastReporting.Reporting.Block.Text
     [Block("APPLICATION_SCHEMA")]
     class ADGDatabase : TextBlock
     {
+
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {

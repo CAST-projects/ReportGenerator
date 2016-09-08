@@ -181,7 +181,7 @@
     <value>Current</value>
   </data>
   <data name="Previous" xml:space="preserve">
-    <value>Previous</value>
+    <value>Previous score</value>
   </data>
   <data name="NoItem" xml:space="preserve">
     <value>No enabled item</value>
@@ -514,6 +514,24 @@
     <value>Application</value>
   </data>
   <data name="Target" xml:space="preserve">
-    <value>Target</value>
+    <value>Target score</value>
+  </data>
+  <data name="Actual" xml:space="preserve">
+    <value>Actual score</value>
+  </data>
+  <data name="SLAViolations" xml:space="preserve">
+    <value>SLA Violations</value>
+  </data>
+  <data name="Acceptable" xml:space="preserve">
+    <value>Acceptable</value>
+  </data>
+  <data name="Bad" xml:space="preserve">
+    <value>Poor</value>
+  </data>
+  <data name="BusinessCriterionName" xml:space="preserve">
+    <value>Business criterion name</value>
+  </data>
+  <data name="Good" xml:space="preserve">
+    <value>Good</value>
   </data>
 </root>

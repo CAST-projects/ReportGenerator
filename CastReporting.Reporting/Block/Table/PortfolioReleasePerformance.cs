@@ -40,7 +40,6 @@ namespace CastReporting.Reporting.Block.Table
 
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            
             DataTable dtDates = new DataTable();
             dtDates.Columns.Add("Quarter", typeof(int));
             dtDates.Columns.Add("Year", typeof(int)); 
@@ -65,20 +64,30 @@ namespace CastReporting.Reporting.Block.Table
             TableDefinition resultTable = null; 
             List<string> rowData = new List<string>();
 
-            List<double> TagIds = null;
-            List<double> SLAs = null;
+            List<double> TagIds = new List<double>();
+            List<double> SLAs = new List<double>(); 
 
             if (strBackgroundFacts != "")
             {
-                TagIds = strBackgroundFacts.Split(' ').Select(double.Parse).ToList();
+                string[] words = strBackgroundFacts.Split(' ');
+                foreach (string word in words)
+                {
+                    double result = Convert.ToDouble(word, System.Globalization.CultureInfo.InvariantCulture);
+                    TagIds.Add(result);
+                }
+                //TagIds = strBackgroundFacts.Split(' ').Select(double.Parse).ToList();
             }
 
             if (strSLA != "")
             {
-                SLAs = strSLA.Split(' ').Select(double.Parse).ToList();
+                string[] words = strSLA.Split(' ');
+                foreach (string word in words)
+                {
+                    double result = Convert.ToDouble(word, System.Globalization.CultureInfo.InvariantCulture);
+                    SLAs.Add(result);
+                }
+                //SLAs = strSLA.Split(' ').Select(double.Parse).ToList();
             }
-
-
 
 
             if (reportData.Applications != null && reportData.snapshots != null)
@@ -130,7 +139,7 @@ namespace CastReporting.Reporting.Block.Table
                 double? strPreviousProgrammingAllT = 0;
                 double? strPreviousDocumentAllT = 0;
 
-                rowData.AddRange(new string[] { Labels.RuleName, Labels.Previous, Labels.Target, Labels.Achievement, Labels.WithViolations });
+                rowData.AddRange(new string[] { Labels.BusinessCriterionName, Labels.Previous, Labels.Target, Labels.Actual, Labels.SLAViolations });
                 Snapshot Current = null;
                 Application[] AllApps = reportData.Applications;
                 for (int j = 0; j < AllApps.Count(); j++)
@@ -362,9 +371,6 @@ namespace CastReporting.Reporting.Block.Table
                     strPreviousDocumentAll = strPreviousDocumentAll / (AllApps.Count() - RemoveApp);
                 }
 
-
-
-
                 if (TagIds.Count == 8 && SLAs.Count == 2)
                 {
                     int intArchitectureSLAViol = 0;
@@ -392,33 +398,6 @@ namespace CastReporting.Reporting.Block.Table
                     intArchitectureSLAViol = ((TagIds[7] - (strCurrentArchDesignAll / AllApps.Count())) / TagIds[7] > upper ? 0 : ((TagIds[7] - (strCurrentArchDesignAll / AllApps.Count())) / TagIds[7] > lower ? 50 : 100));
                     
 
-                    //if (intFlag == 1)//TagIds[2]
-                    //{
-                    //    intArchitectureSLAViol = ((TagIds[2] - MathUtility.GetRound((strCurrentArchDesignAll / AllApps.Count()))) / TagIds[2] > upper ? 0 : ((TagIds[2] - MathUtility.GetRound((strCurrentArchDesignAll / AllApps.Count()))) / TagIds[2] > lower ? 50 : 100));
-                    //    intRobustnessSLAViol = ((TagIds[3] - MathUtility.GetRound((strCurrentRobuAll / AllApps.Count()))) / TagIds[3] > upper ? 0 : ((TagIds[3] - MathUtility.GetRound((strCurrentRobuAll / AllApps.Count()))) / TagIds[3] > lower ? 50 : 100));
-                    //    intSecuritySLAViol = ((TagIds[4] - MathUtility.GetRound((strCurrentSecuAll / AllApps.Count()))) / TagIds[4] > upper ? 0 : ((TagIds[4] - MathUtility.GetRound((strCurrentSecuAll / AllApps.Count()))) / TagIds[4] > lower ? 50 : 100));
-                    //    intPerformanceSLAViol = ((TagIds[5] - MathUtility.GetRound((strCurrentPerformanceAll / AllApps.Count()))) / TagIds[5] > upper ? 0 : ((TagIds[5] - MathUtility.GetRound((strCurrentPerformanceAll / AllApps.Count()))) / TagIds[5] > lower ? 50 : 100));
-                    //    intChangeabilitySLAViol = ((TagIds[6] - MathUtility.GetRound((strCurrentChangeAll / AllApps.Count()))) / TagIds[6] > upper ? 0 : ((TagIds[6] - MathUtility.GetRound((strCurrentChangeAll / AllApps.Count()))) / TagIds[6] > lower ? 50 : 100));
-                    //    intTransferabilitySLAViol = ((TagIds[7] - MathUtility.GetRound((strCurrentTransferAll / AllApps.Count()))) / TagIds[7] > upper ? 0 : ((TagIds[7] - MathUtility.GetRound((strCurrentTransferAll / AllApps.Count()))) / TagIds[7] > lower ? 50 : 100));
-                    //    intProgrammingPracticeSLAViol = ((TagIds[8] - MathUtility.GetRound((strCurrentProgrammingAll / AllApps.Count()))) / TagIds[8] > upper ? 0 : ((TagIds[8] - MathUtility.GetRound((strCurrentProgrammingAll / AllApps.Count()))) / TagIds[8] > lower ? 50 : 100));
-                    //    intDocumentationSLAViol = ((TagIds[9] - MathUtility.GetRound((strCurrentDocumentAll / AllApps.Count()))) / TagIds[9] > upper ? 0 : ((TagIds[9] - MathUtility.GetRound((strCurrentDocumentAll / AllApps.Count()))) / TagIds[9] > lower ? 50 : 100));
-
-                    //}
-                    //else
-                    //{
-                    //    intArchitectureSLAViol = ((strCurrentBeforeArchDesignAll - MathUtility.GetRound((strCurrentArchDesignAll / AllApps.Count()))) / strCurrentBeforeArchDesignAll > upper ? 0 : ((strCurrentBeforeArchDesignAll - MathUtility.GetRound((strCurrentArchDesignAll / AllApps.Count()))) / strCurrentBeforeArchDesignAll > lower ? 50 : 100));
-                    //    intRobustnessSLAViol = ((strCurrentBeforeRobuAll - MathUtility.GetRound((strCurrentRobuAll / AllApps.Count()))) / strCurrentBeforeRobuAll > upper ? 0 : ((strCurrentBeforeRobuAll - MathUtility.GetRound((strCurrentRobuAll / AllApps.Count()))) / strCurrentBeforeRobuAll > lower ? 50 : 100));
-                    //    intSecuritySLAViol = ((strCurrentBeforeSecuAll - MathUtility.GetRound((strCurrentSecuAll / AllApps.Count()))) / strCurrentBeforeSecuAll > upper ? 0 : ((strCurrentBeforeSecuAll - MathUtility.GetRound((strCurrentSecuAll / AllApps.Count()))) / strCurrentBeforeSecuAll > lower ? 50 : 100));
-                    //    intPerformanceSLAViol = ((strCurrentBeforePerformanceAll - MathUtility.GetRound((strCurrentPerformanceAll / AllApps.Count()))) / strCurrentBeforePerformanceAll > upper ? 0 : ((strCurrentBeforePerformanceAll - MathUtility.GetRound((strCurrentPerformanceAll / AllApps.Count()))) / strCurrentBeforePerformanceAll > lower ? 50 : 100));
-                    //    intChangeabilitySLAViol = ((strCurrentBeforeChangeAll - MathUtility.GetRound((strCurrentChangeAll / AllApps.Count()))) / strCurrentBeforeChangeAll > upper ? 0 : ((strCurrentBeforeChangeAll - MathUtility.GetRound((strCurrentChangeAll / AllApps.Count()))) / strCurrentBeforeChangeAll > lower ? 50 : 100));
-                    //    intTransferabilitySLAViol = ((strCurrentBeforeTransferAll - MathUtility.GetRound((strCurrentTransferAll / AllApps.Count()))) / strCurrentBeforeTransferAll > upper ? 0 : ((strCurrentBeforeTransferAll - MathUtility.GetRound((strCurrentTransferAll / AllApps.Count()))) / strCurrentBeforeTransferAll > lower ? 50 : 100));
-                    //    intProgrammingPracticeSLAViol = ((strCurrentBeforeProgrammingAll - MathUtility.GetRound((strCurrentProgrammingAll / AllApps.Count()))) / strCurrentBeforeProgrammingAll > upper ? 0 : ((strCurrentBeforeProgrammingAll - MathUtility.GetRound((strCurrentProgrammingAll / AllApps.Count()))) / strCurrentBeforeProgrammingAll > lower ? 50 : 100));
-                    //    intDocumentationSLAViol = ((strCurrentBeforeDocumentAll - MathUtility.GetRound((strCurrentDocumentAll / AllApps.Count()))) / strCurrentBeforeDocumentAll > upper ? 0 : ((strCurrentBeforeDocumentAll - MathUtility.GetRound((strCurrentDocumentAll / AllApps.Count()))) / strCurrentBeforeDocumentAll > lower ? 50 : 100));
-
-                    //}
-
-                    ////
-
                     string ArchitectureSLAViol = "";
                     string RobustnessSLAViol = "";
                     string SecuritySLAViol = "";
@@ -430,118 +409,118 @@ namespace CastReporting.Reporting.Block.Table
 
                     if (intArchitectureSLAViol == 100)
                     {
-                        ArchitectureSLAViol = "Good";
+                        ArchitectureSLAViol = Labels.Good;
                     }
                     else if (intArchitectureSLAViol == 0)
                     {
-                        ArchitectureSLAViol = "Poor";
+                        ArchitectureSLAViol = Labels.Bad;
                     }
                     else
                     {
-                        ArchitectureSLAViol = "Acceptable";
+                        ArchitectureSLAViol = Labels.Acceptable;
                     }
 
                     if (intRobustnessSLAViol == 100)
                     {
-                        RobustnessSLAViol = "Good";
+                        RobustnessSLAViol = Labels.Good;
                     }
                     else if (intRobustnessSLAViol == 0)
                     {
-                        RobustnessSLAViol = "Poor";
+                        RobustnessSLAViol = Labels.Bad;
                     }
                     else
                     {
-                        RobustnessSLAViol = "Acceptable";
+                        RobustnessSLAViol = Labels.Acceptable;
                     }
 
 
 
                     if (intSecuritySLAViol == 100)
                     {
-                        SecuritySLAViol = "Good";
+                        SecuritySLAViol = Labels.Good;
                     }
                     else if (intSecuritySLAViol == 0)
                     {
-                        SecuritySLAViol = "Poor";
+                        SecuritySLAViol = Labels.Bad;
                     }
                     else
                     {
-                        SecuritySLAViol = "Acceptable";
+                        SecuritySLAViol = Labels.Acceptable;
                     }
 
 
 
                     if (intPerformanceSLAViol == 100)
                     {
-                        PerformanceSLAViol = "Good";
+                        PerformanceSLAViol = Labels.Good;
                     }
                     else if (intPerformanceSLAViol == 0)
                     {
-                        PerformanceSLAViol = "Poor";
+                        PerformanceSLAViol = Labels.Bad;
                     }
                     else
                     {
-                        PerformanceSLAViol = "Acceptable";
+                        PerformanceSLAViol = Labels.Acceptable;
                     }
 
 
 
                     if (intChangeabilitySLAViol == 100)
                     {
-                        ChangeabilitySLAViol = "Good";
+                        ChangeabilitySLAViol = Labels.Good;
                     }
                     else if (intChangeabilitySLAViol == 0)
                     {
-                        ChangeabilitySLAViol = "Poor";
+                        ChangeabilitySLAViol = Labels.Bad;
                     }
                     else
                     {
-                        ChangeabilitySLAViol = "Acceptable";
+                        ChangeabilitySLAViol = Labels.Acceptable;
                     }
 
 
 
                     if (intTransferabilitySLAViol == 100)
                     {
-                        TransferabilitySLAViol = "Good";
+                        TransferabilitySLAViol = Labels.Good;
                     }
                     else if (intTransferabilitySLAViol == 0)
                     {
-                        TransferabilitySLAViol = "Poor";
+                        TransferabilitySLAViol = Labels.Bad;
                     }
                     else
                     {
-                        TransferabilitySLAViol = "Acceptable";
+                        TransferabilitySLAViol = Labels.Acceptable;
                     }
 
 
 
                     if (intProgrammingPracticeSLAViol == 100)
                     {
-                        ProgrammingPracticeSLAViol = "Good";
+                        ProgrammingPracticeSLAViol = Labels.Good;
                     }
                     else if (intProgrammingPracticeSLAViol == 0)
                     {
-                        ProgrammingPracticeSLAViol = "Poor";
+                        ProgrammingPracticeSLAViol = Labels.Bad;
                     }
                     else
                     {
-                        ProgrammingPracticeSLAViol = "Acceptable";
+                        ProgrammingPracticeSLAViol = Labels.Acceptable;
                     }
 
 
 
                     if (intDocumentationSLAViol == 100)
                     {
-                        DocumentationSLAViol = "Good";
+                        DocumentationSLAViol = Labels.Good;
                     }
                     else if (intDocumentationSLAViol == 0)
                     {
-                        DocumentationSLAViol = "Poor";
+                        DocumentationSLAViol = Labels.Bad;
                     }
                     else
                     {
-                        DocumentationSLAViol = "Acceptable";
+                        DocumentationSLAViol = Labels.Acceptable;
                     }
 
                     string PrevRobu = "";

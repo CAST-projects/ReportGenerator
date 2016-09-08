@@ -298,7 +298,7 @@
     <value>Spanish</value>
   </data>
   <data name="lblPortfolioCategoriesSelection" xml:space="preserve">
-    <value>Tags Selection</value>
+    <value>Selección Tag</value>
   </data>
   <data name="lblSelectPortfolioCategories" xml:space="preserve">
     <value>Seleccionar Categoria</value>

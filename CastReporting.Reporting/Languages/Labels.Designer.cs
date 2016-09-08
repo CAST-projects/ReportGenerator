@@ -61,6 +61,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Acceptable.
+        /// </summary>
+        public static string Acceptable {
+            get {
+                return ResourceManager.GetString("Acceptable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Achiev..
         /// </summary>
         public static string Achiev {
@@ -93,6 +102,15 @@ namespace CastReporting.Reporting.Languages {
         public static string AchievRatio {
             get {
                 return ResourceManager.GetString("AchievRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actual score.
+        /// </summary>
+        public static string Actual {
+            get {
+                return ResourceManager.GetString("Actual", resourceCulture);
             }
         }
         
@@ -165,6 +183,24 @@ namespace CastReporting.Reporting.Languages {
         public static string BackfiredFP {
             get {
                 return ResourceManager.GetString("BackfiredFP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poor.
+        /// </summary>
+        public static string Bad {
+            get {
+                return ResourceManager.GetString("Bad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business criterion name.
+        /// </summary>
+        public static string BusinessCriterionName {
+            get {
+                return ResourceManager.GetString("BusinessCriterionName", resourceCulture);
             }
         }
         
@@ -493,6 +529,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Good.
+        /// </summary>
+        public static string Good {
+            get {
+                return ResourceManager.GetString("Good", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grade.
         /// </summary>
         public static string Grade {
@@ -664,7 +709,7 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Previous.
+        ///   Looks up a localized string similar to Previous score.
         /// </summary>
         public static string Previous {
             get {
@@ -871,6 +916,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SLA Violations.
+        /// </summary>
+        public static string SLAViolations {
+            get {
+                return ResourceManager.GetString("SLAViolations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Snapshot.
         /// </summary>
         public static string Snapshot {
@@ -916,7 +970,7 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Target.
+        ///   Looks up a localized string similar to Target score.
         /// </summary>
         public static string Target {
             get {
