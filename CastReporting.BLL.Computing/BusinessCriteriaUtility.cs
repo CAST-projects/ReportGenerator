@@ -107,10 +107,11 @@ namespace CastReporting.BLL.Computing
        /// <returns></returns>
         public static Double? GetBusinessCriteriaModuleGrade(Snapshot snapshot, string moduleHRef, Constants.BusinessCriteria bcId, bool Round)
         {
-                        double? res = null;
+            double? res = null;
             if (null != snapshot && null != snapshot.BusinessCriteriaResults)
             {
-                var result = snapshot.BusinessCriteriaResults
+                double? result = null;
+                result = snapshot.BusinessCriteriaResults
                            .Where(_ => _.Reference.Key == (Int32)bcId && _.ModulesResult != null)
                            .SelectMany(_ => _.ModulesResult)
                            .Where(_ => _.Module.Href == moduleHRef && _.DetailResult != null )
@@ -137,7 +138,8 @@ namespace CastReporting.BLL.Computing
             double? res = null;
             if (null != snapshot && null != snapshot.BusinessCriteriaResults)
             {
-                var result = snapshot.BusinessCriteriaResults
+                double? result = null;
+                result = snapshot.BusinessCriteriaResults
                            .Where(_ => _.Reference.Key == (Int32)bcId && _.ModulesResult != null)
                            .SelectMany(_ => _.ModulesResult)
                            .Where(_ => _.Module.Id == moduleId && _.DetailResult != null)

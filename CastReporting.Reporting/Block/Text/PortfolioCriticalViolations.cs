@@ -45,7 +45,6 @@ namespace CastReporting.Reporting.Block.Text
 
             if (null != reportData && null != reportData.Applications && null != reportData.snapshots)
             {
-                double? rulesViol = 0;
                 double? CV = 0;
 
                 Application[] AllApps = reportData.Applications;

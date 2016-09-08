@@ -541,15 +541,6 @@ namespace CastReporting.Reporting.Block.Table
                     string CurrDocu = "";
                     string CurrArch = "";
 
-                    //string CurrRobuB = "";
-                    //string CurrSecuB = "";
-                    //string CurrPerfB = "";
-                    //string CurrChangeB = "";
-                    //string CurrTransB = "";
-                    //string CurrPPB = "";
-                    //string CurrDocuB = "";
-                    //string CurrArchB = "";
-
                     PrevRobu = string.Format("{0:0.00}", strPreviousRobuAll);
                     PrevSecu = string.Format("{0:0.00}", strPreviousSecuAll);
                     PrevPerf = string.Format("{0:0.00}", strPreviousPerformanceAll);
@@ -578,25 +569,25 @@ namespace CastReporting.Reporting.Block.Table
                     string Tag7 = string.Format("{0:0.00}", TagIds[7]);
 
 
-                    rowData.AddRange(new string[] { "Robustness", PrevRobu, Tag0, CurrRobu, RobustnessSLAViol });
-                    rowData.AddRange(new string[] { "Security", PrevSecu, Tag1, CurrSecu, SecuritySLAViol });
-                    rowData.AddRange(new string[] { "Efficiency", PrevPerf, Tag2, CurrPerf, PerformanceSLAViol });
-                    rowData.AddRange(new string[] { "Changeability", PrevChange, Tag3, CurrChange, ChangeabilitySLAViol });
-                    rowData.AddRange(new string[] { "Transferability", PrevTrans, Tag4, CurrTrans, TransferabilitySLAViol });
-                    rowData.AddRange(new string[] { "Programming Practice", PrevPP, Tag5, CurrPP, ProgrammingPracticeSLAViol });
-                    rowData.AddRange(new string[] { "Documentation", PrevDocu, Tag6, CurrDocu, DocumentationSLAViol });
-                    rowData.AddRange(new string[] { "Architecture/Design", PrevArch, Tag7, CurrArch, ArchitectureSLAViol });
+                    rowData.AddRange(new string[] { Labels.Robustness, PrevRobu, Tag0, CurrRobu, RobustnessSLAViol });
+                    rowData.AddRange(new string[] { Labels.Security, PrevSecu, Tag1, CurrSecu, SecuritySLAViol });
+                    rowData.AddRange(new string[] { Labels.Efficiency, PrevPerf, Tag2, CurrPerf, PerformanceSLAViol });
+                    rowData.AddRange(new string[] { Labels.Changeability, PrevChange, Tag3, CurrChange, ChangeabilitySLAViol });
+                    rowData.AddRange(new string[] { Labels.Transferability, PrevTrans, Tag4, CurrTrans, TransferabilitySLAViol });
+                    rowData.AddRange(new string[] { Labels.ProgrammingPractices, PrevPP, Tag5, CurrPP, ProgrammingPracticeSLAViol });
+                    rowData.AddRange(new string[] { Labels.Documentation, PrevDocu, Tag6, CurrDocu, DocumentationSLAViol });
+                    rowData.AddRange(new string[] { Labels.ArchitecturalDesign, PrevArch, Tag7, CurrArch, ArchitectureSLAViol });
                 }
                 else
                 {
-                    rowData.AddRange(new string[] { "Architecture/Design", " ", " ", " ", (strCurrentArchDesignAll / AllApps.Count()).ToString() });
-                    rowData.AddRange(new string[] { "Robustness", " ", " ", " ", (strCurrentRobuAll / AllApps.Count()).ToString() });
-                    rowData.AddRange(new string[] { "Security", " ", " ", " ", (strCurrentSecuAll / AllApps.Count()).ToString() });
-                    rowData.AddRange(new string[] { "Efficiency", " ", " ", " ", (strCurrentPerformanceAll / AllApps.Count()).ToString() });
-                    rowData.AddRange(new string[] { "Changeability", " ", " ", " ", (strCurrentChangeAll / AllApps.Count()).ToString() });
-                    rowData.AddRange(new string[] { "Transferability", " ", " ", " ", (strCurrentTransferAll / AllApps.Count()).ToString() });
-                    rowData.AddRange(new string[] { "Programming Practice", " ", " ", " ", (strCurrentProgrammingAll / AllApps.Count()).ToString() });
-                    rowData.AddRange(new string[] { "Documentation", " ", " ", " ", (strCurrentDocumentAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { Labels.ArchitecturalDesign, " ", " ", " ", (strCurrentArchDesignAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { Labels.Robustness, " ", " ", " ", (strCurrentRobuAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { Labels.Security, " ", " ", " ", (strCurrentSecuAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { Labels.Efficiency, " ", " ", " ", (strCurrentPerformanceAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { Labels.Changeability, " ", " ", " ", (strCurrentChangeAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { Labels.Transferability, " ", " ", " ", (strCurrentTransferAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { Labels.ProgrammingPractices, " ", " ", " ", (strCurrentProgrammingAll / AllApps.Count()).ToString() });
+                    rowData.AddRange(new string[] { Labels.Documentation, " ", " ", " ", (strCurrentDocumentAll / AllApps.Count()).ToString() });
                 }
             }
 

@@ -54,8 +54,6 @@ namespace CastReporting.Reporting.Block.Graph
             }
             #endregion Item BCID
 
-            int count = 0;
-
             var rowData = new List<String>();
             rowData.AddRange(new string[] {
 				" ",

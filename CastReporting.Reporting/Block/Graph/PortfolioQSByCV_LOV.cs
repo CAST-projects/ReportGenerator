@@ -81,10 +81,12 @@ namespace CastReporting.Reporting.Block.Graph
                                     //double? result = MeasureUtility.GetAddedFunctionPoint(BuiltSnapshot) + MeasureUtility.GetModifiedFunctionPoint(BuiltSnapshot) + MeasureUtility.GetDeletedFunctionPoint(BuiltSnapshot);
                                     double? result = MeasureUtility.GetAfpMetricDF(BuiltSnapshot) + MeasureUtility.GetAfpMetricTF(BuiltSnapshot);
 
-                                    rowData.Add(strCurrentTQI.GetValueOrDefault().ToString());
-                                    rowData.Add(numCritPerKLOC.GetValueOrDefault().ToString());
-                                    rowData.Add(result.GetValueOrDefault().ToString());
-                                    rowData.Add(App.Name.ToString());
+                                    rowData.AddRange(new string[] {
+                                        strCurrentTQI.GetValueOrDefault().ToString(),
+                                        numCritPerKLOC.GetValueOrDefault().ToString(),
+                                        result.GetValueOrDefault().ToString(),
+                                        App.Name.ToString()
+                                    });
 
                                     count++;
                                 }
@@ -96,10 +98,7 @@ namespace CastReporting.Reporting.Block.Graph
                 }
                 if (reportData.Applications.Count() == 1)
                 {
-                    rowData.Add("0");
-                    rowData.Add("0");
-                    rowData.Add("0");
-                    rowData.Add("");
+                    rowData.AddRange(new string[] { "0", "0", "0", "" });
 
                     count++;
                 }

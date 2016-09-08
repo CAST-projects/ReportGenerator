@@ -44,7 +44,6 @@ using CastReporting.Reporting.Atrributes;
 using System.Text.RegularExpressions;
 using CastReporting.Domain;
 using CastReporting.Reporting.Helper;
-using CastReporting.Reporting.ReportingModel;
 
 
 namespace CastReporting.Reporting.Builder

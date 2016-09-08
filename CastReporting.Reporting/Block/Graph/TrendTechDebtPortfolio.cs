@@ -44,8 +44,6 @@ namespace CastReporting.Reporting.Block.Graph
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
 
-            int count = 0;
-
             var rowData = new List<String>();
             rowData.AddRange(new string[] {
 				" ",
