@@ -505,7 +505,7 @@
     <value>Verbleibende SLA</value>
   </data>
   <data name="Acceptable" xml:space="preserve">
-    <value>Acceptable</value>
+    <value>acceptable</value>
   </data>
   <data name="Bad" xml:space="preserve">
     <value>darlig</value>
@@ -514,6 +514,6 @@
     <value>Name des technischen forretning</value>
   </data>
   <data name="Good" xml:space="preserve">
-    <value>God</value>
+    <value>god</value>
   </data>
 </root>

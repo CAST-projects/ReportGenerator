@@ -505,15 +505,15 @@
     <value>Non-conformités SLA</value>
   </data>
   <data name="Acceptable" xml:space="preserve">
-    <value>Acceptable</value>
+    <value>acceptable</value>
   </data>
   <data name="Bad" xml:space="preserve">
-    <value>pauvre</value>
+    <value>mauvais</value>
   </data>
   <data name="BusinessCriterionName" xml:space="preserve">
     <value>Nom du critère mètier</value>
   </data>
   <data name="Good" xml:space="preserve">
-    <value>Bien</value>
+    <value>bon</value>
   </data>
 </root>

@@ -505,15 +505,15 @@
     <value>Violazioni SLA</value>
   </data>
   <data name="Acceptable" xml:space="preserve">
-    <value>Accettabile</value>
+    <value>accettabile</value>
   </data>
   <data name="Bad" xml:space="preserve">
-    <value>Povero</value>
+    <value>povero</value>
   </data>
   <data name="BusinessCriterionName" xml:space="preserve">
     <value>Nome criterio affari</value>
   </data>
   <data name="Good" xml:space="preserve">
-    <value>Buona</value>
+    <value>buona</value>
   </data>
 </root>
