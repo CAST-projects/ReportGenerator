@@ -34,7 +34,7 @@
             </Button.Content>
         </Button>
         <StackPanel Grid.Row="0" Grid.Column="1" Height="50">
-            <TextBlock x:Name="txtTitle"  Text="{Binding  Converter={StaticResource MessageConverter}, ConverterParameter=lblTitleMessages}" Margin="4,18,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="17" Foreground="White" Height="35"/>
+            <TextBlock x:Name="txtTitle"  Text="{Binding  Converter={StaticResource MessageConverter}, ConverterParameter=lblTitleMessages}" Margin="4,14,0,0" FontSize="17" Foreground="White" Height="35"/>
         </StackPanel>
 
         <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Path=Messages, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Control:ucMessage}}}" Margin="24,10,24,24">

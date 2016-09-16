@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Height="50">
-            <TextBlock Text="{x:Static label:Messages.lblTitleManageWS}" Margin="20,20,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="17" Foreground="White" Height="35"/>
+            <TextBlock Text="{x:Static label:Messages.lblTitleManageWS}" Margin="20,16,0,0" FontSize="17" Foreground="White" Height="35"/>
         </StackPanel>
 
         <Border Grid.Row="1" CornerRadius="4" Margin="46,20,46,0" Padding="0,0,10,20">

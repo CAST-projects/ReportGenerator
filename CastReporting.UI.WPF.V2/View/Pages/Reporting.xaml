@@ -111,7 +111,7 @@
                                 <ControlTemplate TargetType="TabItem">
                                     <Grid Background="#FF282828">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="40"/>
                                             <RowDefinition Height="10"/>
                                         </Grid.RowDefinitions>
                                         <Border Grid.Row="0" Name="Border" BorderThickness="0,0,0,0" BorderBrush="Transparent" Margin="10,0,10,0" >
@@ -147,12 +147,12 @@
                 </i:Interaction.Triggers>
                 <TabItem Name="tabApplication" Cursor="Hand">
                     <TabItem.Header>
-                        <TextBlock Text="{x:Static label:Messages.lblHeaderApplication}" FontFamily="Kozuka Gothic Pr6N EL" FontSize="21.333"/>
+                        <TextBlock Text="{x:Static label:Messages.lblHeaderApplication}" FontSize="21.333"/>
                     </TabItem.Header>
                     <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="22"/>
+                    <RowDefinition Height="12"/>
                     <RowDefinition Height="64"/>
                     <RowDefinition Height="64"/>
                     <RowDefinition Height="64"/>
@@ -202,12 +202,12 @@
 
                 <TabItem Name="tabProfile" Cursor="Hand">
                     <TabItem.Header>
-                        <TextBlock Text="{x:Static label:Messages.lblHeaderPortfolio}" FontFamily="Kozuka Gothic Pr6N EL" FontSize="21.333"/>
+                        <TextBlock Text="{x:Static label:Messages.lblHeaderPortfolio}" FontSize="21.333"/>
                     </TabItem.Header>
                     <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="12"/>
                             <RowDefinition Height="64"/>
                             <RowDefinition Height="64"/>
                             <RowDefinition Height="64"/>
@@ -265,7 +265,7 @@
                     </Button.Content>
                 </Button>
                 <StackPanel Grid.Row="0" Grid.Column="1" Height="50">
-                    <TextBlock Text="{x:Static label:Messages.lblTitleTemplateSelection}" Margin="6,14,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="17" Foreground="White" Height="35"/>
+                    <TextBlock Text="{x:Static label:Messages.lblTitleTemplateSelection}" Margin="6,10,0,0" FontSize="17" Foreground="White" Height="35"/>
                 </StackPanel>
 
                 <ListBox ToolTip="{x:Static label:Messages.toolTipTemplateLb}" x:Name="TemplateList" Grid.Row="1" Grid.ColumnSpan="2"

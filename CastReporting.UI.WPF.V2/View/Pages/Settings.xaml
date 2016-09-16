@@ -39,13 +39,13 @@
             <RowDefinition Height="auto" MinHeight="200"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="0,18,0,0">
-            <TextBlock Text="{x:Static label:Messages.lblTitleSettings}" Margin="20,0,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="17" Foreground="White" Height="35"/>
+        <StackPanel Grid.Row="0" Margin="0,14,0,0">
+            <TextBlock Text="{x:Static label:Messages.lblTitleSettings}" Margin="20,0,0,0" FontSize="17" Foreground="White" Height="35"/>
         </StackPanel>
 
 
         <StackPanel Grid.Row="1" VerticalAlignment="Top" Height="146" >
-            <Label Content="{x:Static label:Messages.lblTitleApplicationSettings}"  FontFamily="Kozuka Gothic Pr6N EL" FontSize="16" Foreground="#FF01a5c7" Margin="46,0,40,0"/>
+            <Label Content="{x:Static label:Messages.lblTitleApplicationSettings}"  FontSize="16" Foreground="#FF01a5c7" Margin="46,0,40,0"/>
             <Border BorderThickness="0" Background="#FF484d4e" CornerRadius="4" Margin="46,0,46,0" Padding="20, 5, 20, 5">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -100,7 +100,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" VerticalAlignment="Top" Height="132">
-            <Label Content="{x:Static label:Messages.lblTitleApplicationSize}" FontFamily="Kozuka Gothic Pr6N EL" FontSize="16" Foreground="#FF01a5c7" Margin="46,0,40,0"/>
+            <Label Content="{x:Static label:Messages.lblTitleApplicationSize}" FontSize="16" Foreground="#FF01a5c7" Margin="46,0,40,0"/>
             <Border BorderThickness="0" Background="#FF484d4e" CornerRadius="4" Margin="46,0,46,0" Padding="20, 5, 20, 5">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -128,7 +128,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="3" VerticalAlignment="Top" Height="132" >
-            <Label Content="{x:Static label:Messages.lblTitleApplicationQuality}"  FontFamily="Kozuka Gothic Pr6N EL" FontSize="16" Foreground="#FF01a5c7" Margin="46,0,40,0"/>
+            <Label Content="{x:Static label:Messages.lblTitleApplicationQuality}"  FontSize="16" Foreground="#FF01a5c7" Margin="46,0,40,0"/>
             <Border BorderThickness="0" Background="#FF484d4e" CornerRadius="4" Margin="46,0,46,0" Padding="20, 5, 20, 5">
                 <Grid>
 
