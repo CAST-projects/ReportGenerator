@@ -40,14 +40,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="0,18,0,0">
-            <TextBlock Text="{x:Static label:Messages.lblTitleSettings}" Margin="20,0,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="21.333" Foreground="White" Height="35"/>
-            <Canvas  Height="8"  Margin="20,6,0,0">
-                <Line
-            			X1="0" Y1="0"
-            			X2="48" Y2="0"
-            			Stroke="White"
-            			StrokeThickness="8" HorizontalAlignment="Left" Height="8" Fill="White" Width="82"/>
-            </Canvas>
+            <TextBlock Text="{x:Static label:Messages.lblTitleSettings}" Margin="20,0,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="17" Foreground="White" Height="35"/>
         </StackPanel>
 
 
@@ -84,7 +77,7 @@
                                  Margin="5,0"
                                  Click="Button_Click">
                             <Button.Content>
-                                <Image Source="/CastReporting.UI.WPF;component/Resources/Images/directory.png" VerticalAlignment="Center" HorizontalAlignment="Right" RenderOptions.EdgeMode="Aliased"  Width="30" Height="30"/>
+                                <Image Source="/CastReporting.UI.WPF;component/Resources/Images/directory.png" VerticalAlignment="Center" HorizontalAlignment="Center" RenderOptions.EdgeMode="Aliased"  Width="22" Height="22" Margin="0,0,2,0"/>
                             </Button.Content>
                         </Button>
 

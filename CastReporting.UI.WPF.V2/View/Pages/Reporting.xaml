@@ -94,34 +94,45 @@
             </Border>
         </Grid>
 
-        <Grid>
+        <Grid Background="#FF282828">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="418*"/>
                 <ColumnDefinition Width="418*"/>
             </Grid.ColumnDefinitions>
 
-            <TabControl DockPanel.Dock="Left" BorderBrush="#292829"  Background="Transparent"  Padding="5" Margin="0,0,0,0"
+            <TabControl DockPanel.Dock="Left" Background="#FF282828"  Padding="5" Margin="0,0,0,0"
                     SelectedIndex="{Binding SelectedTab}"  
                     Grid.Row="0" 
-                    x:Name="Tabs">
+                    x:Name="Tabs" BorderThickness="0">
                 <TabControl.Resources>
                     <Style TargetType="TabItem">
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="TabItem">
-                                    <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Black" CornerRadius="4,4,0,0" Margin="2,0">
-                                        <ContentPresenter x:Name="ContentSite"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        ContentSource="Header"
-                                        Margin="8,2"/>
-                                    </Border>
+                                    <Grid Background="#FF282828">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="10"/>
+                                        </Grid.RowDefinitions>
+                                        <Border Grid.Row="0" Name="Border" BorderThickness="0,0,0,0" BorderBrush="Transparent" Margin="10,0,10,0" >
+                                            <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Left" ContentSource="Header" Margin="8,2"/>
+                                        </Border>
+                                        <Canvas  Grid.Row="1" Height="7"  Margin="20,1,20,0" ClipToBounds="True">
+                                            <Line Name="tabUnderline"
+            			                        X1="0" Y1="0"
+            			                        X2="1000" Y2="0"
+            			                        Stroke="White"
+            			                        StrokeThickness="8" HorizontalAlignment="Left" Height="5" Fill="White"/>
+                                        </Canvas>
+                                    </Grid>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" /> 
+                                            <Setter Property="Foreground" Value="#FF00d5ff" />
+                                            <Setter TargetName="tabUnderline" Property="Stroke" Value="#FF00d5ff" />
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="False">
-                                            <Setter TargetName="Border" Property="Background" Value="White" />
+                                            <Setter Property="Foreground" Value="#FFe6e6e6" />
+                                            <Setter TargetName="tabUnderline" Property="Stroke" Value="transparent" />
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -134,11 +145,14 @@
                         <i:InvokeCommandAction Command="{Binding ReloadTemplatesCommand}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <TabItem Name="tabApplication"  Header="{x:Static label:Messages.lblHeaderApplication}">
-                    <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF2d2d30" Margin="0,0,0,0">
+                <TabItem Name="tabApplication" Cursor="Hand">
+                    <TabItem.Header>
+                        <TextBlock Text="{x:Static label:Messages.lblHeaderApplication}" FontFamily="Kozuka Gothic Pr6N EL" FontSize="21.333"/>
+                    </TabItem.Header>
+                    <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="22"/>
                     <RowDefinition Height="64"/>
                     <RowDefinition Height="64"/>
                     <RowDefinition Height="64"/>
@@ -146,14 +160,7 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" Height="50">
-                    <TextBlock Text="{x:Static label:Messages.lblTitleSnapshotSelection}" Margin="10,-6,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="21.333" Foreground="White" Height="35"/>
-                    <Canvas  Height="4"  Margin="10,5,0,0">
-                        <Line
-            			X1="0" Y1="0"
-            			X2="68" Y2="0"
-            			Stroke="White"
-            			StrokeThickness="6" HorizontalAlignment="Left" Height="4" Fill="White" Width="82"/>
-                    </Canvas>
+                    
                 </StackPanel>
 
                 <Grid Grid.Row="1" Margin="20,0,20,0">
@@ -193,27 +200,19 @@
             </Grid>
                 </TabItem>
 
-                <TabItem Name="tabProfile" Header="{x:Static label:Messages.lblHeaderPortfolio}">
-                    <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF2d2d30" Margin="0,0,0,0">
+                <TabItem Name="tabProfile" Cursor="Hand">
+                    <TabItem.Header>
+                        <TextBlock Text="{x:Static label:Messages.lblHeaderPortfolio}" FontFamily="Kozuka Gothic Pr6N EL" FontSize="21.333"/>
+                    </TabItem.Header>
+                    <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="70"/>
+                            <RowDefinition Height="22"/>
                             <RowDefinition Height="64"/>
                             <RowDefinition Height="64"/>
                             <RowDefinition Height="64"/>
                             <RowDefinition Height="64"/>
                         </Grid.RowDefinitions>
-
-                        <StackPanel Grid.Row="0" Height="50">
-                            <TextBlock Text="{x:Static label:Messages.lblPortfolioCategoriesSelection}" Margin="10,-6,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="21.333" Foreground="White" Height="35"/>
-                            <Canvas  Height="4"  Margin="10,5,0,0">
-                                <Line
-            			X1="0" Y1="0"
-            			X2="68" Y2="0"
-            			Stroke="White"
-            			StrokeThickness="6" HorizontalAlignment="Left" Height="4" Fill="White" Width="82"/>
-                            </Canvas>
-                        </StackPanel>
 
                         <Grid Grid.Row="1" Margin="20,0,20,0">
                             <Grid.ColumnDefinitions>
@@ -246,9 +245,9 @@
 
            
 
-            <Grid  Grid.Column="1" DockPanel.Dock="Left" Background="#FF282828">
+            <Grid  Grid.Column="1" DockPanel.Dock="Left" Background="#FF282828" Margin="0,30,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="44"/>
+                    <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="374*"/>
                 </Grid.ColumnDefinitions>
 
@@ -260,27 +259,20 @@
 
                 <Button  ToolTip="{x:Static label:Messages.toolTipRefreshTemplate}" Grid.Row="0" Grid.Column="0" Style="{StaticResource IcoButtonStyle}"
                                     Command="{Binding LoadTemplatesCommand}" 
-                                    IsEnabled="{Binding SelectedTemplateFile}" Margin="10,8,0,0">
+                                    IsEnabled="{Binding SelectedTemplateFile}" Margin="20,4,0,0">
                     <Button.Content>
-                        <Image Source="/CastReporting.UI.WPF;component/Resources/Images/refresh.png" VerticalAlignment="Center" HorizontalAlignment="Right" RenderOptions.EdgeMode="Aliased"  Width="30" Height="30"/>
+                        <Image Source="/CastReporting.UI.WPF;component/Resources/Images/refresh.png" VerticalAlignment="Center" HorizontalAlignment="Center" RenderOptions.EdgeMode="Aliased"  Width="24" Height="24" Margin="0,0,2,0"/>
                     </Button.Content>
                 </Button>
                 <StackPanel Grid.Row="0" Grid.Column="1" Height="50">
-                    <TextBlock Text="{x:Static label:Messages.lblTitleTemplateSelection}" Margin="10,0,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="21.333" Foreground="White" Height="35"/>
-                    <Canvas  Height="8"  Margin="10,5,0,0">
-                        <Line
-            			    X1="0" Y1="0"
-            			    X2="68" Y2="0"
-            			    Stroke="White"
-            			    StrokeThickness="8" HorizontalAlignment="Left" Height="8" Fill="White" Width="82"/>
-                    </Canvas>
+                    <TextBlock Text="{x:Static label:Messages.lblTitleTemplateSelection}" Margin="6,14,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="17" Foreground="White" Height="35"/>
                 </StackPanel>
 
                 <ListBox ToolTip="{x:Static label:Messages.toolTipTemplateLb}" x:Name="TemplateList" Grid.Row="1" Grid.ColumnSpan="2"
                              Height="Auto" 
                              ItemsSource="{Binding TemplateFiles}" 
                              SelectedValue="{Binding SelectedTemplateFile}" 
-                             Margin="20,34,20,0" 
+                             Margin="20,4,20,0" 
                              MouseDoubleClick="OnFileListDoubleClicked"  />
 
                 <StackPanel  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,4,20,4" Width="115">

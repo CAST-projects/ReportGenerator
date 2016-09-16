@@ -251,7 +251,9 @@
     <!--<Style TargetType="Button">-->
     
     <!-- ============================= STANDARD BUTTON IN PURE FLAT STYLE ==============================-->
-    <Style x:Key="StdButtonStyle" TargetType="{x:Type Button}">    
+    <Style x:Key="StdButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Cursor"
+            Value="Hand" />
         <Setter Property="SnapsToDevicePixels"
             Value="true" />
         <Setter Property="OverridesDefaultStyle"
@@ -337,6 +339,8 @@
 
     <!-- ============================= MENU BUTTON IN TRANSPARENT STYLE ==============================-->
     <Style x:Key="MenuButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Cursor"
+            Value="Hand" />
         <Setter Property="SnapsToDevicePixels"
             Value="true" />
         <Setter Property="OverridesDefaultStyle"
@@ -423,19 +427,21 @@
             Value="true" />
         <Setter Property="OverridesDefaultStyle"
             Value="true" />
+        <Setter Property="Cursor"
+            Value="Hand" />
         <Setter Property="FontFamily"
             Value="Open Sans Bold" />
         <Setter Property="FontSize"
             Value="12" />
 
         <Setter Property="MinHeight"
-            Value="34" />
+            Value="28" />
         <Setter Property="Height"
-            Value="34" />
+            Value="28" />
         <Setter Property="MinWidth"
-            Value="34" />
+            Value="28" />
         <Setter Property="Width"
-            Value="34" />
+            Value="28" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">

@@ -18,21 +18,14 @@
 
     <Grid Margin="0,0" Background="#FF202020" Width="Auto" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="84"/>
+            <RowDefinition Height="54"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="32"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Height="50">
-            <TextBlock Text="{x:Static label:Messages.lblTitleManageWS}" Margin="20,0,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="21.333" Foreground="White" Height="35"/>
-            <Canvas  Height="8"  Margin="20,6,0,0">
-                <Line
-            			X1="0" Y1="0"
-            			X2="68" Y2="0"
-            			Stroke="White"
-            			StrokeThickness="8" HorizontalAlignment="Left" Height="8" Fill="White" Width="82"/>
-            </Canvas>
+            <TextBlock Text="{x:Static label:Messages.lblTitleManageWS}" Margin="20,20,0,0" FontFamily="Kozuka Gothic Pr6N EL" FontSize="17" Foreground="White" Height="35"/>
         </StackPanel>
 
         <Border Grid.Row="1" CornerRadius="4" Margin="46,20,46,0" Padding="0,0,10,20">
