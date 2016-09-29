@@ -35,8 +35,12 @@ namespace CastReporting.Repositories
         #region CONSTANTS
         
         //wow7010/applications/12/results?quality-indicators=(business-criteria,technical-criteria,quality-rules,quality-distributions,quality-measures)&sizing-measures=(technical-size-measures,run-time-statistics,technical-debt-statistics,critical-violation-statistics,functional-weight-measures)&background-facts=(66061,66002,66004,66006,66001,66003,66005,66007)
-        private const string _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&snapshots=({2})&modules=({3}))&technologies=({4})&categories=({5})&select=evolutionSummary";
-        private const string _query_result_sizing_measures = "{0}/results?sizing-measures=({1})&snapshots=({2})&technologies=({3})&modules=({4})";      
+        // private const string _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&snapshots=({2})&modules=({3})&technologies=({4})&categories=({5})&select=evolutionSummary";
+        // private const string _query_result_sizing_measures = "{0}/results?sizing-measures=({1})&snapshots=({2})&technologies=({3})&modules=({4})";
+        // Sometimes modules, technologies, snapshots, categories are null and the rest api 8.2 does not support it anymore for security reasons
+        private const string _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&select=evolutionSummary";
+        private const string _query_result_sizing_measures = "{0}/results?sizing-measures=({1})";
+
         private const string _query_configuration = "{0}/configuration/snapshots/{1}";
         private const string _query_action_plan = "{0}/action-plan/summary";
         private const string _query_action_plan2 = "{0}/actionPlan/summary";
@@ -379,7 +383,21 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         IEnumerable<Result> ICastRepsitory.GetResultsQualityIndicators(string hRef, string qiParam, string snapshotsParam, string modulesParam, string technologiesParam, string categoriesParam)
         {
-            string relativeURL = string.Format(_query_result_quality_indicators, hRef, qiParam, snapshotsParam, modulesParam, technologiesParam, categoriesParam);
+            // _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&snapshots=({2})&modules=({3})&technologies=({4})&categories=({5})&select=evolutionSummary"
+            String query = _query_result_quality_indicators;
+            if (String.Empty != snapshotsParam)
+                query = query + "&snapshots=({2})";
+
+            if (String.Empty != modulesParam)
+                query = query + "&modules=({3})";
+
+            if (String.Empty != technologiesParam)
+                query = query + "&technologies=({4})";
+
+            if (String.Empty != categoriesParam)
+                query = query + "&categories=({5})";
+
+            string relativeURL = string.Format(query, hRef, qiParam, snapshotsParam, modulesParam, technologiesParam, categoriesParam);
 
             return this.CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
         }
@@ -392,7 +410,19 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         IEnumerable<Result> ICastRepsitory.GetResultsSizingMeasures(string hRef, string param, string snapshotsParam, string technologiesParam, string moduleParam)
         {
-            string relativeURL = string.Format(_query_result_sizing_measures, hRef, param, snapshotsParam, technologiesParam, moduleParam);
+            // _query_result_sizing_measures = "{0}/results?sizing-measures=({1})&snapshots=({2})&technologies=({3})&modules=({4})"
+            String query = _query_result_sizing_measures;
+
+            if (String.Empty != snapshotsParam)
+                query = query + "&snapshots=({2})";
+
+            if (String.Empty != technologiesParam)
+                query = query + "&technologies=({3})";
+
+            if (String.Empty != moduleParam)
+                query = query + "&modules=({4})";
+
+            string relativeURL = string.Format(query, hRef, param, snapshotsParam, technologiesParam, moduleParam);
 
             return this.CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
         }

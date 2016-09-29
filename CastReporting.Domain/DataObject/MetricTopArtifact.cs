@@ -19,7 +19,7 @@ namespace CastReporting.Domain
         public string ObjectStatus { get; set; }
 
         [DataMember(Name = "Snapshot date")]
-        public DateTime SnapshotDate { get; set; }
+        public string SnapshotDate { get; set; }
 
         [DataMember(Name = "Diagnosis findings")]
         public string DiagnosisFindings { get; set; }
