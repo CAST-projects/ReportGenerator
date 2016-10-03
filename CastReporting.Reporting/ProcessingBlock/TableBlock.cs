@@ -402,7 +402,10 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                 cell = contentCells[idx].CloneNode(true) as OXD.TableCell;
                             }
                             ModifyPowerPointCellTextContent(cell, item);
-                            row.Append(cell);
+                            
+                            //row.Append(cell); => in office 2016, element <extLst> should absolutely be in the latest position in a row
+                            row.InsertBefore<OXD.TableCell>(cell, row.Descendants<OXD.ExtensionList>().FirstOrDefault()); 
+
                             idx = ++idx % content.NbColumns;
                             if (0 == idx)
                             {
