@@ -101,6 +101,8 @@
     <Compile Include="Block\Table\LocPerModule.cs" />
     <Compile Include="Block\Table\MetricTopArtifact.cs" />
     <Compile Include="Block\Table\ModuleList.cs" />
+    <Compile Include="Block\Table\PF_IgnoredApps.cs" />
+    <Compile Include="Block\Table\PF_IgnoredSnapshots.cs" />
     <Compile Include="Block\Table\PortfolioReleasePerformance.cs" />
     <Compile Include="Block\Table\PortfolioTopRiskiestApps.cs" />
     <Compile Include="Block\Table\QuantityEvolution.cs" />

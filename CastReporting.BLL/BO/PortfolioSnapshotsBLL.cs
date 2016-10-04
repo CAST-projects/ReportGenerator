@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace CastReporting.BLL
 {
@@ -46,8 +47,9 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
-        public void SetQualityIndicators()
+        public List<string> SetQualityIndicators()
         {
+            List<string> Ignore_Snaps = new List<string>();
             Int32[] businessCriterias = (Int32[])Enum.GetValues(typeof(Constants.BusinessCriteria));
 
             string strBusinessCriterias = string.Join(",", businessCriterias);
@@ -68,49 +70,73 @@ namespace CastReporting.BLL
                 {
                     for (int i = 0; i < _Snapshot.Count(); i++)
                     {
-                        var qualityIndicators = castRepsitory.GetResultsQualityIndicators(_Snapshot[i].Href, qualityParams, string.Empty, "$all", "$all", "$all")
-                                                                              .Where(_ => _.ApplicationResults != null)
-                                                                              .SelectMany(_ => _.ApplicationResults)
-                                                                              .ToList();
+                        try
+                        {
+                            var qualityIndicators = castRepsitory.GetResultsQualityIndicators(_Snapshot[i].Href, qualityParams, string.Empty, "$all", "$all", "$all")
+                                                                                  .Where(_ => _.ApplicationResults != null)
+                                                                                  .SelectMany(_ => _.ApplicationResults)
+                                                                                  .ToList();
 
 
-                        _Snapshot[i].BusinessCriteriaResults = qualityIndicators.Where(_ => _.Type == "business-criteria").ToList();
-                        _Snapshot[i].QualityDistributionsResults = qualityIndicators.Where(_ => _.Type == "quality-distributions").ToList();
-                        _Snapshot[i].QualityMeasuresResults = qualityIndicators.Where(_ => _.Type == "quality-measures").ToList();
-                        _Snapshot[i].QualityRulesResults = qualityIndicators.Where(_ => _.Type == "quality-rules").ToList();
-                        _Snapshot[i].TechnicalCriteriaResults = qualityIndicators.Where(_ => _.Type == "technical-criteria").ToList();
+                            _Snapshot[i].BusinessCriteriaResults = qualityIndicators.Where(_ => _.Type == "business-criteria").ToList();
+                            _Snapshot[i].QualityDistributionsResults = qualityIndicators.Where(_ => _.Type == "quality-distributions").ToList();
+                            _Snapshot[i].QualityMeasuresResults = qualityIndicators.Where(_ => _.Type == "quality-measures").ToList();
+                            _Snapshot[i].QualityRulesResults = qualityIndicators.Where(_ => _.Type == "quality-rules").ToList();
+                            _Snapshot[i].TechnicalCriteriaResults = qualityIndicators.Where(_ => _.Type == "technical-criteria").ToList();
+                        }
+                        catch (WebException ex)
+                        {
+                            Ignore_Snaps.Add(_Snapshot[i].Href);
+                            continue;
+                        }
                     }
                 }
             }
 
-            SetBusinessCriteriaCCRulesViolations();
-            SetBusinessCriteriaNCRulesViolations();
-            SetTechnicalCriteriaRulesViolations();
+
+            List<string> Ignore_SetBusinessCriteriaCCRulesViolations = SetBusinessCriteriaCCRulesViolations();
+            List<string> Ignore_SetBusinessCriteriaNCRulesViolations = SetBusinessCriteriaNCRulesViolations();
+            List<string> Ignore_SetTechnicalCriteriaRulesViolations = SetTechnicalCriteriaRulesViolations();
+
+            var All = Ignore_Snaps.Concat(Ignore_SetBusinessCriteriaCCRulesViolations).Concat(Ignore_SetBusinessCriteriaNCRulesViolations).Concat(Ignore_SetTechnicalCriteriaRulesViolations).ToList();
+
+            return All;
         }
 
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetModules()
+        public List<string> SetModules()
         {
+            List<string> IgnoreSnaps = new List<string>();
             using (var castRepsitory = GetRepository())
             {
                 if (_Snapshot.Count() > 0)
                 {
                     for (int i = 0; i < _Snapshot.Count(); i++)
                     {
-                        _Snapshot[i].Modules = castRepsitory.GetModules(_Snapshot[i].Href);
+                        try
+                        {
+                            _Snapshot[i].Modules = castRepsitory.GetModules(_Snapshot[i].Href);
+                        }
+                        catch (WebException ex)
+                        {
+                            IgnoreSnaps.Add(_Snapshot[i].Href);
+                            continue;
+                        }
                     }
                 }
             }
+            return IgnoreSnaps;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void SetSizingMeasure()
+        public List<string> SetSizingMeasure()
         {
+            List<string> IgnoreApps = new List<string>();
             Int32[] sizingMeasures = (Int32[])Enum.GetValues(typeof(Constants.SizingInformations));
             string strSizingMeasures = string.Join(",", sizingMeasures);
 
@@ -120,10 +146,19 @@ namespace CastReporting.BLL
                 {
                     for (int i = 0; i < _Snapshot.Count(); i++)
                     {
-                        _Snapshot[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot[i].Href, strSizingMeasures, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                        try
+                        {
+                            _Snapshot[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot[i].Href, strSizingMeasures, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                        }
+                        catch (WebException ex)
+                        {
+                            IgnoreApps.Add(_Snapshot[i].Href);
+                            continue;
+                        }
                     }
                 }
             }
+            return IgnoreApps;
         }
 
 
@@ -131,29 +166,34 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <remarks>A verifier s'il faut utiliser la conf</remarks>
-        public void SetConfigurationBusinessCriterias()
+        public List<string> SetConfigurationBusinessCriterias()
         {
+            List<string> IgnoreSnaps = new List<string>();
             using (var castRepsitory = GetRepository())
             {
                 if (_Snapshot.Count() > 0)
                 {
                     for (int i = 0; i < _Snapshot.Count(); i++)
                     {
-                        _Snapshot[i].QIBusinessCriterias = castRepsitory.GetConfBusinessCriteriaBySnapshot(_Snapshot[i].DomainId, _Snapshot[i].Id);
-
-                        List<QIBusinessCriteria> fullQibusinesCriterias = new List<QIBusinessCriteria>();
-
-                        foreach (var QIBusinessCriteria in _Snapshot[i].QIBusinessCriterias)
+                        try
                         {
-                            fullQibusinesCriterias.Add(castRepsitory.GetConfBusinessCriteria(QIBusinessCriteria.HRef));
-
+                            _Snapshot[i].QIBusinessCriterias = castRepsitory.GetConfBusinessCriteriaBySnapshot(_Snapshot[i].DomainId, _Snapshot[i].Id);
+                            List<QIBusinessCriteria> fullQibusinesCriterias = new List<QIBusinessCriteria>();
+                            foreach (var QIBusinessCriteria in _Snapshot[i].QIBusinessCriterias)
+                            {
+                                fullQibusinesCriterias.Add(castRepsitory.GetConfBusinessCriteria(QIBusinessCriteria.HRef));
+                            }
+                            _Snapshot[i].QIBusinessCriterias = fullQibusinesCriterias;
                         }
-
-                        _Snapshot[i].QIBusinessCriterias = fullQibusinesCriterias;
+                        catch (WebException ex)
+                        {
+                            IgnoreSnaps.Add(_Snapshot[i].Href);
+                            continue;
+                        }
                     }
                 }
             }
-           
+            return IgnoreSnaps;
         }
 
      
@@ -161,8 +201,9 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
-        public void SetComplexity()
+        public List<string> SetComplexity()
         {
+            List<string> IgnoreSnaps = new List<string>();
             var values = (int[])Enum.GetValues(typeof(Constants.QualityDistribution));
 
             List<ApplicationResult> results = new List<ApplicationResult>();
@@ -173,23 +214,32 @@ namespace CastReporting.BLL
                 {
                     for (int j = 0; j < _Snapshot.Count(); j++)
                     {
-                        for (int i = 0; i < values.Length; i++)
+                        try
                         {
-                            var appResults = castRepsitory.GetComplexityIndicators(_Snapshot[j].Href, values[i].ToString());
-                            foreach (var result in appResults)
+                            for (int i = 0; i < values.Length; i++)
                             {
-                                foreach (var appResult in result.ApplicationResults)
+                                var appResults = castRepsitory.GetComplexityIndicators(_Snapshot[j].Href, values[i].ToString());
+                                foreach (var result in appResults)
                                 {
-                                    results.Add(appResult);
+                                    foreach (var appResult in result.ApplicationResults)
+                                    {
+                                        results.Add(appResult);
+                                    }
+
                                 }
 
                             }
+                            _Snapshot[j].CostComplexityResults = results;
                         }
-                        _Snapshot[j].CostComplexityResults = results;
+                        catch (WebException ex)
+                        {
+                            IgnoreSnaps.Add(_Snapshot[j].Href);
+                            continue;
+                        }
                     }
                 }
             }
-
+            return IgnoreSnaps;
         }
 
 
@@ -231,70 +281,98 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
-        private void SetBusinessCriteriaCCRulesViolations()
+        private List<string> SetBusinessCriteriaCCRulesViolations()
         {
+            List<string> IgnoreSnaps = new List<string>();
             using (var castRepsitory = GetRepository())
             {
                 if (_Snapshot.Count() > 0)
                 {
                     for (int i = 0; i < _Snapshot.Count(); i++)
                     {
-                        foreach (var businessCriteria in _Snapshot[i].BusinessCriteriaResults)
+                        try
                         {
-                            var results = castRepsitory.GetRulesViolations(_Snapshot[i].Href, "cc", businessCriteria.Reference.Key.ToString());
+                            foreach (var businessCriteria in _Snapshot[i].BusinessCriteriaResults)
+                            {
+                                var results = castRepsitory.GetRulesViolations(_Snapshot[i].Href, "cc", businessCriteria.Reference.Key.ToString());
 
-                            businessCriteria.CriticalRulesViolation = results.SelectMany(x => x.ApplicationResults).ToList();
+                                businessCriteria.CriticalRulesViolation = results.SelectMany(x => x.ApplicationResults).ToList();
+                            }
+                        }
+                        catch (WebException ex)
+                        {
+                            IgnoreSnaps.Add(_Snapshot[i].Href);
+                            continue;
                         }
                     }
                 }
             }
+            return IgnoreSnaps;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private void SetBusinessCriteriaNCRulesViolations()
+        private List<string> SetBusinessCriteriaNCRulesViolations()
         {
+            List<string> Ignore_snaps = new List<string>();
             using (var castRepsitory = GetRepository())
             {
                 if (_Snapshot.Count() > 0)
                 {
                     for (int i = 0; i < _Snapshot.Count(); i++)
                     {
-                        foreach (var businessCriteria in _Snapshot[i].BusinessCriteriaResults)
+                        try
                         {
-                            var results = castRepsitory.GetRulesViolations(_Snapshot[i].Href, "nc", businessCriteria.Reference.Key.ToString());
+                            foreach (var businessCriteria in _Snapshot[i].BusinessCriteriaResults)
+                            {
+                                var results = castRepsitory.GetRulesViolations(_Snapshot[i].Href, "nc", businessCriteria.Reference.Key.ToString());
 
-                            businessCriteria.NonCriticalRulesViolation = results.SelectMany(x => x.ApplicationResults).ToList();
+                                businessCriteria.NonCriticalRulesViolation = results.SelectMany(x => x.ApplicationResults).ToList();
+                            }
+                        }
+                        catch (WebException ex)
+                        {
+                            Ignore_snaps.Add(_Snapshot[i].Href);
+                            continue;
                         }
                     }
                 }
             }
+            return Ignore_snaps;
         }
 
 
         /// <summary>
         /// 
         /// </summary>
-        private void SetTechnicalCriteriaRulesViolations()
+        private List<string> SetTechnicalCriteriaRulesViolations()
         {
+            List<string> IgnoreSnaps = new List<string>();
             using (var castRepsitory = GetRepository())
             {
                 if (_Snapshot.Count() > 0)
                 {
                     for (int i = 0; i < _Snapshot.Count(); i++)
                     {
-                        foreach (var technicalCriteria in _Snapshot[i].TechnicalCriteriaResults)
+                        try
                         {
+                            foreach (var technicalCriteria in _Snapshot[i].TechnicalCriteriaResults)
+                            {
+                                var results = castRepsitory.GetRulesViolations(_Snapshot[i].Href, "c", technicalCriteria.Reference.Key.ToString());
 
-                            var results = castRepsitory.GetRulesViolations(_Snapshot[i].Href, "c", technicalCriteria.Reference.Key.ToString());
-
-
-                            technicalCriteria.RulesViolation = results.SelectMany(x => x.ApplicationResults).ToList();
+                                technicalCriteria.RulesViolation = results.SelectMany(x => x.ApplicationResults).ToList();
+                            }
+                        }
+                        catch (WebException ex)
+                        {
+                            IgnoreSnaps.Add(_Snapshot[i].Href);
+                            continue;
                         }
                     }
                 }
             }
+            return IgnoreSnaps;
         }
 
 
@@ -305,18 +383,20 @@ namespace CastReporting.BLL
         /// </summary>
         /// <param name="snapshot"></param>
         /// <returns></returns>
-        static public void BuildSnapshotResult(WSConnection connection, Snapshot[] snapshot, bool withActionPlan)
+        static public string[] BuildSnapshotResult(WSConnection connection, Snapshot[] snapshot, bool withActionPlan)
         {
             //Build modules
             using (PortfolioSnapshotsBLL snapshotBll = new PortfolioSnapshotsBLL(connection, snapshot))
             {
-                snapshotBll.SetModules();
-                snapshotBll.SetQualityIndicators();
-                snapshotBll.SetSizingMeasure();
-                snapshotBll.SetConfigurationBusinessCriterias();
-                snapshotBll.SetComplexity();
+                List<string> Snaps_SetModules = snapshotBll.SetModules();
+                List<string> Snaps_SetQualityIndicators = snapshotBll.SetQualityIndicators();
+                List<string> Snaps_SetSizingMeasure = snapshotBll.SetSizingMeasure();
+                List<string> Snaps_SetConfigurationBusinessCriterias = snapshotBll.SetConfigurationBusinessCriterias();
+                List<string> Snaps_SetComplexity = snapshotBll.SetComplexity();
 
+                string[] AllSnapsToIgnore = Snaps_SetComplexity.Concat(Snaps_SetConfigurationBusinessCriterias).Concat(Snaps_SetModules).Concat(Snaps_SetQualityIndicators).Concat(Snaps_SetSizingMeasure).ToArray();
 
+                return AllSnapsToIgnore;
             }
         }
 

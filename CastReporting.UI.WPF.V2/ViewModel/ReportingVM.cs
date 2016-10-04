@@ -664,15 +664,7 @@ namespace CastReporting.UI.WPF.ViewModel
                             base.MessageManager.OnErrorOccured(ex);
                         }
                     }
-                //}
-                //else
-                //{
-                //    Apps = null;
-                //}
-
-
-
-
+                
 
                 if (Apps != null)
                 {
@@ -694,15 +686,41 @@ namespace CastReporting.UI.WPF.ViewModel
                             Thread.CurrentThread.CurrentCulture = culture;
                             Thread.CurrentThread.CurrentUICulture = culture;
                         }
-
+                        string[] SnapsToIgnore = null;
                         //Get result for the Portfolio               
                         stopWatchStep.Restart();
-                        PortfolioBLL.BuildPortfolioResult(ActiveConnection, SelectedApps);
+                        string[] AppsToIgnorePortfolioResult = PortfolioBLL.BuildPortfolioResult(ActiveConnection, SelectedApps);
                         stopWatchStep.Stop();
                         App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the portfolio", stopWatchStep.Elapsed);
+                        
+                        List<Application> N_Apps = new List<Application>();
+                        //Remove from Array the Ignored Apps
+                        for (int i = 0; i < SelectedApps.Count(); i++)
+                        {
+                            int intAppYes = 0;
+                            foreach (string s in AppsToIgnorePortfolioResult)
+                            {
+                                if (s == SelectedApps[i].Name)
+                                {
+                                    intAppYes = 1;
+                                    break;
+                                }
+                                else
+                                {
+                                    intAppYes = 0;
+                                }
+                            }
 
-                        //GetActive Connection           
-                        ActiveConnection = (Setting != null) ? Setting.GetActiveConnection() : null;
+                            if (intAppYes == 0)
+                            {
+                                N_Apps.Add(SelectedApps[i]);
+                            }
+                        }
+
+                        Application[] N_SelectedApps = N_Apps.ToArray();
+
+                            //GetActive Connection           
+                            ActiveConnection = (Setting != null) ? Setting.GetActiveConnection() : null;
 
                         //Get list of domains
                         if (_ActiveConnection != null)
@@ -711,7 +729,7 @@ namespace CastReporting.UI.WPF.ViewModel
                             {
                                 using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
                                 {
-                                    Snapshots = castDomainBLL.GetAllSnapshots(SelectedApps);
+                                    Snapshots = castDomainBLL.GetAllSnapshots(N_SelectedApps);
                                 }
                             }
                             catch (Exception ex)
@@ -719,7 +737,7 @@ namespace CastReporting.UI.WPF.ViewModel
                                 base.MessageManager.OnErrorOccured(ex);
                             }
                         }
-
+                        List<Snapshot> N_Snaps = new List<Snapshot>();
                         //Get result for each app's latest snapshot
                         if (Snapshots != null)
                         {
@@ -727,27 +745,93 @@ namespace CastReporting.UI.WPF.ViewModel
 
                             //Get result for all snapshots in Portfolio               
                             stopWatchStep.Restart();
-                            PortfolioSnapshotsBLL.BuildSnapshotResult(ActiveConnection, SelectedApps_Snapshots, true);
+                            SnapsToIgnore = PortfolioSnapshotsBLL.BuildSnapshotResult(ActiveConnection, SelectedApps_Snapshots, true);
                             stopWatchStep.Stop();
                             App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for snapshots in portfolio", stopWatchStep.Elapsed);
 
+                            for (int i = 0; i < SelectedApps_Snapshots.Count(); i++)
+                            {
+                                int intRemoveYes = 0;
+                                foreach (string s in SnapsToIgnore)
+                                {
+                                    if (s == SelectedApps_Snapshots[i].Href)
+                                    {
+                                        intRemoveYes = 1;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        intRemoveYes = 0;
+                                    }
+                                }
+                                if (intRemoveYes == 0)
+                                {
+                                    N_Snaps.Add(SelectedApps_Snapshots[i]);
+                                }
+                            }
 
-                            //Launch generaion               
-                            stopWatchStep.Restart();
-                            GenerateReportPortfolio(SelectedApps, SelectedApps_Snapshots);
+                            Snapshot[] N_SelectedApps_Snapshots = N_Snaps.ToArray();
+
+
+                                //Launch generaion               
+                                stopWatchStep.Restart();
+                                GenerateReportPortfolio(N_SelectedApps, N_SelectedApps_Snapshots, AppsToIgnorePortfolioResult, SnapsToIgnore);
                             stopWatchStep.Stop();
                         }
 
 
 
 
-                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
+
+                        if ((AppsToIgnorePortfolioResult.Count() > 0 && AppsToIgnorePortfolioResult != null) || (SnapsToIgnore.Count() > 0 && SnapsToIgnore != null))
+                        {
+                            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                            sb.Append("Some Applications or Snapshots were ignored during processing REST API.");
+
+                            if (AppsToIgnorePortfolioResult.Count() > 0 && AppsToIgnorePortfolioResult != null)
+                            {
+                                AppsToIgnorePortfolioResult = AppsToIgnorePortfolioResult.Distinct().ToArray();
+                                sb.Append("Ignored Applications are: ");
+                                for (int i = 0; i < AppsToIgnorePortfolioResult.Count(); i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        sb.Append(AppsToIgnorePortfolioResult[i].ToString());
+                                    }
+                                    else
+                                    {
+                                        sb.Append("," + AppsToIgnorePortfolioResult[i].ToString());
+                                    }
+                                }
+                            }
+
+                            if (SnapsToIgnore.Count() > 0 && SnapsToIgnore != null)
+                            {
+                                SnapsToIgnore = SnapsToIgnore.Distinct().ToArray();
+                                sb.Append(" Ignored Snapshots are: ");
+                                for (int i = 0; i < SnapsToIgnore.Count(); i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        sb.Append(_ActiveConnection.Url + "/" + SnapsToIgnore[i].ToString());
+                                    }
+                                    else
+                                    {
+                                        sb.Append("," + _ActiveConnection.Url + "/" + SnapsToIgnore[i].ToString());
+                                    }
+                                }
+                            }
+                            App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, sb.ToString() + "", null);
+
+                            App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
 
 
-                        //Show final message and unlock the screen   
-                        stopWatchGlobal.Stop();
-                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(base.MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
-                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), false);
+                            //Show final message and unlock the screen   
+                            stopWatchGlobal.Stop();
+                            App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(base.MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
+                            App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), false);
+                        }
+
                     }
                     catch (System.Net.WebException webEx)
                     {
@@ -835,7 +919,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private void GenerateReportPortfolio(Application[] Applications, Snapshot[] ApplicationsSnapshots)
+        private void GenerateReportPortfolio(Application[] Applications, Snapshot[] ApplicationsSnapshots, string[] IgnoredApps, string[] IgnoredSnapshots )
         {
             string tmpReportFile = String.Empty;
             string tmpReportFileFlexi = String.Empty;
@@ -864,7 +948,9 @@ namespace CastReporting.UI.WPF.ViewModel
                     Applications = Applications,
                     Category = SelectedCategory,
                     Tag = SelectedTag,
-                    snapshots = ApplicationsSnapshots
+                    snapshots = ApplicationsSnapshots,
+                    IgnoresApplications = IgnoredApps,
+                    IgnoresSnapshots = IgnoredSnapshots
                 };
 
 
