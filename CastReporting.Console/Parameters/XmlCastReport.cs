@@ -15,6 +15,12 @@ namespace CastReporting.Console.Argument
         #region Properties
 
         /// <summary>
+        /// ReportType
+        /// </summary>
+        [XmlElement("reporttype")]
+        public XmlTagName ReportType { get; set; }
+
+        /// <summary>
         /// Webservice
         /// </summary>
         [XmlElement("webservice")]
@@ -62,6 +68,18 @@ namespace CastReporting.Console.Argument
         [XmlElement("file")]
         public XmlTagName File { get; set; }
 
+        /// <summary>
+        /// Category
+        /// </summary>
+        [XmlElement("category")]
+        public XmlTagName Category { get; set; }
+
+        /// <summary>
+        /// Tag
+        /// </summary>
+        [XmlElement("tag")]
+        public XmlTagName Tag { get; set; }
+
         #endregion
 
         #region Methods
@@ -108,8 +126,8 @@ namespace CastReporting.Console.Argument
             //XmlTextReader schemaReader = new XmlTextReader("relativeSchemaPath");
             //XmlSchemaSet schemaSet = new XmlSchemaSet();
             // TO DO !!
-            if (this.Application == null || string.IsNullOrEmpty(this.Application.Name))
-                return false;
+            //if (this.Application == null || string.IsNullOrEmpty(this.Application.Name))
+            //    return false;
             if (this.Webservice == null || string.IsNullOrEmpty(this.Webservice.Name))
                 return false;
             if (this.Template == null || string.IsNullOrEmpty(this.Template.Name))

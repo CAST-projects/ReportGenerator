@@ -135,5 +135,17 @@ namespace CastReporting.Reporting.ReportingModel
             set;
         }
 
+        public string[] IgnoresApplications
+        {
+            get;
+            set;
+        }
+
+        public string[] IgnoresSnapshots
+        {
+            get;
+            set;
+        }
+
     }
 }

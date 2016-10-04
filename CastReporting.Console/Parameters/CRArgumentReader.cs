@@ -1,4 +1,5 @@
 ﻿using System;
+using Cast.Util.Log;
 
 namespace CastReporting.Console.Argument
 {
@@ -17,7 +18,7 @@ namespace CastReporting.Console.Argument
             get
             {
                 return @"
-CAST REPORT GENERATOR HELP
+CAST REPORT GENERATOR HELP - APPLICATION LEVEL
 -webservice <ws_name> : Webservice URI.
 -username <ws_username> : Username of Webservice for authentication.
 -password <ws_password> : Password of Webservice for authentication.
@@ -32,7 +33,34 @@ CAST REPORT GENERATOR HELP
      and containing required arguments for document generation by batch.
      Replace console arguments « -webservice », « -application », 
      « -template », « -file » and « -snapshot ».
-";
+
+CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
+-reporttype : Portfolio --Mandatory and must always be the first parameter
+-category : Category Name --This is optional
+-tag : Tage Name --This is optional
+-webservice <ws_name> : Webservice URI.
+-username <ws_username> : Username of Webservice for authentication.
+-password <ws_password> : Password of Webservice for authentication.
+-application <app_name> : Application name containing data for 
+     document generation.
+-template <template_name> : Required template file name for document 
+     generation by batch.
+-file <output_file> : Output generated file name.
+<full_xml_path> (optional) : XML file path checked by CastReportSchema.xsd 
+     and containing required arguments for document generation by batch.
+     Replace console arguments « -webservice », « -application », 
+     « -template », « -file » and « -snapshot ».
+
+
+
+"
+
+
+
+
+
+
+                    ;
             }
         }
 
@@ -47,70 +75,105 @@ CAST REPORT GENERATOR HELP
         /// <param name="pShowHelp">Show help indicator</param>
         /// <returns>Arguments</returns>
         public XmlCastReport Load(string[] pArgs, out bool pShowHelp)
-        {
-            // Do not show help by default
-            pShowHelp = false;
-
-            if (pArgs == null || pArgs.Length == 0)
+        { 
+            if (pArgs.Length > 0 && pArgs[1].ToString().ToLower() == "-reporttype")
             {
-                // No Arguments
-                // unrecognized type -> show help
-                pShowHelp = true;
-                // return nothing
-                return null;
-            }
-
-            if (pArgs.Length == 1)
-            {
-                try
+                if (pArgs.Length >= 13)
                 {
-                    // Load from XML file
-                    return XmlCastReport.LoadXML(pArgs[0]);
+                    // Do not show help by default
+                    pShowHelp = false;
+                    string type;
+                    string value;
+                    XmlCastReport castReport = new XmlCastReport() { Snapshot = new XmlSnapshot() };
+
+                    for (int i = 2; i < pArgs.Length; i += 2)
+                    {
+                        type = LoadType(pArgs[i - 1]);
+                        value = pArgs[i];
+                        if (string.IsNullOrEmpty(type))
+                        {
+                            // unrecognized type -> show help
+                            pShowHelp = true;
+                            // return nothing
+                            return null;
+                        }
+                        // Set Current Argument
+                        SetArgument(type, value, castReport);
+                    }
+                    return castReport;
                 }
-                catch
+                else
+                {
+                    pShowHelp = true;
+                    return null;
+                }
+            }
+            else
+            {
+                // Do not show help by default
+                pShowHelp = false;
+
+                if (pArgs == null || pArgs.Length == 0)
+                {
+                    // No Arguments
+                    // unrecognized type -> show help
+                    pShowHelp = true;
+                    // return nothing
+                    return null;
+                }
+
+                if (pArgs.Length == 1)
+                {
+                    try
+                    {
+                        // Load from XML file
+                        return XmlCastReport.LoadXML(pArgs[0]);
+                    }
+                    catch
+                    {
+                        // not enough arguments -> show help
+                        pShowHelp = true;
+                        // return nothing
+                        return null;
+                    }
+                }
+                else if (pArgs.Length % 2 == 0)
+                {
+                    string type;
+                    string value;
+                    XmlCastReport castReport = new XmlCastReport() { Snapshot = new XmlSnapshot() };
+
+                    for (int i = 1; i < pArgs.Length; i += 2)
+                    {
+                        type = LoadType(pArgs[i - 1]);
+                        value = pArgs[i];
+                        if (string.IsNullOrEmpty(type))
+                        {
+                            // unrecognized type -> show help
+                            pShowHelp = true;
+                            // return nothing
+                            return null;
+                        }
+                        // Set Current Argument
+                        SetArgument(type, value, castReport);
+                    }
+                    // all right
+                    if (!castReport.Check())
+                    {
+                        // XSD do not check -> show help
+                        pShowHelp = true;
+                        // return nothing
+                        return null;
+                    }
+                    return castReport;
+                }
+                else
                 {
                     // not enough arguments -> show help
                     pShowHelp = true;
                     // return nothing
                     return null;
                 }
-            }
-            else if (pArgs.Length % 2 == 0)
-            {
-                string type;
-                string value;
-                XmlCastReport castReport = new XmlCastReport() { Snapshot = new XmlSnapshot() };
-
-                for (int i = 1; i < pArgs.Length; i += 2)
-                {
-                    type = LoadType(pArgs[i - 1]);
-                    value = pArgs[i];
-                    if (string.IsNullOrEmpty(type))
-                    {
-                        // unrecognized type -> show help
-                        pShowHelp = true;
-                        // return nothing
-                        return null;
-                    }
-                    // Set Current Argument
-                    SetArgument(type, value, castReport);
-                }
-                // all right
-                if (!castReport.Check())
-                {
-                    // XSD do not check -> show help
-                    pShowHelp = true;
-                    // return nothing
-                    return null;
-                }
-                return castReport;
-            }
-            else
-            {
-                // not enough arguments -> show help
-                pShowHelp = true;
-                // return nothing
-                return null;
             }
         }
 
@@ -166,6 +229,10 @@ CAST REPORT GENERATOR HELP
                 case "snapshot_prev": pCastReport.Snapshot.Previous = new XmlTagName() { Name = pValue }; break;
                 case "username": pCastReport.Username = new XmlTagName() { Name = pValue }; break;
                 case "password": pCastReport.Password = new XmlTagName() { Name = pValue }; break;
+
+                case "reporttype": pCastReport.ReportType = new XmlTagName() { Name = pValue }; break;
+                case "category": pCastReport.Category = new XmlTagName() { Name = pValue }; break;
+                case "tag": pCastReport.Tag = new XmlTagName() { Name = pValue }; break;
             }
         }
         #endregion
