@@ -102,7 +102,7 @@ namespace CastReporting.Console
         /// <returns></returns>
         private static string GenerateReport(XmlCastReport arguments, out string help)
         {
-            if (arguments.ReportType.Name.ToLower() == "portfolio")
+            if (arguments.ReportType != null)
             {
 
                 string reportPath = string.Empty; 
@@ -387,7 +387,7 @@ namespace CastReporting.Console
                     //Initialize temporary directory
                     string workDirectory = SettingsBLL.GetApplicationPath();
                     tmpReportFile = PathUtil.CreateTempCopy(workDirectory, Path.Combine(settings.ReportingParameter.TemplatePath, arguments.Template.Name));
-
+                    
                     //Initialize Web services
 
                     var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty);
