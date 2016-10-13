@@ -52,18 +52,18 @@ namespace CastReporting.BLL.Computing
                 RuleViolationResultDTO ruleViolationResult = new RuleViolationResultDTO();
 
                 var technicalCriterias = snapshot.TechnicalCriteriaResults
-                                                 .Where(_ => _.RulesViolation!=null && _.RulesViolation.Where(p => p.Reference.Key == rule.Key).Any())
+                                                 .Where(_ => _.RulesViolation!=null && _.RulesViolation.Any(p => rule.Key.HasValue && p.Reference.Key == rule.Key.Value))
                                                  .FirstOrDefault();
 
                 if (technicalCriterias != null)
                 {
-                    ruleViolationResult.Rule = new RuleDetailsDTO { Name = rule.Name, Critical = rule.Critical, CompoundedWeight = rule.CompoundedWeight };
+                    ruleViolationResult.Rule = new RuleDetailsDTO { Name = rule.Name, Critical = rule.Critical, CompoundedWeight = (rule.CompoundedWeight.HasValue ? rule.CompoundedWeight.Value : 0) };
                    
                     ruleViolationResult.Grade = technicalCriterias.DetailResult.Grade;
 
                     ruleViolationResult.TechnicalCriteraiName = technicalCriterias.Reference.Name;
 
-                    var violationRatio = technicalCriterias.RulesViolation.Where(_ => _.Reference.Key == rule.Key)
+                    var violationRatio = technicalCriterias.RulesViolation.Where(_ => rule.Key.HasValue && _.Reference.Key == rule.Key.Value)
                                                                           .Select(_ => _.DetailResult.ViolationRatio)
                                                                           .FirstOrDefault();
                     if (violationRatio != null)

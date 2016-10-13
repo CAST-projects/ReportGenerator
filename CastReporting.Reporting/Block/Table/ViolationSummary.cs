@@ -70,8 +70,8 @@ namespace CastReporting.Reporting.Block.Table
                 Dictionary<int, RuleDetails> targetRules =
                     reportData.RuleExplorer
                     .GetRulesDetails(reportData.CurrentSnapshot.DomainId, Constants.BusinessCriteria.TechnicalQualityIndex.GetHashCode(), reportData.CurrentSnapshot.Id)
-                    .Where(rd => (showCritical && rd.Critical == true) || (showNonCritical && rd.Critical == false))
-                    .ToDictionary(rd => rd.Key);
+                    .Where(rd => rd.Key.HasValue && ((showCritical && rd.Critical == true) || (showNonCritical && rd.Critical == false)))
+                    .ToDictionary(rd => rd.Key.Value);
 
                 var sourceResults = reportData.CurrentSnapshot.QualityRulesResults.Where(qr => targetRules.ContainsKey(qr.Reference.Key));
 
