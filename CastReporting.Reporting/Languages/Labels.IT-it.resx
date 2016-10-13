@@ -517,9 +517,9 @@
     <value>buona</value>
   </data>
   <data name="Critical" xml:space="preserve">
-    <value>Critical</value>
+    <value>Critico</value>
   </data>
   <data name="Compliance" xml:space="preserve">
-    <value>Compliance</value>
+    <value>Conformità</value>
   </data>
 </root>
