@@ -65,6 +65,5 @@ namespace CastReporting.Domain
         /// 
         /// </summary>
         public string Version { get; set; }
-
     }
 }

@@ -516,4 +516,10 @@
   <data name="Good" xml:space="preserve">
     <value>buona</value>
   </data>
+  <data name="Critical" xml:space="preserve">
+    <value>Critical</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>Compliance</value>
+  </data>
 </root>

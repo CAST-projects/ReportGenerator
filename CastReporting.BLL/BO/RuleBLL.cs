@@ -46,7 +46,7 @@ namespace CastReporting.BLL
         /// <param name="snapshotHRef"></param>
         /// <param name="ruleId"></param>
         /// <returns></returns>
-        public IEnumerable<RuleDetails> GetRulesDetails(string domain, string businessCriteria, string snapshotHRef)
+        public IEnumerable<RuleDetails> GetRulesDetails(string domain, int businessCriteria, long snapshotHRef)
         {
             using (var castRepsitory = GetRepository())
             {

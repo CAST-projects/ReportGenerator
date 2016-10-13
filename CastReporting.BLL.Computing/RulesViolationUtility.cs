@@ -30,7 +30,7 @@ namespace CastReporting.BLL.Computing
             List<RuleDetails> rules = new List<RuleDetails>();
             foreach (var metricId in businessCriteriasIds)
             {
-                var bcRules = ruleExplorer.GetRulesDetails(snapshot.DomainId, metricId.ToString(), snapshot.Id.ToString());
+                var bcRules = ruleExplorer.GetRulesDetails(snapshot.DomainId, metricId, snapshot.Id);
 
                 rules.AddRange(bcRules);
             }
@@ -41,7 +41,7 @@ namespace CastReporting.BLL.Computing
                                                          Href = _.Key.Href,
                                                          Name = _.Key.Name,
                                                          CompoundedWeight = _.Sum(x => x.CompoundedWeight),
-                                                         Critical = _.Max(x => x.Critical)
+                                                         Critical = _.Any(x => x.Critical)
                                                      })
                          .ToList();
 
@@ -52,7 +52,7 @@ namespace CastReporting.BLL.Computing
                 RuleViolationResultDTO ruleViolationResult = new RuleViolationResultDTO();
 
                 var technicalCriterias = snapshot.TechnicalCriteriaResults
-                                                 .Where(_ => _.RulesViolation!=null && _.RulesViolation.Where(p => p.Reference.Key.ToString() == rule.Key).Any())
+                                                 .Where(_ => _.RulesViolation!=null && _.RulesViolation.Where(p => p.Reference.Key == rule.Key).Any())
                                                  .FirstOrDefault();
 
                 if (technicalCriterias != null)
@@ -63,7 +63,7 @@ namespace CastReporting.BLL.Computing
 
                     ruleViolationResult.TechnicalCriteraiName = technicalCriterias.Reference.Name;
 
-                    var violationRatio = technicalCriterias.RulesViolation.Where(_ => _.Reference.Key.ToString() == rule.Key)
+                    var violationRatio = technicalCriterias.RulesViolation.Where(_ => _.Reference.Key == rule.Key)
                                                                           .Select(_ => _.DetailResult.ViolationRatio)
                                                                           .FirstOrDefault();
                     if (violationRatio != null)

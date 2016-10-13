@@ -10,7 +10,7 @@ namespace CastReporting.Domain
         public string Href { get; set; }
 
         [DataMember(Name = "key")]
-        public string Key { get; set; }
+        public Int32 Key { get; set; }
 
         [DataMember(Name = "name")]
         public string Name { get; set; }

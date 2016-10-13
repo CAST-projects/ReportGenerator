@@ -32,8 +32,8 @@ namespace CastReporting.Domain.Interfaces
         /// </summary>
         /// <param name="domain"></param>
         /// <param name="businessCriteria"></param>
-        /// <param name="snapshotHRef"></param>
+        /// <param name="snapshotId"></param>
         /// <returns></returns>
-        IEnumerable<RuleDetails> GetRulesDetails(string domain, string businessCriteria, string snapshotHRef);
+        IEnumerable<RuleDetails> GetRulesDetails(string domain, int businessCriteria, long snapshotId);
     }
 }
