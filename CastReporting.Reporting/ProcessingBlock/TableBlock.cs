@@ -99,21 +99,9 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         /// </summary>
         /// <param name="pValue">Numeric value to display</param>
         /// <returns>Displayed text</returns>
-        protected static string FormatPercent(Double? pValue, bool pWidthPostiveSign)
-        {           
-            if (!pValue.HasValue)
-                return String.Empty;
-
-            var roundedValue = Math.Round(pValue.Value, 4);
-            string sign = (roundedValue > 0 && pWidthPostiveSign) ? "+" : "";
-
-            NumberFormatInfo nfi = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
-            var tmp = Math.Abs(roundedValue * 100);
-            nfi.PercentDecimalDigits = (tmp % 1 == 0 || tmp >= 100) ? 0 : (tmp < 10) ? 2 : 1;
-
-
-
-            return sign + roundedValue.ToString("P", nfi);
+        protected static string FormatPercent(double? pValue, bool pWidthPostiveSign)
+        {
+            return pValue.FormatPercent(pWidthPostiveSign);
         }
 
 
@@ -122,9 +110,9 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         /// </summary>
         /// <param name="pValue"></param>
         /// <returns></returns>
-        protected static string FormatPercent(Double? pValue)
+        protected static string FormatPercent(double? pValue)
         {
-            return FormatPercent(pValue, true);
+            return pValue.FormatPercent(true);
         }
 
         /// <summary>
@@ -135,9 +123,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         /// <returns>Displayed text</returns>
         protected static string FormatEvolution(long pValue)
         {
-            string sign = (pValue > 0)?"+":"";
-
-            return sign + pValue.ToString("N0");
+            return pValue.FormatEvolution();
         }
 
         /// <summary>
@@ -148,7 +134,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         /// <returns>Displayed text</returns>
         protected static string FormatEvolution(decimal pValue)
         {
-            return FormatEvolution((double)pValue);
+            return pValue.FormatEvolution();
         }
         /// <summary>
         /// Format the display of evolution value into 3 digits if we can
@@ -158,17 +144,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         /// <returns>Displayed text</returns>
         protected static string FormatEvolution(double? pValue)
         {
-            if(!pValue.HasValue)
-				return CastReporting.Domain.Constants.No_Data;
-
-            string ret;
-            if (pValue.Value > 99)
-                ret = string.Format( "{0}{1:F0}", (((int)pValue.Value) > 0) ? "+" : string.Empty, pValue);
-            else if (pValue.Value > 9)
-                ret = string.Format( "{0}{1:F1}", (((int)((double)pValue.Value * 10)) > 0) ? "+" : string.Empty, pValue);
-            else
-                ret = string.Format( "{0}{1:F2}", (((int)((double)pValue.Value * 100)) > 0) ? "+" : string.Empty, pValue);
-            return ret;
+            return pValue.FormatEvolution();
         }
 
         private static void UpdateBlock(ReportData client, OpenXmlPartContainer container, OpenXmlElement block, TableDefinition content, Dictionary<string, string> options)

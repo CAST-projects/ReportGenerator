@@ -106,6 +106,7 @@
     <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Converter\PasswordConverter.cs" />
     <Compile Include="Converter\VisibilityConverter.cs" />
+    <Compile Include="Data\ApplicationItem.cs" />
     <Compile Include="Data\CastMessage.cs" />
     <Compile Include="Resources\Languages\Messages.Designer.cs">
       <AutoGen>True</AutoGen>

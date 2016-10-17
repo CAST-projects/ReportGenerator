@@ -154,7 +154,7 @@ namespace CastReporting.Repositories.Interfaces
         /// <param name="businessCriteria"></param>
         /// <param name="snapshotId"></param>
         /// <returns></returns>
-        IEnumerable<RuleDetails> GetRulesDetails(string domain, string businessCriteria, string snapshotId);
+        IEnumerable<RuleDetails> GetRulesDetails(string domain, int businessCriteria, long snapshotId);
         
         /// <summary>
         /// 

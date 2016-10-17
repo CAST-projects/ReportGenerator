@@ -74,11 +74,28 @@ namespace CastReporting.BLL
                                                                       .ToList();
             
 
-                _Snapshot.BusinessCriteriaResults = qualityIndicators.Where(_ => _.Type == "business-criteria").ToList();
-                _Snapshot.QualityDistributionsResults = qualityIndicators.Where(_ => _.Type == "quality-distributions").ToList();
-                _Snapshot.QualityMeasuresResults = qualityIndicators.Where(_ => _.Type == "quality-measures").ToList();
-                _Snapshot.QualityRulesResults = qualityIndicators.Where(_ => _.Type == "quality-rules").ToList();
-                _Snapshot.TechnicalCriteriaResults = qualityIndicators.Where(_ => _.Type == "technical-criteria").ToList();
+
+                var businessCriteriaResults = new List<ApplicationResult>();
+                var qualityDistributionsResults = new List<ApplicationResult>();
+                var qualityMeasuresResults = new List<ApplicationResult>();
+                var qualityRulesResults = new List<ApplicationResult>();
+                var technicalCriteriaResults = new List<ApplicationResult>();
+
+                foreach (var appRes in qualityIndicators) {
+                    switch (appRes.Type) {
+                        case "business-criteria":       businessCriteriaResults.Add(appRes); break;
+                        case "quality-distributions":   qualityDistributionsResults.Add(appRes); break;
+                        case "quality-measures":        qualityMeasuresResults.Add(appRes); break;
+                        case "quality-rules":           qualityRulesResults.Add(appRes); break;
+                        case "technical-criteria":      technicalCriteriaResults.Add(appRes); break;
+                    }
+                }
+
+                _Snapshot.BusinessCriteriaResults = businessCriteriaResults;
+                _Snapshot.QualityDistributionsResults = qualityDistributionsResults;
+                _Snapshot.QualityMeasuresResults = qualityMeasuresResults;
+                _Snapshot.QualityRulesResults = qualityRulesResults;
+                _Snapshot.TechnicalCriteriaResults = technicalCriteriaResults;
             }
 
             SetBusinessCriteriaCCRulesViolations();

@@ -30,7 +30,7 @@ namespace CastReporting.BLL.Computing
             List<RuleDetails> rules = new List<RuleDetails>();
             foreach (var metricId in businessCriteriasIds)
             {
-                var bcRules = ruleExplorer.GetRulesDetails(snapshot.DomainId, metricId.ToString(), snapshot.Id.ToString());
+                var bcRules = ruleExplorer.GetRulesDetails(snapshot.DomainId, metricId, snapshot.Id);
 
                 rules.AddRange(bcRules);
             }
@@ -41,7 +41,7 @@ namespace CastReporting.BLL.Computing
                                                          Href = _.Key.Href,
                                                          Name = _.Key.Name,
                                                          CompoundedWeight = _.Sum(x => x.CompoundedWeight),
-                                                         Critical = _.Max(x => x.Critical)
+                                                         Critical = _.Any(x => x.Critical)
                                                      })
                          .ToList();
 
@@ -52,18 +52,18 @@ namespace CastReporting.BLL.Computing
                 RuleViolationResultDTO ruleViolationResult = new RuleViolationResultDTO();
 
                 var technicalCriterias = snapshot.TechnicalCriteriaResults
-                                                 .Where(_ => _.RulesViolation!=null && _.RulesViolation.Where(p => p.Reference.Key.ToString() == rule.Key).Any())
+                                                 .Where(_ => _.RulesViolation!=null && _.RulesViolation.Any(p => rule.Key.HasValue && p.Reference.Key == rule.Key.Value))
                                                  .FirstOrDefault();
 
                 if (technicalCriterias != null)
                 {
-                    ruleViolationResult.Rule = new RuleDetailsDTO { Name = rule.Name, Critical = rule.Critical, CompoundedWeight = rule.CompoundedWeight };
+                    ruleViolationResult.Rule = new RuleDetailsDTO { Name = rule.Name, Critical = rule.Critical, CompoundedWeight = (rule.CompoundedWeight.HasValue ? rule.CompoundedWeight.Value : 0) };
                    
                     ruleViolationResult.Grade = technicalCriterias.DetailResult.Grade;
 
                     ruleViolationResult.TechnicalCriteraiName = technicalCriterias.Reference.Name;
 
-                    var violationRatio = technicalCriterias.RulesViolation.Where(_ => _.Reference.Key.ToString() == rule.Key)
+                    var violationRatio = technicalCriterias.RulesViolation.Where(_ => rule.Key.HasValue && _.Reference.Key == rule.Key.Value)
                                                                           .Select(_ => _.DetailResult.ViolationRatio)
                                                                           .FirstOrDefault();
                     if (violationRatio != null)

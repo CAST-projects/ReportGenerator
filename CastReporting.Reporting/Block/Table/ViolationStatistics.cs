@@ -28,10 +28,10 @@ namespace CastReporting.Reporting.Block.Table
 {
     [Block("VIOLATION_STATISTICS")]
     class ViolationStatistics : TableBlock
-    {   
+    {
+        #region METHODS
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            #region METHODS
 
             TableDefinition resultTable = null;
             if (reportData != null && reportData.CurrentSnapshot != null)

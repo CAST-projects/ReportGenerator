@@ -10,13 +10,13 @@ namespace CastReporting.Domain
         public string Href { get; set; }
 
         [DataMember(Name = "key")]
-        public string Key { get; set; }
+        public int? Key { get; set; }
 
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
         [DataMember(Name = "compoundedWeight")]
-        public Int32 CompoundedWeight { get; set; }
+        public int? CompoundedWeight { get; set; }
 
         [DataMember(Name = "critical")]
         public bool Critical { get; set; }

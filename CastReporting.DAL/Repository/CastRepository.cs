@@ -38,7 +38,7 @@ namespace CastReporting.Repositories
         // private const string _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&snapshots=({2})&modules=({3})&technologies=({4})&categories=({5})&select=evolutionSummary";
         // private const string _query_result_sizing_measures = "{0}/results?sizing-measures=({1})&snapshots=({2})&technologies=({3})&modules=({4})";
         // Sometimes modules, technologies, snapshots, categories are null and the rest api 8.2 does not support it anymore for security reasons
-        private const string _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&select=evolutionSummary";
+        private const string _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&select=(evolutionSummary,violationRatio)";
         private const string _query_result_sizing_measures = "{0}/results?sizing-measures=({1})";
 
         private const string _query_configuration = "{0}/configuration/snapshots/{1}";
@@ -305,7 +305,7 @@ namespace CastReporting.Repositories
         /// <param name="businessCriteria"></param>
         /// <param name="snapshotId"></param>
         /// <returns></returns>
-        IEnumerable<RuleDetails> ICastRepsitory.GetRulesDetails(string domain, string businessCriteria, string snapshotId)
+        IEnumerable<RuleDetails> ICastRepsitory.GetRulesDetails(string domain, int businessCriteria, long snapshotId)
         {
             var requestUrl = string.Format(_query_rules_details, domain, businessCriteria, snapshotId);
 

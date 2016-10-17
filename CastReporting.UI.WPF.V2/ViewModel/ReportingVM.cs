@@ -105,8 +105,8 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private IEnumerable<Application> _Applications;
-        public IEnumerable<Application> Applications
+        private IEnumerable<ApplicationItem> _Applications;
+        public IEnumerable<ApplicationItem> Applications
         {
             get { return _Applications; }
             set
@@ -197,8 +197,8 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private Application _SelectedApplication;
-        public Application SelectedApplication
+        private ApplicationItem _SelectedApplication;
+        public ApplicationItem SelectedApplication
         {
             get { return _SelectedApplication; }
             set
@@ -521,10 +521,10 @@ namespace CastReporting.UI.WPF.ViewModel
         {
             if (SelectedApplication != null)
             {               
-                using (ApplicationBLL applicationBLL = new ApplicationBLL(ActiveConnection, SelectedApplication))
+                using (ApplicationBLL applicationBLL = new ApplicationBLL(ActiveConnection, SelectedApplication.Application))
                 {
                     applicationBLL.SetSnapshots();
-                    Snaphosts = SelectedApplication.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).ToList();
+                    Snaphosts = SelectedApplication.Application.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).ToList();
                 }
             }
             else
@@ -600,7 +600,7 @@ namespace CastReporting.UI.WPF.ViewModel
 
                     //Get result for the Application               
                     stopWatchStep.Restart();
-                    ApplicationBLL.BuildApplicationResult(ActiveConnection, SelectedApplication);
+                    ApplicationBLL.BuildApplicationResult(ActiveConnection, SelectedApplication.Application);
                     stopWatchStep.Stop();
                     App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the application", stopWatchStep.Elapsed);
 
@@ -879,7 +879,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 ReportData reportData = new ReportData()
                 {
                     FileName = tmpReportFile,
-                    Application = SelectedApplication,
+                    Application = SelectedApplication.Application,
                     CurrentSnapshot = SelectedSnapshot,
                     PreviousSnapshot = PreviousSnapshot,
                     Parameter = Setting.ReportingParameter,
@@ -999,7 +999,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 {
                     using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
                     {
-                        Applications = castDomainBLL.GetApplications();
+                        Applications = castDomainBLL.GetApplications().Select(app => new ApplicationItem(app));
                         Categories = castDomainBLL.GetCategories();
                         SelectedTab = 0;
                     }

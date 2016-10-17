@@ -67,6 +67,7 @@
     <Compile Include="Block\Graph\PortfolioCritViolPerformance.cs" />
     <Compile Include="Block\Graph\PortfolioQSByCV_LOV.cs" />
     <Compile Include="Block\Graph\TrendTechDebtPortfolio.cs" />
+    <Compile Include="Block\Table\ViolationSummary.cs" />
     <Compile Include="Block\Table\EFP.cs" />
     <Compile Include="Block\Table\IfpugDataFunctions.cs" />
     <Compile Include="Block\Table\IfpugTransactionFunctions.cs" />
@@ -171,6 +172,8 @@
     <Compile Include="DocumentBuilder\PowerpointDocumentBuilder.cs" />
     <Compile Include="DocumentBuilder\WordDocumentBuilder.cs" />
     <Compile Include="DocumentBuilder\WorksheetAccessorExt.cs" />
+    <Compile Include="Helper\FormatHelper.cs" />
+    <Compile Include="Helper\OptionsHelper.cs" />
     <Compile Include="Helper\StreamHelper.cs" />
     <Compile Include="Languages\Labels.Designer.cs">
       <DependentUpon>Labels.resx</DependentUpon>
@@ -189,6 +192,7 @@
     <Compile Include="ReportingModel\AxisDefinition.cs" />
     <Compile Include="Attributes\BlockAttribute.cs" />
     <Compile Include="Attributes\BlockTypeAttribute.cs" />
+    <Compile Include="ReportingModel\HeaderDefinition.cs" />
     <Compile Include="ReportingModel\ReportData.cs" />
     <Compile Include="ReportingModel\Enums.cs" />
     <Compile Include="ReportingModel\GraphOptions.cs" />

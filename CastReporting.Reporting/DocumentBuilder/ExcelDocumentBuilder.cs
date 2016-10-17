@@ -280,7 +280,7 @@ namespace CastReporting.Reporting.Builder
                             {
                                 // append cell to current row
                                 Cell c = new Cell();
-                                SetCellValue(c, result.ToString());
+                                SetCellValue(c, result?.ToString());
                                 c.CellReference = alphabet[curColIdx - 1] + curRowIdx.ToString();
                                 c.StyleIndex = 0;
                                 curRow.Append(c);
