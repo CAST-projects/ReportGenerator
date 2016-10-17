@@ -921,4 +921,88 @@
             Value="Red" />
     </Style>
 
+    <Style x:Key="PassEditBox" TargetType="{x:Type PasswordBox}">
+        <Setter Property="SnapsToDevicePixels"
+            Value="True" />
+        <Setter Property="OverridesDefaultStyle"
+            Value="True" />
+        <!--<Setter Property="BorderBrush"
+            Value="{x:Null}" />-->
+        <Setter Property="Background"
+            Value="Beige" />
+        <Setter Property="Foreground"
+            Value="White" />
+        <Setter Property="SelectionBrush"
+            Value="#FF00d3ff" />
+        <Setter Property="SelectionOpacity"
+            Value="0.5" />
+        <!--<Setter Property="RenderTransformOrigin"
+            Value="0.5,0.5" />-->
+        <Setter Property="CaretBrush"
+            Value="White" />
+        <Setter Property="HorizontalAlignment"
+            Value="Stretch" />
+        <Setter Property="BorderThickness"
+            Value="10" />
+        <Setter Property="FontFamily"
+            Value="Open Sans Bold" />
+        <Setter Property="Padding"
+            Value="2,8,0,0" />
+
+
+
+
+
+        <Setter Property="MinHeight"
+            Value="20" />
+        <Setter Property="AllowDrop"
+            Value="true" />
+
+        <Setter Property="MinHeight"
+            Value="23" />
+        <Setter Property="Height"
+            Value="30" />
+
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Border TextBlock.Foreground="White" Opacity="1"
+                  x:Name="TXTBXBG"
+                  CornerRadius="4"
+                  BorderThickness="0">
+
+                        <Border.Background>
+                            <SolidColorBrush Color="#66303439" Opacity="1" />
+                        </Border.Background>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="TXTBXBG"
+                                                  Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="#FF282828" />
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ScrollViewer Margin="0"
+                          x:Name="PART_ContentHost" />
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Border.Background"  Value="#FF282828" TargetName="TXTBXBG"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
