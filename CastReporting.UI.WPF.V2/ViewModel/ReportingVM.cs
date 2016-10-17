@@ -780,12 +780,12 @@ namespace CastReporting.UI.WPF.ViewModel
                         }
 
 
+                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
 
 
                         if ((AppsToIgnorePortfolioResult.Count() > 0 && AppsToIgnorePortfolioResult != null) || (SnapsToIgnore.Count() > 0 && SnapsToIgnore != null))
                         {
-                            System.Text.StringBuilder sb = new System.Text.StringBuilder();
                             sb.Append("Some Applications or Snapshots were ignored during processing REST API.");
 
                             if (AppsToIgnorePortfolioResult.Count() > 0 && AppsToIgnorePortfolioResult != null)
@@ -822,15 +822,16 @@ namespace CastReporting.UI.WPF.ViewModel
                                 }
                             }
                             App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, sb.ToString() + "", null);
-
-                            App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
-
-
-                            //Show final message and unlock the screen   
-                            stopWatchGlobal.Stop();
-                            App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(base.MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
-                            App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), false);
                         }
+
+
+                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
+
+
+                        //Show final message and unlock the screen   
+                        stopWatchGlobal.Stop();
+                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(base.MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
+                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), false);
 
                     }
                     catch (System.Net.WebException webEx)
