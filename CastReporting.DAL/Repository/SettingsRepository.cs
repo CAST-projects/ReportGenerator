@@ -97,7 +97,7 @@ namespace CastReporting.Repositories
         public string GetApplicationPath()
         {
             Version vers = Assembly.GetExecutingAssembly().GetName().Version;
-            String version = vers.Major.ToString() + '.' + vers.Minor.ToString() + '.' + vers.Revision.ToString();
+            String version = vers.Major.ToString() + '.' + vers.Minor.ToString() + '.' + vers.Build.ToString();
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Settings.Default.CompanyName, Settings.Default.ProductName, version);
 
             // Create Folder if not exists

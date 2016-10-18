@@ -5,15 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:label="clr-namespace:CastReporting.UI.WPF.Resources.Languages"
              xmlns:Control="clr-namespace:CastReporting.UI.WPF.Common"
-             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"      
              xmlns:command="clr-namespace:CastReporting.UI.WPF.Commands"
              xmlns:converters="clr-namespace:CastReporting.UI.WPF.Converter"
+             xmlns:w="clr-namespace:CastReporting.UI.WPF.Utilities"
              mc:Ignorable="d"
              d:DesignWidth="500">
 
     <UserControl.Resources>
         <converters:MultiValueConverter x:Key="multiValueConverter" />
-        <converters:PasswordConverter x:Key="passwordConverter" />
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch">
@@ -75,7 +74,7 @@
 
 
         <Label Grid.Row="2" Grid.Column="2" Content="{x:Static label:Messages.lblFieldWSPassword}"  HorizontalAlignment="Right" Height="25.96" Margin="0,22.02,10,12.02" Foreground="White"/>
-        <TextBox Style="{StaticResource EditBox}" Grid.Row="2" Grid.Column="3" x:Name="txtPassword" Text="{Binding Password, Mode=TwoWay, Converter={StaticResource passwordConverter}}" Margin="0,20,0,10"/>
+        <PasswordBox w:PasswordBoxAssistant.BindPassword="True" w:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource PassEditBox}" Grid.Row="2" Grid.Column="3" Margin="0,20,0,10"/>
 
         <Button Style="{StaticResource StdButtonStyle}" Command="command:WebServiceCommand.ActivateWebService" 
                 Grid.Row="2" Grid.Column="4" x:Name="btnActiveWS"  Content="{x:Static label:Messages.btnAddWS}" Height="Auto" Margin="20,20,0,8" Width="Auto" >
