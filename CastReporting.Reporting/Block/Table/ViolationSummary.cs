@@ -43,7 +43,7 @@ namespace CastReporting.Reporting.Block.Table
 
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            int nbLimit = options.GetIntOption("COUNT", 5); // Max number of rows; -1 correspond to all results
+            int nbLimit = options.GetIntOption("COUNT", reportData.Parameter.NbResultDefault); // Max number of rows; -1 correspond to all results
             bool perModule = options.GetBoolOption("MODULES", false); // module or application mode
             bool showGrades = options.GetBoolOption("GRADE", true); // show/hide grades
             bool showCritical = options.GetBoolOption("CRITICAL", true); // show/hide critical rules
