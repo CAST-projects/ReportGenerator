@@ -412,16 +412,16 @@
     <value>Deuda Técnica Eliminada</value>
   </data>
   <data name="TotalChecks" xml:space="preserve">
-    <value>Validaciones Totales</value>
+    <value>Verificaciones Totales</value>
   </data>
   <data name="TechnicalCriterionName" xml:space="preserve">
     <value>Nombre del Criterio Técnico</value>
   </data>
   <data name="TotalFailed" xml:space="preserve">
-    <value>Fallos Totales</value>
+    <value>Número de Violaciones</value>
   </data>
   <data name="TotalOk" xml:space="preserve">
-    <value>Ok Totales</value>
+    <value>Verificaciones con éxito</value>
   </data>
   <data name="TechnicalCriterion" xml:space="preserve">
     <value>Criterio Técnico</value>

@@ -421,7 +421,7 @@
     <value>Fehler insgesamt</value>
   </data>
   <data name="TotalOk" xml:space="preserve">
-    <value>Erfolgreich Überprüfung</value>
+    <value>Erfolgreich insgesamt</value>
   </data>
   <data name="TechnicalCriterion" xml:space="preserve">
     <value>Technisches Kriterium</value>
