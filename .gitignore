@@ -216,3 +216,4 @@ pip-log.txt
 .mr.developer.cfg
 Setup/ReportGeneratorSetup.exe
 /CastReporting.Reporting/TemplatesFiles/2- Word-test.docx
+/Setup/ReportGeneratorSetup.zip

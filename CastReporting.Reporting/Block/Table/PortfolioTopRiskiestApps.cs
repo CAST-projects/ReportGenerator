@@ -42,7 +42,7 @@ namespace CastReporting.Reporting.Block.Table
                 !options.ContainsKey("ALT") ||
                 !int.TryParse(options["ALT"], out metricId))
             {
-                metricId = reportData.Parameter.NbResultDefault;
+                metricId = (Int32)Constants.BusinessCriteria.TechnicalQualityIndex;
             }
             #endregion Item ALT
 

@@ -163,8 +163,9 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             else
             {
                 // case text block is in a text box
-                var blockSdtAncestor = block.Ancestors<OXW.Paragraph>().First();
-                blockSdtAncestor.ReplaceChild(finalBlock, block.Ancestors<OXW.Run>().FirstOrDefault());
+                var oldTxt = block.Descendants<OXW.Run>().FirstOrDefault().Parent;
+                oldTxt.RemoveAllChildren();
+                oldTxt.AppendChild(finalBlock);
             }
             var docPart = container.GetPartsOfType<MainDocumentPart>().FirstOrDefault();
             if (docPart == null)

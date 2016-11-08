@@ -20,8 +20,6 @@ using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
-using CastReporting.BLL.Computing;
-
 
 namespace CastReporting.Reporting.Block.Table
 {
@@ -47,7 +45,7 @@ namespace CastReporting.Reporting.Block.Table
             int nbTot = 0;
             bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
             List<string> rowData = new List<string>();
-            Int32? metricId = (options != null && options.ContainsKey("ID")) ? Convert.ToInt32(options["ID"]) : (Int32?)null;
+            Int32? metricId = (options != null && options.ContainsKey("ID")) ? Convert.ToInt32(options["ID"]) : (Int32?)Domain.Constants.BusinessCriteria.TechnicalQualityIndex;
 
             if (null != reportData &&
                 null != reportData.CurrentSnapshot && metricId.HasValue) {
