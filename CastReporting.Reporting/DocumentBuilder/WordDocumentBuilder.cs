@@ -79,7 +79,21 @@ namespace CastReporting.Reporting.Builder
                 var elt = block.OxpBlock
                                .Descendants<DocProperties>()
                                .FirstOrDefault(_ => !string.IsNullOrWhiteSpace(_.Description));
-                if (null != elt) { tag = elt.Description; }
+                if (null != elt)
+                {
+                    tag = elt.Description;
+                }
+                else
+                {
+                    // case table is not in a content control
+                    var tblElt = block.OxpBlock
+                        .Descendants<TableProperties>()
+                        .FirstOrDefault(_ => null != _.TableDescription);
+                    if (null != tblElt)
+                    {
+                        tag = tblElt.TableDescription.Val;
+                    }
+                }
             }
             return GetBlockConfiguration(alias, tag);
         }
@@ -99,6 +113,8 @@ namespace CastReporting.Reporting.Builder
                                                        Container = container
                                                    })
                                       .ToList();
+
+            // Find text and graph that are not in content control
             var addblocks = rootContainer.Descendants<DocProperties>()
                                          .Where(_ => null != _.Description
                                                      && _.Description.HasValue
@@ -112,6 +128,19 @@ namespace CastReporting.Reporting.Builder
                                          })
                                          .ToList(); ;
             blocks.AddRange(addblocks);
+            
+            // Find tables that are not in content control
+            var addblocks2 = rootContainer.Descendants<TableProperties>()
+                                         .Where(_ => null != _.TableDescription
+                                                && _.Parent is Table)
+                                         .Select(_ => new BlockItem
+                                         {
+                                             OxpBlock = _.Parent,
+                                             XBlock = XElement.Parse(_.Parent.OuterXml),
+                                             Container = container
+                                         })
+                                         .ToList(); ;
+            blocks.AddRange(addblocks2);
             return blocks;
         }
 

@@ -421,7 +421,7 @@
     <value>Nombre d'échecs</value>
   </data>
   <data name="TotalOk" xml:space="preserve">
-    <value>Nombre OK</value>
+    <value>Contrôles réussis</value>
   </data>
   <data name="TechnicalCriterion" xml:space="preserve">
     <value>Critère technique</value>
