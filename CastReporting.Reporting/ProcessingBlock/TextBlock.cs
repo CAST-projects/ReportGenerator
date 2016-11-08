@@ -151,10 +151,21 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             	run.RunProperties = (OXW.RunProperties)originalRunProp.CloneNode(true);
             }
             OpenXmlElement finalBlock = run;
-            var cbcontainer = block.Parent;
-            if (null != cbcontainer)
+            if ("SdtRun" == block.Parent.GetType().Name)
             {
-                cbcontainer.Parent.ReplaceChild(finalBlock, cbcontainer);
+                // case text block in a content control
+                var cbcontainer = block.Parent;
+                if (null != cbcontainer)
+                {
+                    cbcontainer.Parent.ReplaceChild(finalBlock, cbcontainer);
+                }
+            }
+            else
+            {
+                // case text block is in a text box
+                var oldTxt = block.Descendants<OXW.Run>().FirstOrDefault().Parent;
+                oldTxt.RemoveAllChildren();
+                oldTxt.AppendChild(finalBlock);
             }
             var docPart = container.GetPartsOfType<MainDocumentPart>().FirstOrDefault();
             if (docPart == null)
@@ -177,7 +188,18 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         {
             switch (client.ReportType)
             {
-                case FormatType.Word: return block.OxpBlock.Descendants<OXW.SdtContentRun>().FirstOrDefault();
+                case FormatType.Word:
+                    var txtContent = block.OxpBlock.Descendants<OXW.SdtContentRun>().FirstOrDefault();
+                    if (null != txtContent)
+                    {
+                        // case text is in a content control
+                        return txtContent;
+                    }
+                    else
+                    {
+                        // case text is in a text box
+                        return block.OxpBlock;
+                    }
                 case FormatType.PowerPoint: return block.OxpBlock;
                 case FormatType.Excel:
                 default: return null;

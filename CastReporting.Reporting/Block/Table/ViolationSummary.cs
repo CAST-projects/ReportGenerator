@@ -30,7 +30,8 @@ namespace CastReporting.Reporting.Block.Table
     [Block("VIOLATION_SUMMARY")]
     class ViolationSummary : TableBlock
     {
-        private static ResultDetail GetModuleResult(ApplicationResult ar, Module module) {
+        private static ResultDetail GetModuleResult(ApplicationResult ar, Module module)
+        {
             ResultDetail detailResult = null;
             if (module != null) {
                 var modResult = ar.ModulesResult.FirstOrDefault(mr => mr != null && mr.Module.Id == module.Id);
@@ -40,7 +41,9 @@ namespace CastReporting.Reporting.Block.Table
             return detailResult;
         }
 
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options) {
+        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        {
+            int nbLimit = options.GetIntOption("COUNT", reportData.Parameter.NbResultDefault); // Max number of rows; -1 correspond to all results
             bool perModule = options.GetBoolOption("MODULES", false); // module or application mode
             bool showGrades = options.GetBoolOption("GRADE", true); // show/hide grades
             bool showCritical = options.GetBoolOption("CRITICAL", true); // show/hide critical rules
@@ -66,6 +69,8 @@ namespace CastReporting.Reporting.Block.Table
             var dataRow = headers.CreateDataRow();
             var data = new List<string>();
 
+            int nbRow = 0;
+
             if (reportData != null && reportData.CurrentSnapshot != null) {
                 Dictionary<int, RuleDetails> targetRules =
                     reportData.RuleExplorer
@@ -84,33 +89,45 @@ namespace CastReporting.Reporting.Block.Table
 
                     var query = sourceResults.Select(ar => new { Reference = ar.Reference, AppDetailResult = ar.DetailResult, ModDetailResult = GetModuleResult(ar, module) });
 
-                    foreach (var result in query) {
-                        var detailResult = perModule ? result.ModDetailResult : result.AppDetailResult;
-                        if (detailResult != null && detailResult.Grade > 0) {
-                            dataRow.Set(Labels.RuleName, result.Reference?.Name.DashIfEmpty());
-                            if (showGrades) {
-                                dataRow.Set(Labels.Grade, detailResult.Grade.ToString("N2"));
-                            }
-                            if (showFailedChecks) {
-                                dataRow.Set(Labels.ViolationsCount, detailResult.ViolationRatio?.FailedChecks.DashIfEmpty());
-                            }
-                            if (showSuccessfulChecks) {
-                                dataRow.Set(Labels.TotalOk, detailResult.ViolationRatio?.SuccessfulChecks.DashIfEmpty());
-                            }
-                            if (showTotal) {
-                                dataRow.Set(Labels.TotalChecks, detailResult.ViolationRatio?.TotalChecks.DashIfEmpty());
-                            }
-                            if (showCompliance) {
-                                dataRow.Set(Labels.Compliance, detailResult.ViolationRatio?.Ratio.FormatPercent(false));
-                            }
-                            if (showAddedRemoved) {
-                                dataRow.Set(Labels.ViolationsAdded, detailResult.EvolutionSummary.AddedViolations.DashIfEmpty());
-                                dataRow.Set(Labels.ViolationsRemoved, detailResult.EvolutionSummary?.RemovedViolations.DashIfEmpty());
-                            }
-                            var ruleId = result.Reference?.Key;
-                            dataRow.Set(Labels.Critical, (ruleId.HasValue && targetRules.ContainsKey(ruleId.Value) && targetRules[ruleId.Value].Critical) ? "X" : "");
+                    foreach (var result in query)
+                    {
+                        if ((nbLimit == -1) || (nbRow < nbLimit))
+                        {
+                            var detailResult = perModule ? result.ModDetailResult : result.AppDetailResult;
+                            if (detailResult != null && detailResult.Grade > 0)
+                            {
+                                dataRow.Set(Labels.RuleName, result.Reference?.Name.DashIfEmpty());
+                                if (showGrades)
+                                {
+                                    dataRow.Set(Labels.Grade, detailResult.Grade.ToString("N2"));
+                                }
+                                if (showFailedChecks)
+                                {
+                                    dataRow.Set(Labels.ViolationsCount, detailResult.ViolationRatio?.FailedChecks.DashIfEmpty());
+                                }
+                                if (showSuccessfulChecks)
+                                {
+                                    dataRow.Set(Labels.TotalOk, detailResult.ViolationRatio?.SuccessfulChecks.DashIfEmpty());
+                                }
+                                if (showTotal)
+                                {
+                                    dataRow.Set(Labels.TotalChecks, detailResult.ViolationRatio?.TotalChecks.DashIfEmpty());
+                                }
+                                if (showCompliance)
+                                {
+                                    dataRow.Set(Labels.Compliance, detailResult.ViolationRatio?.Ratio.FormatPercent(false));
+                                }
+                                if (showAddedRemoved)
+                                {
+                                    dataRow.Set(Labels.ViolationsAdded, detailResult.EvolutionSummary?.AddedViolations.DashIfEmpty());
+                                    dataRow.Set(Labels.ViolationsRemoved, detailResult.EvolutionSummary?.RemovedViolations.DashIfEmpty());
+                                }
+                                var ruleId = result.Reference?.Key;
+                                dataRow.Set(Labels.Critical, (ruleId.HasValue && targetRules.ContainsKey(ruleId.Value) && targetRules[ruleId.Value].Critical) ? "X" : "");
 
-                            data.AddRange(dataRow);
+                                data.AddRange(dataRow);
+                            }
+                            nbRow++;
                         }
                     }
                 }

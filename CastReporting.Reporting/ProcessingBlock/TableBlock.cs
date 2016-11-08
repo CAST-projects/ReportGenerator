@@ -161,7 +161,19 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         {
             switch (client.ReportType)
             {
-                case FormatType.Word: return block.OxpBlock.Descendants<OXW.Table>().FirstOrDefault();
+                case FormatType.Word:
+                    var tblContent = block.OxpBlock.Descendants<OXW.Table>().FirstOrDefault();
+                    if (null != tblContent)
+                    {
+                        // case table is in a content control
+                        return tblContent;
+                    }
+                    else
+                    {
+                        // case table is directly in document
+                        return block.OxpBlock;
+                    }
+                    
                 case FormatType.PowerPoint: return block.OxpBlock;
                 case FormatType.Excel: // TODO : Finalize Excel alimentation
                 default: break;
@@ -246,8 +258,20 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                         row.RemoveAllChildren<OXW.TableCell>();
                     }
                 }
-                var blockSdt = block.Ancestors<OXW.SdtBlock>().First();
-                blockSdt.Parent.ReplaceChild(table, blockSdt);
+                var blockSdtAncestor = block.Ancestors<OXW.SdtBlock>();
+                if (0 != blockSdtAncestor.ToList().Count)
+                {
+                    // case table is in a content control
+                    var blockStd = block.Ancestors<OXW.SdtBlock>().First();
+                    blockStd.Parent.ReplaceChild(table, blockStd);
+                }
+                else
+                {
+                    // case table is directly in the document
+                    var blockStd = block;
+                    blockStd.Parent.ReplaceChild(table, blockStd);
+                }
+                
             }
             else
             {

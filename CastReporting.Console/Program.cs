@@ -153,7 +153,7 @@ namespace CastReporting.Console
                     }
                     catch (Exception ex)
                     {
-                        LogHelper.Instance.LogInfo("Error occured while trying get applications for the portfolio");
+                        LogHelper.Instance.LogInfo("Error occured while trying get applications for the portfolio : " + ex.Message);
                     }
 
                     Application[] SelectedApps = Apps.ToArray<Application>();
@@ -197,7 +197,7 @@ namespace CastReporting.Console
                     }
                     catch (Exception ex)
                     {
-                        LogHelper.Instance.LogInfo("Error occured while trying get snapshots of applications for the portfolio");
+                        LogHelper.Instance.LogInfo("Error occured while trying get snapshots of applications for the portfolio : " + ex.Message);
                     }
                     LogHelper.Instance.LogInfo("Snapshots is the portfolio found successfully");
                     List<Snapshot> N_Snaps = new List<Snapshot>();

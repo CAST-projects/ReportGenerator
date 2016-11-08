@@ -18,8 +18,6 @@ using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Domain;
-using System.Globalization;
-using System.Threading;
 using System.Data;
 using System;
 using System.Collections.Generic;
@@ -39,7 +37,7 @@ namespace CastReporting.Reporting.Block.Text
                 !options.ContainsKey("BCID") ||
                 !int.TryParse(options["BCID"], out metricId))
             {
-                metricId = 0;
+                metricId = (Int32)Constants.BusinessCriteria.TechnicalQualityIndex;
             }
             #endregion Item BCID
 

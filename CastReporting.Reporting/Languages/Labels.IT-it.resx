@@ -412,16 +412,16 @@
     <value>Debito Tecnico rimosso</value>
   </data>
   <data name="TotalChecks" xml:space="preserve">
-    <value>Controlli Totali</value>
+    <value>Totale controllati</value>
   </data>
   <data name="TechnicalCriterionName" xml:space="preserve">
     <value>Nome criterio tecnico</value>
   </data>
   <data name="TotalFailed" xml:space="preserve">
-    <value>Totale falliti</value>
+    <value>Numero di violazioni</value>
   </data>
   <data name="TotalOk" xml:space="preserve">
-    <value>Totale OK</value>
+    <value>Totale corretti</value>
   </data>
   <data name="TechnicalCriterion" xml:space="preserve">
     <value>Criterio Tecnico</value>
