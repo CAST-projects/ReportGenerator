@@ -119,7 +119,7 @@ namespace CastReporting.Reporting.Block.Table
                                 }
                                 if (showAddedRemoved)
                                 {
-                                    dataRow.Set(Labels.ViolationsAdded, detailResult.EvolutionSummary.AddedViolations.DashIfEmpty());
+                                    dataRow.Set(Labels.ViolationsAdded, detailResult.EvolutionSummary?.AddedViolations.DashIfEmpty());
                                     dataRow.Set(Labels.ViolationsRemoved, detailResult.EvolutionSummary?.RemovedViolations.DashIfEmpty());
                                 }
                                 var ruleId = result.Reference?.Key;
