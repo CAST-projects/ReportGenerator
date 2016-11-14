@@ -52,7 +52,7 @@ namespace CastReporting.Reporting.Block.Graph
 			if (nbSnapshots > 0) {
 				foreach (Snapshot snapshot in reportData.Application.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot)) {
                     double? prevDoubleSnapshotDate = snapshot.Annotation.Date.DateSnapShot.HasValue ? snapshot.Annotation.Date.DateSnapShot.Value.ToOADate() : 0;
-                    double? prevRemovedTechDebtValue = MeasureUtility.GetRemovedTechDebtMetric(snapshot);
+                    double? prevRemovedTechDebtValue = MeasureUtility.GetRemovedTechDebtMetric(snapshot) * -1;
                     double? prevAddedTechDebtValue = MeasureUtility.GetAddedTechDebtMetric(snapshot);
                     double? prevTotalTechDebtValue = MeasureUtility.GetTechnicalDebtMetric(snapshot);
                     rowData.AddRange(new string[] {
@@ -73,7 +73,7 @@ namespace CastReporting.Reporting.Block.Graph
 			             nbSnapshots == 1 &&
 			             reportData.CurrentSnapshot != null) {
                 double? prevDoubleSnapshotDate = reportData.CurrentSnapshot.Annotation.Date.DateSnapShot.HasValue ? reportData.CurrentSnapshot.Annotation.Date.DateSnapShot.Value.ToOADate() : 0;
-                double? prevRemovedTechDebtValue = MeasureUtility.GetRemovedTechDebtMetric(reportData.CurrentSnapshot);
+                double? prevRemovedTechDebtValue = MeasureUtility.GetRemovedTechDebtMetric(reportData.CurrentSnapshot) * -1;
                 double? prevAddedTechDebtValue = MeasureUtility.GetAddedTechDebtMetric(reportData.CurrentSnapshot);
                 double? prevTotalTechDebtValue = MeasureUtility.GetTechnicalDebtMetric(reportData.CurrentSnapshot);
                 rowData.AddRange(new string[] {
