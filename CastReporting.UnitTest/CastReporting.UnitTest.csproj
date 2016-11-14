@@ -64,12 +64,18 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ExpressionEvaluatorTests.cs" />
     <Compile Include="UnitTest1.cs" />
+    <Content Include="Data\JSonTest3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\JSonTest137.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -81,6 +87,10 @@
     <Compile Include="ComputingTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cast.Util\Cast.Util.csproj">
+      <Project>{1810eb4f-e9c6-4b34-94ec-65acb6802c58}</Project>
+      <Name>Cast.Util</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CastReporting.BLL.Computing\CastReporting.BLL.Computing.csproj">
       <Project>{692f3269-684c-44ed-8f1b-98d458da3f9a}</Project>
       <Name>CastReporting.BLL.Computing</Name>

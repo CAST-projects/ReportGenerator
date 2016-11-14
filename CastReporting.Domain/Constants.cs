@@ -214,7 +214,7 @@ namespace CastReporting.Domain
         #endregion CONSTANTS
 
         #region ATTRIBUTES
-	private readonly static object _lock = new object();
+        private readonly static object _lock = new object();
         private static Constants _instance = null;
         #endregion ATTRIBUTES
 

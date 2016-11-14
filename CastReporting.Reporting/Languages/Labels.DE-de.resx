@@ -522,4 +522,7 @@
   <data name="Compliance" xml:space="preserve">
     <value>Einhaltung</value>
   </data>
+  <data name="NoData" xml:space="preserve">
+    <value>Keine Daten gefunden</value>
+  </data>
 </root>

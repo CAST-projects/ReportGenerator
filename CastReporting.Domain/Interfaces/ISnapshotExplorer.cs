@@ -28,6 +28,7 @@ namespace CastReporting.Domain.Interfaces
 
         string GetCommonCategoriesJson(WSConnection connection);
 
+        IEnumerable<Result> GetBackgroundFacts(string snapshotHref, string backgroundFacts);
 
         IEnumerable<CastReporting.Domain.MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string RuleId, int count);
 

@@ -41,8 +41,8 @@ namespace CastReporting.UnitTests
         /// </summary>
         WSConnection _Connection = new WSConnection()
         {
-            Url = "http://highlightdev:9990/Dashboard-WebService/rest/",
-            Login = "cast",
+            Url = "http://demo-eu-aed.castsoftware.com/AED/rest/",
+            Login = "admin",
             Password = "cast",
             IsActive = true,
             Name = "Default"
@@ -113,7 +113,7 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetApplicationsByDomainTest()
         {
-            string domainHref = "ADG705";
+            string domainHref = "AED1";
 
             ICastRepsitory context = new CastRepository(_Connection);
             IEnumerable<Application> result = context.GetApplicationsByDomain(domainHref);
@@ -128,7 +128,7 @@ namespace CastReporting.UnitTests
         public void GetApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_Connection);
-            string appilcationId = "ADG705/applications/3";
+            string appilcationId = "AED1/applications/3";
             Application result = context.GetApplication(appilcationId);
             Assert.IsNotNull(result);
             
@@ -142,7 +142,7 @@ namespace CastReporting.UnitTests
         public void GetSnapshotsByApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_Connection);
-            string appilcationId = "ADG705/applications/3";
+            string appilcationId = "AED1/applications/3";
             var result = context.GetSnapshotsByApplication(appilcationId);
             Assert.IsNotNull(result);
             Assert.AreNotEqual(result.Count(), 0);
@@ -156,7 +156,7 @@ namespace CastReporting.UnitTests
         public void GetSnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_Connection);
-            string snapshotId = "ADG705/applications/3/snapshots/138";
+            string snapshotId = "AED1/applications/3/snapshots/3";
             Snapshot result = context.GetSnapshot(snapshotId);
             Assert.IsNotNull(result);
         }
@@ -169,7 +169,7 @@ namespace CastReporting.UnitTests
         public void GetModulesByApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_Connection);
-            string appilcationId = "ADG705/applications/3";
+            string appilcationId = "AED1/applications/3";
             var result = context.GetModules(appilcationId);
             Assert.IsNotNull(result);
             Assert.AreNotEqual(result.Count(), 0);
@@ -184,7 +184,7 @@ namespace CastReporting.UnitTests
         public void GetModulesBySnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_Connection);
-            string appilcationId = "ADG705/applications/3/snapshots/138";
+            string appilcationId = "AED1/applications/3/snapshots/3";
             var result = context.GetModules(appilcationId);
             Assert.IsNotNull(result);
             Assert.AreNotEqual(result.Count(), 0);
@@ -199,7 +199,7 @@ namespace CastReporting.UnitTests
         public void GetModuleTest()
         {
             ICastRepsitory context = new CastRepository(_Connection);
-            string moduleId = "ADG705/modules/4";
+            string moduleId = "AED1/modules/4";
             Module result = context.GetModule(moduleId);
             Assert.IsNotNull(result);
         }
@@ -213,7 +213,7 @@ namespace CastReporting.UnitTests
         public void GetQualityIndicatorsByApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_Connection);
-            string appilcationRef = "ADG705/applications/3";
+            string appilcationRef = "AED1/applications/3";
 
             Int32[] businessCriterias = (Int32[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
@@ -234,7 +234,7 @@ namespace CastReporting.UnitTests
         public void GetQualityIndicatorsBySnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_Connection);
-            string snapshotRef = "ADG705/applications/5/snapshots/137";
+            string snapshotRef = "AED1/applications/3/snapshots/3";
 
             Int32[] businessCriterias = (Int32[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
@@ -256,7 +256,7 @@ namespace CastReporting.UnitTests
         public void GetQualityIndicatorsByModuleTest()
         {
             ICastRepsitory context = new CastRepository(_Connection);
-            string moduleRef = "ADG705/modules/4";
+            string moduleRef = "AED1/modules/4";
 
             Int32[] businessCriterias = (Int32[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
@@ -279,12 +279,12 @@ namespace CastReporting.UnitTests
         public void GetSizingMeasuresByApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_Connection);
-            string snapshotRef = "ADG705/applications/5";
+            string snapshotRef = "AED1/applications/3";
 
             Int32[] sizingMeasures = (Int32[])Enum.GetValues(typeof(Constants.SizingInformations));
             string strSizingMeasures = string.Join(",", sizingMeasures);
 
-            var result = context.GetResultsSizingMeasures(snapshotRef, strSizingMeasures, "$all", String.Empty, String.Empty);
+            var result = context.GetResultsSizingMeasures(snapshotRef, strSizingMeasures, "$all", "$all", "$all");
 
             Assert.IsNotNull(result);
             Assert.AreNotEqual(result.Count(), 0);
@@ -300,7 +300,7 @@ namespace CastReporting.UnitTests
         public void GetSizingMeasuresBySnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_Connection);
-            string snapshotRef = "ADG705/applications/5/snapshots/137";
+            string snapshotRef = "AED1/applications/3/snapshots/3";
 
             Int32[] sizingMeasures = (Int32[])Enum.GetValues(typeof(Constants.SizingInformations));
             string strSizingMeasures = string.Join(",", sizingMeasures);
@@ -323,7 +323,7 @@ namespace CastReporting.UnitTests
         {
 
             ICastRepsitory context = new CastRepository(_Connection);
-            string domainHref = "ADG705";
+            string domainHref = "AED1";
             Int64 snapshotId = 1;
 
             var result = context.GetConfBusinessCriteriaBySnapshot(domainHref, snapshotId);
@@ -341,7 +341,7 @@ namespace CastReporting.UnitTests
         {
 
             ICastRepsitory context = new CastRepository(_Connection);
-            string domainHref = "ADG710/quality-indicators/61001/snapshots/14";
+            string domainHref = "AED1/quality-indicators/61001/snapshots/3";
 
             var result = context.GetConfBusinessCriteria(domainHref);
 

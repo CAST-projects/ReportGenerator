@@ -29,6 +29,21 @@ namespace CastReporting.BLL.Computing
 
             return null;
         }
+        public static Double? GetSizingMeasure(Snapshot snapshot, int measureId)
+        {
+
+            if (null != snapshot && snapshot.SizingMeasuresResults != null)
+            {
+                var measure = snapshot.SizingMeasuresResults.Where(_ => _.Reference.Key == measureId)
+                                                              .FirstOrDefault();
+
+
+                if (null != measure && measure.DetailResult != null)
+                    return measure.DetailResult.Value;
+            }
+
+            return null;
+        }
 
 
         public static Double? GetAddedFunctionPoint(Snapshot snapshot)

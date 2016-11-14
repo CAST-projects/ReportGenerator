@@ -673,6 +673,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No data found.
+        /// </summary>
+        public static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No enabled item.
         /// </summary>
         public static string NoItem {
