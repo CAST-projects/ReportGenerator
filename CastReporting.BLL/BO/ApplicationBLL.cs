@@ -94,8 +94,16 @@ namespace CastReporting.BLL
 
             using (var castRepsitory = GetRepository())
             {
-                _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasures, "$all", string.Empty, string.Empty)
-                                                                  .ToList();
+                try
+                {
+                    _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasures, "$all", string.Empty, string.Empty).ToList();
+                }
+                catch (System.Net.WebException ex)
+                {
+                    string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                    _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasuresOld, "$all", string.Empty, string.Empty).ToList();
+                }
+                
             }
 
             foreach (var snapshot in _Application.Snapshots)

@@ -87,6 +87,17 @@ namespace CastReporting.Repositories.Interfaces
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="hRef"></param>
+        /// <param name="param"></param>
+        /// <param name="snapshotsParam"></param>
+        /// <param name="technologiesParam"></param>
+        /// <param name="moduleParam"></param>
+        /// <returns></returns>
+        IEnumerable<Result> GetResultsBackgroundFacts(string hRef, string param, string snapshotsParam, string technologiesParam, string moduleParam);
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="domainHRef"></param>
         /// <param name="snapshotId"></param>
         /// <returns></returns>
@@ -221,6 +232,5 @@ namespace CastReporting.Repositories.Interfaces
         /// <param name="count"></param>
         /// <returns></returns>
         IEnumerable<Component> GetComponentsByModule(string domainId, int moduleId, int snapshotId, string businessCriteria, int count);
-        IEnumerable<Result> GetResultsBackgroundFacts(string hRef, string param, string snapshotsParam, string technologiesParam, string moduleParam);
     }
 }

@@ -46,7 +46,7 @@ class MyType
             try
             {
                 result = (double)method.Invoke(null, values);
-                res = result.Value.ToString(format);
+                res = (format == string.Empty) ? result.Value.ToString() : result.Value.ToString(format);
             }
             catch (ArgumentException ex)
             {

@@ -156,8 +156,16 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
-                            IgnoreApps.Add(_Snapshot[i].Href);
-                            continue;
+                            string strSizingMeasureOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                            try
+                            {
+                                _Snapshot[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot[i].Href, strSizingMeasureOld, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                            }
+                            catch (WebException wex)
+                            {
+                                IgnoreApps.Add(_Snapshot[i].Href);
+                                continue;
+                            }
                         }
                     }
                 }
@@ -404,6 +412,6 @@ namespace CastReporting.BLL
             }
         }
 
-       
+
     }
 }

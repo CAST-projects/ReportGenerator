@@ -128,7 +128,16 @@ namespace CastReporting.BLL
 
             using (var castRepsitory = GetRepository())
             {
-                _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasures, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                try
+                {
+                    _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasures, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                }
+                catch (System.Net.WebException ex)
+                {
+                    string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                    _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasuresOld, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                }
+                
             }
         }
 
@@ -236,7 +245,7 @@ namespace CastReporting.BLL
             {
                 using (var castRepsitory = GetRepository())
                 {
-                    return castRepsitory.GetResultsBackgroundFacts(_Snapshot.Href, backgroundFacts, string.Empty, string.Empty, string.Empty);
+                    return castRepsitory.GetResultsBackgroundFacts(snapshotHref, backgroundFacts, string.Empty, string.Empty, string.Empty);
                 }
             }
             catch (Exception ex)

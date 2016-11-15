@@ -133,8 +133,16 @@ namespace CastReporting.BLL
                     {
                         try
                         {
-                            _Application[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application[i].Href, strSizingMeasures, "$all", string.Empty, string.Empty)
-                                                                              .ToList();
+                            try
+                            {
+                                _Application[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application[i].Href, strSizingMeasures, "$all", string.Empty, string.Empty).ToList();
+                            }
+                            catch (WebException ex)
+                            {
+                                string strSizingMeasureOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                                _Application[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application[i].Href, strSizingMeasureOld, "$all", string.Empty, string.Empty).ToList();
+                            }
+                            
                         }
                         catch (WebException ex)
                         {
