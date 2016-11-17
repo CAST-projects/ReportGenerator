@@ -33,10 +33,12 @@ namespace CastReporting.Reporting.Block.Text
         {
           
             int metricId = options.GetIntOption("ID", 0);
+            int metricSzId = options.GetIntOption("SZID", 0);
+            int metricBfId = options.GetIntOption("BFID", 0);
+            string _format = options.GetOption("FORMAT", "N0");
             string _snapshot = options.GetOption("SNAPSHOT", "CURRENT");
            
-            if (null != reportData &&
-                null != reportData.CurrentSnapshot && metricId != 0)
+            if (null != reportData && null != reportData.CurrentSnapshot && metricId != 0)
             {
                 if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
                 {
@@ -49,6 +51,49 @@ namespace CastReporting.Reporting.Block.Text
                     return result.HasValue ? result.Value.ToString("N2") : Constants.No_Value;
                 }
             }
+            else if (null != reportData && null != reportData.CurrentSnapshot && metricSzId != 0)
+            {
+                if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
+                {
+                    double? result = MeasureUtility.GetSizingMeasure(reportData.PreviousSnapshot, metricSzId);
+                    return result.HasValue ? result.Value.ToString(_format) : Constants.No_Value;
+                }
+                else
+                {
+                    double? result = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, metricSzId);
+                    return result.HasValue ? result.Value.ToString(_format) : Constants.No_Value;
+                }
+            }
+            else if (null != reportData && null != reportData.CurrentSnapshot && metricBfId != 0)
+            {
+                if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
+                {
+                    Result bfValue = reportData.SnapshotExplorer.GetBackgroundFacts(reportData.PreviousSnapshot.Href, metricBfId.ToString()).FirstOrDefault();
+                    if (bfValue != null && bfValue.ApplicationResults.Any())
+                    {
+                        double? result = bfValue.ApplicationResults[0].DetailResult.Value;
+                        return result.HasValue ? result.Value.ToString(_format) : Constants.No_Value;
+                    }
+                    else
+                    {
+                        return Constants.No_Value;
+                    }
+                }
+                else
+                {
+                    Result bfValue = reportData.SnapshotExplorer.GetBackgroundFacts(reportData.CurrentSnapshot.Href, metricBfId.ToString()).FirstOrDefault();
+                    if (bfValue != null && bfValue.ApplicationResults.Any())
+                    {
+                        double? result = bfValue.ApplicationResults[0].DetailResult.Value;
+                        return result.HasValue ? result.Value.ToString(_format) : Constants.No_Value;
+                    }
+                    else
+                    {
+                        return Constants.No_Value;
+                    }
+                }
+            }
+
             return CastReporting.Domain.Constants.No_Value;
         }
         #endregion METHODS
