@@ -120,12 +120,24 @@ namespace CastReporting.BLL
         /// </summary>
         public void SetSizingMeasure()
         {
-            Int32[] sizingMeasures = (Int32[])Enum.GetValues(typeof(Constants.SizingInformations));
-            string strSizingMeasures = string.Join(",", sizingMeasures);
+            // Int32[] sizingMeasures = (Int32[])Enum.GetValues(typeof(Constants.SizingInformations));
+            // string strSizingMeasures = string.Join(",", sizingMeasures);
+
+            // to get the results of all sizing measures in the snapshot, even is not in the list of known measures
+            string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
 
             using (var castRepsitory = GetRepository())
             {
-                _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasures, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                try
+                {
+                    _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasures, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                }
+                catch (System.Net.WebException ex)
+                {
+                    string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                    _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasuresOld, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                }
+                
             }
         }
 
@@ -225,6 +237,22 @@ namespace CastReporting.BLL
                 return null;
             }
             
+        }
+
+        public IEnumerable<Result> GetBackgroundFacts(string snapshotHref, string backgroundFacts)
+        {
+            try
+            {
+                using (var castRepsitory = GetRepository())
+                {
+                    return castRepsitory.GetResultsBackgroundFacts(snapshotHref, backgroundFacts, string.Empty, string.Empty, string.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
         }
 
         /// <summary>

@@ -18,9 +18,9 @@ namespace CastReporting.UnitTest
          
             Snapshot selectedSnapshot = new Snapshot();
             selectedSnapshot.Name = "Test";
-            selectedSnapshot.Href = "ADG705/applications/5/snapshots/137";
-            selectedSnapshot.Annotation = new Annotation() { Version = "Src 20130210" };
-            selectedSnapshot.BusinessCriteriaResults = GetSampleResult(@"Data\JSonTest137.txt").SelectMany(_ => _.ApplicationResults);
+            selectedSnapshot.Href = "AED1/applications/3/snapshots/3";
+            selectedSnapshot.Annotation = new Annotation() { Version = "2.1" };
+           // selectedSnapshot.BusinessCriteriaResults = GetSampleResult(@"Data\JSonTest3.txt").SelectMany(_ => _.ApplicationResults);
 
             var result = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(selectedSnapshot, true);
             

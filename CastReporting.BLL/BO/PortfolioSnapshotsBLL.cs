@@ -137,8 +137,12 @@ namespace CastReporting.BLL
         public List<string> SetSizingMeasure()
         {
             List<string> IgnoreApps = new List<string>();
-            Int32[] sizingMeasures = (Int32[])Enum.GetValues(typeof(Constants.SizingInformations));
-            string strSizingMeasures = string.Join(",", sizingMeasures);
+            // Int32[] sizingMeasures = (Int32[])Enum.GetValues(typeof(Constants.SizingInformations));
+            // string strSizingMeasures = string.Join(",", sizingMeasures);
+
+            // to get the results of all sizing measures in the snapshot, even is not in the list of known measures
+            string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
+
 
             using (var castRepsitory = GetRepository())
             {
@@ -152,8 +156,16 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
-                            IgnoreApps.Add(_Snapshot[i].Href);
-                            continue;
+                            string strSizingMeasureOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                            try
+                            {
+                                _Snapshot[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot[i].Href, strSizingMeasureOld, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                            }
+                            catch (WebException wex)
+                            {
+                                IgnoreApps.Add(_Snapshot[i].Href);
+                                continue;
+                            }
                         }
                     }
                 }
@@ -400,6 +412,6 @@ namespace CastReporting.BLL
             }
         }
 
-       
+
     }
 }

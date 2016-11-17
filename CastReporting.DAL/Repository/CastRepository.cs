@@ -40,7 +40,7 @@ namespace CastReporting.Repositories
         // Sometimes modules, technologies, snapshots, categories are null and the rest api 8.2 does not support it anymore for security reasons
         private const string _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&select=(evolutionSummary,violationRatio)";
         private const string _query_result_sizing_measures = "{0}/results?sizing-measures=({1})";
-
+        private const string _query_result_background_facts = "{0}/results?background-facts=({1})";
         private const string _query_configuration = "{0}/configuration/snapshots/{1}";
         private const string _query_action_plan = "{0}/action-plan/summary";
         private const string _query_action_plan2 = "{0}/actionPlan/summary";
@@ -412,6 +412,25 @@ namespace CastReporting.Repositories
         {
             // _query_result_sizing_measures = "{0}/results?sizing-measures=({1})&snapshots=({2})&technologies=({3})&modules=({4})"
             String query = _query_result_sizing_measures;
+
+            if (String.Empty != snapshotsParam)
+                query = query + "&snapshots=({2})";
+
+            if (String.Empty != technologiesParam)
+                query = query + "&technologies=({3})";
+
+            if (String.Empty != moduleParam)
+                query = query + "&modules=({4})";
+
+            string relativeURL = string.Format(query, hRef, param, snapshotsParam, technologiesParam, moduleParam);
+
+            return this.CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
+        }
+
+        IEnumerable<Result> ICastRepsitory.GetResultsBackgroundFacts(string hRef, string param, string snapshotsParam, string technologiesParam, string moduleParam)
+        {
+            // _query_result_background_facts = "{0}/results?background-facts=({1})&snapshots=({2})&technologies=({3})&modules=({4})"
+            String query = _query_result_background_facts;
 
             if (String.Empty != snapshotsParam)
                 query = query + "&snapshots=({2})";
