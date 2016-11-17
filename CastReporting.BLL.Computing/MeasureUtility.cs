@@ -313,11 +313,12 @@ namespace CastReporting.BLL.Computing
                                                                        .Where(_ => !(_.StartsWith("APM") && _.EndsWith("Module")))
                                                              from codeLineNumber in snapshot.SizingMeasuresResults
                                                              where codeLineNumber.Reference.Key == Constants.SizingInformations.CodeLineNumber.GetHashCode() &&
-                                                                   codeLineNumber.DetailResult.Value > 0
+                                                                   codeLineNumber.DetailResult?.Value > 0 &&
+                                                                   codeLineNumber.TechnologyResult.Where(_ => _.Technology.Equals(techno)).Count() != 0
                                                              select new TechnologyResultDTO
                                                              {
                                                                  Name = techno,
-                                                                 Value = null == codeLineNumber ? -1 : codeLineNumber.TechnologyResult.Where(_ => _.Technology.Equals(techno)).FirstOrDefault().DetailResult.Value
+                                                                 Value = (null == codeLineNumber) ? -1 : codeLineNumber.TechnologyResult.Where(_ => _.Technology.Equals(techno)).FirstOrDefault().DetailResult.Value
 
                                                              }).OrderByDescending(_ => _.Value).Take(nbResult).ToList();
                 return technologyInfos;
