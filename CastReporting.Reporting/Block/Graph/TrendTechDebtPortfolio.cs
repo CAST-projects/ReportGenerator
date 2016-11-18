@@ -66,7 +66,6 @@ namespace CastReporting.Reporting.Block.Graph
             {
                 DateTime DateNow = DateTime.Now;
                 //DateTime DateNow = Convert.ToDateTime("03 01 2014");
-                Application[] AllApps = reportData.Applications;
                 Snapshot[] AllSnapshots = reportData.snapshots;
                 int generateQuater = 6;
                 int currentYear = DateNow.Year;
@@ -117,37 +116,9 @@ namespace CastReporting.Reporting.Block.Graph
                         }
                     }
 
-                    if (RemovedTechnicalDebt > 0)
-                    {
-                        RemovedTechnicalDebt = RemovedTechnicalDebt * -1;
-                    }
-
-                    if (RemovedTechnicalDebt != null)
-                    {
-                        dtDates.Rows[i]["RemovedTechnicalDebt"] = RemovedTechnicalDebt;
-                    }
-                    else
-                    {
-                        dtDates.Rows[i]["RemovedTechnicalDebt"] = 0.0;
-                    }
-
-                    if (AddedTechnicalDebt != null)
-                    {
-                        dtDates.Rows[i]["AddedTechnicalDebt"] = AddedTechnicalDebt;
-                    }
-                    else
-                    {
-                        dtDates.Rows[i]["AddedTechnicalDebt"] = 0.0;
-                    }
-
-                    if (TotalTechnicalDebt != null)
-                    {
-                        dtDates.Rows[i]["TotalTechnicalDebt"] = TotalTechnicalDebt;
-                    }
-                    else
-                    {
-                        dtDates.Rows[i]["TotalTechnicalDebt"] = 0.0;
-                    }
+                    dtDates.Rows[i]["RemovedTechnicalDebt"] = (RemovedTechnicalDebt != null) ? RemovedTechnicalDebt * -1 : 0.0;
+                    dtDates.Rows[i]["AddedTechnicalDebt"] = (AddedTechnicalDebt != null) ? AddedTechnicalDebt : 0.0;
+                    dtDates.Rows[i]["TotalTechnicalDebt"] = (TotalTechnicalDebt != null) ? TotalTechnicalDebt : 0.0;
                 }
 
                 for (int i = 0; i < dtDates.Rows.Count; i++)
@@ -163,11 +134,6 @@ namespace CastReporting.Reporting.Block.Graph
 
             }
             #endregion Fetch SnapshotsPF
-
-
-
-
-
 
             TableDefinition resultTable = new TableDefinition
             {
