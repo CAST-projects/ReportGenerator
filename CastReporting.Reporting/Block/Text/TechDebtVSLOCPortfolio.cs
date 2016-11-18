@@ -47,7 +47,6 @@ namespace CastReporting.Reporting.Block.Text
                     try
                     {
                         Snapshot _snapshot = App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
-
                         if (_snapshot != null)
                         {
                             double? result = MeasureUtility.GetTechnicalDebtMetric(_snapshot);
@@ -69,17 +68,12 @@ namespace CastReporting.Reporting.Block.Text
                     }
                 }
                  
-                //handle 0 functions case
                 if (AllTechDebt > 0 && AllLOC > 0)
                 {
-
                     double? FinalValue = AllTechDebt / AllLOC;
                     return FinalValue.Value.ToString("C0"); // currency format with no decimal
                 }
-                else
-                {
-                    return Labels.NoData;
-                }
+                return Labels.NoData;
             }
             return CastReporting.Domain.Constants.No_Value;
         }
