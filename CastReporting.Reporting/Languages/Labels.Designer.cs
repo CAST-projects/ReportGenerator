@@ -691,6 +691,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No snapshot found for this application.
+        /// </summary>
+        public static string NoSnapshot {
+            get {
+                return ResourceManager.GetString("NoSnapshot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obj..
         /// </summary>
         public static string Obj {

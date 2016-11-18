@@ -543,4 +543,7 @@
   <data name="NoData" xml:space="preserve">
     <value>No data found</value>
   </data>
+  <data name="NoSnapshot" xml:space="preserve">
+    <value>No snapshot found for this application</value>
+  </data>
 </root>
