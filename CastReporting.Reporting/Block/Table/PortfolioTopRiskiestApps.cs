@@ -23,6 +23,9 @@ using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using System.Data;
+using Cast.Util.Log;
+using CastReporting.Reporting.Helper;
+
 
 namespace CastReporting.Reporting.Block.Table
 {
@@ -31,66 +34,45 @@ namespace CastReporting.Reporting.Block.Table
     {
         private const string _MetricFormat = "N0";
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
-        { 
+        {
             TableDefinition resultTable = null;
-            int nbLimitTop = 0;
             string dataSource = string.Empty;
 
-            int metricId;
-            #region Item ALT
-            if (options == null ||
-                !options.ContainsKey("ALT") ||
-                !int.TryParse(options["ALT"], out metricId))
-            {
-                metricId = (Int32)Constants.BusinessCriteria.TechnicalQualityIndex;
-            }
-            #endregion Item ALT
-
-            #region Item Count
-            if (options == null ||
-                !options.ContainsKey("COUNT") ||
-                !int.TryParse(options["COUNT"], out nbLimitTop))
-            {
-                nbLimitTop = reportData.Parameter.NbResultDefault;
-            }
-            #endregion Item Count
+            int metricId = options.GetIntOption("ALT", (Int32)Constants.BusinessCriteria.TechnicalQualityIndex);
+            int nbLimitTop = options.GetIntOption("COUNT", reportData.Parameter.NbResultDefault);
 
             List<string> rowData = new List<string>();
             int nbRows = 0;
 
             if (reportData.Applications != null && reportData.snapshots != null)
             {
-                if (metricId == 60012)
+                switch (metricId)
                 {
-                    rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Changeability, Labels.SnapshotDate });
+                    case 60012:
+                        rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Changeability, Labels.SnapshotDate });
+                        break;
+                    case 60014:
+                        rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Efficiency, Labels.SnapshotDate });
+                        break;
+                    case 60013:
+                        rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Robustness, Labels.SnapshotDate });
+                        break;
+                    case 60016:
+                        rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Security, Labels.SnapshotDate });
+                        break;
+                    case 60011:
+                        rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Transferability, Labels.SnapshotDate });
+                        break;
+                    case 60017:
+                    default:
+                        rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.TQI, Labels.SnapshotDate });
+                        break;
                 }
-                else if (metricId == 60014)
-                {
-                    rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Efficiency, Labels.SnapshotDate });
-                }
-                else if (metricId == 60013)
-                {
-                    rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Robustness, Labels.SnapshotDate });
-                }
-                else if (metricId == 60016)
-                {
-                    rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Security, Labels.SnapshotDate });
-                }
-                else if (metricId == 60017)
-                {
-                    rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.TQI, Labels.SnapshotDate });
-                }
-                else if (metricId == 60011)
-                {
-                    rowData.AddRange(new string[] { Labels.Application, Labels.ViolationsCritical, Labels.Transferability, Labels.SnapshotDate });
-                }
-
-
 
                 DataTable dt = new DataTable();
                 dt.Columns.Add("AppName", typeof(string));
                 dt.Columns.Add("CV", typeof(double));
-                dt.Columns.Add("Efficiency", typeof(double));
+                dt.Columns.Add("BizCritScore", typeof(double));
                 dt.Columns.Add("LastAnalysis", typeof(string));
 
 
@@ -98,84 +80,31 @@ namespace CastReporting.Reporting.Block.Table
                 for (int j = 0; j < AllApps.Count(); j++)
                 {
                     Application App = AllApps[j];
-
-                    int nbSnapshotsEachApp = App.Snapshots.Count();
-                    if (nbSnapshotsEachApp > 0)
+                    try
                     {
-                        foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
+                        Snapshot _snapshot = App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
+                        if (_snapshot != null)
                         {
-                            Snapshot[] BuiltSnapshots = reportData.snapshots;
+                            string strAppName = App.Name;
+                            double? CV = RulesViolationUtility.GetBCEvolutionSummary(_snapshot, metricId).FirstOrDefault().TotalCriticalViolations;
 
-                            foreach (Snapshot BuiltSnapshot in BuiltSnapshots)
-                            {
-                                if (snapshot == BuiltSnapshot)
-                                {
-                                    string strAppName = App.Name;
-                                    double? CV = 0;
-                                    var results = RulesViolationUtility.GetStatViolation(BuiltSnapshot);
-                                    foreach (var resultModule in results.OrderBy(_ => _.ModuleName))
-                                   {
-                                       CV = CV + ((resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].TotalCriticalViolations.HasValue) ?
-                         resultModule[(Constants.BusinessCriteria)metricId].TotalCriticalViolations.Value : 0);
+                            string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(_snapshot);
+                            double? strCurrentBCGrade = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(_snapshot, (Constants.BusinessCriteria)metricId, false);
 
-                                    }
+                            string strLastAnalysis = Convert.ToDateTime(_snapshot.Annotation.Date.DateSnapShot.Value).ToString("MMM dd yyyy");
 
-                                    string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(BuiltSnapshot);
-                                    BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(BuiltSnapshot, false);
-
-                                    double? strCurrentEfficiency = 0;
-                                     
-
-                                    if (metricId == 60012)
-                                    {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Changeability.HasValue ? currSnapshotBisCriDTO.Changeability.Value : 0;
-                                    }
-                                    else if (metricId == 60014)
-                                    {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Performance.HasValue ? currSnapshotBisCriDTO.Performance.Value : 0;
-                                    }
-                                    else if (metricId == 60013)
-                                    {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Robustness.HasValue ? currSnapshotBisCriDTO.Robustness.Value : 0;
-                                    }
-                                    else if (metricId == 60016)
-                                    {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Security.HasValue ? currSnapshotBisCriDTO.Security.Value : 0;
-                                    }
-                                    else if (metricId == 60017)
-                                    {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.TQI.HasValue ? currSnapshotBisCriDTO.TQI.Value : 0;
-                                    }
-                                    else if (metricId == 60011)
-                                    {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Transferability.HasValue ? currSnapshotBisCriDTO.Transferability.Value : 0;
-                                    }
-
-                                    string strLastAnalysis = Convert.ToDateTime(BuiltSnapshot.Annotation.Date.DateSnapShot.Value).ToString("MMM dd yyyy");
-
-                                    dt.Rows.Add(strAppName, CV, strCurrentEfficiency, strLastAnalysis);
-
-
-                        //            rowData.AddRange
-                        //(new string[] { strAppName.ToString()
-                        //    , CV.ToString()
-                        //    , strCurrentEfficiency.GetValueOrDefault().ToString()
-                        //    , strLastAnalysis.ToString()
-                        //    });
-
-                                    nbRows++;
-
-                                    break;
-                                }
-                            }
-                            break;
+                            dt.Rows.Add(strAppName, CV, strCurrentBCGrade, strLastAnalysis);
+                            nbRows++;
                         }
                     }
-                    continue;
-                }
+                    catch (Exception ex)
+                    {
+                        LogHelper.Instance.LogInfo(Labels.NoSnapshot);
+                    }
 
+                }
                 DataView dv = dt.DefaultView;
-                dv.Sort = "Efficiency";
+                dv.Sort = "BizCritScore";
                 DataTable dtSorted = dv.ToTable();
 
                 if (nbRows < nbLimitTop)
@@ -184,28 +113,25 @@ namespace CastReporting.Reporting.Block.Table
                 }
 
                 for (int i = 0; i < nbLimitTop; i++)
-                { 
+                {
                     rowData.AddRange
-        (new string[] { 
-                          dtSorted.Rows[i]["AppName"].ToString()
-                        , dtSorted.Rows[i]["CV"].ToString()
-                        , string.Format("{0:0.00}", Convert.ToDouble(dtSorted.Rows[i]["Efficiency"]))
-                        , dtSorted.Rows[i]["LastAnalysis"].ToString()
+                        (new string[] {
+                              dtSorted.Rows[i]["AppName"].ToString()
+                            , dtSorted.Rows[i]["CV"].ToString()
+                            , string.Format("{0:0.00}", Convert.ToDouble(dtSorted.Rows[i]["BizCritScore"]))
+                            , dtSorted.Rows[i]["LastAnalysis"].ToString()
                         });
                 }
 
-
+                resultTable = new TableDefinition
+                {
+                    HasRowHeaders = false,
+                    HasColumnHeaders = true,
+                    NbRows = nbLimitTop + 1,
+                    NbColumns = 4,
+                    Data = rowData
+                };
             }
-
-            resultTable = new TableDefinition
-            {
-                HasRowHeaders = false,
-                HasColumnHeaders = true,
-                NbRows = nbLimitTop + 1,
-                NbColumns = 4,
-                Data = rowData
-            };
-
             return resultTable;
         }
     }
