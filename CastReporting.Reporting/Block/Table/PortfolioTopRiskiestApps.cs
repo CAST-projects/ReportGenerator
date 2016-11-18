@@ -115,8 +115,8 @@ namespace CastReporting.Reporting.Block.Table
                                     var results = RulesViolationUtility.GetStatViolation(BuiltSnapshot);
                                     foreach (var resultModule in results.OrderBy(_ => _.ModuleName))
                                    {
-                                       CV = CV + ((resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Total.HasValue) ?
-                         resultModule[(Constants.BusinessCriteria)metricId].Total.Value : 0);
+                                       CV = CV + ((resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].TotalCriticalViolations.HasValue) ?
+                         resultModule[(Constants.BusinessCriteria)metricId].TotalCriticalViolations.Value : 0);
 
                                     }
 

@@ -123,14 +123,14 @@ namespace CastReporting.Reporting.Block.Graph
                                 {
                                     if (resultModule[(Constants.BusinessCriteria)metricId] != null)
                                     {
-                                        int CriticalViolThisModulePerformanceTotal = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Total.HasValue) ?
-                              resultModule[(Constants.BusinessCriteria)metricId].Total.Value : 0;
+                                        int CriticalViolThisModulePerformanceTotal = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].TotalCriticalViolations.HasValue) ?
+                              resultModule[(Constants.BusinessCriteria)metricId].TotalCriticalViolations.Value : 0;
 
-                                        int CriticalViolThisModulePerformanceAdded = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Added.HasValue) ?
-                              resultModule[(Constants.BusinessCriteria)metricId].Added.Value : 0;
+                                        int CriticalViolThisModulePerformanceAdded = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].AddedCriticalViolations.HasValue) ?
+                              resultModule[(Constants.BusinessCriteria)metricId].AddedCriticalViolations.Value : 0;
 
-                                        int CriticalViolThisModulePerformanceRemoved = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Removed.HasValue) ?
-                              resultModule[(Constants.BusinessCriteria)metricId].Removed.Value : 0;
+                                        int CriticalViolThisModulePerformanceRemoved = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].RemovedCriticalViolations.HasValue) ?
+                              resultModule[(Constants.BusinessCriteria)metricId].RemovedCriticalViolations.Value : 0;
 
                                         RemovedViol = RemovedViol + CriticalViolThisModulePerformanceRemoved;
                                         AddedViol = AddedViol + CriticalViolThisModulePerformanceAdded;

@@ -202,14 +202,14 @@ namespace CastReporting.BLL.Computing
         /// </summary>
         /// <param name="snapshot"></param>
         /// <returns></returns>
-        public static List<ViolationSummaryModuleDTO> GetStatViolation(Snapshot snapshot)
+        public static List<ViolationsStatisticsModuleDTO> GetStatViolation(Snapshot snapshot)
         {
             if (snapshot == null || snapshot.BusinessCriteriaResults == null) return null;
 
             var modules = snapshot.BusinessCriteriaResults.SelectMany(_ => _.ModulesResult).Select(_ => _.Module).Distinct();
 
             var query = from module in modules
-                        select new ViolationSummaryModuleDTO
+                        select new ViolationsStatisticsModuleDTO
                         {
                             ModuleName = module.Name,
                             Stats = GetEvolutionSummary(snapshot, module)
@@ -264,24 +264,44 @@ namespace CastReporting.BLL.Computing
         }
 
 
+        public static IEnumerable<ViolationsStatisticsDTO> GetBCEvolutionSummary(Snapshot snapshot, int bcid)
+        {
+            if (snapshot == null || snapshot.BusinessCriteriaResults == null) return null;
+
+            return snapshot.BusinessCriteriaResults.Where(_ => _.Reference.Key == bcid && _.DetailResult.EvolutionSummary != null)
+                                                   .Select(_ => new ViolationsStatisticsDTO
+                                                   {
+                                                       BusinessCriteria = (Constants.BusinessCriteria)bcid,
+                                                       TotalCriticalViolations = _.DetailResult.EvolutionSummary.TotalCriticalViolations,
+                                                       AddedCriticalViolations = _.DetailResult.EvolutionSummary.AddedCriticalViolations,
+                                                       RemovedCriticalViolations = _.DetailResult.EvolutionSummary.RemovedCriticalViolations,
+                                                       TotalViolations = _.DetailResult.EvolutionSummary.TotalViolations,
+                                                       AddedViolations = _.DetailResult.EvolutionSummary.AddedViolations,
+                                                       RemovedViolations = _.DetailResult.EvolutionSummary.RemovedViolations
+                                                   });
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="snapshot"></param>
         /// <param name="module"></param>
         /// <returns></returns>
-        private static List<ViolationSummaryDTO> GetEvolutionSummary(Snapshot snapshot, Module module)
+        private static List<ViolationsStatisticsDTO> GetEvolutionSummary(Snapshot snapshot, Module module)
         {
             if (snapshot == null || snapshot.BusinessCriteriaResults == null || module==null) return null;
 
-            return snapshot.BusinessCriteriaResults.Where(_ => _.ModulesResult.Any(m => m.Module !=null && m.Module.Equals(module) && m.DetailResult != null && m.DetailResult.EvolutionSummary != null))
-                                                   .Select(_ =>  new ViolationSummaryDTO
-                                                                 {
-                                                                       BusinessCriteria = (Constants.BusinessCriteria)_.Reference.Key,
-                                                                       Total = _.ModulesResult.FirstOrDefault(m => m.Module.Equals(module)).DetailResult.EvolutionSummary.TotalCriticalViolations,
-                                                                       Added = _.ModulesResult.FirstOrDefault(m => m.Module.Equals(module)).DetailResult.EvolutionSummary.AddedCriticalViolations,
-                                                                       Removed = _.ModulesResult.FirstOrDefault(m => m.Module.Equals(module)).DetailResult.EvolutionSummary.RemovedCriticalViolations
-                                                                 })
+            return snapshot.BusinessCriteriaResults.Where(_ => _.ModulesResult.Any(m => m.Module != null && m.Module.Equals(module) && m.DetailResult != null && m.DetailResult.EvolutionSummary != null))
+                                                   .Select(_ => new ViolationsStatisticsDTO
+                                                   {
+                                                       BusinessCriteria = (Constants.BusinessCriteria)_.Reference.Key,
+                                                       TotalCriticalViolations = _.ModulesResult.FirstOrDefault(m => m.Module.Equals(module)).DetailResult.EvolutionSummary.TotalCriticalViolations,
+                                                       AddedCriticalViolations = _.ModulesResult.FirstOrDefault(m => m.Module.Equals(module)).DetailResult.EvolutionSummary.AddedCriticalViolations,
+                                                       RemovedCriticalViolations = _.ModulesResult.FirstOrDefault(m => m.Module.Equals(module)).DetailResult.EvolutionSummary.RemovedCriticalViolations,
+                                                       TotalViolations = _.ModulesResult.FirstOrDefault(m => m.Module.Equals(module)).DetailResult.EvolutionSummary.TotalViolations,
+                                                       AddedViolations = _.ModulesResult.FirstOrDefault(m => m.Module.Equals(module)).DetailResult.EvolutionSummary.AddedViolations,
+                                                       RemovedViolations = _.ModulesResult.FirstOrDefault(m => m.Module.Equals(module)).DetailResult.EvolutionSummary.RemovedViolations
+                                                   })
                                                    .ToList();
         }
 

@@ -42,23 +42,23 @@ namespace CastReporting.Reporting.Block.Table
             {
                rowData.AddRange(new[] {
                           resultModule.ModuleName,
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex] != null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].Total.HasValue)?
-                          resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].Total.Value.ToString(_MetricFormat) : Constants.No_Value,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex] != null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].TotalCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].TotalCriticalViolations.Value.ToString(_MetricFormat) : Constants.No_Value,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Robustness] != null  && resultModule[Constants.BusinessCriteria.Robustness].Total.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Robustness].Total.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Robustness] != null  && resultModule[Constants.BusinessCriteria.Robustness].TotalCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Robustness].TotalCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Performance] != null  && resultModule[Constants.BusinessCriteria.Performance].Total.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Performance].Total.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Performance] != null  && resultModule[Constants.BusinessCriteria.Performance].TotalCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Performance].TotalCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Security] != null  && resultModule[Constants.BusinessCriteria.Security].Total.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Security].Total.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Security] != null  && resultModule[Constants.BusinessCriteria.Security].TotalCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Security].TotalCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Transferability] != null  && resultModule[Constants.BusinessCriteria.Transferability].Total.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Transferability].Total.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Transferability] != null  && resultModule[Constants.BusinessCriteria.Transferability].TotalCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Transferability].TotalCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Changeability] != null  && resultModule[Constants.BusinessCriteria.Changeability].Total.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Changeability].Total.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Changeability] != null  && resultModule[Constants.BusinessCriteria.Changeability].TotalCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Changeability].TotalCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
                         });
 
@@ -70,23 +70,23 @@ namespace CastReporting.Reporting.Block.Table
             {
                 rowData.AddRange(new[] {
                           resultModule.ModuleName,
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex] != null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].Added.HasValue)?
-                          resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].Added.Value.ToString(_MetricFormat) : Constants.No_Value,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex] != null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].AddedCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].AddedCriticalViolations.Value.ToString(_MetricFormat) : Constants.No_Value,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Robustness] != null && resultModule[Constants.BusinessCriteria.Robustness].Added.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Robustness].Added.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Robustness] != null && resultModule[Constants.BusinessCriteria.Robustness].AddedCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Robustness].AddedCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Performance] != null && resultModule[Constants.BusinessCriteria.Performance].Added.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Performance].Added.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Performance] != null && resultModule[Constants.BusinessCriteria.Performance].AddedCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Performance].AddedCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Security] != null && resultModule[Constants.BusinessCriteria.Security].Added.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Security].Added.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Security] != null && resultModule[Constants.BusinessCriteria.Security].AddedCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Security].AddedCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Transferability] != null && resultModule[Constants.BusinessCriteria.Transferability].Added.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Transferability].Added.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Transferability] != null && resultModule[Constants.BusinessCriteria.Transferability].AddedCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Transferability].AddedCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Changeability] != null && resultModule[Constants.BusinessCriteria.Changeability].Added.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Changeability].Added.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Changeability] != null && resultModule[Constants.BusinessCriteria.Changeability].AddedCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Changeability].AddedCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
                         });
 
@@ -97,23 +97,23 @@ namespace CastReporting.Reporting.Block.Table
             {
                 rowData.AddRange(new[] {
                           resultModule.ModuleName,
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex] !=null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].Removed.HasValue)?
-                          resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].Removed.Value.ToString(_MetricFormat) : Constants.No_Value,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex] !=null && resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].RemovedCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.TechnicalQualityIndex].RemovedCriticalViolations.Value.ToString(_MetricFormat) : Constants.No_Value,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Robustness] !=null && resultModule[Constants.BusinessCriteria.Robustness].Removed.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Robustness].Removed.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Robustness] !=null && resultModule[Constants.BusinessCriteria.Robustness].RemovedCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Robustness].RemovedCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Performance] !=null && resultModule[Constants.BusinessCriteria.Performance].Removed.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Performance].Removed.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Performance] !=null && resultModule[Constants.BusinessCriteria.Performance].RemovedCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Performance].RemovedCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Security] !=null && resultModule[Constants.BusinessCriteria.Security].Removed.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Security].Removed.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Security] !=null && resultModule[Constants.BusinessCriteria.Security].RemovedCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Security].RemovedCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Transferability] !=null && resultModule[Constants.BusinessCriteria.Transferability].Removed.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Transferability].Removed.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Transferability] !=null && resultModule[Constants.BusinessCriteria.Transferability].RemovedCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Transferability].RemovedCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
-                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Changeability] !=null && resultModule[Constants.BusinessCriteria.Changeability].Removed.HasValue)?
-                          resultModule[Constants.BusinessCriteria.Changeability].Removed.Value.ToString(_MetricFormat):Constants.No_Value ,
+                          (resultModule !=null && resultModule[Constants.BusinessCriteria.Changeability] !=null && resultModule[Constants.BusinessCriteria.Changeability].RemovedCriticalViolations.HasValue)?
+                          resultModule[Constants.BusinessCriteria.Changeability].RemovedCriticalViolations.Value.ToString(_MetricFormat):Constants.No_Value ,
 
                         });
 
