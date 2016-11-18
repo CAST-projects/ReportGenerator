@@ -21,6 +21,7 @@ using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
+using CastReporting.Reporting.Helper;
 
 namespace CastReporting.Reporting.Block.Text
 {
@@ -31,14 +32,68 @@ namespace CastReporting.Reporting.Block.Text
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
           
-            Int32? metricId = (options != null && options.ContainsKey("ID")) ? Convert.ToInt32(options["ID"]) : (Int32?)null;
+            int metricId = options.GetIntOption("ID", 0);
+            int metricSzId = options.GetIntOption("SZID", 0);
+            int metricBfId = options.GetIntOption("BFID", 0);
+            string _format = options.GetOption("FORMAT", "N0");
+            string _snapshot = options.GetOption("SNAPSHOT", "CURRENT");
            
-            if (null != reportData &&
-                null != reportData.CurrentSnapshot && metricId.HasValue)
+            if (null != reportData && null != reportData.CurrentSnapshot && metricId != 0)
             {
-                double? result = BusinessCriteriaUtility.GetMetricValue(reportData.CurrentSnapshot, metricId.Value);
-                return result.HasValue ? result.Value.ToString("N2") : Constants.No_Value;
+                if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
+                {
+                    double? result = BusinessCriteriaUtility.GetMetricValue(reportData.PreviousSnapshot, metricId);
+                    return result.HasValue ? result.Value.ToString("N2") : Constants.No_Value;
+                }
+                else
+                {
+                    double? result = BusinessCriteriaUtility.GetMetricValue(reportData.CurrentSnapshot, metricId);
+                    return result.HasValue ? result.Value.ToString("N2") : Constants.No_Value;
+                }
             }
+            else if (null != reportData && null != reportData.CurrentSnapshot && metricSzId != 0)
+            {
+                if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
+                {
+                    double? result = MeasureUtility.GetSizingMeasure(reportData.PreviousSnapshot, metricSzId);
+                    return result.HasValue ? result.Value.ToString(_format) : Constants.No_Value;
+                }
+                else
+                {
+                    double? result = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, metricSzId);
+                    return result.HasValue ? result.Value.ToString(_format) : Constants.No_Value;
+                }
+            }
+            else if (null != reportData && null != reportData.CurrentSnapshot && metricBfId != 0)
+            {
+                if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
+                {
+                    Result bfValue = reportData.SnapshotExplorer.GetBackgroundFacts(reportData.PreviousSnapshot.Href, metricBfId.ToString()).FirstOrDefault();
+                    if (bfValue != null && bfValue.ApplicationResults.Any())
+                    {
+                        double? result = bfValue.ApplicationResults[0].DetailResult.Value;
+                        return result.HasValue ? result.Value.ToString(_format) : Constants.No_Value;
+                    }
+                    else
+                    {
+                        return Constants.No_Value;
+                    }
+                }
+                else
+                {
+                    Result bfValue = reportData.SnapshotExplorer.GetBackgroundFacts(reportData.CurrentSnapshot.Href, metricBfId.ToString()).FirstOrDefault();
+                    if (bfValue != null && bfValue.ApplicationResults.Any())
+                    {
+                        double? result = bfValue.ApplicationResults[0].DetailResult.Value;
+                        return result.HasValue ? result.Value.ToString(_format) : Constants.No_Value;
+                    }
+                    else
+                    {
+                        return Constants.No_Value;
+                    }
+                }
+            }
+
             return CastReporting.Domain.Constants.No_Value;
         }
         #endregion METHODS
