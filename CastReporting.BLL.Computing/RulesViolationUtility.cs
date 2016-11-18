@@ -285,9 +285,28 @@ namespace CastReporting.BLL.Computing
                                                    .ToList();
         }
 
+        public static int? GetTotalChecks(Result violations)
+        {
+            Int32? totalChecks = null;
+            if (violations != null && violations.ApplicationResults.Any())
+            {
+                totalChecks = violations.ApplicationResults[0].DetailResult?.ViolationRatio?.TotalChecks;
+            }
+            return totalChecks;
+        }
+
+        public static int? GetFailedChecks(Result violations)
+        {
+            Int32? failedChecks = null;
+            if (violations != null && violations.ApplicationResults.Any())
+            {
+                failedChecks = violations.ApplicationResults[0].DetailResult?.ViolationRatio?.FailedChecks;
+            }
+            return failedChecks;
+        }
 
 
-        
+
     }
-           
+
 }

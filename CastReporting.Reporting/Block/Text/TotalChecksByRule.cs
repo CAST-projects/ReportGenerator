@@ -20,6 +20,8 @@ using CastReporting.Domain;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Helper;
+using CastReporting.BLL.Computing;
 
 namespace CastReporting.Reporting.Block.Text
 {
@@ -29,16 +31,26 @@ namespace CastReporting.Reporting.Block.Text
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            string strRuleId = (options != null && options.ContainsKey("RULID")) ? options["RULID"] : "7164";
+            string strRuleId = options.GetOption("RULID",string.Empty);
+            string _snapshot = options.GetOption("SNAPSHOT", "CURRENT");
 
-            if (null != reportData && null != reportData.CurrentSnapshot) {
-                var rule = reportData.RuleExplorer.GetSpecificRule(reportData.Application.DomainId, strRuleId);
-                var currentviolation = reportData.RuleExplorer.GetRulesViolations(reportData.CurrentSnapshot.Href, strRuleId).FirstOrDefault();
-
+            if (null != reportData && null != reportData.CurrentSnapshot && strRuleId != string.Empty)
+            {
+                Result violations = null;
                 Int32? TotalChecks = null;
 
-                if (currentviolation != null && currentviolation.ApplicationResults.Any()) {
-                    TotalChecks = currentviolation.ApplicationResults[0].DetailResult.ViolationRatio.TotalChecks;
+                if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
+                {
+                    violations = reportData.RuleExplorer.GetRulesViolations(reportData.PreviousSnapshot.Href, strRuleId).FirstOrDefault();
+                }
+                else
+                {
+                    violations = reportData.RuleExplorer.GetRulesViolations(reportData.CurrentSnapshot.Href, strRuleId).FirstOrDefault();
+                }
+
+                if (violations != null && violations.ApplicationResults.Any())
+                {
+                    TotalChecks = RulesViolationUtility.GetTotalChecks(violations);
                 }
 
                 return (TotalChecks != null && TotalChecks.HasValue) ? TotalChecks.Value.ToString("N0") : Constants.No_Value;

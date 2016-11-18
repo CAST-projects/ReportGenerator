@@ -20,6 +20,8 @@ using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Domain;
+using CastReporting.Reporting.Helper;
+using CastReporting.BLL.Computing;
 
 namespace CastReporting.Reporting.Block.Text
 {
@@ -30,39 +32,38 @@ namespace CastReporting.Reporting.Block.Text
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            string strRuleId = (options != null && options.ContainsKey("RULID")) ? options["RULID"] : "7126";
 
-            if (null != reportData && null != reportData.CurrentSnapshot) {
-                var rule = reportData.RuleExplorer.GetSpecificRule(reportData.Application.DomainId, strRuleId);
-                var currentviolation = reportData.RuleExplorer.GetRulesViolations(reportData.CurrentSnapshot.Href, strRuleId).FirstOrDefault();
+            string strRuleId = options.GetOption("RULID", string.Empty);
+            string _snapshot = options.GetOption("SNAPSHOT", "CURRENT");
 
+            if (null != reportData && null != reportData.CurrentSnapshot && strRuleId != string.Empty)
+            {
+                Result violations = null;
                 Int32? totalChecks = null;
                 Int32? failedChecks = null;
 
-                totalChecks = GetTotalChecks(currentviolation, totalChecks);
-                failedChecks = GetFailedChecks(currentviolation, failedChecks);
+                if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
+                {
+                    violations = reportData.RuleExplorer.GetRulesViolations(reportData.PreviousSnapshot.Href, strRuleId).FirstOrDefault();
+                }
+                else
+                {
+                    violations = reportData.RuleExplorer.GetRulesViolations(reportData.CurrentSnapshot.Href, strRuleId).FirstOrDefault();
+                }
 
+                if (violations != null && violations.ApplicationResults.Any())
+                {
+                    totalChecks = RulesViolationUtility.GetTotalChecks(violations);
+                    failedChecks = RulesViolationUtility.GetFailedChecks(violations);
+
+                }
                 return string.Format("{0} / {1}", (failedChecks != null && failedChecks.HasValue) ? failedChecks.Value.ToString("N0") : Constants.No_Value,
                      (totalChecks != null && totalChecks.HasValue) ? totalChecks.Value.ToString("N0") : Constants.No_Value);
+
             }
             return Constants.No_Value;
         }
 
-		private static int? GetTotalChecks(Result currentviolation, Int32? totalChecks)
-        {
-            if (currentviolation != null && currentviolation.ApplicationResults.Any()) {
-                totalChecks = currentviolation.ApplicationResults[0].DetailResult.ViolationRatio.TotalChecks;
-            }
-            return totalChecks;
-        }
-
-        private static int? GetFailedChecks(Result currentviolation, Int32? failedChecks)
-        {
-            if (currentviolation != null && currentviolation.ApplicationResults.Any()) {
-                failedChecks = currentviolation.ApplicationResults[0].DetailResult.ViolationRatio.FailedChecks;
-            }
-            return failedChecks;
-        }
         #endregion METHODS
     }
 }
