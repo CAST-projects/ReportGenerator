@@ -4,6 +4,7 @@ using CastReporting.Domain;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Net;
+using Cast.Util.Version;
 
 namespace CastReporting.BLL
 {
@@ -119,11 +120,6 @@ namespace CastReporting.BLL
         public List<string> SetSizingMeasure()
         {
             List<string> IgnoreApps = new List<string>();
-            // Int32[] sizingMeasures = (Int32[])Enum.GetValues(typeof(Constants.SizingInformations));
-            // string strSizingMeasures = string.Join(",", sizingMeasures);
-
-            // to get the results of all sizing measures in the snapshot, even is not in the list of known measures
-            string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
 
             using (var castRepsitory = GetRepository())
             {
@@ -135,14 +131,23 @@ namespace CastReporting.BLL
                         {
                             try
                             {
-                                _Application[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application[i].Href, strSizingMeasures, "$all", string.Empty, string.Empty).ToList();
+                                if (VersionUtil.isAdgVersion82Compliant(_Application[i].AdgVersion))
+                                {
+                                    string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
+                                    _Application[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application[i].Href, strSizingMeasures, "$all", string.Empty, string.Empty).ToList();
+                                }
+                                else
+                                {
+                                    string strSizingMeasureOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                                    _Application[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application[i].Href, strSizingMeasureOld, "$all", string.Empty, string.Empty).ToList();
+                                }
+
                             }
                             catch (WebException ex)
                             {
                                 string strSizingMeasureOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                                 _Application[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application[i].Href, strSizingMeasureOld, "$all", string.Empty, string.Empty).ToList();
                             }
-                            
                         }
                         catch (WebException ex)
                         {

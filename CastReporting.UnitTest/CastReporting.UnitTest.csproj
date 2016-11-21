@@ -73,6 +73,8 @@
   <ItemGroup>
     <Compile Include="ExpressionEvaluatorTests.cs" />
     <Compile Include="UnitTest1.cs" />
+    <Compile Include="DateUtilTests.cs" />
+    <Compile Include="VersionUtilTests.cs" />
     <Content Include="Data\JSonTest3.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

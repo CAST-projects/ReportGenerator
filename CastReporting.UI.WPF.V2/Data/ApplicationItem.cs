@@ -20,6 +20,8 @@ namespace CastReporting.UI.WPF
     public class ApplicationItem
     {
         public ApplicationItem(Application app) {
+            if (app.AdgVersion == null && app.Version != null)
+                app.AdgVersion = app.Version;
             Application = app;
         }
 
