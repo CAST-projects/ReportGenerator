@@ -56,35 +56,28 @@ namespace CastReporting.Reporting.Block.Graph
 
             if (reportData != null && reportData.Applications != null && reportData.snapshots != null)
             {
-                DateTime DateNow = DateTime.Now;
-                //DateTime DateNow = Convert.ToDateTime("03 01 2014");
                 Snapshot[] AllSnapshots = reportData.snapshots;
+
                 int generateQuater = 6;
+                DateTime DateNow = DateTime.Now;
                 int currentYear = DateNow.Year;
                 int currentQuater = DateUtil.GetQuarter(DateNow);
+
                 for (int i = generateQuater; i > 0; i--)
                 {
                     DataRow dr = dtDates.NewRow();
                     dr["Quarter"] = currentQuater;
                     dr["Year"] = currentYear;
                     dtDates.Rows.InsertAt(dr, 0);
-                    //dtDates.Rows.Add(currentQuater, currentYear);
-                    if (--currentQuater == 0)
-                    {
-                        currentQuater = 4;
-                        currentYear--;
-                    }
+                    currentQuater = (currentQuater == 1) ? 4 : currentQuater - 1;
+                    currentYear = (currentQuater == 4) ? currentYear - 1 : currentYear;
                 }
-
-                double? RemovedTechnicalDebt = 0;
-                double? AddedTechnicalDebt = 0;
-                double? TotalTechnicalDebt = 0;
 
                 for (int i = 0; i < dtDates.Rows.Count; i++)
                 {
-                    RemovedTechnicalDebt = 0;
-                    AddedTechnicalDebt = 0;
-                    TotalTechnicalDebt = 0;
+                    double? RemovedTechnicalDebt = 0;
+                    double? AddedTechnicalDebt = 0;
+                    double? TotalTechnicalDebt = 0;
 
                     if (AllSnapshots.Count() > 0)
                     {
@@ -108,9 +101,9 @@ namespace CastReporting.Reporting.Block.Graph
                         }
                     }
 
-                    dtDates.Rows[i]["RemovedTechnicalDebt"] = (RemovedTechnicalDebt != null) ? RemovedTechnicalDebt * -1 : 0.0;
-                    dtDates.Rows[i]["AddedTechnicalDebt"] = (AddedTechnicalDebt != null) ? AddedTechnicalDebt : 0.0;
-                    dtDates.Rows[i]["TotalTechnicalDebt"] = (TotalTechnicalDebt != null) ? TotalTechnicalDebt : 0.0;
+                    dtDates.Rows[i]["RemovedTechnicalDebt"] = RemovedTechnicalDebt * -1;
+                    dtDates.Rows[i]["AddedTechnicalDebt"] = AddedTechnicalDebt;
+                    dtDates.Rows[i]["TotalTechnicalDebt"] = TotalTechnicalDebt;
                 }
 
                 for (int i = 0; i < dtDates.Rows.Count; i++)
