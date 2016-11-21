@@ -18,14 +18,12 @@ using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
-using CastReporting.BLL.Computing.DTO;
 using CastReporting.Domain;
-using System.Globalization;
-using System.Threading;
 using System.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cast.Util.Date;
 
 namespace CastReporting.Reporting.Block.Graph
 {
@@ -35,12 +33,6 @@ namespace CastReporting.Reporting.Block.Graph
         private const string _MetricFormat = "N0";
 
         #region METHODS
-
-        private static int GetQuarter(DateTime dt)
-        {
-            return (dt.Month / 4) + 1;
-        }
-
 
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
@@ -80,7 +72,7 @@ namespace CastReporting.Reporting.Block.Graph
                 Snapshot[] AllSnapshots = reportData.snapshots;
                 int generateQuater = 6;
                 int currentYear = DateNow.Year;
-                int currentQuater = GetQuarter(DateNow);
+                int currentQuater = DateUtil.GetQuarter(DateNow);
                 for (int i = generateQuater; i > 0; i--)
                 {
                     DataRow dr = dtDates.NewRow();
@@ -113,7 +105,7 @@ namespace CastReporting.Reporting.Block.Graph
                             int intQuarter = Convert.ToInt32(dtDates.Rows[i]["Quarter"]);
                             int intYear = Convert.ToInt32(dtDates.Rows[i]["Year"]);
 
-                            int intSnapshotQuarter = GetQuarter(SnapshotDate);
+                            int intSnapshotQuarter = DateUtil.GetQuarter(SnapshotDate);
                             int intSnapshotYear = SnapshotDate.Year;
 
                             if (intQuarter == intSnapshotQuarter && intYear == intSnapshotYear)
