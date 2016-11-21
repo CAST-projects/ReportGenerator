@@ -39,18 +39,15 @@ namespace CastReporting.Reporting.Block.Graph
 
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-
             int count = 0;
 
             List<String> rowData = new List<String>();
-            //var rowData = new List<String>();
             rowData.AddRange(new string[] {
 				Labels.TQI ,
 				Labels.ViolationsCritical + "/" + Labels.kLoC ,
 				Labels.AutomatedFP,
                 Labels.Application
 			});
-
 
             #region Fetch SnapshotsPF
 
@@ -61,41 +58,24 @@ namespace CastReporting.Reporting.Block.Graph
                 {
                     Application App = AllApps[j];
 
-                    int nbSnapshotsEachApp = App.Snapshots.Count();
-                    if (nbSnapshotsEachApp > 0)
-                    {
-                        foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
-                        {
-                            Snapshot[] BuiltSnapshots = reportData.snapshots;
+                    Snapshot _snapshot = App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
+                    string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(_snapshot);
 
-                            foreach (Snapshot BuiltSnapshot in BuiltSnapshots)
-                            {
-                                if (snapshot == BuiltSnapshot)
-                                {
-                                    string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(BuiltSnapshot);
-                                    BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(BuiltSnapshot, false);
-                                    double? strCurrentTQI = currSnapshotBisCriDTO.TQI.HasValue ? MathUtility.GetRound(currSnapshotBisCriDTO.TQI.Value) : 0;
+                    BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(_snapshot, false);
+                    double? strCurrentTQI = currSnapshotBisCriDTO.TQI.HasValue ? currSnapshotBisCriDTO.TQI.Value : 0;
+                    double? numCritPerKLOC = MeasureUtility.GetSizingMeasure(_snapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerKLOCNumber);
+                    double? result = MeasureUtility.GetAutomatedIFPUGFunction(_snapshot);
 
-                                    double? numCritPerKLOC = MeasureUtility.GetSizingMeasure(BuiltSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerKLOCNumber);
+                    rowData.AddRange(new string[] {
+                        strCurrentTQI.GetValueOrDefault().ToString("N2"),
+                        numCritPerKLOC.GetValueOrDefault().ToString("N2"),
+                        result.GetValueOrDefault().ToString(),
+                        App.Name.ToString()
+                    });
 
-                                    //double? result = MeasureUtility.GetAddedFunctionPoint(BuiltSnapshot) + MeasureUtility.GetModifiedFunctionPoint(BuiltSnapshot) + MeasureUtility.GetDeletedFunctionPoint(BuiltSnapshot);
-                                    double? result = MeasureUtility.GetAfpMetricDF(BuiltSnapshot) + MeasureUtility.GetAfpMetricTF(BuiltSnapshot);
-
-                                    rowData.AddRange(new string[] {
-                                        strCurrentTQI.GetValueOrDefault().ToString(),
-                                        numCritPerKLOC.GetValueOrDefault().ToString(),
-                                        result.GetValueOrDefault().ToString(),
-                                        App.Name.ToString()
-                                    });
-
-                                    count++;
-                                }
-                            }
-                            
-                            break;
-                        }
-                    }
+                    count++;
                 }
+
                 if (reportData.Applications.Count() == 1)
                 {
                     rowData.AddRange(new string[] { "0", "0", "0", "" });
@@ -105,11 +85,6 @@ namespace CastReporting.Reporting.Block.Graph
 
             }
             #endregion Fetch SnapshotsPF
-
-
-
-
-
 
             TableDefinition resultTable = new TableDefinition
             {

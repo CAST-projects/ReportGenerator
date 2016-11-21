@@ -22,6 +22,9 @@ using System.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CastReporting.Reporting.Helper;
+using Cast.Util.Log;
+using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Block.Text
 {
@@ -31,14 +34,8 @@ namespace CastReporting.Reporting.Block.Text
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            int metricId;
             #region Item BCID
-            if (options == null ||
-                !options.ContainsKey("BCID") ||
-                !int.TryParse(options["BCID"], out metricId))
-            {
-                metricId = (Int32)Constants.BusinessCriteria.TechnicalQualityIndex;
-            }
+            int metricId = options.GetIntOption("BCID", (Int32)Constants.BusinessCriteria.TechnicalQualityIndex);
             #endregion Item BCID
 
             if (null != reportData && null != reportData.Applications && null != reportData.snapshots)
@@ -50,52 +47,24 @@ namespace CastReporting.Reporting.Block.Text
                 {
                     Application App = AllApps[j];
 
-                    int nbSnapshotsEachApp = App.Snapshots.Count();
-                    if (nbSnapshotsEachApp > 0)
+                    try
                     {
-                        foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
+                        Snapshot _snapshot = App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
+                        if (_snapshot != null)
                         {
-                            Snapshot[] BuiltSnapshots = reportData.snapshots;
-
-                            foreach (Snapshot BuiltSnapshot in BuiltSnapshots)
+                            int? snapCV = RulesViolationUtility.GetBCEvolutionSummary(_snapshot,metricId).FirstOrDefault().TotalCriticalViolations;
+                            if (snapCV != null)
                             {
-                                if (snapshot == BuiltSnapshot)
-                                {
-                                    //double? criticalViolation = MeasureUtility.GetSizingMeasure(BuiltSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesNumber);
-                                    //var rulesViolation = RulesViolationUtility.GetRuleViolations(BuiltSnapshot,
-                                    //                                                Constants.RulesViolation.CriticalRulesViolation,
-                                    //                                                (Constants.BusinessCriteria)metricId,
-                                    //                                                true,
-                                    //                                                100);
-
-                                    //if (null != rulesViolation)
-                                    //{
-                                    //    foreach (var elt in rulesViolation)
-                                    //    {
-                                    //        CV = CV + elt.TotalFailed.Value;
-                                    //    }
-                                    //} 
-                                    var results = RulesViolationUtility.GetStatViolation(BuiltSnapshot);
-                                    foreach (var resultModule in results.OrderBy(_ => _.ModuleName))
-                                    {
-                                        CV = CV + ((resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Total.HasValue) ?
-                          resultModule[(Constants.BusinessCriteria)metricId].Total.Value : 0);
-
-
-                                    }
-
-
-                                    break;
-                                }
+                                CV = CV + snapCV;
                             }
-                            break;
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        LogHelper.Instance.LogInfo(Labels.NoSnapshot);
+                    }
                 }
-
-                //return string.Format("{0:n0}", intFinalValue) + "%";
-                //return Convert.ToInt32(rulesViol).ToString(); 
-                return string.Format("{0:n0}", Convert.ToInt32(CV));
+                return CV.Value.ToString("N0");
             }
             return CastReporting.Domain.Constants.No_Value;
         }

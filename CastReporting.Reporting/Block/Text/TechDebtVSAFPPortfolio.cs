@@ -24,6 +24,8 @@ using System.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cast.Util.Log;
+using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Block.Text
 {
@@ -36,71 +38,43 @@ namespace CastReporting.Reporting.Block.Text
             if (null != reportData && null != reportData.Applications)
             {
                 Application[] AllApps = reportData.Applications;
-                double? resultAllTechDebt = 0;
+                double? AllTechDebt = 0;
                 double? AFPAll = 0;
 
                 for (int j = 0; j < AllApps.Count(); j++)
                 {
                     Application App = AllApps[j];
 
-                    int nbSnapshotsEachApp = App.Snapshots.Count();
-                    if (nbSnapshotsEachApp > 0)
+                    try
                     {
-                        foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
+                        Snapshot _snapshot = App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
+                        if (_snapshot != null)
                         {
-                            double? result = MeasureUtility.GetTechnicalDebtMetric(snapshot);
-                            if (result == null)
+                            double? result = MeasureUtility.GetTechnicalDebtMetric(_snapshot);
+                            if (result != null)
                             {
-                                result = 0.0;
+                                AllTechDebt = AllTechDebt + result;
                             }
 
-                            resultAllTechDebt = resultAllTechDebt + result;
-                            break;
+                            double? resultAFP = MeasureUtility.GetAutomatedIFPUGFunction(_snapshot);
+                            if (resultAFP != null)
+                            {
+                                AFPAll = AFPAll + resultAFP;
+                            }
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        LogHelper.Instance.LogInfo(Labels.NoSnapshot);
                     }
                 }
 
-                for (int j = 0; j < AllApps.Count(); j++)
+                if (AllTechDebt > 0 && AFPAll > 0)
                 {
-                    Application App = AllApps[j];
-
-                    int nbSnapshotsEachApp = App.Snapshots.Count();
-                    if (nbSnapshotsEachApp > 0)
-                    {
-                        foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
-                        {
-                            double? resultAFPDF = MeasureUtility.GetAfpMetricDF(snapshot);
-                            double? resultAFPTF = MeasureUtility.GetAfpMetricTF(snapshot);
-
-                            if (resultAFPDF == null)
-                            {
-                                resultAFPDF = 0.0;
-                            }
-                            if (resultAFPTF == null)
-                            {
-                                resultAFPTF = 0.0;
-                            }
-
-                            double? result = resultAFPDF + resultAFPTF;
-
-                            AFPAll = AFPAll + result;
-                            break;
-                        }
-                    }
+                    double? FinalValue = AllTechDebt / AFPAll;
+                    return FinalValue.Value.ToString("C0"); // currency format with no decimal
                 }
-                //handle 0 functions case
-                if (resultAllTechDebt > 0 && AFPAll > 0)
-                {
-
-                    double? FinalValue = (resultAllTechDebt / AllApps.Count()) / (AFPAll / AllApps.Count());
-                    int intFinalValue = Convert.ToInt32(FinalValue);
-                    return string.Format("{0:n0}", intFinalValue) + "$";
-                }
-                else
-                {
-                    return "NA";
-                }
-                //return (result.HasValue ? String.Format("{0:N0} {1}", result.Value, reportData.CurrencySymbol) : CastReporting.Domain.Constants.No_Value);
+                return Labels.NoData;
             }
             return CastReporting.Domain.Constants.No_Value;
         }

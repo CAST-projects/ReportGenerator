@@ -24,6 +24,8 @@ using System.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CastReporting.Reporting.Languages;
+using Cast.Util.Log;
 
 namespace CastReporting.Reporting.Block.Text
 {
@@ -36,83 +38,42 @@ namespace CastReporting.Reporting.Block.Text
             if (null != reportData && null != reportData.Applications)
             {
                 Application[] AllApps = reportData.Applications;
-                double? resultAllTechDebt = 0;
-                double? AFPAll = 0; 
+                double? AllTechDebt = 0;
+                double? AllLOC = 0;
 
                 for (int j = 0; j < AllApps.Count(); j++)
                 {
                     Application App = AllApps[j];
-
-                    int nbSnapshotsEachApp = App.Snapshots.Count();
-                    if (nbSnapshotsEachApp > 0)
-                    {
-                        foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
-                        {
-                            double? result = MeasureUtility.GetTechnicalDebtMetric(snapshot);
-                            if (result == null)
-                            {
-                                result = 0.0;
-                            }
-                            resultAllTechDebt = resultAllTechDebt + result;
-                            break;
-                        }
-                    }
-                }
-
-                for (int j = 0; j < AllApps.Count(); j++)
-                {
-                    int nbResult = 100;
-                    Application App = AllApps[j];
-
                     try
                     {
-                        int nbSnapshotsEachApp = App.Snapshots.Count();
-                        if (nbSnapshotsEachApp > 0)
+                        Snapshot _snapshot = App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
+                        if (_snapshot != null)
                         {
-                            foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
+                            double? result = MeasureUtility.GetTechnicalDebtMetric(_snapshot);
+                            if (result != null)
                             {
-                                var technologyInfos = MeasureUtility.GetTechnoLoc(snapshot, nbResult);
-                                double? LOCSnap = 0;
+                                AllTechDebt = AllTechDebt + result;
+                            }
 
-                                if (technologyInfos != null)
-                                {
-                                    foreach (var elt in technologyInfos)
-                                    {
-                                        LOCSnap = LOCSnap + elt.Value;
-                                    }
-                                }
-
-                                if (LOCSnap.HasValue)
-                                {
-                                    AFPAll = AFPAll + LOCSnap;
-                                }
-                                else
-                                {
-                                    LOCSnap = 0;
-                                }
-                                break;
+                            double? LOCSnap = MeasureUtility.GetCodeLineNumber(_snapshot);
+                            if (LOCSnap != null)
+                            {
+                                AllLOC = AllLOC + LOCSnap;
                             }
                         }
                     }
-                    catch (Exception ex) 
+                    catch (Exception ex)
                     {
-                        return "Broken Central";
+                        LogHelper.Instance.LogInfo(Labels.NoSnapshot);
                     }
                 }
                  
-                //handle 0 functions case
-                if (resultAllTechDebt > 0 && AFPAll > 0)
+                if (AllTechDebt > 0 && AllLOC > 0)
                 {
-
-                    double? FinalValue = (resultAllTechDebt / AllApps.Count()) / (AFPAll / AllApps.Count());
-                    int intFinalValue = Convert.ToInt32(FinalValue);
-                    return string.Format("{0:n0}", intFinalValue) + "$";
+                    double? FinalValue = AllTechDebt / AllLOC;
+                    return FinalValue.Value.ToString("C0"); // currency format with no decimal
                 }
-                else
-                {
-                    return "NA";
-                }
-                //return (result.HasValue ? String.Format("{0:N0} {1}", result.Value, reportData.CurrencySymbol) : CastReporting.Domain.Constants.No_Value);
+                return Labels.NoData;
             }
             return CastReporting.Domain.Constants.No_Value;
         }

@@ -43,7 +43,7 @@
     <Compile Include="CastComplexityUtility.cs" />
     <Compile Include="BusinessCriteriaUtility.cs" />
     <Compile Include="DTO\ModuleResultDTO.cs" />
-    <Compile Include="DTO\ViolationSummaryModuleDTO.cs" />
+    <Compile Include="DTO\ViolationsStatisticsModuleDTO.cs" />
     <Compile Include="DTO\EvolutionSnapshots.cs" />
     <Compile Include="DTO\RuleViolationResultDTO.cs" />
     <Compile Include="DTO\TechnologyResultDTO.cs" />

@@ -33,10 +33,17 @@ namespace CastReporting.Domain
         [DataMember(Name = "removedCriticalViolations")]
         public int RemovedCriticalViolations { get; set; }
 
+        [DataMember(Name = "violationsInNewAndModifiedCode")]
+        public int ViolationsInNewAndModifiedCode { get; set; }
+        
+        [DataMember(Name = "totalViolations")]
+        public int TotalViolations { get; set; }
+
         [DataMember(Name = "addedViolations")]
         public int AddedViolations { get; set; }
 
         [DataMember(Name = "removedViolations")]
         public int RemovedViolations { get; set; }
+
     }
 }
