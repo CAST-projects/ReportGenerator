@@ -67,13 +67,11 @@ namespace CastReporting.BLL
         /// </summary>
         public void SetQualityIndicators()
         {
-            Int32[] businessCriterias = (Int32[])Enum.GetValues(typeof(Constants.BusinessCriteria));
-
-            string strBusinessCriterias = string.Join(",", businessCriterias);
+            string strBusinessCriteria = "business-criteria";
 
             using (var castRepsitory = GetRepository())
             {
-                _Application.BusinessCriteriaResults = castRepsitory.GetResultsQualityIndicators(_Application.Href, strBusinessCriterias, "$all", string.Empty, string.Empty, string.Empty)
+                _Application.BusinessCriteriaResults = castRepsitory.GetResultsQualityIndicators(_Application.Href, strBusinessCriteria, "$all", string.Empty, string.Empty, string.Empty)
                                                                          .ToList();
             }
 

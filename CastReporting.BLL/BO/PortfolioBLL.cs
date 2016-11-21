@@ -65,7 +65,7 @@ namespace CastReporting.BLL
 
             Int32[] businessCriterias = (Int32[])Enum.GetValues(typeof(Constants.BusinessCriteria));
 
-            string strBusinessCriterias = string.Join(",", businessCriterias);
+            string strBusinessCriterias = "business-criteria";
 
             using (var castRepsitory = GetRepository())
             {
