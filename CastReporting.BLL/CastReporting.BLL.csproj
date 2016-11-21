@@ -55,6 +55,10 @@
     <Compile Include="StatesEnum.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cast.Util\Cast.Util.csproj">
+      <Project>{1810eb4f-e9c6-4b34-94ec-65acb6802c58}</Project>
+      <Name>Cast.Util</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CastReporting.BLL.Computing\CastReporting.BLL.Computing.csproj">
       <Project>{692f3269-684c-44ed-8f1b-98d458da3f9a}</Project>
       <Name>CastReporting.BLL.Computing</Name>

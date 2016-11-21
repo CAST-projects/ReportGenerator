@@ -134,6 +134,7 @@ namespace CastReporting.BLL
                     {
                         foreach (Snapshot snapshot in Appl.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
                         {
+                            snapshot.AdgVersion = Appl.AdgVersion;
                             Snapshots.Add(snapshot);
                         }
                     }
@@ -162,7 +163,7 @@ namespace CastReporting.BLL
                         {
                             foreach (var ct in CommonTags)
                             {
-                                Application app = ct.application;
+                                Application app = this.GetApplications().Where(_ => _.Href == ct.application.Href).First();
                                 CommonTaggedApplications.Add(app); 
                             }
                         }
@@ -186,7 +187,7 @@ namespace CastReporting.BLL
                         {
                             foreach (var ct in CommonTags)
                             {
-                                Application app = ct.application;
+                                Application app = this.GetApplications().Where(_ => _.Href == ct.application.Href).First();
                                 Tagg[] tags = ct.commonTags;
                                 foreach (Tagg tag in tags)
                                 {

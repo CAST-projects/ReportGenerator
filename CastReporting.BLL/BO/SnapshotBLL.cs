@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cast.Util.Version;
 
 namespace CastReporting.BLL
 {
@@ -120,24 +121,26 @@ namespace CastReporting.BLL
         /// </summary>
         public void SetSizingMeasure()
         {
-            // Int32[] sizingMeasures = (Int32[])Enum.GetValues(typeof(Constants.SizingInformations));
-            // string strSizingMeasures = string.Join(",", sizingMeasures);
-
-            // to get the results of all sizing measures in the snapshot, even is not in the list of known measures
-            string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
-
             using (var castRepsitory = GetRepository())
             {
                 try
                 {
-                    _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasures, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                    if (VersionUtil.isAdgVersion82Compliant(_Snapshot.AdgVersion))
+                    {
+                        string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
+                        _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasures, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                    }
+                    else
+                    {
+                        string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                        _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasuresOld, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
+                    }
                 }
                 catch (System.Net.WebException ex)
                 {
                     string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                     _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasuresOld, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
                 }
-                
             }
         }
 
