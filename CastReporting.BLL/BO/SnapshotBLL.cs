@@ -53,23 +53,11 @@ namespace CastReporting.BLL
         /// </summary>
         public void SetQualityIndicators()
         {
-            Int32[] businessCriterias = (Int32[])Enum.GetValues(typeof(Constants.BusinessCriteria));
-
-            string strBusinessCriterias = string.Join(",", businessCriterias);
-
-            Int32[] qualityDistribution = (Int32[])Enum.GetValues(typeof(Constants.QualityDistribution));
-
-            string strQualityDistribution = string.Join(",", qualityDistribution);
-
-            string qualityMeasure = "quality-measures";
-            string qualityRules = "quality-rules";
-            string technicalCriterias = "technical-criteria";
-
-            string qualityParams = string.Format("{0},{1},{2},{3},{4}", strBusinessCriterias, strQualityDistribution, qualityMeasure, qualityRules, technicalCriterias);
+            string qualityIndicators = "business-criteria,technical-criteria,quality-rules,quality-distributions,quality-measures";
 
             using (var castRepsitory = GetRepository())
             {
-                var qualityIndicators = castRepsitory.GetResultsQualityIndicators(_Snapshot.Href, qualityParams, string.Empty, "$all", "$all", "$all")
+                var qualityIndicatorsResults = castRepsitory.GetResultsQualityIndicators(_Snapshot.Href, qualityIndicators, string.Empty, "$all", "$all", "$all")
                                                                       .Where(_ => _.ApplicationResults != null)
                                                                       .SelectMany(_ => _.ApplicationResults)
                                                                       .ToList();
@@ -82,7 +70,7 @@ namespace CastReporting.BLL
                 var qualityRulesResults = new List<ApplicationResult>();
                 var technicalCriteriaResults = new List<ApplicationResult>();
 
-                foreach (var appRes in qualityIndicators) {
+                foreach (var appRes in qualityIndicatorsResults) {
                     switch (appRes.Type) {
                         case "business-criteria":       businessCriteriaResults.Add(appRes); break;
                         case "quality-distributions":   qualityDistributionsResults.Add(appRes); break;

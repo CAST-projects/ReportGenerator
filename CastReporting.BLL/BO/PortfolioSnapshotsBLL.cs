@@ -51,19 +51,7 @@ namespace CastReporting.BLL
         public List<string> SetQualityIndicators()
         {
             List<string> Ignore_Snaps = new List<string>();
-            Int32[] businessCriterias = (Int32[])Enum.GetValues(typeof(Constants.BusinessCriteria));
-
-            string strBusinessCriterias = string.Join(",", businessCriterias);
-
-            Int32[] qualityDistribution = (Int32[])Enum.GetValues(typeof(Constants.QualityDistribution));
-
-            string strQualityDistribution = string.Join(",", qualityDistribution);
-
-            string qualityMeasure = "quality-measures";
-            string qualityRules = "quality-rules";
-            string technicalCriterias = "technical-criteria";
-
-            string qualityParams = string.Format("{0},{1},{2},{3},{4}", strBusinessCriterias, strQualityDistribution, qualityMeasure, qualityRules, technicalCriterias);
+            string qualityIndicators = "business-criteria,technical-criteria,quality-rules,quality-distributions,quality-measures";
 
             using (var castRepsitory = GetRepository())
             {
@@ -73,17 +61,17 @@ namespace CastReporting.BLL
                     {
                         try
                         {
-                            var qualityIndicators = castRepsitory.GetResultsQualityIndicators(_Snapshot[i].Href, qualityParams, string.Empty, "$all", "$all", "$all")
+                            var qualityIndicatorsResults = castRepsitory.GetResultsQualityIndicators(_Snapshot[i].Href, qualityIndicators, string.Empty, "$all", "$all", "$all")
                                                                                   .Where(_ => _.ApplicationResults != null)
                                                                                   .SelectMany(_ => _.ApplicationResults)
                                                                                   .ToList();
 
 
-                            _Snapshot[i].BusinessCriteriaResults = qualityIndicators.Where(_ => _.Type == "business-criteria").ToList();
-                            _Snapshot[i].QualityDistributionsResults = qualityIndicators.Where(_ => _.Type == "quality-distributions").ToList();
-                            _Snapshot[i].QualityMeasuresResults = qualityIndicators.Where(_ => _.Type == "quality-measures").ToList();
-                            _Snapshot[i].QualityRulesResults = qualityIndicators.Where(_ => _.Type == "quality-rules").ToList();
-                            _Snapshot[i].TechnicalCriteriaResults = qualityIndicators.Where(_ => _.Type == "technical-criteria").ToList();
+                            _Snapshot[i].BusinessCriteriaResults = qualityIndicatorsResults.Where(_ => _.Type == "business-criteria").ToList();
+                            _Snapshot[i].QualityDistributionsResults = qualityIndicatorsResults.Where(_ => _.Type == "quality-distributions").ToList();
+                            _Snapshot[i].QualityMeasuresResults = qualityIndicatorsResults.Where(_ => _.Type == "quality-measures").ToList();
+                            _Snapshot[i].QualityRulesResults = qualityIndicatorsResults.Where(_ => _.Type == "quality-rules").ToList();
+                            _Snapshot[i].TechnicalCriteriaResults = qualityIndicatorsResults.Where(_ => _.Type == "technical-criteria").ToList();
                         }
                         catch (WebException ex)
                         {
