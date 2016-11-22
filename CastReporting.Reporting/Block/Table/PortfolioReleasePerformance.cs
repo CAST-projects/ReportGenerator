@@ -191,14 +191,14 @@ namespace CastReporting.Reporting.Block.Table
                     double? lower = Math.Round((double)SLAs[0] / 100, 2);
                     double? upper = Math.Round((double)SLAs[1] / 100, 2);
 
-                    string RobustnessSLAViol = (TagIds[0] - strCurrentRobuAll) / TagIds[0] > upper ? Labels.Bad : (TagIds[0] - strCurrentRobuAll) / TagIds[0] > lower ? string.Empty : Labels.Good;
-                    string SecuritySLAViol = (TagIds[1] - strCurrentSecuAll) / TagIds[1] > upper ? Labels.Bad : (TagIds[1] - strCurrentSecuAll) / TagIds[1] > lower ? string.Empty : Labels.Good;
-                    string ChangeabilitySLAViol = (TagIds[2] - strCurrentChangeAll) / TagIds[2] > upper ? Labels.Bad : (TagIds[2] - strCurrentChangeAll) / TagIds[2] > lower ? string.Empty : Labels.Good;
-                    string TransferabilitySLAViol = (TagIds[3] - strCurrentTransferAll) / TagIds[3] > upper ? Labels.Bad : (TagIds[3] - strCurrentTransferAll) / TagIds[3] > lower ? string.Empty : Labels.Good;
-                    string ProgrammingPracticeSLAViol = (TagIds[4] - strCurrentProgrammingAll) / TagIds[4] > upper ? Labels.Bad : (TagIds[4] - strCurrentProgrammingAll) / TagIds[4] > lower ? string.Empty : Labels.Good;
-                    string DocumentationSLAViol = (TagIds[5] - strCurrentDocumentAll) / TagIds[5] > upper ? Labels.Bad : (TagIds[5] - strCurrentDocumentAll) / TagIds[5] > lower ? string.Empty : Labels.Good;
-                    string PerformanceSLAViol = (TagIds[6] - strCurrentPerformanceAll) / TagIds[6] > upper ? Labels.Bad : (TagIds[6] - strCurrentPerformanceAll) / TagIds[6] > lower ? string.Empty : Labels.Good;
-                    string ArchitectureSLAViol = (TagIds[7] - strCurrentArchDesignAll) / TagIds[7] > upper ? Labels.Bad : (TagIds[7] - strCurrentArchDesignAll) / TagIds[7] > lower ? string.Empty : Labels.Good;
+                    string RobustnessSLAViol = (TagIds[0] - strCurrentRobuAll) / TagIds[0] > upper ? Labels.Bad : (TagIds[0] - strCurrentRobuAll) / TagIds[0] > lower ? Labels.Acceptable : Labels.Good;
+                    string SecuritySLAViol = (TagIds[1] - strCurrentSecuAll) / TagIds[1] > upper ? Labels.Bad : (TagIds[1] - strCurrentSecuAll) / TagIds[1] > lower ? Labels.Acceptable : Labels.Good;
+                    string ChangeabilitySLAViol = (TagIds[2] - strCurrentChangeAll) / TagIds[2] > upper ? Labels.Bad : (TagIds[2] - strCurrentChangeAll) / TagIds[2] > lower ? Labels.Acceptable : Labels.Good;
+                    string TransferabilitySLAViol = (TagIds[3] - strCurrentTransferAll) / TagIds[3] > upper ? Labels.Bad : (TagIds[3] - strCurrentTransferAll) / TagIds[3] > lower ? Labels.Acceptable : Labels.Good;
+                    string ProgrammingPracticeSLAViol = (TagIds[4] - strCurrentProgrammingAll) / TagIds[4] > upper ? Labels.Bad : (TagIds[4] - strCurrentProgrammingAll) / TagIds[4] > lower ? Labels.Acceptable : Labels.Good;
+                    string DocumentationSLAViol = (TagIds[5] - strCurrentDocumentAll) / TagIds[5] > upper ? Labels.Bad : (TagIds[5] - strCurrentDocumentAll) / TagIds[5] > lower ? Labels.Acceptable : Labels.Good;
+                    string PerformanceSLAViol = (TagIds[6] - strCurrentPerformanceAll) / TagIds[6] > upper ? Labels.Bad : (TagIds[6] - strCurrentPerformanceAll) / TagIds[6] > lower ? Labels.Acceptable : Labels.Good;
+                    string ArchitectureSLAViol = (TagIds[7] - strCurrentArchDesignAll) / TagIds[7] > upper ? Labels.Bad : (TagIds[7] - strCurrentArchDesignAll) / TagIds[7] > lower ? Labels.Acceptable : Labels.Good;
                     
                     rowData.AddRange(new string[] { Labels.Robustness, strPreviousRobuAll.Value.ToString("N2"), TagIds[0].ToString("N2"), strCurrentRobuAll.Value.ToString("N2"), RobustnessSLAViol });
                     rowData.AddRange(new string[] { Labels.Security, strPreviousSecuAll.Value.ToString("N2"), TagIds[1].ToString("N2"), strCurrentSecuAll.Value.ToString("N2"), SecuritySLAViol });
