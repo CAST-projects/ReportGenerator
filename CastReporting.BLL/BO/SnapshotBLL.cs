@@ -246,6 +246,38 @@ namespace CastReporting.BLL
 
         }
 
+        public IEnumerable<Result> GetSizingMeasureResults(string snapshotHref, string sizingMeasure)
+        {
+            try
+            {
+                using (var castRepsitory = GetRepository())
+                {
+                    return castRepsitory.GetResultsSizingMeasures(snapshotHref, sizingMeasure, string.Empty, string.Empty, string.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        public IEnumerable<Result> GetQualityIndicatorResults(string snapshotHref, string qualityIndicator)
+        {
+            try
+            {
+                using (var castRepsitory = GetRepository())
+                {
+                    return castRepsitory.GetResultsQualityIndicators(snapshotHref, qualityIndicator, string.Empty, string.Empty, string.Empty,string.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+        
         /// <summary>
         /// 
         /// </summary>
