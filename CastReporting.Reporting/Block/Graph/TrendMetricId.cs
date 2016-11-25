@@ -41,7 +41,7 @@ namespace CastReporting.Reporting.Block.Graph
             string[] SIDlist = options.GetOption("SID")?.Split('|');
             string[] BIDlist = options.GetOption("BID")?.Split('|');
 
-            // wa can aad the header only after getting the data, because names are in the data
+            // we can add the header only after getting the data, because names are in the data
             var rowData = new List<String>();
 
             Dictionary<string,string> names = new Dictionary<string, string>();
@@ -54,8 +54,7 @@ namespace CastReporting.Reporting.Block.Graph
 
                 foreach (Snapshot snapshot in reportData.Application.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
                 {
-                    string snapshotDate = snapshot.Annotation.Date.DateSnapShot.HasValue ? snapshot.Annotation.Date.DateSnapShot.Value.ToOADate().ToString()
-                                                                                             : string.Empty;
+                    string snapshotDate = snapshot.Annotation.Date.DateSnapShot.HasValue ? snapshot.Annotation.Date.DateSnapShot.Value.ToOADate().ToString() : string.Empty;
                     // names at first iteration
                     if (getIdNames)
                     {
@@ -158,6 +157,7 @@ namespace CastReporting.Reporting.Block.Graph
                             ApplicationResult res = reportData.SnapshotExplorer.GetBackgroundFacts(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
                             if (res != null)
                             {
+                                // F0 as format to avoid the ',' that make graph build crash
                                 string idValue = (res.DetailResult?.Value != null) ? res.DetailResult.Value.ToString("F0") : Constants.No_Value;
                                 if (!values.Keys.Contains(id))
                                     values.Add(id, idValue);
@@ -181,6 +181,7 @@ namespace CastReporting.Reporting.Block.Graph
             }
 
             #region just 1 snapshot
+            // if there is only one snapshot, a fake snapshot is added with same data to have a line and not a point in the graph
 			if (count == 1)
             {
                 string[] range = new string[rowData.Count];
