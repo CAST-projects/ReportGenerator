@@ -14,7 +14,6 @@
  *
  */
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Domain;
@@ -162,83 +161,131 @@ namespace CastReporting.BLL.Computing
         /// <param name="snapshot"></param>
         /// <param name="metricId"></param>
         /// <returns></returns>
-        public static Double? GetMetricValue(Snapshot snapshot, int metricId)
+        public static double? GetMetricValue(Snapshot snapshot, int metricId)
         {
-            double? retour = null;
-            if (null != snapshot )
+            if (null == snapshot) return null;
+
+            var bizGrade = snapshot.BusinessCriteriaResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            if (null != bizGrade)
             {
-                var bizGrade = snapshot.BusinessCriteriaResults!=null? snapshot.BusinessCriteriaResults.SingleOrDefault(_ => _.Reference.Key == metricId) :null;
-                if (null != bizGrade)
-                {
-                    retour = bizGrade.DetailResult.Grade;
-                }
-                else 
-                {
-                    #region qalDisGrade
-
-                    var qalDisGrade =snapshot.QualityDistributionsResults !=null? snapshot.QualityDistributionsResults.SingleOrDefault(_ => _.Reference.Key == metricId):null;
-                    if (null != qalDisGrade)
-                    {
-                        retour = qalDisGrade.DetailResult.Grade;
-                    }
-                    else 
-                    {
-                        #region qalMesGrade
-
-                        var qalMesGrade = snapshot.QualityMeasuresResults!=null?snapshot.QualityMeasuresResults.SingleOrDefault(_ => _.Reference.Key == metricId):null;
-                        if (null != qalMesGrade)
-                        {
-                            retour = qalMesGrade.DetailResult.Grade;
-                        }
-                        else 
-                        {
-                            #region qalRulGrade
-
-                            var qalRulGrade = snapshot.QualityRulesResults != null ? snapshot.QualityRulesResults.SingleOrDefault(_ => _.Reference.Key == metricId) : null;
-                            if (null != qalRulGrade)
-                            {
-                                retour = qalRulGrade.DetailResult.Grade;
-                            }
-                            else 
-                            {
-                                #region tecCrtGrade
-                                var tecCrtGrade = snapshot.TechnicalCriteriaResults !=null?snapshot.TechnicalCriteriaResults.SingleOrDefault(_ => _.Reference.Key == metricId):null;
-                                if (null != tecCrtGrade)
-                                {
-                                    retour = tecCrtGrade.DetailResult.Grade;
-                                }
-                                else 
-                                {
-                                    #region sizIndic
-
-                                    var sizIndic =snapshot.SizingMeasuresResults!=null? snapshot.SizingMeasuresResults.SingleOrDefault(_ => _.Reference.Key == metricId):null;
-                                    if (null != sizIndic)
-                                    {
-                                        retour = sizIndic.DetailResult.Value;
-                                    }
-                                    else 
-                                    {
-                                        var ccgrade = snapshot.CostComplexityResults != null ? snapshot.CostComplexityResults.SingleOrDefault(_ => _.Reference.Key == metricId) : null;
-                                        if (null != ccgrade)
-                                        {
-                                            retour = ccgrade.DetailResult.Grade;
-                                        }
-                                    }
-                                    #endregion sizIndic
-                                }
-                                #endregion tecCrtGrade
-                            }
-                            #endregion qalRulGrade
-                        }
-                        #endregion qalMesGrade
-                    }
-                    #endregion qalDisGrade
-                }
+                return bizGrade.DetailResult.Grade;
             }
-            return retour;
+
+            var qalDisGrade =snapshot.QualityDistributionsResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            if (null != qalDisGrade)
+            {
+                return qalDisGrade.DetailResult.Grade;
+            }
+
+            var qalMesGrade = snapshot.QualityMeasuresResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            if (null != qalMesGrade)
+            {
+                return qalMesGrade.DetailResult.Grade;
+            }
+
+            var qalRulGrade = snapshot.QualityRulesResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            if (null != qalRulGrade)
+            {
+                return qalRulGrade.DetailResult.Grade;
+            }
+
+            var tecCrtGrade = snapshot.TechnicalCriteriaResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            if (null != tecCrtGrade)
+            {
+                return tecCrtGrade.DetailResult.Grade;
+            }
+
+            var sizIndic =snapshot.SizingMeasuresResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            if (null != sizIndic)
+            {
+                return sizIndic.DetailResult.Value;
+            }
+
+            var ccgrade = snapshot.CostComplexityResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            // ReSharper disable once UseNullPropagation
+            if (null != ccgrade)
+            {
+                return ccgrade.DetailResult.Grade;
+            }
+
+            return null;
+
         }
 
-       
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="snapshot"></param>
+        /// <param name="metricId"></param>
+        /// <param name="shortName"></param>
+        /// <returns></returns>
+        public static string GetMetricName(Snapshot snapshot, int metricId, bool shortName = false)
+        {
+            if (null == snapshot) return null;
+
+            var bizGrade = snapshot.BusinessCriteriaResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            if (null != bizGrade)
+            {
+                if (shortName & bizGrade.Reference.ShortName != null)
+                    return bizGrade.Reference.ShortName;
+                return bizGrade.Reference.Name ;
+            }
+
+            var qalDisGrade = snapshot.QualityDistributionsResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            if (null != qalDisGrade)
+            {
+                if (shortName & qalDisGrade.Reference.ShortName != null)
+                    return qalDisGrade.Reference.ShortName;
+                return qalDisGrade.Reference.Name;
+            }
+
+            var qalMesGrade = snapshot.QualityMeasuresResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            if (null != qalMesGrade)
+            {
+                if (shortName & qalMesGrade.Reference.ShortName != null)
+                    return qalMesGrade.Reference.ShortName;
+                return qalMesGrade.Reference.Name;
+            }
+
+            var qalRulGrade = snapshot.QualityRulesResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            if (null != qalRulGrade)
+            {
+                if (shortName & qalRulGrade.Reference.ShortName != null)
+                    return qalRulGrade.Reference.ShortName;
+                return qalRulGrade.Reference.Name;
+            }
+
+            var tecCrtGrade = snapshot.TechnicalCriteriaResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            if (null != tecCrtGrade)
+            {
+                if (shortName & tecCrtGrade.Reference.ShortName != null)
+                    return tecCrtGrade.Reference.ShortName;
+                return tecCrtGrade.Reference.Name;
+            }
+
+            var sizIndic = snapshot.SizingMeasuresResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            if (null != sizIndic)
+            {
+                if (shortName & sizIndic.Reference.ShortName != null)
+                    return sizIndic.Reference.ShortName;
+                return sizIndic.Reference.Name;
+            }
+
+            var ccgrade = snapshot.CostComplexityResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
+            // ReSharper disable once ConvertIfStatementToReturnStatement
+            if (null != ccgrade)
+            {
+                if (shortName & ccgrade.Reference.ShortName != null)
+                    return ccgrade.Reference.ShortName;
+                return ccgrade.Reference.Name;
+            }
+
+            return string.Empty;
+
+        }
+
+        
         /// <summary>
         /// </summary>
         /// <param name="snapshot"></param>
