@@ -64,7 +64,7 @@ namespace CastReporting.Reporting.ReportingModel
 
         private bool ReadOnly { get { return data != null; } }
 
-        private DataDefinition data = null;
+        private DataDefinition data;
 
         public IDataDefinition CreateDataRow() { 
             if (data == null)
@@ -84,8 +84,8 @@ namespace CastReporting.Reporting.ReportingModel
             }
 
             private readonly HeaderDefinition headers;
-            private readonly Dictionary<string, int> headerPos = null;
-            private readonly string[] data = null;
+            private readonly Dictionary<string, int> headerPos;
+            private readonly string[] data;
 
             public void Set(int pos, string value) {
                 if (0 <= pos && pos < data.Length)

@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cast.Util.Version;
+using Cast.Util.Log;
 
 namespace CastReporting.BLL
 {
@@ -126,6 +127,7 @@ namespace CastReporting.BLL
                 }
                 catch (System.Net.WebException ex)
                 {
+                    LogHelper.Instance.LogInfo(ex.Message);
                     string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                     _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasuresOld, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
                 }
@@ -202,6 +204,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 _Snapshot.ActionsPlan = null;
             }
         }
@@ -224,7 +227,8 @@ namespace CastReporting.BLL
                 }
             }
             catch (Exception ex)
-            {                
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
                 return null;
             }
             
@@ -241,6 +245,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 return null;
             }
 
@@ -257,6 +262,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 return null;
             }
 
@@ -273,6 +279,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 return null;
             }
 
@@ -296,6 +303,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 return null;
             }
 
@@ -312,6 +320,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 return null;
             }
 
@@ -334,6 +343,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 return null;
             }
 
@@ -350,6 +360,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 return null;
             }
 
@@ -373,6 +384,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 return null;
             }
 
@@ -397,7 +409,8 @@ namespace CastReporting.BLL
                 }
             }
             catch (Exception ex)
-            {               
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
                 return null;
             }
            
@@ -423,6 +436,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 return null;
             }                      
         }

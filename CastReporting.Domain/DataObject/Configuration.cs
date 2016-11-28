@@ -31,23 +31,10 @@ namespace CastReporting.Domain
         public string HRef { get; set; }
 
         /// <summary>
-        /// Get/Set the snapshot name.
-        /// </summary>
-        [DataMember(Name = "name")]
-        public string Name { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         [DataMember(Name = "number")]
         protected int Number { get; set; }
-
-
-        /// <summary>
-        /// Get/Set technologies name.
-        /// </summary>
-        [DataMember(Name = "technologies")]
-        public string[] Technologies { get; set; }
 
 
         /// <summary>

@@ -152,6 +152,7 @@ namespace CastReporting.Mediation
             catch (WebException webEx)
             {
                 // AIP < 8 sends CSV data as application/vnd.ms-excel
+                LogHelper.Instance.LogInfo(webEx.Message);
                 return DownloadContent(pUrl, "application/vnd.ms-excel", pComplexity);
             }
         }

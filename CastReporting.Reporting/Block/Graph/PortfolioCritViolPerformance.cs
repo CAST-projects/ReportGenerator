@@ -31,8 +31,6 @@ namespace CastReporting.Reporting.Block.Graph
     [Block("PF_TREND_CRIT_VIOL")]
     class PortfolioCritViolPerformance : GraphBlock
     {
-        private const string _MetricFormat = "N0";
-
         #region METHODS
 
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)

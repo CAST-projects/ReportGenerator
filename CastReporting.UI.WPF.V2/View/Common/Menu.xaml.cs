@@ -1,6 +1,4 @@
-﻿using CastReporting.UI.WPF.Resources.Languages;
-using System.Reflection;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace CastReporting.UI.WPF.Common
 {
@@ -9,9 +7,6 @@ namespace CastReporting.UI.WPF.Common
     /// </summary>
     public partial class Menu : UserControl
     {
-        /// <summary>
-     
-
         /// <summary>
         /// 
         /// </summary>
@@ -27,10 +22,14 @@ namespace CastReporting.UI.WPF.Common
         /// <param name="e"></param>
         private void OnButtonClick(object sender, System.Windows.RoutedEventArgs e)
         {
-            (sender as Button).ContextMenu.IsEnabled = true;
-            (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
-            (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
-            (sender as Button).ContextMenu.IsOpen = true;
+            var button = sender as Button;
+            if (button != null)
+            {
+                button.ContextMenu.IsEnabled = true;
+                button.ContextMenu.PlacementTarget = button;
+                button.ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+                button.ContextMenu.IsOpen = true;
+            }
 
             DataContext = this;          
         }

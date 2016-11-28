@@ -32,9 +32,6 @@ namespace CastReporting.Reporting.Block.Table
     [Block("PF_BC_RELEASE_PERFORMANCE")]
     class PortfolioReleasePerformance : TableBlock
     {
-        private const string _MetricFormat = "N0";
-
-
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             DataTable dtDates = new DataTable();
@@ -164,6 +161,7 @@ namespace CastReporting.Reporting.Block.Table
                     }
                     catch (Exception ex)
                     {
+                        LogHelper.Instance.LogInfo(ex.Message);
                         LogHelper.Instance.LogInfo(Labels.NoSnapshot);
                     }
                 }

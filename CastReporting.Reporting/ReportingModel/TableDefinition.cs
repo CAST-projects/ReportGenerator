@@ -30,15 +30,6 @@ namespace CastReporting.Reporting.ReportingModel
         public FormatCellEventHandler FormatCellEvent;
         #endregion ATTRIBUTES
 
-        #region CONSTRUCTORS
-        /// <summary>
-        /// Initialize a new instance of a table definition.
-        /// </summary>
-        public TableDefinition() 
-        { 
-        }
-        
-        #endregion CONSTRUCTORS
 
         #region PROPERTIES
         /// <summary>

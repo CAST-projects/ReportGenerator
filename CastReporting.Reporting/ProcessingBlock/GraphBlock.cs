@@ -159,7 +159,6 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                 using (SpreadsheetDocument spreadsheetDoc = SpreadsheetDocument.Open(ms, true))
                                 {
                                     #region Associated Data File content Management
-                                    var sharedStringPart = spreadsheetDoc.WorkbookPart.SharedStringTablePart.GetXDocument();
                                     var ws = (OXS.Sheet)spreadsheetDoc.WorkbookPart.Workbook.Sheets.FirstOrDefault();
                                     string sheetId = ws.Id;
                                     var wsp = (WorksheetPart)spreadsheetDoc.WorkbookPart.GetPartById(sheetId);
@@ -453,68 +452,6 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 case FormatType.Excel: // TODO : Finalize Excel alimentation
                 default: { return null; }
             }
-        }
-        private static OpenXmlElement GetReplacementNode(ReportData pClient, IEnumerable<XElement> pAllElementInPlaceHolder, OpenXmlElement pBlock)
-        {
-            List<XName> names = new List<XName> {
-                XName.Get("nvGraphicFramePr", "http://schemas.openxmlformats.org/presentationml/2006/main"),
-                XName.Get("xfrm", "http://schemas.openxmlformats.org/presentationml/2006/main"),
-                XName.Get("graphic", "http://schemas.openxmlformats.org/drawingml/2006/main"),
-                XName.Get("p", "http://schemas.openxmlformats.org/wordprocessingml/2006/main"),
-            };
-            string innerXML = string.Concat(pAllElementInPlaceHolder.Where(_ => names.Contains(_.Name))
-                                                                   .Select(_ => _.ToString()));
-            switch (pClient.ReportType)
-            {
-                case FormatType.Word:
-                    {
-                        if (pBlock is OXW.SdtBlock)
-                        {
-                            if (string.IsNullOrWhiteSpace(innerXML))
-                            {
-                                innerXML = string.Concat(pAllElementInPlaceHolder.Where
-                                    (_ => XName.Get("r", "http://schemas.openxmlformats.org/wordprocessingml/2006/main") == _.Name
-                                                    ).Select(_ => _.ToString())
-                                    );
-                                return new OXW.Run(innerXML);
-                            }
-                            return new OXW.Paragraph(innerXML);
-                        }
-                        else if (pBlock is OXW.Drawing || pBlock is OXW.Table)
-                        {
-                            return pBlock;
-                        }
-                        else
-                        {
-                            OXW.Drawing back = new OXW.Drawing();
-                            back.InnerXml = innerXML;
-                            return back;
-                        }
-                    }
-                case FormatType.PowerPoint:
-                    {
-                        OXP.GraphicFrame back = new OXP.GraphicFrame();
-                        back.InnerXml = innerXML;
-                        return back;
-                    }
-                case FormatType.Excel: // TODO : Finalize Excel alimentation
-                default:
-                    return null;
-            }
-        }
-        private static OpenXmlElement GetGraphContentBlock(ReportData pClient, BlockItem pBlock)
-        {
-            switch (pClient.ReportType)
-            {
-                case FormatType.Word:
-                    OpenXmlElement element = pBlock.OxpBlock.Descendants<OXW.Table>().FirstOrDefault();
-                    return element ?? pBlock.OxpBlock.Parent;
-                case FormatType.PowerPoint: 
-                    return pBlock.OxpBlock.Parent;
-                case FormatType.Excel: // TODO : Finalize Excel alimentation
-                default: break;
-            }
-            throw new NotImplementedException();
         }
         private static IEnumerable<XElement> GetElements(OpenXmlElement block, FormatType formatType)
         {

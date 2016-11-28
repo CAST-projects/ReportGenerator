@@ -38,7 +38,8 @@ namespace CastReporting.Domain
         /// </summary>
         /// <param name="url"></param>
         /// <param name="login"></param>
-        /// <param name="Password"></param>
+        /// <param name="password"></param>
+        /// /// <param name="name"></param>
         public WSConnection(string url, string login, string password, string name)
         {
             Url = url;
@@ -61,17 +62,17 @@ namespace CastReporting.Domain
         /// <summary>
         /// 
         /// </summary>
-        private string _Url;
+        private string _url;
         public string Url
         {
             set
             {
-                _Url = string.IsNullOrEmpty(value) ? string.Empty : value.Trim();
-                Uri = (!string.IsNullOrEmpty(_Url)) ? new Uri(_Url) : null;
+                _url = string.IsNullOrEmpty(value) ? string.Empty : value.Trim();
+                Uri = (!string.IsNullOrEmpty(_url)) ? new Uri(_url) : null;
             }
             get
             {
-                return _Url;
+                return _url;
             }
         }
 
@@ -87,18 +88,18 @@ namespace CastReporting.Domain
         /// <summary>
         /// Get/Set the connection name
         /// </summary>    
-        private string login;
+        private string _login;
         [XmlIgnore]
         public string Login
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(login) && CryptedLogin != null)
+                if (string.IsNullOrWhiteSpace(_login) && CryptedLogin != null)
                 {
-                    login = CryptoHelper.DecryptStringFromBytes(CryptedLogin);
+                    _login = CryptoHelper.DecryptStringFromBytes(CryptedLogin);
                 }
 
-                return login;
+                return _login;
             }
             set
             {
@@ -125,18 +126,18 @@ namespace CastReporting.Domain
         /// <summary>
         /// Get/Set the connection name
         /// </summary>            
-        private string password;
+        private string _password;
         [XmlIgnore]
         public string Password
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(password) && CryptedPassword != null)
+                if (string.IsNullOrWhiteSpace(_password) && CryptedPassword != null)
                 {
-                    password = CryptoHelper.DecryptStringFromBytes(CryptedPassword);
+                    _password = CryptoHelper.DecryptStringFromBytes(CryptedPassword);
                 }
 
-                return password;
+                return _password;
             }
             set
             {
@@ -179,7 +180,8 @@ namespace CastReporting.Domain
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            return (obj is WSConnection) ? Uri.Equals((obj as WSConnection).Uri) : false;
+            var connection = obj as WSConnection;
+            return (connection != null) && Uri.Equals(connection.Uri);
         }
 
 
@@ -189,6 +191,7 @@ namespace CastReporting.Domain
         /// <returns></returns>
         public override int GetHashCode()
         {
+            // ReSharper disable once NonReadonlyMemberInGetHashCode
             return Uri.GetHashCode();
         }
         #endregion METHODS

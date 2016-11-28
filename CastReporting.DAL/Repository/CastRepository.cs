@@ -19,6 +19,7 @@ using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using Cast.Util.Log;
 using CastReporting.Domain;
 using CastReporting.Mediation;
 using CastReporting.Mediation.Interfaces;
@@ -115,13 +116,12 @@ namespace CastReporting.Repositories
         /// <summary>
         /// Is Service Valid
         /// </summary>
-        /// <param name="pMessage">Output message</param>
         /// <returns>True if OK</returns>
         bool ICastRepsitory.IsServiceValid()
         {
             try
             {
-                var jsonString = this.CallWS<string>("/ping", RequestComplexity.Standard);
+                this.CallWS<string>("/ping", RequestComplexity.Standard);
                               
             }
             catch
@@ -330,6 +330,7 @@ namespace CastReporting.Repositories
             }
             catch (WebException webEx)
             {
+                LogHelper.Instance.LogInfo(webEx.Message);
                 // url for action plan has changed in API, and some old versions does not support the 2 format of the url
                 return this.CallWS<IEnumerable<ActionPlan>>(requestUrl2, RequestComplexity.Standard);
             }

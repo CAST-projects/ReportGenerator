@@ -21,10 +21,6 @@ namespace CastReporting.Repositories
     /// </summary>
     public class CsvSerializer<T> where T : new()
     {
-        public CsvSerializer()
-        {
-        }
-
         #region property mapping
 
         private readonly List<PropertyInfo> _props = new List<PropertyInfo>();

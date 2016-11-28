@@ -61,6 +61,7 @@ namespace CastReporting.Reporting.Block.Text
                     }
                     catch (Exception ex)
                     {
+                        LogHelper.Instance.LogInfo(ex.Message);
                         LogHelper.Instance.LogInfo(Labels.NoSnapshot);
                     }
                 }

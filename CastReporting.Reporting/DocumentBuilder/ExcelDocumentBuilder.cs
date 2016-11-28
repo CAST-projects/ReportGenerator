@@ -82,13 +82,13 @@ namespace CastReporting.Reporting.Builder
             return null;
         }
 
-        protected virtual BlockConfiguration GetBlockConfiguration(string Description)
+        protected new virtual BlockConfiguration GetBlockConfiguration(string Description)
         {
             return GetBlockConfiguration(Description, null);
         }
 
 
-        protected BlockConfiguration GetBlockConfiguration(string alias, string tag)
+        protected new BlockConfiguration GetBlockConfiguration(string alias, string tag)
         {
             BlockConfiguration back = new BlockConfiguration();
 
@@ -137,14 +137,7 @@ namespace CastReporting.Reporting.Builder
 
         public override void BuildDocument()
         {
-            var excelDoc = (SpreadsheetDocument)base.Package;
-            var settings = SettingsBLL.GetSetting();
-
-            string strFilePath = settings.ReportingParameter.GeneratedFilePath;
-            string strTemplatePath = settings.ReportingParameter.TemplatePath;
             string strTargetFile = ReportData.FileName;
-
-
             string fileName = strFinalTempFile;
             //File.Copy(strTargetFile, fileName, true);
 
@@ -260,7 +253,6 @@ namespace CastReporting.Reporting.Builder
                             var FinaleTable = tableInfo.table;
 
                             int intColumns = FinaleTable.NbColumns;
-                            int intRows = FinaleTable.NbRows;
 
                             // TODO: handle cell references after 'Znn' (AA1, AB1...)
                             // TODO: current limitation: the generated cells must be in the range "A-Z"
@@ -588,156 +580,7 @@ namespace CastReporting.Reporting.Builder
         }
 
 
-
-
-
-        private static String GetApplicationQualification(ReportData reportData, double value)
-        {
-            if (value < reportData.Parameter.ApplicationSizeLimitSupSmall)
-                return Labels.SizeS;
-            else if (value < reportData.Parameter.ApplicationSizeLimitSupMedium)
-                return Labels.SizeM;
-            else if (value < reportData.Parameter.ApplicationSizeLimitSupLarge)
-                return Labels.SizeL;
-            else
-                return Labels.SizeXL;
-        }
-
-        private dynamic GetResultSet(string strBlockName)
-        {
-            if (strBlockName == "HF_BY_MODULE")
-            {
-                var resultCurrentSnapshot = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(reportData.CurrentSnapshot, false);
-                return resultCurrentSnapshot;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-
-        private char GetNextAlphabet(char letter)
-        {
-            if (letter == 'z')
-                return 'a';
-            else if (letter == 'Z')
-                return 'A';
-            else
-                return (char)(((int)letter) + 1);
-        }
-
-
-
-        private string MakeAnotherWorkingCopy(string strTemplatePath, string strTargetFile)
-        {
-            if (strTargetFile.Contains("Template_Efp") && strTargetFile.Contains(".xlsx"))
-            {
-                string fileName = Path.GetTempPath() + "Template_Efp.xlsx";
-                File.Copy(strTemplatePath + "\\Template_Efp.xlsx", fileName, true);
-                return fileName;
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        private void BuildReportTemplateEFP(string strNewTargetFile)
-        {
-            string fileName = strNewTargetFile;
-            using (SpreadsheetDocument spreadSheetDocument = SpreadsheetDocument.Open(fileName, true))
-            {
-                var workbookPart = spreadSheetDocument.WorkbookPart;
-                var sheet = workbookPart.Workbook.Descendants<Sheet>().FirstOrDefault(s => s.Name == "Summary");
-                if (sheet == null)
-                {
-                    throw new InvalidOperationException("Unable to file the Summary Sheet");
-                }
-
-                var workSheetPart = (WorksheetPart)workbookPart.GetPartById(sheet.Id);
-                var sharedStringPart = workbookPart.SharedStringTablePart;
-                var values = sharedStringPart.SharedStringTable.Elements<SharedStringItem>().ToArray();
-                var cells = workSheetPart.Worksheet.Descendants<Cell>();
-
-                foreach (var cell in cells)
-                {
-                    if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
-                    {
-                        var index = int.Parse(cell.CellValue.Text);
-                        if (values[index].InnerText == "AFP")
-                        {
-                            cell.CellValue = new CellValue("100");
-                            cell.DataType = new EnumValue<CellValues>(CellValues.Number);
-                        }
-                        if (values[index].InnerText == "MFP")
-                        {
-                            cell.CellValue = new CellValue("150");
-                            cell.DataType = new EnumValue<CellValues>(CellValues.Number);
-                        }
-                        if (values[index].InnerText == "DFP")
-                        {
-                            cell.CellValue = new CellValue("200");
-                            cell.DataType = new EnumValue<CellValues>(CellValues.Number);
-                        }
-                        if (values[index].InnerText == "TOTAL")
-                        {
-                            cell.CellValue = new CellValue("450");
-                            cell.DataType = new EnumValue<CellValues>(CellValues.Number);
-                        }
-                    }
-                }
-                workbookPart.Workbook.Save();
-            }
-        }
-
-
-        private string CopySheet(string strTemplatePath, string strTargetFile, string keyName)
-        {
-            if (strTargetFile.Contains("Template_Efp"))
-            {
-                string fileName = Path.GetTempPath() + "Template_Efp.xlsx";
-                File.Copy(strTemplatePath + "\\Template_Efp.xlsx", fileName, true);
-                string keyValue = string.Empty;
-                using (SpreadsheetDocument spreadSheetDocument = SpreadsheetDocument.Open(fileName, true))
-                {
-                    var workbookPart = spreadSheetDocument.WorkbookPart;
-                    var sheet = workbookPart.Workbook.Descendants<Sheet>().FirstOrDefault(s => s.Name == "Summary");
-                    if (sheet == null)
-                    {
-                        throw new InvalidOperationException("Unable to file the Summary Sheet");
-                    }
-
-                    var workSheetPart = (WorksheetPart)workbookPart.GetPartById(sheet.Id);
-                    var sharedStringPart = workbookPart.SharedStringTablePart;
-                    var values = sharedStringPart.SharedStringTable.Elements<SharedStringItem>().ToArray();
-                    var cells = workSheetPart.Worksheet.Descendants<Cell>();
-
-                    foreach (var cell in cells)
-                    {
-                        if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
-                        {
-                            var index = int.Parse(cell.CellValue.Text);
-                            if (values[index].InnerText == keyName)
-                            {
-                                cell.CellValue = new CellValue("123");
-                                cell.DataType = new EnumValue<CellValues>(CellValues.Number);
-                                workbookPart.Workbook.Save();
-                            }
-                        }
-                    }
-                }
-
-                return keyValue;
-            }
-            else
-            {
-                throw new InvalidOperationException("Unable to file the Workbook");
-            }
-        }
-
-
-
+        
 
         public void BuildExcelDocument(DataTable source, string targetFile, string tabName)
         {
@@ -780,21 +623,6 @@ namespace CastReporting.Reporting.Builder
             }
             WorksheetAccessor.SetSheetContents(doc, worksheetPart, spreadSheet);
             WorksheetAccessor.SetRange(doc, tabName, tabName, 1, 1, rowNum - 1, source.Columns.Count);
-        }
-
-        private void SetColumns(SpreadsheetDocument doc, WorksheetPart worksheetPart, int maxRow, int maxCol)
-        {
-            var worksheet = worksheetPart.Worksheet;
-
-            var columns = new DocumentFormat.OpenXml.Spreadsheet.Columns();
-            var col = new DocumentFormat.OpenXml.Spreadsheet.Column();
-            col.Min = 1;
-            col.Max = Convert.ToUInt32(maxCol);
-            col.BestFit = true;
-
-            columns.Append(col);
-            worksheet.Append(columns);
-            worksheet.Save();
         }
 
         private int GetStyleIndex(SpreadsheetDocument doc, int row, int col, int maxRow, int maxCol)

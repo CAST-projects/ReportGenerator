@@ -80,16 +80,6 @@ namespace CastReporting.UI.WPF.ViewModel
             }
         }
 
-       
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public MainWindowVM()
-        {
-            
-        }
-
         #region IMessageManager implementation
 
         /// <summary>

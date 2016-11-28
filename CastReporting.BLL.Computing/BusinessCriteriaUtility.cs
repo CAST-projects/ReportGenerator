@@ -16,10 +16,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using CastReporting.Domain;
-using CastReporting.Domain.Interfaces;
 
 namespace CastReporting.BLL.Computing
 {
@@ -35,94 +33,53 @@ namespace CastReporting.BLL.Computing
         /// 
         /// </summary>
         /// <returns></returns>
-        public static List<BusinessCriteriaDTO> GetBusinessCriteriaGradesModules(Snapshot snapshot, bool Round)
+        public static List<BusinessCriteriaDTO> GetBusinessCriteriaGradesModules(Snapshot snapshot, bool round)
         {
+            if (snapshot?.BusinessCriteriaResults == null) return null;
 
-            if (snapshot != null && snapshot.BusinessCriteriaResults != null)
-            {
-                List<BusinessCriteriaDTO> result = new List<BusinessCriteriaDTO>();
+            var modules = snapshot.BusinessCriteriaResults.SelectMany(_ => _.ModulesResult).Select(_ => _.Module).Distinct();
 
-                var modules = snapshot.BusinessCriteriaResults.SelectMany(_ => _.ModulesResult).Select(_ => _.Module).Distinct();
-
-                result = modules.Select(module => new BusinessCriteriaDTO
-                                                {
-                                                        Name = module.Name,
-
-                                                        TQI = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.TechnicalQualityIndex, Round),
-
-                                                        Robustness = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Robustness, Round),
-
-                                                        Performance = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Performance, Round),
-
-                                                        Security = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Security, Round),
-
-                                                        Changeability = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Changeability, Round),
-
-                                                        Transferability = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Transferability, Round),
-                                                                                    })
-                                .ToList();
+            var result = modules.Select(module => new BusinessCriteriaDTO
+                {
+                    Name = module.Name,
+                    TQI = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.TechnicalQualityIndex, round),
+                    Robustness = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Robustness, round),
+                    Performance = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Performance, round),
+                    Security = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Security, round),
+                    Changeability = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Changeability, round),
+                    Transferability = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Transferability, round),
+                })
+                .ToList();
               
-                return result;
-            }
-            return null;
+            return result;
         }
 
-       
+
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="snapshot"></param>
+        /// <param name="round"></param>
         /// <returns></returns>
-        public static BusinessCriteriaDTO GetBusinessCriteriaGradesSnapshot(Snapshot snapshot, bool Round)
+        public static BusinessCriteriaDTO GetBusinessCriteriaGradesSnapshot(Snapshot snapshot, bool round)
         {
-
-            if (null != snapshot)
+            if (null == snapshot) return null;
+            BusinessCriteriaDTO result = new BusinessCriteriaDTO
             {
-                BusinessCriteriaDTO result = new BusinessCriteriaDTO();
-                              
-                result.TQI = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.TechnicalQualityIndex, Round);
-                result.Robustness = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Robustness, Round);
-                result.Performance = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Performance, Round);
-                result.Security = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Security, Round);
-                result.Transferability = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Transferability, Round);
-                result.Changeability = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Changeability, Round);
-                result.ProgrammingPractices = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.ProgrammingPractices, Round);
-                result.ArchitecturalDesign = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.ArchitecturalDesign, Round);
-                result.Documentation = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Documentation, Round);
-                result.SEIMaintainability = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.SEIMaintainability, Round);
-
-                return result;
-            }
-            return null;
-        }
-
-
-       /// <summary>
-       /// 
-       /// </summary>
-       /// <param name="snapshot"></param>
-       /// <param name="moduleHRef"></param>
-       /// <param name="bcId"></param>
-       /// <returns></returns>
-        public static Double? GetBusinessCriteriaModuleGrade(Snapshot snapshot, string moduleHRef, Constants.BusinessCriteria bcId, bool Round)
-        {
-            double? res = null;
-            if (null != snapshot && null != snapshot.BusinessCriteriaResults)
-            {
-                double? result = null;
-                result = snapshot.BusinessCriteriaResults
-                           .Where(_ => _.Reference.Key == (Int32)bcId && _.ModulesResult != null)
-                           .SelectMany(_ => _.ModulesResult)
-                           .Where(_ => _.Module.Href == moduleHRef && _.DetailResult != null )
-                           .Select(_ => _.DetailResult.Grade)
-                           .FirstOrDefault();
-                if (result != null)
-                {
-                    res = Round ? MathUtility.GetRound(result) : result;
-                }
-            }
-            return res;
+                TQI = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.TechnicalQualityIndex, round),
+                Robustness = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Robustness, round),
+                Performance = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Performance, round),
+                Security = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Security, round),
+                Transferability = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Transferability, round),
+                Changeability = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Changeability, round),
+                ProgrammingPractices = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.ProgrammingPractices, round),
+                ArchitecturalDesign = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.ArchitecturalDesign, round),
+                Documentation = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.Documentation, round),
+                SEIMaintainability = GetSnapshotBusinessCriteriaGrade(snapshot, Constants.BusinessCriteria.SEIMaintainability, round)
+            };
+            
+            return result;
         }
 
 
@@ -132,23 +89,49 @@ namespace CastReporting.BLL.Computing
         /// <param name="snapshot"></param>
         /// <param name="moduleHRef"></param>
         /// <param name="bcId"></param>
+        /// <param name="round"></param>
         /// <returns></returns>
-        public static Double? GetBusinessCriteriaModuleGrade(Snapshot snapshot, Int32 moduleId, Constants.BusinessCriteria bcId, bool Round)
+        public static double? GetBusinessCriteriaModuleGrade(Snapshot snapshot, string moduleHRef, Constants.BusinessCriteria bcId, bool round)
         {
             double? res = null;
-            if (null != snapshot && null != snapshot.BusinessCriteriaResults)
+            if (snapshot?.BusinessCriteriaResults == null) return null;
+            double? result = snapshot.BusinessCriteriaResults
+                .Where(_ => _.Reference.Key == (int)bcId && _.ModulesResult != null)
+                .SelectMany(_ => _.ModulesResult)
+                .Where(_ => _.Module.Href == moduleHRef && _.DetailResult != null )
+                .Select(_ => _.DetailResult.Grade)
+                .FirstOrDefault();
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            if (result != null)
             {
-                double? result = null;
-                result = snapshot.BusinessCriteriaResults
-                           .Where(_ => _.Reference.Key == (Int32)bcId && _.ModulesResult != null)
-                           .SelectMany(_ => _.ModulesResult)
-                           .Where(_ => _.Module.Id == moduleId && _.DetailResult != null)
-                           .Select(_ => _.DetailResult.Grade)
-                           .FirstOrDefault();
-                if (result != null)
-                {
-                    res = Round ? MathUtility.GetRound(result) : result;
-                }
+                res = round ? MathUtility.GetRound(result) : result;
+            }
+            return res;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="snapshot"></param>
+        /// <param name="moduleId"></param>
+        /// <param name="bcId"></param>
+        /// <param name="round"></param>
+        /// <returns></returns>
+        public static double? GetBusinessCriteriaModuleGrade(Snapshot snapshot, int moduleId, Constants.BusinessCriteria bcId, bool round)
+        {
+            if (snapshot?.BusinessCriteriaResults == null) return null;
+            double? res = null;
+            double? result = snapshot.BusinessCriteriaResults
+                .Where(_ => _.Reference.Key == (int)bcId && _.ModulesResult != null)
+                .SelectMany(_ => _.ModulesResult)
+                .Where(_ => _.Module.Id == moduleId && _.DetailResult != null)
+                .Select(_ => _.DetailResult.Grade)
+                .FirstOrDefault();
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            if (result != null)
+            {
+                res = round ? MathUtility.GetRound(result) : result;
             }
             return res;
         }
@@ -158,17 +141,16 @@ namespace CastReporting.BLL.Computing
         /// Get TQI for snapshot
         /// </summary>
         /// <param name="snapshot"></param>
+        /// <param name="bcId"></param>
+        /// <param name="round"></param>
         /// <returns></returns>
-        public static Double? GetSnapshotBusinessCriteriaGrade(Snapshot snapshot, Constants.BusinessCriteria bcId, bool Round)
+        public static double? GetSnapshotBusinessCriteriaGrade(Snapshot snapshot, Constants.BusinessCriteria bcId, bool round)
         {
             double? res = null;
-            if (null != snapshot && null != snapshot.BusinessCriteriaResults)
+            var resultBC = snapshot?.BusinessCriteriaResults?.SingleOrDefault(_ => _.Reference.Key == bcId.GetHashCode());
+            if (resultBC != null)
             {
-                var resultBC = snapshot.BusinessCriteriaResults.SingleOrDefault(_ => _.Reference.Key == bcId.GetHashCode());
-                if (resultBC != null)
-                {
-                    res = Round ? MathUtility.GetRound(resultBC.DetailResult.Grade) : resultBC.DetailResult.Grade;
-                }
+                res = round ? MathUtility.GetRound(resultBC.DetailResult.Grade) : resultBC.DetailResult.Grade;
             }
             return res;
         }
@@ -257,7 +239,7 @@ namespace CastReporting.BLL.Computing
         }
 
        
-        /// 
+        /// <summary>
         /// </summary>
         /// <param name="snapshot"></param>
         /// <param name="businessCriterias"></param>
@@ -265,29 +247,28 @@ namespace CastReporting.BLL.Computing
         /// <returns></returns>
         public static IEnumerable<TechnicalCriteriaResultDTO> GetTechnicalCriteriasByBusinessCriterias(Snapshot snapshot, IEnumerable<string> businessCriterias, int count)
         {
-            if (snapshot != null && snapshot.QIBusinessCriterias != null && businessCriterias != null && businessCriterias.Count() != 0)
-            {
-                List<TechnicalCriteriaResultDTO> technicalCriteriasResults = null;
+            var listBCs = businessCriterias as IList<string> ?? businessCriterias.ToList();
+            if (snapshot?.QIBusinessCriterias == null || listBCs.Count == 0 || !listBCs.Any())
+                return null;
+            List<TechnicalCriteriaResultDTO> technicalCriteriasResults = null;
                 
-                var technicalCriterias = snapshot.QIBusinessCriterias.Where(_ => businessCriterias.Contains(_.Key.ToString()) && _.Contributors != null)
-                                                                           .SelectMany(_ => _.Contributors)
-                                                                           .Select(_ => _.Key).ToList();
+            var technicalCriterias = snapshot.QIBusinessCriterias.Where(_ => listBCs.Contains(_.Key.ToString()) && _.Contributors != null)
+                .SelectMany(_ => _.Contributors)
+                .Select(_ => _.Key).ToList();
                
-                if(technicalCriterias != null && technicalCriterias.Count !=0)
-                   technicalCriteriasResults = (from result in snapshot.TechnicalCriteriaResults
-                                                where technicalCriterias.Contains(result.Reference.Key) && result.DetailResult!=null
-                                                select new TechnicalCriteriaResultDTO { Key = result.Reference.Key, Name = result.Reference.Name, Grade =MathUtility.GetRound( result.DetailResult.Grade) })
-                                               .OrderBy(_ => _.Name)
-                                               .ToList();
+            if(technicalCriterias.Count !=0)
+                technicalCriteriasResults = (from result in snapshot.TechnicalCriteriaResults
+                        where technicalCriterias.Contains(result.Reference.Key) && result.DetailResult!=null
+                        select new TechnicalCriteriaResultDTO { Key = result.Reference.Key, Name = result.Reference.Name, Grade =MathUtility.GetRound( result.DetailResult.Grade) })
+                    .OrderBy(_ => _.Name)
+                    .ToList();
 
-                if (count > 0 && technicalCriteriasResults !=null)
-                {
-                    technicalCriteriasResults = technicalCriteriasResults.Take(count).ToList();
-                }
-
-                return technicalCriteriasResults;
+            if (count > 0)
+            {
+                technicalCriteriasResults = technicalCriteriasResults?.Take(count).ToList();
             }
-            return null;
+
+            return technicalCriteriasResults;
         }
         
         #endregion METHODS

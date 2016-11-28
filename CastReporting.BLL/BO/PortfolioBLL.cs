@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using CastReporting.Domain;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Net;
 using Cast.Util.Version;
+using Cast.Util.Log;
 
 namespace CastReporting.BLL
 {
@@ -18,8 +17,8 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="currentSnapshot"></param>
-        /// <param name="previousSnapshot"></param>
+        /// <param name="connection"></param>
+        /// <param name="application"></param>
         public PortfolioBLL(WSConnection connection, Application[] application)
             : base(connection)
         {
@@ -33,27 +32,25 @@ namespace CastReporting.BLL
         /// <returns></returns>
         public List<string> SetSnapshots()
         {
-            List<string> IgnoreApps = new List<string>();
+            List<string> ignoreApps = new List<string>();
             using (var castRepsitory = GetRepository())
             {
-                if (_Application.Count() > 0)
+                if (!_Application.Any()) return ignoreApps;
+                for (int i = 0; i < _Application.Count(); i++)
                 {
-                    for (int i = 0; i < _Application.Count(); i++)
+                    try
                     {
-                        try
-                        {
-                            _Application[i].Snapshots = castRepsitory.GetSnapshotsByApplication(_Application[i].Href);
-                            _Application[i].Systems = castRepsitory.GetSystemsByApplication(_Application[i].Href);
-                        }
-                        catch (WebException webEx)
-                        {
-                            IgnoreApps.Add(_Application[i].Name);
-                            continue;
-                        }
+                        _Application[i].Snapshots = castRepsitory.GetSnapshotsByApplication(_Application[i].Href);
+                        _Application[i].Systems = castRepsitory.GetSystemsByApplication(_Application[i].Href);
+                    }
+                    catch (WebException webEx)
+                    {
+                        LogHelper.Instance.LogInfo(webEx.Message);
+                        ignoreApps.Add(_Application[i].Name);
                     }
                 }
             }
-            return IgnoreApps;
+            return ignoreApps;
         }
 
         /// <summary>
@@ -61,15 +58,13 @@ namespace CastReporting.BLL
         /// </summary>
         public List<string> SetQualityIndicators()
         {
-            List<string> IgnoreApps = new List<string>();
-
-            Int32[] businessCriterias = (Int32[])Enum.GetValues(typeof(Constants.BusinessCriteria));
+            List<string> ignoreApps = new List<string>();
 
             string strBusinessCriterias = "business-criteria";
 
             using (var castRepsitory = GetRepository())
             {
-                if (_Application.Count() > 0)
+                if (_Application.Any())
                 {
                     for (int i = 0; i < _Application.Count(); i++)
                     {
@@ -80,37 +75,35 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
-                            IgnoreApps.Add(_Application[i].Name);
-                            continue;
+                            LogHelper.Instance.LogInfo(ex.Message);
+                            ignoreApps.Add(_Application[i].Name);
                         }
                     }
                 }
             }
 
-            if (_Application.Count() > 0)
+            if (!_Application.Any()) return ignoreApps;
             {
                 for (int i = 0; i < _Application.Count(); i++)
                 {
                     try
                     {
-                        if (_Application[i].Snapshots != null)
+                        if (_Application[i].Snapshots == null) continue;
+                        foreach (var snapshot in _Application[i].Snapshots)
                         {
-                            foreach (var snapshot in _Application[i].Snapshots)
-                            {
-                                snapshot.BusinessCriteriaResults = _Application[i].BusinessCriteriaResults
-                                                                                    .Where(_ => _.Snapshot.Href.Equals(snapshot.Href))
-                                                                                    .Select(_ => _.ApplicationResults).FirstOrDefault();
-                            }
+                            snapshot.BusinessCriteriaResults = _Application[i].BusinessCriteriaResults
+                                .Where(_ => _.Snapshot.Href.Equals(snapshot.Href))
+                                .Select(_ => _.ApplicationResults).FirstOrDefault();
                         }
                     }
                     catch (WebException ex)
                     {
-                        IgnoreApps.Add(_Application[i].Name);
-                        continue;
+                        LogHelper.Instance.LogInfo(ex.Message);
+                        ignoreApps.Add(_Application[i].Name);
                     }
                 }
             }
-            return IgnoreApps;
+            return ignoreApps;
         }
 
      
@@ -119,11 +112,11 @@ namespace CastReporting.BLL
         /// </summary>
         public List<string> SetSizingMeasure()
         {
-            List<string> IgnoreApps = new List<string>();
+            List<string> ignoreApps = new List<string>();
 
             using (var castRepsitory = GetRepository())
             {
-                if (_Application.Count() > 0)
+                if (_Application.Any())
                 {
                     for (int i = 0; i < _Application.Count(); i++)
                     {
@@ -133,55 +126,54 @@ namespace CastReporting.BLL
                             {
                                 if (VersionUtil.isAdgVersion82Compliant(_Application[i].AdgVersion))
                                 {
-                                    string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
+                                    const string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
                                     _Application[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application[i].Href, strSizingMeasures, "$all", string.Empty, string.Empty).ToList();
                                 }
                                 else
                                 {
-                                    string strSizingMeasureOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                                    const string strSizingMeasureOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                                     _Application[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application[i].Href, strSizingMeasureOld, "$all", string.Empty, string.Empty).ToList();
                                 }
 
                             }
                             catch (WebException ex)
                             {
-                                string strSizingMeasureOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                                LogHelper.Instance.LogInfo(ex.Message);
+                                const string strSizingMeasureOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                                 _Application[i].SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application[i].Href, strSizingMeasureOld, "$all", string.Empty, string.Empty).ToList();
                             }
                         }
                         catch (WebException ex)
                         {
-                            IgnoreApps.Add(_Application[i].Name);
-                            continue;
+                            LogHelper.Instance.LogInfo(ex.Message);
+                            ignoreApps.Add(_Application[i].Name);
                         }
                     }
                 }
             }
 
-            if (_Application.Count() > 0)
+            if (!_Application.Any()) return ignoreApps;
             {
                 for (int i = 0; i < _Application.Count(); i++)
                 {
                     try
                     {
-                        if (_Application[i].Snapshots != null)
+                        if (_Application[i].Snapshots == null) continue;
+                        foreach (var snapshot in _Application[i].Snapshots)
                         {
-                            foreach (var snapshot in _Application[i].Snapshots)
-                            {
-                                snapshot.SizingMeasuresResults = _Application[i].SizingMeasuresResults
-                                                                                    .Where(_ => _.Snapshot.Href.Equals(snapshot.Href))
-                                                                                    .Select(_ => _.ApplicationResults).FirstOrDefault();
-                            }
+                            snapshot.SizingMeasuresResults = _Application[i].SizingMeasuresResults
+                                .Where(_ => _.Snapshot.Href.Equals(snapshot.Href))
+                                .Select(_ => _.ApplicationResults).FirstOrDefault();
                         }
                     }
                     catch (WebException ex)
                     {
-                        IgnoreApps.Add(_Application[i].Name);
-                        continue;
+                        LogHelper.Instance.LogInfo(ex.Message);
+                        ignoreApps.Add(_Application[i].Name);
                     }
                 }
             }
-            return IgnoreApps;
+            return ignoreApps;
         }
 
 
@@ -189,17 +181,17 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
-        static public string[] BuildPortfolioResult(WSConnection connection, Application[] application)
+        public static string[] BuildPortfolioResult(WSConnection connection, Application[] application)
         {
             //Build Quality Indicators
             using (PortfolioBLL applicationBLL = new PortfolioBLL(connection, application))
             {
-                List<string> Apps_SetSnapshots = applicationBLL.SetSnapshots();
-                List<string> Apps_SetQualityIndicators = applicationBLL.SetQualityIndicators();
-                List<string> Apps_SetSizingMeasure = applicationBLL.SetSizingMeasure();
+                List<string> appsSetSnapshots = applicationBLL.SetSnapshots();
+                List<string> appsSetQualityIndicators = applicationBLL.SetQualityIndicators();
+                List<string> appsSetSizingMeasure = applicationBLL.SetSizingMeasure();
 
-                string[] AppsToIgnore = Apps_SetQualityIndicators.Concat(Apps_SetSnapshots).Concat(Apps_SetSizingMeasure).ToArray();
-                return AppsToIgnore;
+                string[] appsToIgnore = appsSetQualityIndicators.Concat(appsSetSnapshots).Concat(appsSetSizingMeasure).ToArray();
+                return appsToIgnore;
                 //Task taskSetSnapshots = new Task(() => applicationBLL.SetSnapshots());
                 //taskSetSnapshots.Start();
 

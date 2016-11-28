@@ -27,7 +27,7 @@ namespace Cast.Util.Log
         /// <summary>
         /// 
         /// </summary>
-        private volatile static ILog _log = null;
+        private static volatile ILog _log;
 
         /// <summary>
         /// 

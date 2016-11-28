@@ -30,7 +30,6 @@ namespace CastReporting.Reporting.Block.Table
     [Block("QUANTITY_EVOLUTION")]
     class QuantityEvolution : TableBlock
     {
-        private const string _MetricFormat = "N2";
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             TableDefinition resultTable = null;

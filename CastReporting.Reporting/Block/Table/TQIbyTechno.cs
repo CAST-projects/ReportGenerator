@@ -43,7 +43,6 @@ namespace CastReporting.Reporting.Block.Table
         {
             TableDefinition resultTable = null;
             int nbTot = 0;
-            bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
             List<string> rowData = new List<string>();
             Int32? metricId = (options != null && options.ContainsKey("ID")) ? Convert.ToInt32(options["ID"]) : (Int32?)Domain.Constants.BusinessCriteria.TechnicalQualityIndex;
 

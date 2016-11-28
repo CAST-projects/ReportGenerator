@@ -53,13 +53,5 @@ namespace CastReporting.Reporting.ReportingModel
         }
         #endregion PROPERTIES
 
-        #region CONSTRUCTORS
-        /// <summary>
-        /// Initialize a new instance of an axis definition.
-        /// </summary>
-        public AxisDefinition() 
-        { 
-        }
-        #endregion CONSTRUCTORS
     }
 }

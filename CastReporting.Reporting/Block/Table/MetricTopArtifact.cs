@@ -46,8 +46,6 @@ namespace CastReporting.Reporting.Block.Table
                     nbLimitTop = idx + 1;
             }
 
-            bool displayHeader = (options == null || !options.ContainsKey("HEADER") || "NO" != options["HEADER"]);
-
             if (options != null && options.ContainsKey("PAR"))
             {
                 foreach (var par in options["PAR"].Split('|'))

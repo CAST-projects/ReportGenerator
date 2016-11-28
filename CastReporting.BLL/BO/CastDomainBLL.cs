@@ -21,6 +21,7 @@ using CastReporting.Repositories.Interfaces;
 using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Text;
+using Cast.Util.Log;
 
 namespace CastReporting.BLL
 {
@@ -123,20 +124,17 @@ namespace CastReporting.BLL
         public List<Snapshot> GetAllSnapshots(Application[] Applications)
         {
             List<Snapshot> Snapshots = new List<Snapshot>();
-            using (var castRepository = GetRepository())
+            for (int j = 0; j < Applications.Count(); j++)
             {
-                for (int j = 0; j < Applications.Count(); j++)
-                {
-                    Application Appl = Applications[j];
+                Application Appl = Applications[j];
 
-                    int nbSnapshotsEachApp = Appl.Snapshots.Count();
-                    if (nbSnapshotsEachApp > 0)
+                int nbSnapshotsEachApp = Appl.Snapshots.Count();
+                if (nbSnapshotsEachApp > 0)
+                {
+                    foreach (Snapshot snapshot in Appl.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
                     {
-                        foreach (Snapshot snapshot in Appl.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
-                        {
-                            snapshot.AdgVersion = Appl.AdgVersion;
-                            Snapshots.Add(snapshot);
-                        }
+                        snapshot.AdgVersion = Appl.AdgVersion;
+                        Snapshots.Add(snapshot);
                     }
                 }
             }
@@ -223,7 +221,6 @@ namespace CastReporting.BLL
                     {
                         foreach (var Category in CommonCategorys)
                         {
-                            string strKey = string.IsNullOrEmpty(Category.key) ? " " : Category.key;
                             string strLabelled = string.IsNullOrEmpty(Category.label) ? " " : Category.label;
                             if (strCategory == strLabelled)
                             {
@@ -270,6 +267,7 @@ namespace CastReporting.BLL
             }
             catch ( System.Exception ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 List<string> Categories = new List<string>();
                 return Categories;
             }

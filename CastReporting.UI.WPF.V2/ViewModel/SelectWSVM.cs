@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Cast.Util.Log;
 using CastReporting.BLL;
 using CastReporting.Domain;
 
@@ -187,6 +188,7 @@ namespace CastReporting.UI.WPF.ViewModel
             }
             catch (UriFormatException ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 base.MessageManager.OnServiceAdded(NewConnectionUrl, StatesEnum.ServiceInvalid);
             }
         }

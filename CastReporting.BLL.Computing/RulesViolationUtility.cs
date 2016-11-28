@@ -90,9 +90,6 @@ namespace CastReporting.BLL.Computing
         /// <returns></returns>
         public static List<TechnicalCriteriaResultDTO> GetTechnicalCriteriaViolations(Snapshot snapshot, Constants.BusinessCriteria businessCriteriaId, Int32 count)
         {
-            RuleViolationResultDTO ruleViolationResult = new RuleViolationResultDTO();
-
-
             if (snapshot.QIBusinessCriterias != null && snapshot.TechnicalCriteriaResults!=null)
             {
                 IEnumerable<Int32> technicalCriteriaId = snapshot.QIBusinessCriterias.Where(_ => (Int32)businessCriteriaId == _.Key)

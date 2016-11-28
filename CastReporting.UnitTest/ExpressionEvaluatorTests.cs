@@ -14,12 +14,6 @@ namespace CastReporting.UnitTest
     [TestClass]
     public class ExpressionEvaluatorTests
     {
-        public ExpressionEvaluatorTests()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
 
         private TestContext testContextInstance;
 

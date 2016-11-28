@@ -35,8 +35,7 @@ namespace CastReporting.Reporting.Block.Table
         {
        
             TableDefinition resultTable = null;
-            bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
-           List<string> rowData = new List<string>();
+            List<string> rowData = new List<string>();
             rowData.AddRange(new string[] { Labels.Name, Labels.Id });
 
             if (null != reportData &&
