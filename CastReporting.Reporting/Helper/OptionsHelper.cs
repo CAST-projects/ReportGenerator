@@ -36,7 +36,7 @@ namespace CastReporting.Reporting.Helper
 
         public static int GetIntOption(this Dictionary<string, string> options, string key, int defaultValue = default(int)) {
             int value;
-            var s = options.GetOption(key, null);
+            var s = options.GetOption(key);
             if (string.IsNullOrWhiteSpace(s) || !int.TryParse(s, out value)) {
                 value = defaultValue;
             }
@@ -45,7 +45,7 @@ namespace CastReporting.Reporting.Helper
 
         public static bool GetBoolOption(this Dictionary<string, string> options, string key, bool defaultValue = default(bool)) {
             bool value;
-            var s = options.GetOption(key, null);
+            var s = options.GetOption(key);
             if (string.IsNullOrWhiteSpace(s)) {
                 value = defaultValue;
             } else {
@@ -76,13 +76,12 @@ namespace CastReporting.Reporting.Helper
 
         public static List<int> GetIntListOption(this Dictionary<string, string> options, string key, char separator, bool distinct) {
             var values = new List<int>();
-            var s = options.GetOption(key, null);
-            if (string.IsNullOrWhiteSpace(s)) {
-                foreach (var entry in s.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries)) {
-                    int num;
-                    if (int.TryParse(entry, out num) && (!distinct || !values.Contains(num))) {
-                        values.Add(num);
-                    }
+            var s = options.GetOption(key);
+            if (string.IsNullOrWhiteSpace(s)) return values;
+            foreach (var entry in s.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries)) {
+                int num;
+                if (int.TryParse(entry, out num) && (!distinct || !values.Contains(num))) {
+                    values.Add(num);
                 }
             }
             return values;

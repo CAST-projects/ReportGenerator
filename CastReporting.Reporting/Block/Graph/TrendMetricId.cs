@@ -15,13 +15,12 @@
  *
  */
 
-using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using CastReporting.Reporting.Helper;
 
@@ -37,69 +36,64 @@ namespace CastReporting.Reporting.Block.Graph
         {
             int count = 0;         
 
-            string[] QIDlist = options.GetOption("QID")?.Split('|');
-            string[] SIDlist = options.GetOption("SID")?.Split('|');
-            string[] BIDlist = options.GetOption("BID")?.Split('|');
+            string[] qidList = options.GetOption("QID")?.Split('|');
+            string[] sidList = options.GetOption("SID")?.Split('|');
+            string[] bidList = options.GetOption("BID")?.Split('|');
 
             // we can add the header only after getting the data, because names are in the data
-            var rowData = new List<String>();
+            var rowData = new List<string>();
 
             Dictionary<string,string> names = new Dictionary<string, string>();
             bool getIdNames = true;
 
-            int nbSnapshots = 0;
-			nbSnapshots = (reportData != null && reportData.Application.Snapshots != null) ? reportData.Application.Snapshots.Count() : 0;
+			int nbSnapshots = reportData?.Application.Snapshots?.Count() ?? 0;
             if (nbSnapshots > 0)
             {
 
+                // ReSharper disable once PossibleNullReferenceException
+                // ReSharper disable once AssignNullToNotNullAttribute
                 foreach (Snapshot snapshot in reportData.Application.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
                 {
-                    string snapshotDate = snapshot.Annotation.Date.DateSnapShot.HasValue ? snapshot.Annotation.Date.DateSnapShot.Value.ToOADate().ToString() : string.Empty;
+                    string snapshotDate = snapshot.Annotation.Date.DateSnapShot?.ToOADate().ToString(CultureInfo.CurrentCulture) ?? string.Empty;
                     // names at first iteration
                     if (getIdNames)
                     {
                         // iterate in QID
-                        if (QIDlist != null)
+                        if (qidList != null)
                         {
-                            foreach (string id in QIDlist)
+                            foreach (string id in qidList)
                             {
                                 ApplicationResult res = reportData.SnapshotExplorer.GetQualityIndicatorResults(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                                if (res != null)
-                                {
-                                    string idName = (res.Reference.ShortName != null) ? res.Reference.ShortName : res.Reference.Name;
-                                    if (!names.Keys.Contains(id))
-                                        names.Add(id, idName);
-                                }
+                                if (res == null) continue;
+                                string idName = res.Reference.ShortName ?? res.Reference.Name;
+                                if (!names.Keys.Contains(id))
+                                    names.Add(id, idName);
                             }
                         }
 
                         // iterate in SID
-                        if (SIDlist != null)
+                        if (sidList != null)
                         {
-                            foreach (string id in SIDlist)
+                            foreach (string id in sidList)
                             {
                                 ApplicationResult res = reportData.SnapshotExplorer.GetSizingMeasureResults(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                                if (res != null)
-                                {
-                                    string idName = (res.Reference.ShortName != null) ? res.Reference.ShortName : res.Reference.Name;
-                                    if (!names.Keys.Contains(id))
-                                        names.Add(id, idName);
-                                }
+                                if (res == null) continue;
+                                string idName = res.Reference.ShortName ?? res.Reference.Name;
+                                if (!names.Keys.Contains(id))
+                                    names.Add(id, idName);
                             }
                         }
 
                         // iterate in BID
-                        if (BIDlist != null)
+                        if (bidList != null)
                         {
-                            foreach (string id in BIDlist)
+                            foreach (string id in bidList)
                             {
                                 ApplicationResult res = reportData.SnapshotExplorer.GetBackgroundFacts(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                                if (res != null)
-                                {
-                                    string idName = (res.Reference.ShortName != null) ? res.Reference.ShortName : res.Reference.Name;
-                                    if (!names.Keys.Contains(id))
-                                        names.Add(id, idName);
-                                }
+                                if (res == null) continue;
+                                string idName = res.Reference.ShortName ?? res.Reference.Name;
+                                if (!names.Keys.Contains(id))
+                                    names.Add(id, idName);
                             }
                         }
 
@@ -120,48 +114,42 @@ namespace CastReporting.Reporting.Block.Graph
 
                     Dictionary<string, string> values = new Dictionary<string, string>();
                     // iterate in QID
-                    if (QIDlist != null)
+                    if (qidList != null)
                     {
-                        foreach (string id in QIDlist)
+                        foreach (string id in qidList)
                         {
                             ApplicationResult res = reportData.SnapshotExplorer.GetQualityIndicatorResults(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                            if (res != null)
-                            {
-                                string idValue = (res.DetailResult?.Grade != null) ? res.DetailResult.Grade.ToString("N2") : Constants.No_Value;
-                                if (!values.Keys.Contains(id))
-                                    values.Add(id, idValue);
-                            }
+                            if (res == null) continue;
+                            string idValue = res.DetailResult?.Grade.ToString("N2") ?? Constants.No_Value;
+                            if (!values.Keys.Contains(id))
+                                values.Add(id, idValue);
                         }
                     }
 
                     // iterate in SID
-                    if (SIDlist != null)
+                    if (sidList != null)
                     {
-                        foreach (string id in SIDlist)
+                        foreach (string id in sidList)
                         {
                             ApplicationResult res = reportData.SnapshotExplorer.GetSizingMeasureResults(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                            if (res != null)
-                            {
-                                string idValue = (res.DetailResult?.Value != null) ? res.DetailResult.Value.ToString("F0") : Constants.No_Value;
-                                if (!values.Keys.Contains(id))
-                                    values.Add(id, idValue);
-                            }
+                            if (res == null) continue;
+                            string idValue = res.DetailResult?.Value.ToString("F0") ?? Constants.No_Value;
+                            if (!values.Keys.Contains(id))
+                                values.Add(id, idValue);
                         }
                     }
 
                     // iterate in BID
-                    if (BIDlist != null)
+                    if (bidList != null)
                     {
-                        foreach (string id in BIDlist)
+                        foreach (string id in bidList)
                         {
                             ApplicationResult res = reportData.SnapshotExplorer.GetBackgroundFacts(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                            if (res != null)
-                            {
-                                // F0 as format to avoid the ',' that make graph build crash
-                                string idValue = (res.DetailResult?.Value != null) ? res.DetailResult.Value.ToString("F0") : Constants.No_Value;
-                                if (!values.Keys.Contains(id))
-                                    values.Add(id, idValue);
-                            }
+                            if (res == null) continue;
+                            // F0 as format to avoid the ',' that make graph build crash
+                            string idValue = res.DetailResult?.Value.ToString("F0") ?? Constants.No_Value;
+                            if (!values.Keys.Contains(id))
+                                values.Add(id, idValue);
                         }
                     }
 
@@ -192,7 +180,8 @@ namespace CastReporting.Reporting.Block.Graph
                         range[k] = row;
                 }
 
-                string prevSnapshotDate = reportData.CurrentSnapshot.Annotation.Date.DateSnapShot.HasValue ? reportData.CurrentSnapshot.Annotation.Date.DateSnapShot.Value.ToOADate().ToString() : string.Empty;
+                // ReSharper disable once PossibleNullReferenceException
+                string prevSnapshotDate = reportData.CurrentSnapshot.Annotation.Date.DateSnapShot?.ToOADate().ToString(CultureInfo.CurrentCulture) ?? string.Empty;
                 range[0] = prevSnapshotDate;
 
                 rowData.AddRange(range);
