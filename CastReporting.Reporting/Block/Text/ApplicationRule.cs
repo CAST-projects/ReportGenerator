@@ -13,7 +13,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
@@ -22,6 +21,7 @@ using CastReporting.Reporting.ReportingModel;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using CastReporting.Reporting.Helper;
+// ReSharper disable InconsistentNaming
 
 namespace CastReporting.Reporting.Block.Text
 {
@@ -32,69 +32,61 @@ namespace CastReporting.Reporting.Block.Text
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
           
-            int metricId = options.GetIntOption("ID", 0);
-            int metricSzId = options.GetIntOption("SZID", 0);
-            int metricBfId = options.GetIntOption("BFID", 0);
+            int metricId = options.GetIntOption("ID");
+            int metricSzId = options.GetIntOption("SZID");
+            int metricBfId = options.GetIntOption("BFID");
             string _format = options.GetOption("FORMAT", "N0");
             string _snapshot = options.GetOption("SNAPSHOT", "CURRENT");
            
-            if (null != reportData && null != reportData.CurrentSnapshot && metricId != 0)
+            if (reportData?.CurrentSnapshot != null && metricId != 0)
             {
-                if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
+                if (_snapshot == "PREVIOUS")
                 {
+                    if (reportData.PreviousSnapshot == null) return Constants.No_Value;
                     double? result = BusinessCriteriaUtility.GetMetricValue(reportData.PreviousSnapshot, metricId);
-                    return result.HasValue ? result.Value.ToString("N2") : Constants.No_Value;
+                    return result?.ToString("N2") ?? Constants.No_Value;
                 }
                 else
                 {
                     double? result = BusinessCriteriaUtility.GetMetricValue(reportData.CurrentSnapshot, metricId);
-                    return result.HasValue ? result.Value.ToString("N2") : Constants.No_Value;
+                    return result?.ToString("N2") ?? Constants.No_Value;
                 }
             }
-            else if (null != reportData && null != reportData.CurrentSnapshot && metricSzId != 0)
+            if (reportData?.CurrentSnapshot != null && metricSzId != 0)
             {
-                if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
+                if (_snapshot == "PREVIOUS")
                 {
+                    if (reportData.PreviousSnapshot == null) return Constants.No_Value;
                     double? result = MeasureUtility.GetSizingMeasure(reportData.PreviousSnapshot, metricSzId);
-                    return result.HasValue ? result.Value.ToString(_format) : Constants.No_Value;
+                    return result?.ToString(_format) ?? Constants.No_Value;
                 }
                 else
                 {
                     double? result = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, metricSzId);
-                    return result.HasValue ? result.Value.ToString(_format) : Constants.No_Value;
+                    return result?.ToString(_format) ?? Constants.No_Value;
                 }
             }
-            else if (null != reportData && null != reportData.CurrentSnapshot && metricBfId != 0)
+            else if (reportData?.CurrentSnapshot != null && metricBfId != 0)
             {
-                if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
+                if (_snapshot == "PREVIOUS")
                 {
+                    if (reportData.PreviousSnapshot == null) return Constants.No_Value;
                     Result bfValue = reportData.SnapshotExplorer.GetBackgroundFacts(reportData.PreviousSnapshot.Href, metricBfId.ToString()).FirstOrDefault();
-                    if (bfValue != null && bfValue.ApplicationResults.Any())
-                    {
-                        double? result = bfValue.ApplicationResults[0].DetailResult.Value;
-                        return result.HasValue ? result.Value.ToString(_format) : Constants.No_Value;
-                    }
-                    else
-                    {
+                    if (bfValue == null || !bfValue.ApplicationResults.Any())
                         return Constants.No_Value;
-                    }
+                    double? result = bfValue.ApplicationResults[0].DetailResult?.Value;
+                    return result?.ToString(_format) ?? Constants.No_Value;
                 }
                 else
                 {
                     Result bfValue = reportData.SnapshotExplorer.GetBackgroundFacts(reportData.CurrentSnapshot.Href, metricBfId.ToString()).FirstOrDefault();
-                    if (bfValue != null && bfValue.ApplicationResults.Any())
-                    {
-                        double? result = bfValue.ApplicationResults[0].DetailResult.Value;
-                        return result.HasValue ? result.Value.ToString(_format) : Constants.No_Value;
-                    }
-                    else
-                    {
-                        return Constants.No_Value;
-                    }
+                    if (bfValue == null || !bfValue.ApplicationResults.Any()) return Constants.No_Value;
+                    double? result = bfValue.ApplicationResults[0].DetailResult?.Value;
+                    return result?.ToString(_format) ?? Constants.No_Value;
                 }
             }
 
-            return CastReporting.Domain.Constants.No_Value;
+            return Constants.No_Value;
         }
         #endregion METHODS
     }
