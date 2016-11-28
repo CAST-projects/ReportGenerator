@@ -208,16 +208,10 @@ namespace CastReporting.BLL.Computing
         /// <returns></returns>
         public static double? GetSumMetric(Snapshot snapshot, int index)
         {
-            if (null != snapshot && snapshot.SizingMeasuresResults != null)
-            {
+            var result = snapshot?.SizingMeasuresResults?.Where(_ => _.Reference.Key == index && _.DetailResult != null)
+                .Sum(_ => _.DetailResult.Value);
 
-                var result = snapshot.SizingMeasuresResults.Where(_ => _.Reference.Key == index && _.DetailResult != null)
-                                                           .Sum(_ => _.DetailResult.Value);
-
-                return result;
-
-            }
-            return null;
+            return result;
         }
 
 
@@ -344,14 +338,15 @@ namespace CastReporting.BLL.Computing
         /// <param name="moduleId"></param>
         /// <param name="measureId"></param>
         /// <returns></returns>
-        public static double GetModuleMeasureGrade(Snapshot snapshot, int moduleId, Constants.SizingInformations measureId)
+        public static double? GetModuleMeasureGrade(Snapshot snapshot, int moduleId, Constants.SizingInformations measureId)
         {
-            return snapshot.SizingMeasuresResults
+            var res = snapshot.SizingMeasuresResults
                            .Where(_ => _.Reference.Key == (int)measureId && _.ModulesResult != null)
                            .SelectMany(_ => _.ModulesResult)
                            .Where(_ => _.Module.Id == moduleId && _.DetailResult != null)
-                           .Select(_ => MathUtility.GetRound(_.DetailResult.Grade).Value)
+                           .Select(_ => _.DetailResult.Grade)
                            .FirstOrDefault();
+            return MathUtility.GetRound(res);
         }
 
         /// <summary>

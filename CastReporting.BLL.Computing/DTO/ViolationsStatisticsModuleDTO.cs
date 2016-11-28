@@ -1,5 +1,4 @@
 ﻿using CastReporting.Domain;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,17 +27,17 @@ namespace CastReporting.BLL.Computing
 
         public Constants.BusinessCriteria BusinessCriteria { get; set; }
 
-        public Int32? TotalViolations { get; set; }
+        public int? TotalViolations { get; set; }
 
-        public Int32? AddedViolations { get; set; }
+        public int? AddedViolations { get; set; }
 
-        public Int32? RemovedViolations { get; set; }
+        public int? RemovedViolations { get; set; }
 
-        public Int32? TotalCriticalViolations { get; set; }
+        public int? TotalCriticalViolations { get; set; }
 
-        public Int32? AddedCriticalViolations { get; set; }
+        public int? AddedCriticalViolations { get; set; }
 
-        public Int32? RemovedCriticalViolations { get; set; }
+        public int? RemovedCriticalViolations { get; set; }
     }
 
 }

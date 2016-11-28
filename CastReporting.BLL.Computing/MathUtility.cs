@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CastReporting.BLL.Computing
 {
@@ -36,9 +33,9 @@ namespace CastReporting.BLL.Computing
         /// <param name="currMesure"></param>
         /// <param name="prevMesure"></param>
         /// <returns></returns>
-        public static Double? GetEvolution(double? currMesure, double? prevMesure)
+        public static double? GetEvolution(double? currMesure, double? prevMesure)
         {
-            return (currMesure.HasValue && prevMesure.HasValue) ? (currMesure.Value - prevMesure.Value) : (Double?)null;
+            return (currMesure.HasValue && prevMesure.HasValue) ? (currMesure.Value - prevMesure.Value) : (double?)null;
         }
 
 
@@ -48,9 +45,9 @@ namespace CastReporting.BLL.Computing
         /// <param name="currMesure"></param>
         /// <param name="prevMesure"></param>
         /// <returns></returns>
-        public static Double? GetSum(double? currMesure, double? prevMesure)
+        public static double? GetSum(double? currMesure, double? prevMesure)
         {
-            return (currMesure.HasValue && prevMesure.HasValue) ? (currMesure.Value + prevMesure.Value) : (Double?)null;
+            return (currMesure.HasValue && prevMesure.HasValue) ? (currMesure.Value + prevMesure.Value) : (double?)null;
         }
 
 
@@ -60,21 +57,21 @@ namespace CastReporting.BLL.Computing
         /// <param name="value"></param>
         /// <param name="reference"></param>
         /// <returns></returns>
-        public static Double? GetPercent(double? value, double? reference)
+        public static double? GetPercent(double? value, double? reference)
         {
-            return (value.HasValue && reference.HasValue && reference.Value != 0)?(value.Value / reference.Value): (Double?)null;
+            return (value.HasValue && reference.HasValue && Math.Abs(reference.Value) > 0) ? (value.Value / reference.Value) :(double?) null;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="reference"></param>
+        /// <param name="currMesure"></param>
+        /// <param name="prevMesure"></param>
         /// <returns></returns>
-        public static Double? GetVariationPercent(double? currMesure, double? prevMesure)
+        public static double? GetVariationPercent(double? currMesure, double? prevMesure)
         {
             var variaton = GetEvolution(currMesure, prevMesure);
-            return (variaton.HasValue && prevMesure.HasValue && prevMesure.Value > 0) ? (variaton / prevMesure) : (Double?)null;
+            return (variaton.HasValue && prevMesure.HasValue && prevMesure.Value > 0) ? (variaton / prevMesure) : null;
         }
 
         

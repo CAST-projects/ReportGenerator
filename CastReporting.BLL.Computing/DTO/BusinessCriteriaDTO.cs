@@ -13,7 +13,6 @@
  * limitations under the License.
  *
  */
-using System;
 
 namespace CastReporting.BLL.Computing
 {
@@ -28,56 +27,56 @@ namespace CastReporting.BLL.Computing
         /// <summary>
         /// 
         /// </summary>
-        public Double? TQI { get; set; }
+        public double? TQI { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Double? Robustness { get; set; }
+        public double? Robustness { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Double? Performance { get; set; }
+        public double? Performance { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Double? Security { get; set; }
+        public double? Security { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Double? Changeability { get; set; }
+        public double? Changeability { get; set; }
 
         /// <summary>
         /// /
         /// </summary>
-        public Double? Transferability { get; set; }
+        public double? Transferability { get; set; }
 
 
         /// <summary>
         /// /
         /// </summary>
-        public Double? ProgrammingPractices { get; set; }
+        public double? ProgrammingPractices { get; set; }
 
         
         /// <summary>
         /// /
         /// </summary>
-        public Double? ArchitecturalDesign { get; set; }
+        public double? ArchitecturalDesign { get; set; }
 
         
         /// <summary>
         /// /
         /// </summary>
-        public Double? Documentation { get; set; }
+        public double? Documentation { get; set; }
 
         
         /// <summary>
         /// /
         /// </summary>
-        public Double? SEIMaintainability { get; set; }
+        public double? SEIMaintainability { get; set; }
 
 
         /// <summary>
@@ -88,17 +87,16 @@ namespace CastReporting.BLL.Computing
         /// <returns></returns>
         public static BusinessCriteriaDTO operator -(BusinessCriteriaDTO left, BusinessCriteriaDTO right)
         {
-            BusinessCriteriaDTO GetBusinessCriteriaGradesVartiation = new BusinessCriteriaDTO();
-            if (left != null && right != null)
-            {
-                GetBusinessCriteriaGradesVartiation.TQI = (left.TQI.HasValue && right.TQI.HasValue) ? left.TQI - right.TQI : null;
-                GetBusinessCriteriaGradesVartiation.Robustness = (left.Robustness.HasValue && right.Robustness.HasValue) ? left.Robustness - right.Robustness : null;
-                GetBusinessCriteriaGradesVartiation.Performance = (left.Performance.HasValue && right.Performance.HasValue) ? left.Performance - right.Performance : null;
-                GetBusinessCriteriaGradesVartiation.Security = (left.Security.HasValue && right.Security.HasValue) ? left.Security - right.Security : null;
-                GetBusinessCriteriaGradesVartiation.Transferability = (left.Transferability.HasValue && right.Transferability.HasValue) ? left.Transferability - right.Transferability : null;
-                GetBusinessCriteriaGradesVartiation.Changeability = (left.Changeability.HasValue && right.Changeability.HasValue) ? left.Changeability - right.Changeability : null;
-            }
-            return GetBusinessCriteriaGradesVartiation;           
+            BusinessCriteriaDTO _getBusinessCriteriaGradesVartiation = new BusinessCriteriaDTO();
+            if (left == null || right == null) return _getBusinessCriteriaGradesVartiation;
+
+            _getBusinessCriteriaGradesVartiation.TQI = (left.TQI.HasValue && right.TQI.HasValue) ? left.TQI - right.TQI : null;
+            _getBusinessCriteriaGradesVartiation.Robustness = (left.Robustness.HasValue && right.Robustness.HasValue) ? left.Robustness - right.Robustness : null;
+            _getBusinessCriteriaGradesVartiation.Performance = (left.Performance.HasValue && right.Performance.HasValue) ? left.Performance - right.Performance : null;
+            _getBusinessCriteriaGradesVartiation.Security = (left.Security.HasValue && right.Security.HasValue) ? left.Security - right.Security : null;
+            _getBusinessCriteriaGradesVartiation.Transferability = (left.Transferability.HasValue && right.Transferability.HasValue) ? left.Transferability - right.Transferability : null;
+            _getBusinessCriteriaGradesVartiation.Changeability = (left.Changeability.HasValue && right.Changeability.HasValue) ? left.Changeability - right.Changeability : null;
+            return _getBusinessCriteriaGradesVartiation;           
         }
 
         /// <summary>
@@ -109,17 +107,16 @@ namespace CastReporting.BLL.Computing
         /// <returns></returns>
         public static BusinessCriteriaDTO operator /(BusinessCriteriaDTO left, BusinessCriteriaDTO right)
         {
-            BusinessCriteriaDTO GetBusinessCriteriaGradesVartiation = new BusinessCriteriaDTO();
-            if (left != null && left != null)
-            {
-                GetBusinessCriteriaGradesVartiation.TQI = (0 == right.TQI ? 0 : left.TQI / right.TQI);
-                GetBusinessCriteriaGradesVartiation.Robustness = (0 == right.Robustness ? 0 : left.Robustness / right.Robustness);
-                GetBusinessCriteriaGradesVartiation.Performance = (0 == right.Performance ? 0 : left.Performance / right.Performance);
-                GetBusinessCriteriaGradesVartiation.Security = (0 == right.Security ? 0 : left.Security / right.Security);
-                GetBusinessCriteriaGradesVartiation.Transferability = (0 == right.Transferability ? 0 : left.Transferability / right.Transferability);
-                GetBusinessCriteriaGradesVartiation.Changeability = (0 == right.Changeability ? 0 : left.Changeability / right.Changeability);
-            }
-            return GetBusinessCriteriaGradesVartiation;
+            BusinessCriteriaDTO _getBusinessCriteriaGradesVartiation = new BusinessCriteriaDTO();
+            if (left == null || right == null) return _getBusinessCriteriaGradesVartiation;
+
+            _getBusinessCriteriaGradesVartiation.TQI = (0 == right.TQI ? 0 : left.TQI / right.TQI);
+            _getBusinessCriteriaGradesVartiation.Robustness = (0 == right.Robustness ? 0 : left.Robustness / right.Robustness);
+            _getBusinessCriteriaGradesVartiation.Performance = (0 == right.Performance ? 0 : left.Performance / right.Performance);
+            _getBusinessCriteriaGradesVartiation.Security = (0 == right.Security ? 0 : left.Security / right.Security);
+            _getBusinessCriteriaGradesVartiation.Transferability = (0 == right.Transferability ? 0 : left.Transferability / right.Transferability);
+            _getBusinessCriteriaGradesVartiation.Changeability = (0 == right.Changeability ? 0 : left.Changeability / right.Changeability);
+            return _getBusinessCriteriaGradesVartiation;
         }
     }
 }

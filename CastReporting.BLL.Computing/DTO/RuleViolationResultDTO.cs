@@ -1,8 +1,4 @@
-﻿using CastReporting.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace CastReporting.BLL.Computing
 {
@@ -12,11 +8,11 @@ namespace CastReporting.BLL.Computing
 
         public string TechnicalCriteraiName { get; set; }
 
-        public Int32? TotalChecks { get; set; }
+        public int? TotalChecks { get; set; }
 
-        public Int32? TotalFailed { get; set; }
+        public int? TotalFailed { get; set; }
 
-        public Double? Grade { get; set; }
+        public double? Grade { get; set; }
         
         public class Comparer : IEqualityComparer<RuleViolationResultDTO> {
 			#region IEqualityComparer implementation
@@ -26,13 +22,13 @@ namespace CastReporting.BLL.Computing
 					return true;
 				if (x == null || y == null)
 					return false;
-				int xk = (x.Rule != null) ? x.Rule.Key : 0;
-				int yk = (y.Rule != null) ? y.Rule.Key : 0;
+				int xk = x.Rule?.Key ?? 0;
+				int yk = y.Rule?.Key ?? 0;
 				return (xk != 0 && xk == yk);
 			}
 			public int GetHashCode(RuleViolationResultDTO obj)
 			{
-				return (obj == null || obj.Rule == null) ? 0 : obj.Rule.Key;
+				return obj?.Rule?.Key ?? 0;
 			}
 			#endregion
         }
@@ -42,15 +38,15 @@ namespace CastReporting.BLL.Computing
     {
         public RuleDetailsDTO Rule { get; set; }
 
-        public Int32? CurrentNbViolations { get; set; }
+        public int? CurrentNbViolations { get; set; }
 
-        public Int32? PreviousNbViolations { get; set; }
+        public int? PreviousNbViolations { get; set; }
 
-        public Double? Evolution { get; set; }
+        public double? Evolution { get; set; }
 
-        public Double? Grade { get; set; }
+        public double? Grade { get; set; }
 
-        public Double? GradeEvolution { get; set; }
+        public double? GradeEvolution { get; set; }
     
     }
 
@@ -58,44 +54,41 @@ namespace CastReporting.BLL.Computing
     {
         public RuleDetailsDTO Rule { get; set; }
 
-        public Int32? CurrentNbViolations { get; set; }
+        public int? CurrentNbViolations { get; set; }
 
-        public Int32? PreviousNbViolations { get; set; }
+        public int? PreviousNbViolations { get; set; }
 
-        public Double? Variation { get; set; }
+        public double? Variation { get; set; }
 
-        public Double? Ratio { get; set; }
+        public double? Ratio { get; set; }
 
     }
 
 
     public class RuleDetailsDTO
     {
-        public Int32 Key { get; set; }
+        public int Key { get; set; }
 
         public string Name { get; set; }
        
-        public Int32 CompoundedWeight { get; set; }
+        public int CompoundedWeight { get; set; }
 
         public bool Critical { get; set; }
-
-       
 
     }
 
 
     public class TechnicalCriteriaResultDTO
     {
-        public Int32 Key { get; set; }
+        public int Key { get; set; }
 
         public string Name { get; set; }
 
-        public Double? Grade { get; set; }
+        public double? Grade { get; set; }
 
-        public Int32? TotalChecks { get; set; }
+        public int? TotalChecks { get; set; }
 
-        public Int32? TotalFailed { get; set; }
+        public int? TotalFailed { get; set; }
        
-
     }
 }
