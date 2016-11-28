@@ -46,13 +46,5 @@ namespace CastReporting.Reporting.ReportingModel
         }
         #endregion PROPERTIES
 
-        #region CONSTRUCTORS
-        /// <summary>
-        /// Initialize a new instance of a graphic options.
-        /// </summary>
-        public GraphOptions() 
-        { 
-        }
-        #endregion CONSTRUCTORS
     }
 }

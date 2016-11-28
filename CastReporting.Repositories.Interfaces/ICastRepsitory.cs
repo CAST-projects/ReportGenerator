@@ -33,7 +33,7 @@ namespace CastReporting.Repositories.Interfaces
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="hRef"></param>
         /// <returns></returns>
         Application GetApplication(string hRef);
 
@@ -52,7 +52,7 @@ namespace CastReporting.Repositories.Interfaces
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="hRef"></param>
         /// <returns></returns>
         Snapshot GetSnapshot(string hRef);
 
@@ -65,7 +65,7 @@ namespace CastReporting.Repositories.Interfaces
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="hRef"></param>
         /// <returns></returns>
         Module GetModule(string hRef);
 
@@ -73,14 +73,16 @@ namespace CastReporting.Repositories.Interfaces
         /// 
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Result> GetResultsQualityIndicators(string hRef, string qiParam, string snapshotsParam, string modulesParam, string technologiesParam, string categoriesParam); 
-    
+        IEnumerable<Result> GetResultsQualityIndicators(string hRef, string qiParam, string snapshotsParam, string modulesParam, string technologiesParam, string categoriesParam);
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="hRef"></param>
         /// <param name="param"></param>
-        /// <param name="modulesParam"></param>
+        /// <param name="snapshotsParam"></param>
+        /// /// <param name="moduleParam"></param>
+        /// /// <param name="technologiesParam"></param>
         /// <returns></returns>
         IEnumerable<Result> GetResultsSizingMeasures(string hRef, string param, string snapshotsParam, string technologiesParam, string moduleParam);
 
@@ -114,7 +116,8 @@ namespace CastReporting.Repositories.Interfaces
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="snapshotHRef"></param>
+        /// <param name="domainHRef"></param>
+        /// <param name="snapshotId"></param>
         /// <returns></returns>
         IEnumerable<QIBusinessCriteria> GetConfBusinessCriteriaBySnapshot(string domainHRef, Int64 snapshotId);
 
@@ -128,7 +131,6 @@ namespace CastReporting.Repositories.Interfaces
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="applicationHRef"></param>
         /// <param name="snapshotHRef"></param>
         /// <returns></returns>
         IEnumerable<ActionPlan> GetActionPlanBySnapshot(string snapshotHRef);
@@ -137,6 +139,7 @@ namespace CastReporting.Repositories.Interfaces
         /// 
         /// </summary>
         /// <param name="snapshotHRef"></param>
+        /// <param name="criticity"></param>
         /// <param name="businessCriteria"></param>
         /// <returns></returns>
         IEnumerable<Result> GetRulesViolations(string snapshotHRef, string criticity, string businessCriteria);
@@ -154,7 +157,6 @@ namespace CastReporting.Repositories.Interfaces
         /// </summary>
         /// <param name="domain"></param>
         /// <param name="ruleId"></param>
-        /// <param name="snapshotId"></param>
         /// <returns></returns>
         RuleDescription GetSpecificRule(string domain, string ruleId);
 
@@ -166,20 +168,19 @@ namespace CastReporting.Repositories.Interfaces
         /// <param name="snapshotId"></param>
         /// <returns></returns>
         IEnumerable<RuleDetails> GetRulesDetails(string domain, int businessCriteria, long snapshotId);
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="snapshotHref"></param>
-        /// <param name="businessCriteria"></param>
-        /// <returns></returns>
-        IEnumerable<Transaction> GetTransactions(string snapshotHref, string businessCriteria, int count);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="snapshotHref"></param>
         /// <param name="businessCriteria"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        IEnumerable<Transaction> GetTransactions(string snapshotHref, string businessCriteria, int count);
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         IEnumerable<CommonCategories> GetCommonCategories();
 
@@ -208,10 +209,10 @@ namespace CastReporting.Repositories.Interfaces
         /// 
         /// </summary>
         /// <param name="snapshotHref"></param>
-        /// <param name="RuleId"></param>
+        /// <param name="ruleId"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        IEnumerable<MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string RuleId, int count);
+        IEnumerable<MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string ruleId, int count);
 
         /// <summary>
         /// 

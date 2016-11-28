@@ -32,11 +32,9 @@ namespace CastReporting.Reporting.Block.Table
     [Block("PF_TOP_RISKIEST_APPS")]
     class PortfolioTopRiskiestApps : TableBlock
     {
-        private const string _MetricFormat = "N0";
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             TableDefinition resultTable = null;
-            string dataSource = string.Empty;
 
             int metricId = options.GetIntOption("ALT", (Int32)Constants.BusinessCriteria.TechnicalQualityIndex);
             int nbLimitTop = options.GetIntOption("COUNT", reportData.Parameter.NbResultDefault);
@@ -88,7 +86,6 @@ namespace CastReporting.Reporting.Block.Table
                             string strAppName = App.Name;
                             double? CV = RulesViolationUtility.GetBCEvolutionSummary(_snapshot, metricId).FirstOrDefault().TotalCriticalViolations;
 
-                            string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(_snapshot);
                             double? strCurrentBCGrade = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(_snapshot, (Constants.BusinessCriteria)metricId, false);
 
                             string strLastAnalysis = Convert.ToDateTime(_snapshot.Annotation.Date.DateSnapShot.Value).ToString("MMM dd yyyy");
@@ -99,6 +96,7 @@ namespace CastReporting.Reporting.Block.Table
                     }
                     catch (Exception ex)
                     {
+                        LogHelper.Instance.LogInfo(ex.Message);
                         LogHelper.Instance.LogInfo(Labels.NoSnapshot);
                     }
 

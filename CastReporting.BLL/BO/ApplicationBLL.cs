@@ -17,6 +17,7 @@ using System;
 using System.Linq;
 using CastReporting.Domain;
 using System.Threading.Tasks;
+using Cast.Util.Log;
 using Cast.Util.Version;
 
 namespace CastReporting.BLL
@@ -107,6 +108,7 @@ namespace CastReporting.BLL
                 }
                 catch (System.Net.WebException ex)
                 {
+                    LogHelper.Instance.LogInfo(ex.Message);
                     string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                     _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasuresOld, "$all", string.Empty, string.Empty).ToList();
                 }

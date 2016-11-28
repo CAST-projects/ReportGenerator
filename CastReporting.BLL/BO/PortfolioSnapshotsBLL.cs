@@ -22,6 +22,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
 using Cast.Util.Version;
+using Cast.Util.Log;
 
 namespace CastReporting.BLL
 {
@@ -75,6 +76,7 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
+                            LogHelper.Instance.LogInfo(ex.Message);
                             Ignore_Snaps.Add(_Snapshot[i].Href);
                             continue;
                         }
@@ -111,6 +113,7 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
+                            LogHelper.Instance.LogInfo(ex.Message);
                             IgnoreSnaps.Add(_Snapshot[i].Href);
                             continue;
                         }
@@ -149,6 +152,7 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
+                            LogHelper.Instance.LogInfo(ex.Message);
                             IgnoreApps.Add(_Snapshot[i].Href);
                             continue;
                         }
@@ -184,6 +188,7 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
+                            LogHelper.Instance.LogInfo(ex.Message);
                             IgnoreSnaps.Add(_Snapshot[i].Href);
                             continue;
                         }
@@ -230,6 +235,7 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
+                            LogHelper.Instance.LogInfo(ex.Message);
                             IgnoreSnaps.Add(_Snapshot[j].Href);
                             continue;
                         }
@@ -261,6 +267,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 if (_Snapshot.Count() > 0)
                 {
                     for (int i = 0; i < _Snapshot.Count(); i++)
@@ -298,6 +305,7 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
+                            LogHelper.Instance.LogInfo(ex.Message);
                             IgnoreSnaps.Add(_Snapshot[i].Href);
                             continue;
                         }
@@ -330,6 +338,7 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
+                            LogHelper.Instance.LogInfo(ex.Message);
                             Ignore_snaps.Add(_Snapshot[i].Href);
                             continue;
                         }
@@ -363,6 +372,7 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
+                            LogHelper.Instance.LogInfo(ex.Message);
                             IgnoreSnaps.Add(_Snapshot[i].Href);
                             continue;
                         }

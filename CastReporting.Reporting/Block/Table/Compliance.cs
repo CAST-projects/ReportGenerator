@@ -29,16 +29,6 @@ namespace CastReporting.Reporting.Block.Table
     [Block("COMPLIANCE")]
     class Compliance : TableBlock
     {   
-        #region CONSTANTS
-        private const string _format_metricFormat_us = "0.#0";
-        private const string _format_metricFormat_fr = "0,#0";
-        #endregion CONSTANTS
-
-        #region ATTRIBUTES
-        private int programmingPracticesId = Constants.BusinessCriteria.ProgrammingPractices.GetHashCode();
-        private int architecturalDesignId = Constants.BusinessCriteria.ArchitecturalDesign.GetHashCode();
-        private int documentationId = Constants.BusinessCriteria.Documentation.GetHashCode();
-        #endregion ATTRIBUTES
 
          #region METHODS
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)

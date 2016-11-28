@@ -64,14 +64,15 @@ namespace CastReporting.Reporting.Block.Text
                     }
                     catch (Exception ex)
                     {
+                        LogHelper.Instance.LogInfo(ex.Message);
                         LogHelper.Instance.LogInfo(Labels.NoSnapshot);
                     }
                 }
                  
                 if (AllTechDebt > 0 && AllLOC > 0)
                 {
-                    double? FinalValue = AllTechDebt / AllLOC;
-                    return FinalValue.Value.ToString("C0"); // currency format with no decimal
+                    double? finalValue = AllTechDebt / AllLOC;
+                    return finalValue.Value.ToString("C0"); // currency format with no decimal
                 }
                 return Labels.NoData;
             }

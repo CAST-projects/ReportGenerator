@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Block\Graph\PortfolioCritViolPerformance.cs" />
     <Compile Include="Block\Graph\PortfolioQSByCV_LOV.cs" />
+    <Compile Include="Block\Graph\RadarMetricId.cs" />
     <Compile Include="Block\Graph\TrendMetricId.cs" />
     <Compile Include="Block\Graph\TrendTechDebtPortfolio.cs" />
     <Compile Include="Block\Table\ViolationSummary.cs" />
@@ -153,7 +154,6 @@
     <Compile Include="Block\Text\PortfolioCriticalViolations.cs" />
     <Compile Include="Block\Text\PortfolioNumberOfApplications.cs" />
     <Compile Include="Block\Text\PortfolioTagName.cs" />
-    <Compile Include="Block\Text\PortfolioTestBlock.cs" />
     <Compile Include="Block\Text\PreviousSnapshotDate.cs" />
     <Compile Include="Block\Text\RepGenVersion.cs" />
     <Compile Include="Block\Text\SystemName.cs" />

@@ -32,10 +32,7 @@ namespace CastReporting.Reporting.Block.Graph
     [Block("PF_QS_BY_CVLOC")]
     class PortfolioQSByCV_LOV : GraphBlock
     {
-        private const string _MetricFormat = "N0";
-
         #region METHODS
-
 
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
@@ -59,7 +56,6 @@ namespace CastReporting.Reporting.Block.Graph
                     Application App = AllApps[j];
 
                     Snapshot _snapshot = App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
-                    string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(_snapshot);
 
                     BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(_snapshot, false);
                     double? strCurrentTQI = currSnapshotBisCriDTO.TQI.HasValue ? currSnapshotBisCriDTO.TQI.Value : 0;

@@ -13,8 +13,6 @@ namespace CastReporting.Reporting.Block.Table
 	[Block("CRITICAL_VIOL_BY_APPLICATION")]
 	class CriticalVIolationByApplication : TableBlock
 	{
-		private const string _MetricFormat = "N0";
-
 		protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
 		{
 			var results = RulesViolationUtility.GetStatViolation(reportData.CurrentSnapshot);

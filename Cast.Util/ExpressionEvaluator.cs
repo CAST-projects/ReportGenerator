@@ -1,8 +1,10 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.CodeDom;
+using System.Globalization;
 using Microsoft.CSharp;
 using System.Reflection;
+using Cast.Util.Log;
 
 namespace Cast.Util
 {
@@ -40,28 +42,21 @@ class MyType
             MethodInfo method = type.GetMethod("Evaluate");
 
             // The first parameter is the instance to invoke the method on. Because our Evaluate method is static, we pass null.
-            double? result = null;
             string res = string.Empty;
 
             try
             {
-                result = (double)method.Invoke(null, values);
-                res = (format == string.Empty) ? result.Value.ToString() : result.Value.ToString(format);
+                double? result = (double)method.Invoke(null, values);
+                res = (format == string.Empty) ? result.Value.ToString(CultureInfo.CurrentCulture) : result.Value.ToString(format);
             }
             catch (ArgumentException ex)
             {
+                LogHelper.Instance.LogInfo(ex.Message);
                 res = "Error in arguments";
             }
             catch (Exception ex)
             {
-                if (ex.InnerException.GetType().FullName == "System.DivideByZeroException" )
-                {
-                    res = "Error divide by zero";
-                }
-                else
-                {
-                    res = "Error in evaluation";
-                }
+                res = ex.InnerException?.GetType().FullName == "System.DivideByZeroException" ? "Error divide by zero" : "Error in evaluation";
             }
             return res;
         }

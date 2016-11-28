@@ -32,7 +32,6 @@ namespace CastReporting.Domain
         /// <summary>
         /// 
         /// </summary>
-        private object _Date;
         [DataMember(Name = "date")]
         public CastDate Date {get;set;}
           

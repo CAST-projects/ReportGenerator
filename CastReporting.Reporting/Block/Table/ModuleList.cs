@@ -32,8 +32,6 @@ namespace CastReporting.Reporting.Block.Table
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             TableDefinition resultTable = null;
-            bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
-
 
             if (null != reportData &&
                 null != reportData.CurrentSnapshot &&

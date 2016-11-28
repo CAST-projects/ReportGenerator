@@ -31,7 +31,6 @@ namespace Cast.Util
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="fi"></param>
         public static string CreateTempCopy(string tempFolder, string templatePath)
         {
             if (!string.IsNullOrEmpty(tempFolder) && !Directory.Exists(tempFolder)) 
@@ -46,6 +45,7 @@ namespace Cast.Util
                 , Path.GetExtension(templatePath)
                 );
 
+            // ReSharper disable once AssignNullToNotNullAttribute
             string tempFile = Path.Combine(tempFolder, tempName);
             File.Copy(templatePath, tempFile);
 
@@ -66,6 +66,7 @@ namespace Cast.Util
                 , Path.GetExtension(templatePath)
                 );
 
+            // ReSharper disable once AssignNullToNotNullAttribute
             string tempFile = Path.Combine(tempFolder, tempName);
             File.Copy(templatePath, tempFile);
 

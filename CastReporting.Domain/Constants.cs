@@ -14,11 +14,7 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Configuration;
+// ReSharper disable InconsistentNaming
 
 namespace CastReporting.Domain
 {
@@ -214,8 +210,8 @@ namespace CastReporting.Domain
         #endregion CONSTANTS
 
         #region ATTRIBUTES
-        private readonly static object _lock = new object();
-        private static Constants _instance = null;
+        private static readonly object _lock = new object();
+        private static Constants _instance;
         #endregion ATTRIBUTES
 
         #region CONSTRUCTORS
@@ -230,14 +226,13 @@ namespace CastReporting.Domain
         {
             get
             {
-                if (null == _instance)
+                if (null != _instance) return _instance;
+                lock (_lock)
                 {
-                    lock (_lock)
+                    if (null == _instance)
                     {
-                        if (null == _instance)
-                        {
-                            _instance = new Constants();
-                        }
+                        // ReSharper disable once PossibleMultipleWriteAccessInDoubleCheckLocking
+                        _instance = new Constants();
                     }
                 }
                 return _instance;

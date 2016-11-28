@@ -13,7 +13,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -27,7 +26,7 @@ namespace CastReporting.Repositories.Util
         /// <typeparam name="T"></typeparam>
         /// <param name="instance"></param>
         /// <param name="filePath"></param>
-        static public void SerializeToFile<T>(T instance, string filePath)
+        public static void SerializeToFile<T>(T instance, string filePath)
         {
             FileStream stream = null;
             try
@@ -39,10 +38,6 @@ namespace CastReporting.Repositories.Util
                 serializer.Serialize(stream, instance);
 
                 stream.Flush();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
             finally
             {
@@ -61,32 +56,26 @@ namespace CastReporting.Repositories.Util
         /// <typeparam name="T"></typeparam>
         /// <param name="instance"></param>
         /// <returns></returns>
-        static public string SerializeToString<T>(T instance)
+        public static string SerializeToString<T>(T instance)
         {
-            try
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(T));
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
 
-                StringWriter sw = new StringWriter();
+            StringWriter sw = new StringWriter();
 
-                serializer.Serialize(sw, instance);
+            serializer.Serialize(sw, instance);
 
-                return sw.ToString();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return sw.ToString();
         }
 
-       
+
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="filePath"></param>
+        /// <param name="overrides"></param>
         /// <returns></returns>
-        static public T DeserializeFromFile<T>(string filePath, XmlRootAttribute overrides=null)
+        public static T DeserializeFromFile<T>(string filePath, XmlRootAttribute overrides=null)
         {
             FileStream stream = null;
 
@@ -98,10 +87,6 @@ namespace CastReporting.Repositories.Util
                 stream = File.OpenRead(filePath);
 
                 return (T)serializer.Deserialize(stream);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
             finally
             {
@@ -119,30 +104,11 @@ namespace CastReporting.Repositories.Util
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
         /// <returns></returns>
-        static public T DeserializeFromString<T>(string value)
+        public static T DeserializeFromString<T>(string value)
         {
-            FileStream stream = null;
-
-            try
-            {
-                StringReader textReader = new StringReader(value);
-
-                XmlSerializer serializer = new XmlSerializer(typeof(T));
-
-                return (T)serializer.Deserialize(textReader);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (stream != null)
-                {
-                    stream.Close();
-                    stream.Dispose();
-                }
-            }
+            StringReader textReader = new StringReader(value);
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
+            return (T)serializer.Deserialize(textReader);
         }
     }
 }
