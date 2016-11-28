@@ -22,6 +22,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cast.Util.Version;
 using Cast.Util.Log;
+// ReSharper disable AccessToDisposedClosure
 
 namespace CastReporting.BLL
 {
@@ -34,13 +35,15 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
+        // ReSharper disable once FieldCanBeMadeReadOnly.Local
+        // ReSharper disable once InconsistentNaming
         Snapshot _Snapshot;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="currentSnapshot"></param>
-        /// <param name="previousSnapshot"></param>
+        /// <param name="connection"></param>
+        /// <param name="snapshot"></param>
         public SnapshotBLL(WSConnection connection, Snapshot snapshot)
             : base(connection)
         {
@@ -145,13 +148,7 @@ namespace CastReporting.BLL
             {
                 _Snapshot.QIBusinessCriterias = castRepsitory.GetConfBusinessCriteriaBySnapshot(_Snapshot.DomainId, _Snapshot.Id);
 
-                List<QIBusinessCriteria> fullQibusinesCriterias = new List<QIBusinessCriteria>();
-                
-                foreach (var QIBusinessCriteria in _Snapshot.QIBusinessCriterias)
-                {
-                    fullQibusinesCriterias.Add(castRepsitory.GetConfBusinessCriteria(QIBusinessCriteria.HRef));
-
-                }
+                List<QIBusinessCriteria> fullQibusinesCriterias = _Snapshot.QIBusinessCriterias.Select(_ => castRepsitory.GetConfBusinessCriteria(_.HRef)).ToList();
 
                 _Snapshot.QIBusinessCriterias = fullQibusinesCriterias;
             }
@@ -171,16 +168,12 @@ namespace CastReporting.BLL
 
             using (var castRepsitory = GetRepository())
             {
-                for (int i = 0; i < values.Length; i++)
+                foreach (int val in values)
                 {
-                    var appResults = castRepsitory.GetComplexityIndicators(_Snapshot.Href, values[i].ToString());
+                    var appResults = castRepsitory.GetComplexityIndicators(_Snapshot.Href, val.ToString());
                     foreach (var result in appResults)
                     {
-                        foreach (var appResult in result.ApplicationResults)
-                        {
-                            results.Add(appResult);
-                        }
-
+                        results.AddRange(result.ApplicationResults);
                     }
                 }
             }
@@ -284,19 +277,18 @@ namespace CastReporting.BLL
             }
 
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="snapshotHref"></param>
-        /// <param name="count"></param>
+        /// <param name="connection"></param>
         /// <returns></returns>
         /// 
-        public IEnumerable<CommonCategories> GetCommonCategories(WSConnection Connection)
+        public IEnumerable<CommonCategories> GetCommonCategories(WSConnection connection)
         {
             try
             {
-                using (var castRepsitory = GetRepository(Connection))
+                using (var castRepsitory = GetRepository(connection))
                 {
                     return castRepsitory.GetCommonCategories();
                 }
@@ -309,11 +301,11 @@ namespace CastReporting.BLL
 
         }
 
-        public string GetCommonCategoriesJson(WSConnection Connection)
+        public string GetCommonCategoriesJson(WSConnection connection)
         {
             try
             {
-                using (var castRepsitory = GetRepository(Connection))
+                using (var castRepsitory = GetRepository(connection))
                 {
                     return castRepsitory.GetCommonCategoriesJson();
                 }
@@ -370,16 +362,16 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <param name="snapshotHref"></param>
-        /// <param name="RuleId"></param>
+        /// <param name="ruleId"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public IEnumerable<CastReporting.Domain.MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string RuleId, int count)
+        public IEnumerable<MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string ruleId, int count)
         {
             try
             {
                 using (var castRepsitory = GetRepository())
                 {
-                    return castRepsitory.GetMetricTopArtefact(_Snapshot.Href, RuleId, count);
+                    return castRepsitory.GetMetricTopArtefact(_Snapshot.Href, ruleId, count);
                 }
             }
             catch (Exception ex)
@@ -500,8 +492,10 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <param name="snapshot"></param>
+        /// <param name="connection"></param>
+        /// <param name="withActionPlan"></param>
         /// <returns></returns>
-        static public void BuildSnapshotResult(WSConnection connection, Snapshot snapshot, bool withActionPlan)
+        public static void BuildSnapshotResult(WSConnection connection, Snapshot snapshot, bool withActionPlan)
         {
             //Build modules
             using (SnapshotBLL snapshotBll = new SnapshotBLL(connection, snapshot))
@@ -530,6 +524,7 @@ namespace CastReporting.BLL
 
 
                 //build action plan
+                // ReSharper disable once InconsistentNaming
                 Task taskAP = null;
                 if (withActionPlan)
                 {
@@ -543,7 +538,7 @@ namespace CastReporting.BLL
                 taskSizingMeasure.Wait();
                 taskConfigurationBusinessCriterias.Wait();
                 taskComplexity.Wait();
-                if (taskAP != null) taskAP.Wait();
+                taskAP?.Wait();
             }
         }
 

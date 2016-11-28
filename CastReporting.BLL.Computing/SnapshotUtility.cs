@@ -13,12 +13,9 @@ namespace CastReporting.BLL.Computing
         /// </summary>
         /// <param name="snapshot"></param>
         /// <returns></returns>
-        public static String GetSnapshotVersionNumber(Snapshot snapshot)
+        public static string GetSnapshotVersionNumber(Snapshot snapshot)
         {
-            if (snapshot != null  && snapshot.Annotation != null && snapshot.Annotation.Version != null)
-                return snapshot.Annotation.Version;
-
-            return null;
+            return snapshot?.Annotation?.Version;
         }
 
         /// <summary>
@@ -28,9 +25,7 @@ namespace CastReporting.BLL.Computing
         /// <returns></returns>
         public static DateTime? GetSnapshotDate(Snapshot snapshot)
         {
-			return (snapshot != null  && snapshot.Annotation != null && snapshot.Annotation.Date != null)
-				? snapshot.Annotation.Date.DateSnapShot
-				: null;
+			return snapshot?.Annotation?.Date?.DateSnapShot;
         }
     }
 }
