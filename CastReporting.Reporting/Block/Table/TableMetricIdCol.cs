@@ -140,7 +140,7 @@ namespace CastReporting.Reporting.Block.Table
                             foreach (string id in bidList)
                             {
                                 if (currentValues.Keys.Contains(id)) continue;
-                                Result bfResult = bfResults[id];
+                                Result bfResult = bfResults.Keys.Contains(id) ? bfResults[id] : null;
                                 if (bfResult == null || !bfResult.ApplicationResults.Any()) continue;
                                 double? bfValue = bfResult.ApplicationResults[0].DetailResult.Value;
                                 currentValues[id] = bfValue?.ToString(valueFormat) ?? Constants.No_Value;
@@ -178,7 +178,7 @@ namespace CastReporting.Reporting.Block.Table
                                 foreach (string id in bidList)
                                 {
                                     if (currValues.Keys.Contains(id)) continue;
-                                    Result bfResult = bfResults[id];
+                                    Result bfResult = bfResults.Keys.Contains(id) ? bfResults[id] : null;
                                     if (bfResult == null || !bfResult.ApplicationResults.Any()) continue;
                                     double? bfValue = bfResult.ApplicationResults[0].ModulesResult.FirstOrDefault(_ => _.Module.Id == module.Id).DetailResult.Value;
                                     currValues[id] = bfValue?.ToString(valueFormat) ?? Constants.No_Value;
@@ -278,7 +278,7 @@ namespace CastReporting.Reporting.Block.Table
                             foreach (string id in bidList)
                             {
                                 if (previousValues.Keys.Contains(id)) continue;
-                                Result bfResult = bfPrevResults[id];
+                                Result bfResult = bfPrevResults.Keys.Contains(id) ? bfPrevResults[id] : null;
                                 if (bfResult == null || !bfResult.ApplicationResults.Any()) continue;
                                 double? bfValue = bfResult.ApplicationResults[0].DetailResult.Value;
                                 previousValues[id] = bfValue?.ToString(valueFormat) ?? Constants.No_Value;
@@ -317,7 +317,7 @@ namespace CastReporting.Reporting.Block.Table
                                 foreach (string id in bidList)
                                 {
                                     if (prevValues.Keys.Contains(id)) continue;
-                                    Result bfResult = bfPrevResults[id];
+                                    Result bfResult = bfPrevResults.Keys.Contains(id) ? bfPrevResults[id] : null;
                                     if (bfResult == null || !bfResult.ApplicationResults.Any()) continue;
                                     double? bfValue = bfResult.ApplicationResults[0].ModulesResult.FirstOrDefault(_ => _.Module.Id == module.Id).DetailResult.Value;
                                     prevValues[id] = bfValue?.ToString(valueFormat) ?? Constants.No_Value;
@@ -382,11 +382,12 @@ namespace CastReporting.Reporting.Block.Table
                                 foreach (string id in qidList)
                                 {
                                     if (variationValuesList.Keys.Contains(id)) continue;
+                                    if (!currentValues.ContainsKey(id)) continue;
                                     double cur;
                                     if (double.TryParse(currentValues[id], out cur))
                                     {
                                         double prev;
-                                        if (double.TryParse(previousValues[id], out prev))
+                                        if (previousValues.ContainsKey(id) && double.TryParse(previousValues[id], out prev))
                                         {
                                             double? evol = cur - prev;
                                             variationValuesList[id] = evol?.ToString(gradeFormat) ?? Constants.No_Value;
@@ -407,11 +408,12 @@ namespace CastReporting.Reporting.Block.Table
                                 foreach (string id in sidList)
                                 {
                                     if (variationValuesList.Keys.Contains(id)) continue;
+                                    if (!currentValues.ContainsKey(id)) continue;
                                     double cur;
                                     if (double.TryParse(currentValues[id], out cur))
                                     {
                                         double prev;
-                                        if (double.TryParse(previousValues[id], out prev))
+                                        if (previousValues.ContainsKey(id) && double.TryParse(previousValues[id], out prev))
                                         {
                                             double? evol = cur - prev;
                                             variationValuesList[id] = evol?.ToString(valueFormat) ?? Constants.No_Value;
@@ -432,11 +434,12 @@ namespace CastReporting.Reporting.Block.Table
                                 foreach (string id in bidList)
                                 {
                                     if (variationValuesList.Keys.Contains(id)) continue;
+                                    if (!currentValues.ContainsKey(id)) continue;
                                     double cur;
                                     if (double.TryParse(currentValues[id], out cur))
                                     {
                                         double prev;
-                                        if (double.TryParse(previousValues[id], out prev))
+                                        if (previousValues.ContainsKey(id) && double.TryParse(previousValues[id], out prev))
                                         {
                                             double? evol = cur - prev;
                                             variationValuesList[id] = evol?.ToString(valueFormat) ?? Constants.No_Value;
@@ -467,11 +470,12 @@ namespace CastReporting.Reporting.Block.Table
                                     foreach (string id in qidList)
                                     {
                                         if (variationValuesList.Keys.Contains(id)) continue;
+                                        if (!curModValues.ContainsKey(id)) continue;
                                         double cur;
                                         if (double.TryParse(curModValues[id], out cur))
                                         {
                                             double prev;
-                                            if (double.TryParse(prevModValues[id], out prev))
+                                            if (prevModValues.ContainsKey(id) && double.TryParse(prevModValues[id], out prev))
                                             {
                                                 double? evol = cur - prev;
                                                 variationValuesList[id] = evol?.ToString(gradeFormat) ?? Constants.No_Value;
@@ -492,11 +496,12 @@ namespace CastReporting.Reporting.Block.Table
                                     foreach (string id in sidList)
                                     {
                                         if (variationValuesList.Keys.Contains(id)) continue;
+                                        if (!curModValues.ContainsKey(id)) continue;
                                         double cur;
                                         if (double.TryParse(curModValues[id], out cur))
                                         {
                                             double prev;
-                                            if (double.TryParse(prevModValues[id], out prev))
+                                            if (prevModValues.ContainsKey(id) && double.TryParse(prevModValues[id], out prev))
                                             {
                                                 double? evol = cur - prev;
                                                 variationValuesList[id] = evol?.ToString(valueFormat) ?? Constants.No_Value;
@@ -517,11 +522,12 @@ namespace CastReporting.Reporting.Block.Table
                                     foreach (string id in bidList)
                                     {
                                         if (variationValuesList.Keys.Contains(id)) continue;
+                                        if (!curModValues.ContainsKey(id)) continue;
                                         double cur;
                                         if (double.TryParse(curModValues[id], out cur))
                                         {
                                             double prev;
-                                            if (double.TryParse(prevModValues[id], out prev))
+                                            if (prevModValues.ContainsKey(id) && double.TryParse(prevModValues[id], out prev))
                                             {
                                                 double? evol = cur - prev;
                                                 variationValuesList[id] = evol?.ToString(valueFormat) ?? Constants.No_Value;
@@ -554,11 +560,12 @@ namespace CastReporting.Reporting.Block.Table
                                     foreach (string id in qidList)
                                     {
                                         if (variationValuesList.Keys.Contains(id)) continue;
+                                        if (!curTechnoValues.ContainsKey(id)) continue;
                                         double cur;
                                         if (double.TryParse(curTechnoValues[id], out cur))
                                         {
                                             double prev;
-                                            if (double.TryParse(prevTechnoValues[id], out prev))
+                                            if (prevTechnoValues.ContainsKey(id) && double.TryParse(prevTechnoValues[id], out prev))
                                             {
                                                 double? evol = cur - prev;
                                                 variationValuesList[id] = evol?.ToString(gradeFormat) ?? Constants.No_Value;
@@ -579,11 +586,12 @@ namespace CastReporting.Reporting.Block.Table
                                     foreach (string id in sidList)
                                     {
                                         if (variationValuesList.Keys.Contains(id)) continue;
+                                        if (!curTechnoValues.ContainsKey(id)) continue;
                                         double cur;
                                         if (double.TryParse(curTechnoValues[id], out cur))
                                         {
                                             double prev;
-                                            if (double.TryParse(prevTechnoValues[id], out prev))
+                                            if (prevTechnoValues.ContainsKey(id) && double.TryParse(prevTechnoValues[id], out prev))
                                             {
                                                 double? evol = cur - prev;
                                                 variationValuesList[id] = evol?.ToString(valueFormat) ?? Constants.No_Value;
@@ -627,7 +635,7 @@ namespace CastReporting.Reporting.Block.Table
                                 if (double.TryParse(currentValues[id], out cur))
                                 {
                                     double prev;
-                                    if (double.TryParse(previousValues[id], out prev))
+                                    if (previousValues.ContainsKey(id) && double.TryParse(previousValues[id], out prev))
                                     {
                                         double? evol = Math.Abs(prev) > 0 ? (cur - prev) / prev : 1;
                                         variationPercentList[id] = evol.HasValue ? FormatPercent(evol) : Constants.No_Value;
@@ -658,7 +666,7 @@ namespace CastReporting.Reporting.Block.Table
                                     if (double.TryParse(curModValues[id], out cur))
                                     {
                                         double prev;
-                                        if (double.TryParse(prevModValues[id], out prev))
+                                        if (prevModValues.ContainsKey(id) && double.TryParse(prevModValues[id], out prev))
                                         {
                                             double? evol = Math.Abs(prev) > 0 ? (cur - prev) / prev : 1;
                                             variationPercentList[id] = evol.HasValue ? FormatPercent(evol) : Constants.No_Value;
@@ -691,7 +699,7 @@ namespace CastReporting.Reporting.Block.Table
                                     if (double.TryParse(curTechnoValues[id], out cur))
                                     {
                                         double prev;
-                                        if (double.TryParse(prevTechnoValues[id], out prev))
+                                        if (prevTechnoValues.ContainsKey(id) && double.TryParse(prevTechnoValues[id], out prev))
                                         {
                                             double? evol = Math.Abs(prev) > 0 ? (cur - prev) / prev : (Math.Abs(cur) > 0 ? cur : 0);
                                             variationPercentList[id] = evol.HasValue ? FormatPercent(evol) : Constants.No_Value;
