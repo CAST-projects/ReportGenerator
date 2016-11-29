@@ -244,6 +244,29 @@ namespace CastReporting.BLL
 
         }
 
+        public IEnumerable<Result> GetBackgroundFacts(string snapshotHref, string backgroundFacts, bool modules, bool technologies)
+        {
+            string modParam = string.Empty;
+            if (modules) modParam = "$all";
+
+            string technoParam = string.Empty;
+            if (modules) technoParam = "$all";
+
+            try
+            {
+                using (var castRepsitory = GetRepository())
+                {
+                    return castRepsitory.GetResultsBackgroundFacts(snapshotHref, backgroundFacts, string.Empty, technoParam, modParam);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+
+        }
+
         public IEnumerable<Result> GetSizingMeasureResults(string snapshotHref, string sizingMeasure)
         {
             try

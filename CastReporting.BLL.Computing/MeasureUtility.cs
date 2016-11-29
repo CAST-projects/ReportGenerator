@@ -26,6 +26,24 @@ namespace CastReporting.BLL.Computing
             return measure?.DetailResult?.Value;
         }
 
+        public static string GetSizingMeasureName(Snapshot snapshot, int measureId, bool shortname = false)
+        {
+            var measure = (snapshot?.SizingMeasuresResults)?.FirstOrDefault(_ => _.Reference.Key == measureId);
+            var name = (shortname ? measure?.Reference.ShortName : measure?.Reference.Name) ?? measure?.Reference.Name;
+            return name;
+        }
+
+        public static double? GetSizingMeasureModule(Snapshot snapshot, int moduleId, int measureId)
+        {
+            var measure = (snapshot?.SizingMeasuresResults)?.FirstOrDefault(_ => _.Reference.Key == measureId);
+            return measure?.ModulesResult.FirstOrDefault(_=>_.Module.Id == moduleId)?.DetailResult?.Value;
+        }
+
+        public static double? GetSizingMeasureTechnologie(Snapshot snapshot, string techno, int measureId)
+        {
+            var measure = (snapshot?.SizingMeasuresResults)?.FirstOrDefault(_ => _.Reference.Key == measureId);
+            return measure?.TechnologyResult.FirstOrDefault(_ => _.Technology == techno)?.DetailResult?.Value;
+        }
 
         public static double? GetAddedFunctionPoint(Snapshot snapshot)
         {
@@ -115,7 +133,7 @@ namespace CastReporting.BLL.Computing
         /// </summary>
         /// <param name="snapshot"></param>
         /// <returns></returns>
-        public static Double? GetClassNumber(Snapshot snapshot)
+        public static double? GetClassNumber(Snapshot snapshot)
         {
             return GetSizingMeasure(snapshot, Constants.SizingInformations.ClassNumber);
         }
@@ -125,7 +143,7 @@ namespace CastReporting.BLL.Computing
         /// </summary>
         /// <param name="snapshot"></param>
         /// <returns></returns>
-        public static Double? GetSqlArtifactNumber(Snapshot snapshot)
+        public static double? GetSqlArtifactNumber(Snapshot snapshot)
         {
             return GetSizingMeasure(snapshot, Constants.SizingInformations.SQLArtifactNumber);
         }
@@ -191,13 +209,13 @@ namespace CastReporting.BLL.Computing
         /// </summary>
         /// <param name="snapshot"></param>
         /// <returns></returns>
-        public static Int32? GetAddedCriticalViolations(Snapshot snapshot)
+        public static int? GetAddedCriticalViolations(Snapshot snapshot)
         {          
-            return (Int32?)GetSizingMeasure(snapshot, Constants.SizingInformations.CriticalQualityRulesWithViolationsNewModifiedCodeNumber);
+            return (int?)GetSizingMeasure(snapshot, Constants.SizingInformations.CriticalQualityRulesWithViolationsNewModifiedCodeNumber);
         }
-        public static Int32? GetCriticalViolations(Snapshot snapshot)
+        public static int? GetCriticalViolations(Snapshot snapshot)
         {//CriticalQualityRulesWithViolationsNumber
-            return (Int32?)GetSizingMeasure(snapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesNumber);
+            return (int?)GetSizingMeasure(snapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesNumber);
         }
 
         /// <summary>
