@@ -15,8 +15,6 @@
  */
 
 
-
-
 using System;
 using System.IO;
 using System.Security.Cryptography;
@@ -25,21 +23,21 @@ namespace Cast.Util.Security
 {
     public static class CryptoHelper
     {
-        private static byte[] _DesKey = new byte[24] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
-        private static byte[] _DesIV = new byte[8] { 1, 2, 3, 4, 5, 6, 7, 8 };
+        private static readonly byte[] DesKey = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
+        private static readonly byte[] DesIv = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
         public static byte[] EncryptStringToBytes(string plainText)
         {
             // Check arguments. 
             if (plainText == null || plainText.Length <= 0)
-                throw new ArgumentNullException("plainText");
+                throw new ArgumentNullException(nameof(plainText));
             byte[] encrypted;
             // Create an TripleDESCryptoServiceProvider object 
             // with the specified key and IV. 
             using (TripleDESCryptoServiceProvider tdsAlg = new TripleDESCryptoServiceProvider())
             {
-                tdsAlg.Key = _DesKey;
-                tdsAlg.IV = _DesIV;
+                tdsAlg.Key = DesKey;
+                tdsAlg.IV = DesIv;
 
                 // Create a decrytor to perform the stream transform.
                 ICryptoTransform encryptor = tdsAlg.CreateEncryptor(tdsAlg.Key, tdsAlg.IV);
@@ -61,25 +59,25 @@ namespace Cast.Util.Security
 
             // Return the encrypted bytes from the memory stream. 
             //Encoding.UTF8.GetString(encrypted);
-            return encrypted; ;
+            return encrypted;
         }
 
         public static string DecryptStringFromBytes(byte[] cipherText)
         {
             // Check arguments. 
             if (cipherText == null || cipherText.Length <= 0)
-                throw new ArgumentNullException("cipherText");
+                throw new ArgumentNullException(nameof(cipherText));
 
             // Declare the string used to hold 
             // the decrypted text. 
-            string plaintext = null;
+            string plaintext;
 
             // Create an TripleDESCryptoServiceProvider object 
             // with the specified key and IV. 
             using (TripleDESCryptoServiceProvider tdsAlg = new TripleDESCryptoServiceProvider())
             {
-                tdsAlg.Key = _DesKey;
-                tdsAlg.IV = _DesIV;
+                tdsAlg.Key = DesKey;
+                tdsAlg.IV = DesIv;
 
                 // Create a decrytor to perform the stream transform.
                 ICryptoTransform decryptor = tdsAlg.CreateDecryptor(tdsAlg.Key, tdsAlg.IV);

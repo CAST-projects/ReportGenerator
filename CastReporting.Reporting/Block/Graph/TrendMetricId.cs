@@ -177,7 +177,8 @@ namespace CastReporting.Reporting.Block.Graph
 
                 foreach (string row in rowData)
                 {
-                        range[k] = row;
+                    range[k] = row;
+                    k++;
                 }
 
                 // ReSharper disable once PossibleNullReferenceException

@@ -1,10 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
-using System.CodeDom.Compiler;
-using System.CodeDom;
-using Microsoft.CSharp;
-using System.Reflection;
 
 namespace CastReporting.UnitTest
 {
@@ -16,12 +12,14 @@ namespace CastReporting.UnitTest
         public void TestMethod1()
         {
             
-            double pValue = 1.1401;
-            string sign = (pValue > 0) ? "+" : "";
+            const double pValue = 1.1401;
+            // ReSharper disable once UnreachableCode
+            const string sign = (pValue > 0) ? "+" : "";
             var roundedValue = Math.Round(pValue, 4);
             NumberFormatInfo nfi = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
             var tmp = roundedValue * 100;
-            nfi.PercentDecimalDigits = (tmp % 1 == 0 || tmp >= 100) ? 0 : (tmp >= 0.1) ? 2 : 1;
+            nfi.PercentDecimalDigits = (Math.Abs(tmp % 1) < 0 || tmp >= 100) ? 0 : (tmp >= 0.1) ? 2 : 1;
+            // ReSharper disable once UnusedVariable
             var r =  sign + roundedValue.ToString("P", nfi);
             
         }

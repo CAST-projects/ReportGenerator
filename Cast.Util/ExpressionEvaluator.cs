@@ -19,7 +19,7 @@ namespace Cast.Util
             format="N2";
             */
 
-            string source = @"
+            const string source = @"
 class MyType
 {
     public static double Evaluate(<!parameters!>)
@@ -42,7 +42,7 @@ class MyType
             MethodInfo method = type.GetMethod("Evaluate");
 
             // The first parameter is the instance to invoke the method on. Because our Evaluate method is static, we pass null.
-            string res = string.Empty;
+            string res;
 
             try
             {
