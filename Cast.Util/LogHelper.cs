@@ -14,7 +14,6 @@
  *
  */
 using System;
-using System.IO;
 using log4net;
 using log4net.Appender;
 using log4net.Repository.Hierarchy;
@@ -32,27 +31,27 @@ namespace Cast.Util.Log
         /// <summary>
         /// 
         /// </summary>
-        private static object _lock = new object();
+        private static readonly object Lock = new object();
 
         /// <summary>
         /// 
         /// </summary>
-        private static LogHelper _Instance;
+        private static LogHelper _instance;
         public static LogHelper Instance
         {
             get
             {
-                if (null == _Instance)
+                if (null == _instance)
                 {
-                    lock (_lock)
+                    lock (Lock)
                     {
-                        if (null == _Instance)
+                        if (null == _instance)
                         {
-                            _Instance = new LogHelper();
+                            _instance = new LogHelper();
                         }
                     }
                 }
-                return _Instance;
+                return _instance;
             }
         }
 
@@ -197,16 +196,11 @@ namespace Cast.Util.Log
         public void FlushLog()
         {
             var logger = _log.Logger as Logger;
-            if (logger != null)
+            if (logger == null) return;
+            foreach (IAppender appender in logger.Appenders)
             {
-                foreach (IAppender appender in logger.Appenders)
-                {
-                    var buffered = appender as BufferingAppenderSkeleton;
-                    if (buffered != null)
-                    {
-                        buffered.Flush();
-                    }
-                }
+                var buffered = appender as BufferingAppenderSkeleton;
+                buffered?.Flush();
             }
         }
         #endregion METHODS - Log4Net
@@ -217,9 +211,9 @@ namespace Cast.Util.Log
         /// </summary>
         public static void  SetPathLog(string pathLog)
         {
-            log4net.GlobalContext.Properties["APPNAME"] = Process.GetCurrentProcess().MainModule.ModuleName.Split('.')[0];
-            log4net.GlobalContext.Properties["LOGPATH"] = pathLog;
-            log4net.GlobalContext.Properties["DATE"] = DateTime.Today.ToString("yyyyMMdd");
+            GlobalContext.Properties["APPNAME"] = Process.GetCurrentProcess().MainModule.ModuleName.Split('.')[0];
+            GlobalContext.Properties["LOGPATH"] = pathLog;
+            GlobalContext.Properties["DATE"] = DateTime.Today.ToString("yyyyMMdd");
             log4net.Config.XmlConfigurator.Configure();
         }
 

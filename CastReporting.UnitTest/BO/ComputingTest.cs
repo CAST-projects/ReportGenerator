@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using CastReporting.BLL.Computing;
@@ -15,13 +14,16 @@ namespace CastReporting.UnitTest
         [TestMethod]
         public void GetDCGradesTest()
         {
-         
-            Snapshot selectedSnapshot = new Snapshot();
-            selectedSnapshot.Name = "Test";
-            selectedSnapshot.Href = "AED1/applications/3/snapshots/3";
-            selectedSnapshot.Annotation = new Annotation() { Version = "2.1" };
-           // selectedSnapshot.BusinessCriteriaResults = GetSampleResult(@"Data\JSonTest3.txt").SelectMany(_ => _.ApplicationResults);
 
+            Snapshot selectedSnapshot = new Snapshot
+            {
+                Name = "Test",
+                Href = "AED1/applications/3/snapshots/3",
+                Annotation = new Annotation() {Version = "2.1"}
+            };
+            // selectedSnapshot.BusinessCriteriaResults = GetSampleResult(@"Data\JSonTest3.txt").SelectMany(_ => _.ApplicationResults);
+
+            // ReSharper disable once UnusedVariable
             var result = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(selectedSnapshot, true);
             
         }
@@ -32,6 +34,7 @@ namespace CastReporting.UnitTest
         /// </summary>
         /// <param name="sampleFile"></param>
         /// <returns></returns>
+        // ReSharper disable once UnusedMember.Local
         private IEnumerable<Result> GetSampleResult(string sampleFile)
         {
             var jsonString = File.ReadAllText(sampleFile);

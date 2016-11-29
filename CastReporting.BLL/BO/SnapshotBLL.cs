@@ -117,7 +117,7 @@ namespace CastReporting.BLL
             {
                 try
                 {
-                    if (VersionUtil.isAdgVersion82Compliant(_Snapshot.AdgVersion))
+                    if (VersionUtil.IsAdgVersion82Compliant(_Snapshot.AdgVersion))
                     {
                         string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
                         _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasures, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);

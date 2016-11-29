@@ -17,29 +17,16 @@ namespace CastReporting.UnitTests
     [TestClass()]
     public class CRContextTest
     {
-        private TestContext testContextInstance;
-
         /// <summary>
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
         ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-               
-            }
-        }
+        public TestContext TestContext { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        WSConnection _Connection = new WSConnection()
+        readonly WSConnection _connection = new WSConnection()
         {
             Url = "http://demo-eu-aed.castsoftware.com/AED/rest/",
             Login = "admin",
@@ -85,7 +72,7 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void IsServiceValidTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
+            ICastRepsitory context = new CastRepository(_connection);
            
             bool result = context.IsServiceValid();
            
@@ -99,7 +86,7 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetDomainsTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
+            ICastRepsitory context = new CastRepository(_connection);
             IEnumerable<CastDomain> result = context.GetDomains();
             
             Assert.IsNotNull(result);
@@ -115,7 +102,7 @@ namespace CastReporting.UnitTests
         {
             string domainHref = "AED1";
 
-            ICastRepsitory context = new CastRepository(_Connection);
+            ICastRepsitory context = new CastRepository(_connection);
             IEnumerable<Application> result = context.GetApplicationsByDomain(domainHref);
             Assert.IsNotNull(result);
         }
@@ -127,7 +114,7 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetApplicationTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
+            ICastRepsitory context = new CastRepository(_connection);
             string appilcationId = "AED1/applications/3";
             Application result = context.GetApplication(appilcationId);
             Assert.IsNotNull(result);
@@ -141,7 +128,7 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetSnapshotsByApplicationTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
+            ICastRepsitory context = new CastRepository(_connection);
             string appilcationId = "AED1/applications/3";
             var result = context.GetSnapshotsByApplication(appilcationId);
             Assert.IsNotNull(result);
@@ -155,7 +142,7 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetSnapshotTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
+            ICastRepsitory context = new CastRepository(_connection);
             string snapshotId = "AED1/applications/3/snapshots/3";
             Snapshot result = context.GetSnapshot(snapshotId);
             Assert.IsNotNull(result);
@@ -168,7 +155,7 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetModulesByApplicationTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
+            ICastRepsitory context = new CastRepository(_connection);
             string appilcationId = "AED1/applications/3";
             var result = context.GetModules(appilcationId);
             Assert.IsNotNull(result);
@@ -183,7 +170,7 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetModulesBySnapshotTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
+            ICastRepsitory context = new CastRepository(_connection);
             string appilcationId = "AED1/applications/3/snapshots/3";
             var result = context.GetModules(appilcationId);
             Assert.IsNotNull(result);
@@ -198,7 +185,7 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetModuleTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
+            ICastRepsitory context = new CastRepository(_connection);
             string moduleId = "AED1/modules/4";
             Module result = context.GetModule(moduleId);
             Assert.IsNotNull(result);
@@ -212,18 +199,19 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetQualityIndicatorsByApplicationTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
-            string appilcationRef = "AED1/applications/3";
+            ICastRepsitory context = new CastRepository(_connection);
+            const string appilcationRef = "AED1/applications/3";
 
-            Int32[] businessCriterias = (Int32[])Enum.GetValues(typeof(Constants.BusinessCriteria));
+            int[] businessCriterias = (int[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
 
             var result = context.GetResultsQualityIndicators(appilcationRef, strBusinessCriterias, "$all", string.Empty, string.Empty, string.Empty);
             
             
             Assert.IsNotNull(result);
-            Assert.AreNotEqual(result.Count(), 0);
-            Assert.AreNotEqual(result.First().ApplicationResults.Count(), 0);            
+            var _enumerable = result as IList<Result> ?? result.ToList();
+            Assert.AreNotEqual(_enumerable.Count, 0);
+            Assert.AreNotEqual(_enumerable.First().ApplicationResults.Length, 0);            
         }
 
         /// <summary>
@@ -233,19 +221,20 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetQualityIndicatorsBySnapshotTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
-            string snapshotRef = "AED1/applications/3/snapshots/3";
+            ICastRepsitory context = new CastRepository(_connection);
+            const string snapshotRef = "AED1/applications/3/snapshots/3";
 
-            Int32[] businessCriterias = (Int32[])Enum.GetValues(typeof(Constants.BusinessCriteria));
+            int[] businessCriterias = (int[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
 
             var result = context.GetResultsQualityIndicators(snapshotRef, strBusinessCriterias, string.Empty, "$all", "$all", "$all");
 
 
             Assert.IsNotNull(result);
-            Assert.AreNotEqual(result.Count(), 0);
-            Assert.AreNotEqual(result.First().ApplicationResults.Count(), 0);
-            Assert.AreNotEqual(result.First().ApplicationResults[0].ModulesResult.Count(), 0);
+            var _enumerable = result as IList<Result> ?? result.ToList();
+            Assert.AreNotEqual(_enumerable.Count, 0);
+            Assert.AreNotEqual(_enumerable.First().ApplicationResults.Length, 0);
+            Assert.AreNotEqual(_enumerable.First().ApplicationResults[0].ModulesResult.Length, 0);
         }
 
         /// <summary>
@@ -255,19 +244,20 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetQualityIndicatorsByModuleTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
-            string moduleRef = "AED1/modules/4";
+            ICastRepsitory context = new CastRepository(_connection);
+            const string moduleRef = "AED1/modules/4";
 
-            Int32[] businessCriterias = (Int32[])Enum.GetValues(typeof(Constants.BusinessCriteria));
+            int[] businessCriterias = (int[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
 
             var result = context.GetResultsQualityIndicators(moduleRef, strBusinessCriterias, string.Empty, string.Empty, string.Empty, string.Empty);
 
 
             Assert.IsNotNull(result);
-            Assert.AreNotEqual(result.Count(), 0);
-            Assert.AreNotEqual(result.First().ApplicationResults.Count(), 0);
-            Assert.AreNotEqual(result.First().ApplicationResults[0].ModulesResult.Count(), 0);
+            var _enumerable = result as IList<Result> ?? result.ToList();
+            Assert.AreNotEqual(_enumerable.Count, 0);
+            Assert.AreNotEqual(_enumerable.First().ApplicationResults.Length, 0);
+            Assert.AreNotEqual(_enumerable.First().ApplicationResults[0].ModulesResult.Length, 0);
         }
 
 
@@ -278,18 +268,19 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetSizingMeasuresByApplicationTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
-            string snapshotRef = "AED1/applications/3";
+            ICastRepsitory context = new CastRepository(_connection);
+            const string snapshotRef = "AED1/applications/3";
 
-            Int32[] sizingMeasures = (Int32[])Enum.GetValues(typeof(Constants.SizingInformations));
+            int[] sizingMeasures = (int[])Enum.GetValues(typeof(Constants.SizingInformations));
             string strSizingMeasures = string.Join(",", sizingMeasures);
 
             var result = context.GetResultsSizingMeasures(snapshotRef, strSizingMeasures, "$all", "$all", "$all");
 
             Assert.IsNotNull(result);
-            Assert.AreNotEqual(result.Count(), 0);
-            Assert.AreNotEqual(result.First().ApplicationResults.Count(), 0);
-            Assert.AreNotEqual(result.First().ApplicationResults[0].TechnologyResult.Count(), 0);
+            var _enumerable = result as IList<Result> ?? result.ToList();
+            Assert.AreNotEqual(_enumerable.Count, 0);
+            Assert.AreNotEqual(_enumerable.First().ApplicationResults.Length, 0);
+            Assert.AreNotEqual(_enumerable.First().ApplicationResults[0].TechnologyResult.Length, 0);
         }
 
         /// <summary>
@@ -299,19 +290,20 @@ namespace CastReporting.UnitTests
         [DeploymentItem("CastReporting.DAL.dll")]
         public void GetSizingMeasuresBySnapshotTest()
         {
-            ICastRepsitory context = new CastRepository(_Connection);
-            string snapshotRef = "AED1/applications/3/snapshots/3";
+            ICastRepsitory context = new CastRepository(_connection);
+            const string snapshotRef = "AED1/applications/3/snapshots/3";
 
-            Int32[] sizingMeasures = (Int32[])Enum.GetValues(typeof(Constants.SizingInformations));
+            int[] sizingMeasures = (int[])Enum.GetValues(typeof(Constants.SizingInformations));
             string strSizingMeasures = string.Join(",", sizingMeasures);
 
             var result = context.GetResultsSizingMeasures(snapshotRef, strSizingMeasures, string.Empty, "$all", "$all");
 
 
             Assert.IsNotNull(result);
-            Assert.AreNotEqual(result.Count(), 0);
-            Assert.AreNotEqual(result.First().ApplicationResults.Count(), 0);
-            Assert.AreNotEqual(result.First().ApplicationResults[0].TechnologyResult.Count(), 0);
+            var _enumerable = result as IList<Result> ?? result.ToList();
+            Assert.AreNotEqual(_enumerable.Count, 0);
+            Assert.AreNotEqual(_enumerable.First().ApplicationResults.Length, 0);
+            Assert.AreNotEqual(_enumerable.First().ApplicationResults[0].TechnologyResult.Length, 0);
         }
 
         /// <summary>
@@ -322,9 +314,9 @@ namespace CastReporting.UnitTests
         public void GetConfBusinessCriteriaBySnapshot()
         {
 
-            ICastRepsitory context = new CastRepository(_Connection);
-            string domainHref = "AED1";
-            Int64 snapshotId = 1;
+            ICastRepsitory context = new CastRepository(_connection);
+            const string domainHref = "AED1";
+            const int snapshotId = 1;
 
             var result = context.GetConfBusinessCriteriaBySnapshot(domainHref, snapshotId);
             
@@ -340,8 +332,8 @@ namespace CastReporting.UnitTests
         public void GetConfBusinessCriteria()
         {
 
-            ICastRepsitory context = new CastRepository(_Connection);
-            string domainHref = "AED1/quality-indicators/61001/snapshots/3";
+            ICastRepsitory context = new CastRepository(_connection);
+            const string domainHref = "AED1/quality-indicators/61001/snapshots/3";
 
             var result = context.GetConfBusinessCriteria(domainHref);
 

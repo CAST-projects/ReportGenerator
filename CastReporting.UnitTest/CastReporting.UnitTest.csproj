@@ -71,10 +71,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ExpressionEvaluatorTests.cs" />
+    <Compile Include="Util\ExpressionEvaluatorTests.cs" />
     <Compile Include="UnitTest1.cs" />
-    <Compile Include="DateUtilTests.cs" />
-    <Compile Include="VersionUtilTests.cs" />
+    <Compile Include="Util\DateUtilTests.cs" />
+    <Compile Include="Util\VersionUtilTests.cs" />
     <Content Include="Data\JSonTest3.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -85,8 +85,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DALTtest.cs" />
-    <Compile Include="ComputingTest.cs" />
+    <Compile Include="DAL\DALTtest.cs" />
+    <Compile Include="BO\ComputingTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cast.Util\Cast.Util.csproj">

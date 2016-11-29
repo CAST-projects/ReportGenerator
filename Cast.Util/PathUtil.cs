@@ -38,12 +38,7 @@ namespace Cast.Util
 
 
             
-            string tempName = string.Format
-                ("~{0}_{1}{2}"
-                , Path.GetFileNameWithoutExtension(templatePath)
-                , DateTime.Now.ToString("MMdd_HHmmss")
-                , Path.GetExtension(templatePath)
-                );
+            string tempName = $"~{Path.GetFileNameWithoutExtension(templatePath)}_{DateTime.Now:MMdd_HHmmss}{Path.GetExtension(templatePath)}";
 
             // ReSharper disable once AssignNullToNotNullAttribute
             string tempFile = Path.Combine(tempFolder, tempName);
@@ -59,12 +54,7 @@ namespace Cast.Util
 
 
 
-            string tempName = string.Format
-                ("~{0}_{1}{2}"
-                , Path.GetFileNameWithoutExtension(templatePath)
-                , DateTime.Now.ToString("yyMMdd_HHmmss")
-                , Path.GetExtension(templatePath)
-                );
+            string tempName = $"~{Path.GetFileNameWithoutExtension(templatePath)}_{DateTime.Now:yyMMdd_HHmmss}{Path.GetExtension(templatePath)}";
 
             // ReSharper disable once AssignNullToNotNullAttribute
             string tempFile = Path.Combine(tempFolder, tempName);

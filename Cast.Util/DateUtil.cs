@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Cast.Util.Date
 {
@@ -27,8 +24,9 @@ namespace Cast.Util.Date
                 case 11:
                 case 12:
                     return 4;
+                default:
+                    return 0;
             }
-            return 0;
         }
 
     }
