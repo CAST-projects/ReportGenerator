@@ -180,7 +180,7 @@ namespace CastReporting.Reporting.Block.Table
                                     if (currValues.Keys.Contains(id)) continue;
                                     Result bfResult = bfResults.Keys.Contains(id) ? bfResults[id] : null;
                                     if (bfResult == null || !bfResult.ApplicationResults.Any()) continue;
-                                    double? bfValue = bfResult.ApplicationResults[0].ModulesResult.FirstOrDefault(_ => _.Module.Id == module.Id).DetailResult.Value;
+                                    double? bfValue = bfResult.ApplicationResults[0].ModulesResult.FirstOrDefault(_ => _.Module.Id == module.Id)?.DetailResult.Value;
                                     currValues[id] = bfValue?.ToString(valueFormat) ?? Constants.No_Value;
                                 }
                             }
@@ -223,9 +223,16 @@ namespace CastReporting.Reporting.Block.Table
 
             #endregion
 
-            if (_snapshot == "BOTH")
+            if (_snapshot == "BOTH" && hasPreviousSnapshot)
             {
                 for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
+                cntRow++;
+            }
+
+            if (_snapshot == "PREVIOUS" && !hasPreviousSnapshot)
+            {
+                rowData.Add(Labels.NoData);
+                for (int i = 0; i < cntMetric; i++) rowData.Add(" ");
                 cntRow++;
             }
 
@@ -364,7 +371,7 @@ namespace CastReporting.Reporting.Block.Table
 
             #region Variation
 
-            if (_snapshot == "BOTH")
+            if (_snapshot == "BOTH" && hasPreviousSnapshot)
             {
                 for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
                 cntRow++;
