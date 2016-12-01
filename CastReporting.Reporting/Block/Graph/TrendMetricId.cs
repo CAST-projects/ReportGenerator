@@ -22,6 +22,7 @@ using CastReporting.Reporting.ReportingModel;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Helper;
 
 namespace CastReporting.Reporting.Block.Graph
@@ -43,10 +44,48 @@ namespace CastReporting.Reporting.Block.Graph
             // we can add the header only after getting the data, because names are in the data
             var rowData = new List<string>();
 
-            Dictionary<string,string> names = new Dictionary<string, string>();
-            bool getIdNames = true;
+            #region get Metric names
 
-			int nbSnapshots = reportData?.Application.Snapshots?.Count() ?? 0;
+            Dictionary<string,string> names = new Dictionary<string, string>();
+
+            if (qidList != null)
+            {
+                foreach (string id in qidList)
+                {
+                    if (names.Keys.Contains(id)) continue;
+                    string name = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(id));
+                    if (!string.IsNullOrEmpty(name)) names[id] = name;
+                }
+            }
+            if (sidList != null)
+            {
+                foreach (string id in sidList)
+                {
+                    if (names.Keys.Contains(id)) continue;
+                    string name = MeasureUtility.GetSizingMeasureName(reportData.CurrentSnapshot, int.Parse(id));
+                    if (!string.IsNullOrEmpty(name)) names[id] = name;
+                }
+            }
+
+            // No background facts for technologies
+            if (bidList != null)
+            {
+                foreach (string id in bidList)
+                {
+                    if (names.Keys.Contains(id)) continue;
+                    Result bfResult = reportData.SnapshotExplorer.GetBackgroundFacts(reportData.CurrentSnapshot.Href, id, true, true).FirstOrDefault();
+                    if (bfResult == null || !bfResult.ApplicationResults.Any()) continue;
+                    string name = bfResult.ApplicationResults[0].Reference.Name;
+                    if (!string.IsNullOrEmpty(name)) names[id] = name;
+                }
+            }
+
+            rowData.Add(" ");
+            rowData.AddRange(names.Values);
+
+            #endregion
+
+            int nbSnapshots = reportData?.Application.Snapshots?.Count() ?? 0;
             if (nbSnapshots > 0)
             {
 
@@ -55,62 +94,6 @@ namespace CastReporting.Reporting.Block.Graph
                 foreach (Snapshot snapshot in reportData.Application.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
                 {
                     string snapshotDate = snapshot.Annotation.Date.DateSnapShot?.ToOADate().ToString(CultureInfo.CurrentCulture) ?? string.Empty;
-                    // names at first iteration
-                    if (getIdNames)
-                    {
-                        // iterate in QID
-                        if (qidList != null)
-                        {
-                            foreach (string id in qidList)
-                            {
-                                ApplicationResult res = reportData.SnapshotExplorer.GetQualityIndicatorResults(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                                if (res == null) continue;
-                                string idName = res.Reference.ShortName ?? res.Reference.Name;
-                                if (!names.Keys.Contains(id))
-                                    names.Add(id, idName);
-                            }
-                        }
-
-                        // iterate in SID
-                        if (sidList != null)
-                        {
-                            foreach (string id in sidList)
-                            {
-                                ApplicationResult res = reportData.SnapshotExplorer.GetSizingMeasureResults(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                                if (res == null) continue;
-                                string idName = res.Reference.ShortName ?? res.Reference.Name;
-                                if (!names.Keys.Contains(id))
-                                    names.Add(id, idName);
-                            }
-                        }
-
-                        // iterate in BID
-                        if (bidList != null)
-                        {
-                            foreach (string id in bidList)
-                            {
-                                ApplicationResult res = reportData.SnapshotExplorer.GetBackgroundFacts(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                                if (res == null) continue;
-                                string idName = res.Reference.ShortName ?? res.Reference.Name;
-                                if (!names.Keys.Contains(id))
-                                    names.Add(id, idName);
-                            }
-                        }
-
-                        // add names in rowData
-                        string[] headers = new string[names.Count + 1];
-                        headers[0] = " ";
-                        int j = 1;
-                        foreach (string key in names.Keys)
-                        {
-                            headers[j] = names[key];
-                            j++;
-                        }
-                        rowData.AddRange(headers);
-                        getIdNames = false;
-
-                    }
-                    // values
 
                     Dictionary<string, string> values = new Dictionary<string, string>();
                     // iterate in QID
@@ -118,9 +101,9 @@ namespace CastReporting.Reporting.Block.Graph
                     {
                         foreach (string id in qidList)
                         {
+                            if (!names.Keys.Contains(id)) continue;
                             ApplicationResult res = reportData.SnapshotExplorer.GetQualityIndicatorResults(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                            if (res == null) continue;
-                            string idValue = res.DetailResult?.Grade.ToString("N2") ?? Constants.No_Value;
+                            string idValue = res?.DetailResult?.Grade.ToString("N2") ?? Constants.Zero;
                             if (!values.Keys.Contains(id))
                                 values.Add(id, idValue);
                         }
@@ -131,9 +114,9 @@ namespace CastReporting.Reporting.Block.Graph
                     {
                         foreach (string id in sidList)
                         {
+                            if (!names.Keys.Contains(id)) continue;
                             ApplicationResult res = reportData.SnapshotExplorer.GetSizingMeasureResults(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                            if (res == null) continue;
-                            string idValue = res.DetailResult?.Value.ToString("F0") ?? Constants.No_Value;
+                            string idValue = res?.DetailResult?.Value.ToString("F0") ?? Constants.Zero;
                             if (!values.Keys.Contains(id))
                                 values.Add(id, idValue);
                         }
@@ -144,10 +127,10 @@ namespace CastReporting.Reporting.Block.Graph
                     {
                         foreach (string id in bidList)
                         {
+                            if (!names.Keys.Contains(id)) continue;
                             ApplicationResult res = reportData.SnapshotExplorer.GetBackgroundFacts(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                            if (res == null) continue;
                             // F0 as format to avoid the ',' that make graph build crash
-                            string idValue = res.DetailResult?.Value.ToString("F0") ?? Constants.No_Value;
+                            string idValue = res?.DetailResult?.Value.ToString("F0") ?? Constants.Zero;
                             if (!values.Keys.Contains(id))
                                 values.Add(id, idValue);
                         }

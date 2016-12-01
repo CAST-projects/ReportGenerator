@@ -67,7 +67,7 @@ namespace CastReporting.Reporting.Block.Graph
                             if (qidName == string.Empty) continue;
                             rowData.Add(qidName);
                             curRes = BusinessCriteriaUtility.GetMetricValue(reportData.CurrentSnapshot, id);
-                            rowData.Add(curRes?.ToString() ?? Constants.No_Value);
+                            rowData.Add(curRes?.ToString() ?? Constants.Zero);
                             nbRow++;
                             break;
                         case "PREVIOUS":
@@ -77,7 +77,7 @@ namespace CastReporting.Reporting.Block.Graph
                                 if (qidName == string.Empty) continue;
                                 rowData.Add(qidName);
                                 prevRes = BusinessCriteriaUtility.GetMetricValue(reportData.PreviousSnapshot, id);
-                                rowData.Add(prevRes?.ToString() ?? Constants.No_Value);
+                                rowData.Add(prevRes?.ToString() ?? Constants.Zero);
                                 nbRow++;
                             }
                             break;
@@ -86,11 +86,11 @@ namespace CastReporting.Reporting.Block.Graph
                             if (qidName == string.Empty) continue;
                             rowData.Add(qidName);
                             curRes = BusinessCriteriaUtility.GetMetricValue(reportData.CurrentSnapshot, id);
-                            rowData.Add(curRes?.ToString() ?? Constants.No_Value);
+                            rowData.Add(curRes?.ToString() ?? Constants.Zero);
                             if (reportData.PreviousSnapshot != null)
                             {
                                 prevRes = BusinessCriteriaUtility.GetMetricValue(reportData.PreviousSnapshot, id);
-                                rowData.Add(prevRes?.ToString() ?? Constants.No_Value);
+                                rowData.Add(prevRes?.ToString() ?? Constants.Zero);
                             }
                             nbRow++;
                             break;

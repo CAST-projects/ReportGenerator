@@ -207,6 +207,7 @@ namespace CastReporting.Domain
         public const string ControllerName_CriticalObjectsRanking = "CriticalObjectsRanking";
         public const string No_Value = "N/A";
 		public const string No_Data = "-";
+        public const string Zero = "0";
         #endregion CONSTANTS
 
         #region ATTRIBUTES
