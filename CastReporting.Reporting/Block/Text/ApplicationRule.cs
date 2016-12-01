@@ -66,7 +66,8 @@ namespace CastReporting.Reporting.Block.Text
                     return result?.ToString(_format) ?? Constants.No_Value;
                 }
             }
-            else if (reportData?.CurrentSnapshot != null && metricBfId != 0)
+            // ReSharper disable once InvertIf
+            if (reportData?.CurrentSnapshot != null && metricBfId != 0)
             {
                 if (_snapshot == "PREVIOUS")
                 {
