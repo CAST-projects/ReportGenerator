@@ -69,6 +69,7 @@
     <Compile Include="Block\Graph\RadarMetricId.cs" />
     <Compile Include="Block\Graph\TrendMetricId.cs" />
     <Compile Include="Block\Graph\TrendTechDebtPortfolio.cs" />
+    <Compile Include="Block\Table\TableMetricIdRow.cs" />
     <Compile Include="Block\Table\TableMetricIdCol.cs" />
     <Compile Include="Block\Table\ViolationSummary.cs" />
     <Compile Include="Block\Table\EFP.cs" />
