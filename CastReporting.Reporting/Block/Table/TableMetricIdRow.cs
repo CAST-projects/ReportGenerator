@@ -81,7 +81,8 @@ namespace CastReporting.Reporting.Block.Table
                 foreach (string id in sidList)
                 {
                     if (names.Keys.Contains(id)) continue;
-                    names[id] = MeasureUtility.GetSizingMeasureName(reportData.CurrentSnapshot, int.Parse(id), displayShortHeader);
+                    var name = MeasureUtility.GetSizingMeasureName(reportData.CurrentSnapshot, int.Parse(id), displayShortHeader);
+                    if (name != null) names[id] = name;
                     cntMetric++;
                 }
             }
@@ -576,6 +577,7 @@ namespace CastReporting.Reporting.Block.Table
             {
                 foreach (string id in sidList)
                 {
+                    if (!names.ContainsKey(id)) continue;
                     rowData.Add(names[id]);
 
                     #region Application - SZ
