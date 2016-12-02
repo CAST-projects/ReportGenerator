@@ -173,8 +173,8 @@ namespace CastReporting.Reporting.Block.Table
                                 cntRow++;
                                 rowData.AddRange(removedModuleRange);
                                 cntRow++;
+                                for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
                             }
-                            for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
                         }
                         break;
                     case "TECHNOLOGIES":
@@ -222,8 +222,9 @@ namespace CastReporting.Reporting.Block.Table
                                 cntRow++;
                                 rowData.AddRange(removedTechnoRange);
                                 cntRow++;
+                                for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
                             }
-                            for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
+                            
                         }
                         break;
                 }
@@ -231,7 +232,7 @@ namespace CastReporting.Reporting.Block.Table
 
             #endregion
 
-            if (_snapshot == "BOTH" && hasPreviousSnapshot)
+            if (_snapshot == "BOTH" && hasPreviousSnapshot && (!delta || _level == "APPLICATION"))
             {
                 for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
                 cntRow++;
@@ -360,8 +361,9 @@ namespace CastReporting.Reporting.Block.Table
                                 cntRow++;
                                 rowData.AddRange(removedModuleRange);
                                 cntRow++;
+                                for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
                             }
-                            for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
+                            
                         }
 
                         break;
@@ -410,8 +412,9 @@ namespace CastReporting.Reporting.Block.Table
                                 cntRow++;
                                 rowData.AddRange(removedTechnoRange);
                                 cntRow++;
+                                for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
                             }
-                            for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
+                            
                         }
                         break;
                 }

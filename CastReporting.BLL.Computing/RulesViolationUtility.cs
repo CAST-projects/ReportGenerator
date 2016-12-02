@@ -315,12 +315,12 @@ namespace CastReporting.BLL.Computing
                 return new ViolStatMetricIdDTO
                     {
                         Id = metricId,
-                        TotalViolations = resbc.DetailResult.EvolutionSummary.TotalViolations,
-                        AddedViolations = resbc.DetailResult.EvolutionSummary.AddedViolations,
-                        RemovedViolations = resbc.DetailResult.EvolutionSummary.RemovedViolations,
-                        TotalCriticalViolations = resbc.DetailResult.EvolutionSummary.TotalCriticalViolations,
-                        AddedCriticalViolations = resbc.DetailResult.EvolutionSummary.AddedCriticalViolations,
-                        RemovedCriticalViolations = resbc.DetailResult.EvolutionSummary.RemovedCriticalViolations
+                        TotalViolations = resbc.DetailResult.EvolutionSummary?.TotalViolations,
+                        AddedViolations = resbc.DetailResult.EvolutionSummary?.AddedViolations,
+                        RemovedViolations = resbc.DetailResult.EvolutionSummary?.RemovedViolations,
+                        TotalCriticalViolations = resbc.DetailResult.EvolutionSummary?.TotalCriticalViolations,
+                        AddedCriticalViolations = resbc.DetailResult.EvolutionSummary?.AddedCriticalViolations,
+                        RemovedCriticalViolations = resbc.DetailResult.EvolutionSummary?.RemovedCriticalViolations
                     };
             }
 
@@ -330,12 +330,12 @@ namespace CastReporting.BLL.Computing
                 return new ViolStatMetricIdDTO
                     {
                         Id = metricId,
-                        TotalViolations = restc.DetailResult.EvolutionSummary.TotalViolations,
-                        AddedViolations = restc.DetailResult.EvolutionSummary.AddedViolations,
-                        RemovedViolations = restc.DetailResult.EvolutionSummary.RemovedViolations,
-                        TotalCriticalViolations = restc.DetailResult.EvolutionSummary.TotalCriticalViolations,
-                        AddedCriticalViolations = restc.DetailResult.EvolutionSummary.AddedCriticalViolations,
-                        RemovedCriticalViolations = restc.DetailResult.EvolutionSummary.RemovedCriticalViolations
+                        TotalViolations = restc.DetailResult.EvolutionSummary?.TotalViolations,
+                        AddedViolations = restc.DetailResult.EvolutionSummary?.AddedViolations,
+                        RemovedViolations = restc.DetailResult.EvolutionSummary?.RemovedViolations,
+                        TotalCriticalViolations = restc.DetailResult.EvolutionSummary?.TotalCriticalViolations,
+                        AddedCriticalViolations = restc.DetailResult.EvolutionSummary?.AddedCriticalViolations,
+                        RemovedCriticalViolations = restc.DetailResult.EvolutionSummary?.RemovedCriticalViolations
                     };
             }
 
@@ -346,12 +346,12 @@ namespace CastReporting.BLL.Computing
                 return new ViolStatMetricIdDTO
                     {
                         Id = metricId,
-                        TotalViolations = resqr.DetailResult.ViolationRatio.FailedChecks,
-                        AddedViolations = resqr.DetailResult.EvolutionSummary.AddedViolations,
-                        RemovedViolations = resqr.DetailResult.EvolutionSummary.RemovedViolations,
-                        TotalCriticalViolations = resqr.DetailResult.ViolationRatio.FailedChecks,
-                        AddedCriticalViolations = resqr.DetailResult.EvolutionSummary.AddedViolations,
-                        RemovedCriticalViolations = resqr.DetailResult.EvolutionSummary.RemovedViolations
+                        TotalViolations = resqr.DetailResult.ViolationRatio?.FailedChecks,
+                        AddedViolations = resqr.DetailResult.EvolutionSummary?.AddedViolations,
+                        RemovedViolations = resqr.DetailResult.EvolutionSummary?.RemovedViolations,
+                        TotalCriticalViolations = resqr.DetailResult.ViolationRatio?.FailedChecks,
+                        AddedCriticalViolations = resqr.DetailResult.EvolutionSummary?.AddedViolations,
+                        RemovedCriticalViolations = resqr.DetailResult.EvolutionSummary?.RemovedViolations
                     };
             }
 
@@ -366,12 +366,12 @@ namespace CastReporting.BLL.Computing
                 return new ViolStatMetricIdDTO
                     {
                         Id = metricId,
-                        TotalViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.TotalViolations,
-                        AddedViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.AddedViolations,
-                        RemovedViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.RemovedViolations,
-                        TotalCriticalViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.TotalCriticalViolations,
-                        AddedCriticalViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.AddedCriticalViolations,
-                        RemovedCriticalViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.RemovedCriticalViolations
+                        TotalViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.TotalViolations,
+                        AddedViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.AddedViolations,
+                        RemovedViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.RemovedViolations,
+                        TotalCriticalViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.TotalCriticalViolations,
+                        AddedCriticalViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.AddedCriticalViolations,
+                        RemovedCriticalViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.RemovedCriticalViolations
                     };
             }
 
@@ -381,12 +381,12 @@ namespace CastReporting.BLL.Computing
                 return new ViolStatMetricIdDTO
                     {
                         Id = metricId,
-                        TotalViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.TotalViolations,
-                        AddedViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.AddedViolations,
-                        RemovedViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.RemovedViolations,
-                        TotalCriticalViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.TotalCriticalViolations,
-                        AddedCriticalViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.AddedCriticalViolations,
-                        RemovedCriticalViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.RemovedCriticalViolations
+                        TotalViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.TotalViolations,
+                        AddedViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.AddedViolations,
+                        RemovedViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.RemovedViolations,
+                        TotalCriticalViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.TotalCriticalViolations,
+                        AddedCriticalViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.AddedCriticalViolations,
+                        RemovedCriticalViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.RemovedCriticalViolations
                     };
             }
 
@@ -397,12 +397,12 @@ namespace CastReporting.BLL.Computing
                 return new ViolStatMetricIdDTO
                     {
                         Id = metricId,
-                        TotalViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.ViolationRatio.FailedChecks,
-                        AddedViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.AddedViolations,
-                        RemovedViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.RemovedViolations,
-                        TotalCriticalViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.ViolationRatio.FailedChecks,
-                        AddedCriticalViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.AddedViolations,
-                        RemovedCriticalViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary.RemovedViolations
+                        TotalViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.ViolationRatio?.FailedChecks,
+                        AddedViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.AddedViolations,
+                        RemovedViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.RemovedViolations,
+                        TotalCriticalViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.ViolationRatio?.FailedChecks,
+                        AddedCriticalViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.AddedViolations,
+                        RemovedCriticalViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.DetailResult.EvolutionSummary?.RemovedViolations
                     };
             }
 
@@ -417,12 +417,12 @@ namespace CastReporting.BLL.Computing
                 return new ViolStatMetricIdDTO
                     {
                         Id = metricId,
-                        TotalViolations = resbc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.TotalViolations,
-                        AddedViolations = resbc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.AddedViolations,
-                        RemovedViolations = resbc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.RemovedViolations,
-                        TotalCriticalViolations = resbc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.TotalCriticalViolations,
-                        AddedCriticalViolations = resbc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.AddedCriticalViolations,
-                        RemovedCriticalViolations = resbc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.RemovedCriticalViolations
+                        TotalViolations = resbc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.TotalViolations,
+                        AddedViolations = resbc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.AddedViolations,
+                        RemovedViolations = resbc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.RemovedViolations,
+                        TotalCriticalViolations = resbc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.TotalCriticalViolations,
+                        AddedCriticalViolations = resbc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.AddedCriticalViolations,
+                        RemovedCriticalViolations = resbc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.RemovedCriticalViolations
                     };
             }
 
@@ -432,12 +432,12 @@ namespace CastReporting.BLL.Computing
                 return new ViolStatMetricIdDTO
                     {
                         Id = metricId,
-                        TotalViolations = restc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.TotalViolations,
-                        AddedViolations = restc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.AddedViolations,
-                        RemovedViolations = restc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.RemovedViolations,
-                        TotalCriticalViolations = restc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.TotalCriticalViolations,
-                        AddedCriticalViolations = restc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.AddedCriticalViolations,
-                        RemovedCriticalViolations = restc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.RemovedCriticalViolations
+                        TotalViolations = restc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.TotalViolations,
+                        AddedViolations = restc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.AddedViolations,
+                        RemovedViolations = restc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.RemovedViolations,
+                        TotalCriticalViolations = restc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.TotalCriticalViolations,
+                        AddedCriticalViolations = restc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.AddedCriticalViolations,
+                        RemovedCriticalViolations = restc.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.RemovedCriticalViolations
                     };
             }
 
@@ -448,12 +448,12 @@ namespace CastReporting.BLL.Computing
                 return new ViolStatMetricIdDTO
                 {
                     Id = metricId,
-                    TotalViolations = resqr.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.ViolationRatio.FailedChecks,
-                    AddedViolations = resqr.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.AddedViolations,
-                    RemovedViolations = resqr.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.RemovedViolations,
-                    TotalCriticalViolations = resqr.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.ViolationRatio.FailedChecks,
-                    AddedCriticalViolations = resqr.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.AddedViolations,
-                    RemovedCriticalViolations = resqr.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary.RemovedViolations
+                    TotalViolations = resqr.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.ViolationRatio?.FailedChecks,
+                    AddedViolations = resqr.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.AddedViolations,
+                    RemovedViolations = resqr.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.RemovedViolations,
+                    TotalCriticalViolations = resqr.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.ViolationRatio?.FailedChecks,
+                    AddedCriticalViolations = resqr.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.AddedViolations,
+                    RemovedCriticalViolations = resqr.TechnologyResult.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.RemovedViolations
                 };
             }
 
