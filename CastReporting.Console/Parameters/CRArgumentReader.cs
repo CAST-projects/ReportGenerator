@@ -1,5 +1,5 @@
 ﻿using System;
-using Cast.Util.Log;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CastReporting.Console.Argument
 {
@@ -13,11 +13,7 @@ namespace CastReporting.Console.Argument
         /// <summary>
         /// Retur n Help String
         /// </summary>
-        public string Help
-        {
-            get
-            {
-                return @"
+        public string Help => @"
 CAST REPORT GENERATOR HELP - APPLICATION LEVEL
 -webservice <ws_name> : Webservice URI.
 -username <ws_username> : Username of Webservice for authentication.
@@ -53,16 +49,7 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
 
 
 
-"
-
-
-
-
-
-
-                    ;
-            }
-        }
+";
 
         #endregion
 
@@ -76,20 +63,18 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
         /// <returns>Arguments</returns>
         public XmlCastReport Load(string[] pArgs, out bool pShowHelp)
         { 
-            if (pArgs.Length > 0 && pArgs[1].ToString().ToLower() == "-reporttype")
+            if (pArgs.Length > 0 && pArgs[1].ToLower() == "-reporttype")
             {
                 if (pArgs.Length >= 13)
                 {
                     // Do not show help by default
                     pShowHelp = false;
-                    string type;
-                    string value;
                     XmlCastReport castReport = new XmlCastReport() { Snapshot = new XmlSnapshot() };
 
                     for (int i = 2; i < pArgs.Length; i += 2)
                     {
-                        type = LoadType(pArgs[i - 1]);
-                        value = pArgs[i];
+                        var type = LoadType(pArgs[i - 1]);
+                        var value = pArgs[i];
                         if (string.IsNullOrEmpty(type))
                         {
                             // unrecognized type -> show help
@@ -113,6 +98,7 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
                 // Do not show help by default
                 pShowHelp = false;
 
+                // ReSharper disable once ConditionIsAlwaysTrueOrFalse
                 if (pArgs == null || pArgs.Length == 0)
                 {
                     // No Arguments
@@ -139,14 +125,12 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
                 }
                 else if (pArgs.Length % 2 == 0)
                 {
-                    string type;
-                    string value;
                     XmlCastReport castReport = new XmlCastReport() { Snapshot = new XmlSnapshot() };
 
                     for (int i = 1; i < pArgs.Length; i += 2)
                     {
-                        type = LoadType(pArgs[i - 1]);
-                        value = pArgs[i];
+                        var type = LoadType(pArgs[i - 1]);
+                        var value = pArgs[i];
                         if (string.IsNullOrEmpty(type))
                         {
                             // unrecognized type -> show help
@@ -209,6 +193,7 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
         /// <param name="pType">Type</param>
         /// <param name="pValue">Value</param>
         /// <param name="pCastReport">Cast Report</param>
+        [SuppressMessage("ReSharper", "UseNameofExpression")]
         static void SetArgument(string pType, string pValue, XmlCastReport pCastReport)
         {
             if (string.IsNullOrEmpty(pType))
