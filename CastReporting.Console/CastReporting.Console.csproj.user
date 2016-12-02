@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>
-    </StartArguments>
+    <StartArguments>-reporttype portfolio -webservice http://localhost:7070/CAST-RESTAPI/rest -username cio -password cast -application IFPUG -template "1- Portfolio-Powerpoint-components-library.pptx" -file D:\temp\IFPUGNew1as2.pptx</StartArguments>
     <StartWorkingDirectory>
     </StartWorkingDirectory>
   </PropertyGroup>

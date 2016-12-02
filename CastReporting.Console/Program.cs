@@ -267,7 +267,8 @@ namespace CastReporting.Console
                                     Tag = null,
                                     snapshots = _n_selectedApps_snapshots,
                                     IgnoresApplications = _appsToIgnorePortfolioResult,
-                                    IgnoresSnapshots = _snapsToIgnore
+                                    IgnoresSnapshots = _snapsToIgnore,
+                                    Parameter = settings.ReportingParameter
                                 };
                             }
                             else if (arguments.Category == null && arguments.Tag != null)
@@ -285,7 +286,8 @@ namespace CastReporting.Console
                                     Tag = arguments.Tag.Name,
                                     snapshots = _n_selectedApps_snapshots,
                                     IgnoresApplications = _appsToIgnorePortfolioResult,
-                                    IgnoresSnapshots = _snapsToIgnore
+                                    IgnoresSnapshots = _snapsToIgnore,
+                                    Parameter = settings.ReportingParameter
                                 };
                             }
                             else
@@ -303,7 +305,8 @@ namespace CastReporting.Console
                                     Tag = null,
                                     snapshots = _n_selectedApps_snapshots,
                                     IgnoresApplications = _appsToIgnorePortfolioResult,
-                                    IgnoresSnapshots = _snapsToIgnore
+                                    IgnoresSnapshots = _snapsToIgnore,
+                                    Parameter = settings.ReportingParameter
                                 };
                             }
 
