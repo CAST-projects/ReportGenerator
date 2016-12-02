@@ -25,32 +25,32 @@ namespace CastReporting.Repositories
 
         private readonly List<PropertyInfo> _props = new List<PropertyInfo>();
 
-        private static bool IsMatch(PropertyInfo Candidate, string PropName)
+        private static bool IsMatch(PropertyInfo candidate, string propName)
         {
-            if (Candidate.Name.ToLower() == PropName)
+            if (candidate.Name.ToLower() == propName)
                 return true;
 
-            foreach (var attr in Candidate.GetCustomAttributes(typeof(DataMemberAttribute), true))
+            foreach (var attr in candidate.GetCustomAttributes(typeof(DataMemberAttribute), true))
             {
                 DataMemberAttribute dataMemberAttr = attr as DataMemberAttribute;
-                if (dataMemberAttr != null && dataMemberAttr.Name != null && dataMemberAttr.Name.Trim().ToLower() == PropName)
+                if (dataMemberAttr?.Name != null && dataMemberAttr.Name.Trim().ToLower() == propName)
                     return true;
             }
 
             return false;
         }
 
-        private PropertyInfo ResolveProperty(IEnumerable<PropertyInfo> Candidates, string PropName)
+        private PropertyInfo ResolveProperty(IEnumerable<PropertyInfo> candidates, string propName)
         {
-            return (PropName.Length == 0) ? null : Candidates.FirstOrDefault(_ => IsMatch(_, PropName));
+            return (propName.Length == 0) ? null : candidates.FirstOrDefault(_ => IsMatch(_, propName));
         }
 
-        private void SetTargetProps(IEnumerable<string> PropNames)
+        private void SetTargetProps(IEnumerable<string> propNames)
         {
             _props.Clear();
 
             List<PropertyInfo> candidates = typeof(T).GetProperties().Where(_ => _.CanWrite && _.CanRead).ToList();
-            foreach (var propName in PropNames)
+            foreach (var propName in propNames)
             {
                 string pn = string.IsNullOrEmpty(propName) ? string.Empty : propName.Trim().ToLower();
                 _props.Add(ResolveProperty(candidates, pn));
@@ -61,87 +61,87 @@ namespace CastReporting.Repositories
 
         #region read values from CSV
 
-        private string ExtractEscapedValue(string Input, ref int Pos, int Len)
+        private string ExtractEscapedValue(string input, ref int pos, int len)
         {
-            string quote = Input[Pos++].ToString();
-            int start = Pos;
-            while (Pos < Len)
+            string quote = input[pos++].ToString();
+            int start = pos;
+            while (pos < len)
             {
-                var ch = Input[Pos];
+                var ch = input[pos];
                 if (ch == quote[0])
                 {
-                    if (Pos + 1 < Len)
+                    if (pos + 1 < len)
                     {
-                        if (Input[Pos + 1] == quote[0])
+                        if (input[pos + 1] == quote[0])
                         {
                             // escaped quote --> skip and continue
-                            Pos += 2;
+                            pos += 2;
                         }
                         else
                         {
                             // closing quote
-                            Pos++;
-                            string value = Input.Substring(start, Pos - start - 1).Replace(quote + quote, quote);
+                            pos++;
+                            string value = input.Substring(start, pos - start - 1).Replace(quote + quote, quote);
                             // skip to next ";"
-                            while (Pos < Len && Input[Pos] != ';')
+                            while (pos < len && input[pos] != ';')
                             {
-                                Pos++;
+                                pos++;
                             }
-                            Pos++;
+                            pos++;
                             return value;
                         }
                     }
                     else
                     {
                         // end of string
-                        Pos++;
-                        return Input.Substring(start, Pos - start - 1).Replace(quote + quote, quote);
+                        pos++;
+                        return input.Substring(start, pos - start - 1).Replace(quote + quote, quote);
                     }
                 }
                 else
                 {
                     // continue
-                    Pos++;
+                    pos++;
                 }
             }
 
             // return rest of string
-            return Input.Substring(start);
+            return input.Substring(start);
         }
 
-        private string ExtractRawValue(string Input, ref int Pos, int Len)
+        private string ExtractRawValue(string input, ref int pos, int len)
         {
-            int start = Pos;
-            while (Pos < Len)
+            int start = pos;
+            while (pos < len)
             {
-                if (Input[Pos] == ';')
+                if (input[pos] == ';')
                 {
                     // done
-                    Pos++;
-                    return Input.Substring(start, Pos - start - 1);
+                    pos++;
+                    return input.Substring(start, pos - start - 1);
                 }
                 else
                 {
                     // continue
-                    Pos++;
+                    pos++;
                 }
             }
 
             // return rest of string
-            return Input.Substring(start);
+            return input.Substring(start);
         }
 
-        private IList<string> GetValues(string Input)
+        private IList<string> GetValues(string input)
         {
             List<string> values = new List<string>();
 
             int pos = 0;
-            int len = Input.Length;
+            int len = input.Length;
             while (pos < len)
             {
                 string value;
 
-                char ch = Input[pos];
+                char ch = input[pos];
                 if (ch == ';')
                 {
                     // no value
@@ -151,12 +151,12 @@ namespace CastReporting.Repositories
                 else if (ch == '"')
                 {
                     // escaped string
-                    value = ExtractEscapedValue(Input, ref pos, len);
+                    value = ExtractEscapedValue(input, ref pos, len);
                 }
                 else
                 {
                     // raw value
-                    value = ExtractRawValue(Input, ref pos, len);
+                    value = ExtractRawValue(input, ref pos, len);
                 }
 
                 values.Add(value);
@@ -197,11 +197,11 @@ namespace CastReporting.Repositories
 
         #endregion
 
-        public IEnumerable<T> ReadObjects(string Input, int count, params string[] PropMapping)
+        public IEnumerable<T> ReadObjects(string input, int count, params string[] propMapping)
         {
             List<T> results = new List<T>();
 
-            using (StringReader sr = new StringReader(Input))
+            using (StringReader sr = new StringReader(input))
             {
                 string s;
 
@@ -209,7 +209,7 @@ namespace CastReporting.Repositories
                 try
                 {
                     s = sr.ReadLine();
-                    if (PropMapping == null || PropMapping.Length == 0)
+                    if (propMapping == null || propMapping.Length == 0)
                     {
                         // use header as mapping information
                         SetTargetProps(GetValues(s));
@@ -217,7 +217,7 @@ namespace CastReporting.Repositories
                     else
                     {
                         // forced mapping info: ignore header
-                        SetTargetProps(PropMapping);
+                        SetTargetProps(propMapping);
                     }
                 }
                 catch (Exception ex)

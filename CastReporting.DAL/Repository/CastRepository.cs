@@ -24,6 +24,7 @@ using CastReporting.Domain;
 using CastReporting.Mediation;
 using CastReporting.Mediation.Interfaces;
 using CastReporting.Repositories.Interfaces;
+// ReSharper disable InconsistentNaming
 
 
 namespace CastReporting.Repositories
@@ -65,7 +66,7 @@ namespace CastReporting.Repositories
         /// <summary>
         /// 
         /// </summary>
-        private ICastProxy _Client;
+        protected ICastProxy _Client;
         
         #endregion ATTRIBUTES
 
@@ -74,13 +75,13 @@ namespace CastReporting.Repositories
         /// <summary>
         /// Get/Set the current connection.
         /// </summary>
-        private string  _CurrentConnection;
+        protected string  _CurrentConnection;
         public string CurrentConnection
         {
             get
             {
-                if (this._CurrentConnection == null) throw new TypeLoadException("Rest connection not set");
-                return this._CurrentConnection;
+                if (_CurrentConnection == null) throw new TypeLoadException("Rest connection not set");
+                return _CurrentConnection;
             }           
         }
         #endregion PROPERTIES
@@ -93,8 +94,8 @@ namespace CastReporting.Repositories
         /// <param name="connection"></param>
         public CastRepository(WSConnection connection)
         {
-            this._Client = new CastProxy(connection.Login, connection.Password);
-            this._CurrentConnection = connection.Url;
+            _Client = new CastProxy(connection.Login, connection.Password);
+            _CurrentConnection = connection.Url;
         }
 
         #endregion CONSTRUCTORS
@@ -104,10 +105,7 @@ namespace CastReporting.Repositories
         /// </summary>
         public void Dispose()
         {
-            if (null != _Client)
-            {
-                _Client.Dispose();
-            }
+            _Client?.Dispose();
         }
 
 
@@ -121,7 +119,7 @@ namespace CastReporting.Repositories
         {
             try
             {
-                this.CallWS<string>("/ping", RequestComplexity.Standard);
+                CallWS<string>("/ping", RequestComplexity.Standard);
                               
             }
             catch
@@ -140,7 +138,7 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         IEnumerable<CastDomain> ICastRepsitory.GetDomains()
         {
-            return this.ListSet<CastDomain>(string.Empty, string.Empty);           
+            return ListSet<CastDomain>(string.Empty, string.Empty);           
         }
             
         #endregion Databases
@@ -153,7 +151,7 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         IEnumerable<Application> ICastRepsitory.GetApplicationsByDomain(string domainHRef)
         {
-            return this.ListSet<Application>(domainHRef);
+            return ListSet<Application>(domainHRef);
         }
 
         /// <summary>
@@ -163,7 +161,7 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         Application ICastRepsitory.GetApplication(string hRef)
         {
-            return this.Get<Application>(hRef);
+            return Get<Application>(hRef);
         }
 
            
@@ -174,42 +172,42 @@ namespace CastReporting.Repositories
         {
             var requestUrl = string.Format(_query_components, snapshotHref, businessCriteria, count);
 
-            return this.CallWS<IEnumerable<Component>>(requestUrl, RequestComplexity.Standard);
+            return CallWS<IEnumerable<Component>>(requestUrl, RequestComplexity.Standard);
         }
 
         IEnumerable<Component> ICastRepsitory.GetComponentsByModule(string domainId, int moduleId, int snapshotId, string businessCriteria, int count)
         {
             var requestUrl = string.Format(_query_components_by_modules, domainId, moduleId, snapshotId, businessCriteria, count);
             
-            return this.CallWS<IEnumerable<Component>>(requestUrl, RequestComplexity.Standard);
+            return CallWS<IEnumerable<Component>>(requestUrl, RequestComplexity.Standard);
         }
 
         IEnumerable<Transaction> ICastRepsitory.GetTransactions(string snapshotHref, string businessCriteria, int count)
         {
             var requestUrl = string.Format(_query_transactions, snapshotHref, businessCriteria, count);
 
-            return this.CallWS<IEnumerable<Transaction>>(requestUrl, RequestComplexity.Standard);
+            return CallWS<IEnumerable<Transaction>>(requestUrl, RequestComplexity.Standard);
         }
 
         IEnumerable<CommonCategories> ICastRepsitory.GetCommonCategories()
         {
-            var requestUrl = string.Format(_query_common_categories, "", "");
+            var requestUrl = string.Format(_query_common_categories, "");
 
-            return this.CallWS<IEnumerable<CommonCategories>>(requestUrl, RequestComplexity.Standard);
+            return CallWS<IEnumerable<CommonCategories>>(requestUrl, RequestComplexity.Standard);
         }
 
         string ICastRepsitory.GetCommonCategoriesJson()
         {
-            var requestUrl = string.Format(_query_common_categories, "", "");
+            var requestUrl = string.Format(_query_common_categories, "");
 
-            return this.CallWSJsonOnly(requestUrl, RequestComplexity.Standard); 
+            return CallWSJsonOnly(requestUrl, RequestComplexity.Standard); 
         }
 
         string ICastRepsitory.GetCommonTagsJson()
         {
-            var requestUrl = string.Format(_query_tags, "", "");
+            var requestUrl = string.Format(_query_tags, "");
 
-            return this.CallWSJsonOnly(requestUrl, RequestComplexity.Standard);
+            return CallWSJsonOnly(requestUrl, RequestComplexity.Standard);
 
         }
 
@@ -217,50 +215,51 @@ namespace CastReporting.Repositories
         {
             var requestUrl = string.Format(_query_ifpug_functions, snapshotHref);
 
-            return this.CallCsvWS<IfpugFunction>(requestUrl, RequestComplexity.Long, count);
+            return CallCsvWS<IfpugFunction>(requestUrl, RequestComplexity.Long, count);
         }
 
         IEnumerable<IfpugFunction> ICastRepsitory.GetIfpugFunctionsEvolutions(string snapshotHref, int count)
         {
             var requestUrl = string.Format(_query_ifpug_functions_evolutions, snapshotHref);
 
-            return this.CallCsvWS<IfpugFunction>(requestUrl, RequestComplexity.Long, count);
+            return CallCsvWS<IfpugFunction>(requestUrl, RequestComplexity.Long, count);
         }
 
-        IEnumerable<CastReporting.Domain.MetricTopArtifact> ICastRepsitory.GetMetricTopArtefact(string snapshotHref, string RuleId, int count)
+        IEnumerable<MetricTopArtifact> ICastRepsitory.GetMetricTopArtefact(string snapshotHref, string RuleId, int count)
         {
             var requestUrl = string.Format(_query_metric_top_artefact, snapshotHref, RuleId);
 
-            return this.CallCsvWS<CastReporting.Domain.MetricTopArtifact>(requestUrl, RequestComplexity.Long, count);
+            return CallCsvWS<MetricTopArtifact>(requestUrl, RequestComplexity.Long, count);
         }
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="applicationHRef"></param>
         /// <returns></returns>
         IEnumerable<Snapshot> ICastRepsitory.GetSnapshotsByApplication(string applicationHRef)
         {
-            return this.ListSet<Snapshot>(applicationHRef);
+            return ListSet<Snapshot>(applicationHRef);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="applicationHRef"></param>
         /// <returns></returns>
         IEnumerable<Domain.System> ICastRepsitory.GetSystemsByApplication(string applicationHRef)
         {
-            return this.ListSet<Domain.System>(applicationHRef);
+            return ListSet<Domain.System>(applicationHRef);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="HRef"></param>
+        /// <param name="hRef"></param>
         /// <returns></returns>
         Snapshot ICastRepsitory.GetSnapshot(string hRef)
         {
-            return this.Get<Snapshot>(hRef);
+            return Get<Snapshot>(hRef);
         }
 
         #endregion Snapshots
@@ -276,7 +275,7 @@ namespace CastReporting.Repositories
         {
             var requestUrl = string.Format(_query_rule_patterns, domain, ruleId);
 
-            return this.CallWS<RuleDescription>(requestUrl, RequestComplexity.Standard);
+            return CallWS<RuleDescription>(requestUrl, RequestComplexity.Standard);
         }
 
         /// <summary>
@@ -295,7 +294,7 @@ namespace CastReporting.Repositories
 
             var requestUrl = string.Format(_query_result_rules_violations, snapshotHRef, criticity, businessCriteria);
             
-            return this.CallWS<IEnumerable<Result>>(requestUrl, RequestComplexity.Standard);
+            return CallWS<IEnumerable<Result>>(requestUrl, RequestComplexity.Standard);
         }
 
         /// <summary>
@@ -309,15 +308,16 @@ namespace CastReporting.Repositories
         {
             var requestUrl = string.Format(_query_rules_details, domain, businessCriteria, snapshotId);
 
-            return this.CallWS<IEnumerable<RuleDetails>>(requestUrl, RequestComplexity.Standard);
+            return CallWS<IEnumerable<RuleDetails>>(requestUrl, RequestComplexity.Standard);
         }
         #endregion
 
         #region ActionPlan
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="snapshotHRef"></param>
         /// <returns></returns>
         IEnumerable<ActionPlan> ICastRepsitory.GetActionPlanBySnapshot(string snapshotHRef)
         {
@@ -326,13 +326,13 @@ namespace CastReporting.Repositories
             
             try
             {
-                return this.CallWS<IEnumerable<ActionPlan>>(requestUrl, RequestComplexity.Standard);
+                return CallWS<IEnumerable<ActionPlan>>(requestUrl, RequestComplexity.Standard);
             }
             catch (WebException webEx)
             {
                 LogHelper.Instance.LogInfo(webEx.Message);
                 // url for action plan has changed in API, and some old versions does not support the 2 format of the url
-                return this.CallWS<IEnumerable<ActionPlan>>(requestUrl2, RequestComplexity.Standard);
+                return CallWS<IEnumerable<ActionPlan>>(requestUrl2, RequestComplexity.Standard);
             }
         }
         #endregion ActionPlan
@@ -342,11 +342,11 @@ namespace CastReporting.Repositories
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="hRef"></param>
         /// <returns></returns>
         IEnumerable<Module> ICastRepsitory.GetModules(string hRef)
         {
-            return this.ListSet<Module>(hRef);
+            return ListSet<Module>(hRef);
         }
 
 
@@ -357,7 +357,7 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         Module ICastRepsitory.GetModule(string hRef)
         {
-            return this.Get<Module>(hRef);
+            return Get<Module>(hRef);
         }
 
         #endregion modules
@@ -374,77 +374,75 @@ namespace CastReporting.Repositories
         {
             string relativeUrl = string.Format(_query_result_quality_distribution_complexity, snapshotHRef, qualityDistribution);
 
-            return this.CallWS<IEnumerable<Result>>(relativeUrl, RequestComplexity.Standard);
+            return CallWS<IEnumerable<Result>>(relativeUrl, RequestComplexity.Standard);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         IEnumerable<Result> ICastRepsitory.GetResultsQualityIndicators(string hRef, string qiParam, string snapshotsParam, string modulesParam, string technologiesParam, string categoriesParam)
         {
             // _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&snapshots=({2})&modules=({3})&technologies=({4})&categories=({5})&select=evolutionSummary"
-            String query = _query_result_quality_indicators;
-            if (String.Empty != snapshotsParam)
+            string query = _query_result_quality_indicators;
+            if (string.Empty != snapshotsParam)
                 query = query + "&snapshots=({2})";
 
-            if (String.Empty != modulesParam)
+            if (string.Empty != modulesParam)
                 query = query + "&modules=({3})";
 
-            if (String.Empty != technologiesParam)
+            if (string.Empty != technologiesParam)
                 query = query + "&technologies=({4})";
 
-            if (String.Empty != categoriesParam)
+            if (string.Empty != categoriesParam)
                 query = query + "&categories=({5})";
 
             string relativeURL = string.Format(query, hRef, qiParam, snapshotsParam, modulesParam, technologiesParam, categoriesParam);
 
-            return this.CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
+            return CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
         }
 
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         IEnumerable<Result> ICastRepsitory.GetResultsSizingMeasures(string hRef, string param, string snapshotsParam, string technologiesParam, string moduleParam)
         {
             // _query_result_sizing_measures = "{0}/results?sizing-measures=({1})&snapshots=({2})&technologies=({3})&modules=({4})"
-            String query = _query_result_sizing_measures;
+            string query = _query_result_sizing_measures;
 
-            if (String.Empty != snapshotsParam)
+            if (string.Empty != snapshotsParam)
                 query = query + "&snapshots=({2})";
 
-            if (String.Empty != technologiesParam)
+            if (string.Empty != technologiesParam)
                 query = query + "&technologies=({3})";
 
-            if (String.Empty != moduleParam)
+            if (string.Empty != moduleParam)
                 query = query + "&modules=({4})";
 
             string relativeURL = string.Format(query, hRef, param, snapshotsParam, technologiesParam, moduleParam);
 
-            return this.CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
+            return CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
         }
 
         IEnumerable<Result> ICastRepsitory.GetResultsBackgroundFacts(string hRef, string param, string snapshotsParam, string technologiesParam, string moduleParam)
         {
             // _query_result_background_facts = "{0}/results?background-facts=({1})&snapshots=({2})&technologies=({3})&modules=({4})"
-            String query = _query_result_background_facts;
+            string query = _query_result_background_facts;
 
-            if (String.Empty != snapshotsParam)
+            if (string.Empty != snapshotsParam)
                 query = query + "&snapshots=({2})";
 
-            if (String.Empty != technologiesParam)
+            if (string.Empty != technologiesParam)
                 query = query + "&technologies=({3})";
 
-            if (String.Empty != moduleParam)
+            if (string.Empty != moduleParam)
                 query = query + "&modules=({4})";
 
             string relativeURL = string.Format(query, hRef, param, snapshotsParam, technologiesParam, moduleParam);
 
-            return this.CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
+            return CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
         }
 
         #endregion Result
@@ -457,9 +455,9 @@ namespace CastReporting.Repositories
         /// <param name="domainHRef"></param>
         /// <param name="snapshotId"></param>
         /// <returns></returns>
-        IEnumerable<QIQualityRules> ICastRepsitory.GetConfQualityRulesBySnapshot(string domainHRef, Int64 snapshotId)
+        IEnumerable<QIQualityRules> ICastRepsitory.GetConfQualityRulesBySnapshot(string domainHRef, long snapshotId)
         {
-            return this.ListConfiguration<QIQualityRules>(domainHRef, snapshotId, "quality-rules");
+            return ListConfiguration<QIQualityRules>(domainHRef, snapshotId, "quality-rules");
         }
 
         /// <summary>
@@ -469,22 +467,23 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         QIQualityRules ICastRepsitory.GetConfQualityRules(string href)
         {
-            return this.CallWS<QIQualityRules>(href, RequestComplexity.Standard);
+            return CallWS<QIQualityRules>(href, RequestComplexity.Standard);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="domainHRef"></param>
+        /// <param name="snapshotId"></param>
         /// <returns></returns>
-        IEnumerable<QIBusinessCriteria> ICastRepsitory.GetConfBusinessCriteriaBySnapshot(string domainHRef, Int64 snapshotId)
+        IEnumerable<QIBusinessCriteria> ICastRepsitory.GetConfBusinessCriteriaBySnapshot(string domainHRef, long snapshotId)
         {                    
-            return this.ListConfiguration<QIBusinessCriteria>(domainHRef, snapshotId, "business-criteria");
+            return ListConfiguration<QIBusinessCriteria>(domainHRef, snapshotId, "business-criteria");
         }
 
         QIBusinessCriteria ICastRepsitory.GetConfBusinessCriteria(string href)
         {
-            return this.CallWS<QIBusinessCriteria>(href, RequestComplexity.Standard);
+            return CallWS<QIBusinessCriteria>(href, RequestComplexity.Standard);
         }
         #endregion Configuration
 
@@ -494,7 +493,7 @@ namespace CastReporting.Repositories
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="pEntity"></param>
+        /// <param name="relativeURL"></param>
         /// <param name="pComplexity"></param>
         /// <returns></returns>
         private T CallWS<T>(string relativeURL, RequestComplexity pComplexity) where T : class
@@ -542,29 +541,28 @@ namespace CastReporting.Repositories
             var serializer = new CsvSerializer<T>();
             return serializer.ReadObjects(csvString, count, PropNames);
         }
-     
+
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="pRelativeUrl"></param>
-        /// <param name="pComplexity"></param>
         /// <returns></returns>
         private IEnumerable<T> ListSet<T>(string pRelativeUrl) where T : class
         {
             string typeName = typeof(T).Name.ToLower();
             string setName = typeName.EndsWith("s", StringComparison.InvariantCultureIgnoreCase) ? typeName : typeName + "s";
 
-            return this.ListSet<T>(pRelativeUrl, setName);
+            return ListSet<T>(pRelativeUrl, setName);
         }
 
-       
+
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="pEntity"></param>
-        /// <param name="pComplexity"></param>
+        /// <param name="pRelativeUrl"></param>
+        /// <param name="pSetName"></param>
         /// <returns></returns>
         private IEnumerable<T> ListSet<T>(string pRelativeUrl, string pSetName) where T : class
         {           
@@ -583,22 +581,21 @@ namespace CastReporting.Repositories
         /// </summary>
         /// <param name="domainHRef"></param>
         /// <param name="snapshotId"></param>
+        /// <param name="setName"></param>
         /// <returns></returns>
-        private IEnumerable<T> ListConfiguration<T>(string domainHRef, Int64 snapshotId, string setName) where T : class
+        private IEnumerable<T> ListConfiguration<T>(string domainHRef, long snapshotId, string setName) where T : class
         {
 
             string relativeURL = string.Format(_query_configuration, domainHRef, snapshotId);
 
-            return this.ListSet<T>(relativeURL, setName);
+            return ListSet<T>(relativeURL, setName);
         }
 
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="pUrl"></param>
-        /// <param name="pComplexity"></param>
         /// <param name="id"></param>
         /// <returns></returns>
         private T Get<T>(string id) where T : class
@@ -606,13 +603,7 @@ namespace CastReporting.Repositories
              return CallWS<T>(id, RequestComplexity.Standard);                     
         }
 
-       
 
-    
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pException"></param>
         //private void ManageWebException(WebException pException)
         //{
         //    if (pException == null)

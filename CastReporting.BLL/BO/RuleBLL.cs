@@ -43,8 +43,9 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="businessCriteria"></param>
         /// <param name="snapshotHRef"></param>
-        /// <param name="ruleId"></param>
+        /// <param name="domain"></param>
         /// <returns></returns>
         public IEnumerable<RuleDetails> GetRulesDetails(string domain, int businessCriteria, long snapshotHRef)
         {

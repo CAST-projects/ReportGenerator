@@ -31,14 +31,14 @@ namespace CastReporting.Mediation
     /// <summary>
     /// WebClient Class for Cast Reporting
     /// </summary>
-    public class CastProxy : System.Net.WebClient, ICastProxy
+    public class CastProxy : WebClient, ICastProxy
     {     
         #region ATTRIBUTES
 
         /// <summary>
         /// 
         /// </summary>
-        private RequestComplexity _CurrentComplexity = RequestComplexity.Standard;      
+        private RequestComplexity _currentComplexity = RequestComplexity.Standard;      
         
         #endregion ATTRIBUTES
 
@@ -47,11 +47,8 @@ namespace CastReporting.Mediation
         /// <summary>
         /// Time in milliseconds
         /// </summary>
-        public int Timeout
-        {
-            get { return GetRequestTimeOut(_CurrentComplexity); }
-        }
-        
+        public int Timeout => GetRequestTimeOut(_currentComplexity);
+
         /// <summary>
         /// HEAD method option
         /// </summary>
@@ -66,8 +63,8 @@ namespace CastReporting.Mediation
         /// </summary>
         public CastProxy(string login, string password)
         {
-            string credentials = this.CreateBasicAuthenticationCredentials(login, password);
-            base.Headers.Add(System.Net.HttpRequestHeader.Authorization, credentials);
+            string credentials = CreateBasicAuthenticationCredentials(login, password);
+            Headers.Add(HttpRequestHeader.Authorization, credentials);
         }
             
 
@@ -76,22 +73,22 @@ namespace CastReporting.Mediation
         private string DownloadContent(string pUrl, string mimeType, RequestComplexity pComplexity)
         {
 
-            string result = string.Empty;
+            string result;
 
             try
             {
-                base.Headers.Add(System.Net.HttpRequestHeader.Accept, mimeType);
-                base.Encoding = Encoding.UTF8;
+                Headers.Add(HttpRequestHeader.Accept, mimeType);
+                Encoding = Encoding.UTF8;
 
-                RequestComplexity previousComplexity = this._CurrentComplexity;
-                this._CurrentComplexity = pComplexity;
+                RequestComplexity previousComplexity = _currentComplexity;
+                _currentComplexity = pComplexity;
 
                 var requestWatch = new Stopwatch();
                 requestWatch.Start();
-                result = base.DownloadString(pUrl);
+                result = DownloadString(pUrl);
                 requestWatch.Stop();
 
-                this._CurrentComplexity = previousComplexity;
+                _currentComplexity = previousComplexity;
 
                 LogHelper.Instance.LogDebugFormat
                         ("Request URL '{0}' - Time elapsed : {1} "
@@ -108,7 +105,7 @@ namespace CastReporting.Mediation
                         , ex.Message
                         );
 
-                 throw ex;
+                 throw;
             }
 
             return result;
@@ -176,14 +173,15 @@ namespace CastReporting.Mediation
         protected override WebRequest GetWebRequest(Uri pAddress)
         {
             var result = base.GetWebRequest(pAddress);
-                       
-            result.Timeout = this.Timeout;
-            
+
+            if (result == null) return null;
+            result.Timeout = Timeout;
+
             if (HeadOnly && result.Method == "GET")
-            { 
-                result.Method = "HEAD"; 
+            {
+                result.Method = "HEAD";
             }
-            
+
             return result;
         }
     
@@ -192,8 +190,9 @@ namespace CastReporting.Mediation
         /// </summary>
         /// <param name="pComplexity"></param>
         /// <returns></returns>
-        private int GetRequestTimeOut(RequestComplexity pComplexity)
+        private static int GetRequestTimeOut(RequestComplexity pComplexity)
         {
+            // ReSharper disable once SwitchStatementMissingSomeCases
             switch (pComplexity)
             {
                 case RequestComplexity.Long: 
@@ -204,7 +203,7 @@ namespace CastReporting.Mediation
                     {
                         return Settings.Default.TimeoutQuick; 
                     }
-                case RequestComplexity.Standard:
+                //case RequestComplexity.Standard:
                 default: 
                     {
                         return Settings.Default.TimeoutStandard; 
@@ -219,13 +218,11 @@ namespace CastReporting.Mediation
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        private string CreateBasicAuthenticationCredentials(string userName, string password)
+        private static string CreateBasicAuthenticationCredentials(string userName, string password)
         {
-            string returnValue = string.Empty;
+            string base64UsernamePassword = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{userName}:{password}"));
 
-            string base64UsernamePassword = Convert.ToBase64String(Encoding.ASCII.GetBytes(String.Format("{0}:{1}", userName, password)));
-
-            returnValue = String.Format("Basic {0}", base64UsernamePassword);
+            var returnValue = $"Basic {base64UsernamePassword}";
 
             return returnValue;
         }

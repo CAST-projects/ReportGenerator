@@ -13,7 +13,6 @@
  * limitations under the License.
  *
  */
-using System.Collections.Generic;
 using CastReporting.Domain;
 using CastReporting.Repositories;
 using CastReporting.Repositories.Interfaces;
@@ -25,13 +24,11 @@ namespace CastReporting.BLL
     /// 
     /// </summary>
     public class CommonBLL : BaseBLL
-    {    
- 
+    {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="currentSnapshot"></param>
-        /// <param name="previousSnapshot"></param>
+        /// <param name="connection"></param>
         public CommonBLL(WSConnection connection)
             : base(connection)
         {                      
@@ -55,7 +52,7 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <returns></returns>
-        static public bool CheckService(WSConnection connection)
+        public static bool CheckService(WSConnection connection)
         {
             using (ICastRepsitory castRepsitory = new CastRepository(connection))
             {

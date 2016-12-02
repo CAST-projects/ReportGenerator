@@ -23,8 +23,8 @@ namespace CastReporting.BLL
     public abstract class BaseBLL : IDisposable
     {
         // <summary>
-        /// 
-        /// </summary>
+        //
+        // </summary>
         protected WSConnection Connection { get; set; }
 
         /// <summary>
@@ -35,19 +35,16 @@ namespace CastReporting.BLL
             return new CastRepository(Connection);
         }
 
-        protected ICastRepsitory GetRepository(WSConnection Connection)
+        protected ICastRepsitory GetRepository(WSConnection connection)
         {
-            return new CastRepository(Connection);
+            return new CastRepository(connection);
         }
 
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="url"></param>
-        /// <param name="currentSnapshot"></param>
-        /// <param name="previousSnapshot"></param>
-        public BaseBLL()
+        protected BaseBLL()
         {
           
         }
@@ -55,10 +52,8 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="url"></param>
-        /// <param name="currentSnapshot"></param>
-        /// <param name="previousSnapshot"></param>
-        public BaseBLL(WSConnection connection)
+        /// <param name="connection"></param>
+        protected BaseBLL(WSConnection connection)
         {
             Connection = connection;
 

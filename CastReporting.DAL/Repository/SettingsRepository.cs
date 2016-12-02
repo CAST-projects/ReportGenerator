@@ -22,7 +22,6 @@ using CastReporting.Domain;
 using CastReporting.Repositories.Interfaces;
 using CastReporting.Repositories.Properties;
 using CastReporting.Repositories.Util;
-using Microsoft.Win32;
 
 namespace CastReporting.Repositories
 {
@@ -37,9 +36,9 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         public void SaveSetting(Setting setting)
         {
-            string settingFilePath = Path.Combine(this.GetApplicationPath(), Settings.Default.SettingFileName);
+            string settingFilePath = Path.Combine(GetApplicationPath(), Settings.Default.SettingFileName);
                        
-            SerializerHelper.SerializeToFile<Setting>(setting,settingFilePath);
+            SerializerHelper.SerializeToFile(setting,settingFilePath);
         }
 
 
@@ -49,41 +48,30 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         public Setting GetSeting()
         {
-            Setting setting;
+            string settingFilePath = Path.Combine(GetApplicationPath(), Settings.Default.SettingFileName);
 
-            string settingFilePath = Path.Combine(this.GetApplicationPath(), Settings.Default.SettingFileName);
-
-            if (File.Exists(settingFilePath))
-            {
-                setting = SerializerHelper.DeserializeFromFile<Setting>(settingFilePath);
-            }
-            else
-            {
-                setting = new Setting();
-            }
+            var setting = File.Exists(settingFilePath) ? SerializerHelper.DeserializeFromFile<Setting>(settingFilePath) : new Setting();
             
             if(string.IsNullOrEmpty(setting.ReportingParameter.TemplatePath))
-                setting.ReportingParameter.TemplatePath = Path.Combine(this.GetApplicationPath(), Settings.Default.TemplateDirectory);
+                setting.ReportingParameter.TemplatePath = Path.Combine(GetApplicationPath(), Settings.Default.TemplateDirectory);
             return setting;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="basePath"></param>
+        /// <param name="templatePath"></param>
         /// <returns></returns>
-        List<FileInfo> ISettingRepository.GetTemplateFileList(string tempaltePath)
+        List<FileInfo> ISettingRepository.GetTemplateFileList(string templatePath)
         {
             List<FileInfo> result = new List<FileInfo>();
 
-            if (string.IsNullOrEmpty(tempaltePath)) return result;
+            if (string.IsNullOrEmpty(templatePath)) return result;
 
-            DirectoryInfo di = new DirectoryInfo(tempaltePath);
-            if (di.Exists)
-            {
-                var extensions = Settings.Default.TemplateExtensions.Split(',');
-                result = di.GetFiles().Where(f => extensions.Contains(Path.GetExtension(f.FullName).ToLower())).ToList();
-            }
+            DirectoryInfo di = new DirectoryInfo(templatePath);
+            if (!di.Exists) return result;
+            var extensions = Settings.Default.TemplateExtensions.Split(',');
+            result = di.GetFiles().Where(f => extensions.Contains(Path.GetExtension(f.FullName).ToLower())).ToList();
 
             return result;
         }
@@ -97,7 +85,7 @@ namespace CastReporting.Repositories
         public string GetApplicationPath()
         {
             Version vers = Assembly.GetExecutingAssembly().GetName().Version;
-            String version = vers.Major.ToString() + '.' + vers.Minor.ToString() + '.' + vers.Build.ToString();
+            string version = vers.Major.ToString() + '.' + vers.Minor.ToString() + '.' + vers.Build.ToString();
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Settings.Default.CompanyName, Settings.Default.ProductName, version);
 
             // Create Folder if not exists
