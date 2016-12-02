@@ -40,4 +40,21 @@ namespace CastReporting.BLL.Computing
         public int? RemovedCriticalViolations { get; set; }
     }
 
+    public class ViolStatMetricIdDTO
+    {
+
+        public int? Id { get; set; }
+
+        public int? TotalViolations { get; set; }
+
+        public int? AddedViolations { get; set; }
+
+        public int? RemovedViolations { get; set; }
+
+        public int? TotalCriticalViolations { get; set; }
+
+        public int? AddedCriticalViolations { get; set; }
+
+        public int? RemovedCriticalViolations { get; set; }
+    }
 }

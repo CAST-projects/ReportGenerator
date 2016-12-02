@@ -55,11 +55,13 @@ namespace CastReporting.Reporting.Helper
                 } else {
                     s = s.ToLower();
                     switch (s) {
+                        case "1":
                         case "y":
                         case "yes":
                         case "true":
                             value = true;
                             break;
+                        case "0":
                         case "n":
                         case "no":
                         case "false":
