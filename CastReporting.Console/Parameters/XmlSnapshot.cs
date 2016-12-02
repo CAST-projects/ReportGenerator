@@ -33,6 +33,7 @@ namespace CastReporting.Console.Argument
         /// <returns></returns>
         public override string ToString()
         {
+            // ReSharper disable once UseStringInterpolation
             return string.Format
                 ("Current '{0}' - Previous '{1}'"
                 , (Current != null) ? Current.Name ?? "?" : "?"

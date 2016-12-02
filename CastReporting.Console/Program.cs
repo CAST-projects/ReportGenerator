@@ -51,16 +51,11 @@ namespace CastReporting.Console
         {
             var settings = SettingsBLL.GetSetting();
 
-            if (!String.IsNullOrEmpty(settings.ReportingParameter.CultureName))
-            {
-                CultureInfo cultureInfo = CultureInfo.GetCultureInfo(settings.ReportingParameter.CultureName);
+            if (string.IsNullOrEmpty(settings.ReportingParameter.CultureName)) return;
+            CultureInfo cultureInfo = CultureInfo.GetCultureInfo(settings.ReportingParameter.CultureName);
 
-                if (cultureInfo != null)
-                {
-                    Thread.CurrentThread.CurrentCulture = cultureInfo;
-                    Thread.CurrentThread.CurrentUICulture = cultureInfo;
-                }
-            }
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
         }
 
 
@@ -70,7 +65,7 @@ namespace CastReporting.Console
         /// <param name="args"></param>
         /// <param name="help"></param>
         /// <returns></returns>
-        private static Int32 DoWork(string[] args, out string help)
+        private static int DoWork(string[] args, out string help)
         {
             LogHelper.Instance.LogInfo("Read arguments.");
             var arguments = ReadArguments(args, out help); 
@@ -89,7 +84,7 @@ namespace CastReporting.Console
             }
             else
             {
-                LogHelper.Instance.LogInfo(string.Format("Report successfully generated in {0}", pathFile));
+                LogHelper.Instance.LogInfo($"Report successfully generated in {pathFile}");
                 return 0;
             }
         }
@@ -129,26 +124,19 @@ namespace CastReporting.Console
 
                         if (!commonBLL.CheckService())
                         {
-                            help = string.Format("Webservice can't be access or is bad formatted. Url:{0} Username:{1} Password:{2}", arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name);
+                            help = $"Webservice can't be access or is bad formatted. Url:{arguments.Webservice.Name} Username:{arguments.Username.Name} Password:{arguments.Password.Name}";
                             return string.Empty;
                         }
                     }
                     LogHelper.Instance.LogInfo("Web services Initialized successfully");
 
-                    List<Application> Apps = new List<Application>();
+                    List<Application> _apps = new List<Application>();
                     
                     try
                     {
                         using (CastDomainBLL castDomainBLL = new CastDomainBLL(connection))
                         {
-                            if (arguments.Tag == null)
-                            {
-                                Apps = castDomainBLL.GetCommonTaggedApplications(null);
-                            }
-                            else
-                            {
-                                Apps = castDomainBLL.GetCommonTaggedApplications(arguments.Tag.Name);
-                            }
+                            _apps = castDomainBLL.GetCommonTaggedApplications(arguments.Tag?.Name);
                         }
                     }
                     catch (Exception ex)
@@ -156,19 +144,18 @@ namespace CastReporting.Console
                         LogHelper.Instance.LogInfo("Error occured while trying get applications for the portfolio : " + ex.Message);
                     }
 
-                    Application[] SelectedApps = Apps.ToArray<Application>();
+                    Application[] _selectedApps = _apps.ToArray<Application>();
                     LogHelper.Instance.LogInfo("Applications is the portfolio found successfully");
-                    string[] AppsToIgnorePortfolioResult = PortfolioBLL.BuildPortfolioResult(connection, SelectedApps);
+                    string[] _appsToIgnorePortfolioResult = PortfolioBLL.BuildPortfolioResult(connection, _selectedApps);
                     LogHelper.Instance.LogInfo("Build result for the portfolio");
-                    string[] SnapsToIgnore = null;
-                    List<Application> N_Apps = new List<Application>();
+                    List<Application> _n_apps = new List<Application>();
                     //Remove from Array the Ignored Apps
-                    for (int i = 0; i < SelectedApps.Count(); i++)
+                    foreach (Application app in _selectedApps)
                     {
                         int intAppYes = 0;
-                        foreach (string s in AppsToIgnorePortfolioResult)
+                        foreach (string s in _appsToIgnorePortfolioResult)
                         {
-                            if (s == SelectedApps[i].Name)
+                            if (s == app.Name)
                             {
                                 intAppYes = 1;
                                 break;
@@ -181,18 +168,18 @@ namespace CastReporting.Console
 
                         if (intAppYes == 0)
                         {
-                            N_Apps.Add(SelectedApps[i]);
+                            _n_apps.Add(app);
                         }
                     }
-                    Application[] N_SelectedApps = N_Apps.ToArray();
+                    Application[] _n_selectedApps = _n_apps.ToArray();
 
-                    List<Snapshot> Snapshots = new List<Snapshot>();
+                    List<Snapshot> _snapshots = new List<Snapshot>();
 
                     try
                     {
                         using (CastDomainBLL castDomainBLL = new CastDomainBLL(connection))
                         {
-                            Snapshots = castDomainBLL.GetAllSnapshots(N_SelectedApps);
+                            _snapshots = castDomainBLL.GetAllSnapshots(_n_selectedApps);
                         }
                     }
                     catch (Exception ex)
@@ -200,19 +187,19 @@ namespace CastReporting.Console
                         LogHelper.Instance.LogInfo("Error occured while trying get snapshots of applications for the portfolio : " + ex.Message);
                     }
                     LogHelper.Instance.LogInfo("Snapshots is the portfolio found successfully");
-                    List<Snapshot> N_Snaps = new List<Snapshot>();
-                    if (Snapshots != null)
+                    List<Snapshot> _n_snaps = new List<Snapshot>();
+                    if (_snapshots != null)
                     {
-                        Snapshot[] SelectedApps_Snapshots = Snapshots.ToArray<Snapshot>();
-                        SnapsToIgnore = PortfolioSnapshotsBLL.BuildSnapshotResult(connection, SelectedApps_Snapshots, true);
+                        Snapshot[] _selectedApps_snapshots = _snapshots.ToArray<Snapshot>();
+                        var _snapsToIgnore = PortfolioSnapshotsBLL.BuildSnapshotResult(connection, _selectedApps_snapshots, true);
                         LogHelper.Instance.LogInfo("Build result for snapshots in portfolio");
 
-                        for (int i = 0; i < SelectedApps_Snapshots.Count(); i++)
+                        foreach (Snapshot snap in _selectedApps_snapshots)
                         {
                             int intRemoveYes = 0;
-                            foreach (string s in SnapsToIgnore)
+                            foreach (string s in _snapsToIgnore)
                             {
-                                if (s == SelectedApps_Snapshots[i].Href)
+                                if (s == snap.Href)
                                 {
                                     intRemoveYes = 1;
                                     break;
@@ -224,11 +211,11 @@ namespace CastReporting.Console
                             }
                             if (intRemoveYes == 0)
                             {
-                                N_Snaps.Add(SelectedApps_Snapshots[i]);
+                                _n_snaps.Add(snap);
                             }
                         }
 
-                        Snapshot[] N_SelectedApps_Snapshots = N_Snaps.ToArray();
+                        Snapshot[] _n_selectedApps_snapshots = _n_snaps.ToArray();
 
                         //GenerateReportPortfolio(N_SelectedApps, N_SelectedApps_Snapshots);
                         //string tmpReportFile = String.Empty;
@@ -246,7 +233,7 @@ namespace CastReporting.Console
                                 tmpReportFileFlexi = PathUtil.CreateTempCopyFlexi(workDirectory, arguments.Template.Name);
                             }
                             //Build report
-                            ReportData reportData = new ReportData();
+                            ReportData reportData;
                             if (arguments.Category != null && arguments.Tag != null)
                             {
                                 reportData = new ReportData()
@@ -257,12 +244,12 @@ namespace CastReporting.Console
                                     PreviousSnapshot = null,
                                     RuleExplorer = new RuleBLL(connection),
                                     CurrencySymbol = "$",
-                                    Applications = N_SelectedApps,
+                                    Applications = _n_selectedApps,
                                     Category = arguments.Category.Name,
                                     Tag = arguments.Tag.Name,
-                                    snapshots = N_SelectedApps_Snapshots,
-                                    IgnoresApplications = AppsToIgnorePortfolioResult,
-                                    IgnoresSnapshots = SnapsToIgnore
+                                    snapshots = _n_selectedApps_snapshots,
+                                    IgnoresApplications = _appsToIgnorePortfolioResult,
+                                    IgnoresSnapshots = _snapsToIgnore
                                 };
                             }
                             else if (arguments.Category != null && arguments.Tag == null)
@@ -275,12 +262,12 @@ namespace CastReporting.Console
                                     PreviousSnapshot = null,
                                     RuleExplorer = new RuleBLL(connection),
                                     CurrencySymbol = "$",
-                                    Applications = N_SelectedApps,
+                                    Applications = _n_selectedApps,
                                     Category = arguments.Category.Name,
                                     Tag = null,
-                                    snapshots = N_SelectedApps_Snapshots,
-                                    IgnoresApplications = AppsToIgnorePortfolioResult,
-                                    IgnoresSnapshots = SnapsToIgnore
+                                    snapshots = _n_selectedApps_snapshots,
+                                    IgnoresApplications = _appsToIgnorePortfolioResult,
+                                    IgnoresSnapshots = _snapsToIgnore
                                 };
                             }
                             else if (arguments.Category == null && arguments.Tag != null)
@@ -293,12 +280,12 @@ namespace CastReporting.Console
                                     PreviousSnapshot = null,
                                     RuleExplorer = new RuleBLL(connection),
                                     CurrencySymbol = "$",
-                                    Applications = N_SelectedApps,
+                                    Applications = _n_selectedApps,
                                     Category = null,
                                     Tag = arguments.Tag.Name,
-                                    snapshots = N_SelectedApps_Snapshots,
-                                    IgnoresApplications = AppsToIgnorePortfolioResult,
-                                    IgnoresSnapshots = SnapsToIgnore
+                                    snapshots = _n_selectedApps_snapshots,
+                                    IgnoresApplications = _appsToIgnorePortfolioResult,
+                                    IgnoresSnapshots = _snapsToIgnore
                                 };
                             }
                             else
@@ -311,12 +298,12 @@ namespace CastReporting.Console
                                     PreviousSnapshot = null,
                                     RuleExplorer = new RuleBLL(connection),
                                     CurrencySymbol = "$",
-                                    Applications = N_SelectedApps,
+                                    Applications = _n_selectedApps,
                                     Category = null,
                                     Tag = null,
-                                    snapshots = N_SelectedApps_Snapshots,
-                                    IgnoresApplications = AppsToIgnorePortfolioResult,
-                                    IgnoresSnapshots = SnapsToIgnore
+                                    snapshots = _n_selectedApps_snapshots,
+                                    IgnoresApplications = _appsToIgnorePortfolioResult,
+                                    IgnoresSnapshots = _snapsToIgnore
                                 };
                             }
 
@@ -329,12 +316,10 @@ namespace CastReporting.Console
                             //Set filte report              
                             SetFileName(arguments);
 
-                            if (string.IsNullOrEmpty(settings.ReportingParameter.GeneratedFilePath))
-                                reportPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), arguments.File.Name);
-                            else
-                                reportPath = Path.Combine(settings.ReportingParameter.GeneratedFilePath, arguments.File.Name);
-
-
+                            reportPath = Path.Combine(string.IsNullOrEmpty(settings.ReportingParameter.GeneratedFilePath) 
+                                ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) 
+                                : settings.ReportingParameter.GeneratedFilePath, arguments.File.Name);
+                            
                             if (tmpReportFile.Contains(".xlsx"))
                             {
                                 tmpReportFile = tmpReportFileFlexi;
@@ -343,19 +328,10 @@ namespace CastReporting.Console
                             //Copy report file to the selected destination
                             File.Copy(tmpReportFile, reportPath, true);
                         }
-                        catch (Exception ex)
-                        {
-                            reportPath = String.Empty;
-
-                            throw (ex);
-                        }
                         finally
                         {
-                            if (!String.IsNullOrEmpty(tmpReportFile)) File.Delete(tmpReportFile);
+                            if (!string.IsNullOrEmpty(tmpReportFile)) File.Delete(tmpReportFile);
                         }
-
-
-
                     }
 
 
@@ -363,7 +339,7 @@ namespace CastReporting.Console
                 }
                 catch (Exception ex)
                 {
-                    help = string.Format("An exception occured : {0}", ex);
+                    help = $"An exception occured : {ex}";
                     return string.Empty;
                 }
                 finally
@@ -395,7 +371,7 @@ namespace CastReporting.Console
                     {
                         if (!commonBLL.CheckService())
                         {
-                            help = string.Format("Webservice can't be access or is bad formatted. Url:{0} Username:{1} Password:{2}", arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name);
+                            help = $"Webservice can't be access or is bad formatted. Url:{arguments.Webservice.Name} Username:{arguments.Username.Name} Password:{arguments.Password.Name}";
                             return string.Empty;
                         }
                     }
@@ -406,10 +382,10 @@ namespace CastReporting.Console
                     Application application = GetApplication(arguments.Application.Name, connection);
                     if (application == null)
                     {
-                        help = string.Format("Application {0} can't be found.", arguments.Application.Name);
+                        help = $"Application {arguments.Application.Name} can't be found.";
                         return string.Empty;
                     }
-                    LogHelper.Instance.LogInfo(string.Format("Application {0} Initialized successfully", arguments.Application.Name));
+                    LogHelper.Instance.LogInfo($"Application {arguments.Application.Name} Initialized successfully");
 
                     //Initialize snapshots             
                     SetSnapshots(connection, application);
@@ -418,40 +394,40 @@ namespace CastReporting.Console
                         help = "There is no snapshots for this application.";
                         return string.Empty;
                     }
-                    LogHelper.Instance.LogInfo(string.Format("List of Snapshots Initialized successfully", arguments.Application.Name));
+                    LogHelper.Instance.LogInfo($"List of Snapshots from {arguments.Application.Name} Initialized successfully");
 
                     //Build Application results 
                     ApplicationBLL.BuildApplicationResult(connection, application);
-                    LogHelper.Instance.LogInfo(string.Format("Application results built successfully", arguments.Application.Name));
+                    LogHelper.Instance.LogInfo($"Application {arguments.Application.Name} results built successfully");
 
 
                     //Set current snapshot
                     Snapshot currentSnapshot = GetSnapshotOrDefault(arguments.Snapshot.Current, application.Snapshots, 0);
                     if (currentSnapshot == null)
                     {
-                        help = string.Format("Current snapshot {0} can't be found", arguments.Snapshot.Current.Name);
+                        help = $"Current snapshot {arguments.Snapshot.Current.Name} can't be found";
                         return string.Empty;
                     }
-                    LogHelper.Instance.LogInfo(string.Format("Current snapshot {0} initialized successfully", currentSnapshot.Name));
+                    LogHelper.Instance.LogInfo($"Current snapshot {currentSnapshot.Name} initialized successfully");
 
                     //Build current snapshot results 
                     SnapshotBLL.BuildSnapshotResult(connection, currentSnapshot, true);
-                    LogHelper.Instance.LogInfo(string.Format("Result of current snapshot {0} built successfully", currentSnapshot.Name));
+                    LogHelper.Instance.LogInfo($"Result of current snapshot {currentSnapshot.Name} built successfully");
 
                     //Set previous snapshot
                     Snapshot prevSnapshot = GetSnapshotOrDefault(arguments.Snapshot.Previous, application.Snapshots, 1);
-                    if (arguments.Snapshot.Previous != null && !string.IsNullOrEmpty(arguments.Snapshot.Previous.Name) && prevSnapshot == null)
+                    if (!string.IsNullOrEmpty(arguments.Snapshot.Previous?.Name) && prevSnapshot == null)
                     {
-                        help = string.Format("Previous snapshot {0} can't be found", arguments.Snapshot.Previous.Name);
+                        help = $"Previous snapshot {arguments.Snapshot.Previous.Name} can't be found";
                         return string.Empty;
                     }
-                    if (prevSnapshot != null) LogHelper.Instance.LogInfo(string.Format("Previous snapshot {0} Initialized successfully", prevSnapshot.Name));
+                    if (prevSnapshot != null) LogHelper.Instance.LogInfo($"Previous snapshot {prevSnapshot.Name} Initialized successfully");
 
                     //Build previous snapshot results 
                     if (prevSnapshot != null)
                     {
                         SnapshotBLL.BuildSnapshotResult(connection, prevSnapshot, false);
-                        LogHelper.Instance.LogInfo(string.Format("Result of previous snapshot {0}  built successfully", prevSnapshot.Name));
+                        LogHelper.Instance.LogInfo($"Result of previous snapshot {prevSnapshot.Name}  built successfully");
                     }
 
 
@@ -477,11 +453,9 @@ namespace CastReporting.Console
                     //Set filte report              
                     SetFileName(arguments);
 
-                    string reportPath;
-                    if (string.IsNullOrEmpty(settings.ReportingParameter.GeneratedFilePath))
-                        reportPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), arguments.File.Name);
-                    else
-                        reportPath = Path.Combine(settings.ReportingParameter.GeneratedFilePath, arguments.File.Name);
+                    var reportPath = Path.Combine(string.IsNullOrEmpty(settings.ReportingParameter.GeneratedFilePath)
+                        ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) 
+                        : settings.ReportingParameter.GeneratedFilePath, arguments.File.Name);
 
 
                     File.Copy(tmpReportFile, reportPath, true);
@@ -491,7 +465,7 @@ namespace CastReporting.Console
                 }
                 catch (Exception ex)
                 {
-                    help = string.Format("An exception occured : {0}", ex);
+                    help = $"An exception occured : {ex}";
                     return string.Empty;
                 }
                 finally
@@ -513,36 +487,24 @@ namespace CastReporting.Console
             }
             if (string.IsNullOrEmpty(arguments.File.Name))
             {
-                arguments.File.Name = string.Format
-                ("{0}_{1}{2}"
-                , Path.GetFileNameWithoutExtension(arguments.Template.Name)
-                , DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss")
-                , Path.GetExtension(arguments.Template.Name)
-                );
+                arguments.File.Name = $"{Path.GetFileNameWithoutExtension(arguments.Template.Name)}_{DateTime.Now:yyyy-MM-dd_hh-mm-ss}{Path.GetExtension(arguments.Template.Name)}";
 
             }
         }
 
 
-       
         /// <summary>
         /// 
         /// </summary>
         /// <param name="currentSnapshotName"></param>
         /// <param name="snapshosts"></param>
+        /// <param name="indexDefault"></param>
         /// <returns></returns>
-        private static Snapshot GetSnapshotOrDefault(XmlTagName currentSnapshotName, IEnumerable<Snapshot> snapshosts, Int32 indexDefault)
+        private static Snapshot GetSnapshotOrDefault(XmlTagName currentSnapshotName, IEnumerable<Snapshot> snapshosts, int indexDefault)
         {
-            Snapshot currentSnapshot=null;
-
-            if (currentSnapshotName != null && !string.IsNullOrEmpty(currentSnapshotName.Name))
-            {
-                currentSnapshot = snapshosts.Where(_ => string.Format("{0} - {1}", _.Name, _.Annotation.Version) == currentSnapshotName.Name).FirstOrDefault();
-            }
-            else
-            {
-                currentSnapshot = snapshosts.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).ElementAtOrDefault(indexDefault);
-            }
+            var currentSnapshot = !string.IsNullOrEmpty(currentSnapshotName?.Name)
+                ? snapshosts.FirstOrDefault(_ => $"{_.Name} - {_.Annotation.Version}" == currentSnapshotName.Name) 
+                : snapshosts.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).ElementAtOrDefault(indexDefault);
             return currentSnapshot;
         }
 
@@ -575,7 +537,7 @@ namespace CastReporting.Console
                 applications = castDomainBLL.GetApplications();
             }
 
-            return applications.Where(_ => _.Name == application).FirstOrDefault();
+            return applications.FirstOrDefault(_ => _.Name == application);
         }
 
 
@@ -589,7 +551,7 @@ namespace CastReporting.Console
         public static XmlCastReport ReadArguments(string[] pArg, out string pShowHelp)
         {
             pShowHelp = null;
-            XmlCastReport argument = null;
+            XmlCastReport argument;
 
             // Get Arguments File Name
             using (CRArgumentReader reader = new CRArgumentReader())

@@ -91,6 +91,7 @@ namespace CastReporting.Console.Argument
         public void SaveXML(string pOutputPath)
         {
             if (string.IsNullOrEmpty(pOutputPath))
+                // ReSharper disable once UseNameofExpression
                 throw new ArgumentNullException("pOutputPath");
             using (TextWriter tr = new StreamWriter(pOutputPath, false, Encoding.UTF8))
             {
@@ -102,13 +103,14 @@ namespace CastReporting.Console.Argument
         /// <summary>
         /// Load XML Cast Report
         /// </summary>
-        /// <param name="pOutputPath"></param>
+        /// <param name="pInputPath"></param>
         public static XmlCastReport LoadXML(string pInputPath)
         {
             if (string.IsNullOrEmpty(pInputPath))
+                // ReSharper disable once UseNameofExpression
                 throw new ArgumentNullException("pInputPath");
 
-            XmlCastReport report = null;
+            XmlCastReport report;
             using (TextReader tr = new StreamReader(pInputPath, Encoding.UTF8))
             {
                 XmlSerializer sr = new XmlSerializer(typeof(XmlCastReport));
@@ -128,13 +130,14 @@ namespace CastReporting.Console.Argument
             // TO DO !!
             //if (this.Application == null || string.IsNullOrEmpty(this.Application.Name))
             //    return false;
-            if (this.Webservice == null || string.IsNullOrEmpty(this.Webservice.Name))
+            if (string.IsNullOrEmpty(Webservice?.Name))
                 return false;
-            if (this.Template == null || string.IsNullOrEmpty(this.Template.Name))
+            if (string.IsNullOrEmpty(Template?.Name))
                 return false;
-            if (this.Username == null || string.IsNullOrEmpty(this.Username.Name))
+            if (string.IsNullOrEmpty(Username?.Name))
                 return false;
-            if (this.Password == null || string.IsNullOrEmpty(this.Password.Name))
+            // ReSharper disable once ConvertIfStatementToReturnStatement
+            if (string.IsNullOrEmpty(Password?.Name))
                 return false;
             return true;
         }
@@ -147,11 +150,12 @@ namespace CastReporting.Console.Argument
         {
             try
             {
+                // ReSharper disable once UseStringInterpolation
                 return string.Format
                     ("Cast Report '{0}' to DB '{1}' and template '{2}'"
-                    , (Application != null && !string.IsNullOrEmpty(Application.Name)) ? Application.Name : "?"
-                    , (Database != null && !string.IsNullOrEmpty(Database.Name)) ? Database.Name : "?"
-                    , (Template != null && !string.IsNullOrEmpty(Template.Name)) ? Template.Name : "?"
+                    , (!string.IsNullOrEmpty(Application?.Name)) ? Application.Name : "?"
+                    , (!string.IsNullOrEmpty(Database?.Name)) ? Database.Name : "?"
+                    , (!string.IsNullOrEmpty(Template?.Name)) ? Template.Name : "?"
                     );
             }
             catch
