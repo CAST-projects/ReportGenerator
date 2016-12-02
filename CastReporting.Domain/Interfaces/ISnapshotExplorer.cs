@@ -34,7 +34,7 @@ namespace CastReporting.Domain.Interfaces
         IEnumerable<Result> GetSizingMeasureResults(string snapshotHref, string sizingMeasure);
         IEnumerable<Result> GetQualityIndicatorResults(string snapshotHref, string qualityIndicator);
 
-        IEnumerable<CastReporting.Domain.MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string RuleId, int count);
+        IEnumerable<MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string ruleId, int count);
 
         /// <summary>
         /// 

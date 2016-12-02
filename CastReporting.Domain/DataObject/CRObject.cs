@@ -14,10 +14,7 @@
  *
  */
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.ComponentModel;
 using System.Runtime.Serialization;
 
 namespace CastReporting.Domain
@@ -66,18 +63,12 @@ namespace CastReporting.Domain
 
         #endregion PROPERTIES
 
-        public string DomainId
-        {
-            get
-            {
-                return Href.Split('/').FirstOrDefault();
-            }
-        }
+        public string DomainId => Href.Split('/').FirstOrDefault();
 
         #region METHODS
         public override string ToString()
         {
-            return string.Format("{0}", Name);
+            return $"{Name}";
         }
 
 
@@ -87,8 +78,8 @@ namespace CastReporting.Domain
 
 
             return Href != null && 
-                   (obj as CRObject).Href!=null  && 
-                   Href.Equals((obj as CRObject).Href);
+                   ((CRObject) obj).Href!=null  && 
+                   Href.Equals(((CRObject) obj).Href);
         }
 
         /// <summary>
@@ -97,7 +88,8 @@ namespace CastReporting.Domain
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return Href!=null? Href.GetHashCode():String.Empty.GetHashCode();
+            // ReSharper disable once NonReadonlyMemberInGetHashCode
+            return Href?.GetHashCode() ?? string.Empty.GetHashCode();
         }
 
         #endregion METHODS

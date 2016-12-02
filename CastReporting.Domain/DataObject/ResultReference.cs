@@ -13,7 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Runtime.Serialization;
 
 namespace CastReporting.Domain
@@ -46,7 +46,7 @@ namespace CastReporting.Domain
         /// 
         /// </summary>
         [DataMember(Name = "key")]
-        public int Key {get; set;}
+        public int Key {get; set; }
 
 
        /// <summary>
@@ -59,7 +59,7 @@ namespace CastReporting.Domain
             if (!(obj is ResultReference)) return false;
 
 
-            return Key.Equals((obj as ResultReference).Key);
+            return Key.Equals(((ResultReference) obj).Key);
         }
 
         /// <summary>
@@ -68,6 +68,7 @@ namespace CastReporting.Domain
         /// <returns></returns>
         public override int GetHashCode()
         {
+            // ReSharper disable once NonReadonlyMemberInGetHashCode
             return Key.GetHashCode();
         }
 

@@ -13,7 +13,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Runtime.Serialization;
 
 namespace CastReporting.Domain
@@ -22,6 +21,7 @@ namespace CastReporting.Domain
     public class CommonCategories
     {  
         [DataMember(Name = "key")]
+        // ReSharper disable once InconsistentNaming
         public string key { get; set; }
 
         [DataMember(Name = "label")]

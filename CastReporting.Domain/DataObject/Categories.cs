@@ -21,6 +21,7 @@ namespace CastReporting.Domain
     public class Category
     {
         [DataMember(Name = "key")]
+        // ReSharper disable once InconsistentNaming
         public int key { get; set; }
 
         [DataMember(Name = "name")]

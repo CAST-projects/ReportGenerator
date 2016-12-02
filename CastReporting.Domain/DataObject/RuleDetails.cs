@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace CastReporting.Domain
 {
@@ -30,7 +29,7 @@ namespace CastReporting.Domain
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("{0}-{1}-{2}", Key, Name, Href);
+            return $"{Key}-{Name}-{Href}";
         }
 
 
@@ -45,8 +44,8 @@ namespace CastReporting.Domain
 
 
             return Href != null &&
-                   (obj as RuleDetails).Href != null &&
-                   Href.Equals((obj as RuleDetails).Href);
+                   ((RuleDetails) obj).Href != null &&
+                   Href.Equals(((RuleDetails) obj).Href);
         }
 
         /// <summary>
@@ -55,7 +54,8 @@ namespace CastReporting.Domain
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return Href != null ? Href.GetHashCode() : String.Empty.GetHashCode();
+            // ReSharper disable once NonReadonlyMemberInGetHashCode
+            return Href?.GetHashCode() ?? string.Empty.GetHashCode();
         }
 
     }

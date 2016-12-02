@@ -13,7 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Runtime.Serialization;
 
 namespace CastReporting.Domain
@@ -28,7 +28,7 @@ namespace CastReporting.Domain
        /// 
        /// </summary>
        [DataMember(Name = "thresholds")]
-       public Double[] thresholds {get; set;}
+       public double[] Thresholds {get; set;}
 
 
     }
