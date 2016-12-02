@@ -13,7 +13,8 @@
  * limitations under the License.
  *
  */
-using System;
+
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CastReporting.Domain;
 using System.Threading.Tasks;
@@ -31,13 +32,15 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
+        // ReSharper disable once FieldCanBeMadeReadOnly.Local
+        // ReSharper disable once InconsistentNaming
         Application _Application;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="currentSnapshot"></param>
-        /// <param name="previousSnapshot"></param>
+        /// <param name="connection"></param>
+        /// <param name="application"></param>
         public ApplicationBLL(WSConnection connection, Application application)
             : base(connection)
         {
@@ -97,19 +100,19 @@ namespace CastReporting.BLL
                 {
                     if (VersionUtil.IsAdgVersion82Compliant(_Application.Version))
                     {
-                        string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
+                        const string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
                         _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasures, "$all", string.Empty, string.Empty).ToList();
                     }
                     else
                     {
-                        string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                        const string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                         _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasuresOld, "$all", string.Empty, string.Empty).ToList();
                     }
                 }
                 catch (System.Net.WebException ex)
                 {
                     LogHelper.Instance.LogInfo(ex.Message);
-                    string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                    const string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                     _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasuresOld, "$all", string.Empty, string.Empty).ToList();
                 }
                 
@@ -129,11 +132,13 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
-        static public void BuildApplicationResult(WSConnection connection, Application application)
+        [SuppressMessage("ReSharper", "AccessToDisposedClosure")]
+        public static void BuildApplicationResult(WSConnection connection, Application application)
         {
             //Build Quality Indicators
             using (ApplicationBLL applicationBLL = new ApplicationBLL(connection, application))
             {
+                
                 Task taskQualityIndicators = new Task(() => applicationBLL.SetQualityIndicators());
                 taskQualityIndicators.Start();
 

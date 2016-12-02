@@ -20,7 +20,6 @@ using System.Linq;
 using CastReporting.Domain;
 using CastReporting.Repositories;
 using CastReporting.Repositories.Interfaces;
-using System;
 
 namespace CastReporting.BLL
 {
@@ -33,7 +32,7 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <returns></returns>
-        static public List<FileInfo> GetTemplateFileList()
+        public static List<FileInfo> GetTemplateFileList()
         {
             using (ISettingRepository setttingRepository = new SettingsRepository())
             {
@@ -47,7 +46,7 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <returns></returns>
-        static public List<FileInfo> GetTemplateFileListPortfolio()
+        public static List<FileInfo> GetTemplateFileListPortfolio()
         {
             using (ISettingRepository setttingRepository = new SettingsRepository())
             {
@@ -62,7 +61,7 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <returns></returns>
-        static public string GetApplicationPath()
+        public static string GetApplicationPath()
         {
             using (ISettingRepository setttingRepository = new SettingsRepository())
             {
@@ -74,7 +73,7 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <returns></returns>
-        static public Setting GetSetting()
+        public static Setting GetSetting()
         {
             using (ISettingRepository setttingRepository = new SettingsRepository())
             {
@@ -86,7 +85,7 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <returns></returns>
-        static public void SaveSetting(Setting setting)
+        public static void SaveSetting(Setting setting)
         {
             using (ISettingRepository setttingRepository = new SettingsRepository())
             {
@@ -98,7 +97,7 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <returns></returns>
-        static public Setting AddConnection(WSConnection connection, bool isActive, out StatesEnum state)
+        public static Setting AddConnection(WSConnection connection, bool isActive, out StatesEnum state)
         {
             using (ISettingRepository settingRepository = new SettingsRepository())
             {
@@ -116,6 +115,7 @@ namespace CastReporting.BLL
                 }
                 else
                 {
+                    // ReSharper disable once RedundantAssignment
                     state = StatesEnum.ConnectionAlreadyExist;
                 }
 
@@ -141,7 +141,7 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <returns></returns>
-        static public Setting RemoveConnection(WSConnection connection)
+        public static Setting RemoveConnection(WSConnection connection)
         {
             using (ISettingRepository setttingRepository = new SettingsRepository())
             {
