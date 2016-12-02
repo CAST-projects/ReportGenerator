@@ -108,15 +108,10 @@ namespace CastReporting.Domain
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("{0} - {1}", Name, (Annotation!=null)?Annotation.Version:string.Empty);
+            return $"{Name} - {((Annotation != null) ? Annotation.Version : string.Empty)}";
         }
 
-        public long Id
-        {
-            get
-            {
-                return long.Parse(Href.Split('/').LastOrDefault());
-            }
-        }
+        // ReSharper disable once AssignNullToNotNullAttribute
+        public long Id => long.Parse(Href.Split('/').LastOrDefault());
     }
 }

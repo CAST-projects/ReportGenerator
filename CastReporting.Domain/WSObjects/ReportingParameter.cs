@@ -14,10 +14,6 @@
  *
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CastReporting.Domain
 {
@@ -27,44 +23,44 @@ namespace CastReporting.Domain
          /// <summary>
          /// 
          /// </summary>
-         public Int32 ApplicationSizeLimitSupSmall { get; set; }
+         public int ApplicationSizeLimitSupSmall { get; set; }
 
          /// <summary>
          /// 
          /// </summary>
-         public Int32 ApplicationSizeLimitSupMedium { get; set; }
-
-
-         /// <summary>
-         /// 
-         /// </summary>
-         public Int32 ApplicationSizeLimitSupLarge { get; set; }
-
-         /// <summary>
-         /// 
-         /// </summary>
-         public Double ApplicationQualityVeryLow { get; set; }
-
-         /// <summary>
-         /// 
-         /// </summary>
-         public Double ApplicationQualityLow { get; set; }
-
-         /// <summary>
-         /// 
-         /// </summary>
-         public Double ApplicationQualityMedium { get; set; }
+         public int ApplicationSizeLimitSupMedium { get; set; }
 
 
          /// <summary>
          /// 
          /// </summary>
-         public Double ApplicationQualityGood { get; set; }
+         public int ApplicationSizeLimitSupLarge { get; set; }
 
          /// <summary>
          /// 
          /// </summary>
-         public Int32 NbResultDefault { get; set; }
+         public double ApplicationQualityVeryLow { get; set; }
+
+         /// <summary>
+         /// 
+         /// </summary>
+         public double ApplicationQualityLow { get; set; }
+
+         /// <summary>
+         /// 
+         /// </summary>
+         public double ApplicationQualityMedium { get; set; }
+
+
+         /// <summary>
+         /// 
+         /// </summary>
+         public double ApplicationQualityGood { get; set; }
+
+         /// <summary>
+         /// 
+         /// </summary>
+         public int NbResultDefault { get; set; }
 
          /// <summary>
          /// 

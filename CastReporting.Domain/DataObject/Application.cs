@@ -13,9 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
 
@@ -45,7 +43,7 @@ namespace CastReporting.Domain
         /// <summary>
         /// 
         /// </summary>
-        public IEnumerable<Domain.System> Systems { get; set; }
+        public IEnumerable<System> Systems { get; set; }
         
         public string SystemNames {
         	get {

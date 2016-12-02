@@ -65,14 +65,7 @@ namespace CastReporting.UI.WPF.View
         }
         
         private readonly System.Windows.Input.CommandBindingCollection _commandBindings;
-        public new System.Windows.Input.CommandBindingCollection CommandBindings
-        {
-            get
-            {
-                return _commandBindings;
-            }
-        }
-
+        public new System.Windows.Input.CommandBindingCollection CommandBindings => _commandBindings;
 
 
         /// <summary>

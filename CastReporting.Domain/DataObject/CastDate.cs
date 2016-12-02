@@ -27,20 +27,20 @@ namespace CastReporting.Domain
         /// <summary>
         /// 
         /// </summary>        
-        private Double? _Time;
+        private double? _time;
         [DataMember(Name = "time")]
-        public Double? Time 
+        public double? Time 
         {
             set
             {
-                _Time = value;
+                _time = value;
 
                 DateTime date = new DateTime(1970, 01, 01, 0, 0, 0, DateTimeKind.Utc);
-                DateSnapShot = _Time.HasValue ? date.AddMilliseconds(_Time.Value).ToLocalTime() : (DateTime?)null;
+                DateSnapShot = _time.HasValue ? date.AddMilliseconds(_time.Value).ToLocalTime() : (DateTime?)null;
             }
             get
             {
-                return _Time;
+                return _time;
             }     
         }
 

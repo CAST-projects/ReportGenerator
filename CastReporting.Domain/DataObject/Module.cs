@@ -14,12 +14,8 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Runtime.Serialization;
-using System.Globalization;
 
 namespace CastReporting.Domain
 {
@@ -32,12 +28,6 @@ namespace CastReporting.Domain
         /// <summary>
         /// 
         /// </summary>
-        public Int32 Id
-        {
-            get
-            {
-                return Int32.Parse(Href.Split('/').ElementAt(2));
-            }
-        }
+        public int Id => int.Parse(Href.Split('/').ElementAt(2));
     }
 }

@@ -16,9 +16,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Runtime.Serialization;
-
 
 namespace CastReporting.Domain
 {
@@ -31,36 +28,32 @@ namespace CastReporting.Domain
         /// <summary>
         /// 
         /// </summary>       
-        private ReportingParameter _ReportingParameter;
+        private ReportingParameter _reportingParameter;
         public ReportingParameter ReportingParameter
         {
             get
             {
-                if (_ReportingParameter == null) _ReportingParameter = new ReportingParameter();
-
-                return _ReportingParameter;
+                return _reportingParameter ?? (_reportingParameter = new ReportingParameter());
             }
             set
             {
-                _ReportingParameter = value;
+                _reportingParameter = value;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private List<WSConnection> _WSConnections;
+        private List<WSConnection> _wsConnections;
         public List<WSConnection> WSConnections 
         {
             get
             {
-                if (_WSConnections == null) _WSConnections = new List<WSConnection>();
-                
-                return _WSConnections;
+                return _wsConnections ?? (_wsConnections = new List<WSConnection>());
             }
             set
             {
-                _WSConnections = value;
+                _wsConnections = value;
             }
         }
         
@@ -77,14 +70,13 @@ namespace CastReporting.Domain
         /// <summary>
         /// 
         /// </summary>
-        public void ChangeActiveConnection(string NewActiveUrl)
+        public void ChangeActiveConnection(string newActiveUrl)
         {
             WSConnection previousActiveconnection= WSConnections.FirstOrDefault(_ => _.IsActive);
             if (previousActiveconnection!=null) previousActiveconnection.IsActive = false;
 
-            WSConnection newActiveConnection = WSConnections.FirstOrDefault(_ => _.Url.Equals(NewActiveUrl));
-            newActiveConnection.IsActive = true;
-     
+            WSConnection newActiveConnection = WSConnections.FirstOrDefault(_ => _.Url.Equals(newActiveUrl));
+            if (newActiveConnection != null) newActiveConnection.IsActive = true;
         }
     }
 }
