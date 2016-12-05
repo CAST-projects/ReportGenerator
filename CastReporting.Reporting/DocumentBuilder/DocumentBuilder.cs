@@ -30,7 +30,7 @@ namespace CastReporting.Reporting.Builder
         /// 
         /// </summary>
         /// <param name="reportData"></param>
-        public DocumentBuilderBase(ReportData reportData)
+        protected DocumentBuilderBase(ReportData reportData)
         {
             ReportData = reportData;
 
@@ -75,39 +75,37 @@ namespace CastReporting.Reporting.Builder
 
         #region Publics
 
-
         /// <summary>
         /// Parse the document in order to proceed to the alimentation of all blocks.
         /// </summary>
-        /// <param name="buildContent">Indication of the content building (default value = false).</param>
         public virtual void ParseDocument()
         {
-            this.ParseDocument(Package);
+            ParseDocument(Package);
         }
+
         /// <summary>
         /// Parse the document in order to proceed to the alimentation of all blocks into the given container.
         /// </summary>
         /// <param name="container">Container to build.</param>
-        /// <param name="buildContent">Indication of the content building (default value = false).</param>
         public virtual void ParseDocument(OpenXmlPartContainer container)
         {
             IList<BlockItem> blocks = GetBlocks(container);
             foreach (BlockItem block in blocks)
             {
-                BlockConfiguration config = this.GetBlockConfiguration(block);
+                BlockConfiguration config = GetBlockConfiguration(block);
                 try
                 {
                     if (TextBlock.IsMatching(config.Type))
                     {
-                        TextBlock.BuildContent(this.ReportData, container, block, config.Name, config.Options);
+                        TextBlock.BuildContent(ReportData, container, block, config.Name, config.Options);
                     }
                     else if (TableBlock.IsMatching(config.Type))
                     {
-                        TableBlock.BuildContent(this.ReportData, container, block, config.Name, config.Options);
+                        TableBlock.BuildContent(ReportData, container, block, config.Name, config.Options);
                     }
                     else if (GraphBlock.IsMatching(config.Type))
                     {
-                        GraphBlock.BuildContent(this.ReportData, Package,block, config.Name, config.Options);
+                        GraphBlock.BuildContent(ReportData, Package,block, config.Name, config.Options);
                     }
                     else
                     {
@@ -116,11 +114,7 @@ namespace CastReporting.Reporting.Builder
                 }
                 catch (Exception exception)
                 {
-                    string logMessage = string.Format
-                        ("Exception thrown during document parsing (BlockType : {0}, BlockName : {1})"
-                        , null != config ? config.Type : string.Empty
-                        , null != config ? config.Name : string.Empty
-                        );
+                    string logMessage = $"Exception thrown during document parsing (BlockType : {(null != config ? config.Type : string.Empty)}, BlockName : {(null != config ? config.Name : string.Empty)})";
                     LogHelper.Instance.LogError(logMessage, exception);
                 }
             }
@@ -168,7 +162,7 @@ namespace CastReporting.Reporting.Builder
                 back.Name = optionList[1];
                 if (optionList.Length > 2 && string.IsNullOrWhiteSpace(blockOptionStr))
                 {
-                    blockOptionStr += string.Format(",{0}", optionList.Skip(2).Aggregate((current, next) => string.Format("{0},{1}", current, next)));
+                    blockOptionStr += $",{optionList.Skip(2).Aggregate((current, next) => $"{current},{next}")}";
                 }
                 back.Options = string.IsNullOrWhiteSpace(blockOptionStr) ? new Dictionary<string, string>() : ParseOptions(blockOptionStr);
             }
@@ -182,16 +176,14 @@ namespace CastReporting.Reporting.Builder
         protected Dictionary<string, string> ParseOptions(string strOption)
         {
             Dictionary<string, string> options = new Dictionary<string, string>();
-            string[] allOpt = strOption.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] allOpt = strOption.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string oneOpt in allOpt)
             {
                 string[] defOpt = oneOpt.Split('=');
-                if (defOpt.Length >= 1)
-                {
-                    string val = "";
-                    if (defOpt.Length >= 2) val = defOpt[1];
-                    options.Add(defOpt[0], val);
-                }
+                if (defOpt.Length < 1) continue;
+                string val = "";
+                if (defOpt.Length >= 2) val = defOpt[1];
+                options.Add(defOpt[0], val);
             }
             return options;
         }
@@ -201,27 +193,26 @@ namespace CastReporting.Reporting.Builder
         /// Get Package
         /// </summary>
         /// <param name="pPath"></param>
+        /// <param name="reportType"></param>
         /// <returns></returns>
         private static OpenXmlPackage GetPackage(string pPath, FormatType reportType)
         {
-            if (!string.IsNullOrWhiteSpace(pPath))
+            if (string.IsNullOrWhiteSpace(pPath)) return null;
+            LogHelper.Instance.LogInfoFormat("Opening '{0}'...", pPath);
+            // ReSharper disable once SwitchStatementMissingSomeCases
+            switch (reportType)
             {
-                
-                LogHelper.Instance.LogInfoFormat("Opening '{0}'...", pPath);
-                switch (reportType)
-                {
-                    case FormatType.Word: 
-                        { 
-                            return WordprocessingDocument.Open(pPath, true); 
-                        }
-                    case FormatType.PowerPoint: 
-                        { 
-                            return PresentationDocument.Open(pPath, true); 
-                        }
-                    case FormatType.Excel: 
-                        { 
-                            return SpreadsheetDocument.Open(pPath, true); 
-                        }
+                case FormatType.Word: 
+                { 
+                    return WordprocessingDocument.Open(pPath, true); 
+                }
+                case FormatType.PowerPoint: 
+                { 
+                    return PresentationDocument.Open(pPath, true); 
+                }
+                case FormatType.Excel: 
+                { 
+                    return SpreadsheetDocument.Open(pPath, true); 
                 }
             }
             return null;

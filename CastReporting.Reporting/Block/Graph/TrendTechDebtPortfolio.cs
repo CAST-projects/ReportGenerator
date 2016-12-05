@@ -28,7 +28,7 @@ using Cast.Util.Date;
 namespace CastReporting.Reporting.Block.Graph
 {
     [Block("PF_TREND_TECH_DEBT")]
-    class TrendTechDebtPortfolio : GraphBlock
+    internal class TrendTechDebtPortfolio : GraphBlock
     {
 
         #region METHODS
@@ -36,8 +36,8 @@ namespace CastReporting.Reporting.Block.Graph
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
 
-            var rowData = new List<String>();
-            rowData.AddRange(new string[] {
+            var rowData = new List<string>();
+            rowData.AddRange(new[] {
 				" ",
 				Labels.DebtRemoved + " (" + reportData.CurrencySymbol + ")",
 				Labels.DebtAdded + " (" + reportData.CurrencySymbol + ")",
@@ -54,14 +54,14 @@ namespace CastReporting.Reporting.Block.Graph
 
             #region Fetch SnapshotsPF
 
-            if (reportData != null && reportData.Applications != null && reportData.snapshots != null)
+            if (reportData.Applications != null && reportData.snapshots != null)
             {
-                Snapshot[] AllSnapshots = reportData.snapshots;
+                Snapshot[] _allSnapshots = reportData.snapshots;
 
                 int generateQuater = 6;
-                DateTime DateNow = DateTime.Now;
-                int currentYear = DateNow.Year;
-                int currentQuater = DateUtil.GetQuarter(DateNow);
+                DateTime _dateNow = DateTime.Now;
+                int currentYear = _dateNow.Year;
+                int currentQuater = DateUtil.GetQuarter(_dateNow);
 
                 for (int i = generateQuater; i > 0; i--)
                 {
@@ -75,41 +75,39 @@ namespace CastReporting.Reporting.Block.Graph
 
                 for (int i = 0; i < dtDates.Rows.Count; i++)
                 {
-                    double? RemovedTechnicalDebt = 0;
-                    double? AddedTechnicalDebt = 0;
-                    double? TotalTechnicalDebt = 0;
+                    double? _removedTechnicalDebt = 0;
+                    double? _addedTechnicalDebt = 0;
+                    double? _totalTechnicalDebt = 0;
 
-                    if (AllSnapshots.Count() > 0)
+                    if (_allSnapshots.Length > 0)
                     {
-                        foreach (Snapshot snapshot in AllSnapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
+                        foreach (Snapshot snapshot in _allSnapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
                         {
-                            DateTime SnapshotDate = Convert.ToDateTime(snapshot.Annotation.Date.DateSnapShot.Value);
+                            if (snapshot.Annotation.Date.DateSnapShot == null) continue;
+                            DateTime _snapshotDate = Convert.ToDateTime(snapshot.Annotation.Date.DateSnapShot.Value);
 
                             int intQuarter = Convert.ToInt32(dtDates.Rows[i]["Quarter"]);
                             int intYear = Convert.ToInt32(dtDates.Rows[i]["Year"]);
 
-                            int intSnapshotQuarter = DateUtil.GetQuarter(SnapshotDate);
-                            int intSnapshotYear = SnapshotDate.Year;
+                            int intSnapshotQuarter = DateUtil.GetQuarter(_snapshotDate);
+                            int intSnapshotYear = _snapshotDate.Year;
 
-                            if (intQuarter == intSnapshotQuarter && intYear == intSnapshotYear)
-                            {
-                                RemovedTechnicalDebt = RemovedTechnicalDebt + MeasureUtility.GetRemovedTechDebtMetric(snapshot);
-                                AddedTechnicalDebt = AddedTechnicalDebt + MeasureUtility.GetAddedTechDebtMetric(snapshot);
-                                TotalTechnicalDebt = TotalTechnicalDebt + MeasureUtility.GetTechnicalDebtMetric(snapshot);
-                            }
-
+                            if (intQuarter != intSnapshotQuarter || intYear != intSnapshotYear) continue;
+                            _removedTechnicalDebt = _removedTechnicalDebt + MeasureUtility.GetRemovedTechDebtMetric(snapshot);
+                            _addedTechnicalDebt = _addedTechnicalDebt + MeasureUtility.GetAddedTechDebtMetric(snapshot);
+                            _totalTechnicalDebt = _totalTechnicalDebt + MeasureUtility.GetTechnicalDebtMetric(snapshot);
                         }
                     }
 
-                    dtDates.Rows[i]["RemovedTechnicalDebt"] = RemovedTechnicalDebt * -1;
-                    dtDates.Rows[i]["AddedTechnicalDebt"] = AddedTechnicalDebt;
-                    dtDates.Rows[i]["TotalTechnicalDebt"] = TotalTechnicalDebt;
+                    dtDates.Rows[i]["RemovedTechnicalDebt"] = _removedTechnicalDebt * -1;
+                    dtDates.Rows[i]["AddedTechnicalDebt"] = _addedTechnicalDebt;
+                    dtDates.Rows[i]["TotalTechnicalDebt"] = _totalTechnicalDebt;
                 }
 
                 for (int i = 0; i < dtDates.Rows.Count; i++)
                 {
-                    string strQuarter = dtDates.Rows[i]["Year"].ToString() + " Q" + dtDates.Rows[i]["Quarter"].ToString();
-                    rowData.AddRange(new string[] {
+                    string strQuarter = dtDates.Rows[i]["Year"] + " Q" + dtDates.Rows[i]["Quarter"];
+                    rowData.AddRange(new[] {
                                                     strQuarter,
                                                     dtDates.Rows[i]["RemovedTechnicalDebt"].ToString(),
                                                     dtDates.Rows[i]["AddedTechnicalDebt"].ToString(),

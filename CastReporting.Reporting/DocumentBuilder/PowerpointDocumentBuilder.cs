@@ -18,6 +18,7 @@ using System.Linq;
 using System.Xml.Linq;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Presentation;
 using OXD = DocumentFormat.OpenXml.Drawing;
@@ -44,12 +45,12 @@ namespace CastReporting.Reporting.Builder
         /// </summary>
         public override void BuildDocument()
         {
-            var pptDoc = (PresentationDocument)base.Package;
-            if (null == pptDoc || null == pptDoc.PresentationPart) { return; }
+            var pptDoc = (PresentationDocument)Package;
+            if (pptDoc?.PresentationPart == null) { return; }
             foreach (var slidepart in pptDoc.PresentationPart.SlideParts)
             {
                 ApplyCorrectionOnSlide(slidepart.Slide);
-                this.ParseDocument(slidepart);
+                ParseDocument(slidepart);
             }
         }
         /// <summary>
@@ -90,7 +91,7 @@ namespace CastReporting.Reporting.Builder
         /// 
         /// </summary>
         /// <param name="slide"></param>
-        private void ApplyCorrectionOnSlide(Slide slide)
+        private static void ApplyCorrectionOnSlide(OpenXmlElement slide)
         {
             foreach (var run in slide.Descendants<OXD.Run>())
             {

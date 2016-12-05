@@ -35,11 +35,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format
-                ("Block item - {0} - {1}"
-                , (XBlock != null) ? XBlock.NodeType.ToString() : "?"
-                , (XBlock != null) ? XBlock.Name : "?"
-                );
+            return $"Block item - {XBlock?.NodeType.ToString() ?? "?"} - {XBlock?.Name ?? "?"}";
         }
         #endregion
     }

@@ -37,7 +37,7 @@ namespace CastReporting.Reporting.Atrributes
         /// <param name="name">Block type name.</param>
         public BlockTypeAttribute(string name)
         {
-            this.Name = name;
+            Name = name;
         }
         #endregion CONSTRUCTORS
     }

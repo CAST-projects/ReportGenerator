@@ -23,31 +23,32 @@ using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace CastReporting.Reporting.Block.Graph
 {
    
     [Block("TREND_COMPLIANCE")]
-    class TrendCompliance : GraphBlock
+    internal class TrendCompliance : GraphBlock
     {
      
         #region METHODS
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            double minValy = Int16.MaxValue;
+            double minValy = short.MaxValue;
             double maxValy = 0;
-            double stepV = 0;
+            double stepV;
             int count = 0;         
 
             bool hasVerticalZoom = options.ContainsKey("ZOOM");
-            if (!options.ContainsKey("ZOOM") || !Double.TryParse(options["ZOOM"], out stepV)) {
+            if (!options.ContainsKey("ZOOM") || !double.TryParse(options["ZOOM"], out stepV)) {
                 stepV = 1;
             }
           
             
-            var rowData = new List<String>();
-			rowData.AddRange(new string[] {
+            var rowData = new List<string>();
+			rowData.AddRange(new[] {
 				" ",
 				Labels.Prog,
 				Labels.Arch,
@@ -57,44 +58,44 @@ namespace CastReporting.Reporting.Block.Graph
 
           
             #region Previous Snapshots
-			int nbSnapshots = 0;
-			nbSnapshots = (reportData != null && reportData.Application.Snapshots != null) ? reportData.Application.Snapshots.Count() : 0;
-			if (nbSnapshots > 0) {
-               
-                foreach (Snapshot snapshot in reportData.Application.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot)) {
-                    BusinessCriteriaDTO bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(snapshot, true);
-                    double? locValue = MeasureUtility.GetCodeLineNumber(snapshot);
-                    string prevSnapshotDate = snapshot.Annotation.Date.DateSnapShot.HasValue ? snapshot.Annotation.Date.DateSnapShot.Value.ToOADate().ToString() 
-                                                                                             : string.Empty;
-                    rowData.AddRange
-                        (new string[] { prevSnapshotDate
-                            , bcGrade.ProgrammingPractices.GetValueOrDefault().ToString()
-                            , bcGrade.ArchitecturalDesign.GetValueOrDefault().ToString()
-                            , bcGrade.Documentation.GetValueOrDefault().ToString()
-                            , locValue.GetValueOrDefault().ToString()
-                            });
-                    List<double> values = new List<double>() { bcGrade.ProgrammingPractices.GetValueOrDefault(), 
-                                                               bcGrade.ArchitecturalDesign.GetValueOrDefault(), 
-                                                               bcGrade.Documentation.GetValueOrDefault() };
-                    minValy = Math.Min( minValy, values.Min());
-                    maxValy = Math.Max( maxValy, values.Max());
-                }
-				count = nbSnapshots;
-            }
+
+            var nbSnapshots = reportData?.Application.Snapshots?.Count() ?? 0;
+			if (nbSnapshots > 0)
+			{
+			    var _snapshots = reportData?.Application?.Snapshots?.OrderBy(_ => _.Annotation.Date.DateSnapShot);
+			    if (_snapshots != null)
+			        foreach (Snapshot snapshot in _snapshots) {
+			            BusinessCriteriaDTO bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(snapshot, true);
+			            double? locValue = MeasureUtility.GetCodeLineNumber(snapshot);
+			            string prevSnapshotDate = snapshot.Annotation.Date.DateSnapShot?.ToOADate().ToString(CultureInfo.CurrentCulture) ?? string.Empty;
+			            rowData.AddRange
+			            (new[] { prevSnapshotDate
+			                , bcGrade.ProgrammingPractices.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
+			                , bcGrade.ArchitecturalDesign.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
+			                , bcGrade.Documentation.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
+			                , locValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
+			            });
+			            List<double> values = new List<double>() { bcGrade.ProgrammingPractices.GetValueOrDefault(), 
+			                bcGrade.ArchitecturalDesign.GetValueOrDefault(), 
+			                bcGrade.Documentation.GetValueOrDefault() };
+			            minValy = Math.Min( minValy, values.Min());
+			            maxValy = Math.Max( maxValy, values.Max());
+			        }
+			    count = nbSnapshots;
+			}
             #endregion Previous Snapshots               
 
             #region just 1 snapshot
 			if (nbSnapshots == 1) {
-                BusinessCriteriaDTO bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, true);
-                double? locValue = MeasureUtility.GetCodeLineNumber(reportData.CurrentSnapshot);
-                string prevSnapshotDate = reportData.CurrentSnapshot.Annotation.Date.DateSnapShot.HasValue
-                        ? reportData.CurrentSnapshot.Annotation.Date.DateSnapShot.Value.ToOADate().ToString() : string.Empty;
+                BusinessCriteriaDTO bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData?.CurrentSnapshot, true);
+                double? locValue = MeasureUtility.GetCodeLineNumber(reportData?.CurrentSnapshot);
+                string prevSnapshotDate = reportData?.CurrentSnapshot.Annotation.Date.DateSnapShot?.ToOADate().ToString(CultureInfo.CurrentCulture) ?? string.Empty;
                 rowData.AddRange
-                    (new string[] { prevSnapshotDate
-                            , bcGrade.ProgrammingPractices.GetValueOrDefault().ToString()
-                            , bcGrade.ArchitecturalDesign.GetValueOrDefault().ToString()
-                            , bcGrade.Documentation.GetValueOrDefault().ToString()
-                            , locValue.GetValueOrDefault().ToString()
+                    (new[] { prevSnapshotDate
+                            , bcGrade.ProgrammingPractices.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
+                            , bcGrade.ArchitecturalDesign.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
+                            , bcGrade.Documentation.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
+                            , locValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
                             });
 
                 List<double> values = new List<double>() { bcGrade.ProgrammingPractices.GetValueOrDefault(), 

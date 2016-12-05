@@ -26,6 +26,7 @@ namespace CastReporting.Reporting.Helper
         /// <para>Example : "3.65 %" or "10.4 %" or "243 %" or "10 052 %"</para>
         /// </summary>
         /// <param name="pValue">Numeric value to display</param>
+        /// <param name="pWidthPostiveSign"></param>
         /// <returns>Displayed text</returns>
         public static string FormatPercent(this double? pValue, bool pWidthPostiveSign) {
             if (!pValue.HasValue)
@@ -36,7 +37,7 @@ namespace CastReporting.Reporting.Helper
 
             var nfi = (NumberFormatInfo)CultureInfo.CurrentCulture.NumberFormat.Clone();
             var tmp = Math.Abs(roundedValue * 100);
-            nfi.PercentDecimalDigits = (tmp % 1 == 0 || tmp >= 99.945) ? 0 : (tmp >= 9.9945) ? 1 : 2;
+            nfi.PercentDecimalDigits = (Math.Abs(tmp % 1) < 0.00001 || tmp >= 99.945) ? 0 : (tmp >= 9.9945) ? 1 : 2;
             return sign + roundedValue.ToString("P", nfi);
         }
 

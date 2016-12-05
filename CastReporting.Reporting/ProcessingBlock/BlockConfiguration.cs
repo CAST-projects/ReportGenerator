@@ -13,10 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CastReporting.Reporting.Builder.BlockProcessing
 {
@@ -36,7 +33,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("Block {0} - {1}", Type, Name);
+            return $"Block {Type} - {Name}";
         }
     }
 }

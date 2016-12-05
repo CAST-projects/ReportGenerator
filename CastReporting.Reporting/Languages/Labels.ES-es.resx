@@ -528,4 +528,22 @@
   <data name="NoSnapshot" xml:space="preserve">
     <value>No se ha encontrado ninguna instantánea para esta aplicación</value>
   </data>
+  <data name="IFPUG_ElementType" xml:space="preserve">
+    <value>Element Type</value>
+  </data>
+  <data name="IFPUG_FPDetails" xml:space="preserve">
+    <value>FP Details</value>
+  </data>
+  <data name="IFPUG_NoOfFPs" xml:space="preserve">
+    <value># of FPs</value>
+  </data>
+  <data name="IFPUG_ObjectType" xml:space="preserve">
+    <value>Object Type</value>
+  </data>
+  <data name="ObjectName" xml:space="preserve">
+    <value>Object Name</value>
+  </data>
+  <data name="Technology" xml:space="preserve">
+    <value>Technology</value>
+  </data>
 </root>

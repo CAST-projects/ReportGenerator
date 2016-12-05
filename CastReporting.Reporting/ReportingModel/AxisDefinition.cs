@@ -41,16 +41,11 @@ namespace CastReporting.Reporting.ReportingModel
         /// <summary>
         /// Get the indication that at once one definition is present in this AxisDefinition.
         /// </summary>
-        public bool HasDefinitions
-        {
-            get
-            {
-                return VerticalAxisMinimal.HasValue
-                       || VerticalAxisMaximal.HasValue
-                       || HorizontalAxisMinimal.HasValue
-                       || HorizontalAxisMaximal.HasValue;
-            }
-        }
+        public bool HasDefinitions => VerticalAxisMinimal.HasValue
+                                      || VerticalAxisMaximal.HasValue
+                                      || HorizontalAxisMinimal.HasValue
+                                      || HorizontalAxisMaximal.HasValue;
+
         #endregion PROPERTIES
 
     }

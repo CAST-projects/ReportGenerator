@@ -16,21 +16,19 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
-using CastReporting.BLL.Computing.Properties;
 
 
 
 namespace CastReporting.Reporting.Block.Graph 
 {
     [Block("MODULES_ARTIFACTS")]
-    class PieModuleArtifact : GraphBlock
+    internal class PieModuleArtifact : GraphBlock
     {
 
 
@@ -39,40 +37,34 @@ namespace CastReporting.Reporting.Block.Graph
         {
 
             int nbResult = reportData.Parameter.NbResultDefault, tmpNb;
-            if (null != options && options.ContainsKey("COUNT") && Int32.TryParse(options["COUNT"], out tmpNb) && tmpNb > 0)
+            if (null != options && options.ContainsKey("COUNT") && int.TryParse(options["COUNT"], out tmpNb) && tmpNb > 0)
             {
                 nbResult = tmpNb;
             }
 
-             
 
-             if (null != reportData && null != reportData.CurrentSnapshot)
-             {
-                 var moduleArtifacts = MeasureUtility.GetModulesMeasure(reportData.CurrentSnapshot, nbResult, Constants.SizingInformations.ArtifactNumber);
+            if (reportData.CurrentSnapshot == null) return null;
+            var moduleArtifacts = MeasureUtility.GetModulesMeasure(reportData.CurrentSnapshot, nbResult, Constants.SizingInformations.ArtifactNumber);
 
-                 List<string> rowData = new List<string>();
-                 rowData.AddRange(new string[] { Labels.Name, Labels.Artifacts });
+            List<string> rowData = new List<string>();
+            rowData.AddRange(new[] { Labels.Name, Labels.Artifacts });
           
-                 foreach (var mod in moduleArtifacts)
-                 {
-                     rowData.AddRange(new string[] { mod.Name, Convert.ToInt32(mod.Value).ToString() });
-                 }
+            foreach (var mod in moduleArtifacts)
+            {
+                rowData.AddRange(new[] { mod.Name, Convert.ToInt32(mod.Value).ToString() });
+            }
               
 
-                 TableDefinition resultTable = new TableDefinition
-                 {
-                     HasRowHeaders = true,
-                     HasColumnHeaders = false,
-                     NbRows = moduleArtifacts.Count + 1,
-                     NbColumns = 2,
-                     Data = rowData
-                 };
+            TableDefinition resultTable = new TableDefinition
+            {
+                HasRowHeaders = true,
+                HasColumnHeaders = false,
+                NbRows = moduleArtifacts.Count + 1,
+                NbColumns = 2,
+                Data = rowData
+            };
 
-                 return resultTable;
-             }
-
-             return null;
-        
+            return resultTable;
         }
 
         

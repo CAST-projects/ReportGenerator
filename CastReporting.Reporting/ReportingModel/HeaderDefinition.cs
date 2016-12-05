@@ -1,32 +1,30 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CastReporting.Reporting.ReportingModel
 {
     public class HeaderDefinition {
         public HeaderDefinition(params string[] headers) {
-            _headers = new List<string>(headers);
+            Headers = new List<string>(headers);
         }
 
-        private List<string> _headers;
+        protected List<string> Headers;
 
         public int IndexOf(string header) {
-            return _headers.IndexOf(header);
+            return Headers.IndexOf(header);
         }
 
         public void Insert(int pos, string header) {
             if (ReadOnly)
                 throw new InvalidOperationException("Cannot add a new header after data has been added");
-            _headers.Insert(pos, header);
+            Headers.Insert(pos, header);
         }
 
         public void Append(string header) {
             if (ReadOnly)
                 throw new InvalidOperationException("Cannot add a new header after data has been added");
-            _headers.Add(header);
+            Headers.Add(header);
         }
 
         public void Append(string header, bool enabled) {
@@ -37,16 +35,13 @@ namespace CastReporting.Reporting.ReportingModel
         public void Remove(string header) {
             if (ReadOnly)
                 throw new InvalidOperationException("Cannot remove a header after data has been added");
-            _headers.Remove(header);
+            Headers.Remove(header);
         }
 
-        public void InsertBefore(string header, string newHeader) {
+        public void InsertBefore(string header, string newHeader)
+        {
             var pos = IndexOf(header);
-            if (pos < 0) {
-                Insert(0, newHeader);
-            } else {
-                Insert(pos, newHeader);
-            }
+            Insert(pos < 0 ? 0 : pos, newHeader);
         }
 
         public void InsertAfter(string header, string newHeader) {
@@ -58,49 +53,46 @@ namespace CastReporting.Reporting.ReportingModel
             }
         }
 
-        public IEnumerable<string> Labels { get { return _headers; } }
+        public IEnumerable<string> Labels => Headers;
 
-        public int Count { get { return _headers.Count; } }
+        public int Count => Headers.Count;
 
-        private bool ReadOnly { get { return data != null; } }
+        private bool ReadOnly => _data != null;
 
-        private DataDefinition data;
+        private DataDefinition _data;
 
-        public IDataDefinition CreateDataRow() { 
-            if (data == null)
-                data = new DataDefinition(this);
-            return data;
+        public IDataDefinition CreateDataRow()
+        {
+            return _data ?? (_data = new DataDefinition(this));
         }
 
         private class DataDefinition : IDataDefinition
         {
             public DataDefinition(HeaderDefinition headerDef) {
-                headers = headerDef;
-                headerPos = new Dictionary<string, int>();
-                for (int i = 0; i < headerDef._headers.Count; i++) {
-                    headerPos.Add(headerDef._headers[i], i);
+                _headerPos = new Dictionary<string, int>();
+                for (int i = 0; i < headerDef.Headers.Count; i++) {
+                    _headerPos.Add(headerDef.Headers[i], i);
                 }
-                data = new string[headerDef.Count];
+                _datas = new string[headerDef.Count];
             }
 
-            private readonly HeaderDefinition headers;
-            private readonly Dictionary<string, int> headerPos;
-            private readonly string[] data;
+            private readonly Dictionary<string, int> _headerPos;
+            private readonly string[] _datas;
 
             public void Set(int pos, string value) {
-                if (0 <= pos && pos < data.Length)
-                    data[pos] = (value == null) ? string.Empty : value;
+                if (0 <= pos && pos < _datas.Length)
+                    _datas[pos] = value ?? string.Empty;
             }
 
             public void Set(string label, string value) {
                 int pos;
-                if (headerPos.TryGetValue(label, out pos))
-                    data[pos] = (value == null) ? string.Empty : value;
+                if (_headerPos.TryGetValue(label, out pos))
+                    _datas[pos] = value ?? string.Empty;
             }
 
             public void Reset() {
-                for (int i = 0; i < data.Length; i++)
-                    data[i] = string.Empty;
+                for (int i = 0; i < _datas.Length; i++)
+                    _datas[i] = string.Empty;
             }
 
             public IEnumerator<string> GetEnumerator() {
@@ -111,7 +103,7 @@ namespace CastReporting.Reporting.ReportingModel
                 return Values.GetEnumerator();
             }
 
-            public IEnumerable<string> Values { get { return data; } }
+            public IEnumerable<string> Values => _datas;
         }
 
         public interface IDataDefinition : IEnumerable<string>
