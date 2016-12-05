@@ -13,7 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
@@ -26,12 +26,12 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TQI_BY_MODULE")]
-    class TQIbyModule : TableBlock
+    internal class TQIbyModule : TableBlock
     {
         /// <summary>
         /// 
         /// </summary>
-        private const string _MetricFormat = "N2";
+        private const string MetricFormat = "N2";
 
 
         /// <summary>
@@ -63,9 +63,9 @@ namespace CastReporting.Reporting.Block.Table
                                from subset in g.DefaultIfEmpty()
                                select new
                                {
-                                   Name = current.Name,
-                                   TqiCurrent = current.TQI.HasValue ? current.TQI : (double?)null,
-                                   TqiPrevious = subset != null ? subset.TQI : (double?)null,
+                                   current.Name,
+                                   TqiCurrent = current.TQI,
+                                   TqiPrevious = subset?.TQI,
                                    PercentVariation =  subset != null ? MathUtility.GetVariationPercent(current.TQI, subset.TQI):null
                                };
 
@@ -73,9 +73,9 @@ namespace CastReporting.Reporting.Block.Table
                 foreach (var result in results.OrderBy(_ => _.Name)) {
                     rowData.AddRange(new[] {
                             result.Name,
-                            result.TqiCurrent.HasValue  ? result.TqiCurrent.Value.ToString(_MetricFormat) : CastReporting.Domain.Constants.No_Value,     
-                            result.TqiPrevious.HasValue ? result.TqiPrevious.Value.ToString(_MetricFormat) : CastReporting.Domain.Constants.No_Value,     
-                            result.PercentVariation.HasValue ? TableBlock.FormatPercent(result.PercentVariation):CastReporting.Domain.Constants.No_Value,
+                            result.TqiCurrent?.ToString(MetricFormat) ?? Domain.Constants.No_Value,     
+                            result.TqiPrevious?.ToString(MetricFormat) ?? Domain.Constants.No_Value,     
+                            result.PercentVariation.HasValue ? FormatPercent(result.PercentVariation):Domain.Constants.No_Value,
                         });
 					count++;
                 }

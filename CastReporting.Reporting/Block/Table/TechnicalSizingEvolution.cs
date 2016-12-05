@@ -13,9 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Domain;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
@@ -30,94 +28,90 @@ namespace CastReporting.Reporting.Block.Table
     /// TechnicalSizingEvolution Class
     /// </summary>
     [Block("TECHNICAL_SIZING_EVOLUTION")]
-    class TechnicalSizingEvolution : TableBlock
+    internal class TechnicalSizingEvolution : TableBlock
     {
         #region METHODS
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
-        {  
-           
-             TableDefinition resultTable = null;
-                    bool hasPrevious = reportData.PreviousSnapshot != null;
-            if (null != reportData &&
-                null != reportData.CurrentSnapshot)
-            {
-                #region CastComputing
+        {
+            bool hasPrevious = reportData.PreviousSnapshot != null;
+            if (reportData?.CurrentSnapshot == null) return null;
 
-                double? codeLineNumber = MeasureUtility.GetCodeLineNumber(reportData.CurrentSnapshot);
-                double? fileNumber = MeasureUtility.GetFileNumber(reportData.CurrentSnapshot);
-                double? classNumber = MeasureUtility.GetClassNumber(reportData.CurrentSnapshot);
-                double? sqlArtifactNumber = MeasureUtility.GetSqlArtifactNumber(reportData.CurrentSnapshot);
-                double? tableNumber = MeasureUtility.GetTableNumber(reportData.CurrentSnapshot);
+            #region CastComputing
 
-                double? codeLineNumberPrev = MeasureUtility.GetCodeLineNumber(reportData.PreviousSnapshot);
-                double? fileNumberPrev = MeasureUtility.GetFileNumber(reportData.PreviousSnapshot);
-                double? classNumberPrev = MeasureUtility.GetClassNumber(reportData.PreviousSnapshot);
-                double? sqlArtifactNumberPrev = MeasureUtility.GetSqlArtifactNumber(reportData.PreviousSnapshot);
-                double? tableNumberPrev = MeasureUtility.GetTableNumber(reportData.PreviousSnapshot);
+            double? codeLineNumber = MeasureUtility.GetCodeLineNumber(reportData.CurrentSnapshot);
+            double? fileNumber = MeasureUtility.GetFileNumber(reportData.CurrentSnapshot);
+            double? classNumber = MeasureUtility.GetClassNumber(reportData.CurrentSnapshot);
+            double? sqlArtifactNumber = MeasureUtility.GetSqlArtifactNumber(reportData.CurrentSnapshot);
+            double? tableNumber = MeasureUtility.GetTableNumber(reportData.CurrentSnapshot);
+
+            double? codeLineNumberPrev = MeasureUtility.GetCodeLineNumber(reportData.PreviousSnapshot);
+            double? fileNumberPrev = MeasureUtility.GetFileNumber(reportData.PreviousSnapshot);
+            double? classNumberPrev = MeasureUtility.GetClassNumber(reportData.PreviousSnapshot);
+            double? sqlArtifactNumberPrev = MeasureUtility.GetSqlArtifactNumber(reportData.PreviousSnapshot);
+            double? tableNumberPrev = MeasureUtility.GetTableNumber(reportData.PreviousSnapshot);
 
 
 
-                double? codeLineNumberEvol = MathUtility.GetEvolution(codeLineNumber, codeLineNumberPrev);
-                double? fileNumberEvol = MathUtility.GetEvolution(fileNumber, fileNumberPrev);
-                double? classNumberEvol = MathUtility.GetEvolution(classNumber, classNumberPrev);
-                double? sqlArtifactNumberEvol = MathUtility.GetEvolution(sqlArtifactNumber, sqlArtifactNumberPrev);
-                double? tableNumberEvol = MathUtility.GetEvolution(tableNumber, tableNumberPrev);
+            double? codeLineNumberEvol = MathUtility.GetEvolution(codeLineNumber, codeLineNumberPrev);
+            double? fileNumberEvol = MathUtility.GetEvolution(fileNumber, fileNumberPrev);
+            double? classNumberEvol = MathUtility.GetEvolution(classNumber, classNumberPrev);
+            double? sqlArtifactNumberEvol = MathUtility.GetEvolution(sqlArtifactNumber, sqlArtifactNumberPrev);
+            double? tableNumberEvol = MathUtility.GetEvolution(tableNumber, tableNumberPrev);
 
 
-                double? codeLineNumberPercent = MathUtility.GetPercent(codeLineNumberEvol, codeLineNumberPrev);
-                double? fileNumberPercent = MathUtility.GetPercent(fileNumberEvol, fileNumberPrev);
-                double? classNumberPercent = MathUtility.GetPercent(classNumberEvol, classNumberPrev);
-                double? sqlArtifactNumberPercent = MathUtility.GetPercent(sqlArtifactNumberEvol, sqlArtifactNumberPrev);
-                double? tableNumberPercent = MathUtility.GetPercent(tableNumberEvol, tableNumberPrev);
+            double? codeLineNumberPercent = MathUtility.GetPercent(codeLineNumberEvol, codeLineNumberPrev);
+            double? fileNumberPercent = MathUtility.GetPercent(fileNumberEvol, fileNumberPrev);
+            double? classNumberPercent = MathUtility.GetPercent(classNumberEvol, classNumberPrev);
+            double? sqlArtifactNumberPercent = MathUtility.GetPercent(sqlArtifactNumberEvol, sqlArtifactNumberPrev);
+            double? tableNumberPercent = MathUtility.GetPercent(tableNumberEvol, tableNumberPrev);
 
-                #endregion CastComputing
+            #endregion CastComputing
 
-                const string noData = Constants.No_Data;
-                const string metricFormat = "N0";
+            const string noData = Constants.No_Data;
+            const string metricFormat = "N0";
 
-                var rowData = new List<string>() 
-                    { Labels.Name, Labels.Current, Labels.Previous, Labels.Evolution, Labels.EvolutionPercent
+            var rowData = new List<string>() 
+            { Labels.Name, Labels.Current, Labels.Previous, Labels.Evolution, Labels.EvolutionPercent
 
-                    , Labels.LoC
-                    , codeLineNumber.HasValue?  codeLineNumber.Value.ToString(metricFormat):noData
-                    , codeLineNumberPrev.HasValue? codeLineNumberPrev.Value.ToString(metricFormat) : noData
-                    , hasPrevious? TableBlock.FormatEvolution((Int32)codeLineNumberEvol.Value) : noData
-                    , (codeLineNumberPercent.HasValue)? TableBlock.FormatPercent(codeLineNumberPercent.Value): noData
+                , Labels.LoC
+                , codeLineNumber?.ToString(metricFormat) ?? noData
+                , codeLineNumberPrev?.ToString(metricFormat) ?? noData
+                , hasPrevious? FormatEvolution((int)codeLineNumberEvol.Value) : noData
+                , (codeLineNumberPercent.HasValue)? FormatPercent(codeLineNumberPercent.Value): noData
                    
-                    , "   " + Labels.Files
-                    , fileNumber.HasValue? fileNumber.Value.ToString(metricFormat) :noData
-                    , fileNumberPrev.HasValue? fileNumberPrev.Value.ToString(metricFormat) : noData
-                    , hasPrevious? TableBlock.FormatEvolution((Int32)fileNumberEvol.Value) : noData
-                    , (fileNumberPercent.HasValue)? TableBlock.FormatPercent(fileNumberPercent.Value): noData
+                , "   " + Labels.Files
+                , fileNumber?.ToString(metricFormat) ?? noData
+                , fileNumberPrev?.ToString(metricFormat) ?? noData
+                , hasPrevious? FormatEvolution((int)fileNumberEvol.Value) : noData
+                , (fileNumberPercent.HasValue)? FormatPercent(fileNumberPercent.Value): noData
                     
-                    , "   " + Labels.Classes
-                    , classNumber.HasValue?  classNumber.Value.ToString(metricFormat): noData
-                    , classNumberPrev.HasValue? classNumberPrev.Value.ToString(metricFormat) : noData
-                    , hasPrevious? TableBlock.FormatEvolution((Int32)classNumberEvol.Value) : noData
-                    , (classNumberPercent.HasValue)? TableBlock.FormatPercent(classNumberPercent.Value): noData
+                , "   " + Labels.Classes
+                , classNumber?.ToString(metricFormat) ?? noData
+                , classNumberPrev?.ToString(metricFormat) ?? noData
+                , hasPrevious? FormatEvolution((int)classNumberEvol.Value) : noData
+                , (classNumberPercent.HasValue)? FormatPercent(classNumberPercent.Value): noData
 
-                    , Labels.ArtifactsSQL
-                    , sqlArtifactNumber.HasValue? sqlArtifactNumber.Value.ToString(metricFormat) : noData
-                    , sqlArtifactNumberPrev.HasValue? sqlArtifactNumberPrev.Value.ToString(metricFormat) : noData
-                    , hasPrevious? TableBlock.FormatEvolution((Int32)sqlArtifactNumberEvol.Value) : noData
-                    , (sqlArtifactNumberPercent.HasValue)? TableBlock.FormatPercent(sqlArtifactNumberPercent.Value): noData
+                , Labels.ArtifactsSQL
+                , sqlArtifactNumber?.ToString(metricFormat) ?? noData
+                , sqlArtifactNumberPrev?.ToString(metricFormat) ?? noData
+                , hasPrevious? FormatEvolution((int)sqlArtifactNumberEvol.Value) : noData
+                , (sqlArtifactNumberPercent.HasValue)? FormatPercent(sqlArtifactNumberPercent.Value): noData
                     
-                    , "   " + Labels.Tables
-                    , tableNumber.HasValue? tableNumber.Value.ToString(metricFormat): noData
-                    , tableNumberPrev.HasValue? tableNumberPrev.Value.ToString(metricFormat) : noData
-                    , hasPrevious? TableBlock.FormatEvolution((Int32)tableNumberEvol.Value) : noData
-                    , (tableNumberPercent.HasValue)? TableBlock.FormatPercent(tableNumberPercent.Value): noData
-                    };
+                , "   " + Labels.Tables
+                , tableNumber?.ToString(metricFormat) ?? noData
+                , tableNumberPrev?.ToString(metricFormat) ?? noData
+                , hasPrevious? FormatEvolution((int)tableNumberEvol.Value) : noData
+                , (tableNumberPercent.HasValue)? FormatPercent(tableNumberPercent.Value): noData
+            };
 
-                resultTable = new TableDefinition
-                {
-                    HasRowHeaders = false,
-                    HasColumnHeaders = true,
-                    NbRows = 6,
-                    NbColumns = 5,
-                    Data = rowData
-                };
-            }
+            var resultTable = new TableDefinition
+            {
+                HasRowHeaders = false,
+                HasColumnHeaders = true,
+                NbRows = 6,
+                NbColumns = 5,
+                Data = rowData
+            };
             return resultTable;
         }
         #endregion METHODS

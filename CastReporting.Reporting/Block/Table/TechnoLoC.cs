@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
 using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
@@ -25,54 +24,40 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TECHNO_LOC")]
-    class TechnoLoC : TableBlock
+    internal class TechnoLoC : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             #region METHODS
-            int intLOCFlag = 0;
+            int _intLocFlag = 0;
             int nbResult = reportData.Parameter.NbResultDefault;
             int nbTot = 0;
-            int nb = 0;
-            if (null != options && options.ContainsKey("COUNT") && Int32.TryParse(options["COUNT"], out nb) && 0 < nb)
+            int nb;
+            if (null != options && options.ContainsKey("COUNT") && int.TryParse(options["COUNT"], out nb) && 0 < nb)
             {
                 nbResult = nb;
             }
 
             if (null != options && options.ContainsKey("NOSIZE"))
             {
-                intLOCFlag = 1;
+                _intLocFlag = 1;
             }
 
             List<string> rowData = new List<string>();
 
-            if (intLOCFlag == 1)
-            {
-                rowData.AddRange(new string[] { Labels.Name });
-            }
-            else
-            {
-                rowData.AddRange(new string[] { Labels.Name, Labels.LoC });
-            }
-            if (null != reportData && null != reportData.CurrentSnapshot && null != reportData.CurrentSnapshot.Technologies)
+            rowData.AddRange(_intLocFlag == 1 ? new[] {Labels.Name} : new[] {Labels.Name, Labels.LoC});
+            if (reportData.CurrentSnapshot?.Technologies != null)
             {
                 var technologyInfos = MeasureUtility.GetTechnoLoc(reportData.CurrentSnapshot, nbResult);
 
                 foreach (var elt in technologyInfos)
                 {
-                    if (intLOCFlag == 1)
-                    {
-                        rowData.AddRange(new string[] { elt.Name });
-                    }
-                    else
-                    {
-                        rowData.AddRange(new string[] { elt.Name, elt.Value.ToString("N0") });
-                    }
+                    rowData.AddRange(_intLocFlag == 1 ? new[] {elt.Name} : new[] {elt.Name, elt.Value?.ToString("N0")});
                 }
                 nbTot = technologyInfos.Count;
             }
             TableDefinition resultTable;
-            if (intLOCFlag == 1)
+            if (_intLocFlag == 1)
             {
                 resultTable = new TableDefinition
                 {

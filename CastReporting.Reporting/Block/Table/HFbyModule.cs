@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.BLL.Computing;
@@ -27,7 +27,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("HF_BY_MODULE")]
-    class HFbyModule : TableBlock
+    internal class HFbyModule : TableBlock
     {
         /// <summary>
         /// 
@@ -37,10 +37,10 @@ namespace CastReporting.Reporting.Block.Table
         /// <returns></returns>
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            string metricFormat = "N2";
+            const string metricFormat = "N2";
 
             bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
-            Int32 nbRows = 0;
+            int nbRows = 0;
 
             List<string> rowData = new List<string>();
             rowData.AddRange(displayShortHeader
@@ -58,12 +58,12 @@ namespace CastReporting.Reporting.Block.Table
             {
                 rowData.AddRange(new[] {
                             result.Name,
-                            (result.TQI != null && result.TQI.HasValue)? result.TQI.Value.ToString(metricFormat) : Constants.No_Value,
-                            (result.Robustness != null && result.Robustness.HasValue)? result.Robustness.Value.ToString(metricFormat) : Constants.No_Value,
-                            (result.Performance!= null && result.Performance.HasValue)? result.Performance.Value.ToString(metricFormat) : Constants.No_Value,
-                            (result.Security != null && result.Security.HasValue) ? result.Security.Value.ToString(metricFormat) : Constants.No_Value,
-                            (result.Transferability != null && result.Transferability.HasValue)? result.Transferability.Value.ToString(metricFormat) : Constants.No_Value,
-                            (result.Changeability != null && result.Changeability.HasValue) ? result.Changeability.Value.ToString(metricFormat) : Constants.No_Value
+                            result.TQI?.ToString(metricFormat) ?? Constants.No_Value,
+                            result.Robustness?.ToString(metricFormat) ?? Constants.No_Value,
+                            result.Performance?.ToString(metricFormat) ?? Constants.No_Value,
+                            result.Security?.ToString(metricFormat) ?? Constants.No_Value,
+                            result.Transferability?.ToString(metricFormat) ?? Constants.No_Value,
+                            result.Changeability?.ToString(metricFormat) ?? Constants.No_Value
                         });
             }
 
@@ -81,12 +81,12 @@ namespace CastReporting.Reporting.Block.Table
                 {
                     rowData.AddRange(new[] {
                                 result.Name,
-                            (result.TQI != null && result.TQI.HasValue)? result.TQI.Value.ToString(metricFormat) : Constants.No_Value,
-                            (result.Robustness != null && result.Robustness.HasValue)? result.Robustness.Value.ToString(metricFormat) : Constants.No_Value,
-                            (result.Performance!= null && result.Performance.HasValue)? result.Performance.Value.ToString(metricFormat) : Constants.No_Value,
-                            (result.Security != null && result.Security.HasValue) ? result.Security.Value.ToString(metricFormat) : Constants.No_Value,
-                            (result.Transferability != null && result.Transferability.HasValue)? result.Transferability.Value.ToString(metricFormat) : Constants.No_Value,
-                            (result.Changeability != null && result.Changeability.HasValue) ? result.Changeability.Value.ToString(metricFormat) : Constants.No_Value
+                            result.TQI?.ToString(metricFormat) ?? Constants.No_Value,
+                            result.Robustness?.ToString(metricFormat) ?? Constants.No_Value,
+                            result.Performance?.ToString(metricFormat) ?? Constants.No_Value,
+                            result.Security?.ToString(metricFormat) ?? Constants.No_Value,
+                            result.Transferability?.ToString(metricFormat) ?? Constants.No_Value,
+                            result.Changeability?.ToString(metricFormat) ?? Constants.No_Value
                             });
                 }
 

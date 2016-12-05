@@ -30,38 +30,37 @@ namespace CastReporting.Reporting.Block.Table
     /// TechnoLoCEvolution Class
     /// </summary>
     [Block("TECHNO_LOC_EVOLUTION")]
-    class TechnoLoCEvolution : TableBlock
+    internal class TechnoLoCEvolution : TableBlock
     {
           #region METHODS
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            TableDefinition resultTable = null;
-            Boolean hasPrevious = reportData.PreviousSnapshot != null;
-            List<TechnologyResultDTO> TechnologyResultCurrentSnapshot = null;
-            List<TechnologyResultDTO> TechnologyResultPreviousSnapshot = null;
-            List<EvolutionSnapshots> ResultCompartTecno = null;
+            bool hasPrevious = reportData.PreviousSnapshot != null;
+            List<EvolutionSnapshots> _resultCompartTecno = null;
 
             List<string> rowData = new List<string>();
-			rowData.AddRange(new string[] {
+			rowData.AddRange(new[] {
 				Labels.Name,
 				Labels.LoCCurrent,
 				Labels.LoCPrevious,
 				Labels.Evolution,
 				Labels.EvolutionPercent
 			});
-            int nbLimitTop = 0;
-            if (null == options || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out nbLimitTop)) {
+            int nbLimitTop;
+            if (null == options || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop)) {
                 nbLimitTop = reportData.Parameter.NbResultDefault;
             }
 
-            if (null != reportData && null != reportData.CurrentSnapshot) {
-                TechnologyResultCurrentSnapshot = MeasureUtility.GetTechnoLoc(reportData.CurrentSnapshot, nbLimitTop);
-                
-				if (!hasPrevious) {
+            if (reportData.CurrentSnapshot != null)
+            {
+                var _technologyResultCurrentSnapshot = MeasureUtility.GetTechnoLoc(reportData.CurrentSnapshot, nbLimitTop);
+
+                if (!hasPrevious) {
 
 					#region Current Snapshot
-	                ResultCompartTecno = (from cur in TechnologyResultCurrentSnapshot
-	                                      select new EvolutionSnapshots() {
+	                _resultCompartTecno = (from cur in _technologyResultCurrentSnapshot
+	                                      select new EvolutionSnapshots
+	                                      {
 	                                          name = cur.Name,
 	                                          curValue = cur.Value,
 	                                          preValue = null,
@@ -73,12 +72,13 @@ namespace CastReporting.Reporting.Block.Table
 				} else {
 
             		#region Previous Snapshot
-					TechnologyResultPreviousSnapshot = MeasureUtility.GetTechnoLoc(reportData.PreviousSnapshot, nbLimitTop);
+					var _technologyResultPreviousSnapshot = MeasureUtility.GetTechnoLoc(reportData.PreviousSnapshot, nbLimitTop);
 
-                	ResultCompartTecno = (from cur in TechnologyResultCurrentSnapshot
-	                                      from prev in TechnologyResultPreviousSnapshot
+                	_resultCompartTecno = (from cur in _technologyResultCurrentSnapshot
+	                                      from prev in _technologyResultPreviousSnapshot
 	                                      where prev != null && cur.Name == prev.Name
-	                                      select new EvolutionSnapshots() {
+	                                      select new EvolutionSnapshots
+	                                      {
 	                                          name = cur.Name,
 	                                          curValue = cur.Value,
 	                                          preValue = prev.Value,
@@ -86,19 +86,21 @@ namespace CastReporting.Reporting.Block.Table
 	
 	                                      }).ToList();
 
-            		if (TechnologyResultPreviousSnapshot.Count != TechnologyResultCurrentSnapshot.Count) {
-	                   	ResultCompartTecno.AddRange(from cur in TechnologyResultCurrentSnapshot
-	                                                where ResultCompartTecno.TrueForAll(_ => _.name != cur.Name)
-	                                                select new EvolutionSnapshots() {
+            		if (_technologyResultPreviousSnapshot.Count != _technologyResultCurrentSnapshot.Count) {
+	                   	_resultCompartTecno.AddRange(from cur in _technologyResultCurrentSnapshot
+	                                                where _resultCompartTecno.TrueForAll(_ => _.name != cur.Name)
+	                                                select new EvolutionSnapshots
+	                                                {
 	                                                    name = cur.Name,
 	                                                    curValue = cur.Value,
 	                                                    preValue = null,
 	                                                    evolValue = null,
 	                                                });
 
-                 		ResultCompartTecno.AddRange(from prev in TechnologyResultPreviousSnapshot
-                                                    where ResultCompartTecno.TrueForAll(_ => _.name != prev.Name)
-                                                    select new EvolutionSnapshots() {
+                 		_resultCompartTecno.AddRange(from prev in _technologyResultPreviousSnapshot
+                                                    where _resultCompartTecno.TrueForAll(_ => _.name != prev.Name)
+                                                    select new EvolutionSnapshots
+                                                    {
                                                         name = prev.Name,
                                                         curValue = 0,
                                                         preValue = prev.Value,
@@ -108,26 +110,26 @@ namespace CastReporting.Reporting.Block.Table
 					#endregion Previous Snapshot
 
 				}
-           }
+            }
 
             int nbRows = 0;
-            if (ResultCompartTecno != null)
+            if (_resultCompartTecno != null)
             {
-                foreach (var item in ResultCompartTecno.Take(nbLimitTop))
+                foreach (var item in _resultCompartTecno.Take(nbLimitTop))
                 {
-                    rowData.AddRange(new string[] {
+                    rowData.AddRange(new[] {
                                 item.name
-                                , (item.curValue.HasValue)? item.curValue.Value.ToString("N0") :CastReporting.Domain.Constants.No_Value
-                                , (item.preValue.HasValue)? item.preValue.Value.ToString("N0"):CastReporting.Domain.Constants.No_Value
-                                , (item.evolValue.HasValue)? FormatEvolution((Int32)item.evolValue.Value) : CastReporting.Domain.Constants.No_Value
-                                , (item.evolValue.HasValue && item.preValue.HasValue && item.preValue.Value !=0) ? FormatPercent((item.evolValue.Value/item.preValue.Value))
-                                                                                                                 : CastReporting.Domain.Constants.No_Value
+                                , item.curValue?.ToString("N0") ?? Domain.Constants.No_Value
+                                , item.preValue?.ToString("N0") ?? Domain.Constants.No_Value
+                                , (item.evolValue.HasValue)? FormatEvolution((int)item.evolValue.Value) : Domain.Constants.No_Value
+                                , (item.evolValue.HasValue && item.preValue.HasValue && Math.Abs(item.preValue.Value) > 0) ? FormatPercent((item.evolValue.Value/item.preValue.Value))
+                                                                                                                 : Domain.Constants.No_Value
                     });
                     nbRows++;
                 }
             }
 
-           resultTable = new TableDefinition {
+           var resultTable = new TableDefinition {
                HasRowHeaders = false,
                HasColumnHeaders = true,
                NbRows = nbRows + 1,

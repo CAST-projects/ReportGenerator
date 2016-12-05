@@ -25,6 +25,6 @@ namespace CastReporting.BLL.Computing
        /// <summary>
        /// 
        /// </summary>
-        public double Value { get; set; }
+        public double? Value { get; set; }
     }
 }

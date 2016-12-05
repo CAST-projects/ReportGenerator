@@ -13,26 +13,24 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
-using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
 
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("LOC_BY_MODULE")]
-    class LocByModule : TableBlock
+    internal class LocByModule : TableBlock
     {
         /// <summary>
         /// 
         /// </summary>
-        private const string _MetricFormat = "N0";
+        private const string MetricFormat = "N0";
 
 
         /// <summary>
@@ -43,14 +41,11 @@ namespace CastReporting.Reporting.Block.Table
         /// <returns></returns>
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            TableDefinition resultTable = null;
             int nbTot = 0;
             List<string> rowData = new List<string>();
-            rowData.AddRange(new string[] { Labels.ModuleName, Labels.LoC });
+            rowData.AddRange(new[] { Labels.ModuleName, Labels.LoC });
 
-            if (null != reportData &&
-                null != reportData.CurrentSnapshot &&
-                null != reportData.CurrentSnapshot.Modules)
+            if (reportData?.CurrentSnapshot?.Modules != null)
             {
                var result = reportData.CurrentSnapshot.SizingMeasuresResults.FirstOrDefault(v => v.Reference.Key == (int)Constants.SizingInformations.CodeLineNumber);
 
@@ -58,19 +53,19 @@ namespace CastReporting.Reporting.Block.Table
                {
                    foreach (var res in result.ModulesResult)
                    {
-                       rowData.AddRange(new string[] { res.Module.Name, res.DetailResult.Value.ToString(_MetricFormat) });
+                       rowData.AddRange(new[] { res.Module.Name, res.DetailResult.Value?.ToString(MetricFormat) });
                    }
                    nbTot = result.ModulesResult.Length;
                }
             }
-           resultTable = new TableDefinition
-            {
-                HasRowHeaders = false,
-                HasColumnHeaders = true,
-                NbRows = nbTot + 1,
-                NbColumns = 2,
-                Data = rowData
-            };
+           var resultTable = new TableDefinition
+           {
+               HasRowHeaders = false,
+               HasColumnHeaders = true,
+               NbRows = nbTot + 1,
+               NbColumns = 2,
+               Data = rowData
+           };
             return resultTable;
         }
 

@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CastReporting.Domain;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -26,29 +25,29 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TECHNICAL_CRITERIA_RULES")]
-    class TechnicalCriteriaRules : TableBlock
+    internal class TechnicalCriteriaRules : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             int rowCount = 0;
 
             #region Options
-            int nblimit = 0;
-            if (null == options || !options.ContainsKey("CNT") || !Int32.TryParse(options["CNT"], out nblimit)) {
+            int nblimit;
+            if (null == options || !options.ContainsKey("CNT") || !int.TryParse(options["CNT"], out nblimit)) {
                 nblimit = reportData.Parameter.NbResultDefault;
             }
-            int techcriteriaId = 0;
-            if (null == options || !options.ContainsKey("TCID") || !Int32.TryParse(options["TCID"], out techcriteriaId)) {
+            int techcriteriaId;
+            if (null == options || !options.ContainsKey("TCID") || !int.TryParse(options["TCID"], out techcriteriaId)) {
                 throw new ArgumentException("Impossible to build TECHNICAL_CRITERIA_RULES : Need technical criterion id.");
             }
-            int bizCriteriaId = 0;
-            if (null == options || !options.ContainsKey("BZID") || !Int32.TryParse(options["BZID"], out bizCriteriaId)) {
+            int bizCriteriaId;
+            if (null == options || !options.ContainsKey("BZID") || !int.TryParse(options["BZID"], out bizCriteriaId)) {
                 throw new ArgumentException("Impossible to build TECHNICAL_CRITERIA_RULES : Need business criterion id.");
             }
             #endregion Options
 
             List<string> rowData = new List<string>();
-			rowData.AddRange(new string[] {
+			rowData.AddRange(new[] {
 				Labels.RuleName,
 				Labels.Description,
 				Labels.ViolationsCount
@@ -56,26 +55,23 @@ namespace CastReporting.Reporting.Block.Table
 
             var businessCriteria = reportData.CurrentSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == bizCriteriaId);
 
-            var keys = businessCriteria.CriticalRulesViolation.Select(_ => _.Reference.Key).ToList();
-            keys.AddRange(businessCriteria.NonCriticalRulesViolation.Select(_ => _.Reference.Key));
+            var keys = businessCriteria?.CriticalRulesViolation.Select(_ => _.Reference.Key).ToList();
+            keys?.AddRange(businessCriteria.NonCriticalRulesViolation.Select(_ => _.Reference.Key));
 
-            var technicalCriteria = reportData.CurrentSnapshot.TechnicalCriteriaResults.FirstOrDefault(
-                                    _ => _.Reference.Key == techcriteriaId &&
-                                    keys.Contains(_.Reference.Key)
-                                    );
+            // ReSharper disable once PossibleNullReferenceException
+            var technicalCriteria = (keys == null) ? reportData.CurrentSnapshot.TechnicalCriteriaResults.FirstOrDefault(_ => _.Reference.Key == techcriteriaId && keys.Contains(_.Reference.Key)) : null;
 
-            if (technicalCriteria != null && technicalCriteria.RulesViolation != null) {
+            if (technicalCriteria?.RulesViolation != null)
+            {
                 var results = technicalCriteria.RulesViolation
                                                .OrderByDescending(_ => _.DetailResult.ViolationRatio.FailedChecks)
                                                .Take(nblimit);
                 
                 foreach (var violation in results) {
-                    RuleDescription ruleDescription = null;
-
-                    ruleDescription = reportData.RuleExplorer.GetSpecificRule(reportData.Application.DomainId, violation.Reference.Key.ToString());
+                    var ruleDescription = reportData.RuleExplorer.GetSpecificRule(reportData.Application.DomainId, violation.Reference.Key.ToString());
 
                     rowData.AddRange(
-                            new string[] {
+                            new[] {
 								violation.Reference.Name
 	                            , violation.DetailResult.ViolationRatio.FailedChecks > 0 ? ruleDescription.Description : string.Empty
 	                            , violation.DetailResult.ViolationRatio.FailedChecks > 0 ? violation.DetailResult.ViolationRatio.FailedChecks.ToString() : string.Empty
@@ -86,7 +82,7 @@ namespace CastReporting.Reporting.Block.Table
             }
 
             if (rowCount == 0) {
-				rowData.AddRange(new string[] {
+				rowData.AddRange(new[] {
 					Labels.NoItem,
 					string.Empty,
 					string.Empty

@@ -13,14 +13,12 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
-using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using CastReporting.Reporting.Helper;
 
@@ -28,31 +26,30 @@ using CastReporting.Reporting.Helper;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("VIOLATION_SUMMARY")]
-    class ViolationSummary : TableBlock
+    internal class ViolationSummary : TableBlock
     {
         private static ResultDetail GetModuleResult(ApplicationResult ar, Module module)
         {
             ResultDetail detailResult = null;
-            if (module != null) {
-                var modResult = ar.ModulesResult.FirstOrDefault(mr => mr != null && mr.Module.Id == module.Id);
-                if (modResult != null)
-                    detailResult = modResult.DetailResult;
-            }
+            if (module == null) return null;
+            var modResult = ar.ModulesResult.FirstOrDefault(mr => mr != null && mr.Module.Id == module.Id);
+            if (modResult != null)
+                detailResult = modResult.DetailResult;
             return detailResult;
         }
 
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             int nbLimit = options.GetIntOption("COUNT", reportData.Parameter.NbResultDefault); // Max number of rows; -1 correspond to all results
-            bool perModule = options.GetBoolOption("MODULES", false); // module or application mode
+            bool perModule = options.GetBoolOption("MODULES"); // module or application mode
             bool showGrades = options.GetBoolOption("GRADE", true); // show/hide grades
             bool showCritical = options.GetBoolOption("CRITICAL", true); // show/hide critical rules
-            bool showNonCritical = options.GetBoolOption("NONCRITICAL", false); // show/hide critical rules
+            bool showNonCritical = options.GetBoolOption("NONCRITICAL"); // show/hide critical rules
             bool showAddedRemoved = options.GetBoolOption("ADDEDREMOVED", true); // show/hide added/removed
             bool showTotal = options.GetBoolOption("TOTAL", true); // show/hide total
-            bool showFailedChecks = options.GetBoolOption("FAILED", false); // show/hide failed checks
-            bool showSuccessfulChecks = options.GetBoolOption("SUCCESSFUL", false); // show/hide successfull checks
-            bool showCompliance = options.GetBoolOption("COMPLIANCE", false); // show/hide compliance ration
+            bool showFailedChecks = options.GetBoolOption("FAILED"); // show/hide failed checks
+            bool showSuccessfulChecks = options.GetBoolOption("SUCCESSFUL"); // show/hide successfull checks
+            bool showCompliance = options.GetBoolOption("COMPLIANCE"); // show/hide compliance ration
 
             var headers = new HeaderDefinition();
             headers.Append(Labels.ModuleName, perModule);
@@ -71,14 +68,14 @@ namespace CastReporting.Reporting.Block.Table
 
             int nbRow = 0;
 
-            if (reportData != null && reportData.CurrentSnapshot != null) {
+            if (reportData.CurrentSnapshot != null) {
                 Dictionary<int, RuleDetails> targetRules =
                     reportData.RuleExplorer
                     .GetRulesDetails(reportData.CurrentSnapshot.DomainId, Constants.BusinessCriteria.TechnicalQualityIndex.GetHashCode(), reportData.CurrentSnapshot.Id)
-                    .Where(rd => rd.Key.HasValue && ((showCritical && rd.Critical == true) || (showNonCritical && rd.Critical == false)))
+                    .Where(rd => rd.Key.HasValue && ((showCritical && rd.Critical) || (showNonCritical && rd.Critical == false)))
                     .ToDictionary(rd => rd.Key.Value);
 
-                var sourceResults = reportData.CurrentSnapshot.QualityRulesResults.Where(qr => targetRules.ContainsKey(qr.Reference.Key));
+                var sourceResults = reportData.CurrentSnapshot.QualityRulesResults.Where(qr => targetRules.ContainsKey(qr.Reference.Key)).ToList();
 
                 var modules = (perModule ? reportData.CurrentSnapshot.Modules : new List<Module>(new Module[] { null }).AsEnumerable()).OrderBy(m => (m == null ? string.Empty : m.Name));
 
@@ -87,48 +84,46 @@ namespace CastReporting.Reporting.Block.Table
                         dataRow.Set(Labels.ModuleName, module.Name.DashIfEmpty());
                     }
 
-                    var query = sourceResults.Select(ar => new { Reference = ar.Reference, AppDetailResult = ar.DetailResult, ModDetailResult = GetModuleResult(ar, module) });
+                    var query = sourceResults.Select(ar => new {ar.Reference, AppDetailResult = ar.DetailResult, ModDetailResult = GetModuleResult(ar, module) });
 
                     foreach (var result in query)
                     {
-                        if ((nbLimit == -1) || (nbRow < nbLimit))
+                        if ((nbLimit != -1) && (nbRow >= nbLimit)) continue;
+                        var detailResult = perModule ? result.ModDetailResult : result.AppDetailResult;
+                        if (detailResult != null && detailResult.Grade > 0)
                         {
-                            var detailResult = perModule ? result.ModDetailResult : result.AppDetailResult;
-                            if (detailResult != null && detailResult.Grade > 0)
+                            dataRow.Set(Labels.RuleName, result.Reference?.Name.DashIfEmpty());
+                            if (showGrades)
                             {
-                                dataRow.Set(Labels.RuleName, result.Reference?.Name.DashIfEmpty());
-                                if (showGrades)
-                                {
-                                    dataRow.Set(Labels.Grade, detailResult.Grade.ToString("N2"));
-                                }
-                                if (showFailedChecks)
-                                {
-                                    dataRow.Set(Labels.ViolationsCount, detailResult.ViolationRatio?.FailedChecks.DashIfEmpty());
-                                }
-                                if (showSuccessfulChecks)
-                                {
-                                    dataRow.Set(Labels.TotalOk, detailResult.ViolationRatio?.SuccessfulChecks.DashIfEmpty());
-                                }
-                                if (showTotal)
-                                {
-                                    dataRow.Set(Labels.TotalChecks, detailResult.ViolationRatio?.TotalChecks.DashIfEmpty());
-                                }
-                                if (showCompliance)
-                                {
-                                    dataRow.Set(Labels.Compliance, detailResult.ViolationRatio?.Ratio.FormatPercent(false));
-                                }
-                                if (showAddedRemoved)
-                                {
-                                    dataRow.Set(Labels.ViolationsAdded, detailResult.EvolutionSummary?.AddedViolations.DashIfEmpty());
-                                    dataRow.Set(Labels.ViolationsRemoved, detailResult.EvolutionSummary?.RemovedViolations.DashIfEmpty());
-                                }
-                                var ruleId = result.Reference?.Key;
-                                dataRow.Set(Labels.Critical, (ruleId.HasValue && targetRules.ContainsKey(ruleId.Value) && targetRules[ruleId.Value].Critical) ? "X" : "");
-
-                                data.AddRange(dataRow);
+                                dataRow.Set(Labels.Grade, detailResult.Grade?.ToString("N2"));
                             }
-                            nbRow++;
+                            if (showFailedChecks)
+                            {
+                                dataRow.Set(Labels.ViolationsCount, detailResult.ViolationRatio?.FailedChecks.DashIfEmpty());
+                            }
+                            if (showSuccessfulChecks)
+                            {
+                                dataRow.Set(Labels.TotalOk, detailResult.ViolationRatio?.SuccessfulChecks.DashIfEmpty());
+                            }
+                            if (showTotal)
+                            {
+                                dataRow.Set(Labels.TotalChecks, detailResult.ViolationRatio?.TotalChecks.DashIfEmpty());
+                            }
+                            if (showCompliance)
+                            {
+                                dataRow.Set(Labels.Compliance, detailResult.ViolationRatio?.Ratio.FormatPercent(false));
+                            }
+                            if (showAddedRemoved)
+                            {
+                                dataRow.Set(Labels.ViolationsAdded, detailResult.EvolutionSummary?.AddedViolations.DashIfEmpty());
+                                dataRow.Set(Labels.ViolationsRemoved, detailResult.EvolutionSummary?.RemovedViolations.DashIfEmpty());
+                            }
+                            var ruleId = result.Reference?.Key;
+                            dataRow.Set(Labels.Critical, (ruleId.HasValue && targetRules.ContainsKey(ruleId.Value) && targetRules[ruleId.Value].Critical) ? "X" : "");
+
+                            data.AddRange(dataRow);
                         }
+                        nbRow++;
                     }
                 }
             }

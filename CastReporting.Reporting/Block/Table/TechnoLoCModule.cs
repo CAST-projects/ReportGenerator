@@ -13,7 +13,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
@@ -26,12 +25,12 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TECHNO_LOC_BY_MODULE")]
-    class TechnoLoCModule : TableBlock
+    internal class TechnoLoCModule : TableBlock
     {
         /// <summary>
         /// 
         /// </summary>
-        private const string _MetricFormat = "N0";
+        private const string MetricFormat = "N0";
 
 
         /// <summary>
@@ -42,10 +41,9 @@ namespace CastReporting.Reporting.Block.Table
         /// <returns></returns>
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            List<string> rowData = new List<string>();
+            List<string> rowData = new List<string> {""};
 
             //Set the table header
-            rowData.Add("");
             rowData.AddRange(reportData.CurrentSnapshot.Technologies);
 
             //Set the result by module
@@ -55,12 +53,7 @@ namespace CastReporting.Reporting.Block.Table
 
                 rowData.Add(mod.Name);
 
-                foreach (var techName in reportData.CurrentSnapshot.Technologies)
-                {
-                    var result = technologyLoc.FirstOrDefault(_ => _.Name == techName);
-
-                    rowData.Add(  (result != null) ? result.Value.ToString(_MetricFormat) : Constants.No_Data);
-                }               
+                rowData.AddRange(reportData.CurrentSnapshot.Technologies.Select(techName => technologyLoc.FirstOrDefault(_ => _.Name == techName)).Select(result => (result != null) ? result.Value?.ToString(MetricFormat) : Constants.No_Data));
             }
 
             var resultTable = new TableDefinition

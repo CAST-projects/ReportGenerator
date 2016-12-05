@@ -13,48 +13,41 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
-using CastReporting.Domain;
 
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("FUNCTIONAL_WEIGHT")]
-    class FunctionalWeight : TableBlock
+    internal class FunctionalWeight : TableBlock
     {
         #region METHODS
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            TableDefinition resultTable = null;
-            if (null != reportData &&
-                    null != reportData.CurrentSnapshot)
-            {
-                double? automatedFPoints = MeasureUtility.GetAutomatedIFPUGFunction(reportData.CurrentSnapshot);
-                double? decisionPoints = MeasureUtility.GetDecisionPointsNumber(reportData.CurrentSnapshot);
-                double? backFiredFPoints = MeasureUtility.GetBackfiredIFPUGFunction(reportData.CurrentSnapshot);
+            if (reportData?.CurrentSnapshot == null) return null;
+            double? automatedFPoints = MeasureUtility.GetAutomatedIFPUGFunction(reportData.CurrentSnapshot);
+            double? decisionPoints = MeasureUtility.GetDecisionPointsNumber(reportData.CurrentSnapshot);
+            double? backFiredFPoints = MeasureUtility.GetBackfiredIFPUGFunction(reportData.CurrentSnapshot);
 
-                const string metricFormat = "N0";
-                var rowData = new List<string>() 
-                    {  Labels.Name, Labels.Total
-                    , Labels.AutomatedFP, (automatedFPoints.HasValue ?  automatedFPoints.Value.ToString(metricFormat) : CastReporting.Domain.Constants.No_Data)
-                    , Labels.DecisionP,( decisionPoints.HasValue ?  (decisionPoints.Value).ToString(metricFormat) : CastReporting.Domain.Constants.No_Data)
-                    , Labels.BackfiredFP, (backFiredFPoints.HasValue ?  (backFiredFPoints.Value).ToString(metricFormat) :CastReporting.Domain.Constants.No_Data)
-                    };
-                resultTable = new TableDefinition
-                {
-                    HasRowHeaders = false,
-                    HasColumnHeaders = true,
-                    NbRows = 6,
-                    NbColumns = 2,
-                    Data = rowData
-                };
-            }
+            const string metricFormat = "N0";
+            var rowData = new List<string>() 
+            {  Labels.Name, Labels.Total
+                , Labels.AutomatedFP, automatedFPoints?.ToString(metricFormat) ?? Domain.Constants.No_Data
+                , Labels.DecisionP,decisionPoints?.ToString(metricFormat) ?? Domain.Constants.No_Data
+                , Labels.BackfiredFP, backFiredFPoints?.ToString(metricFormat) ?? Domain.Constants.No_Data
+            };
+            var resultTable = new TableDefinition
+            {
+                HasRowHeaders = false,
+                HasColumnHeaders = true,
+                NbRows = 6,
+                NbColumns = 2,
+                Data = rowData
+            };
             return resultTable;
         }
         #endregion METHODS

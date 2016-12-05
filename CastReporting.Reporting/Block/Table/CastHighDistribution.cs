@@ -15,7 +15,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -27,9 +26,9 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 { 
     [Block("CAST_HIGH_DISTRIBUTION")]
-    public class CastHighDistribution : TableBlock
+    internal class CastHighDistribution : TableBlock
     {
-        private const string _MetricFormat = "N0";
+        private const string MetricFormat = "N0";
 
         /// <summary>
         /// 
@@ -40,91 +39,87 @@ namespace CastReporting.Reporting.Block.Table
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             TableDefinition back = new TableDefinition();
-            int parId = -1;
+            int parId;
             Constants.QualityDistribution distributionId;
             List<string> rowData = new List<string>();
-            
-            double? previousHigVal = null;
-            double? previousVhiVal = null;
+
             double? previousHttVal = null;
 
-            if (null != options && options.ContainsKey("PAR") && Int32.TryParse(options["PAR"], out parId) && Enum.IsDefined(typeof(Constants.QualityDistribution), parId))
+            if (null != options && options.ContainsKey("PAR") && int.TryParse(options["PAR"], out parId) && Enum.IsDefined(typeof(Constants.QualityDistribution), parId))
             {
                 distributionId = (Constants.QualityDistribution)parId;
             }
             else
                 distributionId = Constants.QualityDistribution.CostComplexityDistribution;
 
-            if (null != reportData)
+            if (null == reportData) return back;
+
+            #region Selected Snapshot
+
+            double? selectedLowVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                distributionId.GetHashCode(),
+                Constants.CyclomaticComplexity.ComplexityArtifacts_Low.GetHashCode());
+            double? selectedAveVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                distributionId.GetHashCode(),
+                Constants.CyclomaticComplexity.ComplexityArtifacts_Moderate.GetHashCode());
+            double? selectedHigVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                distributionId.GetHashCode(),
+                Constants.CyclomaticComplexity.ComplexityArtifacts_High.GetHashCode());
+            double? selectedVhiVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                distributionId.GetHashCode(),
+                Constants.CyclomaticComplexity.ComplexityArtifacts_VeryHigh.GetHashCode());
+
+
+
+            double? selectedTotal = (selectedLowVal.HasValue && selectedAveVal.HasValue && selectedHigVal.HasValue && selectedVhiVal.HasValue) ? selectedLowVal.Value + selectedAveVal.Value + selectedHigVal.Value + selectedVhiVal.Value : (double?)null;
+            double? selectedHttVal = (selectedHigVal.HasValue && selectedVhiVal.HasValue) ? selectedHigVal.Value + selectedVhiVal.Value : (double?)null;
+ 
+            #endregion Selected Snapshot
+            
+            #region Previous Snapshot
+
+            if (reportData.PreviousSnapshot != null)
             {
 
-                #region Selected Snapshot
+                var previousHigVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
+                    distributionId.GetHashCode(),
+                    Constants.CyclomaticComplexity.ComplexityArtifacts_High.GetHashCode());
+                var previousVhiVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
+                    distributionId.GetHashCode(),
+                    Constants.CyclomaticComplexity.ComplexityArtifacts_VeryHigh.GetHashCode());
 
-                double? selectedLowVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                                                                                distributionId.GetHashCode(),
-                                                                                Constants.CyclomaticComplexity.ComplexityArtifacts_Low.GetHashCode());
-                double? selectedAveVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                                                                                distributionId.GetHashCode(),
-                                                                                Constants.CyclomaticComplexity.ComplexityArtifacts_Moderate.GetHashCode());
-                double? selectedHigVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                                                                                distributionId.GetHashCode(),
-                                                                                Constants.CyclomaticComplexity.ComplexityArtifacts_High.GetHashCode());
-                double? selectedVhiVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                                                                                distributionId.GetHashCode(),
-                                                                                Constants.CyclomaticComplexity.ComplexityArtifacts_VeryHigh.GetHashCode());
+                previousHttVal = previousHigVal.HasValue && previousVhiVal.HasValue ? previousHigVal.Value + previousVhiVal.Value : (double?)null;
 
-
-
-                double? selectedTotal = (selectedLowVal.HasValue && selectedAveVal.HasValue && selectedHigVal.HasValue && selectedVhiVal.HasValue) ? selectedLowVal.Value + selectedAveVal.Value + selectedHigVal.Value + selectedVhiVal.Value : (double?)null;
-                double? selectedHttVal = (selectedHigVal.HasValue && selectedVhiVal.HasValue) ? selectedHigVal.Value + selectedVhiVal.Value : (double?)null;
- 
-                #endregion Selected Snapshot
-            
-                #region Previous Snapshot
-
-                if (reportData.PreviousSnapshot != null)
-                {
-
-                    previousHigVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
-                                                                                  distributionId.GetHashCode(),
-                                                                                  Constants.CyclomaticComplexity.ComplexityArtifacts_High.GetHashCode());
-                    previousVhiVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
-                                                                                  distributionId.GetHashCode(),
-                                                                                  Constants.CyclomaticComplexity.ComplexityArtifacts_VeryHigh.GetHashCode());
-
-                    previousHttVal = previousHigVal.HasValue && previousVhiVal.HasValue ? previousHigVal.Value + previousVhiVal.Value : (double?)null;
-
-                }
+            }
              
-               #endregion Previous Snapshot
+            #endregion Previous Snapshot
 
-               #region Data
-               Int32? variation = (selectedHttVal.HasValue && previousHttVal.HasValue) ? (Int32)(selectedHttVal - previousHttVal) : (Int32?)null;
+            #region Data
+            int? variation = (selectedHttVal.HasValue && previousHttVal.HasValue) ? (int)(selectedHttVal - previousHttVal) : (int?)null;
                  
-               string distributionName = CastComplexityUtility.GetCostComplexityName(reportData.CurrentSnapshot, distributionId.GetHashCode());
+            string distributionName = CastComplexityUtility.GetCostComplexityName(reportData.CurrentSnapshot, distributionId.GetHashCode());
 
-               rowData.AddRange(new string[] { distributionName, Labels.Current, Labels.Previous, Labels.Evol, Labels.TotalPercent });
-               rowData.AddRange(new string[]
-                        { Labels.ComplexityHighAndVeryHigh
-                        , selectedHttVal.HasValue? selectedHttVal.Value.ToString(_MetricFormat) : Constants.No_Value
-                        , previousHttVal.HasValue ? previousHttVal.Value.ToString(_MetricFormat) : Constants.No_Value
-                        , variation.HasValue? TableBlock.FormatEvolution((Int32)variation.Value): Constants.No_Value
-                        , (selectedHttVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)? TableBlock.FormatPercent(selectedHttVal.Value / selectedTotal.Value, false): Constants.No_Value
-                        });
+            rowData.AddRange(new[] { distributionName, Labels.Current, Labels.Previous, Labels.Evol, Labels.TotalPercent });
+            rowData.AddRange(new[]
+            { Labels.ComplexityHighAndVeryHigh
+                , selectedHttVal?.ToString(MetricFormat) ?? Constants.No_Value
+                , previousHttVal?.ToString(MetricFormat) ?? Constants.No_Value
+                , variation.HasValue? FormatEvolution(variation.Value): Constants.No_Value
+                , (selectedHttVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)? FormatPercent(selectedHttVal.Value / selectedTotal.Value, false): Constants.No_Value
+            });
 
               
-                #endregion Data
+            #endregion Data
 
-                back = new TableDefinition
-                {
-                    Data = rowData,
-                    HasRowHeaders = false,
-                    HasColumnHeaders = true,
-                    NbColumns = 5,
-                    NbRows = 2
-                };
-            }
-        
+            back = new TableDefinition
+            {
+                Data = rowData,
+                HasRowHeaders = false,
+                HasColumnHeaders = true,
+                NbColumns = 5,
+                NbRows = 2
+            };
+
             return back;
         }
 

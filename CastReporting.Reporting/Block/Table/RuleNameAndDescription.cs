@@ -18,7 +18,6 @@ using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,7 +27,7 @@ namespace CastReporting.Reporting.Block.Table
     /// 
     /// </summary>
     [Block("RULE_NAME_DESCRIPTION")]
-    class RuleNameAndDescription : TableBlock
+    internal class RuleNameAndDescription : TableBlock
     {
 
         /// <summary>
@@ -45,19 +44,19 @@ namespace CastReporting.Reporting.Block.Table
        
             var rule = reportData.RuleExplorer.GetSpecificRule(reportData.Application.DomainId, strRuleId);
             var currentviolation = reportData.RuleExplorer.GetRulesViolations(reportData.CurrentSnapshot.Href, strRuleId).FirstOrDefault();
-            Int32? failedChecks = null;
+            int? failedChecks = null;
 
             if (currentviolation != null && currentviolation.ApplicationResults.Any()) {
                 failedChecks = currentviolation.ApplicationResults[0].DetailResult.ViolationRatio.FailedChecks;               
             }
 
             if (rule != null) {
-                rowData.AddRange(new string[] {
+                rowData.AddRange(new[] {
                                 rule.Name, null,
 					Labels.Rationale, string.IsNullOrWhiteSpace(rule.Rationale) ? Constants.No_Value : rule.Rationale,
 					Labels.Description, rule.Description,
 					Labels.Remediation, string.IsNullOrWhiteSpace(rule.Remediation) ? Constants.No_Value : rule.Remediation,
-					Labels.ViolationsCount, (failedChecks != null && failedChecks.HasValue) ? failedChecks.Value.ToString("N0") : Constants.No_Value,
+					Labels.ViolationsCount, (failedChecks != null) ? failedChecks.Value.ToString("N0") : Constants.No_Value,
                             });
             }
                 

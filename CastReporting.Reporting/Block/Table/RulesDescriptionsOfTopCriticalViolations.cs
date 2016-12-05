@@ -13,34 +13,31 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
-using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
 
 namespace CastReporting.Reporting.Block.Table
 {
 	[Block("RULE_NAME_DESCRIPTION_TOPCRITVIOL"), Block("METRIC_NAME_DESCRIPTION")]
-    class RulesDescriptionsOfTopCriticalViolations : TableBlock
+	internal class RulesDescriptionsOfTopCriticalViolations : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            TableDefinition back = null;
             List<string> rowData = new List<string>();
-            int nbLimitTop = 0;
+            int nbLimitTop;
             List<int> bcId = new List<int>();
-            int idx = -1;
-            if (null == options || !options.ContainsKey("IDX") || !Int32.TryParse(options["IDX"], out idx))
+            int idx;
+            if (null == options || !options.ContainsKey("IDX") || !int.TryParse(options["IDX"], out idx))
             {
                 idx = -1;
             }
-            if (null == options || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out nbLimitTop))
+            if (null == options || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop))
             {
                 nbLimitTop = 10;
                 if (idx >= 0 && nbLimitTop <= idx)
@@ -49,7 +46,7 @@ namespace CastReporting.Reporting.Block.Table
             if (options != null && options.ContainsKey("PAR")) {
             	foreach (var par in options["PAR"].Split('|')) {
             		int id;
-            		if (Int32.TryParse(par, out id)) {
+            		if (int.TryParse(par, out id)) {
             			bcId.Add(id);
             		}
             	}
@@ -61,30 +58,29 @@ namespace CastReporting.Reporting.Block.Table
           
             ApplicationResult bc = reportData.CurrentSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => bcId.Contains(_.Reference.Key));
 
-            rowData.AddRange(new string[] { "Rules Descriptions for Top Critical Violation Rules For Business Criterion " + bc.Reference.Name, null });
+            rowData.AddRange(new[] { "Rules Descriptions for Top Critical Violation Rules For Business Criterion " + bc?.Reference.Name, null });
 
-            var criticalRuleViolations = bc.CriticalRulesViolation.Where(_ => _.DetailResult != null && _.DetailResult.ViolationRatio != null).OrderByDescending(_ => _.DetailResult.ViolationRatio.FailedChecks).Take(nbLimitTop);
+            var criticalRuleViolations = bc?.CriticalRulesViolation.Where(_ => _.DetailResult?.ViolationRatio != null).OrderByDescending(_ => _.DetailResult.ViolationRatio.FailedChecks).Take(nbLimitTop);
             if (idx >= 0)
-            	criticalRuleViolations = criticalRuleViolations.Skip(idx).Take(1);
+            	criticalRuleViolations = criticalRuleViolations?.Skip(idx).Take(1);
 
-            foreach (var violation in criticalRuleViolations)
-            {
-                RuleDescription ruleDescription = null;
+            if (criticalRuleViolations != null)
+                foreach (var violation in criticalRuleViolations)
+                {
+                    var ruleDescription = reportData.RuleExplorer.GetSpecificRule(reportData.Application.DomainId, violation.Reference.Key.ToString());
 
-                ruleDescription = reportData.RuleExplorer.GetSpecificRule(reportData.Application.DomainId, violation.Reference.Key.ToString());
+                    rowData.AddRange(new[]
+                    {
+                        Labels.RuleName, violation.Reference.Name,
+                        Labels.Rationale, ruleDescription.Rationale,
+                        Labels.Description, ruleDescription.Description,
+                        Labels.Remediation, string.IsNullOrWhiteSpace(ruleDescription.Remediation) ? Constants.No_Value : ruleDescription.Remediation,
+                        Labels.ViolationsCount, violation.DetailResult.ViolationRatio.FailedChecks.ToString(),
+                        " "," "
+                    });
+                }
 
-                rowData.AddRange(new string[]
-                                    {
-                                        Labels.RuleName, violation.Reference.Name,
-                                        Labels.Rationale, ruleDescription.Rationale,
-                                        Labels.Description, ruleDescription.Description,
-                                        Labels.Remediation, string.IsNullOrWhiteSpace(ruleDescription.Remediation) ? Constants.No_Value : ruleDescription.Remediation,
-                                        Labels.ViolationsCount, violation.DetailResult.ViolationRatio.FailedChecks.ToString(),
-                                            " "," "
-                                    });
-            }
-
-            back = new TableDefinition
+            var back = new TableDefinition
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,

@@ -13,7 +13,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
 using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
@@ -25,12 +24,12 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TQI")]
-    class TQI : TableBlock
+    internal class TQI : TableBlock
     {
          /// <summary>
         /// 
         /// </summary>
-        private const string _MetricFormat = "N2";
+        private const string MetricFormat = "N2";
 
 
         /// <summary>
@@ -45,12 +44,12 @@ namespace CastReporting.Reporting.Block.Table
             rowData.AddRange(new[] { Labels.Statistics, Labels.Current, Labels.Previous });
 
 
-            Double? currentTqi= BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Domain.Constants.BusinessCriteria.TechnicalQualityIndex, true);
-            Double? previousTqi = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.PreviousSnapshot, Domain.Constants.BusinessCriteria.TechnicalQualityIndex, true);
+            double? currentTqi= BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Domain.Constants.BusinessCriteria.TechnicalQualityIndex, true);
+            double? previousTqi = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.PreviousSnapshot, Domain.Constants.BusinessCriteria.TechnicalQualityIndex, true);
 
             rowData.AddRange(new[] { Labels.TQI, 
-                                       currentTqi.HasValue ? currentTqi.Value.ToString(_MetricFormat): String.Empty, 
-                                       previousTqi.HasValue ? previousTqi.Value.ToString(_MetricFormat):CastReporting.Domain.Constants.No_Value});
+                                       currentTqi?.ToString(MetricFormat) ?? string.Empty, 
+                                       previousTqi?.ToString(MetricFormat) ?? Domain.Constants.No_Value});
 
             var resultTable = new TableDefinition
             {

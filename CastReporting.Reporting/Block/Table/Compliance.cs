@@ -13,21 +13,18 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
-using CastReporting.Domain;
 
 
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("COMPLIANCE")]
-    class Compliance : TableBlock
+    internal class Compliance : TableBlock
     {   
 
          #region METHODS
@@ -35,81 +32,75 @@ namespace CastReporting.Reporting.Block.Table
         {
 
           
-            string metricFormat = "N2";
+            const string metricFormat = "N2";
             TableDefinition resultTable = null;
             bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
 
-            if (null != reportData &&
-                null != reportData.CurrentSnapshot &&
-                null != reportData.CurrentSnapshot.BusinessCriteriaResults)
+            if (reportData?.CurrentSnapshot?.BusinessCriteriaResults == null) return resultTable;
+
+            bool hasPreviousSnapshot = reportData.PreviousSnapshot?.BusinessCriteriaResults != null;
+            string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);
+            BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, false);
+
+
+            string prevSnapshotLabel = hasPreviousSnapshot ? SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot) : Domain.Constants.No_Value;
+            BusinessCriteriaDTO prevSnapshotBisCriDTO = hasPreviousSnapshot ? BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot, false) : null;
+
+
+            double? currProgrammingPracticesValue = currSnapshotBisCriDTO.ProgrammingPractices ?? 1;
+            double? currArchitecturalDesignValue = currSnapshotBisCriDTO.ArchitecturalDesign ?? 1;
+            double? currDocumentationValue = currSnapshotBisCriDTO.Documentation ?? 1;
+
+
+            double? prevProgrammingPracticesValue = hasPreviousSnapshot?prevSnapshotBisCriDTO.ProgrammingPractices : 0;
+            double? prevArchitecturalDesignValue = hasPreviousSnapshot ?prevSnapshotBisCriDTO.ArchitecturalDesign : 0;
+            double? prevDocumentationValue = hasPreviousSnapshot?prevSnapshotBisCriDTO.Documentation : 0;
+
+            double? varProgrammingPractices = MathUtility.GetPercent(MathUtility.GetEvolution(currProgrammingPracticesValue.Value, prevProgrammingPracticesValue.Value),
+                prevProgrammingPracticesValue.Value);
+
+            double? varArchitecturalDesign = MathUtility.GetPercent(MathUtility.GetEvolution(currArchitecturalDesignValue.Value, prevArchitecturalDesignValue.Value),
+                prevArchitecturalDesignValue.Value);
+
+            double? varDocumentation = MathUtility.GetPercent(MathUtility.GetEvolution(currDocumentationValue.Value, prevDocumentationValue.Value), 
+                prevDocumentationValue.Value);
+
+
+
+            List<string> rowData = new List<string>();
+            rowData.AddRange(displayShortHeader ? new[] {"", Labels.Prog, Labels.Arch, Labels.Doc} : new[] {"", Labels.ProgrammingPractices, Labels.ArchitecturalDesign, Labels.Documentation});
+
+            rowData.AddRange(
+                new[]
+                {
+                    currSnapshotLabel,
+                    currProgrammingPracticesValue?.ToString(metricFormat) ?? Domain.Constants.No_Value,
+                    currArchitecturalDesignValue?.ToString(metricFormat) ?? Domain.Constants.No_Value,
+                    currDocumentationValue?.ToString(metricFormat) ?? Domain.Constants.No_Value
+                });
+            if (hasPreviousSnapshot)
             {
-
-
-                bool hasPreviousSnapshot = null != reportData.PreviousSnapshot && null != reportData.PreviousSnapshot.BusinessCriteriaResults;
-                string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);
-                BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, false);
-
-
-                string prevSnapshotLabel = hasPreviousSnapshot ? SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot) : CastReporting.Domain.Constants.No_Value;
-                BusinessCriteriaDTO prevSnapshotBisCriDTO = hasPreviousSnapshot ? BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot, false) : null;
-
-
-                double? currProgrammingPracticesValue = null != currSnapshotBisCriDTO.ProgrammingPractices ? currSnapshotBisCriDTO.ProgrammingPractices : 1;
-                double? currArchitecturalDesignValue = null != currSnapshotBisCriDTO.ArchitecturalDesign ? currSnapshotBisCriDTO.ArchitecturalDesign : 1;
-                double? currDocumentationValue = null != currSnapshotBisCriDTO.Documentation ?currSnapshotBisCriDTO.Documentation : 1;
-
-
-                double? prevProgrammingPracticesValue = hasPreviousSnapshot?prevSnapshotBisCriDTO.ProgrammingPractices : 0;
-                double? prevArchitecturalDesignValue = hasPreviousSnapshot ?prevSnapshotBisCriDTO.ArchitecturalDesign : 0;
-                double? prevDocumentationValue = hasPreviousSnapshot?prevSnapshotBisCriDTO.Documentation : 0;
-
-                double? varProgrammingPractices = MathUtility.GetPercent(MathUtility.GetEvolution(currProgrammingPracticesValue.Value, prevProgrammingPracticesValue.Value),
-                                                                                        prevProgrammingPracticesValue.Value);
-
-                double? varArchitecturalDesign = MathUtility.GetPercent(MathUtility.GetEvolution(currArchitecturalDesignValue.Value, prevArchitecturalDesignValue.Value),
-                                                                                       prevArchitecturalDesignValue.Value);
-
-                double? varDocumentation = MathUtility.GetPercent(MathUtility.GetEvolution(currDocumentationValue.Value, prevDocumentationValue.Value), 
-                                                                                 prevDocumentationValue.Value);
-
-
-
-                List<string> rowData = new List<string>();
-                if (displayShortHeader) { rowData.AddRange(new[] { "", Labels.Prog, Labels.Arch, Labels.Doc }); }
-                else { rowData.AddRange(new[] { "", Labels.ProgrammingPractices, Labels.ArchitecturalDesign, Labels.Documentation }); }
-
                 rowData.AddRange(
                     new[]
                     {
-                        currSnapshotLabel,
-                        currProgrammingPracticesValue.HasValue? currProgrammingPracticesValue.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value,
-                        currArchitecturalDesignValue.HasValue? currArchitecturalDesignValue.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value,
-                        currDocumentationValue.HasValue? currDocumentationValue.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value
-                    });
-                if (hasPreviousSnapshot)
-                {
-                    rowData.AddRange(
-                        new[]
-                    {
                         prevSnapshotLabel,
-                        prevProgrammingPracticesValue.HasValue? prevProgrammingPracticesValue.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value,
-                        prevArchitecturalDesignValue.HasValue?prevArchitecturalDesignValue.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value,
-                        prevDocumentationValue.HasValue?prevDocumentationValue.Value.ToString(metricFormat): CastReporting.Domain.Constants.No_Value,
+                        prevProgrammingPracticesValue?.ToString(metricFormat) ?? Domain.Constants.No_Value,
+                        prevArchitecturalDesignValue?.ToString(metricFormat) ?? Domain.Constants.No_Value,
+                        prevDocumentationValue?.ToString(metricFormat) ?? Domain.Constants.No_Value,
                         Labels.Variation,
-                        varProgrammingPractices.HasValue? TableBlock.FormatPercent(varProgrammingPractices.Value): CastReporting.Domain.Constants.No_Value,
-                        varArchitecturalDesign.HasValue?TableBlock.FormatPercent(varArchitecturalDesign.Value): CastReporting.Domain.Constants.No_Value,
-                        varDocumentation.HasValue?TableBlock.FormatPercent(varDocumentation.Value): CastReporting.Domain.Constants.No_Value
+                        varProgrammingPractices.HasValue ? FormatPercent(varProgrammingPractices.Value): Domain.Constants.No_Value,
+                        varArchitecturalDesign.HasValue ? FormatPercent(varArchitecturalDesign.Value): Domain.Constants.No_Value,
+                        varDocumentation.HasValue ? FormatPercent(varDocumentation.Value): Domain.Constants.No_Value
                     });
-                }
-                resultTable = new TableDefinition
-                {
-                    HasRowHeaders = false,
-                    HasColumnHeaders = true,
-                    NbRows = hasPreviousSnapshot ? 4 : 2,
-                    NbColumns = 4,
-                    Data = rowData
-                };
             }
+            resultTable = new TableDefinition
+            {
+                HasRowHeaders = false,
+                HasColumnHeaders = true,
+                NbRows = hasPreviousSnapshot ? 4 : 2,
+                NbColumns = 4,
+                Data = rowData
+            };
             return resultTable;
         }
         #endregion METHODS

@@ -92,7 +92,7 @@ namespace CastReporting.Reporting.Block.Graph
                         {
                             if (!names.Keys.Contains(id)) continue;
                             ApplicationResult res = reportData.SnapshotExplorer.GetQualityIndicatorResults(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                            string idValue = res?.DetailResult?.Grade.ToString("N2") ?? Constants.Zero;
+                            string idValue = res?.DetailResult?.Grade?.ToString("N2") ?? Constants.Zero;
                             if (!values.Keys.Contains(id))
                                 values.Add(id, idValue);
                         }
@@ -105,7 +105,7 @@ namespace CastReporting.Reporting.Block.Graph
                         {
                             if (!names.Keys.Contains(id)) continue;
                             ApplicationResult res = reportData.SnapshotExplorer.GetSizingMeasureResults(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
-                            string idValue = res?.DetailResult?.Value.ToString("F0") ?? Constants.Zero;
+                            string idValue = res?.DetailResult?.Value?.ToString("F0") ?? Constants.Zero;
                             if (!values.Keys.Contains(id))
                                 values.Add(id, idValue);
                         }
@@ -119,7 +119,7 @@ namespace CastReporting.Reporting.Block.Graph
                             if (!names.Keys.Contains(id)) continue;
                             ApplicationResult res = reportData.SnapshotExplorer.GetBackgroundFacts(snapshot.Href, id.Trim())?.FirstOrDefault()?.ApplicationResults?.FirstOrDefault();
                             // F0 as format to avoid the ',' that make graph build crash
-                            string idValue = res?.DetailResult?.Value.ToString("F0") ?? Constants.Zero;
+                            string idValue = res?.DetailResult?.Value?.ToString("F0") ?? Constants.Zero;
                             if (!values.Keys.Contains(id))
                                 values.Add(id, idValue);
                         }

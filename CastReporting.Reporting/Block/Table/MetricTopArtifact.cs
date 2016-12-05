@@ -20,26 +20,24 @@ using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
-using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("METRIC_TOP_ARTEFACT")]
-    class MetricTopArtifact : TableBlock
+    internal class MetricTopArtifact : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            TableDefinition back = null;
             List<string> rowData = new List<string>();
-            int nbLimitTop = 0;
+            int nbLimitTop;
             List<int> bcId = new List<int>();
-            int idx = -1;
-            if (null == options || !options.ContainsKey("IDX") || !Int32.TryParse(options["IDX"], out idx))
+            int idx;
+            if (null == options || !options.ContainsKey("IDX") || !int.TryParse(options["IDX"], out idx))
             {
                 idx = -1;
             }
-            if (null == options || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out nbLimitTop))
+            if (null == options || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop))
             {
                 nbLimitTop = 10;
                 if (idx >= 0 && nbLimitTop <= idx)
@@ -51,7 +49,7 @@ namespace CastReporting.Reporting.Block.Table
                 foreach (var par in options["PAR"].Split('|'))
                 {
                     int id;
-                    if (Int32.TryParse(par, out id))
+                    if (int.TryParse(par, out id))
                     {
                         bcId.Add(id);
                     }
@@ -65,54 +63,56 @@ namespace CastReporting.Reporting.Block.Table
             ApplicationResult bc = reportData.CurrentSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => bcId.Contains(_.Reference.Key));
 
 
-            var criticalRuleViolations = bc.CriticalRulesViolation.Where(_ => _.DetailResult != null && _.DetailResult.ViolationRatio != null).OrderByDescending(_ => _.DetailResult.ViolationRatio.FailedChecks).Take(nbLimitTop);
+            var criticalRuleViolations = bc?.CriticalRulesViolation.Where(_ => _.DetailResult?.ViolationRatio != null).OrderByDescending(_ => _.DetailResult.ViolationRatio.FailedChecks).Take(nbLimitTop);
             if (idx >= 0)
-                criticalRuleViolations = criticalRuleViolations.Skip(idx).Take(1);
+                criticalRuleViolations = criticalRuleViolations?.Skip(idx).Take(1);
 
             int nbRows = 0;
 
-            foreach (var violation in criticalRuleViolations)
-            {
-                IEnumerable<CastReporting.Domain.MetricTopArtifact> metricTopArtefact = reportData.SnapshotExplorer.GetMetricTopArtefact(reportData.CurrentSnapshot.Href, violation.Reference.Key.ToString(), -1);
-
-				int nbArtefactsDisp = 0;
-				int nbArtefactsCount = 0;
-				if (metricTopArtefact != null) {
-					nbArtefactsCount = metricTopArtefact.Count();
-					nbArtefactsDisp = Math.Min(nbLimitTop, nbArtefactsCount);
-				}
-                rowData.AddRange(new string[] { "Sample Violating Artefacts for Rule '" + violation.Reference.Name + "'", "# " + nbArtefactsDisp + " of " + nbArtefactsCount });
-                nbRows++;
-
-                if (metricTopArtefact != null && nbArtefactsDisp > 0)
+            if (criticalRuleViolations != null)
+                foreach (var violation in criticalRuleViolations)
                 {
-                    foreach (var metric in metricTopArtefact)
+                    IEnumerable<Domain.MetricTopArtifact> metricTopArtefact = reportData.SnapshotExplorer.GetMetricTopArtefact(reportData.CurrentSnapshot.Href, violation.Reference.Key.ToString(), -1).ToList();
+
+                    int nbArtefactsDisp = 0;
+                    int nbArtefactsCount = 0;
+                    if (metricTopArtefact.Any())
                     {
-                        if (nbArtefactsDisp > 0)
+                        nbArtefactsCount = metricTopArtefact.Count();
+                        nbArtefactsDisp = Math.Min(nbLimitTop, nbArtefactsCount);
+                    }
+                    rowData.AddRange(new[] { "Sample Violating Artefacts for Rule '" + violation.Reference.Name + "'", "# " + nbArtefactsDisp + " of " + nbArtefactsCount });
+                    nbRows++;
+
+                    if (metricTopArtefact.Any() && nbArtefactsDisp > 0)
+                    {
+                        foreach (var metric in metricTopArtefact)
                         {
-                            rowData.AddRange(new string[] { metric.ObjectNameLocation, string.Empty });
-                            nbRows++;
-							nbArtefactsDisp--;
-                        }
-                        else
-                        {
-                            break;
+                            if (nbArtefactsDisp > 0)
+                            {
+                                rowData.AddRange(new[] { metric.ObjectNameLocation, string.Empty });
+                                nbRows++;
+                                nbArtefactsDisp--;
+                            }
+                            else
+                            {
+                                break;
+                            }
                         }
                     }
+                    else
+                    {
+                        rowData.AddRange(new[] { Labels.NoItem, string.Empty });
+                        nbRows++;
+                    }
                 }
-                else
-                {
-                    rowData.AddRange(new string[] { Labels.NoItem, string.Empty });
-					nbRows++;
-                }
-            }
-              
+
             if (nbRows == 0) {		
-                rowData.AddRange(new string[] { Labels.NoItem, string.Empty });
+                rowData.AddRange(new[] { Labels.NoItem, string.Empty });
                 nbRows++;
             }
             
-            back = new TableDefinition
+            var back = new TableDefinition
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
