@@ -4,14 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:label="clr-namespace:CastReporting.UI.WPF.Resources.Languages"
-      xmlns:Converter="clr-namespace:CastReporting.UI.WPF.Converter"   
+      xmlns:converter="clr-namespace:CastReporting.UI.WPF.Converter"   
       xmlns:w="clr-namespace:CastReporting.UI.WPF.Utilities"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="600">
-
-    <Page.Resources>
-        <Converter:BoldConverter x:Key="BoldConverter" />
-    </Page.Resources>
 
     <Grid Margin="0,0" Background="#FF202020" Width="Auto" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
@@ -49,13 +45,13 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,-8,0,-20" Grid.ZIndex="3" HorizontalAlignment="Left">
-                        <Border Width="416" Height="48" Name="tooltipURL">
+                        <Border Width="416" Height="48" Name="TooltipUrl">
                             <Border.Style>
                                 <Style>
                                     <Setter Property="Border.Margin" Value="0,0,0,10"/>
                                     <Setter Property="Border.Opacity" Value="0"/>
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=txtUrl,Path=IsFocused}" Value="True" >
+                                        <DataTrigger Binding="{Binding ElementName=TxtUrl,Path=IsFocused}" Value="True" >
                                             <Setter Property="Border.Margin" Value="0"></Setter>
                                             <DataTrigger.EnterActions>
                                                 <BeginStoryboard>
@@ -86,10 +82,10 @@
                     </Grid>
                     
                     <Label  Grid.Row="1" Grid.Column="0" Content="{x:Static label:Messages.lblFieldUrlWS}" HorizontalAlignment="Right" Height="26" Margin="0,7" Width="85" Foreground="White"/>
-                    <TextBox Style="{StaticResource EditBox}" ToolTip="{x:Static label:Messages.toolTipUrlWs}" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="1" x:Name="txtUrl" Text="{Binding NewConnectionUrl, Mode=TwoWay}" Margin="0,5" Height="Auto"/>
+                    <TextBox Style="{StaticResource EditBox}" ToolTip="{x:Static label:Messages.toolTipUrlWs}" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="1" x:Name="TxtUrl" Text="{Binding NewConnectionUrl, Mode=TwoWay}" Margin="0,5" Height="Auto"/>
 
                     <Label Grid.Row="2" Grid.Column="0" Content="{x:Static label:Messages.lblFieldWSLogin}"  HorizontalAlignment="Right" Height="26" Margin="0,6,10,18" Foreground="White"/>
-                    <TextBox Style="{StaticResource EditBox}" Grid.Row="2" Grid.Column="1" x:Name="txtLogin" Text="{Binding NewConnectionLogin, Mode=TwoWay}"   Margin="0,6,0,14" Height="Auto" />
+                    <TextBox Style="{StaticResource EditBox}" Grid.Row="2" Grid.Column="1" x:Name="TxtLogin" Text="{Binding NewConnectionLogin, Mode=TwoWay}"   Margin="0,6,0,14" Height="Auto" />
 
 
                     <Label Grid.Row="2" Grid.Column="2" Content="{x:Static label:Messages.lblFieldWSPassword}"  HorizontalAlignment="Right" Height="26" Margin="0,6,10,18"  Foreground="White"/>
@@ -118,7 +114,7 @@
 
             <Border Margin="46,30,46,0" CornerRadius="4">
                 <Grid>
-                    <Border x:Name="BDRounded" BorderThickness="0" CornerRadius="4" Background="White"/>
+                    <Border x:Name="BdRounded" BorderThickness="0" CornerRadius="4" Background="White"/>
                     <DataGrid BorderBrush="{x:Null}" Height="200" ItemsSource="{Binding WSConnections}" SelectedValue="{Binding SelectedWSConnection}"
                           AutoGenerateColumns="False" SelectionMode="Extended"  HeadersVisibility="Column" IsReadOnly="True" SelectionUnit="FullRow"
                           CanUserAddRows="False" CanUserDeleteRows="False" RowHeight="30" FontFamily="Open Sans Bold" HorizontalGridLinesBrush="#FFcfcfcf" VerticalGridLinesBrush="#FFcfcfcf">
@@ -178,17 +174,17 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
-                <Button  Style="{StaticResource StdButtonStyle}" x:Name="btnRemovedWS"  Content="{x:Static label:Messages.btnDeleteWS}" 
+                <Button  Style="{StaticResource StdButtonStyle}" x:Name="BtnRemovedWs"  Content="{x:Static label:Messages.btnDeleteWS}" 
                                     HorizontalAlignment="Right"
                                     Command="{Binding RemoveCommand}"
                                     Grid.Column="1" Margin="0,20,10,0" Width="100"/>
 
-                <Button  Style="{StaticResource StdButtonStyle}" x:Name="btnTestdWS"  Content="{x:Static label:Messages.btnPingWS}" 
+                <Button  Style="{StaticResource StdButtonStyle}" x:Name="BtnTestdWs"  Content="{x:Static label:Messages.btnPingWS}" 
                                     HorizontalAlignment="Right"
                                     Command="{Binding TestCommand}" CommandParameter="{Binding SelectedWSConnection}"
                                     Grid.Column="1" Margin="0,20,10,0" Width="100"/>
 
-                <Button  Style="{StaticResource StdButtonStyle}" x:Name="btnActiveWS"  Content="{x:Static label:Messages.btnActiveWS}" 
+                <Button  Style="{StaticResource StdButtonStyle}" x:Name="BtnActiveWs"  Content="{x:Static label:Messages.btnActiveWS}" 
                                     Command="{Binding ActiveCommand}"
                                     HorizontalAlignment="Right"
                                      Grid.Column="1" Margin="0,20,46,0" Width="100"/>

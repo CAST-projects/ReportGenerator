@@ -56,6 +56,8 @@ namespace CastReporting.UI.WPF
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        // ReSharper disable once UnusedMember.Local
+        // ReSharper disable once UnusedParameter.Local
         private void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             Exception currentException;

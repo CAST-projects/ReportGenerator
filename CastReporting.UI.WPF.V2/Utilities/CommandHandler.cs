@@ -15,6 +15,7 @@
  */
 using System;
 using System.Windows.Input;
+// ReSharper disable FieldCanBeMadeReadOnly.Local
 
 namespace CastReporting.UI.WPF
 {
@@ -29,7 +30,7 @@ namespace CastReporting.UI.WPF
         /// <summary>
         /// 
         /// </summary>
-        private Predicate<object> _CanExecutePredicate;
+        private Predicate<object> _canExecutePredicate;
 
         /// <summary>
         /// 
@@ -44,7 +45,7 @@ namespace CastReporting.UI.WPF
         public CommandHandler(Action<object> action, Predicate<object> canExecute)
         {
             _action = action;
-            _CanExecutePredicate = canExecute;
+            _canExecutePredicate = canExecute;
         }
 
         /// <summary>
@@ -54,7 +55,7 @@ namespace CastReporting.UI.WPF
         /// <returns></returns>
         public bool CanExecute(object parameter)
         {
-            return (_CanExecutePredicate != null) ? _CanExecutePredicate(parameter) : true;
+            return _canExecutePredicate?.Invoke(parameter) ?? true;
         }
       
         /// <summary>
@@ -64,6 +65,11 @@ namespace CastReporting.UI.WPF
         public void Execute(object parameter)
         {
             _action(parameter);
+        }
+
+        protected virtual void OnCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

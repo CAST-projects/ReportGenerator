@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:label="clr-namespace:CastReporting.UI.WPF.Resources.Languages"
       xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"      
-      xmlns:Commands="clr-namespace:CastReporting.UI.WPF.Commands"
+      xmlns:commands="clr-namespace:CastReporting.UI.WPF.Commands"
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="700"
@@ -14,7 +14,7 @@
 	  Title="Settings">
 
     <Page.CommandBindings>
-        <CommandBinding Command="{x:Static Commands:SettingsCommand.SaveSettings}" CanExecute="OpenSaveSettings_CanExecute" Executed="OpenSaveSettings_Executed"/>
+        <CommandBinding Command="{x:Static commands:SettingsCommand.SaveSettings}" CanExecute="OpenSaveSettings_CanExecute" Executed="OpenSaveSettings_Executed"/>
     </Page.CommandBindings>
 
     <Page.Resources>
@@ -66,7 +66,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox x:Name="txtTemplatePath" Style="{StaticResource EditBox}"  Text="{Binding TemplatePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch"/>
+                        <TextBox x:Name="TxtTemplatePath" Style="{StaticResource EditBox}"  Text="{Binding TemplatePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                         <Button  ToolTip="{x:Static label:Messages.toolTipOpenDirectory}"
                                  Grid.Row="0" 
@@ -91,7 +91,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <ComboBox x:Name="cbLanguage"  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0, 2, 8, 2" ItemsSource="{Binding Cultures}" SelectedItem="{Binding Culture}"  DisplayMemberPath="DisplayName">
+                        <ComboBox x:Name="CbLanguage"  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0, 2, 8, 2" ItemsSource="{Binding Cultures}" SelectedItem="{Binding Culture}"  DisplayMemberPath="DisplayName">
                         </ComboBox>
                     </Grid>
 
@@ -163,9 +163,9 @@
 
         <StackPanel Grid.Row="4" HorizontalAlignment="Right" Margin="0,0,46,0" Width="100">
             <Button Style="{StaticResource StdButtonStyle}"
-                    x:Name="btnAddWS" Width="100"
+                    x:Name="BtnAddWs" Width="100"
                     Content="{x:Static label:Messages.btnSaveSettings}"
-                    Command="{x:Static Commands:SettingsCommand.SaveSettings}"/>
+                    Command="{x:Static commands:SettingsCommand.SaveSettings}"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:label="clr-namespace:CastReporting.UI.WPF.Resources.Languages"
-             xmlns:Control="clr-namespace:CastReporting.UI.WPF.Common"
-             xmlns:Converter="clr-namespace:CastReporting.UI.WPF.Converter"       
+             xmlns:control="clr-namespace:CastReporting.UI.WPF.Common"
+             xmlns:converter="clr-namespace:CastReporting.UI.WPF.Converter"       
              xmlns:commands="clr-namespace:CastReporting.UI.WPF.Commands"
              mc:Ignorable="d">
 
@@ -24,16 +24,16 @@
             </Setter>
         </Style>
         
-        <Converter:MessageConverter x:Key="MessageConverter" />
+        <converter:MessageConverter x:Key="MessageConverter" />
     
     </UserControl.Resources>
 
    
 
     <Grid>
-        <Button  Style="{StaticResource MenuButtonStyle}" Height="70" HorizontalAlignment="Left" Name="btnMenu" VerticalAlignment="Top" Width="60" Click="OnButtonClick">            
+        <Button  Style="{StaticResource MenuButtonStyle}" Height="70" HorizontalAlignment="Left" Name="BtnMenu" VerticalAlignment="Top" Width="60" Click="OnButtonClick">            
             <Button.Content>
-                <Image  Name="button1Img" Source="/CastReporting.UI.WPF;component/Resources/Images/menu.png" VerticalAlignment="Center" HorizontalAlignment="Right" RenderOptions.EdgeMode="Aliased"  Width="26" Height="24" Margin="0,0,0,0"/>                                
+                <Image  Name="Button1Img" Source="/CastReporting.UI.WPF;component/Resources/Images/menu.png" VerticalAlignment="Center" HorizontalAlignment="Right" RenderOptions.EdgeMode="Aliased"  Width="26" Height="24" Margin="0,0,0,0"/>                                
             </Button.Content>
             
             <Button.ContextMenu>
