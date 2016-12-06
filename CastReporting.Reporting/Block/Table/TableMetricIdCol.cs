@@ -54,7 +54,7 @@ namespace CastReporting.Reporting.Block.Table
                 foreach (string id in qidList)
                 {
                     if (names.Keys.Contains(id)) continue;
-                    names[id] = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(id), displayShortHeader);
+                    names[id] = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(id), displayShortHeader) ?? Constants.No_Value;
                     cntMetric++;
                 }
             }
@@ -63,7 +63,7 @@ namespace CastReporting.Reporting.Block.Table
                 foreach (string id in sidList)
                 {
                     if (names.Keys.Contains(id)) continue;
-                    names[id] = MeasureUtility.GetSizingMeasureName(reportData.CurrentSnapshot, int.Parse(id), displayShortHeader);
+                    names[id] = MeasureUtility.GetSizingMeasureName(reportData.CurrentSnapshot, int.Parse(id), displayShortHeader) ?? Constants.No_Value;
                     cntMetric++;
                 }
             }
@@ -79,7 +79,7 @@ namespace CastReporting.Reporting.Block.Table
                         ? bfResult.ApplicationResults[0].Reference.ShortName
                         : bfResult.ApplicationResults[0].Reference.Name)
                         ?? bfResult.ApplicationResults[0].Reference.Name;
-                    names[id] = bfName;
+                    names[id] = bfName ?? Constants.No_Value;
                     cntMetric++;
                     if (bfResults.Keys.Contains(id)) continue;
                     bfResults[id] = bfResult;
