@@ -13,12 +13,8 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
 using CastReporting.BLL;
-using CastReporting.Domain;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -39,17 +35,17 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private bool _HasError;
+        private bool _hasError;
         public bool HasError
         {
             get
             {
-                return _HasError;
+                return _hasError;
             }
             set
             {
-                _HasError = value;
-                base.OnPropertyChanged("HasError");
+                _hasError = value;
+                OnPropertyChanged("HasError");
             }
         }
 
@@ -66,7 +62,7 @@ namespace CastReporting.UI.WPF.ViewModel
             {
                 Setting.ReportingParameter.TemplatePath = value;
 
-                base.OnPropertyChanged("TemplatePath");
+                OnPropertyChanged("TemplatePath");
             }
         }
 
@@ -74,7 +70,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        public Int32 ApplicationSizeLimitSupSmall
+        public int ApplicationSizeLimitSupSmall
         {
             get
             {
@@ -84,7 +80,7 @@ namespace CastReporting.UI.WPF.ViewModel
             {
                 Setting.ReportingParameter.ApplicationSizeLimitSupSmall = value;
 
-                base.OnPropertyChanged("ApplicationSizeLimitSupSmall");
+                OnPropertyChanged("ApplicationSizeLimitSupSmall");
             }
         }
 
@@ -92,7 +88,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        public Int32 ApplicationSizeLimitSupMedium
+        public int ApplicationSizeLimitSupMedium
         {
             get
             {
@@ -102,14 +98,14 @@ namespace CastReporting.UI.WPF.ViewModel
             {
                 Setting.ReportingParameter.ApplicationSizeLimitSupMedium = value;
 
-                base.OnPropertyChanged("ApplicationSizeLimitSupMedium");
+                OnPropertyChanged("ApplicationSizeLimitSupMedium");
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public Int32 ApplicationSizeLimitSupLarge
+        public int ApplicationSizeLimitSupLarge
         {
             get
             {
@@ -119,7 +115,7 @@ namespace CastReporting.UI.WPF.ViewModel
             {
                 Setting.ReportingParameter.ApplicationSizeLimitSupLarge = value;
 
-                base.OnPropertyChanged("ApplicationSizeLimitSupLarge");
+                OnPropertyChanged("ApplicationSizeLimitSupLarge");
             }
         }
 
@@ -127,7 +123,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// Setting.
         /// </summary>
-        public Double ApplicationQualityVeryLow
+        public double ApplicationQualityVeryLow
         {
             get
             {
@@ -137,14 +133,14 @@ namespace CastReporting.UI.WPF.ViewModel
             {
                 Setting.ReportingParameter.ApplicationQualityVeryLow = value;
 
-                base.OnPropertyChanged("ApplicationQualityVeryLow");
+                OnPropertyChanged("ApplicationQualityVeryLow");
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public Double ApplicationQualityLow
+        public double ApplicationQualityLow
         {
             get
             {
@@ -154,14 +150,14 @@ namespace CastReporting.UI.WPF.ViewModel
             {
                 Setting.ReportingParameter.ApplicationQualityLow = value;
 
-                base.OnPropertyChanged("ApplicationQualityLow");
+                OnPropertyChanged("ApplicationQualityLow");
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public Double ApplicationQualityMedium
+        public double ApplicationQualityMedium
         {
             get
             {
@@ -171,7 +167,7 @@ namespace CastReporting.UI.WPF.ViewModel
             {
                 Setting.ReportingParameter.ApplicationQualityMedium = value;
 
-                base.OnPropertyChanged("ApplicationQualityMedium");
+                OnPropertyChanged("ApplicationQualityMedium");
             }
         }
 
@@ -179,7 +175,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        public Double ApplicationQualityGood
+        public double ApplicationQualityGood
         {
             get
             {
@@ -189,7 +185,7 @@ namespace CastReporting.UI.WPF.ViewModel
             {
                 Setting.ReportingParameter.ApplicationQualityGood = value;
 
-                base.OnPropertyChanged("ApplicationQualityGood");
+                OnPropertyChanged("ApplicationQualityGood");
             }
         }
 
@@ -206,25 +202,25 @@ namespace CastReporting.UI.WPF.ViewModel
             {
                 Setting.ReportingParameter.CultureName = value.Name;
 
-                base.OnPropertyChanged("Culture");
+                OnPropertyChanged("Culture");
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private List<CultureInfo> _Cultures;
+        private List<CultureInfo> _cultures;
         public List<CultureInfo> Cultures
         {
             get
             {
-                return _Cultures;
+                return _cultures;
             }
             set
             {
-                _Cultures = value;
+                _cultures = value;
 
-                base.OnPropertyChanged("Cultures");
+                OnPropertyChanged("Cultures");
             }
         }
 
@@ -243,15 +239,13 @@ namespace CastReporting.UI.WPF.ViewModel
         {
             SettingsBLL.SaveSetting(Setting);
 
-            base.MessageManager.OnSettingsSaved();
+            MessageManager.OnSettingsSaved();
 
-            if (!Thread.CurrentThread.CurrentCulture.Name.Equals(Setting.ReportingParameter.CultureName))
-            {
-                Thread.CurrentThread.CurrentCulture = Culture;
-                Thread.CurrentThread.CurrentUICulture = Culture;
+            if (Thread.CurrentThread.CurrentCulture.Name.Equals(Setting.ReportingParameter.CultureName)) return;
+            Thread.CurrentThread.CurrentCulture = Culture;
+            Thread.CurrentThread.CurrentUICulture = Culture;
 
-                if (LangageChanged != null) LangageChanged(this, null);
-            }
+            LangageChanged?.Invoke(this, null);
         }
     }
 }

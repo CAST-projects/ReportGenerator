@@ -32,28 +32,28 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private double _ProgressPercentage;
+        private double _progressPercentage;
         public double ProgressPercentage
         {
-            get { return _ProgressPercentage; }
+            get { return _progressPercentage; }
             set
             {
-                _ProgressPercentage = value;
-                base.OnPropertyChanged("ProgressPercentage");
+                _progressPercentage = value;
+                OnPropertyChanged("ProgressPercentage");
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private string _ProgressMessage;
+        private string _progressMessage;
         public string ProgressMessage
         {
-            get { return _ProgressMessage; }
+            get { return _progressMessage; }
             set
             {
-                _ProgressMessage = value;
-                base.OnPropertyChanged("ProgressMessage");
+                _progressMessage = value;
+                OnPropertyChanged("ProgressMessage");
             }
         }
 
@@ -65,18 +65,18 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private ObservableCollection<MessageItem> _MessagesList = new ObservableCollection<MessageItem>();
+        private ObservableCollection<MessageItem> _messagesList = new ObservableCollection<MessageItem>();
         public ObservableCollection<MessageItem> MessagesList
         {
-            get { return _MessagesList; }
+            get { return _messagesList; }
             set
             {
-                if (value == _MessagesList)
+                if (value == _messagesList)
                     return;
                 
-                _MessagesList = value;
+                _messagesList = value;
                 
-                base.OnPropertyChanged("MessagesList");
+                OnPropertyChanged("MessagesList");
             }
         }
 
@@ -85,34 +85,33 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private bool _IsBusy;
+        private bool _isBusy;
         public bool IsBusy
         {
-            get { return _IsBusy; }
+            get { return _isBusy; }
             set
             {
-                _IsBusy = value;
-                if (!_IsBusy)
+                _isBusy = value;
+                if (!_isBusy)
                 {
                     ProgressPercentage = 0;
                 }
-                base.OnPropertyChanged("IsBusy");
+                OnPropertyChanged("IsBusy");
             }
         }
-
 
 
         /// <summary>
         /// Handle the message display after report generated 
         /// </summary>
-        /// <param name="messae"></param>
-        /// <param name="generationOK"></param>
+        /// <param name="fileName"></param>
+        /// <param name="timeSpan"></param>
         public void OnReportGenerated(string fileName, TimeSpan timeSpan)
         {
             MessagesList.Add(new MessageItem { Message = Messages.msgReportGenerationSuccess, FileName = fileName });
 
 #if DEBUG
-            MessagesList.Add(new MessageItem { Message = string.Format("Generation duration : {0}", timeSpan)}); 
+            MessagesList.Add(new MessageItem { Message = $"Generation duration : {timeSpan}"}); 
 #endif
         }
 
@@ -120,6 +119,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// Handle the message display after service added
         /// </summary>
         /// <param name="message"></param>
+        /// <param name="state"></param>
         public void OnServiceAdded(string message, StatesEnum state)
         {
             switch (state)
@@ -134,6 +134,10 @@ namespace CastReporting.UI.WPF.ViewModel
 
                 case StatesEnum.ConnectionAddedAndActivated:
                     MessagesList.Add(new MessageItem { Message = Messages.msgServiceActivatedAddedOK, FileName = string.Empty });
+                    break;
+
+                case StatesEnum.ConnectionAddedSuccessfully:
+                    MessagesList.Add(new MessageItem { Message = Messages.msgServiceAddedOK, FileName = string.Empty });
                     break;
 
                 default:
@@ -156,16 +160,16 @@ namespace CastReporting.UI.WPF.ViewModel
         ///  Handle the message display after service tested (ping)
         /// </summary>
         /// <param name="url"></param>
-        /// <param name="pingOK"></param>
-        public void OnServiceChecked(string url, bool pingOK)
+        /// <param name="pingOk"></param>
+        public void OnServiceChecked(string url, bool pingOk)
         {
-            MessagesList.Add(new MessageItem { Message = (pingOK) ? Messages.msgPingServiceSuccess : Messages.msgPingServiceFailure, FileName = string.Empty });             
+            MessagesList.Add(new MessageItem { Message = (pingOk) ? Messages.msgPingServiceSuccess : Messages.msgPingServiceFailure, FileName = string.Empty });             
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="url"></param>
         public void OnServiceRemoved(string url)
         {
             MessagesList.Add(new MessageItem { Message = Messages.msgServiceRemoved, FileName = string.Empty });        
@@ -183,7 +187,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         ///  Handle the message display when error occurs 
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="exception"></param>
         public void OnErrorOccured(Exception exception)
         {
             if (exception is WebException)
@@ -205,6 +209,8 @@ namespace CastReporting.UI.WPF.ViewModel
         /// 
         /// </summary>
         /// <param name="percentage"></param>
+        /// <param name="message"></param>
+        /// <param name="timeSpan"></param>
         public void OnStepDone(double percentage, string message, TimeSpan timeSpan)
         {
             ProgressPercentage += percentage;
@@ -212,7 +218,7 @@ namespace CastReporting.UI.WPF.ViewModel
 #if DEBUG
             lock (MessagesList)
             {
-                MessagesList.Add(new MessageItem { Message = string.Format("{0}({1})", message, timeSpan), FileName = string.Empty }); 
+                MessagesList.Add(new MessageItem { Message = $"{message}({timeSpan})", FileName = string.Empty }); 
             }
 #endif
         }
