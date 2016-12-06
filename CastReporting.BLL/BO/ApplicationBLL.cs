@@ -71,19 +71,19 @@ namespace CastReporting.BLL
         /// </summary>
         public void SetQualityIndicators()
         {
-            string strBusinessCriteria = "business-criteria";
+            const string strBusinessCriteria = "business-criteria";
 
             using (var castRepsitory = GetRepository())
             {
-                _Application.BusinessCriteriaResults = castRepsitory.GetResultsQualityIndicators(_Application.Href, strBusinessCriteria, "$all", string.Empty, string.Empty, string.Empty)
-                                                                         .ToList();
+                _Application.BusinessCriteriaResults = castRepsitory.GetResultsQualityIndicators(_Application.Href, strBusinessCriteria, "$all", string.Empty, string.Empty, string.Empty)?.ToList();
             }
 
+            if (_Application.BusinessCriteriaResults == null) return;
             foreach (var snapshot in _Application.Snapshots)
             {
                 snapshot.BusinessCriteriaResults = _Application.BusinessCriteriaResults
-                                                                    .Where(_ => _.Snapshot.Href.Equals(snapshot.Href))
-                                                                    .Select(_ => _.ApplicationResults).FirstOrDefault();
+                    .Where(_ => _.Snapshot.Href.Equals(snapshot.Href))
+                    .Select(_ => _.ApplicationResults).FirstOrDefault();
             }
         }
 
@@ -101,30 +101,30 @@ namespace CastReporting.BLL
                     if (VersionUtil.IsAdgVersion82Compliant(_Application.Version))
                     {
                         const string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
-                        _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasures, "$all", string.Empty, string.Empty).ToList();
+                        _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasures, "$all", string.Empty, string.Empty)?.ToList();
                     }
                     else
                     {
                         const string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
-                        _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasuresOld, "$all", string.Empty, string.Empty).ToList();
+                        _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasuresOld, "$all", string.Empty, string.Empty)?.ToList();
                     }
                 }
                 catch (System.Net.WebException ex)
                 {
                     LogHelper.Instance.LogInfo(ex.Message);
                     const string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
-                    _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasuresOld, "$all", string.Empty, string.Empty).ToList();
+                    _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasuresOld, "$all", string.Empty, string.Empty)?.ToList();
                 }
                 
             }
 
+            if (_Application.SizingMeasuresResults == null) return;
             foreach (var snapshot in _Application.Snapshots)
             {
                 snapshot.SizingMeasuresResults = _Application.SizingMeasuresResults
-                                                                    .Where(_ => _.Snapshot.Href.Equals(snapshot.Href))
-                                                                    .Select(_ => _.ApplicationResults).FirstOrDefault();
+                    .Where(_ => _.Snapshot.Href.Equals(snapshot.Href))
+                    .Select(_ => _.ApplicationResults).FirstOrDefault();
             }
-            
         }
 
 

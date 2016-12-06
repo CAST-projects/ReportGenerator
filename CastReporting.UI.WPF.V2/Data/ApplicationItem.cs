@@ -25,7 +25,7 @@ namespace CastReporting.UI.WPF
             Application = app;
         }
 
-        public Application Application { get; private set; }
+        public Application Application { get; protected set; }
 
         public override string ToString() {
             return Application.DomainId + " / " + Application.Name;

@@ -38,7 +38,7 @@ namespace CastReporting.Reporting.Block.Table
             }
             bool displayHeader = (options == null || !options.ContainsKey("HEADER") || "NO" != options["HEADER"]);
 
-            IEnumerable<IfpugFunction> functions = reportData.SnapshotExplorer.GetIfpugFunctions(reportData.CurrentSnapshot.Href, string.IsNullOrEmpty(type) ? nbLimitTop : -1).ToList();
+            IEnumerable<IfpugFunction> functions = reportData.SnapshotExplorer.GetIfpugFunctions(reportData.CurrentSnapshot.Href, string.IsNullOrEmpty(type) ? nbLimitTop : -1)?.ToList();
 
             List<string> rowData = new List<string>();
 
@@ -49,7 +49,7 @@ namespace CastReporting.Reporting.Block.Table
 
             int nbRows = 0;
 
-            if (functions.Any())
+            if (functions != null && functions.Any())
             {
                 var exportedList = functions;
                 if (!string.IsNullOrEmpty(type))

@@ -102,8 +102,8 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             {
                 string chartId = null;
 
-                var phElem = GetElements(pBlock.OxpBlock, pClient.ReportType).ToList();
-                if (phElem.Count == 0)
+                var phElem = GetElements(pBlock.OxpBlock, pClient.ReportType)?.ToList();
+                if (phElem == null || phElem.Count == 0)
                 {
                     LogHelper.Instance.LogError("No placeholder content found.");
                     return;

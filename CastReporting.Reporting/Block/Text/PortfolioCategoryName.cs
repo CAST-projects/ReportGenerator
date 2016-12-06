@@ -13,37 +13,28 @@
  * limitations under the License.
  *
  */
-using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using CastReporting.Domain;
-using System.Globalization;
-using System.Threading;
-using System.Data;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("PF_CATEGORY_NAME")]
-    class PortfolioCategoryName : TextBlock
+    internal class PortfolioCategoryName : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (null != reportData &&
-                  null != reportData.Category)
+            if (reportData?.Category != null)
             {
                 return reportData.Category;
             }
-            else if (null != reportData && null == reportData.Category)
+            if (null != reportData && null == reportData.Category)
             {
                 return "All";
             }
-            else
-            return CastReporting.Domain.Constants.No_Value;
+            return Domain.Constants.No_Value;
         }
         #endregion METHODS
     }

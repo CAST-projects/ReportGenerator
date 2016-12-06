@@ -17,26 +17,19 @@ using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using System;
 using System.Collections.Generic;
 
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("TRANSACTION_FUNCTIONS")]
-    class TransactionalFunctions : TextBlock
+    internal class TransactionalFunctions : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (null != reportData &&
-                  null != reportData.CurrentSnapshot)
-            {
-                double? result = MeasureUtility.GetAfpMetricTF(reportData.CurrentSnapshot);
-                result = Convert.ToInt32(result);
-                //return (result.HasValue ? result.Value.ToString("N0") : CastReporting.Domain.Constants.No_Value);
-                return (result.HasValue ? result.ToString() : CastReporting.Domain.Constants.No_Value);
-            }
-            return CastReporting.Domain.Constants.No_Value; 
+            if (reportData?.CurrentSnapshot == null) return Domain.Constants.No_Value;
+            double? result = MeasureUtility.GetAfpMetricTF(reportData.CurrentSnapshot);
+            return result?.ToString("N0") ?? Domain.Constants.No_Value;
         }
         #endregion METHODS
     }

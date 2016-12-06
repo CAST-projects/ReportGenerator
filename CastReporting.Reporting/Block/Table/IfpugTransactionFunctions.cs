@@ -20,12 +20,12 @@ namespace CastReporting.Reporting.Block.Table
                 nbLimitTop = -1;
             }
 
-            IEnumerable<IfpugFunction> functions = reportData.SnapshotExplorer.GetIfpugFunctions(reportData.CurrentSnapshot.Href, nbLimitTop).ToList();
+            IEnumerable<IfpugFunction> functions = reportData.SnapshotExplorer.GetIfpugFunctions(reportData.CurrentSnapshot.Href, nbLimitTop)?.ToList();
             List<string> rowData = new List<string>();
             //List<string> rowData = new List<string>(new string[] { Labels.IFPUG_ElementType, Labels.ObjectName, Labels.IFPUG_NoOfFPs, Labels.IFPUG_FPDetails, Labels.IFPUG_ObjectType, Labels.ModuleName, Labels.Technology });
             int nbRows = 0;
 
-            if (functions.Any())
+            if (functions != null && functions.Any())
             {
                 IEnumerable<IfpugFunction> exportedList = (nbLimitTop <= 0) ? functions : functions.Take(nbLimitTop);
                 foreach (var ifpugFunction in exportedList)

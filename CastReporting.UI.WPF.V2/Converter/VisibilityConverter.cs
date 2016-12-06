@@ -18,11 +18,6 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-/// <summary>
-/// A type converter for visibility and boolean values.
-/// 
-/// 
-/// </summary>
 namespace CastReporting.UI.WPF.Converter
 {
     public class VisibilityConverter : IValueConverter

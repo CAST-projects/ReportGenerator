@@ -19,11 +19,6 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
-/// <summary>
-/// A type converter for visibility and boolean values.
-/// 
-/// 
-/// </summary>
 namespace CastReporting.UI.WPF.Converter
 {
     public class BoolToCursorConverter : IValueConverter

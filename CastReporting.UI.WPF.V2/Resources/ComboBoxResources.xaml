@@ -308,7 +308,7 @@
             </Setter.Value>
         </Setter>
 
-        <Setter Property="VerticalContentAlignment" Value="Center" />
+        
     </Style>
 
 

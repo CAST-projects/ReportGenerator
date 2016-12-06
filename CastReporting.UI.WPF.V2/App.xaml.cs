@@ -31,6 +31,7 @@ namespace CastReporting.UI.WPF
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+    // ReSharper disable once RedundantExtendsListEntry
     public partial class App : Application
     {
         /// <summary>
@@ -43,17 +44,11 @@ namespace CastReporting.UI.WPF
 #endif            
             LogHelper.SetPathLog(SettingsBLL.GetApplicationPath());
 
-            if (!String.IsNullOrEmpty( ViewModelBase.Setting.ReportingParameter.CultureName))
-            {
-                CultureInfo cultureInfo = CultureInfo.GetCultureInfo(ViewModelBase.Setting.ReportingParameter.CultureName);
+            if (string.IsNullOrEmpty(ViewModelBase.Setting.ReportingParameter.CultureName)) return;
+            CultureInfo cultureInfo = CultureInfo.GetCultureInfo(ViewModelBase.Setting.ReportingParameter.CultureName);
 
-                if(cultureInfo != null)
-                {
-                    Thread.CurrentThread.CurrentCulture = cultureInfo;
-                    Thread.CurrentThread.CurrentUICulture =cultureInfo;                  
-                }
-            }
-
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            Thread.CurrentThread.CurrentUICulture =cultureInfo;
         }
 
         /// <summary>
@@ -61,23 +56,27 @@ namespace CastReporting.UI.WPF
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        private void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             Exception currentException;
             
             if (e.Exception.InnerException is WebException)
+            { 
+                // ReSharper disable once RedundantAssignment
                 currentException = e.Exception.InnerException;
+            }
+            // ReSharper disable once CanBeReplacedWithTryCastAndCheckForNull
             if (e.Exception.InnerException is AggregateException)
-                currentException = (e.Exception.InnerException as AggregateException).GetBaseException();
+                currentException = ((AggregateException) e.Exception.InnerException).GetBaseException();
             else
                 currentException = e.Exception;                            
                    
             LogHelper.Instance.LogError(Messages.msgGenericError, currentException);
             
-            IMessageManager messageManager = (this.MainWindow.DataContext as IMessageManager);
-            messageManager.OnErrorOccured(currentException);
+            IMessageManager messageManager = (MainWindow.DataContext as IMessageManager);
+            messageManager?.OnErrorOccured(currentException);
 
-            messageManager.SetBusyMode(false);
+            messageManager?.SetBusyMode(false);
 
             e.Handled = true;
         }

@@ -83,10 +83,10 @@ namespace CastReporting.Reporting.Block.Table
 
                 
             IEnumerable<Component> components = moduleId > 0 
-                ? reportData.SnapshotExplorer.GetComponentsByModule(reportData.CurrentSnapshot.DomainId, moduleId, (int)reportData.CurrentSnapshot.Id, ((int)bizCrit).ToString(), nbLimitTop).ToList() 
-                : reportData.SnapshotExplorer.GetComponents(reportData.CurrentSnapshot.Href, ((int)bizCrit).ToString(), nbLimitTop).ToList();
+                ? reportData.SnapshotExplorer.GetComponentsByModule(reportData.CurrentSnapshot.DomainId, moduleId, (int)reportData.CurrentSnapshot.Id, ((int)bizCrit).ToString(), nbLimitTop)?.ToList() 
+                : reportData.SnapshotExplorer.GetComponents(reportData.CurrentSnapshot.Href, ((int)bizCrit).ToString(), nbLimitTop)?.ToList();
 
-            if (components.Any())
+            if (components != null && components.Any())
             {
                 foreach (var component in components)
                 {

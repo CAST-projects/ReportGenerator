@@ -13,9 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -29,11 +27,7 @@ namespace CastReporting.Reporting.Block.Text
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (null != reportData &&
-               null != reportData.PreviousSnapshot)
-                return SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot);
-
-            return CastReporting.Domain.Constants.No_Value;
+            return reportData?.PreviousSnapshot != null ? SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot) : Domain.Constants.No_Value;
         }
         #endregion METHODS
     }

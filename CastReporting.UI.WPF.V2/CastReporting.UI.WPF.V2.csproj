@@ -104,7 +104,6 @@
     <Compile Include="Converter\MultiValueConverter.cs" />
     <Compile Include="Converter\NullToVisibilityConverter.cs" />
     <Compile Include="Converter\InverseBooleanConverter.cs" />
-    <Compile Include="Converter\PasswordConverter.cs" />
     <Compile Include="Converter\VisibilityConverter.cs" />
     <Compile Include="Data\ApplicationItem.cs" />
     <Compile Include="Data\CastMessage.cs" />

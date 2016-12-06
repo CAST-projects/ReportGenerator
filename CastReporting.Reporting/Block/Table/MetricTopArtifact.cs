@@ -72,11 +72,11 @@ namespace CastReporting.Reporting.Block.Table
             if (criticalRuleViolations != null)
                 foreach (var violation in criticalRuleViolations)
                 {
-                    IEnumerable<Domain.MetricTopArtifact> metricTopArtefact = reportData.SnapshotExplorer.GetMetricTopArtefact(reportData.CurrentSnapshot.Href, violation.Reference.Key.ToString(), -1).ToList();
+                    IEnumerable<Domain.MetricTopArtifact> metricTopArtefact = reportData.SnapshotExplorer.GetMetricTopArtefact(reportData.CurrentSnapshot.Href, violation.Reference.Key.ToString(), -1)?.ToList();
 
                     int nbArtefactsDisp = 0;
                     int nbArtefactsCount = 0;
-                    if (metricTopArtefact.Any())
+                    if (metricTopArtefact != null && metricTopArtefact.Any())
                     {
                         nbArtefactsCount = metricTopArtefact.Count();
                         nbArtefactsDisp = Math.Min(nbLimitTop, nbArtefactsCount);
@@ -84,7 +84,7 @@ namespace CastReporting.Reporting.Block.Table
                     rowData.AddRange(new[] { "Sample Violating Artefacts for Rule '" + violation.Reference.Name + "'", "# " + nbArtefactsDisp + " of " + nbArtefactsCount });
                     nbRows++;
 
-                    if (metricTopArtefact.Any() && nbArtefactsDisp > 0)
+                    if (metricTopArtefact != null &&  metricTopArtefact.Any() && nbArtefactsDisp > 0)
                     {
                         foreach (var metric in metricTopArtefact)
                         {

@@ -67,14 +67,15 @@ namespace CastReporting.BLL
             {
                 foreach (var domain in domains)
                 {
-					var domainApps = castRepsitory.GetApplicationsByDomain(domain.Href).ToList();
+					var domainApps = castRepsitory.GetApplicationsByDomain(domain.Href)?.ToList();
 
+                    if (domainApps == null) continue;
                     foreach (var app in domainApps)
                     {
-						if (string.IsNullOrEmpty(app.Version)) {
-                        app.Version = domain.Version;
+                        if (string.IsNullOrEmpty(app.Version)) {
+                            app.Version = domain.Version;
+                        }
                     }
-                }
 					
                     applications.AddRange(domainApps);
                 }

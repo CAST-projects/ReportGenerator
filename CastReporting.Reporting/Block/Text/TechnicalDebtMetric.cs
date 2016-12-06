@@ -17,24 +17,19 @@ using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using System;
 using System.Collections.Generic;
 
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("METRIC_TECHNICAL_DEBT")]
-    class TechnicalDebtMetric : TextBlock
+    internal class TechnicalDebtMetric : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (null != reportData &&
-               null != reportData.CurrentSnapshot)
-            {
-                double? result = MeasureUtility.GetTechnicalDebtMetric(reportData.CurrentSnapshot);
-                return (result.HasValue ? String.Format("{0:N0} {1}",result.Value, reportData.CurrencySymbol) : CastReporting.Domain.Constants.No_Value);
-            }
-            return CastReporting.Domain.Constants.No_Value;
+            if (reportData?.CurrentSnapshot == null) return Domain.Constants.No_Value;
+            double? result = MeasureUtility.GetTechnicalDebtMetric(reportData.CurrentSnapshot);
+            return (result.HasValue ? $"{result.Value:N0} {reportData.CurrencySymbol}" : Domain.Constants.No_Value);
         }
         #endregion METHODS
     }

@@ -49,7 +49,7 @@ namespace CastReporting.Reporting.Block.Table
                 //Result of previous snapshot
                 List<TechnicalCriteriaResultDTO> prevTechnicalCriteriasResults = null; //new List<TechnicalCriteriaResultDTO>();
                 if (reportData.PreviousSnapshot != null)
-                    prevTechnicalCriteriasResults = BusinessCriteriaUtility.GetTechnicalCriteriasByBusinessCriterias(reportData.PreviousSnapshot, strMetricId, count).ToList();                
+                    prevTechnicalCriteriasResults = BusinessCriteriaUtility.GetTechnicalCriteriasByBusinessCriterias(reportData.PreviousSnapshot, strMetricId, count)?.ToList();                
 
                 if (prevTechnicalCriteriasResults != null && prevTechnicalCriteriasResults.Count != 0)
                 {

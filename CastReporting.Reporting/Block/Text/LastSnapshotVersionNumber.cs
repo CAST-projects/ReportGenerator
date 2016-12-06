@@ -13,9 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -24,15 +22,12 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("LAST_SNAPSHOT_VERSION")]
-    class LastSnapshotVersionNumber : TextBlock
+    internal class LastSnapshotVersionNumber : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (null != reportData && null != reportData.CurrentSnapshot)                
-                return SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);
-
-            return CastReporting.Domain.Constants.No_Value;
+            return reportData?.CurrentSnapshot != null ? SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot) : Domain.Constants.No_Value;
         }
         #endregion METHODS
     }

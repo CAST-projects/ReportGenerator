@@ -130,7 +130,7 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                     case "MODULES":
                         // Dictionary<int, Dictionary<string,ViolStatMetricIdDTO>> curStatsModules = new Dictionary<int, Dictionary<string, ViolStatMetricIdDTO>>(); 
-                        List<Module> curModules = reportData.CurrentSnapshot.Modules.Distinct().ToList();
+                        List<Module> curModules = reportData.CurrentSnapshot.Modules.Distinct()?.ToList();
                         foreach (Module module in curModules)
                         {
                             Dictionary <string,ViolStatMetricIdDTO> curStatsMod = new Dictionary<string, ViolStatMetricIdDTO>(); 
@@ -178,7 +178,7 @@ namespace CastReporting.Reporting.Block.Table
                         }
                         break;
                     case "TECHNOLOGIES":
-                        List<string> curTechnos = reportData.CurrentSnapshot.Technologies.ToList();
+                        List<string> curTechnos = reportData.CurrentSnapshot.Technologies?.ToList();
                         // Dictionary<int, Dictionary<string,ViolStatMetricIdDTO>> curStatsTechnologies = new Dictionary<int, Dictionary<string, ViolStatMetricIdDTO>>(); 
                         foreach (string techno in curTechnos)
                         {
@@ -317,7 +317,7 @@ namespace CastReporting.Reporting.Block.Table
                         }
                         break;
                     case "MODULES":
-                        List<Module> prevModules = reportData.PreviousSnapshot.Modules.Distinct().ToList();
+                        List<Module> prevModules = reportData.PreviousSnapshot.Modules.Distinct()?.ToList();
                         // Dictionary<int, Dictionary<string, ViolStatMetricIdDTO>> prevStatsModules = new Dictionary<int, Dictionary<string, ViolStatMetricIdDTO>>();
                         foreach (Module module in prevModules)
                         {
@@ -368,7 +368,7 @@ namespace CastReporting.Reporting.Block.Table
 
                         break;
                     case "TECHNOLOGIES":
-                        List<string> prevTechnos = reportData.PreviousSnapshot.Technologies.ToList();
+                        List<string> prevTechnos = reportData.PreviousSnapshot.Technologies?.ToList();
                         // Dictionary<int, Dictionary<string,ViolStatMetricIdDTO>> prevStatsTechnologies = new Dictionary<int, Dictionary<string, ViolStatMetricIdDTO>>(); 
                         foreach (string techno in prevTechnos)
                         {

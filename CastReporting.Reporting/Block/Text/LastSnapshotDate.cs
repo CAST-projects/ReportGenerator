@@ -15,7 +15,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -25,19 +24,18 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("LAST_SNAPSHOT_DATE"), Block("TO_SNAPSHOT_DATE")]
-    class CurrentSnapshotDate : TextBlock
+    internal class CurrentSnapshotDate : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-        	string res = string.Empty;
-        	if (null != reportData && null != reportData.CurrentSnapshot) {
-        		DateTime? d = SnapshotUtility.GetSnapshotDate(reportData.CurrentSnapshot);
-        		if (d.HasValue)
-					res = d.Value.ToString(Labels.FORMAT_SHORT_DATE);
-        	}
-        	
-            return string.IsNullOrEmpty(res) ? CastReporting.Domain.Constants.No_Value : res;
+            if (reportData?.CurrentSnapshot == null) return Domain.Constants.No_Value;
+
+            string res = string.Empty;
+            DateTime? d = SnapshotUtility.GetSnapshotDate(reportData.CurrentSnapshot);
+            if (d.HasValue) res = d.Value.ToString(Labels.FORMAT_SHORT_DATE);
+
+            return string.IsNullOrEmpty(res) ? Domain.Constants.No_Value : res;
         }
         #endregion METHODS
     }

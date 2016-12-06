@@ -17,16 +17,16 @@ namespace CastReporting.UI.WPF
 {
     public class CastMessage : NotifyPropertyChangedHelper
     {
-        private string _Message;
+        private string _message;
         public string Message
         {
-            get { return _Message; }
+            get { return _message; }
             set
             {
-                if (value == _Message)
+                if (value == _message)
                     return;
-                _Message = value;
-                base.OnPropertyChanged("Message");
+                _message = value;
+                OnPropertyChanged("Message");
             }
         }
 
@@ -34,16 +34,16 @@ namespace CastReporting.UI.WPF
         /// <summary>
         /// 
         /// </summary>
-        private string _FileName;
+        private string _fileName;
         public string FileName
         {
-            get { return _FileName; }
+            get { return _fileName; }
             set
             {
-                if (value == _FileName)
+                if (value == _fileName)
                     return;
-                _FileName = value;
-                base.OnPropertyChanged("FileName");
+                _fileName = value;
+                OnPropertyChanged("FileName");
             }
         }
     }

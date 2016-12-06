@@ -13,7 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Domain;
@@ -27,7 +27,7 @@ namespace CastReporting.Reporting.Block.Text
 {
 
     [Block("RULE_FAILED_CHECKS")]
-    class FailedChecksByRule : TextBlock
+    internal class FailedChecksByRule : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
@@ -35,28 +35,25 @@ namespace CastReporting.Reporting.Block.Text
             string strRuleId = options.GetOption("RULID", string.Empty);
             string _snapshot = options.GetOption("SNAPSHOT", "CURRENT");
 
-            if (null != reportData && null != reportData.CurrentSnapshot && strRuleId != string.Empty)
+            if (reportData?.CurrentSnapshot == null || strRuleId == string.Empty) return Constants.No_Value;
+            Result violations;
+            int? failedChecks = null;
+
+            if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
             {
-                Result violations = null;
-                Int32? failedChecks = null;
-
-                if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
-                {
-                    violations = reportData.RuleExplorer.GetRulesViolations(reportData.PreviousSnapshot.Href, strRuleId).FirstOrDefault();
-                }
-                else
-                {
-                    violations = reportData.RuleExplorer.GetRulesViolations(reportData.CurrentSnapshot.Href, strRuleId).FirstOrDefault();
-                }
-
-                if (violations != null && violations.ApplicationResults.Any())
-                {
-                    failedChecks = RulesViolationUtility.GetFailedChecks(violations);
-                }
-
-                return (failedChecks != null && failedChecks.HasValue) ? failedChecks.Value.ToString("N0") : Constants.No_Value;
+                violations = reportData.RuleExplorer.GetRulesViolations(reportData.PreviousSnapshot.Href, strRuleId).FirstOrDefault();
             }
-            return CastReporting.Domain.Constants.No_Value;
+            else
+            {
+                violations = reportData.RuleExplorer.GetRulesViolations(reportData.CurrentSnapshot.Href, strRuleId).FirstOrDefault();
+            }
+
+            if (violations != null && violations.ApplicationResults.Any())
+            {
+                failedChecks = RulesViolationUtility.GetFailedChecks(violations);
+            }
+
+            return (failedChecks != null) ? failedChecks.Value.ToString("N0") : Constants.No_Value;
         }
         #endregion METHODS
     }

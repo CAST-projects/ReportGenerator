@@ -13,9 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -26,50 +24,38 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("APPLICATION_QUALITY_TYPE")]
-    class ApplicationQualityType : TextBlock
+    internal class ApplicationQualityType : TextBlock
     {
 
         
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (null != reportData &&
-                null != reportData.CurrentSnapshot)
-            {
-                Double? tqi = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Constants.BusinessCriteria.TechnicalQualityIndex, true);
+            if (reportData?.CurrentSnapshot == null) return Constants.No_Value;
+            double? tqi = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Constants.BusinessCriteria.TechnicalQualityIndex, true);
 
-                if (tqi.HasValue) return GetApplicationQualification(reportData, tqi.Value);
-            }
-            return CastReporting.Domain.Constants.No_Value;
-
+            return tqi.HasValue ? GetApplicationQualification(reportData, tqi.Value) : Constants.No_Value;
         }
 
-        
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="reportData"></param>
         /// <param name="value"></param>
-        /// <param name="qualifyType"></param>
         /// <returns></returns>
-        private static String GetApplicationQualification(ReportData reportData, double value)
+        private static string GetApplicationQualification(ReportData reportData, double value)
         {
-          
             if (value < reportData.Parameter.ApplicationQualityVeryLow)
                 return Labels.QualityVeryLow;
 
-            else if (value < reportData.Parameter.ApplicationQualityLow)
+            if (value < reportData.Parameter.ApplicationQualityLow)
                 return Labels.QualityLow;
 
-            else if (value < reportData.Parameter.ApplicationQualityMedium)
+            if (value < reportData.Parameter.ApplicationQualityMedium)
                 return Labels.QualityMedium;
 
-            else if (value < reportData.Parameter.ApplicationQualityGood)
-                return Labels.QualityGood;
-
-            else
-                return Labels.QualityVeryGood;
+            return value < reportData.Parameter.ApplicationQualityGood ? Labels.QualityGood : Labels.QualityVeryGood;
         }
         
         #endregion METHODS

@@ -15,7 +15,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -24,7 +23,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("TODAY_DATE")]
-    class TodayDate : TextBlock
+    internal class TodayDate : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)

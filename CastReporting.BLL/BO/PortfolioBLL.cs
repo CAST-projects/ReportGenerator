@@ -70,8 +70,7 @@ namespace CastReporting.BLL
                     {
                         try
                         {
-                            app.BusinessCriteriaResults = castRepsitory.GetResultsQualityIndicators(app.Href, strBusinessCriterias, "$all", string.Empty, string.Empty, string.Empty)
-                                .ToList();
+                            app.BusinessCriteriaResults = castRepsitory.GetResultsQualityIndicators(app.Href, strBusinessCriterias, "$all", string.Empty, string.Empty, string.Empty)?.ToList();
                         }
                         catch (WebException ex)
                         {
@@ -88,7 +87,7 @@ namespace CastReporting.BLL
                 {
                     try
                     {
-                        if (app.Snapshots == null) continue;
+                        if (app.Snapshots == null || app.BusinessCriteriaResults == null) continue;
                         foreach (var snapshot in app.Snapshots)
                         {
                             snapshot.BusinessCriteriaResults = app.BusinessCriteriaResults
@@ -127,12 +126,12 @@ namespace CastReporting.BLL
                                 if (VersionUtil.IsAdgVersion82Compliant(app.AdgVersion))
                                 {
                                     const string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
-                                    app.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(app.Href, strSizingMeasures, "$all", string.Empty, string.Empty).ToList();
+                                    app.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(app.Href, strSizingMeasures, "$all", string.Empty, string.Empty)?.ToList();
                                 }
                                 else
                                 {
                                     const string strSizingMeasureOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
-                                    app.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(app.Href, strSizingMeasureOld, "$all", string.Empty, string.Empty).ToList();
+                                    app.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(app.Href, strSizingMeasureOld, "$all", string.Empty, string.Empty)?.ToList();
                                 }
 
                             }
@@ -140,7 +139,7 @@ namespace CastReporting.BLL
                             {
                                 LogHelper.Instance.LogInfo(ex.Message);
                                 const string strSizingMeasureOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
-                                app.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(app.Href, strSizingMeasureOld, "$all", string.Empty, string.Empty).ToList();
+                                app.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(app.Href, strSizingMeasureOld, "$all", string.Empty, string.Empty)?.ToList();
                             }
                         }
                         catch (WebException ex)
@@ -158,7 +157,7 @@ namespace CastReporting.BLL
                 {
                     try
                     {
-                        if (app.Snapshots == null) continue;
+                        if (app.Snapshots == null || app.SizingMeasuresResults == null) continue;
                         foreach (var snapshot in app.Snapshots)
                         {
                             snapshot.SizingMeasuresResults = app.SizingMeasuresResults

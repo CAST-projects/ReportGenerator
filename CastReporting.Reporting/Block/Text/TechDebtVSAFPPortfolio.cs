@@ -18,9 +18,6 @@ using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Domain;
-using System.Globalization;
-using System.Threading;
-using System.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,54 +27,45 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("PF_TECHDEBT_VS_AFP")]
-    class TechDebtVSAFPPortfolio : TextBlock
+    internal class TechDebtVsafpPortfolio : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (null != reportData && null != reportData.Applications)
+            if (reportData?.Applications == null) return Constants.No_Value;
+            Application[] _allApps = reportData.Applications;
+            double? _allTechDebt = 0;
+            double? _afpAll = 0;
+
+            foreach (Application _app in _allApps)
             {
-                Application[] AllApps = reportData.Applications;
-                double? AllTechDebt = 0;
-                double? AFPAll = 0;
-
-                for (int j = 0; j < AllApps.Count(); j++)
+                try
                 {
-                    Application App = AllApps[j];
-
-                    try
+                    Snapshot _snapshot = _app.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
+                    if (_snapshot == null) continue;
+                    double? result = MeasureUtility.GetTechnicalDebtMetric(_snapshot);
+                    if (result != null)
                     {
-                        Snapshot _snapshot = App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
-                        if (_snapshot != null)
-                        {
-                            double? result = MeasureUtility.GetTechnicalDebtMetric(_snapshot);
-                            if (result != null)
-                            {
-                                AllTechDebt = AllTechDebt + result;
-                            }
-
-                            double? resultAFP = MeasureUtility.GetAutomatedIFPUGFunction(_snapshot);
-                            if (resultAFP != null)
-                            {
-                                AFPAll = AFPAll + resultAFP;
-                            }
-                        }
+                        _allTechDebt = _allTechDebt + result;
                     }
-                    catch (Exception ex)
+
+                    double? _resultAfp = MeasureUtility.GetAutomatedIFPUGFunction(_snapshot);
+                    if (_resultAfp != null)
                     {
-                        LogHelper.Instance.LogInfo(ex.Message);
-                        LogHelper.Instance.LogInfo(Labels.NoSnapshot);
+                        _afpAll = _afpAll + _resultAfp;
                     }
                 }
-
-                if (AllTechDebt > 0 && AFPAll > 0)
+                catch (Exception ex)
                 {
-                    double? FinalValue = AllTechDebt / AFPAll;
-                    return FinalValue.Value.ToString("C0"); // currency format with no decimal
+                    LogHelper.Instance.LogInfo(ex.Message);
+                    LogHelper.Instance.LogInfo(Labels.NoSnapshot);
                 }
-                return Labels.NoData;
             }
-            return CastReporting.Domain.Constants.No_Value;
+
+            if (!(_allTechDebt > 0) || !(_afpAll > 0)) return Labels.NoData;
+            double? _finalValue = _allTechDebt / _afpAll;
+            return $"{_finalValue.Value:N0} {reportData.CurrencySymbol}"; 
+            
         }
         #endregion METHODS
     }
