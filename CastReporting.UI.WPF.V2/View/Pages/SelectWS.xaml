@@ -163,9 +163,8 @@
                             </Style>
                         </DataGrid.Resources>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Url}" Header="{x:Static label:Messages.lblFieldUrlWS}" Width="3*"/>
+                            <DataGridTextColumn Binding="{Binding Url}" Header="{x:Static label:Messages.lblFieldUrlWS}" Width="4*"/>
                             <DataGridTextColumn Binding="{Binding Login}" Header="{x:Static label:Messages.lblFieldWSLogin}" Width="*"/>
-                            <DataGridTextColumn Binding="{Binding Password}" Header="{x:Static label:Messages.lblFieldWSPassword}" Width="*"/>
                             <DataGridTextColumn Binding="{Binding IsActive}" Header="{x:Static label:Messages.lblFieldActiveWS}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
