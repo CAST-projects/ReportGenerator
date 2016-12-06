@@ -16,7 +16,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TABLE_VIOLATIONS")]
-    class TableViolations : TableBlock
+    internal class TableViolations : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
