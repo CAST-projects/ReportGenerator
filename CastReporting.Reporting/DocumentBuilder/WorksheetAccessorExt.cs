@@ -57,10 +57,10 @@ namespace CastReporting.Reporting.Builder
             column = 0;
             foreach (char c in cellReference)
             {
-                if (Char.IsLetter(c))
-                    column = column * 26 + System.Convert.ToInt32(c) - System.Convert.ToInt32('A') + 1;
+                if (char.IsLetter(c))
+                    column = column * 26 + Convert.ToInt32(c) - Convert.ToInt32('A') + 1;
                 else
-                    row = row * 10 + System.Convert.ToInt32(c) - System.Convert.ToInt32('0');
+                    row = row * 10 + Convert.ToInt32(c) - Convert.ToInt32('0');
             }
         }
 
@@ -74,7 +74,7 @@ namespace CastReporting.Reporting.Builder
         public static string SetFormula(string sheetName, int startRow, int startColumn, int endRow, int endColumn, bool fixedFormula = true)
         {
             var formula = new StringBuilder();
-            if (String.IsNullOrEmpty(sheetName) == false)
+            if (string.IsNullOrEmpty(sheetName) == false)
             {
                 formula.Append(sheetName);
                 formula.Append('!');
@@ -96,14 +96,14 @@ namespace CastReporting.Reporting.Builder
             GetRowColumn(cellReference, out row, out column);
         }
 
-        public static int AddSharedStringValue(SpreadsheetDocument document, string value)
+        public static int? AddSharedStringValue(SpreadsheetDocument document, string value)
         {
             XDocument sharedStringsXDocument = document.WorkbookPart.SharedStringTablePart.GetXDocument();
+            if (sharedStringsXDocument.Root == null) return null;
             var newIndex = sharedStringsXDocument.Root.Elements().Count();
             var siElement = new XElement(S.si);
-            var tElement = new XElement(S.t);
+            var tElement = new XElement(S.t) {Value = value};
 
-            tElement.Value = value;
             siElement.Add(tElement);
             sharedStringsXDocument.Root.Add(siElement);
 
@@ -114,16 +114,19 @@ namespace CastReporting.Reporting.Builder
         public static bool SetSharedStringValue(SpreadsheetDocument document, int index, string value)
         {
             XDocument sharedStringsXDocument = document.WorkbookPart.SharedStringTablePart.GetXDocument();
-            var siElement = sharedStringsXDocument.Root.Elements().ElementAt<XElement>(index);
-            if (siElement == null) return false;
-
-            var hasTextElement = siElement.Descendants(S.t).FirstOrDefault();
-            if (hasTextElement == null)
+            if (sharedStringsXDocument.Root != null)
             {
-                hasTextElement = new XElement(S.t);
-                siElement.Add(hasTextElement);
+                var siElement = sharedStringsXDocument.Root.Elements().ElementAt(index);
+                if (siElement == null) return false;
+
+                var hasTextElement = siElement.Descendants(S.t).FirstOrDefault();
+                if (hasTextElement == null)
+                {
+                    hasTextElement = new XElement(S.t);
+                    siElement.Add(hasTextElement);
+                }
+                hasTextElement.Value = value;
             }
-            hasTextElement.Value = value;
             document.WorkbookPart.SharedStringTablePart.PutXDocument(sharedStringsXDocument);
             return true;
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
@@ -11,19 +10,17 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("IFPUG_TRANSACTION_FUNCTIONS")]
-    class IfpugTransactionFunctions : TableBlock
+    internal class IfpugTransactionFunctions : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            TableDefinition resultTable = null;
-
-            int nbLimitTop = -1;
-            if (null == options || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out nbLimitTop))
+            int nbLimitTop;
+            if (null == options || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop))
             {
                 nbLimitTop = -1;
             }
 
-            IEnumerable<IfpugFunction> functions = reportData.SnapshotExplorer.GetIfpugFunctions(reportData.CurrentSnapshot.Href, nbLimitTop);
+            IEnumerable<IfpugFunction> functions = reportData.SnapshotExplorer.GetIfpugFunctions(reportData.CurrentSnapshot.Href, nbLimitTop)?.ToList();
             List<string> rowData = new List<string>();
             //List<string> rowData = new List<string>(new string[] { Labels.IFPUG_ElementType, Labels.ObjectName, Labels.IFPUG_NoOfFPs, Labels.IFPUG_FPDetails, Labels.IFPUG_ObjectType, Labels.ModuleName, Labels.Technology });
             int nbRows = 0;
@@ -47,10 +44,10 @@ namespace CastReporting.Reporting.Block.Table
             }
             else
             {
-                rowData.AddRange(new string[] { Labels.NoItem, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
+                rowData.AddRange(new[] { Labels.NoItem, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
             }
 
-            resultTable = new TableDefinition
+            var resultTable = new TableDefinition
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,

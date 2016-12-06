@@ -13,6 +13,7 @@
  * limitations under the License.
  *
  */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,18 +21,18 @@ using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
-using CastReporting.BLL.Computing;
-
 
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TOP_RISKIEST_TRANSACTIONS")]
-    class TopRiskiestTransactions : TableBlock
+    internal class TopRiskiestTransactions : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            TableDefinition resultTable = null;
-            int nbLimitTop = reportData.Parameter.NbResultDefault;
+            const string metricFormat = "N0";
+            int nbLimitTop;
+            int nbRows = 0;
+            List<string> rowData = new List<string>(new[] { Labels.TransactionEP, Labels.TRI });
 
             // Default Options
             int businessCriteria = 0;
@@ -41,9 +42,11 @@ namespace CastReporting.Reporting.Block.Table
                 var source = options["SRC"];
                 switch (source)
                 {
-                    case "PERF": { businessCriteria = (int)CastReporting.Domain.Constants.BusinessCriteria.Performance; } break;
-                    case "ROB": { businessCriteria = (int)CastReporting.Domain.Constants.BusinessCriteria.Robustness; } break;
-                    case "SEC": { businessCriteria = (int)CastReporting.Domain.Constants.BusinessCriteria.Security; } break;
+                    case "PERF": { businessCriteria = (int)Domain.Constants.BusinessCriteria.Performance; } break;
+                    case "ROB": { businessCriteria = (int)Domain.Constants.BusinessCriteria.Robustness; } break;
+                    case "SEC": { businessCriteria = (int)Domain.Constants.BusinessCriteria.Security; } break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
             if (options == null ||
@@ -55,27 +58,24 @@ namespace CastReporting.Reporting.Block.Table
 
             var bc = reportData.CurrentSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == businessCriteria);
 
-            bc.Transactions = reportData.SnapshotExplorer.GetTransactions(reportData.CurrentSnapshot.Href, bc.Reference.Key.ToString(), nbLimitTop);
-
-            List<string> rowData = new List<string>(new string[] { Labels.TransactionEP, Labels.TRI });
-            int nbRows = 0;
-
-            const string metricFormat = "N0";
-            if (bc.Transactions !=null && bc.Transactions.Any())
+            if (bc != null)
             {
-                foreach (var transaction in bc.Transactions)
+                bc.Transactions = reportData.SnapshotExplorer.GetTransactions(reportData.CurrentSnapshot.Href, bc.Reference.Key.ToString(), nbLimitTop)?.ToList();
+                if (bc.Transactions !=null && bc.Transactions.Any())
                 {
-                    rowData.Add(transaction.Name);
-                    rowData.Add(transaction.TransactionRiskIndex.ToString(metricFormat));
-                    nbRows += 1;
+                    foreach (var transaction in bc.Transactions)
+                    {
+                        rowData.Add(transaction.Name);
+                        rowData.Add(transaction.TransactionRiskIndex.ToString(metricFormat));
+                        nbRows += 1;
+                    }
+                }
+                else
+                {
+                    rowData.AddRange(new[] { Labels.NoItem, string.Empty });
                 }
             }
-            else
-            {
-                rowData.AddRange(new string[] { Labels.NoItem, string.Empty });
-            }
-
-            resultTable = new TableDefinition
+            var resultTable = new TableDefinition
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
@@ -86,5 +86,6 @@ namespace CastReporting.Reporting.Block.Table
 
             return resultTable;
         }
+
     }
 }

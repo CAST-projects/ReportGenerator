@@ -13,9 +13,8 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -27,80 +26,77 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("VIOLATION_STATISTICS")]
-    class ViolationStatistics : TableBlock
+    internal class ViolationStatistics : TableBlock
     {
         #region METHODS
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
+            if (reportData?.CurrentSnapshot == null) return null;
 
-            TableDefinition resultTable = null;
-            if (reportData != null && reportData.CurrentSnapshot != null)
-            {
-                double? criticalViolation = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesNumber);
-                double? numCritPerFile = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerFileNumber);
-                double? numCritPerKLOC = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerKLOCNumber);
+            double? criticalViolation = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesNumber);
+            double? numCritPerFile = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerFileNumber);
+            double? _numCritPerKloc = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerKLOCNumber);
 
-                double? veryHighCostComplexityViolations = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,Constants.
-                                                                                                        QualityDistribution.DistributionOfViolationsToCriticalDiagnosticBasedMetricsPerCostComplexity.GetHashCode(),
-                                                                                                        Constants.ViolationsToCriticalDiagnosticBasedMetricsPerCostComplexity.ComplexityViolations_VeryHigh.GetHashCode());
+            double? veryHighCostComplexityViolations = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,Constants.
+                    QualityDistribution.DistributionOfViolationsToCriticalDiagnosticBasedMetricsPerCostComplexity.GetHashCode(),
+                Constants.ViolationsToCriticalDiagnosticBasedMetricsPerCostComplexity.ComplexityViolations_VeryHigh.GetHashCode());
                 
-                double? highCostComplexityViolations = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                                                                                                    Constants.QualityDistribution.DistributionOfViolationsToCriticalDiagnosticBasedMetricsPerCostComplexity.GetHashCode(),
-                                                                                                    Constants.ViolationsToCriticalDiagnosticBasedMetricsPerCostComplexity.ComplexityViolations_HighCost.GetHashCode());
+            double? highCostComplexityViolations = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                Constants.QualityDistribution.DistributionOfViolationsToCriticalDiagnosticBasedMetricsPerCostComplexity.GetHashCode(),
+                Constants.ViolationsToCriticalDiagnosticBasedMetricsPerCostComplexity.ComplexityViolations_HighCost.GetHashCode());
 
-                double? veryHighCostComplexityArtefacts = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                                                                                                       Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
-                                                                                                       Constants.CostComplexity.CostComplexityArtifacts_VeryHigh.GetHashCode());
+            double? veryHighCostComplexityArtefacts = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
+                Constants.CostComplexity.CostComplexityArtifacts_VeryHigh.GetHashCode());
                 
-                double? highCostComplexityArtefacts = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                                                                                                   Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
-                                                                                                   Constants.CostComplexity.CostComplexityArtifacts_High.GetHashCode());
+            double? highCostComplexityArtefacts = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
+                Constants.CostComplexity.CostComplexityArtifacts_High.GetHashCode());
 
         
-                double? nbComplexityArtefacts = MathUtility.GetSum(veryHighCostComplexityArtefacts, highCostComplexityArtefacts);
-                double? nbComplexityArtefactsViolation = MathUtility.GetSum(veryHighCostComplexityViolations, highCostComplexityViolations);
+            double? nbComplexityArtefacts = MathUtility.GetSum(veryHighCostComplexityArtefacts, highCostComplexityArtefacts);
+            double? nbComplexityArtefactsViolation = MathUtility.GetSum(veryHighCostComplexityViolations, highCostComplexityViolations);
 
 
 
-                const string metricFormat = "N0";
-                const string metricFormatPrecision = "N2";
+            const string metricFormat = "N0";
+            const string metricFormatPrecision = "N2";
 
-                string numCritPerFileIfNegative = string.Empty;
-                if (numCritPerFile == -1)
-                    numCritPerFileIfNegative = "N/A";
-                else
-                    numCritPerFileIfNegative = (numCritPerFile.HasValue) ? numCritPerFile.Value.ToString(metricFormatPrecision) : Constants.No_Value;
+            string numCritPerFileIfNegative;
+            if (numCritPerFile == -1)
+                numCritPerFileIfNegative = "N/A";
+            else
+                numCritPerFileIfNegative = numCritPerFile?.ToString(metricFormatPrecision) ?? Constants.No_Value;
                 
-                var rowData = new List<string>() 
-                { 
-                    Labels.Name
-	                , Labels.Value
+            var rowData = new List<string>() 
+            { 
+                Labels.Name
+                , Labels.Value
                     
-                    , Labels.ViolationsCritical
-                    , (criticalViolation.HasValue) ? criticalViolation.Value.ToString(metricFormat):Constants.No_Value
+                , Labels.ViolationsCritical
+                , criticalViolation?.ToString(metricFormat) ?? Constants.No_Value
 
-                    , "  " + Labels.PerFile
-                    , numCritPerFileIfNegative
+                , "  " + Labels.PerFile
+                , numCritPerFileIfNegative
 
-                    , "  " + Labels.PerkLoC
-                    , (numCritPerKLOC.HasValue)? numCritPerKLOC.Value.ToString(metricFormatPrecision):Constants.No_Value
+                , "  " + Labels.PerkLoC
+                , _numCritPerKloc?.ToString(metricFormatPrecision) ?? Constants.No_Value
 
-                    , Labels.ComplexObjects
-                    , (nbComplexityArtefacts.HasValue)?  nbComplexityArtefacts.Value.ToString(metricFormat):Constants.No_Value
+                , Labels.ComplexObjects
+                , nbComplexityArtefacts?.ToString(metricFormat) ?? Constants.No_Value
                 
-                    , "  " + Labels.WithViolations
-                    , (nbComplexityArtefactsViolation.HasValue)? nbComplexityArtefactsViolation.Value.ToString(metricFormat):Constants.No_Value
-                };
+                , "  " + Labels.WithViolations
+                , nbComplexityArtefactsViolation?.ToString(metricFormat) ?? Constants.No_Value
+            };
                 
-                resultTable = new TableDefinition
-                {
-                    HasRowHeaders = true,
-                    HasColumnHeaders = false,
-                    NbRows = 6,
-                    NbColumns = 2,
-                    Data = rowData
-                };
-            }
+            var resultTable = new TableDefinition
+            {
+                HasRowHeaders = true,
+                HasColumnHeaders = false,
+                NbRows = 6,
+                NbColumns = 2,
+                Data = rowData
+            };
             return resultTable;
         }
         #endregion METHODS

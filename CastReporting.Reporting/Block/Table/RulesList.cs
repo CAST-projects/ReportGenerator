@@ -13,7 +13,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
@@ -26,7 +25,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("RULES_LIST")]
-    public class RulesList : TableBlock
+    internal class RulesList : TableBlock
     {
 
         /// <summary>
@@ -38,60 +37,56 @@ namespace CastReporting.Reporting.Block.Table
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             string srBusinessCriterias = (options != null && options.ContainsKey("PAR")) ? options["PAR"] : null;
-            int count = 0;
-            if (options == null || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out count))
+            int count;
+            if (options == null || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out count))
             {
                 count = reportData.Parameter.NbResultDefault;
             }
-            
-            if (!string.IsNullOrWhiteSpace(srBusinessCriterias))
+
+            if (string.IsNullOrWhiteSpace(srBusinessCriterias)) return null;
+            // Parse business criterias Ids
+            List<int> businessCriteriasIds = new List<int>();
+            string[] parentMetrics = srBusinessCriterias.Split('|');
+            foreach (var metric in parentMetrics.Distinct())
             {
-                // Parse business criterias Ids
-                List<int> businessCriteriasIds = new List<int>();
-                string[] parentMetrics = srBusinessCriterias.Split('|');
-                foreach (var metric in parentMetrics.Distinct())
+                int metricId;
+                if (int.TryParse(metric, out metricId))
                 {
-                    int metricId = 0;
-                    if (int.TryParse(metric, out metricId))
-                    {
-                        businessCriteriasIds.Add(metricId);
-                    }
+                    businessCriteriasIds.Add(metricId);
                 }
+            }
                                               
-                //Build result
-                List<string> rowData = new List<string>();
-                rowData.AddRange(new string[] { Labels.Criticality, Labels.Weight, Labels.Grade, Labels.TechnicalCriterion, Labels.RuleName, Labels.ViolCount, Labels.TotalOk });
+            //Build result
+            List<string> rowData = new List<string>();
+            rowData.AddRange(new[] { Labels.Criticality, Labels.Weight, Labels.Grade, Labels.TechnicalCriterion, Labels.RuleName, Labels.ViolCount, Labels.TotalOk });
 
-                var results = RulesViolationUtility.GetNbViolationByRule(reportData.CurrentSnapshot, reportData.RuleExplorer, businessCriteriasIds, count);
-                int nbRows = 0;
-                foreach (var item in results)
-                {
+            var results = RulesViolationUtility.GetNbViolationByRule(reportData.CurrentSnapshot, reportData.RuleExplorer, businessCriteriasIds, count);
+            int nbRows = 0;
+            foreach (var item in results)
+            {
                     
-                    rowData.Add(item.Rule.Critical ? "µ" : string.Empty);
-                    rowData.Add(item.Rule.CompoundedWeight.ToString());              
-                    rowData.Add(item.Grade.Value.ToString("N2"));
-                    rowData.Add(item.TechnicalCriteraiName);
-                    rowData.Add(item.Rule.Name);
+                rowData.Add(item.Rule.Critical ? "µ" : string.Empty);
+                rowData.Add(item.Rule.CompoundedWeight.ToString());              
+                rowData.Add(item.Grade?.ToString("N2"));
+                rowData.Add(item.TechnicalCriteraiName);
+                rowData.Add(item.Rule.Name);
 
-                    rowData.Add(item.TotalFailed.HasValue ? item.TotalFailed.Value.ToString("N0") : Constants.No_Data);
-                    rowData.Add(item.TotalChecks.HasValue ? item.TotalChecks.Value.ToString("N0") : Constants.No_Value);                       
+                rowData.Add(item.TotalFailed.HasValue ? item.TotalFailed.Value.ToString("N0") : Constants.No_Data);
+                rowData.Add(item.TotalChecks.HasValue ? item.TotalChecks.Value.ToString("N0") : Constants.No_Value);                       
                    
-                    nbRows++;
-                }
-
-                TableDefinition resultTable = new TableDefinition
-                {
-                    HasRowHeaders = false,
-                    HasColumnHeaders = true,
-                    NbRows = nbRows + 1,
-                    NbColumns = 7,
-                    Data = rowData
-                };
-
-                return resultTable;
+                nbRows++;
             }
 
-            return null;
+            TableDefinition resultTable = new TableDefinition
+            {
+                HasRowHeaders = false,
+                HasColumnHeaders = true,
+                NbRows = nbRows + 1,
+                NbColumns = 7,
+                Data = rowData
+            };
+
+            return resultTable;
         }
 
 

@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using Cast.Util.Log;
@@ -49,8 +50,8 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         /// <summary>
         /// Block Type Name
         /// </summary>
-        public static string BlockTypeName { get { return "TEXT"; } }
-       
+        public static string BlockTypeName => "TEXT";
+
         #endregion PROPERTIES
 
         #region METHODS
@@ -66,9 +67,9 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
 
         public void SetContentExcel(ReportData client, Dictionary<string, string> options, string cellReference, Cell cell)
         {
-            LogHelper.Instance.LogDebugFormat("Start TextBlock generation : Type {0}", this.GetType().Name);
+            LogHelper.Instance.LogDebugFormat("Start TextBlock generation : Type {0}", GetType().Name);
             Stopwatch treatmentWatch = Stopwatch.StartNew();
-            string content = this.Content(client, options);
+            string content = Content(client, options);
 
             decimal dx;
             if (decimal.TryParse(content, out dx))
@@ -86,26 +87,24 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             treatmentWatch.Stop();
             LogHelper.Instance.LogDebugFormat
                 ("End TextBlock generation ({0}) in {1} ms"
-                , this.GetType().Name
+                , GetType().Name
                 , treatmentWatch.ElapsedMilliseconds.ToString()
                 );
         }
         public static void BuildContent(ReportData client, OpenXmlPartContainer container, BlockItem block, string blockName, Dictionary<string, string> options)
         {
             TextBlock instance = BlockHelper.GetAssociatedBlockInstance<TextBlock>(blockName);
-            if (null != instance)
-            {
-                LogHelper.Instance.LogDebugFormat("Start TextBlock generation : Type {0}", blockName);
-                Stopwatch treatmentWatch = Stopwatch.StartNew();
-                string content = instance.Content(client, options);
-                ApplyContent(client, container, block, content);
-                treatmentWatch.Stop();
-                LogHelper.Instance.LogDebugFormat
-                    ("End TextBlock generation ({0}) in {1} ms"
-                    , blockName
-                    , treatmentWatch.ElapsedMilliseconds.ToString()
-                    );
-            }
+            if (null == instance) return;
+            LogHelper.Instance.LogDebugFormat("Start TextBlock generation : Type {0}", blockName);
+            Stopwatch treatmentWatch = Stopwatch.StartNew();
+            string content = instance.Content(client, options);
+            ApplyContent(client, container, block, content);
+            treatmentWatch.Stop();
+            LogHelper.Instance.LogDebugFormat
+            ("End TextBlock generation ({0}) in {1} ms"
+                , blockName
+                , treatmentWatch.ElapsedMilliseconds.ToString()
+            );
         }
         public static void ApplyContent(ReportData client, OpenXmlPartContainer container, BlockItem block, string content)
         {
@@ -123,9 +122,11 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 case FormatType.Word: { UpdateWordBlock(container, block, content); } break;
                 case FormatType.PowerPoint: { UpdatePowerPointBlock(container, block, content); } break;
                 case FormatType.Excel: { UpdateExcelBlock(container, block, content); } break;
-                default: break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
+        // ReSharper disable once UnusedParameter.Local
         private static void UpdatePowerPointBlock(OpenXmlPartContainer container, OpenXmlElement block, string content)
         {
             OXP.Shape shape = (OXP.Shape)block.CloneNode(true);
@@ -135,7 +136,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             OXD.Paragraph paragraph = shape.TextBody.GetFirstChild<OXD.Paragraph>();
             paragraph.RemoveAllChildren<OXD.Run>();
             OXD.EndParagraphRunProperties endP = paragraph.GetFirstChild<OXD.EndParagraphRunProperties>();
-            paragraph.InsertBefore<OXD.Run>(run, endP);
+            paragraph.InsertBefore(run, endP);
             block.Parent.ReplaceChild(shape, block);
         }
         private static void UpdateWordBlock(OpenXmlPartContainer container, OpenXmlElement block, string content)
@@ -155,17 +156,14 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             {
                 // case text block in a content control
                 var cbcontainer = block.Parent;
-                if (null != cbcontainer)
-                {
-                    cbcontainer.Parent.ReplaceChild(finalBlock, cbcontainer);
-                }
+                cbcontainer?.Parent.ReplaceChild(finalBlock, cbcontainer);
             }
             else
             {
                 // case text block is in a text box
-                var oldTxt = block.Descendants<OXW.Run>().FirstOrDefault().Parent;
-                oldTxt.RemoveAllChildren();
-                oldTxt.AppendChild(finalBlock);
+                var oldTxt = block.Descendants<OXW.Run>().FirstOrDefault()?.Parent;
+                oldTxt?.RemoveAllChildren();
+                oldTxt?.AppendChild(finalBlock);
             }
             var docPart = container.GetPartsOfType<MainDocumentPart>().FirstOrDefault();
             if (docPart == null)
@@ -174,11 +172,9 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             	if (p != null)
             		docPart = p.GetParentParts().FirstOrDefault(_ => _ is MainDocumentPart) as MainDocumentPart;
             }
-            if (docPart != null)
-            {
-            	docPart.Document.Save();
-            }
+            docPart?.Document.Save();
         }
+        [SuppressMessage("ReSharper", "UnusedParameter.Local")]
         private static void UpdateExcelBlock(OpenXmlPartContainer container, OpenXmlElement block, string content)
         {
             // TODO : Finalize Excel alimentation
@@ -190,18 +186,11 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             {
                 case FormatType.Word:
                     var txtContent = block.OxpBlock.Descendants<OXW.SdtContentRun>().FirstOrDefault();
-                    if (null != txtContent)
-                    {
-                        // case text is in a content control
-                        return txtContent;
-                    }
-                    else
-                    {
-                        // case text is in a text box
-                        return block.OxpBlock;
-                    }
+                    return txtContent ?? block.OxpBlock;
+                    // case text is in a text box
                 case FormatType.PowerPoint: return block.OxpBlock;
                 case FormatType.Excel:
+                    return null;
                 default: return null;
             }
         }

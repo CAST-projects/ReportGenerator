@@ -26,7 +26,7 @@ namespace CastReporting.Reporting.Builder
         /// 
         /// </summary>
         /// <returns></returns>
-        public static IDocumentBuilder CreateBuilder(ReportData client, string TmpReportFile)
+        public static IDocumentBuilder CreateBuilder(ReportData client, string tmpReportFile)
         {
             switch(client.ReportType) 
             { 
@@ -35,7 +35,7 @@ namespace CastReporting.Reporting.Builder
                 case FormatType.PowerPoint:
                     return new PowerpointDocumentBuilder(client); 
                 case FormatType.Excel:
-                    return new ExcelDocumentBuilder(client, TmpReportFile); 
+                    return new ExcelDocumentBuilder(client, tmpReportFile); 
                 default:
                     return null;
             }

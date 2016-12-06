@@ -45,16 +45,16 @@ namespace CastReporting.Reporting.Builder
         /// </summary>
         public override void BuildDocument()
         {
-            var wordDoc = (WordprocessingDocument)base.Package;
+            var wordDoc = (WordprocessingDocument)Package;
             if (null == wordDoc) { return; }
             foreach (var onePart in wordDoc.MainDocumentPart.HeaderParts)
             {
-                this.ParseDocument(onePart);
+                ParseDocument(onePart);
             }
-            this.ParseDocument();
+            ParseDocument();
             foreach (FooterPart onePart in wordDoc.MainDocumentPart.FooterParts)
             {
-                this.ParseDocument(onePart);
+                ParseDocument(onePart);
             }
         }
         /// <summary>
@@ -126,7 +126,7 @@ namespace CastReporting.Reporting.Builder
                                              XBlock = XElement.Parse(_.Parent.Parent.OuterXml),
                                              Container = container
                                          })
-                                         .ToList(); ;
+                                         .ToList();
             blocks.AddRange(addblocks);
             
             // Find tables that are not in content control
@@ -139,16 +139,17 @@ namespace CastReporting.Reporting.Builder
                                              XBlock = XElement.Parse(_.Parent.OuterXml),
                                              Container = container
                                          })
-                                         .ToList(); ;
+                                         .ToList();
             blocks.AddRange(addblocks2);
             return blocks;
         }
 
-        private OpenXmlPartRootElement GetRootContainer(OpenXmlPartContainer container)
+        private static OpenXmlPartRootElement GetRootContainer(OpenXmlPartContainer container)
         {
-            if (container is HeaderPart)
+            var _part = container as HeaderPart;
+            if (_part != null)
             {
-                return ((HeaderPart)container).Header;
+                return _part.Header;
             }
             else if (container is FooterPart)
             {

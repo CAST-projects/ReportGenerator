@@ -17,13 +17,8 @@ using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Forms;
 
-/// <summary>
-/// A type converter for visibility and boolean values.
-/// 
-/// 
-/// </summary>
+
 namespace CastReporting.UI.WPF.Converter
 {
     public class NullToVisibilityConverter : IValueConverter

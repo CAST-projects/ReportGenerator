@@ -13,9 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -24,18 +22,14 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("METRIC_EFP_DELETED")]
-    class EFPDeleted : TextBlock
+    internal class EFPDeleted : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (null != reportData &&
-                  null != reportData.CurrentSnapshot)
-            {
-                double? result = MeasureUtility.GetDeletedFunctionPoint(reportData.CurrentSnapshot);
-                return (result.HasValue ? result.Value.ToString("N0") : CastReporting.Domain.Constants.No_Value);
-            }
-            return CastReporting.Domain.Constants.No_Value;
+            if (reportData?.CurrentSnapshot == null) return Domain.Constants.No_Value;
+            double? result = MeasureUtility.GetDeletedFunctionPoint(reportData.CurrentSnapshot);
+            return result?.ToString("N0") ?? Domain.Constants.No_Value;
         }
         #endregion METHODS
     }

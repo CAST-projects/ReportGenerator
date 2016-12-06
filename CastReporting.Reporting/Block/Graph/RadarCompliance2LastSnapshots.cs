@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
@@ -22,82 +21,71 @@ using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
-using System.Globalization;
 using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Graph
 {
     [Block("RADAR_COMPLIANCE_2_LAST_SNAPSHOTS")]
-    class RadarCompliance2LastSnapshots : GraphBlock
+    internal class RadarCompliance2LastSnapshots : GraphBlock
     {
       
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             string prevSnapshotLabel=string.Empty;
             BusinessCriteriaDTO prevSnapshotBCResult=null;
-            
-            if (reportData !=null && reportData.CurrentSnapshot != null)
+
+            if (reportData?.CurrentSnapshot == null) return null;
+            string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);                
+            BusinessCriteriaDTO _currSnapshotBcdto = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, true);
+
+            if (reportData.PreviousSnapshot != null)
             {
-               
-                string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);                
-                BusinessCriteriaDTO currSnapshotBCDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, true);
-
-                if (reportData.PreviousSnapshot != null)
+                prevSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot);
+                prevSnapshotBCResult = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot, true);
+            }
+            else
+            {
+                Snapshot _previousSnapshot = reportData.Application.Snapshots?.FirstOrDefault(_ => _.Annotation.Date.DateSnapShot < reportData.CurrentSnapshot.Annotation.Date.DateSnapShot);
+                if (_previousSnapshot != null)
                 {
-                    prevSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot);
-                    prevSnapshotBCResult = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot, true);
+                    prevSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(_previousSnapshot);
+                    prevSnapshotBCResult = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(_previousSnapshot, true);
                 }
-                else
-                    if (reportData.Application.Snapshots != null)
-                    {
-                        Snapshot PreviousSnapshot = reportData.Application.Snapshots.FirstOrDefault(_ => _.Annotation.Date.DateSnapShot < reportData.CurrentSnapshot.Annotation.Date.DateSnapShot);
-                        if (PreviousSnapshot != null)
-                        {
-                            prevSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(PreviousSnapshot);
-                            prevSnapshotBCResult = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(PreviousSnapshot, true);
-                        }
-                        
-                    }
+            }
 
 
-
-                var rowData = new List<String>();
-                rowData.Add(null);
-                rowData.Add(currSnapshotLabel.ToString());
-                if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotLabel??Constants.No_Value); }
+            var rowData = new List<string> {null, currSnapshotLabel};
+            if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotLabel??Constants.No_Value); }
 
                 
-                #region Programming Practices
-                rowData.Add(Labels.Prog);
-                rowData.Add(currSnapshotBCDTO.ProgrammingPractices.ToString());
-                if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.ProgrammingPractices.ToString()); }
-                #endregion Programming Practices
+            #region Programming Practices
+            rowData.Add(Labels.Prog);
+            rowData.Add(_currSnapshotBcdto.ProgrammingPractices.ToString());
+            if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.ProgrammingPractices.ToString()); }
+            #endregion Programming Practices
 
-                #region Architectural Design
-                rowData.Add(Labels.Arch);
-                rowData.Add(currSnapshotBCDTO.ArchitecturalDesign.ToString());
-                if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.ArchitecturalDesign.ToString()); }
-                #endregion Architectural Design
+            #region Architectural Design
+            rowData.Add(Labels.Arch);
+            rowData.Add(_currSnapshotBcdto.ArchitecturalDesign.ToString());
+            if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.ArchitecturalDesign.ToString()); }
+            #endregion Architectural Design
 
-                #region Documentation
-                rowData.Add(Labels.Doc);
-                rowData.Add(currSnapshotBCDTO.Documentation.ToString());
-                if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Documentation.ToString()); }
-                #endregion Documentation
+            #region Documentation
+            rowData.Add(Labels.Doc);
+            rowData.Add(_currSnapshotBcdto.Documentation.ToString());
+            if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Documentation.ToString()); }
+            #endregion Documentation
 
 
-                TableDefinition resultTable = new TableDefinition
-                {
-                    HasRowHeaders = true,
-                    HasColumnHeaders = true,
-                    NbRows = 4,
-                    NbColumns = (prevSnapshotBCResult != null) ? 3 : 2,
-                    Data = rowData
-                };
+            TableDefinition resultTable = new TableDefinition
+            {
+                HasRowHeaders = true,
+                HasColumnHeaders = true,
+                NbRows = 4,
+                NbColumns = (prevSnapshotBCResult != null) ? 3 : 2,
+                Data = rowData
+            };
 
-                 return resultTable;
-            }
-           
-            return null;
+            return resultTable;
         }
        
 

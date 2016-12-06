@@ -19,7 +19,6 @@ using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
-using System;
 using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Block.Table
@@ -28,7 +27,7 @@ namespace CastReporting.Reporting.Block.Table
     public class ComplianceObjectifTable : TableBlock
     {
 
-        private const string _MetricFormat = "N0";
+        private const string MetricFormat = "N0";
 
 
         /// <summary>
@@ -39,33 +38,27 @@ namespace CastReporting.Reporting.Block.Table
         /// <returns></returns>
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            int nbLimitTop = 0;
             List<string> rowData = new List<string>();           
 
             bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);           
                      
-            if (options == null || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out nbLimitTop))
-            {
-                nbLimitTop = reportData.Parameter.NbResultDefault;
-            }
-
-            if (null != reportData && null != reportData.CurrentSnapshot)
+            if (reportData?.CurrentSnapshot != null)
             {
                 //Compute nb objectives
-                Int32? nbObjectives = RulesViolationUtility.GetNbRuleWithViolations(reportData.CurrentSnapshot, Constants.RulesViolation.CriticalRulesViolation, 0, false);
+                int? nbObjectives = RulesViolationUtility.GetNbRuleWithViolations(reportData.CurrentSnapshot, Constants.RulesViolation.CriticalRulesViolation, 0, false);
 
                 //Compute nb acchiveemnt for the whole applcation
-                Int32? nbRuleWithViolations = RulesViolationUtility.GetNbRuleWithViolations(reportData.CurrentSnapshot, Constants.RulesViolation.CriticalRulesViolation, 0, true);
-                Int32? nbAchievement = (nbObjectives.HasValue && nbRuleWithViolations.HasValue) ? (nbObjectives.Value - nbRuleWithViolations.Value) : (Int32?)null;
+                int? nbRuleWithViolations = RulesViolationUtility.GetNbRuleWithViolations(reportData.CurrentSnapshot, Constants.RulesViolation.CriticalRulesViolation, 0, true);
+                int? nbAchievement = (nbObjectives.HasValue && nbRuleWithViolations.HasValue) ? (nbObjectives.Value - nbRuleWithViolations.Value) : (int?)null;
 
-                Double? achievementRatio = (nbAchievement.HasValue && nbObjectives.HasValue && nbObjectives.Value != 0) ? (Double)nbAchievement.Value / nbObjectives.Value : (Double?)null;
+                double? achievementRatio = (nbAchievement.HasValue && nbObjectives.Value != 0) ? (double)nbAchievement.Value / nbObjectives.Value : (double?)null;
 
                 //Compute nb acchiveemnt add in the last delivery
-                Int32? nbAddedCriticalViolations = MeasureUtility.GetAddedCriticalViolations(reportData.CurrentSnapshot);
+                int? nbAddedCriticalViolations = MeasureUtility.GetAddedCriticalViolations(reportData.CurrentSnapshot);
                 if (!nbAddedCriticalViolations.HasValue) nbAddedCriticalViolations = 0;
-                Int32? nbAchievementAdded = (nbObjectives.HasValue && nbAddedCriticalViolations.HasValue) ? nbObjectives.Value - nbAddedCriticalViolations.Value : (Int32?)null;
+                int? nbAchievementAdded = (nbObjectives.HasValue) ? nbObjectives.Value - nbAddedCriticalViolations.Value : (int?)null;
 
-                Double? achievementAddedRatio = (nbAchievementAdded.HasValue && nbObjectives.HasValue && nbObjectives.Value != 0) ? (Double)nbAchievementAdded.Value / nbObjectives.Value : (Double?)null;
+                double? achievementAddedRatio = (nbAchievementAdded.HasValue && nbObjectives.Value != 0) ? (double)nbAchievementAdded.Value / nbObjectives.Value : (double?)null;
 
                 //BuildContent header
                 rowData.AddRange(displayShortHeader ? new[] { " ", Labels.Obj, Labels.Achiev, Labels.AchievRatio }
@@ -73,20 +66,20 @@ namespace CastReporting.Reporting.Block.Table
 
 
                 //BuildContent "Entire Application" row
-                rowData.AddRange(new string[] {
+                rowData.AddRange(new[] {
                     Labels.DeliveryWhole,
-                    (nbObjectives.HasValue)?nbObjectives.Value.ToString(_MetricFormat):String.Empty,
-                    (nbAchievement.HasValue)?nbAchievement.Value.ToString(_MetricFormat):String.Empty,
-                    TableBlock.FormatPercent(MathUtility.GetRound(achievementRatio), false)
+                    (nbObjectives.HasValue)?nbObjectives.Value.ToString(MetricFormat):string.Empty,
+                    (nbAchievement.HasValue)?nbAchievement.Value.ToString(MetricFormat):string.Empty,
+                    FormatPercent(MathUtility.GetRound(achievementRatio), false)
                 });
 
 
                 //BuildContent "Last Delivery" row          
-                rowData.AddRange(new string[] {
+                rowData.AddRange(new[] {
                      Labels.DeliveryLast,
-                     (nbObjectives.HasValue)?nbObjectives.Value.ToString(_MetricFormat):String.Empty,
-                     (nbAchievementAdded.HasValue)?nbAchievementAdded.Value.ToString(_MetricFormat):String.Empty,
-                     TableBlock.FormatPercent(MathUtility.GetRound(achievementAddedRatio), false)
+                     (nbObjectives.HasValue)?nbObjectives.Value.ToString(MetricFormat):string.Empty,
+                     (nbAchievementAdded.HasValue)?nbAchievementAdded.Value.ToString(MetricFormat):string.Empty,
+                     FormatPercent(MathUtility.GetRound(achievementAddedRatio), false)
                 });
 
             }

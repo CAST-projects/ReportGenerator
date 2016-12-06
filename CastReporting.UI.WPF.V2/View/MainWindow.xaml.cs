@@ -27,6 +27,7 @@ namespace CastReporting.UI.WPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    // ReSharper disable once RedundantExtendsListEntry
     public partial class MainWindow : Window
     {
         /// <summary>
@@ -48,18 +49,14 @@ namespace CastReporting.UI.WPF
             InitializeComponent();
 
             DataContext = new MainWindowVM();
-            mainFrame.Navigate(new Uri(string.Format(NavigationPath, "reporting.xaml"), UriKind.RelativeOrAbsolute));
-            mainFrame.Navigated += OnFrameNavigated;
+            MainFrame.Navigate(new Uri(string.Format(NavigationPath, "reporting.xaml"), UriKind.RelativeOrAbsolute));
+            MainFrame.Navigated += OnFrameNavigated;
 
             Version ver = Assembly.GetExecutingAssembly().GetName().Version;
-            if (ver.Build == 0) {
-	            Title = string.Format("{0}-{1}.{2}", Messages.lblTitleMain, ver.Major, ver.Minor);
-            } else {
-	            Title = string.Format("{0}-{1}.{2}.{3}", Messages.lblTitleMain, ver.Major, ver.Minor, ver.Build);
-            }
+            Title = ver.Build == 0 ? $"{Messages.lblTitleMain}-{ver.Major}.{ver.Minor}" : $"{Messages.lblTitleMain}-{ver.Major}.{ver.Minor}.{ver.Build}";
 
-            EventManager.RegisterClassHandler(typeof(TextBox), TextBox.GotFocusEvent, new RoutedEventHandler(TextBox_SelectAllText));
-            EventManager.RegisterClassHandler(typeof(TextBox), TextBox.PreviewMouseDownEvent, new MouseButtonEventHandler(TextBox_SelectivelyIgnoreMouseButton));
+            EventManager.RegisterClassHandler(typeof(TextBox), GotFocusEvent, new RoutedEventHandler(TextBox_SelectAllText));
+            EventManager.RegisterClassHandler(typeof(TextBox), PreviewMouseDownEvent, new MouseButtonEventHandler(TextBox_SelectivelyIgnoreMouseButton));
         }
 
 
@@ -95,20 +92,14 @@ namespace CastReporting.UI.WPF
                 parent = System.Windows.Media.VisualTreeHelper.GetParent(parent);
             }
 
-            if (parent != null)
-            {
-                if (parent is TextBox)
-                {
-                    var textBox = (TextBox)parent;
-                    if (!textBox.IsKeyboardFocusWithin)
-                    {
-                        // If the text box is not yet focussed, give it the focus and
-                        // stop further processing of this click event.
-                        textBox.Focus();
-                        e.Handled = true;
-                    }
-                }
-            }
+            // ReSharper disable once IsExpressionAlwaysTrue
+            if (!(parent is TextBox)) return;
+            var textBox = (TextBox) parent;
+            if (textBox.IsKeyboardFocusWithin) return;
+            // If the text box is not yet focussed, give it the focus and
+            // stop further processing of this click event.
+            textBox.Focus();
+            e.Handled = true;
         }
 
         /// <summary>
@@ -120,15 +111,13 @@ namespace CastReporting.UI.WPF
         {
             var selectPage = (e.Content as Page);
 
-            if (selectPage != null)
-            {
-                var dataContext = selectPage.DataContext as ViewModelBase;
+            if (selectPage == null) return;
+            var dataContext = selectPage.DataContext as ViewModelBase;
 
-                if (dataContext != null)
-                    dataContext.MessageManager = DataContext as IMessageManager;
+            if (dataContext != null)
+                dataContext.MessageManager = DataContext as IMessageManager;
 
-                if (selectPage is Settings) (selectPage as Settings).LangageChanged += OnLanguageChanged;
-            }
+            if (selectPage is Settings) (selectPage as Settings).LangageChanged += OnLanguageChanged;
         }
 
 
@@ -139,9 +128,9 @@ namespace CastReporting.UI.WPF
         /// <param name="e"></param>
         void OnLanguageChanged(object sender, RoutedEventArgs e)
         {
-            ucMessages.Refresh();
-            ucHeader.Refresh();
-            mainFrame.NavigationService.Refresh();
+            UcMessages.Refresh();
+            UcHeader.Refresh();
+            MainFrame.NavigationService.Refresh();
           
         }
 
@@ -155,7 +144,7 @@ namespace CastReporting.UI.WPF
             var page = e.Parameter as string;
             if (!string.IsNullOrWhiteSpace(page))
             {
-                mainFrame.Navigate(new Uri(string.Format(NavigationPath, page), UriKind.RelativeOrAbsolute));
+                MainFrame.Navigate(new Uri(string.Format(NavigationPath, page), UriKind.RelativeOrAbsolute));
             }
 
             e.Handled = true;
@@ -168,7 +157,7 @@ namespace CastReporting.UI.WPF
         /// <param name="e"></param>
         protected void OnQuitExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            App.Current.Shutdown();
+            Application.Current.Shutdown();
             e.Handled = true;
         }
 

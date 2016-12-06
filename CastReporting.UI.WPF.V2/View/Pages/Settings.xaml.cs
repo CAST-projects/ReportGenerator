@@ -27,10 +27,7 @@ namespace CastReporting.UI.WPF.View
     /// </summary>
     public partial class Settings : Page
     {
-        public bool HasError 
-        {
-            get { return !IsValid(this); }
-        }
+        public bool HasError => !IsValid(this);
 
         private bool IsValid(DependencyObject obj)
         {
@@ -57,11 +54,13 @@ namespace CastReporting.UI.WPF.View
         {
             add
             {
-                (DataContext as SettingsVM).LangageChanged += value;
+                var _settingsVm = DataContext as SettingsVM;
+                if (_settingsVm != null) _settingsVm.LangageChanged += value;
             }
             remove
             {
-                (DataContext as SettingsVM).LangageChanged -= value;
+                var _settingsVm = DataContext as SettingsVM;
+                if (_settingsVm != null) _settingsVm.LangageChanged -= value;
             } 
         }
 
@@ -72,12 +71,12 @@ namespace CastReporting.UI.WPF.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new FolderBrowserDialog();
             DialogResult result = dialog.ShowDialog();
 
-            if (result == DialogResult.OK) txtTemplatePath.Text = dialog.SelectedPath;
+            if (result == DialogResult.OK) TxtTemplatePath.Text = dialog.SelectedPath;
 
   
         }
@@ -90,7 +89,8 @@ namespace CastReporting.UI.WPF.View
 
         private void OpenSaveSettings_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            (DataContext as SettingsVM).SaveSettings();
+            var _settingsVm = DataContext as SettingsVM;
+            _settingsVm?.SaveSettings();
             e.Handled = true;
         }
     }

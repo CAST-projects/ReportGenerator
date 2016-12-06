@@ -18,7 +18,6 @@ using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Domain;
-using System.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,45 +28,35 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("PF_CRITICAL_VIOLATIONS")]
-    class PortfolioCriticalViolations : TextBlock
+    internal class PortfolioCriticalViolations : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             #region Item BCID
-            int metricId = options.GetIntOption("BCID", (Int32)Constants.BusinessCriteria.TechnicalQualityIndex);
+            int metricId = options.GetIntOption("BCID", (int)Constants.BusinessCriteria.TechnicalQualityIndex);
             #endregion Item BCID
 
-            if (null != reportData && null != reportData.Applications && null != reportData.snapshots)
+            if (reportData?.Applications == null || null == reportData.snapshots) return Constants.No_Value;
+            double? _cv = 0;
+
+            Application[] _allApps = reportData.Applications;
+            foreach (Application _app in _allApps)
             {
-                double? CV = 0;
-
-                Application[] AllApps = reportData.Applications;
-                for (int j = 0; j < AllApps.Count(); j++)
+                try
                 {
-                    Application App = AllApps[j];
-
-                    try
-                    {
-                        Snapshot _snapshot = App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
-                        if (_snapshot != null)
-                        {
-                            int? snapCV = RulesViolationUtility.GetBCEvolutionSummary(_snapshot,metricId).FirstOrDefault().TotalCriticalViolations;
-                            if (snapCV != null)
-                            {
-                                CV = CV + snapCV;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        LogHelper.Instance.LogInfo(ex.Message);
-                        LogHelper.Instance.LogInfo(Labels.NoSnapshot);
-                    }
+                    Snapshot _snapshot = _app.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
+                    if (_snapshot == null) continue;
+                    int? _snapCv = RulesViolationUtility.GetBCEvolutionSummary(_snapshot,metricId).FirstOrDefault()?.TotalCriticalViolations;
+                    if (_snapCv != null) _cv = _cv + _snapCv;
                 }
-                return CV.Value.ToString("N0");
+                catch (Exception ex)
+                {
+                    LogHelper.Instance.LogInfo(ex.Message);
+                    LogHelper.Instance.LogInfo(Labels.NoSnapshot);
+                }
             }
-            return CastReporting.Domain.Constants.No_Value;
+            return _cv.Value.ToString("N0");
         }
         #endregion METHODS
     }

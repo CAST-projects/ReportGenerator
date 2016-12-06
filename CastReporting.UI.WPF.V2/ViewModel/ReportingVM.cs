@@ -29,12 +29,9 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
-using System.Data;
-
-
+// ReSharper disable InconsistentNaming
 
 namespace CastReporting.UI.WPF.ViewModel
 {
@@ -82,7 +79,7 @@ namespace CastReporting.UI.WPF.ViewModel
             set
             {
                 _TemplateFiles = value;
-                base.OnPropertyChanged("TemplateFiles");
+                OnPropertyChanged("TemplateFiles");
             }
         }
         /// <summary>
@@ -97,8 +94,8 @@ namespace CastReporting.UI.WPF.ViewModel
                 if (value == _SelectedTemplateFile)
                     return;
                 _SelectedTemplateFile = value;
-                base.OnPropertyChanged("SelectedTemplateFile");
-                base.OnPropertyChanged("IsDataFilledIn");
+                OnPropertyChanged("SelectedTemplateFile");
+                OnPropertyChanged("IsDataFilledIn");
             }
         }
 
@@ -112,7 +109,7 @@ namespace CastReporting.UI.WPF.ViewModel
             set
             {
                 _Applications = value;
-                base.OnPropertyChanged("Applications");
+                OnPropertyChanged("Applications");
             }
         }
 
@@ -126,7 +123,7 @@ namespace CastReporting.UI.WPF.ViewModel
             set
             {
                 _Categories = value;
-                base.OnPropertyChanged("Categories");
+                OnPropertyChanged("Categories");
             }
         }
 
@@ -140,7 +137,7 @@ namespace CastReporting.UI.WPF.ViewModel
             set
             {
                 _Tags = value;
-                base.OnPropertyChanged("Tags");
+                OnPropertyChanged("Tags");
             }
         }
 
@@ -156,7 +153,7 @@ namespace CastReporting.UI.WPF.ViewModel
             set
             {
                 _Snaphosts = value;
-                base.OnPropertyChanged("Snaphosts");
+                OnPropertyChanged("Snaphosts");
             }
         }
 
@@ -171,7 +168,7 @@ namespace CastReporting.UI.WPF.ViewModel
             set
             {
                 _PreviousSnapshosts = value;
-                base.OnPropertyChanged("PreviousSnaphosts");
+                OnPropertyChanged("PreviousSnaphosts");
             }
         }
 
@@ -185,11 +182,11 @@ namespace CastReporting.UI.WPF.ViewModel
             get { return _SelectedDomain; }
             set
             {
-                if (value == _SelectedDomain)
+                if (Equals(value, _SelectedDomain))
                     return;
                 _SelectedDomain = value;
-                base.OnPropertyChanged("SelectedDomain");
-                base.OnPropertyChanged("IsDataFilledIn");
+                OnPropertyChanged("SelectedDomain");
+                OnPropertyChanged("IsDataFilledIn");
             }
         }
 
@@ -207,8 +204,8 @@ namespace CastReporting.UI.WPF.ViewModel
                     return;
                 _SelectedApplication = value;
 
-                base.OnPropertyChanged("SelectedApplication");
-                base.OnPropertyChanged("IsDataFilledIn");
+                OnPropertyChanged("SelectedApplication");
+                OnPropertyChanged("IsDataFilledIn");
             }
         }
 
@@ -225,8 +222,8 @@ namespace CastReporting.UI.WPF.ViewModel
                     return;
                 _SelectedCategory = value;
 
-                base.OnPropertyChanged("SelectedCategory");
-                base.OnPropertyChanged("IsDataFilledIn");
+                OnPropertyChanged("SelectedCategory");
+                OnPropertyChanged("IsDataFilledIn");
             }
         }
 
@@ -239,12 +236,12 @@ namespace CastReporting.UI.WPF.ViewModel
             get { return _SelectedSnapshot; }
             set
             {
-                if (value == _SelectedSnapshot)
+                if (Equals(value, _SelectedSnapshot))
                     return;
                 _SelectedSnapshot = value;
 
-                base.OnPropertyChanged("SelectedSnapshot");
-                base.OnPropertyChanged("IsDataFilledIn");
+                OnPropertyChanged("SelectedSnapshot");
+                OnPropertyChanged("IsDataFilledIn");
             }
         }
 
@@ -258,8 +255,8 @@ namespace CastReporting.UI.WPF.ViewModel
                     return;
                 _SelectedTab = value;
 
-                base.OnPropertyChanged("SelectedTab");
-                base.OnPropertyChanged("IsDataFilledIn");
+                OnPropertyChanged("SelectedTab");
+                OnPropertyChanged("IsDataFilledIn");
             }
         }
 
@@ -276,8 +273,8 @@ namespace CastReporting.UI.WPF.ViewModel
                     return;
                 _SelectedTag = value;
 
-                base.OnPropertyChanged("SelectedTag");
-                base.OnPropertyChanged("IsDataFilledIn");
+                OnPropertyChanged("SelectedTag");
+                OnPropertyChanged("IsDataFilledIn");
             }
         }
 
@@ -291,12 +288,12 @@ namespace CastReporting.UI.WPF.ViewModel
             get { return _PreviousSnapshot; }
             set
             {
-                if (value == _PreviousSnapshot)
+                if (Equals(value, _PreviousSnapshot))
                     return;
                 _PreviousSnapshot = value;
 
-                base.OnPropertyChanged("PreviousSnapshot");
-                base.OnPropertyChanged("IsDataFilledIn");
+                OnPropertyChanged("PreviousSnapshot");
+                OnPropertyChanged("IsDataFilledIn");
             }
         }
 
@@ -318,7 +315,7 @@ namespace CastReporting.UI.WPF.ViewModel
                     return;
                 _ReportFileName = value;
 
-                base.OnPropertyChanged("ReportFileName");
+                OnPropertyChanged("ReportFileName");
             }
         }
 
@@ -402,7 +399,7 @@ namespace CastReporting.UI.WPF.ViewModel
             {
                 _ActiveConnection = value;
 
-                base.OnPropertyChanged("ActiveConnection");
+                OnPropertyChanged("ActiveConnection");
             }
 
         }
@@ -426,7 +423,6 @@ namespace CastReporting.UI.WPF.ViewModel
         /// </summary>
         void ExecuteReloadTemplatesCommand(object parameter)
         {
-
             //if (_SelectedTag != null && _SelectedTemplateFile != null)
             //{
             //    return true;
@@ -437,52 +433,50 @@ namespace CastReporting.UI.WPF.ViewModel
             //           _SelectedSnapshot != null &&
             //           _SelectedTemplateFile != null;
             //}
-            if (SelectedTab == 0)
+            switch (SelectedTab)
             {
-                SelectedCategory = null;
-                _SelectedCategory = null;
-                _SelectedTemplateFile = null;
-                SelectedTemplateFile = null;
-                TemplateFiles = SettingsBLL.GetTemplateFileList();
-            }
-            else
-                if (SelectedTab == 1)
-                {
+                case 0:
+                    SelectedCategory = null;
+                    _SelectedCategory = null;
+                    _SelectedTemplateFile = null;
+                    SelectedTemplateFile = null;
+                    TemplateFiles = SettingsBLL.GetTemplateFileList();
+                    break;
+                case 1:
                     SelectedApplication = null;
                     SelectedSnapshot = null;
                     _SelectedApplication = null;
                     _SelectedSnapshot = null;
-
-                    
                     TemplateFiles = SettingsBLL.GetTemplateFileListPortfolio();
-                }
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
         
 
         /// <summary>
         /// Implement Command that Load the templates list
         /// </summary>
-        void ExecuteLoadTagsCommand(object parameter)
+        private void ExecuteLoadTagsCommand(object parameter)
         {
             if (SelectedCategory != null)
             {
                 //GetActive Connection           
-                ActiveConnection = (Setting != null) ? Setting.GetActiveConnection() : null;
+                ActiveConnection = Setting?.GetActiveConnection();
 
                 //Get list of domains
-                if (_ActiveConnection != null)
+                if (_ActiveConnection == null) return;
+                try
                 {
-                    try
+                    using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
                     {
-                        using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
-                        {
-                            Tags = castDomainBLL.GetTags(SelectedCategory);
-                        }
+                        Tags = castDomainBLL.GetTags(SelectedCategory);
                     }
-                    catch (Exception ex)
-                    {
-                        base.MessageManager.OnErrorOccured(ex);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageManager.OnErrorOccured(ex);
                 }
             }
             else
@@ -493,31 +487,35 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// Implement Command that Load the templates list
         /// </summary>
-        void ExecuteLoadTemplatesCommand(object parameter)
+        private void ExecuteLoadTemplatesCommand(object parameter)
         {
-            if (SelectedTab == 0)
+            switch (SelectedTab)
             {
-                TemplateFiles = SettingsBLL.GetTemplateFileList();
-            }
-            else
-                if (SelectedTab == 1)
-                {
+                case 0:
+                    TemplateFiles = SettingsBLL.GetTemplateFileList();
+                    break;
+                case 1:
                     TemplateFiles = SettingsBLL.GetTemplateFileListPortfolio();
-                }
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
+/*
         /// <summary>
         /// Implement Command that Load the templates list of Portfolio
         /// </summary>
-        void ExecuteLoadTemplatesPortfolioCommand(object parameter)
+        private void ExecuteLoadTemplatesPortfolioCommand(object parameter)
         {
             TemplateFiles = SettingsBLL.GetTemplateFileListPortfolio();
         }
+*/
 
         /// <summary>
         /// Implement Command that Load the current snapshots list
         /// </summary>
-        void ExecuteLoadSnapshotsCommand(object parameter)
+        private void ExecuteLoadSnapshotsCommand(object parameter)
         {
             if (SelectedApplication != null)
             {               
@@ -535,7 +533,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// Implement Command that Load previous snapshots list
         /// </summary>
-        void ExecuteLoadPreviousSnapshotsCommand(object parameter)
+        private void ExecuteLoadPreviousSnapshotsCommand(object parameter)
         {
             if (SelectedSnapshot != null && Snaphosts != null)
                 PreviousSnaphosts = Snaphosts.Where(_ => _.Annotation.Date.CompareTo(SelectedSnapshot.Annotation.Date) < 0).ToList();
@@ -547,18 +545,15 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// Implement Command that Launch the report generation 
         /// </summary>
-
-        void ExecuteGenerateCommand(object prameter)
+        private void ExecuteGenerateCommand(object prameter)
         {
-            if (!string.IsNullOrEmpty(ReportFileName))
-            {
-                BackgroundWorker BackgroundWorker = new BackgroundWorker();
+            if (string.IsNullOrEmpty(ReportFileName)) return;
+            BackgroundWorker BackgroundWorker = new BackgroundWorker();
 
-                BackgroundWorker.DoWork += BackgroundWorkerDoWork;
+            BackgroundWorker.DoWork += BackgroundWorkerDoWork;
 
                
-                BackgroundWorker.RunWorkerAsync();
-            }
+            BackgroundWorker.RunWorkerAsync();
         }
 
 
@@ -566,7 +561,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// 
         /// </summary>
         /// <returns></returns>
-        bool CanExecuteGenerateCommand(object param)
+        private static bool CanExecuteGenerateCommand(object param)
         {
             return true;
         }
@@ -577,18 +572,18 @@ namespace CastReporting.UI.WPF.ViewModel
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void BackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
+        private void BackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             if (SelectedTab == 0)
             {
-                double progressStep = 100 / 4;
+                const double progressStep = 25; // 100 / 4
                 Stopwatch stopWatchStep = new Stopwatch();
                 Stopwatch stopWatchGlobal = new Stopwatch();
 
                 try
                 {
                     stopWatchGlobal.Start();
-                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), true);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), true);
 
                     //Set culture for the new thread
                     if (!string.IsNullOrEmpty(Setting.ReportingParameter.CultureName))
@@ -602,14 +597,14 @@ namespace CastReporting.UI.WPF.ViewModel
                     stopWatchStep.Restart();
                     ApplicationBLL.BuildApplicationResult(ActiveConnection, SelectedApplication.Application);
                     stopWatchStep.Stop();
-                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the application", stopWatchStep.Elapsed);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Build result for the application", stopWatchStep.Elapsed);
 
 
                     //Get result for the previous snapshot                
                     stopWatchStep.Restart();
                     SnapshotBLL.BuildSnapshotResult(ActiveConnection, SelectedSnapshot, true);
                     stopWatchStep.Stop();
-                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the selected snapshot", stopWatchStep.Elapsed);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Build result for the selected snapshot", stopWatchStep.Elapsed);
 
 
                     //Get result for the previuos snapshot                
@@ -619,7 +614,7 @@ namespace CastReporting.UI.WPF.ViewModel
                         SnapshotBLL.BuildSnapshotResult(ActiveConnection, PreviousSnapshot, false);
                         stopWatchStep.Stop();
 
-                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the previous snapshot", stopWatchStep.Elapsed);
+                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Build result for the previous snapshot", stopWatchStep.Elapsed);
                     }
 
                     //Launch generaion               
@@ -627,17 +622,17 @@ namespace CastReporting.UI.WPF.ViewModel
                     GenerateReport();
                     stopWatchStep.Stop();
 
-                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
 
 
                     //Show final message and unlock the screen   
                     stopWatchGlobal.Stop();
-                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(base.MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
-                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), false);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), false);
                 }
                 catch (Exception ex)
                 {
-                    App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<Exception>(WorkerThreadException), ex);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<Exception>(WorkerThreadException), ex);
                 }
             }
             else
@@ -646,8 +641,77 @@ namespace CastReporting.UI.WPF.ViewModel
                 List<Snapshot> Snapshots = new List<Snapshot>();
                 //if (SelectedTag != null)
                 //{
+                //GetActive Connection           
+                ActiveConnection = Setting?.GetActiveConnection();
+
+                //Get list of domains
+                if (_ActiveConnection != null)
+                {
+                    try
+                    {
+                        using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
+                        {
+                            Apps = castDomainBLL.GetCommonTaggedApplications(SelectedTag);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageManager.OnErrorOccured(ex);
+                    }
+                }
+
+
+                if (Apps == null) return;
+                Application[] SelectedApps = Apps.ToArray<Application>();
+
+                const double progressStep = 25; //100 / 4;
+                Stopwatch stopWatchStep = new Stopwatch();
+                Stopwatch stopWatchGlobal = new Stopwatch();
+
+                try
+                {
+                    stopWatchGlobal.Start();
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), true);
+
+                    //Set culture for the new thread
+                    if (!string.IsNullOrEmpty(Setting?.ReportingParameter.CultureName))
+                    {
+                        var culture = new CultureInfo(Setting.ReportingParameter.CultureName);
+                        Thread.CurrentThread.CurrentCulture = culture;
+                        Thread.CurrentThread.CurrentUICulture = culture;
+                    }
+                    string[] SnapsToIgnore = null;
+                    //Get result for the Portfolio               
+                    stopWatchStep.Restart();
+                    string[] AppsToIgnorePortfolioResult = PortfolioBLL.BuildPortfolioResult(ActiveConnection, SelectedApps);
+                    stopWatchStep.Stop();
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Build result for the portfolio", stopWatchStep.Elapsed);
+
+                    List<Application> N_Apps = new List<Application>();
+                    //Remove from Array the Ignored Apps
+                    foreach (Application app in SelectedApps)
+                    {
+                        int intAppYes = 0;
+                        foreach (string s in AppsToIgnorePortfolioResult)
+                        {
+                            if (s == app.Name)
+                            {
+                                intAppYes = 1;
+                                break;
+                            }
+                            intAppYes = 0;
+                        }
+
+                        if (intAppYes == 0)
+                        {
+                            N_Apps.Add(app);
+                        }
+                    }
+
+                    Application[] N_SelectedApps = N_Apps.ToArray();
+
                     //GetActive Connection           
-                    ActiveConnection = (Setting != null) ? Setting.GetActiveConnection() : null;
+                    ActiveConnection = Setting?.GetActiveConnection();
 
                     //Get list of domains
                     if (_ActiveConnection != null)
@@ -656,205 +720,124 @@ namespace CastReporting.UI.WPF.ViewModel
                         {
                             using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
                             {
-                                Apps = castDomainBLL.GetCommonTaggedApplications(SelectedTag);
+                                Snapshots = castDomainBLL.GetAllSnapshots(N_SelectedApps);
                             }
                         }
                         catch (Exception ex)
                         {
-                            base.MessageManager.OnErrorOccured(ex);
+                            MessageManager.OnErrorOccured(ex);
                         }
                     }
-                
-
-                if (Apps != null)
-                {
-                    Application[] SelectedApps = Apps.ToArray<Application>(); 
-
-                    double progressStep = 100 / 4;
-                    Stopwatch stopWatchStep = new Stopwatch();
-                    Stopwatch stopWatchGlobal = new Stopwatch();
-
-                    try
+                    List<Snapshot> N_Snaps = new List<Snapshot>();
+                    //Get result for each app's latest snapshot
+                    if (Snapshots != null)
                     {
-                        stopWatchGlobal.Start();
-                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), true);
+                        Snapshot[] SelectedApps_Snapshots = Snapshots.ToArray<Snapshot>();
 
-                        //Set culture for the new thread
-                        if (!string.IsNullOrEmpty(Setting.ReportingParameter.CultureName))
-                        {
-                            var culture = new CultureInfo(Setting.ReportingParameter.CultureName);
-                            Thread.CurrentThread.CurrentCulture = culture;
-                            Thread.CurrentThread.CurrentUICulture = culture;
-                        }
-                        string[] SnapsToIgnore = null;
-                        //Get result for the Portfolio               
+                        //Get result for all snapshots in Portfolio               
                         stopWatchStep.Restart();
-                        string[] AppsToIgnorePortfolioResult = PortfolioBLL.BuildPortfolioResult(ActiveConnection, SelectedApps);
+                        SnapsToIgnore = PortfolioSnapshotsBLL.BuildSnapshotResult(ActiveConnection, SelectedApps_Snapshots, true);
                         stopWatchStep.Stop();
-                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for the portfolio", stopWatchStep.Elapsed);
-                        
-                        List<Application> N_Apps = new List<Application>();
-                        //Remove from Array the Ignored Apps
-                        for (int i = 0; i < SelectedApps.Count(); i++)
+                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Build result for snapshots in portfolio", stopWatchStep.Elapsed);
+
+                        foreach (Snapshot snap in SelectedApps_Snapshots)
                         {
-                            int intAppYes = 0;
-                            foreach (string s in AppsToIgnorePortfolioResult)
+                            int intRemoveYes = 0;
+                            foreach (string s in SnapsToIgnore)
                             {
-                                if (s == SelectedApps[i].Name)
+                                if (s == snap.Href)
                                 {
-                                    intAppYes = 1;
+                                    intRemoveYes = 1;
                                     break;
+                                }
+                                intRemoveYes = 0;
+                            }
+                            if (intRemoveYes == 0)
+                            {
+                                N_Snaps.Add(snap);
+                            }
+                        }
+
+                        Snapshot[] N_SelectedApps_Snapshots = N_Snaps.ToArray();
+
+
+                        //Launch generaion               
+                        stopWatchStep.Restart();
+                        GenerateReportPortfolio(N_SelectedApps, N_SelectedApps_Snapshots, AppsToIgnorePortfolioResult, SnapsToIgnore);
+                        stopWatchStep.Stop();
+                    }
+
+
+                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+
+                    if ((AppsToIgnorePortfolioResult.Length > 0) || (SnapsToIgnore?.Length > 0))
+                    {
+                        sb.Append("Some Applications or Snapshots were ignored during processing REST API.");
+
+                        if (AppsToIgnorePortfolioResult.Length > 0)
+                        {
+                            AppsToIgnorePortfolioResult = AppsToIgnorePortfolioResult.Distinct().ToArray();
+                            sb.Append("Ignored Applications are: ");
+                            for (int i = 0; i < AppsToIgnorePortfolioResult.Length; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    sb.Append(AppsToIgnorePortfolioResult[i]);
                                 }
                                 else
                                 {
-                                    intAppYes = 0;
+                                    sb.Append("," + AppsToIgnorePortfolioResult[i]);
                                 }
-                            }
-
-                            if (intAppYes == 0)
-                            {
-                                N_Apps.Add(SelectedApps[i]);
                             }
                         }
 
-                        Application[] N_SelectedApps = N_Apps.ToArray();
-
-                            //GetActive Connection           
-                            ActiveConnection = (Setting != null) ? Setting.GetActiveConnection() : null;
-
-                        //Get list of domains
-                        if (_ActiveConnection != null)
+                        if (SnapsToIgnore?.Length > 0)
                         {
-                            try
+                            SnapsToIgnore = SnapsToIgnore.Distinct().ToArray();
+                            sb.Append(" Ignored Snapshots are: ");
+                            for (int i = 0; i < SnapsToIgnore.Length; i++)
                             {
-                                using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
+                                if (i == 0)
                                 {
-                                    Snapshots = castDomainBLL.GetAllSnapshots(N_SelectedApps);
+                                    sb.Append(_ActiveConnection?.Url + "/" + SnapsToIgnore[i]);
                                 }
-                            }
-                            catch (Exception ex)
-                            {
-                                base.MessageManager.OnErrorOccured(ex);
+                                else
+                                {
+                                    sb.Append("," + _ActiveConnection?.Url + "/" + SnapsToIgnore[i]);
+                                }
                             }
                         }
-                        List<Snapshot> N_Snaps = new List<Snapshot>();
-                        //Get result for each app's latest snapshot
-                        if (Snapshots != null)
-                        {
-                            Snapshot[] SelectedApps_Snapshots = Snapshots.ToArray<Snapshot>();
-
-                            //Get result for all snapshots in Portfolio               
-                            stopWatchStep.Restart();
-                            SnapsToIgnore = PortfolioSnapshotsBLL.BuildSnapshotResult(ActiveConnection, SelectedApps_Snapshots, true);
-                            stopWatchStep.Stop();
-                            App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Build result for snapshots in portfolio", stopWatchStep.Elapsed);
-
-                            for (int i = 0; i < SelectedApps_Snapshots.Count(); i++)
-                            {
-                                int intRemoveYes = 0;
-                                foreach (string s in SnapsToIgnore)
-                                {
-                                    if (s == SelectedApps_Snapshots[i].Href)
-                                    {
-                                        intRemoveYes = 1;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        intRemoveYes = 0;
-                                    }
-                                }
-                                if (intRemoveYes == 0)
-                                {
-                                    N_Snaps.Add(SelectedApps_Snapshots[i]);
-                                }
-                            }
-
-                            Snapshot[] N_SelectedApps_Snapshots = N_Snaps.ToArray();
-
-
-                                //Launch generaion               
-                                stopWatchStep.Restart();
-                                GenerateReportPortfolio(N_SelectedApps, N_SelectedApps_Snapshots, AppsToIgnorePortfolioResult, SnapsToIgnore);
-                            stopWatchStep.Stop();
-                        }
-
-
-                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
-
-
-                        if ((AppsToIgnorePortfolioResult.Count() > 0 && AppsToIgnorePortfolioResult != null) || (SnapsToIgnore.Count() > 0 && SnapsToIgnore != null))
-                        {
-                            sb.Append("Some Applications or Snapshots were ignored during processing REST API.");
-
-                            if (AppsToIgnorePortfolioResult.Count() > 0 && AppsToIgnorePortfolioResult != null)
-                            {
-                                AppsToIgnorePortfolioResult = AppsToIgnorePortfolioResult.Distinct().ToArray();
-                                sb.Append("Ignored Applications are: ");
-                                for (int i = 0; i < AppsToIgnorePortfolioResult.Count(); i++)
-                                {
-                                    if (i == 0)
-                                    {
-                                        sb.Append(AppsToIgnorePortfolioResult[i].ToString());
-                                    }
-                                    else
-                                    {
-                                        sb.Append("," + AppsToIgnorePortfolioResult[i].ToString());
-                                    }
-                                }
-                            }
-
-                            if (SnapsToIgnore.Count() > 0 && SnapsToIgnore != null)
-                            {
-                                SnapsToIgnore = SnapsToIgnore.Distinct().ToArray();
-                                sb.Append(" Ignored Snapshots are: ");
-                                for (int i = 0; i < SnapsToIgnore.Count(); i++)
-                                {
-                                    if (i == 0)
-                                    {
-                                        sb.Append(_ActiveConnection.Url + "/" + SnapsToIgnore[i].ToString());
-                                    }
-                                    else
-                                    {
-                                        sb.Append("," + _ActiveConnection.Url + "/" + SnapsToIgnore[i].ToString());
-                                    }
-                                }
-                            }
-                            App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, sb.ToString() + "", null);
-                        }
-
-
-                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
-
-
-                        //Show final message and unlock the screen   
-                        stopWatchGlobal.Stop();
-                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(base.MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
-                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), false);
-
+                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, sb + "", null);
                     }
-                    catch (System.Net.WebException webEx)
-                    {
-                        LogHelper.Instance.LogErrorFormat
-                               ("Request URL '{0}' - Error execution :  {1}"
-                               , ""
-                               , webEx.Message
-                               );
-
-                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(base.MessageManager.OnStepDone), progressStep, "Error Generating Report - " + webEx.Message + " - Typically happens when Report Generator does not find REST API (in schema)", stopWatchStep.Elapsed);
-                        stopWatchGlobal.Stop();
-                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(base.MessageManager.SetBusyMode), false);
 
 
-                    }
-                    catch (Exception ex)
-                    {
-                        App.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<Exception>(WorkerThreadException), ex);
-                    }
-                } 
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
+
+
+                    //Show final message and unlock the screen   
+                    stopWatchGlobal.Stop();
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), false);
+                }
+                catch (System.Net.WebException webEx)
+                {
+                    LogHelper.Instance.LogErrorFormat
+                    ("Request URL '{0}' - Error execution :  {1}"
+                        , ""
+                        , webEx.Message
+                    );
+
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep,
+                        "Error Generating Report - " + webEx.Message + " - Typically happens when Report Generator does not find REST API (in schema)", stopWatchStep.Elapsed);
+                    stopWatchGlobal.Stop();
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), false);
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<Exception>(WorkerThreadException), ex);
+                }
             }
-
         }
 
         /// <summary>
@@ -862,8 +845,8 @@ namespace CastReporting.UI.WPF.ViewModel
         /// </summary>
         private void GenerateReport()
         {
-            string tmpReportFile = String.Empty;
-            string tmpReportFileFlexi = String.Empty;
+            string tmpReportFile = string.Empty;
+            string tmpReportFileFlexi = string.Empty;
 
             try
             {
@@ -904,15 +887,15 @@ namespace CastReporting.UI.WPF.ViewModel
                 //Copy report file to the selected destination
                 File.Copy(tmpReportFile, ReportFileName, true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ReportFileName = String.Empty;
+                ReportFileName = string.Empty;
 
-                throw (ex);
+                throw;
             }
             finally
             {
-                if (!String.IsNullOrEmpty(tmpReportFile)) File.Delete(tmpReportFile);
+                if (!string.IsNullOrEmpty(tmpReportFile)) File.Delete(tmpReportFile);
             }
         }
 
@@ -920,10 +903,10 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private void GenerateReportPortfolio(Application[] Applications, Snapshot[] ApplicationsSnapshots, string[] IgnoredApps, string[] IgnoredSnapshots )
+        private void GenerateReportPortfolio(Application[] ApplicationsArray, Snapshot[] ApplicationsSnapshots, string[] IgnoredApps, string[] IgnoredSnapshots )
         {
-            string tmpReportFile = String.Empty;
-            string tmpReportFileFlexi = String.Empty;
+            string tmpReportFile = string.Empty;
+            string tmpReportFileFlexi = string.Empty;
 
             try
             {
@@ -946,7 +929,7 @@ namespace CastReporting.UI.WPF.ViewModel
                     RuleExplorer = new RuleBLL(ActiveConnection),
                     SnapshotExplorer = new SnapshotBLL(ActiveConnection, SelectedSnapshot),
                     CurrencySymbol = "$",
-                    Applications = Applications,
+                    Applications = ApplicationsArray,
                     Category = SelectedCategory,
                     Tag = SelectedTag,
                     snapshots = ApplicationsSnapshots,
@@ -970,15 +953,15 @@ namespace CastReporting.UI.WPF.ViewModel
                 //Copy report file to the selected destination
                 File.Copy(tmpReportFile, ReportFileName, true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ReportFileName = String.Empty;
+                ReportFileName = string.Empty;
 
-                throw (ex);
+                throw;
             }
             finally
             {
-                if (!String.IsNullOrEmpty(tmpReportFile)) File.Delete(tmpReportFile);
+                if (!string.IsNullOrEmpty(tmpReportFile)) File.Delete(tmpReportFile);
             }
         }
 
@@ -990,7 +973,7 @@ namespace CastReporting.UI.WPF.ViewModel
         public void InitializeFromWS()
         {
             //GetActive Connection           
-            ActiveConnection = (Setting != null) ? Setting.GetActiveConnection() : null;
+            ActiveConnection = Setting?.GetActiveConnection();
 
             //Get list of domains
             if (_ActiveConnection != null)
@@ -1006,7 +989,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 }
                 catch(Exception ex)
                 {
-                    base.MessageManager.OnErrorOccured(ex);
+                    MessageManager.OnErrorOccured(ex);
                 }
             }
         }
@@ -1020,7 +1003,7 @@ namespace CastReporting.UI.WPF.ViewModel
             StatesEnum state;
             Setting = SettingsBLL.AddConnection(connection, true, out state);
 
-            base.MessageManager.OnServiceAdded(connection.Uri == null ? string.Empty : connection.Uri.ToString(), state);
+            MessageManager.OnServiceAdded(connection.Uri == null ? string.Empty : connection.Uri.ToString(), state);
         }
     }
 }

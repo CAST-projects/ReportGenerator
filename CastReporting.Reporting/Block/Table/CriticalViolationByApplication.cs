@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
@@ -11,15 +10,15 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
 	[Block("CRITICAL_VIOL_BY_APPLICATION")]
-	class CriticalVIolationByApplication : TableBlock
+	internal class CriticalVIolationByApplication : TableBlock
 	{
 		protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
 		{
 			var results = RulesViolationUtility.GetStatViolation(reportData.CurrentSnapshot);
 
-			int param = 0;
+			int param;
 			bool showPrevious = false;
-			if (reportData.PreviousSnapshot != null && null != options && options.ContainsKey("SHOW_PREVIOUS") && Int32.TryParse(options["SHOW_PREVIOUS"], out param)) {
+			if (reportData.PreviousSnapshot != null && null != options && options.ContainsKey("SHOW_PREVIOUS") && int.TryParse(options["SHOW_PREVIOUS"], out param)) {
 				showPrevious = (param != 0);
 			}
 
@@ -38,7 +37,7 @@ namespace CastReporting.Reporting.Block.Table
 			});
 			nbRows++;
 
-			var busCrit = new Constants.BusinessCriteria[] {
+			var busCrit = new[] {
 				Constants.BusinessCriteria.TechnicalQualityIndex,
 				Constants.BusinessCriteria.Robustness,
 				Constants.BusinessCriteria.Performance,
@@ -51,63 +50,54 @@ namespace CastReporting.Reporting.Block.Table
 			var added = new int[busCrit.Length];
 			var removed = new int[busCrit.Length];
 			
-			foreach (var resultModule in results) {
-				if (resultModule != null) {
-					for (int i = 0; i < busCrit.Length; i++) {
-						var crit = busCrit[i];
-                        if (resultModule[crit] != null) { 
-						    if (resultModule[crit].TotalCriticalViolations.HasValue) {
-							    curVersion[i] += resultModule[crit].TotalCriticalViolations.Value;
-						    }
-						    if (resultModule[crit].AddedCriticalViolations.HasValue) {
-							    added[i] += resultModule[crit].AddedCriticalViolations.Value;
-						    }
-						    if (resultModule[crit].RemovedCriticalViolations.HasValue) {
-							    removed[i] += resultModule[crit].RemovedCriticalViolations.Value;
-						    }
-                        }
-					}
-				}
+			foreach (var resultModule in results)
+			{
+			    if (resultModule == null) continue;
+			    for (int i = 0; i < busCrit.Length; i++) {
+			        var crit = busCrit[i];
+			        if (resultModule[crit] == null) continue;
+			        if (resultModule[crit].TotalCriticalViolations.HasValue) {
+			            curVersion[i] += resultModule[crit].TotalCriticalViolations.Value;
+			        }
+			        if (resultModule[crit].AddedCriticalViolations.HasValue) {
+			            added[i] += resultModule[crit].AddedCriticalViolations.Value;
+			        }
+			        if (resultModule[crit].RemovedCriticalViolations.HasValue) {
+			            removed[i] += resultModule[crit].RemovedCriticalViolations.Value;
+			        }
+			    }
 			}
 
 			rowData.Add(Labels.VersionCurrent);
-			foreach (var curValue in curVersion) {
-				rowData.Add(curValue.ToString());
-			}
-			nbRows++;
+		    rowData.AddRange(curVersion.Select(curValue => curValue.ToString()));
+		    nbRows++;
 
 			rowData.Add("   " + Labels.ViolationsAdded);
-			foreach (var addValue in added) {
-				rowData.Add(TableBlock.FormatEvolution(addValue));
-			}
-			nbRows++;
+		    rowData.AddRange(added.Select(addValue => FormatEvolution(addValue)));
+		    nbRows++;
 
 			rowData.Add("   " + Labels.ViolationsRemoved);
-			foreach (var remValue in removed) {
-				rowData.Add(TableBlock.FormatEvolution(-remValue));
-			}
-			nbRows++;
+		    rowData.AddRange(removed.Select(remValue => FormatEvolution(-remValue)));
+		    nbRows++;
 
 			if (showPrevious) {
 				var prevVersion = new int[busCrit.Length];
 
 				results = RulesViolationUtility.GetStatViolation(reportData.PreviousSnapshot);
-				foreach (var resultModule in results) {
-					if (resultModule != null) {
-						for (int i = 0; i < busCrit.Length; i++) {
-							var crit = busCrit[i];
-							if (resultModule[crit] != null && resultModule[crit].TotalCriticalViolations.HasValue) {
-								prevVersion[i] += resultModule[crit].TotalCriticalViolations.Value;
-							}
-						}
-					}
+				foreach (var resultModule in results)
+				{
+				    if (resultModule == null) continue;
+				    for (int i = 0; i < busCrit.Length; i++) {
+				        var crit = busCrit[i];
+				        if (resultModule[crit] != null && resultModule[crit].TotalCriticalViolations.HasValue) {
+				            prevVersion[i] += resultModule[crit].TotalCriticalViolations.Value;
+				        }
+				    }
 				}
 
 				rowData.Add(Labels.VersionPrevious);
-				foreach (var prevValue in prevVersion) {
-					rowData.Add(prevValue.ToString());
-				}
-				nbRows++;
+			    rowData.AddRange(prevVersion.Select(prevValue => prevValue.ToString()));
+			    nbRows++;
 			}
 			
 			var resultTable = new TableDefinition {

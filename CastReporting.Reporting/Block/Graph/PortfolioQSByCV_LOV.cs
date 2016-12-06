@@ -18,19 +18,15 @@ using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
-using CastReporting.BLL.Computing.DTO;
 using CastReporting.Domain;
 using System.Globalization;
-using System.Threading;
-using System.Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace CastReporting.Reporting.Block.Graph
 {
     [Block("PF_QS_BY_CVLOC")]
-    class PortfolioQSByCV_LOV : GraphBlock
+    internal class PortfolioQsbyCvLov : GraphBlock
     {
         #region METHODS
 
@@ -38,8 +34,8 @@ namespace CastReporting.Reporting.Block.Graph
         {
             int count = 0;
 
-            List<String> rowData = new List<String>();
-            rowData.AddRange(new string[] {
+            List<string> rowData = new List<string>();
+            rowData.AddRange(new[] {
 				Labels.TQI ,
 				Labels.ViolationsCritical + "/" + Labels.kLoC ,
 				Labels.AutomatedFP,
@@ -48,33 +44,31 @@ namespace CastReporting.Reporting.Block.Graph
 
             #region Fetch SnapshotsPF
 
-            if (reportData != null && reportData.Applications != null && reportData.snapshots != null)
+            if (reportData?.Applications != null && reportData.snapshots != null)
             {
-                Application[] AllApps = reportData.Applications;
-                for (int j = 0; j < AllApps.Count(); j++)
+                Application[] _allApps = reportData.Applications;
+                foreach (Application _app in _allApps)
                 {
-                    Application App = AllApps[j];
-
-                    Snapshot _snapshot = App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
+                    Snapshot _snapshot = _app.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
 
                     BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(_snapshot, false);
-                    double? strCurrentTQI = currSnapshotBisCriDTO.TQI.HasValue ? currSnapshotBisCriDTO.TQI.Value : 0;
-                    double? numCritPerKLOC = MeasureUtility.GetSizingMeasure(_snapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerKLOCNumber);
+                    double? strCurrentTQI = currSnapshotBisCriDTO.TQI ?? 0;
+                    double? _numCritPerKloc = MeasureUtility.GetSizingMeasure(_snapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerKLOCNumber);
                     double? result = MeasureUtility.GetAutomatedIFPUGFunction(_snapshot);
 
-                    rowData.AddRange(new string[] {
+                    rowData.AddRange(new[] {
                         strCurrentTQI.GetValueOrDefault().ToString("N2"),
-                        numCritPerKLOC.GetValueOrDefault().ToString("N2"),
-                        result.GetValueOrDefault().ToString(),
-                        App.Name.ToString()
+                        _numCritPerKloc.GetValueOrDefault().ToString("N2"),
+                        result.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
+                        _app.Name
                     });
 
                     count++;
                 }
 
-                if (reportData.Applications.Count() == 1)
+                if (reportData.Applications.Length == 1)
                 {
-                    rowData.AddRange(new string[] { "0", "0", "0", "" });
+                    rowData.AddRange(new[] { "0", "0", "0", "" });
 
                     count++;
                 }

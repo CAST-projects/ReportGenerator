@@ -129,6 +129,7 @@ namespace CastReporting.Reporting.ReportingModel
             set;
         }
 
+        // ReSharper disable once InconsistentNaming
         public Snapshot[] snapshots
         {
             get;

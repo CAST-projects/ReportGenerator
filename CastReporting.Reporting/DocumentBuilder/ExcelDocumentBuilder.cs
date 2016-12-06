@@ -14,35 +14,18 @@
  *
  */
 using System;
-using System.IO;
 using System.Data;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using DocumentFormat.OpenXml.Packaging;
 using OpenXmlPowerTools;
-using CastReporting.BLL;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Linq;
-using System.Collections;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Data.Odbc;
-using System.Web;
-using System.Xml.Linq;
 using DocumentFormat.OpenXml;
-using System.Text;
-using System.Reflection;
-using System.Security.Principal;
-using System.Threading;
-using DocumentFormat.OpenXml.Drawing.Spreadsheet;
 using System.Globalization;
-using System.Windows;
-using CastReporting.Reporting.Languages;
-using CastReporting.BLL.Computing;
-using CastReporting.Reporting.Atrributes;
 using System.Text.RegularExpressions;
-using CastReporting.Domain;
 using CastReporting.Reporting.Helper;
 
 
@@ -50,19 +33,21 @@ namespace CastReporting.Reporting.Builder
 {
     internal class ExcelDocumentBuilder : DocumentBuilderBase
     {
-        string strFinalTempFile = "";
-        ReportData reportData;
+        public string StrFinalTempFile;
+        // ReSharper disable once InconsistentNaming
+        public ReportData reportData;
 
         #region CONSTRUCTORS
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="client"></param>
+        /// <param name="tmpRepFlexi"></param>
         public ExcelDocumentBuilder(ReportData client, string tmpRepFlexi)
             : base(client)
         { 
-            strFinalTempFile = tmpRepFlexi;
+            StrFinalTempFile = tmpRepFlexi;
             reportData = client;
         }
         #endregion CONSTRUCTORS
@@ -82,9 +67,9 @@ namespace CastReporting.Reporting.Builder
             return null;
         }
 
-        protected new virtual BlockConfiguration GetBlockConfiguration(string Description)
+        protected new virtual BlockConfiguration GetBlockConfiguration(string description)
         {
-            return GetBlockConfiguration(Description, null);
+            return GetBlockConfiguration(description, null);
         }
 
 
@@ -107,16 +92,14 @@ namespace CastReporting.Reporting.Builder
                     blockOptionStr = optionList[2];
             }
         }
-            if (null != optionList && optionList.Length >= 2)
+            if (null == optionList || optionList.Length < 2) return back;
+            back.Type = optionList[0];
+            back.Name = optionList[1];
+            if (optionList.Length > 2 && string.IsNullOrWhiteSpace(blockOptionStr))
             {
-                back.Type = optionList[0];
-                back.Name = optionList[1];
-                if (optionList.Length > 2 && string.IsNullOrWhiteSpace(blockOptionStr))
-        {
-                    blockOptionStr += string.Format(",{0}", optionList.Skip(2).Aggregate((current, next) => string.Format("{0},{1}", current, next)));
-                }
-                back.Options = string.IsNullOrWhiteSpace(blockOptionStr) ? new Dictionary<string, string>() : ParseOptions(blockOptionStr);
+                blockOptionStr += $",{optionList.Skip(2).Aggregate((current, next) => $"{current},{next}")}";
             }
+            back.Options = string.IsNullOrWhiteSpace(blockOptionStr) ? new Dictionary<string, string>() : ParseOptions(blockOptionStr);
             return back;
         }
 
@@ -138,7 +121,7 @@ namespace CastReporting.Reporting.Builder
         public override void BuildDocument()
         {
             string strTargetFile = ReportData.FileName;
-            string fileName = strFinalTempFile;
+            string fileName = StrFinalTempFile;
             //File.Copy(strTargetFile, fileName, true);
 
             if (strTargetFile != "")
@@ -152,23 +135,25 @@ namespace CastReporting.Reporting.Builder
         }
 
 
-        private static void SetCellValue(Cell cell, string Value)
+        private static void SetCellValue(CellType cell, string value)
         {
             decimal dx;
-            if (decimal.TryParse(Value, out dx))
+            if (decimal.TryParse(value, out dx))
             {
                 cell.CellValue = new CellValue(dx.ToString("G", NumberFormatInfo.InvariantInfo));
                 cell.DataType = CellValues.Number;
             }
             else
             {
-                cell.CellValue = new CellValue(Value);
+                cell.CellValue = new CellValue(value);
                 cell.DataType = CellValues.String;
             }
         }
 
+        // ReSharper disable once InconsistentNaming
         private const string FLEXI_PREFIX = "RepGen:";
 
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
         private class TableInfo
         {
             public Cell cell;
@@ -249,38 +234,39 @@ namespace CastReporting.Reporting.Builder
                         #region TablePopulate
                         foreach (var tableInfo in tableTargets)
                         {
-                            var FinaleCell = tableInfo.cell;
-                            var FinaleTable = tableInfo.table;
+                            var _finaleCell = tableInfo.cell;
+                            var _finaleTable = tableInfo.table;
 
-                            int intColumns = FinaleTable.NbColumns;
+                            int intColumns = _finaleTable.NbColumns;
 
                             // TODO: handle cell references after 'Znn' (AA1, AB1...)
                             // TODO: current limitation: the generated cells must be in the range "A-Z"
 
-                            char firstLetter = FinaleCell.CellReference.InnerText[0];
+                            char firstLetter = _finaleCell.CellReference.InnerText[0];
                             int firstColIdx = alphabet.IndexOf(firstLetter) + 1;
                             int lastColIdx = firstColIdx + intColumns - 1;
                             int curColIdx = firstColIdx;
 
-                            uint firstRowIdx = uint.Parse(FinaleCell.CellReference.InnerText.Substring(1));
+                            uint firstRowIdx = uint.Parse(_finaleCell.CellReference.InnerText.Substring(1));
                             uint curRowIdx = firstRowIdx;
 
                             // create first row
                             Row curRow = new Row();
 
-                            foreach (var result in FinaleTable.Data)
+                            foreach (var result in _finaleTable.Data)
                             {
                                 // append cell to current row
                                 Cell c = new Cell();
-                                SetCellValue(c, result?.ToString());
+                                SetCellValue(c, result);
                                 c.CellReference = alphabet[curColIdx - 1] + curRowIdx.ToString();
                                 c.StyleIndex = 0;
+                                // ReSharper disable once PossiblyMistakenUseOfParamsMethod
                                 curRow.Append(c);
 
                                 if (curColIdx == lastColIdx)
                                 {
                                     // add row to current worksheet
-                                    InsertRow(curRowIdx, worksheetpart, curRow, false);
+                                    InsertRow(curRowIdx, worksheetpart, curRow);
                                     // create new row for next data
                                     curRow = new Row();
 
@@ -294,7 +280,7 @@ namespace CastReporting.Reporting.Builder
                                     curColIdx++;
                                 }
                             }
-                            FinaleCell.Parent.RemoveChild(FinaleCell);
+                            _finaleCell.Parent.RemoveChild(_finaleCell);
                         }
 
                         workbookPart.Workbook.Save();
@@ -331,57 +317,53 @@ namespace CastReporting.Reporting.Builder
 
         private static void UpdateMergedCellReferences(WorksheetPart worksheetPart, uint rowIndex, bool isDeletedRow)
         {
-            if (worksheetPart.Worksheet.Elements<MergeCells>().Count() > 0)
+            if (!worksheetPart.Worksheet.Elements<MergeCells>().Any()) return;
+            MergeCells mergeCells = worksheetPart.Worksheet.Elements<MergeCells>().FirstOrDefault();
+
+            if (mergeCells == null) return;
+            // Grab all the merged cells that have a merge cell row index reference equal to or greater than the row index passed in
+            List<MergeCell> mergeCellsList = mergeCells.Elements<MergeCell>()
+                .Where(r => r.Reference.HasValue &&
+                            (GetRowIndex(r.Reference.Value.Split(':').ElementAt(0)) >= rowIndex ||
+                             GetRowIndex(r.Reference.Value.Split(':').ElementAt(1)) >= rowIndex)).ToList();
+
+            // Need to remove all merged cells that have a matching rowIndex when the row is deleted
+            if (isDeletedRow)
             {
-                MergeCells mergeCells = worksheetPart.Worksheet.Elements<MergeCells>().FirstOrDefault();
+                List<MergeCell> mergeCellsToDelete = mergeCellsList.Where(r => GetRowIndex(r.Reference.Value.Split(':').ElementAt(0)) == rowIndex ||
+                                                                               GetRowIndex(r.Reference.Value.Split(':').ElementAt(1)) == rowIndex).ToList();
 
-                if (mergeCells != null)
+                // Delete all the matching merged cells
+                foreach (MergeCell cellToDelete in mergeCellsToDelete)
                 {
-                    // Grab all the merged cells that have a merge cell row index reference equal to or greater than the row index passed in
-                    List<MergeCell> mergeCellsList = mergeCells.Elements<MergeCell>()
-                                .Where(r => r.Reference.HasValue &&
-                                            (GetRowIndex(r.Reference.Value.Split(':').ElementAt(0)) >= rowIndex ||
-                                             GetRowIndex(r.Reference.Value.Split(':').ElementAt(1)) >= rowIndex)).ToList();
-
-                    // Need to remove all merged cells that have a matching rowIndex when the row is deleted
-                    if (isDeletedRow)
-                    {
-                        List<MergeCell> mergeCellsToDelete = mergeCellsList.Where(r => GetRowIndex(r.Reference.Value.Split(':').ElementAt(0)) == rowIndex ||
-                                                                                       GetRowIndex(r.Reference.Value.Split(':').ElementAt(1)) == rowIndex).ToList();
-
-                        // Delete all the matching merged cells
-                        foreach (MergeCell cellToDelete in mergeCellsToDelete)
-                        {
-                            cellToDelete.Remove();
-                        }
-
-                        // Update the list to contain all merged cells greater than the deleted row index
-                        mergeCellsList = mergeCells.Elements<MergeCell>()
-                                    .Where(r => r.Reference.HasValue &&
-                                                (GetRowIndex(r.Reference.Value.Split(':').ElementAt(0)) > rowIndex ||
-                                                 GetRowIndex(r.Reference.Value.Split(':').ElementAt(1)) > rowIndex)).ToList();
-                    }
-
-                    // Either increment or decrement the row index on the merged cell reference
-                    foreach (MergeCell mergeCell in mergeCellsList)
-                    {
-                        string[] cellReference = mergeCell.Reference.Value.Split(':');
-
-                        if (GetRowIndex(cellReference.ElementAt(0)) >= rowIndex)
-                        {
-                            string columnName = GetColumnName(cellReference.ElementAt(0));
-                            cellReference[0] = isDeletedRow ? columnName + (GetRowIndex(cellReference.ElementAt(0)) - 1).ToString() : IncrementCellReference(cellReference.ElementAt(0), CellReferencePartEnum.Row);
-                        }
-
-                        if (GetRowIndex(cellReference.ElementAt(1)) >= rowIndex)
-                        {
-                            string columnName = GetColumnName(cellReference.ElementAt(1));
-                            cellReference[1] = isDeletedRow ? columnName + (GetRowIndex(cellReference.ElementAt(1)) - 1).ToString() : IncrementCellReference(cellReference.ElementAt(1), CellReferencePartEnum.Row);
-                        }
-
-                        mergeCell.Reference = new StringValue(cellReference[0] + ":" + cellReference[1]);
-                    }
+                    cellToDelete.Remove();
                 }
+
+                // Update the list to contain all merged cells greater than the deleted row index
+                mergeCellsList = mergeCells.Elements<MergeCell>()
+                    .Where(r => r.Reference.HasValue &&
+                                (GetRowIndex(r.Reference.Value.Split(':').ElementAt(0)) > rowIndex ||
+                                 GetRowIndex(r.Reference.Value.Split(':').ElementAt(1)) > rowIndex)).ToList();
+            }
+
+            // Either increment or decrement the row index on the merged cell reference
+            foreach (MergeCell mergeCell in mergeCellsList)
+            {
+                string[] cellReference = mergeCell.Reference.Value.Split(':');
+
+                if (GetRowIndex(cellReference.ElementAt(0)) >= rowIndex)
+                {
+                    string columnName = GetColumnName(cellReference.ElementAt(0));
+                    cellReference[0] = isDeletedRow ? columnName + (GetRowIndex(cellReference.ElementAt(0)) - 1).ToString() : IncrementCellReference(cellReference.ElementAt(0), CellReferencePartEnum.Row);
+                }
+
+                if (GetRowIndex(cellReference.ElementAt(1)) >= rowIndex)
+                {
+                    string columnName = GetColumnName(cellReference.ElementAt(1));
+                    cellReference[1] = isDeletedRow ? columnName + (GetRowIndex(cellReference.ElementAt(1)) - 1).ToString() : IncrementCellReference(cellReference.ElementAt(1), CellReferencePartEnum.Row);
+                }
+
+                mergeCell.Reference = new StringValue(cellReference[0] + ":" + cellReference[1]);
             }
         }
 
@@ -389,44 +371,38 @@ namespace CastReporting.Reporting.Builder
         {
             Hyperlinks hyperlinks = worksheetPart.Worksheet.Elements<Hyperlinks>().FirstOrDefault();
 
-            if (hyperlinks != null)
+            if (hyperlinks == null) return;
+            foreach (Hyperlink hyperlink in hyperlinks.Elements<Hyperlink>())
             {
-                Match hyperlinkRowIndexMatch;
+                var hyperlinkRowIndexMatch = Regex.Match(hyperlink.Reference.Value, "[0-9]+");
                 uint hyperlinkRowIndex;
-
-                foreach (Hyperlink hyperlink in hyperlinks.Elements<Hyperlink>())
+                if (!hyperlinkRowIndexMatch.Success || !uint.TryParse(hyperlinkRowIndexMatch.Value, out hyperlinkRowIndex) || hyperlinkRowIndex < rowIndex) continue;
+                // if being deleted, hyperlink needs to be removed or moved up
+                if (isDeletedRow)
                 {
-                    hyperlinkRowIndexMatch = Regex.Match(hyperlink.Reference.Value, "[0-9]+");
-                    if (hyperlinkRowIndexMatch.Success && uint.TryParse(hyperlinkRowIndexMatch.Value, out hyperlinkRowIndex) && hyperlinkRowIndex >= rowIndex)
+                    // if hyperlink is on the row being removed, remove it
+                    if (hyperlinkRowIndex == rowIndex)
                     {
-                        // if being deleted, hyperlink needs to be removed or moved up
-                        if (isDeletedRow)
-                        {
-                            // if hyperlink is on the row being removed, remove it
-                            if (hyperlinkRowIndex == rowIndex)
-                            {
-                                hyperlink.Remove();
-                            }
-                            // else hyperlink needs to be moved up a row
-                            else
-                            {
-                                hyperlink.Reference.Value = hyperlink.Reference.Value.Replace(hyperlinkRowIndexMatch.Value, (hyperlinkRowIndex - 1).ToString());
+                        hyperlink.Remove();
+                    }
+                    // else hyperlink needs to be moved up a row
+                    else
+                    {
+                        hyperlink.Reference.Value = hyperlink.Reference.Value.Replace(hyperlinkRowIndexMatch.Value, (hyperlinkRowIndex - 1).ToString());
 
-                            }
-                        }
-                        // else row is being inserted, move hyperlink down
-                        else
-                        {
-                            hyperlink.Reference.Value = hyperlink.Reference.Value.Replace(hyperlinkRowIndexMatch.Value, (hyperlinkRowIndex + 1).ToString());
-                        }
                     }
                 }
-
-                // Remove the hyperlinks collection if none remain
-                if (hyperlinks.Elements<Hyperlink>().Count() == 0)
+                // else row is being inserted, move hyperlink down
+                else
                 {
-                    hyperlinks.Remove();
+                    hyperlink.Reference.Value = hyperlink.Reference.Value.Replace(hyperlinkRowIndexMatch.Value, (hyperlinkRowIndex + 1).ToString());
                 }
+            }
+
+            // Remove the hyperlinks collection if none remain
+            if (!hyperlinks.Elements<Hyperlink>().Any())
+            {
+                hyperlinks.Remove();
             }
         }
 
@@ -501,7 +477,7 @@ namespace CastReporting.Reporting.Builder
             Both
         }
 
-        private static List<char> Letters = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ' };
+        protected static List<char> Letters = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ' };
 
         public static uint GetRowIndex(string cellReference)
         {
@@ -556,14 +532,13 @@ namespace CastReporting.Reporting.Builder
                 // use the insert row if it exists
                 retRow = insertRow ?? new Row() { RowIndex = rowIndex };
 
-                IEnumerable<Cell> cellsInRow = retRow.Elements<Cell>();
-
-                if (cellsInRow.Any())
+                IEnumerable<Cell> _cellsInRow = retRow.Elements<Cell>().ToList();
+                if (_cellsInRow.Any())
                 {
                     string curIndex = retRow.RowIndex.ToString();
                     string newIndex = rowIndex.ToString();
 
-                    foreach (Cell cell in cellsInRow)
+                    foreach (Cell cell in _cellsInRow)
                     {
                         // Update the references for the rows cells.
                         cell.CellReference = new StringValue(cell.CellReference.Value.Replace(curIndex, newIndex));
@@ -625,16 +600,16 @@ namespace CastReporting.Reporting.Builder
             WorksheetAccessor.SetRange(doc, tabName, tabName, 1, 1, rowNum - 1, source.Columns.Count);
         }
 
-        private int GetStyleIndex(SpreadsheetDocument doc, int row, int col, int maxRow, int maxCol)
+        private static int GetStyleIndex(SpreadsheetDocument doc, int row, int col, int maxRow, int maxCol)
         {
-            int numFmt = 0;
+            const int numFmt = 0;
             int font = 0;
-            int fill = 0;
+            int fill;
             WorksheetAccessor.Border border = new WorksheetAccessor.Border();
             WorksheetAccessor.CellAlignment alignment = new WorksheetAccessor.CellAlignment();
-            bool hidden = false;
-            bool locked = false;
-            string colorHtmlStr = "FF3F3F3F";
+            const bool hidden = false;
+            const bool locked = false;
+            const string colorHtmlStr = "FF3F3F3F";
 
             // Header
             if (row == 1)

@@ -13,43 +13,34 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
-using CastReporting.BLL.Computing;
-using CastReporting.BLL.Computing.Properties;
 
 
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("MODULE_LIST")]
-    class ModuleList : TableBlock
+    internal class ModuleList : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            TableDefinition resultTable = null;
+            if (reportData?.CurrentSnapshot?.Modules == null) return null;
+            List<string> rowData = reportData.CurrentSnapshot.Modules.Select(x => x.Name).ToList();
 
-            if (null != reportData &&
-                null != reportData.CurrentSnapshot &&
-                null != reportData.CurrentSnapshot.Modules)
+            rowData.Insert(0, Labels.ModuleName);
+
+            var resultTable = new TableDefinition
             {
-                List<string> rowData = reportData.CurrentSnapshot.Modules.Select(x => x.Name).ToList();
-
-                rowData.Insert(0, Labels.ModuleName);
-
-                resultTable = new TableDefinition
-                {
-                    HasRowHeaders = false,
-                    HasColumnHeaders = true,
-                    NbRows = rowData.Count,
-                    NbColumns = 1,
-                    Data = rowData
-                };
-            }
+                HasRowHeaders = false,
+                HasColumnHeaders = true,
+                NbRows = rowData.Count,
+                NbColumns = 1,
+                Data = rowData
+            };
             return resultTable;
         }
     }

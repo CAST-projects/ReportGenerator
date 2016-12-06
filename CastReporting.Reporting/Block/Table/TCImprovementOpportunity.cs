@@ -15,7 +15,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -26,24 +25,24 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TC_IMPROVEMENT_OPPORTUNITY")]
-    class TCImprovementOpportunity : TableBlock
+    internal class TCImprovementOpportunity : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            Int32 rowCount = 0;
+            int rowCount = 0;
             List<string> rowData = new List<string>();
-            rowData.AddRange(new string[] { Labels.TechnicalCriterionName,  Labels.ViolationsCount, Labels.TotalChecks, Labels.Grade });
+            rowData.AddRange(new[] { Labels.TechnicalCriterionName,  Labels.ViolationsCount, Labels.TotalChecks, Labels.Grade });
 
             #region Options
             
-            int nbLimitTop = 0;
-            if (null == options || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out nbLimitTop))
+            int nbLimitTop;
+            if (null == options || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop))
             {
                 nbLimitTop = reportData.Parameter.NbResultDefault;
             }
             
-            int bcCriteriaId = 0;
-            if (null == options || !options.ContainsKey("PAR") || !Int32.TryParse(options["PAR"], out bcCriteriaId))
+            int bcCriteriaId;
+            if (null == options || !options.ContainsKey("PAR") || !int.TryParse(options["PAR"], out bcCriteriaId))
             {
                 throw new ArgumentException("Impossible to build RC_IMPROVEMENT_OPPORTUNITY : Need business criterion id.");
             }
@@ -57,12 +56,12 @@ namespace CastReporting.Reporting.Block.Table
             {
                 foreach (var item in technicalCriticalViolation)
                 {
-                    rowData.AddRange(new string[] 
+                    rowData.AddRange(new[] 
                                     { 
                                           item.Name
                                         , item.TotalFailed.HasValue ? item.TotalFailed.Value.ToString("N0") : Constants.No_Value
                                         , item.TotalChecks.HasValue ? item.TotalChecks.Value.ToString("N0") : Constants.No_Value                                        
-                                        , item.Grade.HasValue ? item.Grade.Value.ToString("N2") : Constants.No_Value
+                                        , item.Grade?.ToString("N2") ?? Constants.No_Value
                                    }
                                    );
                 }

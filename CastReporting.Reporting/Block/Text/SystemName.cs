@@ -13,27 +13,20 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using CastReporting.BLL.Computing;
 
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("SYSTEM_NAME")]
-    class SystemName : TextBlock
+    internal class SystemName : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (reportData != null)
-                return reportData.Application.SystemNames;
-
-            return CastReporting.Domain.Constants.No_Value;
-
+            return reportData != null ? reportData.Application.SystemNames : Domain.Constants.No_Value;
         }
         #endregion METHODS
     }

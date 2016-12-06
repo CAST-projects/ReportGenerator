@@ -27,12 +27,10 @@ namespace CastReporting.UI.WPF
         /// <param name="propertyName"></param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                var e = new PropertyChangedEventArgs(propertyName);
-                handler(this, e);
-            }
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler == null) return;
+            var e = new PropertyChangedEventArgs(propertyName);
+            handler(this, e);
         }
     }
 }

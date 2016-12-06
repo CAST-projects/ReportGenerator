@@ -13,9 +13,8 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -27,27 +26,25 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TOP_CRITICAL_VIOLATIONS")]
-    class TopCriticalViolations : TableBlock
+    internal class TopCriticalViolations : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             List<string> rowData = new List<string>();
-			rowData.AddRange(new string[] {
+			rowData.AddRange(new[] {
 				Labels.RuleName,
 				Labels.ViolationsCount
 			});
             
             int nbRows = 0;
-            int nbLimitTop = 0;
-            Int32? metricId = (options != null && options.ContainsKey("BC-ID")) ? Convert.ToInt32(options["BC-ID"]) : (Int32?)null;
-			if (metricId == null)
-            metricId = (options != null && options.ContainsKey("PAR")) ? Convert.ToInt32(options["PAR"]) : (Int32?)null;
-			
-            if (null == options || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out nbLimitTop)) {
+            int nbLimitTop;
+            int? metricId = ((options != null && options.ContainsKey("BC-ID")) ? int.Parse(options["BC-ID"]) : (int?)null) ?? ((options != null && options.ContainsKey("PAR")) ? int.Parse(options["PAR"]) : (int?)null);
+
+            if (null == options || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop)) {
                 nbLimitTop = reportData.Parameter.NbResultDefault;
             }
 
-            if (reportData != null && reportData.CurrentSnapshot != null) {
+            if (reportData?.CurrentSnapshot != null) {
 
 				if (!metricId.HasValue)
 					metricId = 0;
@@ -61,18 +58,18 @@ namespace CastReporting.Reporting.Block.Table
 
                 if (null != rulesViolation) {
                     foreach (var elt in rulesViolation) {
-						rowData.AddRange(new string[] {
+						rowData.AddRange(new[] {
 							elt.Rule.Name,
-							elt.TotalFailed.Value.ToString("N0")
+							elt.TotalFailed?.ToString("N0")
 						});
                     }
                 } else {
-					rowData.AddRange(new string[] {
+					rowData.AddRange(new[] {
 						Labels.NoItem,
 						string.Empty
 					});
                 }
-                nbRows = rulesViolation.Count;
+                if (rulesViolation != null) nbRows = rulesViolation.Count;
             }
 
 

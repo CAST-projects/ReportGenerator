@@ -215,7 +215,6 @@
                         </VisualStateManager.VisualStateGroups>
                         <ToggleButton x:Name="ToggleButton"
                         Template="{StaticResource ComboBoxToggleButton}"
-                        Grid.Column="2"
                         Focusable="false"
                         ClickMode="Press"
                         IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, 
@@ -308,7 +307,7 @@
             </Setter.Value>
         </Setter>
 
-        <Setter Property="VerticalContentAlignment" Value="Center" />
+        
     </Style>
 
 

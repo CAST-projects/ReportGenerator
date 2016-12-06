@@ -24,13 +24,13 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("BC_BY_TECHNO")]
-    class TQIbyTechno : TableBlock
+    internal class TQIbyTechno : TableBlock
     {
 
         /// <summary>
         /// 
         /// </summary>
-        private const string _MetricFormat = "N2";
+        private const string MetricFormat = "N2";
 
 
         /// <summary>
@@ -41,25 +41,21 @@ namespace CastReporting.Reporting.Block.Table
         /// <returns></returns>
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            TableDefinition resultTable = null;
             int nbTot = 0;
             List<string> rowData = new List<string>();
-            Int32? metricId = (options != null && options.ContainsKey("ID")) ? Convert.ToInt32(options["ID"]) : (Int32?)Domain.Constants.BusinessCriteria.TechnicalQualityIndex;
+            int? metricId = (options != null && options.ContainsKey("ID")) ? Convert.ToInt32(options["ID"]) : (int?)Domain.Constants.BusinessCriteria.TechnicalQualityIndex;
 
-            if (null != reportData &&
-                null != reportData.CurrentSnapshot && metricId.HasValue) {
-                var result = reportData.CurrentSnapshot.BusinessCriteriaResults.FirstOrDefault(r => r.Reference.Key == metricId);
+            var result = reportData?.CurrentSnapshot?.BusinessCriteriaResults.FirstOrDefault(r => r.Reference.Key == metricId);
                 
-                if (result != null) {
-                    string value = Text(metricId.Value);
-                    rowData.AddRange(new string[] { Labels.Techno, value });
-                    foreach (var res in result.TechnologyResult) {
-                        rowData.AddRange(new string[] { res.Technology, res.DetailResult.Grade.ToString(_MetricFormat) });
-                    }
-                    nbTot = result.ModulesResult.Length;
+            if (result != null) {
+                string value = Text(metricId.Value);
+                rowData.AddRange(new[] { Labels.Techno, value });
+                foreach (var res in result.TechnologyResult) {
+                    rowData.AddRange(new[] { res.Technology, res.DetailResult.Grade?.ToString(MetricFormat) });
                 }
+                nbTot = result.ModulesResult.Length;
             }
-            resultTable = new TableDefinition {
+            var resultTable = new TableDefinition {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
                 NbRows = nbTot + 1,
@@ -83,7 +79,7 @@ namespace CastReporting.Reporting.Block.Table
 				case (int)Domain.Constants.BusinessCriteria.Security:					return Labels.Security;
 				case (int)Domain.Constants.BusinessCriteria.SEIMaintainability:			return Labels.SEIMaintainability;
 				case (int)Domain.Constants.BusinessCriteria.Transferability:			return Labels.Transferability;
-        		default:																return CastReporting.Domain.Constants.No_Value + " (" + value +")";
+        		default:																return Domain.Constants.No_Value + " (" + value +")";
             }
         }
 

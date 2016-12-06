@@ -13,9 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -32,63 +30,60 @@ namespace CastReporting.Reporting.Block.Table
         {
             TableDefinition back = new TableDefinition();
             List<string> rowData = new List<string>();
-            string numberFormat = "N0";
+            const string numberFormat = "N0";
 
-            if (null != reportData && null != reportData.CurrentSnapshot && reportData.CurrentSnapshot.CostComplexityResults != null)
-            {
-           
+            if (reportData?.CurrentSnapshot?.CostComplexityResults == null) return back;
 
-                #region Selected Snapshot
+            #region Selected Snapshot
 
                             
-                double? nbArtifactLow = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                    Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
-                    Constants.CostComplexity.CostComplexityArtifacts_Low.GetHashCode());
-                double? nbArtifactAve = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                    Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
-                    Constants.CostComplexity.CostComplexityArtifacts_Average.GetHashCode());
-                double? nbArtifactHigh = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                    Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
-                    Constants.CostComplexity.CostComplexityArtifacts_High.GetHashCode());
-                double? nbArtifactVeryHigh = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                    Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
-                    Constants.CostComplexity.CostComplexityArtifacts_VeryHigh.GetHashCode());
+            double? nbArtifactLow = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
+                Constants.CostComplexity.CostComplexityArtifacts_Low.GetHashCode());
+            double? nbArtifactAve = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
+                Constants.CostComplexity.CostComplexityArtifacts_Average.GetHashCode());
+            double? nbArtifactHigh = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
+                Constants.CostComplexity.CostComplexityArtifacts_High.GetHashCode());
+            double? nbArtifactVeryHigh = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
+                Constants.CostComplexity.CostComplexityArtifacts_VeryHigh.GetHashCode());
 
-                double? nbViolationLow = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                    Constants.QualityDistribution.DistributionOfDefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.GetHashCode(),
-                    Constants.DefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.CostComplexityDefects_Low.GetHashCode());
-                double? nbViolationAve = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                    Constants.QualityDistribution.DistributionOfDefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.GetHashCode(),
-                    Constants.DefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.CostComplexityDefects_Average.GetHashCode());
-                double? nbViolationHigh = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                    Constants.QualityDistribution.DistributionOfDefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.GetHashCode(),
-                    Constants.DefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.CostComplexityDefects_High.GetHashCode());
-                double? nbViolationVeryHigh = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                    Constants.QualityDistribution.DistributionOfDefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.GetHashCode(),
-                    Constants.DefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.CostComplexityDefects_VeryHigh.GetHashCode());
+            double? nbViolationLow = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                Constants.QualityDistribution.DistributionOfDefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.GetHashCode(),
+                Constants.DefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.CostComplexityDefects_Low.GetHashCode());
+            double? nbViolationAve = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                Constants.QualityDistribution.DistributionOfDefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.GetHashCode(),
+                Constants.DefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.CostComplexityDefects_Average.GetHashCode());
+            double? nbViolationHigh = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                Constants.QualityDistribution.DistributionOfDefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.GetHashCode(),
+                Constants.DefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.CostComplexityDefects_High.GetHashCode());
+            double? nbViolationVeryHigh = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
+                Constants.QualityDistribution.DistributionOfDefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.GetHashCode(),
+                Constants.DefectsToCriticalDiagnosticBasedMetricsPerCostComplexity.CostComplexityDefects_VeryHigh.GetHashCode());
 
-                #endregion Selected Snapshot
+            #endregion Selected Snapshot
 
-                #region Data
+            #region Data
 
               
-                rowData.AddRange(new string[] { Labels.Complexity, Labels.Artifacts, Labels.WithViolations });
-                rowData.AddRange(new string[] { Labels.CplxExtreme, nbArtifactVeryHigh.Value.ToString(numberFormat), nbViolationVeryHigh.Value.ToString(numberFormat) });
-                rowData.AddRange(new string[] { Labels.CplxHigh, nbArtifactHigh.Value.ToString(numberFormat), nbViolationHigh.Value.ToString(numberFormat) });
-                rowData.AddRange(new string[] { Labels.CplxAverage, nbArtifactAve.Value.ToString(numberFormat), nbViolationAve.Value.ToString(numberFormat) });
-                rowData.AddRange(new string[] { Labels.CplxLow, nbArtifactLow.Value.ToString(numberFormat), nbViolationLow.Value.ToString(numberFormat) });
+            rowData.AddRange(new[] { Labels.Complexity, Labels.Artifacts, Labels.WithViolations });
+            rowData.AddRange(new[] { Labels.CplxExtreme, nbArtifactVeryHigh?.ToString(numberFormat), nbViolationVeryHigh?.ToString(numberFormat) });
+            rowData.AddRange(new[] { Labels.CplxHigh, nbArtifactHigh?.ToString(numberFormat), nbViolationHigh?.ToString(numberFormat) });
+            rowData.AddRange(new[] { Labels.CplxAverage, nbArtifactAve?.ToString(numberFormat), nbViolationAve?.ToString(numberFormat) });
+            rowData.AddRange(new[] { Labels.CplxLow, nbArtifactLow?.ToString(numberFormat), nbViolationLow?.ToString(numberFormat) });
 
-                #endregion Data
+            #endregion Data
 
-                back = new TableDefinition
-                {
-                    Data = rowData,
-                    HasRowHeaders = false,
-                    HasColumnHeaders = true,
-                    NbColumns = 3,
-                    NbRows = 4
-                };
-            }
+            back = new TableDefinition
+            {
+                Data = rowData,
+                HasRowHeaders = false,
+                HasColumnHeaders = true,
+                NbColumns = 3,
+                NbRows = 4
+            };
             return back;
         }
     }

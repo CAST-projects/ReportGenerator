@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-/*
+﻿/*
  *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
@@ -16,6 +13,8 @@ using System.Collections.ObjectModel;
  * limitations under the License.
  *
  */
+using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
@@ -28,7 +27,7 @@ namespace CastReporting.UI.WPF.Common
     /// <summary>
     /// Interaction logic for ucHeader.xaml
     /// </summary>
-    public partial class ucMessage : UserControl
+    public partial class UcMessage : UserControl
     {
 
         
@@ -45,11 +44,11 @@ namespace CastReporting.UI.WPF.Common
         {
             get
             {
-                return (ObservableCollection<MessageItem>)this.GetValue(MessageProperty);
+                return (ObservableCollection<MessageItem>)GetValue(MessageProperty);
             }
             set
             {
-                this.SetValue(MessageProperty, value);
+                SetValue(MessageProperty, value);
             }
         }
 
@@ -58,12 +57,12 @@ namespace CastReporting.UI.WPF.Common
         /// <summary>
         /// 
         /// </summary>
-        public static readonly DependencyProperty MessageProperty = DependencyProperty.Register("Messages", typeof(ObservableCollection<MessageItem>), typeof(ucMessage), new PropertyMetadata(null));
+        public static readonly DependencyProperty MessageProperty = DependencyProperty.Register("Messages", typeof(ObservableCollection<MessageItem>), typeof(UcMessage), new PropertyMetadata(null));
 
         /// <summary>
         /// /
         /// </summary>
-        public ucMessage()
+        public UcMessage()
         {
             InitializeComponent();
 
@@ -87,7 +86,7 @@ namespace CastReporting.UI.WPF.Common
         private void OpenButtonClicked(object sender, RoutedEventArgs e)
         {
 
-            var fileName = ((e.Source as Button).DataContext as MessageItem).FileName;
+            var fileName = ((e.Source as Button)?.DataContext as MessageItem)?.FileName;
 
             if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))  Process.Start(fileName);
         }
@@ -99,7 +98,7 @@ namespace CastReporting.UI.WPF.Common
         /// </summary>
         public void Refresh()
         {
-            BindingOperations.GetBindingExpression(txtTitle, TextBlock.TextProperty).UpdateTarget();
+            BindingOperations.GetBindingExpression(TxtTitle, TextBlock.TextProperty)?.UpdateTarget();
         }
     }
 
@@ -139,7 +138,7 @@ namespace CastReporting.UI.WPF.Common
         /// <returns></returns>
         public override string ToString()
         {
-            return String.Format("{0:HH:mm} - {1}", Date, Message);
+            return $"{Date:HH:mm} - {Message}";
         }
     }
 }

@@ -16,11 +16,11 @@ namespace CastReporting.UI.WPF.Behaviors
         {
             get
             {
-                return (string)base.GetValue(RegularExpressionProperty);
+                return (string)GetValue(RegularExpressionProperty);
             }
             set
             {
-                base.SetValue(RegularExpressionProperty, value);
+                SetValue(RegularExpressionProperty, value);
             }
         }
 
@@ -31,11 +31,11 @@ namespace CastReporting.UI.WPF.Behaviors
         {
             get
             {
-                return (int)base.GetValue(MaxLengthProperty);
+                return (int)GetValue(MaxLengthProperty);
             }
             set
             {
-                base.SetValue(MaxLengthProperty, value);
+                SetValue(MaxLengthProperty, value);
             }
         }
 
@@ -63,9 +63,8 @@ namespace CastReporting.UI.WPF.Behaviors
             }
         }
 
-        void OnPreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        protected void OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            var textbox = sender as TextBox;
             e.Handled = !IsValid(e.Text, false);
         }
 
@@ -90,21 +89,18 @@ namespace CastReporting.UI.WPF.Behaviors
 
         private int LengthOfModifiedText(string newText, bool paste)
         {
-            var countOfSelectedChars = this.AssociatedObject.SelectedText.Length;
-            var caretIndex = this.AssociatedObject.CaretIndex;
-            string text = this.AssociatedObject.Text;
+            var countOfSelectedChars = AssociatedObject.SelectedText.Length;
+            var caretIndex = AssociatedObject.CaretIndex;
+            string text = AssociatedObject.Text;
 
             if (countOfSelectedChars > 0 || paste)
             {
                 text = text.Remove(caretIndex, countOfSelectedChars);
                 return text.Length + newText.Length;
             }
-            else
-            {
-                var insert = Keyboard.IsKeyToggled(Key.Insert);
+            var insert = Keyboard.IsKeyToggled(Key.Insert);
 
-                return insert && caretIndex < text.Length ? text.Length : text.Length + newText.Length;
-            }
+            return insert && caretIndex < text.Length ? text.Length : text.Length + newText.Length;
         }
     }
 }

@@ -14,7 +14,6 @@
  *
  */
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Cast.Util.Log;
@@ -54,18 +53,18 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private string _NewConnectionUrl;
+        private string _newConnectionUrl;
         public string NewConnectionUrl
         {
             get
             {
-                return _NewConnectionUrl;
+                return _newConnectionUrl;
             }
             set
             {
-                _NewConnectionUrl = value;
+                _newConnectionUrl = value;
 
-                base.OnPropertyChanged("NewConnectionUrl");
+                OnPropertyChanged("NewConnectionUrl");
             }
 
         }
@@ -73,18 +72,18 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private string _NewConnectionPassword;
+        private string _newConnectionPassword;
         public string NewConnectionPassword
         {
             get
             {
-                return _NewConnectionPassword;
+                return _newConnectionPassword;
             }
             set
             {
-                _NewConnectionPassword = value;
+                _newConnectionPassword = value;
 
-                base.OnPropertyChanged("NewConnectionPassword");
+                OnPropertyChanged("NewConnectionPassword");
             }
 
         }
@@ -92,18 +91,18 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private string _NewConnectionLogin;
+        private string _newConnectionLogin;
         public string NewConnectionLogin
         {
             get
             {
-                return _NewConnectionLogin;
+                return _newConnectionLogin;
             }
             set
             {
-                _NewConnectionLogin = value;
+                _newConnectionLogin = value;
 
-                base.OnPropertyChanged("NewConnectionLogin");
+                OnPropertyChanged("NewConnectionLogin");
             }
 
         }
@@ -111,18 +110,18 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>       
-        private ObservableCollection<WSConnection> _WSConnections;
+        private ObservableCollection<WSConnection> _wsConnections;
         public ObservableCollection<WSConnection> WSConnections 
         { 
             get
             {
-                return _WSConnections;
+                return _wsConnections;
             } 
             set
             {
-                _WSConnections = value;
+                _wsConnections = value;
 
-                 base.OnPropertyChanged("WSConnections");
+                 OnPropertyChanged("WSConnections");
             } 
             
         }
@@ -130,18 +129,18 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private WSConnection _SelectedWSConnection;
+        private WSConnection _selectedWSConnection;
         public WSConnection SelectedWSConnection
         {
             get
             {
-                return _SelectedWSConnection;
+                return _selectedWSConnection;
             }
             set
             {
-                _SelectedWSConnection = value;
+                _selectedWSConnection = value;
 
-                base.OnPropertyChanged("SelectedWSConnection");
+                OnPropertyChanged("SelectedWSConnection");
             }
 
         }
@@ -184,12 +183,12 @@ namespace CastReporting.UI.WPF.ViewModel
                     NewConnectionUrl = NewConnectionLogin = NewConnectionPassword = string.Empty;
                 }
 
-                base.MessageManager.OnServiceAdded(conn.Url, state);
+                MessageManager.OnServiceAdded(conn.Url, state);
             }
             catch (UriFormatException ex)
             {
                 LogHelper.Instance.LogInfo(ex.Message);
-                base.MessageManager.OnServiceAdded(NewConnectionUrl, StatesEnum.ServiceInvalid);
+                MessageManager.OnServiceAdded(NewConnectionUrl, StatesEnum.ServiceInvalid);
             }
         }
 
@@ -198,17 +197,13 @@ namespace CastReporting.UI.WPF.ViewModel
         /// </summary>
         private void ExecuteRemoveCommand(object prameter)
         {
-            if (SelectedWSConnection != null)
-            {
-                string tmpUrl = SelectedWSConnection.Url;
+            if (SelectedWSConnection == null) return;
+            string tmpUrl = SelectedWSConnection.Url;
 
-                Setting = SettingsBLL.RemoveConnection(SelectedWSConnection);
-                WSConnections = new ObservableCollection<WSConnection>(Setting.WSConnections);
+            Setting = SettingsBLL.RemoveConnection(SelectedWSConnection);
+            WSConnections = new ObservableCollection<WSConnection>(Setting.WSConnections);
 
-                base.MessageManager.OnServiceRemoved(tmpUrl);
-
-               
-            }
+            MessageManager.OnServiceRemoved(tmpUrl);
         }
 
 
@@ -217,16 +212,14 @@ namespace CastReporting.UI.WPF.ViewModel
         /// </summary>
         private void ExecuteActiveCommand(object prameter)
         {
-            if (SelectedWSConnection != null)
-            {               
-                Setting.ChangeActiveConnection(SelectedWSConnection.Url);
+            if (SelectedWSConnection == null) return;
+            Setting.ChangeActiveConnection(SelectedWSConnection.Url);
 
-                SettingsBLL.SaveSetting(Setting);
+            SettingsBLL.SaveSetting(Setting);
 
-                base.MessageManager.OnServiceActivated(SelectedWSConnection.Url);
+            MessageManager.OnServiceActivated(SelectedWSConnection.Url);
 
-                WSConnections = new ObservableCollection<WSConnection>(Setting.WSConnections);               
-            }
+            WSConnections = new ObservableCollection<WSConnection>(Setting.WSConnections);
         }
 
         /// <summary>
@@ -234,18 +227,16 @@ namespace CastReporting.UI.WPF.ViewModel
         /// </summary>
         private void ExecuteTestCommand(object prameter)
         {
-            bool resutTest = true;
+            bool resutTest;
 
             if (prameter == null) //Test of WS defined on "Add service area" 
             {
-                if (!String.IsNullOrEmpty(NewConnectionUrl) && Uri.IsWellFormedUriString(NewConnectionUrl, UriKind.Absolute))
+                if (string.IsNullOrEmpty(NewConnectionUrl) || !Uri.IsWellFormedUriString(NewConnectionUrl, UriKind.Absolute)) return;
+                using (CommonBLL commonBLL = new CommonBLL(new WSConnection(NewConnectionUrl, NewConnectionLogin, NewConnectionPassword, string.Empty))) 
                 {
-                    using (CommonBLL commonBLL = new CommonBLL(new WSConnection(NewConnectionUrl, NewConnectionLogin, NewConnectionPassword, string.Empty))) 
-                    {
-                       resutTest=  commonBLL.CheckService();
+                    resutTest=  commonBLL.CheckService();
 
-                       base.MessageManager.OnServiceChecked(NewConnectionUrl, resutTest);
-                    }
+                    MessageManager.OnServiceChecked(NewConnectionUrl, resutTest);
                 }
             }
             else
@@ -254,7 +245,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 {
                     resutTest = commonBLL.CheckService();
 
-                    base.MessageManager.OnServiceChecked(SelectedWSConnection.Url, resutTest);
+                    MessageManager.OnServiceChecked(SelectedWSConnection.Url, resutTest);
                 }
             }            
         }

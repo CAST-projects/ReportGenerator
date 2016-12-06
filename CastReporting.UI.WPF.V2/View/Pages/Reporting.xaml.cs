@@ -16,7 +16,6 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using CastReporting.UI.WPF.Resources.Languages;
 using CastReporting.UI.WPF.ViewModel;
 using Microsoft.Win32;
 using CastReporting.Domain;
@@ -24,13 +23,6 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 using CastReporting.BLL;
-using System.Data;
-using CastReporting.Reporting.Atrributes;
-using CastReporting.Reporting.Builder.BlockProcessing;
-using CastReporting.Reporting.ReportingModel;
-using CastReporting.Reporting.Languages; 
-using System.Linq; 
-using System.Xml;
 
 namespace CastReporting.UI.WPF.View
 {
@@ -43,29 +35,16 @@ namespace CastReporting.UI.WPF.View
         {
             InitializeComponent();
 
-            this.DataContext = new ReportingVM();
+            DataContext = new ReportingVM();
 
-            this.Loaded += OnLoaded; 
+            Loaded += OnLoaded; 
 
             //BindCategories();
         }
 
-        private WSConnection _ActiveConnection;
-        public WSConnection ActiveConnection
-        {
-            get
-            {
-                return _ActiveConnection;
-            }
-            set
-            {
-                _ActiveConnection = value;
-            }
+        public WSConnection ActiveConnection { get; set; }
 
-        }
-        
-        private readonly System.Windows.Input.CommandBindingCollection _commandBindings;
-        public new System.Windows.Input.CommandBindingCollection CommandBindings => _commandBindings;
+        public new System.Windows.Input.CommandBindingCollection CommandBindings { get; set; }
 
 
         /// <summary>
@@ -75,7 +54,7 @@ namespace CastReporting.UI.WPF.View
         /// <param name="e"></param>
         void OnLoaded(object sender, RoutedEventArgs e)
         {
-            (this.DataContext as ReportingVM).InitializeFromWS();
+            (DataContext as ReportingVM)?.InitializeFromWS();
         }
 
 
@@ -87,12 +66,14 @@ namespace CastReporting.UI.WPF.View
         /// <param name="e"></param>
         private void GenerateButtonClicked(object sender, RoutedEventArgs e)
         {
-            ReportingVM reportingVM = (this.DataContext as ReportingVM);
+            ReportingVM _reportingVm = (DataContext as ReportingVM);
 
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = string.Format("*{0}|*{0}", reportingVM.SelectedTemplateFile.Extension);
+            SaveFileDialog dialog = new SaveFileDialog
+            {
+                Filter = string.Format("*{0}|*{0}", _reportingVm?.SelectedTemplateFile.Extension),
+                DefaultExt = _reportingVm?.SelectedTemplateFile.Extension
+            };
 
-            dialog.DefaultExt = reportingVM.SelectedTemplateFile.Extension;
 
             var settings = SettingsBLL.GetSetting();
 
@@ -106,17 +87,20 @@ namespace CastReporting.UI.WPF.View
             }
 
             var result = dialog.ShowDialog();
-
-            if (result.Value)
+            var _vm = DataContext as ReportingVM;
+            if (result != null && result.Value)
             {
                 settings.ReportingParameter.GeneratedFilePath = Path.GetDirectoryName(dialog.FileName);
 
                 SettingsBLL.SaveSetting(settings);
 
-                (this.DataContext as ReportingVM).ReportFileName = dialog.FileName;
+                if (_vm != null) _vm.ReportFileName = dialog.FileName;
             }
             else
-                (this.DataContext as ReportingVM).ReportFileName = string.Empty;
+            {
+                
+                if (_vm != null) _vm.ReportFileName = string.Empty;
+            }
         }
 
         /// <summary>
@@ -126,7 +110,8 @@ namespace CastReporting.UI.WPF.View
         /// <param name="e"></param>
         private void OnFileListDoubleClicked(object sender, RoutedEventArgs e)
         {
-            Process.Start((this.DataContext as ReportingVM).SelectedTemplateFile.FullName);
+            var _selectedTemplateFile = (DataContext as ReportingVM)?.SelectedTemplateFile;
+            if (_selectedTemplateFile != null) Process.Start(_selectedTemplateFile.FullName);
         }
 
         private void ActivateWebService_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
@@ -153,9 +138,9 @@ namespace CastReporting.UI.WPF.View
                     Password = list[2]
                 };
 
-                (this.DataContext as ReportingVM).ActiveCurrentWebService(connection);
+                (DataContext as ReportingVM)?.ActiveCurrentWebService(connection);
             }
-            (this.DataContext as ReportingVM).InitializeFromWS();
+            (DataContext as ReportingVM)?.InitializeFromWS();
             e.Handled = true;
         }
     }

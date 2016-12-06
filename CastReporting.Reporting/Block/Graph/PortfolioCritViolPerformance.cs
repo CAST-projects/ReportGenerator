@@ -29,7 +29,7 @@ using CastReporting.Reporting.Helper;
 namespace CastReporting.Reporting.Block.Graph
 {
     [Block("PF_TREND_CRIT_VIOL")]
-    class PortfolioCritViolPerformance : GraphBlock
+    internal class PortfolioCritViolPerformance : GraphBlock
     {
         #region METHODS
 
@@ -37,8 +37,8 @@ namespace CastReporting.Reporting.Block.Graph
         {
             int metricId = options.GetIntOption("BCID",60017);
 
-            var rowData = new List<String>();
-            rowData.AddRange(new string[] {
+            var rowData = new List<string>();
+            rowData.AddRange(new[] {
 				" ",
 				Labels.ViolationsCritical + " - " + Labels.ViolationsRemoved ,
 				Labels.ViolationsCritical + " - " + Labels.ViolationsAdded,
@@ -55,14 +55,14 @@ namespace CastReporting.Reporting.Block.Graph
 
             #region Fetch SnapshotsPF
 
-            if (reportData != null && reportData.Applications != null && reportData.snapshots != null)
+            if (reportData?.Applications != null && reportData.snapshots != null)
             {
-                Snapshot[] AllSnapshots = reportData.snapshots;
+                Snapshot[] _allSnapshots = reportData.snapshots;
 
                 int generateQuater = 6;
-                DateTime DateNow = DateTime.Now;
-                int currentYear = DateNow.Year;
-                int currentQuater = DateUtil.GetQuarter(DateNow);
+                DateTime _dateNow = DateTime.Now;
+                int currentYear = _dateNow.Year;
+                int currentQuater = DateUtil.GetQuarter(_dateNow);
                 for (int i = generateQuater; i > 0; i--)
                 {
                     DataRow dr = dtDates.NewRow();
@@ -76,43 +76,40 @@ namespace CastReporting.Reporting.Block.Graph
 
                 for (int i = 0; i < dtDates.Rows.Count; i++)
                 {
-                    double? RemovedCritViol = 0;
-                    double? AddedCritViol = 0;
-                    double? TotalCritViol = 0;
+                    double? _removedCritViol = 0;
+                    double? _addedCritViol = 0;
+                    double? _totalCritViol = 0;
 
-                    if (AllSnapshots.Count() > 0)
+                    if (_allSnapshots.Length > 0)
                     {
-                        foreach (Snapshot snapshot in AllSnapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
+                        foreach (Snapshot snapshot in _allSnapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
                         {
-                            DateTime SnapshotDate = Convert.ToDateTime(snapshot.Annotation.Date.DateSnapShot.Value);
+                            if (snapshot.Annotation.Date.DateSnapShot == null) continue;
+                            DateTime _snapshotDate = Convert.ToDateTime(snapshot.Annotation.Date.DateSnapShot.Value);
                             int intQuarter = Convert.ToInt32(dtDates.Rows[i]["Quarter"]);
                             int intYear = Convert.ToInt32(dtDates.Rows[i]["Year"]);
 
-                            int intSnapshotQuarter = DateUtil.GetQuarter(SnapshotDate);
-                            int intSnapshotYear = SnapshotDate.Year;
+                            int intSnapshotQuarter = DateUtil.GetQuarter(_snapshotDate);
+                            int intSnapshotYear = _snapshotDate.Year;
 
-                            if (intQuarter == intSnapshotQuarter && intYear == intSnapshotYear)
-                            {
-                                ViolationsStatisticsDTO results = RulesViolationUtility.GetBCEvolutionSummary(snapshot, metricId).First();
-                                if (results != null)
-                                {
-                                    RemovedCritViol = RemovedCritViol + results.RemovedCriticalViolations;
-                                    AddedCritViol = AddedCritViol + results.AddedCriticalViolations;
-                                    TotalCritViol = TotalCritViol + results.TotalCriticalViolations;
-                                }
-                            }
+                            if (intQuarter != intSnapshotQuarter || intYear != intSnapshotYear) continue;
+                            ViolationsStatisticsDTO results = RulesViolationUtility.GetBCEvolutionSummary(snapshot, metricId).First();
+                            if (results == null) continue;
+                            _removedCritViol = _removedCritViol + results.RemovedCriticalViolations;
+                            _addedCritViol = _addedCritViol + results.AddedCriticalViolations;
+                            _totalCritViol = _totalCritViol + results.TotalCriticalViolations;
                         }
                     }
 
-                    dtDates.Rows[i]["RemovedCritViol"] = RemovedCritViol * -1;
-                    dtDates.Rows[i]["AddedCritViol"] = AddedCritViol;
-                    dtDates.Rows[i]["TotalCritViol"] = TotalCritViol;
+                    dtDates.Rows[i]["RemovedCritViol"] = _removedCritViol * -1;
+                    dtDates.Rows[i]["AddedCritViol"] = _addedCritViol;
+                    dtDates.Rows[i]["TotalCritViol"] = _totalCritViol;
                 }
 
                 for (int i = 0; i < dtDates.Rows.Count; i++)
                 {
-                    string strQuarter = dtDates.Rows[i]["Year"].ToString() + " Q" + dtDates.Rows[i]["Quarter"].ToString();
-                    rowData.AddRange(new string[] {
+                    string strQuarter = dtDates.Rows[i]["Year"] + " Q" + dtDates.Rows[i]["Quarter"];
+                    rowData.AddRange(new[] {
                                                     strQuarter,
                                                     dtDates.Rows[i]["RemovedCritViol"].ToString(),
                                                     dtDates.Rows[i]["AddedCritViol"].ToString(),

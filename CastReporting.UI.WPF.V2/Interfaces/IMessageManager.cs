@@ -28,18 +28,18 @@ namespace CastReporting.UI.WPF
         /// </summary>
         bool IsBusy {get;}
 
-       
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="url"></param>
-        /// <param name="resultTest"></param>
+        /// <param name="exception"></param>
         void OnErrorOccured(Exception exception);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="fileName"></param>
+        /// <param name="timeSpan"></param>
         void OnReportGenerated(string fileName, TimeSpan timeSpan);
 
 
@@ -47,31 +47,32 @@ namespace CastReporting.UI.WPF
         /// 
         /// </summary>
         /// <param name="message"></param>
+        /// <param name="state"></param>
         void OnServiceAdded(string message, StatesEnum state);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="url"></param>
         void OnServiceActivated(string url);
 
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="url"></param>
         void OnServiceRemoved(string url);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="url"></param>
+        /// <param name="resultTest"></param>
         void OnServiceChecked(string url, bool resultTest);
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="message"></param>
         void OnSettingsSaved();
 
         /// <summary>
@@ -84,6 +85,8 @@ namespace CastReporting.UI.WPF
         /// 
         /// </summary>
         /// <param name="percentage"></param>
+        /// <param name="message"></param>
+        /// <param name="timeSpan"></param>
         void OnStepDone(double percentage, string message, TimeSpan timeSpan);
     }
 }

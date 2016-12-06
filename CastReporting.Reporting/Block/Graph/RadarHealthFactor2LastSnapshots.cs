@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
@@ -22,12 +22,11 @@ using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
-using System.Globalization;
 using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Graph
 {
 	[Block("RADAR_HEALTH_FACTOR_2_LAST_SNAPSHOTS"), Block("RADAR_HEALTH_FACTOR_2_SNAPSHOTS")]
-    class RadarHealthFactor2LastSnapshots : GraphBlock
+	internal class RadarHealthFactor2LastSnapshots : GraphBlock
     {
         
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
@@ -36,80 +35,70 @@ namespace CastReporting.Reporting.Block.Graph
             string prevSnapshotLabel = string.Empty;
             BusinessCriteriaDTO prevSnapshotBCResult = null;
 
-            if (reportData != null && reportData.CurrentSnapshot != null)
+            if (reportData?.CurrentSnapshot == null) return null;
+            string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);
+            BusinessCriteriaDTO _currSnapshotBcdto = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, true);
+
+            if (reportData.PreviousSnapshot != null)
             {
-
-                string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);
-                BusinessCriteriaDTO currSnapshotBCDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, true);
-
-                if (reportData.PreviousSnapshot != null)
+                prevSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot);
+                prevSnapshotBCResult = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot, true);
+            }
+            else
+            {
+                Snapshot _previousSnapshot = reportData.Application.Snapshots?.FirstOrDefault(_ => _.Annotation.Date.DateSnapShot < reportData.CurrentSnapshot.Annotation.Date.DateSnapShot);
+                if (_previousSnapshot != null)
                 {
-                    prevSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot);
-                    prevSnapshotBCResult = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot, true);
+                    prevSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(_previousSnapshot);
+                    prevSnapshotBCResult = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(_previousSnapshot, true);
                 }
-                else
-                    if (reportData.Application.Snapshots != null)
-                    {
-                        Snapshot PreviousSnapshot = reportData.Application.Snapshots.FirstOrDefault(_ => _.Annotation.Date.DateSnapShot < reportData.CurrentSnapshot.Annotation.Date.DateSnapShot);
-                        if (PreviousSnapshot != null)
-                        {
-                            prevSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(PreviousSnapshot);
-                            prevSnapshotBCResult = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(PreviousSnapshot, true);
-                        }
-
-                    }
-
-
-
-                var rowData = new List<String>();
-                rowData.Add(null);
-                rowData.Add(currSnapshotLabel.ToString());
-                if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotLabel ?? Constants.No_Value); }
-
-
-                #region Transferability
-                rowData.Add(Labels.Trans);
-                rowData.Add(currSnapshotBCDTO.Transferability.ToString());
-                if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Transferability.ToString()); }
-                #endregion Transferability
-
-                #region Changeability
-                rowData.Add(Labels.Chang);
-                rowData.Add(currSnapshotBCDTO.Changeability.ToString());
-                if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Changeability.ToString()); }
-                #endregion Changeability
-
-                #region Robustness
-                rowData.Add(Labels.Robu);
-                rowData.Add(currSnapshotBCDTO.Robustness.ToString());
-                if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Robustness.ToString()); }
-                #endregion Robustness
-
-                #region Performance
-                rowData.Add(Labels.Efcy);
-                rowData.Add(currSnapshotBCDTO.Performance.ToString());
-                if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Performance.ToString()); }
-                #endregion Performance
-
-                #region Security
-                rowData.Add(Labels.Secu);
-                rowData.Add(currSnapshotBCDTO.Security.ToString());
-                if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Security.ToString()); }              
-                #endregion Security
-
-                TableDefinition resultTable = new TableDefinition
-                {
-                    HasRowHeaders = true,
-                    HasColumnHeaders = true,
-                    NbRows = 6,
-                    NbColumns = prevSnapshotBCResult != null ? 3 : 2,
-                    Data = rowData
-                };
-
-                return resultTable;
             }
 
-            return null;
+
+            var rowData = new List<string> {null, currSnapshotLabel};
+            if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotLabel ?? Constants.No_Value); }
+
+
+            #region Transferability
+            rowData.Add(Labels.Trans);
+            rowData.Add(_currSnapshotBcdto.Transferability.ToString());
+            if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Transferability.ToString()); }
+            #endregion Transferability
+
+            #region Changeability
+            rowData.Add(Labels.Chang);
+            rowData.Add(_currSnapshotBcdto.Changeability.ToString());
+            if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Changeability.ToString()); }
+            #endregion Changeability
+
+            #region Robustness
+            rowData.Add(Labels.Robu);
+            rowData.Add(_currSnapshotBcdto.Robustness.ToString());
+            if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Robustness.ToString()); }
+            #endregion Robustness
+
+            #region Performance
+            rowData.Add(Labels.Efcy);
+            rowData.Add(_currSnapshotBcdto.Performance.ToString());
+            if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Performance.ToString()); }
+            #endregion Performance
+
+            #region Security
+            rowData.Add(Labels.Secu);
+            rowData.Add(_currSnapshotBcdto.Security.ToString());
+            if (prevSnapshotBCResult != null) { rowData.Add(prevSnapshotBCResult.Security.ToString()); }              
+            #endregion Security
+
+            TableDefinition resultTable = new TableDefinition
+            {
+                HasRowHeaders = true,
+                HasColumnHeaders = true,
+                NbRows = 6,
+                NbColumns = prevSnapshotBCResult != null ? 3 : 2,
+                Data = rowData
+            };
+
+            return resultTable;
         }
      
     }

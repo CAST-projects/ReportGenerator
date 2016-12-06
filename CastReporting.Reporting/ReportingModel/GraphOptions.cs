@@ -13,11 +13,6 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CastReporting.Reporting.ReportingModel
 {
@@ -37,13 +32,8 @@ namespace CastReporting.Reporting.ReportingModel
         /// <summary>
         /// Get the indication of at once one definition is present in this GraphOptions.
         /// </summary>
-        public bool HasConfiguration 
-        { 
-            get 
-            { 
-                return null != AxisConfiguration && AxisConfiguration.HasDefinitions; 
-            } 
-        }
+        public bool HasConfiguration => null != AxisConfiguration && AxisConfiguration.HasDefinitions;
+
         #endregion PROPERTIES
 
     }

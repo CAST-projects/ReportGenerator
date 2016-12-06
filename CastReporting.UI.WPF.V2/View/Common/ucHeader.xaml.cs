@@ -20,9 +20,9 @@ namespace CastReporting.UI.WPF.Common
     /// <summary>
     /// Interaction logic for ucHeader.xaml
     /// </summary>
-    public partial class ucHeader : UserControl
+    public partial class UcHeader : UserControl
     {
-        public ucHeader()
+        public UcHeader()
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace CastReporting.UI.WPF.Common
         /// </summary>
         public void Refresh()
         {
-            ucMenu.Refersh();
+            UcMenu.Refersh();
         }
        
     }

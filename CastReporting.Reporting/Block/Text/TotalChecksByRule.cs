@@ -13,7 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Domain;
@@ -26,7 +26,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("RULE_TOTAL_CHECKS")]
-    class TotalChecksByRule : TextBlock
+    internal class TotalChecksByRule : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
@@ -34,28 +34,25 @@ namespace CastReporting.Reporting.Block.Text
             string strRuleId = options.GetOption("RULID",string.Empty);
             string _snapshot = options.GetOption("SNAPSHOT", "CURRENT");
 
-            if (null != reportData && null != reportData.CurrentSnapshot && strRuleId != string.Empty)
+            if (reportData?.CurrentSnapshot == null || strRuleId == string.Empty) return Constants.No_Value;
+            Result violations;
+            int? _totalChecks = null;
+
+            if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
             {
-                Result violations = null;
-                Int32? TotalChecks = null;
-
-                if (_snapshot == "PREVIOUS" && reportData.PreviousSnapshot != null)
-                {
-                    violations = reportData.RuleExplorer.GetRulesViolations(reportData.PreviousSnapshot.Href, strRuleId).FirstOrDefault();
-                }
-                else
-                {
-                    violations = reportData.RuleExplorer.GetRulesViolations(reportData.CurrentSnapshot.Href, strRuleId).FirstOrDefault();
-                }
-
-                if (violations != null && violations.ApplicationResults.Any())
-                {
-                    TotalChecks = RulesViolationUtility.GetTotalChecks(violations);
-                }
-
-                return (TotalChecks != null && TotalChecks.HasValue) ? TotalChecks.Value.ToString("N0") : Constants.No_Value;
+                violations = reportData.RuleExplorer.GetRulesViolations(reportData.PreviousSnapshot.Href, strRuleId).FirstOrDefault();
             }
-            return CastReporting.Domain.Constants.No_Value;
+            else
+            {
+                violations = reportData.RuleExplorer.GetRulesViolations(reportData.CurrentSnapshot.Href, strRuleId).FirstOrDefault();
+            }
+
+            if (violations != null && violations.ApplicationResults.Any())
+            {
+                _totalChecks = RulesViolationUtility.GetTotalChecks(violations);
+            }
+
+            return (_totalChecks != null) ? _totalChecks.Value.ToString("N0") : Constants.No_Value;
         }
         #endregion METHODS
     }

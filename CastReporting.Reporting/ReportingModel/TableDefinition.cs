@@ -70,10 +70,7 @@ namespace CastReporting.Reporting.ReportingModel
         #region METHODS
         public void FormatCell(int row, int col, XElement cell, TableDefinition table)
         {
-            if (this.FormatCellEvent != null)
-            {
-                this.FormatCellEvent(row, col, cell, table);
-            }
+            FormatCellEvent?.Invoke(row, col, cell, table);
         }
         #endregion METHODS
     }

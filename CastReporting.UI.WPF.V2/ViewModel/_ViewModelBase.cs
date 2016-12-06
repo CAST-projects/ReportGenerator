@@ -16,7 +16,6 @@
 using CastReporting.BLL;
 using CastReporting.Domain;
 using System;
-using System.ComponentModel;
 
 namespace CastReporting.UI.WPF.ViewModel
 {
@@ -30,7 +29,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        static public Setting Setting {get; protected set;}
+        public static Setting Setting {get; protected set;}
 
         /// <summary>
         /// 

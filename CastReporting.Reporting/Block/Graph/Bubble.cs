@@ -14,21 +14,19 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
-using System.Globalization;
 
 namespace CastReporting.Reporting.Block.Graph
     {
         [Block("BUBBLE")]
-        class Bubble : GraphBlock
+        internal class Bubble : GraphBlock
         {
             #region METHODS
             protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
@@ -38,40 +36,40 @@ namespace CastReporting.Reporting.Block.Graph
                 #region Required Options
                 string moduleIdstr = (options != null && options.ContainsKey("M") ? options["M"] : string.Empty);
                 int moduleId;
-                if (string.IsNullOrWhiteSpace(moduleIdstr) || !Int32.TryParse(moduleIdstr, out moduleId))
+                if (string.IsNullOrWhiteSpace(moduleIdstr) || !int.TryParse(moduleIdstr, out moduleId))
                 {
                     moduleId = -1;
                 }
                
                 #endregion Required Options
 
-                List<String> rowData = new List<String>();
-                rowData.AddRange(new string[] { Labels.TechnicalDebt + " (" + reportData.CurrencySymbol + ")", Labels.TQI, Labels.Size });
+                List<string> rowData = new List<string>();
+                rowData.AddRange(new[] { Labels.TechnicalDebt + " (" + reportData.CurrencySymbol + ")", Labels.TQI, Labels.Size });
 
-                if (reportData != null &&  reportData.CurrentSnapshot != null)
+                if (reportData.CurrentSnapshot != null)
                 {
 
-                    double? TQIValue = 0;
-                    double? TechDebtValue = 0;
-                    double? COLValue = 0;
+                    double? _tqiValue;
+                    double? _techDebtValue;
+                    double? _colValue;
 
                     if (moduleId > 0)
                     {
 
-                        TQIValue = BusinessCriteriaUtility.GetBusinessCriteriaModuleGrade(reportData.CurrentSnapshot, moduleId, Constants.BusinessCriteria.TechnicalQualityIndex, true);
-                        TechDebtValue = MeasureUtility.GetModuleMeasureGrade(reportData.CurrentSnapshot, moduleId, Constants.SizingInformations.TechnicalDebt);
-                        COLValue = MeasureUtility.GetModuleMeasureGrade(reportData.CurrentSnapshot, moduleId, Constants.SizingInformations.CodeLineNumber);
+                        _tqiValue = BusinessCriteriaUtility.GetBusinessCriteriaModuleGrade(reportData.CurrentSnapshot, moduleId, Constants.BusinessCriteria.TechnicalQualityIndex, true);
+                        _techDebtValue = MeasureUtility.GetModuleMeasureGrade(reportData.CurrentSnapshot, moduleId, Constants.SizingInformations.TechnicalDebt);
+                        _colValue = MeasureUtility.GetModuleMeasureGrade(reportData.CurrentSnapshot, moduleId, Constants.SizingInformations.CodeLineNumber);
                     }
                     else
                     {
-                        TQIValue = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Constants.BusinessCriteria.TechnicalQualityIndex, true);
-                        TechDebtValue = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.TechnicalDebt);
-                        COLValue = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.CodeLineNumber);
+                        _tqiValue = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Constants.BusinessCriteria.TechnicalQualityIndex, true);
+                        _techDebtValue = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.TechnicalDebt);
+                        _colValue = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.CodeLineNumber);
                     }
 
-                    rowData.Add(TQIValue.GetValueOrDefault().ToString());
-                    rowData.Add(TechDebtValue.GetValueOrDefault().ToString());
-                    rowData.Add(COLValue.GetValueOrDefault().ToString());
+                    rowData.Add(_tqiValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+                    rowData.Add(_techDebtValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+                    rowData.Add(_colValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
                 }
 
                 TableDefinition resultTable = new TableDefinition

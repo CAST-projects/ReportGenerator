@@ -13,30 +13,26 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
-using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 
 
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TOP_RISKIEST_COMPONENTS")]
-    class TopRiskiestComponents : TableBlock
+    internal class TopRiskiestComponents : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             const string metricFormat = "N0";
-            TableDefinition resultTable = null;
-            int nbLimitTop = 0;
+            int nbLimitTop;
             string dataSource = string.Empty;
             int moduleId = -1;
-            IEnumerable<Component> components = null;
 
             #region Business Criteria
             if (options != null &&
@@ -67,51 +63,43 @@ namespace CastReporting.Reporting.Block.Table
             List<string> rowData = new List<string>();
             int nbRows = 1;
 
-            if (reportData.CurrentSnapshot != null)
-            {               
-                rowData.AddRange(new string[] { Labels.ArtifactName, Labels.PRI });
-                Constants.BusinessCriteria bizCrit;
-                switch (dataSource)
-                {
-                    case "ARCH": { bizCrit = Constants.BusinessCriteria.ArchitecturalDesign; } break;
-                    case "CHAN": { bizCrit = Constants.BusinessCriteria.Changeability; } break;
-                    case "DOC": { bizCrit = Constants.BusinessCriteria.Documentation; } break;
-                    case "PERF": { bizCrit = Constants.BusinessCriteria.Performance; } break;
-                    case "PROG": { bizCrit = Constants.BusinessCriteria.ProgrammingPractices; } break;
-                    case "ROB": { bizCrit = Constants.BusinessCriteria.Robustness; } break;
-                    case "SEC": { bizCrit = Constants.BusinessCriteria.Security; } break;
-                    case "MAIN": { bizCrit = Constants.BusinessCriteria.SEIMaintainability; } break;
-                    case "TQI": { bizCrit = Constants.BusinessCriteria.TechnicalQualityIndex; } break;
-                    case "TRAN":
-                    default: { bizCrit = Constants.BusinessCriteria.Transferability; } break;
-                }
-
-                
-                if (moduleId > 0)
-                {
-                    components = reportData.SnapshotExplorer.GetComponentsByModule(reportData.CurrentSnapshot.DomainId, moduleId, (int)reportData.CurrentSnapshot.Id, ((int)bizCrit).ToString(), nbLimitTop);
-                }
-                else
-                {
-                    components = reportData.SnapshotExplorer.GetComponents(reportData.CurrentSnapshot.Href, ((int)bizCrit).ToString(), nbLimitTop);
-                }              
+            if (reportData.CurrentSnapshot == null) return null;
+            rowData.AddRange(new[] { Labels.ArtifactName, Labels.PRI });
+            Constants.BusinessCriteria bizCrit;
+            switch (dataSource)
+            {
+                case "ARCH": { bizCrit = Constants.BusinessCriteria.ArchitecturalDesign; } break;
+                case "CHAN": { bizCrit = Constants.BusinessCriteria.Changeability; } break;
+                case "DOC": { bizCrit = Constants.BusinessCriteria.Documentation; } break;
+                case "PERF": { bizCrit = Constants.BusinessCriteria.Performance; } break;
+                case "PROG": { bizCrit = Constants.BusinessCriteria.ProgrammingPractices; } break;
+                case "ROB": { bizCrit = Constants.BusinessCriteria.Robustness; } break;
+                case "SEC": { bizCrit = Constants.BusinessCriteria.Security; } break;
+                case "MAIN": { bizCrit = Constants.BusinessCriteria.SEIMaintainability; } break;
+                case "TQI": { bizCrit = Constants.BusinessCriteria.TechnicalQualityIndex; } break;
+                case "TRAN": { bizCrit = Constants.BusinessCriteria.Transferability; } break;
+                default: { bizCrit = Constants.BusinessCriteria.Transferability; } break;
             }
 
+                
+            IEnumerable<Component> components = moduleId > 0 
+                ? reportData.SnapshotExplorer.GetComponentsByModule(reportData.CurrentSnapshot.DomainId, moduleId, (int)reportData.CurrentSnapshot.Id, ((int)bizCrit).ToString(), nbLimitTop)?.ToList() 
+                : reportData.SnapshotExplorer.GetComponents(reportData.CurrentSnapshot.Href, ((int)bizCrit).ToString(), nbLimitTop)?.ToList();
 
             if (components != null && components.Any())
             {
                 foreach (var component in components)
                 {
-                    rowData.AddRange(new string[] { component.Name, component.PropagationRiskIndex.ToString(metricFormat) });
+                    rowData.AddRange(new[] { component.Name, component.PropagationRiskIndex.ToString(metricFormat) });
                     nbRows++;
                 }
             }
             else
             {
-                rowData.AddRange(new string[] { Labels.NoItem, string.Empty });
+                rowData.AddRange(new[] { Labels.NoItem, string.Empty });
             }
 
-            resultTable = new TableDefinition
+            var resultTable = new TableDefinition
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
@@ -119,7 +107,6 @@ namespace CastReporting.Reporting.Block.Table
                 NbColumns = 2,
                 Data = rowData
             };
-
             return resultTable;
         }
     }

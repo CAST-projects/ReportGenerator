@@ -1,5 +1,4 @@
-﻿using CastReporting.Domain;
-/*
+﻿/*
  *   Copyright (c) 2016 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
@@ -16,14 +15,13 @@
  */
 using System.Windows;
 using System.Windows.Controls;
-using CastReporting.UI.WPF.ViewModel;
 
 namespace CastReporting.UI.WPF.Common
 {
     /// <summary>
     /// Interaction logic for ucHeader.xaml
     /// </summary>
-    public partial class ucCurrentWS : UserControl
+    public partial class UcCurrentWS : UserControl
     {
         public string Login
         {
@@ -33,7 +31,7 @@ namespace CastReporting.UI.WPF.Common
 
         // Using a DependencyProperty as the backing store for Login.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LoginProperty =
-            DependencyProperty.Register("Login", typeof(string), typeof(ucCurrentWS), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Login", typeof(string), typeof(UcCurrentWS), new PropertyMetadata(string.Empty));
 
         public string Url
         {
@@ -43,7 +41,7 @@ namespace CastReporting.UI.WPF.Common
 
         // Using a DependencyProperty as the backing store for Url.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty UrlProperty =
-            DependencyProperty.Register("Url", typeof(string), typeof(ucCurrentWS), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Url", typeof(string), typeof(UcCurrentWS), new PropertyMetadata(string.Empty));
 
         public string Password
         {
@@ -53,16 +51,16 @@ namespace CastReporting.UI.WPF.Common
 
         // Using a DependencyProperty as the backing store for Password.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register("Password", typeof(string), typeof(ucCurrentWS), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Password", typeof(string), typeof(UcCurrentWS), new PropertyMetadata(string.Empty));
 
         /// <summary>
         /// 
         /// </summary>
-        public ucCurrentWS()
+        public UcCurrentWS()
         {
             InitializeComponent();
 
-            this.LayoutRoot.DataContext = this;
+            LayoutRoot.DataContext = this;
         }
     }
 }

@@ -13,9 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -25,25 +23,18 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("APPLICATION_SIZE_TYPE")]
-    class ApplicationSizeType : TextBlock
+    internal class ApplicationSizeType : TextBlock
     {
        
 
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (null != reportData &&
-                 null != reportData.CurrentSnapshot) {
+            if (reportData?.CurrentSnapshot == null) return Domain.Constants.No_Value;
+            double? codeLineNumber = MeasureUtility.GetCodeLineNumber(reportData.CurrentSnapshot);
 
-                double? codeLineNumber = MeasureUtility.GetCodeLineNumber(reportData.CurrentSnapshot);
-
-                if (codeLineNumber.HasValue)
-                    return GetApplicationQualification(reportData, codeLineNumber.Value);
-            }
-            return CastReporting.Domain.Constants.No_Value;
+            return codeLineNumber.HasValue ? GetApplicationQualification(reportData, codeLineNumber.Value) : Domain.Constants.No_Value;
         }
-
-        
 
 
         /// <summary>
@@ -51,18 +42,14 @@ namespace CastReporting.Reporting.Block.Text
         /// </summary>
         /// <param name="reportData"></param>
         /// <param name="value"></param>
-        /// <param name="qualifyType"></param>
         /// <returns></returns>
-        private static String GetApplicationQualification(ReportData reportData, double value)
+        private static string GetApplicationQualification(ReportData reportData, double value)
         {
             if (value < reportData.Parameter.ApplicationSizeLimitSupSmall)
 				return Labels.SizeS;
-            else if (value < reportData.Parameter.ApplicationSizeLimitSupMedium)
-				return Labels.SizeM;
-            else if (value < reportData.Parameter.ApplicationSizeLimitSupLarge)
-				return Labels.SizeL;
-            else 
-				return Labels.SizeXL;
+            if (value < reportData.Parameter.ApplicationSizeLimitSupMedium)
+                return Labels.SizeM;
+            return value < reportData.Parameter.ApplicationSizeLimitSupLarge ? Labels.SizeL : Labels.SizeXL;
         }
 
         #endregion METHODS

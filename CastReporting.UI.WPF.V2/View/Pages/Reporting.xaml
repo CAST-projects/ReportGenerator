@@ -6,13 +6,13 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:label="clr-namespace:CastReporting.UI.WPF.Resources.Languages"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"             
-             xmlns:Converter="clr-namespace:CastReporting.UI.WPF.Converter"       
-             xmlns:CommonCtrl="clr-namespace:CastReporting.UI.WPF.Common" 
-             xmlns:Commands="clr-namespace:CastReporting.UI.WPF.Commands"
+             xmlns:converter="clr-namespace:CastReporting.UI.WPF.Converter"       
+             xmlns:commonCtrl="clr-namespace:CastReporting.UI.WPF.Common" 
+             xmlns:commands="clr-namespace:CastReporting.UI.WPF.Commands"
              mc:Ignorable="d">
 
     <Page.CommandBindings>
-        <CommandBinding Command="Commands:WebServiceCommand.ActivateWebService" CanExecute="ActivateWebService_CanExecute" Executed="ActivateWebService_Executed" />
+        <CommandBinding Command="commands:WebServiceCommand.ActivateWebService" CanExecute="ActivateWebService_CanExecute" Executed="ActivateWebService_Executed" />
     </Page.CommandBindings>
 
     <Page.Resources>
@@ -20,7 +20,7 @@
             <Setter Property="Margin" Value="4" />
         </Style>
 
-        <Converter:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+        <converter:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
 
         <ControlTemplate x:Key="SimpleTemplate">
             <DockPanel>
@@ -66,7 +66,7 @@
 						RenderOptions.BitmapScalingMode="NearestNeighbor"
 						RenderOptions.EdgeMode="Aliased" />
                 </Border.Background>
-                <CommonCtrl:ucCurrentWS Height="160" Login="{Binding ActiveConnection.Login}" Password="{Binding ActiveConnection.Password}" Url="{Binding ActiveConnection.Url}" DockPanel.Dock="Right" Margin="10,0,33,0"  HorizontalAlignment="Stretch"/>
+                <commonCtrl:UcCurrentWS Height="160" Login="{Binding ActiveConnection.Login}" Password="{Binding ActiveConnection.Password}" Url="{Binding ActiveConnection.Url}" DockPanel.Dock="Right" Margin="10,0,33,0"  HorizontalAlignment="Stretch"/>
             </Border>
 
             <Border Grid.Row="1" Grid.Column="0" Height="Auto" HorizontalAlignment="Stretch" Width="Auto" Margin="0,-1,0,-1">
@@ -145,11 +145,11 @@
                         <i:InvokeCommandAction Command="{Binding ReloadTemplatesCommand}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <TabItem Name="tabApplication" Cursor="Hand">
+                <TabItem Name="TabApplication" Cursor="Hand">
                     <TabItem.Header>
                         <TextBlock Text="{x:Static label:Messages.lblHeaderApplication}" FontSize="21.333"/>
                     </TabItem.Header>
-                    <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
+                    <Grid DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="12"/>
@@ -168,7 +168,7 @@
                         <ColumnDefinition Width="27*"/>
                         <ColumnDefinition Width="127*"/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox  x:Name="cbApplication" ItemsSource="{Binding Applications}"  
+                    <ComboBox  x:Name="CbApplication" ItemsSource="{Binding Applications}"  
                               SelectedValue="{Binding SelectedApplication, Mode=TwoWay}" Grid.ColumnSpan="2" Margin="0,8,0,8">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
@@ -177,11 +177,12 @@
                         </i:Interaction.Triggers>
                     </ComboBox>
                     <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
-                           Content="{x:Static label:Messages.lblSelectApplication}" Visibility="{Binding SelectedItem, ElementName=cbApplication, Converter={StaticResource NullToVisibilityConverter}}" Grid.ColumnSpan="2" Margin="0,16,0,17" />
+                           Content="{x:Static label:Messages.lblSelectApplication}" Visibility="{Binding SelectedItem, ElementName=CbApplication, Converter={StaticResource NullToVisibilityConverter}}" Grid.ColumnSpan="2"
+                           Grid.Column="0" Margin="0,16,0,17" />
                 </Grid>
 
                 <Grid Grid.Row="2" Margin="20,0,20,0">
-                    <ComboBox x:Name="cbSnapshots" ItemsSource="{Binding Snaphosts, Mode=OneWay}" SelectedValue="{Binding SelectedSnapshot, Mode=TwoWay}">
+                    <ComboBox x:Name="CbSnapshots" ItemsSource="{Binding Snaphosts, Mode=OneWay}" SelectedValue="{Binding SelectedSnapshot, Mode=TwoWay}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding LoadPreviousSnapshotsCommand}" />
@@ -189,22 +190,22 @@
                         </i:Interaction.Triggers>
                     </ComboBox>
                     <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
-                           Content="{x:Static label:Messages.lblSelectCurrentSnapshot}" Visibility="{Binding SelectedItem, ElementName=cbSnapshots, Converter={StaticResource NullToVisibilityConverter}}" />
+                           Content="{x:Static label:Messages.lblSelectCurrentSnapshot}" Visibility="{Binding SelectedItem, ElementName=CbSnapshots, Converter={StaticResource NullToVisibilityConverter}}" />
                 </Grid>
 
                 <Grid Grid.Row="3" Margin="20,0,20,0">
-                    <ComboBox x:Name="cbPreviousSnaphots" ItemsSource="{Binding PreviousSnaphosts, Mode=OneWay}" SelectedValue="{Binding PreviousSnapshot, Mode=TwoWay}"/>
+                    <ComboBox x:Name="CbPreviousSnaphots" ItemsSource="{Binding PreviousSnaphosts, Mode=OneWay}" SelectedValue="{Binding PreviousSnapshot, Mode=TwoWay}"/>
                     <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
-                           Content="{x:Static label:Messages.lblSelectPreviousSnapshot}" Visibility="{Binding SelectedItem, ElementName=cbPreviousSnaphots, Converter={StaticResource NullToVisibilityConverter}}" />
+                           Content="{x:Static label:Messages.lblSelectPreviousSnapshot}" Visibility="{Binding SelectedItem, ElementName=CbPreviousSnaphots, Converter={StaticResource NullToVisibilityConverter}}" />
                 </Grid>
             </Grid>
                 </TabItem>
 
-                <TabItem Name="tabProfile" Cursor="Hand">
+                <TabItem Name="TabProfile" Cursor="Hand">
                     <TabItem.Header>
                         <TextBlock Text="{x:Static label:Messages.lblHeaderPortfolio}" FontSize="21.333"/>
                     </TabItem.Header>
-                    <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
+                    <Grid DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="12"/>
@@ -219,7 +220,7 @@
                                 <ColumnDefinition Width="27*"/>
                                 <ColumnDefinition Width="127*"/>
                             </Grid.ColumnDefinitions>
-                            <ComboBox  x:Name="cbCategories"  ItemsSource="{Binding Categories, Mode=OneWay}"
+                            <ComboBox  x:Name="CbCategories"  ItemsSource="{Binding Categories, Mode=OneWay}"
                               SelectedValue="{Binding SelectedCategory, Mode=TwoWay}" Grid.ColumnSpan="2" Margin="0,8,0,8">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
@@ -228,13 +229,14 @@
                                 </i:Interaction.Triggers>
                             </ComboBox>
                             <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
-                           Content="{x:Static label:Messages.lblSelectPortfolioCategories}" Visibility="{Binding SelectedItem, ElementName=cbCategories, Converter={StaticResource NullToVisibilityConverter}}" Grid.ColumnSpan="2" Margin="0,16,0,17" />
+                           Content="{x:Static label:Messages.lblSelectPortfolioCategories}" Visibility="{Binding SelectedItem, ElementName=CbCategories, Converter={StaticResource NullToVisibilityConverter}}" Grid.ColumnSpan="2"
+                                   Grid.Column="0" Margin="0,16,0,17" />
                         </Grid>
 
                         <Grid Grid.Row="2" Margin="20,0,20,0">
-                            <ComboBox x:Name="cbTags" ItemsSource="{Binding Tags, Mode=OneWay}" SelectedValue="{Binding SelectedTag, Mode=TwoWay}"/>
+                            <ComboBox x:Name="CbTags" ItemsSource="{Binding Tags, Mode=OneWay}" SelectedValue="{Binding SelectedTag, Mode=TwoWay}"/>
                             <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
-                           Content="{x:Static label:Messages.lblSelectPortfolioTags}" Visibility="{Binding SelectedItem, ElementName=cbTags, Converter={StaticResource NullToVisibilityConverter}}" />
+                           Content="{x:Static label:Messages.lblSelectPortfolioTags}" Visibility="{Binding SelectedItem, ElementName=CbTags, Converter={StaticResource NullToVisibilityConverter}}" />
                         </Grid>
 
 
@@ -269,14 +271,15 @@
                 </StackPanel>
 
                 <ListBox ToolTip="{x:Static label:Messages.toolTipTemplateLb}" x:Name="TemplateList" Grid.Row="1" Grid.ColumnSpan="2"
-                             Height="Auto" 
+                         Grid.Column="0"
+                         Height="Auto" 
                              ItemsSource="{Binding TemplateFiles}" 
                              SelectedValue="{Binding SelectedTemplateFile}" 
                              Margin="20,4,20,0" 
                              MouseDoubleClick="OnFileListDoubleClicked"  />
 
-                <StackPanel  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,4,20,4" Width="115">
-                    <Button Name="btnApplicationReport" Style="{StaticResource StdButtonStyle}" Content="{x:Static label:Messages.btnGenerateReport}" 
+                <StackPanel  Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,4,20,4" Width="115">
+                    <Button Name="BtnApplicationReport" Style="{StaticResource StdButtonStyle}" Content="{x:Static label:Messages.btnGenerateReport}" 
                                     Command="{Binding GenerateCommand}" Click="GenerateButtonClicked"
                                     IsEnabled="{Binding IsDataFilledIn}" Margin="0,14,10,15" Width="115" />
                    

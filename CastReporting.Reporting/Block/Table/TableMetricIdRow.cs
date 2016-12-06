@@ -45,10 +45,10 @@ namespace CastReporting.Reporting.Block.Table
             bool hasPreviousSnapshot = null != reportData.PreviousSnapshot;
 
             List<Module> curModules = new List<Module>();
-            if (_level == "MODULES") curModules = reportData.CurrentSnapshot.Modules.Distinct().ToList();
+            if (_level == "MODULES") curModules = reportData.CurrentSnapshot.Modules.Distinct()?.ToList();
 
             List<string> curTechnologies = new List<string>();
-            if (_level == "TECHNOLOGIES") curTechnologies = reportData.CurrentSnapshot.Technologies.Distinct().ToList();
+            if (_level == "TECHNOLOGIES") curTechnologies = reportData.CurrentSnapshot.Technologies.Distinct()?.ToList();
             
             #region Get Names and background facts results
 

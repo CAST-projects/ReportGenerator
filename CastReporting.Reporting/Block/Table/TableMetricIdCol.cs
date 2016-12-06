@@ -94,8 +94,8 @@ namespace CastReporting.Reporting.Block.Table
             #region CurrentSnapshot
             Dictionary<string, string> currentValues = new Dictionary<string, string>();
             Dictionary<int, Dictionary<string, string>> modCurValues = new Dictionary<int, Dictionary<string, string>>();
-            var curModules = reportData.CurrentSnapshot.Modules.Distinct().ToList();
-            var curTechnos = reportData.CurrentSnapshot.Technologies.ToList();
+            var curModules = reportData.CurrentSnapshot.Modules.Distinct()?.ToList();
+            var curTechnos = reportData.CurrentSnapshot.Technologies?.ToList();
             Dictionary<string, Dictionary<string, string>> technoCurValues = new Dictionary<string, Dictionary<string, string>>();
 
             if (_snapshot == "CURRENT" || _snapshot == "BOTH")
@@ -285,7 +285,7 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                     case "MODULES":
                         for (int i = 0; i < cntMetric; i++) rowData.Add(" ");
-                        var prevModules = reportData.PreviousSnapshot.Modules.Distinct().ToList();
+                        var prevModules = reportData.PreviousSnapshot.Modules.Distinct()?.ToList();
                         foreach (Module module in prevModules)
                         {
                             Dictionary<string, string> prevValues = new Dictionary<string, string>();

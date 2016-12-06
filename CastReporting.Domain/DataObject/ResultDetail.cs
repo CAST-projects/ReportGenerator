@@ -13,7 +13,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Runtime.Serialization;
 
 namespace CastReporting.Domain
@@ -28,13 +27,13 @@ namespace CastReporting.Domain
         /// Used by Quality indicators
         /// </summary>
         [DataMember(Name = "grade")]
-        public Double Grade {get;set;}
+        public double? Grade {get;set;}
 
         /// <summary>
         /// Used by sizing measures
         /// </summary>
         [DataMember(Name = "value")]
-        public Double Value { get; set; }
+        public double? Value { get; set; }
 
         /// <summary>
         /// 

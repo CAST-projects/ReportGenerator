@@ -13,9 +13,7 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -27,18 +25,17 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("HEALTH_FACTOR")]
-    class HealthFactor : TableBlock
+    internal class HealthFactor : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             #region METHODS
-            TableDefinition resultTable = null;
-         
-           string metricFormat = "N2";
+
+            const string metricFormat = "N2";
 
             bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
 
-			int param = 0;
+			int param;
 
 			bool showEvol = false;
 			if (options != null && options.ContainsKey("SHOW_EVOL") && int.TryParse(options["SHOW_EVOL"], out param)) {
@@ -50,88 +47,85 @@ namespace CastReporting.Reporting.Block.Table
 				showEvolPercent = (param != 0);
 			}
 
-            if (null != reportData &&
-                null != reportData.CurrentSnapshot &&
-			             null != reportData.CurrentSnapshot.BusinessCriteriaResults) {
-                bool hasPreviousSnapshot = null != reportData.PreviousSnapshot;
+            if (reportData?.CurrentSnapshot?.BusinessCriteriaResults == null) return null;
+            bool hasPreviousSnapshot = null != reportData.PreviousSnapshot;
 
-                #region currSnapshot
-                string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);
-                BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, false);
-                #endregion  currSnapshot
+            #region currSnapshot
+            string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);
+            BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.CurrentSnapshot, false);
+            #endregion  currSnapshot
 
-                #region prevSnapshot
-                string prevSnapshotLabel = hasPreviousSnapshot ? SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot) : CastReporting.Domain.Constants.No_Value;
-                BusinessCriteriaDTO prevSnapshotBisCriDTO = hasPreviousSnapshot ? BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot, false) : null;
-                 #endregion  prevSnapshot
+            #region prevSnapshot
+            string prevSnapshotLabel = hasPreviousSnapshot ? SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot) : Constants.No_Value;
+            BusinessCriteriaDTO prevSnapshotBisCriDTO = hasPreviousSnapshot ? BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData.PreviousSnapshot, false) : null;
+            #endregion  prevSnapshot
 
-                List<string> rowData = new List<string>();
-                rowData.AddRange(displayShortHeader
-                                    ? new[] { " ", Labels.TQI, Labels.Robu, Labels.Efcy, Labels.Secu, Labels.Trans, Labels.Chang }
-                                    : new[] { " ", Labels.TQI, Labels.Robustness, Labels.Efficiency, Labels.Security, Labels.Transferability, Labels.Changeability });
+            List<string> rowData = new List<string>();
+            rowData.AddRange(displayShortHeader
+                ? new[] { " ", Labels.TQI, Labels.Robu, Labels.Efcy, Labels.Secu, Labels.Trans, Labels.Chang }
+                : new[] { " ", Labels.TQI, Labels.Robustness, Labels.Efficiency, Labels.Security, Labels.Transferability, Labels.Changeability });
+            rowData.AddRange(
+                new[] {
+                    currSnapshotLabel,
+                    currSnapshotBisCriDTO.TQI?.ToString(metricFormat) ?? Constants.No_Value,
+                    currSnapshotBisCriDTO.Robustness?.ToString(metricFormat) ?? Constants.No_Value,
+                    currSnapshotBisCriDTO.Performance?.ToString(metricFormat) ?? Constants.No_Value,
+                    currSnapshotBisCriDTO.Security?.ToString(metricFormat) ?? Constants.No_Value,
+                    currSnapshotBisCriDTO.Transferability?.ToString(metricFormat) ?? Constants.No_Value,
+                    currSnapshotBisCriDTO.Changeability?.ToString(metricFormat) ?? Constants.No_Value
+                });
+
+            if (hasPreviousSnapshot) {
+                #region variation
+                BusinessCriteriaDTO _businessCriteriaGradesEvol = (currSnapshotBisCriDTO - prevSnapshotBisCriDTO);
+                BusinessCriteriaDTO _businessCriteriaGradesEvolPercent = (_businessCriteriaGradesEvol / prevSnapshotBisCriDTO);
+                #endregion  variation
+
                 rowData.AddRange(
-					new[] {
-                        currSnapshotLabel,
-                        currSnapshotBisCriDTO.TQI.HasValue ? currSnapshotBisCriDTO.TQI.Value.ToString(metricFormat) : Constants.No_Value,
-                        currSnapshotBisCriDTO.Robustness.HasValue ? currSnapshotBisCriDTO.Robustness.Value.ToString(metricFormat) : Constants.No_Value,
-                        currSnapshotBisCriDTO.Performance.HasValue ? currSnapshotBisCriDTO.Performance.Value.ToString(metricFormat) : Constants.No_Value,
-                        currSnapshotBisCriDTO.Security.HasValue ? currSnapshotBisCriDTO.Security.Value.ToString(metricFormat) : Constants.No_Value,
-                        currSnapshotBisCriDTO.Transferability.HasValue ? currSnapshotBisCriDTO.Transferability.Value.ToString(metricFormat) : Constants.No_Value,
-                        currSnapshotBisCriDTO.Changeability.HasValue ? currSnapshotBisCriDTO.Changeability.Value.ToString(metricFormat) : Constants.No_Value
+                    new[] {
+                        prevSnapshotLabel,
+                        prevSnapshotBisCriDTO.TQI?.ToString(metricFormat) ?? Constants.No_Value,
+                        prevSnapshotBisCriDTO.Robustness?.ToString(metricFormat) ?? Constants.No_Value,
+                        prevSnapshotBisCriDTO.Performance?.ToString(metricFormat) ?? Constants.No_Value,
+                        prevSnapshotBisCriDTO.Security?.ToString(metricFormat) ?? Constants.No_Value,
+                        prevSnapshotBisCriDTO.Transferability?.ToString(metricFormat) ?? Constants.No_Value,
+                        prevSnapshotBisCriDTO.Changeability?.ToString(metricFormat) ?? Constants.No_Value,
                     });
-
-                if (hasPreviousSnapshot) {
-	                #region variation
-					BusinessCriteriaDTO BusinessCriteriaGradesEvol = hasPreviousSnapshot ? (currSnapshotBisCriDTO - prevSnapshotBisCriDTO) : null;
-	                BusinessCriteriaDTO BusinessCriteriaGradesEvolPercent = hasPreviousSnapshot ? (BusinessCriteriaGradesEvol / prevSnapshotBisCriDTO) : null;
-                    #endregion  variation
-
+                
+                if (showEvol) {
                     rowData.AddRange(
                         new[] {
-                            prevSnapshotLabel,
-                            prevSnapshotBisCriDTO.TQI.HasValue?prevSnapshotBisCriDTO.TQI.Value.ToString(metricFormat):Constants.No_Value,
-                            prevSnapshotBisCriDTO.Robustness.HasValue?prevSnapshotBisCriDTO.Robustness.Value.ToString(metricFormat):Constants.No_Value,
-                            prevSnapshotBisCriDTO.Performance.HasValue?prevSnapshotBisCriDTO.Performance.Value.ToString(metricFormat):Constants.No_Value,
-                            prevSnapshotBisCriDTO.Security.HasValue?prevSnapshotBisCriDTO.Security.Value.ToString(metricFormat):Constants.No_Value,
-                            prevSnapshotBisCriDTO.Transferability.HasValue?prevSnapshotBisCriDTO.Transferability.Value.ToString(metricFormat):Constants.No_Value,
-                            prevSnapshotBisCriDTO.Changeability.HasValue?prevSnapshotBisCriDTO.Changeability.Value.ToString(metricFormat):Constants.No_Value,
+                            Labels.Evol,
+                            _businessCriteriaGradesEvol.TQI.HasValue ? FormatEvolution(_businessCriteriaGradesEvol.TQI.Value) : Constants.No_Value,
+                            _businessCriteriaGradesEvol.Robustness.HasValue ? FormatEvolution(_businessCriteriaGradesEvol.Robustness.Value) : Constants.No_Value,
+                            _businessCriteriaGradesEvol.Performance.HasValue ? FormatEvolution(_businessCriteriaGradesEvol.Performance.Value) : Constants.No_Value,
+                            _businessCriteriaGradesEvol.Security.HasValue ? FormatEvolution(_businessCriteriaGradesEvol.Security.Value) : Constants.No_Value,
+                            _businessCriteriaGradesEvol.Transferability.HasValue ? FormatEvolution(_businessCriteriaGradesEvol.Transferability.Value) : Constants.No_Value,
+                            _businessCriteriaGradesEvol.Changeability.HasValue ? FormatEvolution(_businessCriteriaGradesEvol.Changeability.Value) : Constants.No_Value
                         });
-                
-					if (showEvol) {
-                        rowData.AddRange(
-                            new[] {
-                                Labels.Evol,
-                                BusinessCriteriaGradesEvol.TQI.HasValue ? FormatEvolution(BusinessCriteriaGradesEvol.TQI.Value) : Constants.No_Value,
-                                BusinessCriteriaGradesEvol.Robustness.HasValue ? FormatEvolution(BusinessCriteriaGradesEvol.Robustness.Value) : Constants.No_Value,
-                                BusinessCriteriaGradesEvol.Performance.HasValue ? FormatEvolution(BusinessCriteriaGradesEvol.Performance.Value) : Constants.No_Value,
-                                BusinessCriteriaGradesEvol.Security.HasValue ? FormatEvolution(BusinessCriteriaGradesEvol.Security.Value) : Constants.No_Value,
-                                BusinessCriteriaGradesEvol.Transferability.HasValue ? FormatEvolution(BusinessCriteriaGradesEvol.Transferability.Value) : Constants.No_Value,
-                                BusinessCriteriaGradesEvol.Changeability.HasValue ? FormatEvolution(BusinessCriteriaGradesEvol.Changeability.Value) : Constants.No_Value
-                            });
-					}
-
-					if (showEvolPercent) {
-	                    rowData.AddRange(
-							new[] {
-								Labels.EvolPercent,
-		                        BusinessCriteriaGradesEvolPercent.TQI.HasValue ? FormatPercent(BusinessCriteriaGradesEvolPercent.TQI.Value) : Constants.No_Value,
-		                        BusinessCriteriaGradesEvolPercent.Robustness.HasValue ? FormatPercent(BusinessCriteriaGradesEvolPercent.Robustness.Value) : Constants.No_Value,
-		                        BusinessCriteriaGradesEvolPercent.Performance.HasValue ? FormatPercent(BusinessCriteriaGradesEvolPercent.Performance.Value) : Constants.No_Value,
-		                        BusinessCriteriaGradesEvolPercent.Security.HasValue ? FormatPercent(BusinessCriteriaGradesEvolPercent.Security.Value) : Constants.No_Value,
-		                        BusinessCriteriaGradesEvolPercent.Transferability.HasValue ? FormatPercent(BusinessCriteriaGradesEvolPercent.Transferability.Value) : Constants.No_Value,
-		                        BusinessCriteriaGradesEvolPercent.Changeability.HasValue ? FormatPercent(BusinessCriteriaGradesEvolPercent.Changeability.Value) : Constants.No_Value
-	                    	});
-					}
                 }
 
-                resultTable = new TableDefinition {
-                    HasRowHeaders = false,
-                    HasColumnHeaders = true,
-                    NbRows = hasPreviousSnapshot ? 4 : 2,
-                    NbColumns = 7,
-                    Data = rowData
-                };
+                if (showEvolPercent) {
+                    rowData.AddRange(
+                        new[] {
+                            Labels.EvolPercent,
+                            _businessCriteriaGradesEvolPercent.TQI.HasValue ? FormatPercent(_businessCriteriaGradesEvolPercent.TQI.Value) : Constants.No_Value,
+                            _businessCriteriaGradesEvolPercent.Robustness.HasValue ? FormatPercent(_businessCriteriaGradesEvolPercent.Robustness.Value) : Constants.No_Value,
+                            _businessCriteriaGradesEvolPercent.Performance.HasValue ? FormatPercent(_businessCriteriaGradesEvolPercent.Performance.Value) : Constants.No_Value,
+                            _businessCriteriaGradesEvolPercent.Security.HasValue ? FormatPercent(_businessCriteriaGradesEvolPercent.Security.Value) : Constants.No_Value,
+                            _businessCriteriaGradesEvolPercent.Transferability.HasValue ? FormatPercent(_businessCriteriaGradesEvolPercent.Transferability.Value) : Constants.No_Value,
+                            _businessCriteriaGradesEvolPercent.Changeability.HasValue ? FormatPercent(_businessCriteriaGradesEvolPercent.Changeability.Value) : Constants.No_Value
+                        });
+                }
             }
+
+            var resultTable = new TableDefinition {
+                HasRowHeaders = false,
+                HasColumnHeaders = true,
+                NbRows = hasPreviousSnapshot ? 4 : 2,
+                NbColumns = 7,
+                Data = rowData
+            };
             return resultTable;
         }
         #endregion METHODS

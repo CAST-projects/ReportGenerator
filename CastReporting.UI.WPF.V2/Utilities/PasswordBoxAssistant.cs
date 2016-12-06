@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace CastReporting.UI.WPF.Utilities
 {
-    class PasswordBoxAssistant
+    internal class PasswordBoxAssistant
     {
         public static readonly DependencyProperty BoundPassword =
                   DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordBoxAssistant), new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
@@ -30,6 +26,7 @@ namespace CastReporting.UI.WPF.Utilities
             }
 
             // avoid recursive updating by ignoring the box's changed event
+            if (box == null) return;
             box.PasswordChanged -= HandlePasswordChanged;
 
             string newPassword = (string)e.NewValue;
@@ -75,7 +72,7 @@ namespace CastReporting.UI.WPF.Utilities
             // set a flag to indicate that we're updating the password
             SetUpdatingPassword(box, true);
             // push the new password into the BoundPassword property
-            SetBoundPassword(box, box.Password);
+            SetBoundPassword(box, box?.Password);
             SetUpdatingPassword(box, false);
         }
 

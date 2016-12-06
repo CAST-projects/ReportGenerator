@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
@@ -10,14 +9,12 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("IFPUG_FUNCTIONS")]
-    class IfpugFunctions : TableBlock
+    internal class IfpugFunctions : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            TableDefinition resultTable = null;
-
-            int nbLimitTop = -1;
-            if (null == options || !options.ContainsKey("COUNT") || !Int32.TryParse(options["COUNT"], out nbLimitTop))
+            int nbLimitTop;
+            if (null == options || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop))
             {
                 nbLimitTop = -1;
             }
@@ -26,24 +23,28 @@ namespace CastReporting.Reporting.Block.Table
             {
                 type = options["TYPE"] ?? string.Empty;
                 type = type.Trim();
-                if (type.ToUpper() == "DF")
+                switch (type.ToUpper())
                 {
-                    type = "Data Function";
-                }
-                else if (type.ToUpper() == "TF")
-                {
-                    type = "Transaction";
+                    case "DF":
+                        type = "Data Function";
+                        break;
+                    case "TF":
+                        type = "Transaction";
+                        break;
+                    default:
+                        type = string.Empty;
+                        break;
                 }
             }
             bool displayHeader = (options == null || !options.ContainsKey("HEADER") || "NO" != options["HEADER"]);
 
-            IEnumerable<IfpugFunction> functions = reportData.SnapshotExplorer.GetIfpugFunctions(reportData.CurrentSnapshot.Href, string.IsNullOrEmpty(type) ? nbLimitTop : -1);
+            IEnumerable<IfpugFunction> functions = reportData.SnapshotExplorer.GetIfpugFunctions(reportData.CurrentSnapshot.Href, string.IsNullOrEmpty(type) ? nbLimitTop : -1)?.ToList();
 
             List<string> rowData = new List<string>();
 
             if (displayHeader)
             {
-                rowData.AddRange(new string[] { Labels.IFPUG_ElementType, Labels.ObjectName, Labels.IFPUG_NoOfFPs, Labels.IFPUG_FPDetails, Labels.IFPUG_ObjectType, Labels.ModuleName, Labels.Technology });
+                rowData.AddRange(new[] { Labels.IFPUG_ElementType, Labels.ObjectName, Labels.IFPUG_NoOfFPs, Labels.IFPUG_FPDetails, Labels.IFPUG_ObjectType, Labels.ModuleName, Labels.Technology });
             }
 
             int nbRows = 0;
@@ -73,10 +74,10 @@ namespace CastReporting.Reporting.Block.Table
             }
             else
             {
-                rowData.AddRange(new string[] { Labels.NoItem, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
+                rowData.AddRange(new[] { Labels.NoItem, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
             }
 
-            resultTable = new TableDefinition
+            var resultTable = new TableDefinition
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = displayHeader,

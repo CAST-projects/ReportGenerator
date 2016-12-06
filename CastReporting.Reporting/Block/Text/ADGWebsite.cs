@@ -13,27 +13,20 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using CastReporting.BLL.Computing;
 
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("DASHBOARD_SERVICE_URL")]
-    class ADGWebsite : TextBlock
+    internal class ADGWebsite : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (reportData != null)
-                return reportData.Application.AdgWebSite;
-
-            return CastReporting.Domain.Constants.No_Value;
-
+            return reportData != null ? reportData.Application.AdgWebSite : Domain.Constants.No_Value;
         }
         #endregion METHODS
     }

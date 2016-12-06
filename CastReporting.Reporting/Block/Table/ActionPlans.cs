@@ -25,7 +25,7 @@ using System.Linq;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("ACTION_PLANS")]
-    class ActionPlans : TableBlock
+    internal class ActionPlans : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
@@ -37,19 +37,19 @@ namespace CastReporting.Reporting.Block.Table
 				Labels.ViolationsNew
 			});
 
-			int actionPlanCount = (reportData != null && reportData.CurrentSnapshot != null && reportData.CurrentSnapshot.ActionsPlan != null)
-            	? reportData.CurrentSnapshot.ActionsPlan.Count() 
-            	: 0;
-            if (actionPlanCount > 0) {
-                foreach (var ActionPlan in reportData.CurrentSnapshot.ActionsPlan) {
-                    rowData.AddRange
-                        (new string[] { ActionPlan.RulePattern.Name
-                            , ActionPlan.PendingIssues.ToString("N0")
-                            , ActionPlan.AddedIssues.ToString("N0") 
-                            });
-                }
+			int actionPlanCount = reportData?.CurrentSnapshot?.ActionsPlan?.Count() ?? 0;
+            if (actionPlanCount > 0)
+            {
+                if (reportData?.CurrentSnapshot?.ActionsPlan != null)
+                    foreach (var _actionPlan in reportData.CurrentSnapshot?.ActionsPlan) {
+                        rowData.AddRange
+                        (new[] { _actionPlan.RulePattern.Name
+                            , _actionPlan.PendingIssues.ToString("N0")
+                            , _actionPlan.AddedIssues.ToString("N0") 
+                        });
+                    }
             } else {
-				rowData.AddRange(new string[] {
+				rowData.AddRange(new[] {
 					Labels.NoItem,
 					string.Empty,
 					string.Empty
