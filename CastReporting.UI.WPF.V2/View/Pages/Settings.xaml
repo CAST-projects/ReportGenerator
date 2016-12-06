@@ -91,7 +91,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <ComboBox x:Name="CbLanguage"  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0, 2, 8, 2" ItemsSource="{Binding Cultures}" SelectedItem="{Binding Culture}"  DisplayMemberPath="DisplayName">
+                        <ComboBox x:Name="CbLanguage" Grid.Column="0" HorizontalAlignment="Stretch"  Margin="0, 2, 8, 2" ItemsSource="{Binding Cultures}" SelectedItem="{Binding Culture}"  DisplayMemberPath="DisplayName">
                         </ComboBox>
                     </Grid>
 

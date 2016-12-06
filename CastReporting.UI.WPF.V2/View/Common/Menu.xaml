@@ -10,7 +10,7 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <Style x:Key="{x:Type ContextMenu}" TargetType="{x:Type ContextMenu}">
+        <Style TargetType="{x:Type ContextMenu}">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="SnapsToDevicePixels" Value="True"/>
             <Setter Property="Template">
@@ -28,7 +28,6 @@
     
     </UserControl.Resources>
 
-   
 
     <Grid>
         <Button  Style="{StaticResource MenuButtonStyle}" Height="70" HorizontalAlignment="Left" Name="BtnMenu" VerticalAlignment="Top" Width="60" Click="OnButtonClick">            

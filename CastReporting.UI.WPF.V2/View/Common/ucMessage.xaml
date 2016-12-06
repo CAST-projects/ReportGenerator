@@ -37,7 +37,8 @@
             <TextBlock x:Name="TxtTitle"  Text="{Binding  Converter={StaticResource MessageConverter}, ConverterParameter=lblTitleMessages}" Margin="4,14,0,0" FontSize="17" Foreground="White" Height="35"/>
         </StackPanel>
 
-        <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Path=Messages, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type control:UcMessage}}}" Margin="24,10,24,24">
+        <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
+                 ItemsSource="{Binding Path=Messages, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type control:UcMessage}}}" Margin="24,10,24,24">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -47,8 +48,8 @@
                                     HorizontalAlignment="Stretch"
                                     TextWrapping="Wrap"/>
 
-                        <Button Grid.Row="1" 
-                                Style="{StaticResource LinkButtonStyle}" 
+                        <Button
+                            Style="{StaticResource LinkButtonStyle}" 
                                 HorizontalAlignment="Left"                                
                                 Click="OpenButtonClicked" Height="Auto">
                             <Button.Content>

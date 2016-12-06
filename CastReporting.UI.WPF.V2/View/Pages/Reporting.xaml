@@ -149,7 +149,7 @@
                     <TabItem.Header>
                         <TextBlock Text="{x:Static label:Messages.lblHeaderApplication}" FontSize="21.333"/>
                     </TabItem.Header>
-                    <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
+                    <Grid DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="12"/>
@@ -177,7 +177,8 @@
                         </i:Interaction.Triggers>
                     </ComboBox>
                     <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
-                           Content="{x:Static label:Messages.lblSelectApplication}" Visibility="{Binding SelectedItem, ElementName=CbApplication, Converter={StaticResource NullToVisibilityConverter}}" Grid.ColumnSpan="2" Margin="0,16,0,17" />
+                           Content="{x:Static label:Messages.lblSelectApplication}" Visibility="{Binding SelectedItem, ElementName=CbApplication, Converter={StaticResource NullToVisibilityConverter}}" Grid.ColumnSpan="2"
+                           Grid.Column="0" Margin="0,16,0,17" />
                 </Grid>
 
                 <Grid Grid.Row="2" Margin="20,0,20,0">
@@ -204,7 +205,7 @@
                     <TabItem.Header>
                         <TextBlock Text="{x:Static label:Messages.lblHeaderPortfolio}" FontSize="21.333"/>
                     </TabItem.Header>
-                    <Grid Grid.Column="0" DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
+                    <Grid DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="12"/>
@@ -228,7 +229,8 @@
                                 </i:Interaction.Triggers>
                             </ComboBox>
                             <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
-                           Content="{x:Static label:Messages.lblSelectPortfolioCategories}" Visibility="{Binding SelectedItem, ElementName=CbCategories, Converter={StaticResource NullToVisibilityConverter}}" Grid.ColumnSpan="2" Margin="0,16,0,17" />
+                           Content="{x:Static label:Messages.lblSelectPortfolioCategories}" Visibility="{Binding SelectedItem, ElementName=CbCategories, Converter={StaticResource NullToVisibilityConverter}}" Grid.ColumnSpan="2"
+                                   Grid.Column="0" Margin="0,16,0,17" />
                         </Grid>
 
                         <Grid Grid.Row="2" Margin="20,0,20,0">
@@ -269,13 +271,14 @@
                 </StackPanel>
 
                 <ListBox ToolTip="{x:Static label:Messages.toolTipTemplateLb}" x:Name="TemplateList" Grid.Row="1" Grid.ColumnSpan="2"
-                             Height="Auto" 
+                         Grid.Column="0"
+                         Height="Auto" 
                              ItemsSource="{Binding TemplateFiles}" 
                              SelectedValue="{Binding SelectedTemplateFile}" 
                              Margin="20,4,20,0" 
                              MouseDoubleClick="OnFileListDoubleClicked"  />
 
-                <StackPanel  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,4,20,4" Width="115">
+                <StackPanel  Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,4,20,4" Width="115">
                     <Button Name="BtnApplicationReport" Style="{StaticResource StdButtonStyle}" Content="{x:Static label:Messages.btnGenerateReport}" 
                                     Command="{Binding GenerateCommand}" Click="GenerateButtonClicked"
                                     IsEnabled="{Binding IsDataFilledIn}" Margin="0,14,10,15" Width="115" />
