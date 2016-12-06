@@ -21,28 +21,28 @@ namespace CastReporting.Domain
     public class EvolutionSummary
     {
         [DataMember(Name = "criticalViolationsInNewAndModifiedCode")]
-        public int CriticalViolationsInNewAndModifiedCode { get; set; }
+        public int? CriticalViolationsInNewAndModifiedCode { get; set; }
 
         [DataMember(Name = "totalCriticalViolations")]
-        public int TotalCriticalViolations { get; set; }
+        public int? TotalCriticalViolations { get; set; }
 
         [DataMember(Name = "addedCriticalViolations")]
-        public int AddedCriticalViolations { get; set; }
+        public int? AddedCriticalViolations { get; set; }
 
         [DataMember(Name = "removedCriticalViolations")]
-        public int RemovedCriticalViolations { get; set; }
+        public int? RemovedCriticalViolations { get; set; }
 
         [DataMember(Name = "violationsInNewAndModifiedCode")]
-        public int ViolationsInNewAndModifiedCode { get; set; }
+        public int? ViolationsInNewAndModifiedCode { get; set; }
         
         [DataMember(Name = "totalViolations")]
-        public int TotalViolations { get; set; }
+        public int? TotalViolations { get; set; }
 
         [DataMember(Name = "addedViolations")]
-        public int AddedViolations { get; set; }
+        public int? AddedViolations { get; set; }
 
         [DataMember(Name = "removedViolations")]
-        public int RemovedViolations { get; set; }
+        public int? RemovedViolations { get; set; }
 
     }
 }

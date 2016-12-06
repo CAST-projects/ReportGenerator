@@ -57,7 +57,7 @@ namespace CastReporting.BLL
         /// </summary>
         public void SetQualityIndicators()
         {
-            string qualityIndicators = "business-criteria,technical-criteria,quality-rules,quality-distributions,quality-measures";
+            const string qualityIndicators = "business-criteria,technical-criteria,quality-rules,quality-distributions,quality-measures";
 
             using (var castRepsitory = GetRepository())
             {
@@ -81,6 +81,7 @@ namespace CastReporting.BLL
                         case "quality-measures":        qualityMeasuresResults.Add(appRes); break;
                         case "quality-rules":           qualityRulesResults.Add(appRes); break;
                         case "technical-criteria":      technicalCriteriaResults.Add(appRes); break;
+                        default: throw new ArgumentOutOfRangeException();
                     }
                 }
 
@@ -119,19 +120,19 @@ namespace CastReporting.BLL
                 {
                     if (VersionUtil.IsAdgVersion82Compliant(_Snapshot.AdgVersion))
                     {
-                        string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
+                        const string strSizingMeasures = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics,violation-statistics";
                         _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasures, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
                     }
                     else
                     {
-                        string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                        const string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                         _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasuresOld, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
                     }
                 }
                 catch (System.Net.WebException ex)
                 {
                     LogHelper.Instance.LogInfo(ex.Message);
-                    string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
+                    const string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                     _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasuresOld, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
                 }
             }
