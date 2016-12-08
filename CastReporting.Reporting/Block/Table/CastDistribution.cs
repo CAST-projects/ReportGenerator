@@ -121,7 +121,7 @@ namespace CastReporting.Reporting.Block.Table
 
             rowData.AddRange(new[]
             { Labels.ComplexityHigh
-                , selectedHigVal.Value.ToString("N0")
+                , selectedHigVal?.ToString("N0") ?? Constants.No_Value
                 , previousHigVal?.ToString("N0") ?? Constants.No_Value
                 , previousHigVal.HasValue ? FormatEvolution((int)(selectedHigVal.Value - previousHigVal.Value)): Constants.No_Value
                 , (selectedHigVal.HasValue && previousHigVal.HasValue && Math.Abs(previousHigVal.Value) > 0)? FormatPercent((selectedHigVal - previousHigVal) / previousHigVal): Constants.No_Value

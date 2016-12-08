@@ -51,7 +51,7 @@ namespace CastReporting.Reporting.Block.Table
                 string value = Text(metricId.Value);
                 rowData.AddRange(new[] { Labels.Techno, value });
                 foreach (var res in result.TechnologyResult) {
-                    rowData.AddRange(new[] { res.Technology, res.DetailResult.Grade?.ToString(MetricFormat) });
+                    rowData.AddRange(new[] { res.Technology, res.DetailResult.Grade?.ToString(MetricFormat) ?? Domain.Constants.No_Value });
                 }
                 nbTot = result.ModulesResult.Length;
             }

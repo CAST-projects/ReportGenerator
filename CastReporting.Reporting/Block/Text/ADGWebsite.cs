@@ -20,7 +20,7 @@ using CastReporting.Reporting.ReportingModel;
 
 namespace CastReporting.Reporting.Block.Text
 {
-    [Block("DASHBOARD_SERVICE_URL")]
+    [Block("DASHBOARD_SERVICE_URL"), Block("MEASUREMENT_ADG_WEBSITE")]
     internal class ADGWebsite : TextBlock
     {
         #region METHODS

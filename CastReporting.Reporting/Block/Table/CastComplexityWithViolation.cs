@@ -69,10 +69,10 @@ namespace CastReporting.Reporting.Block.Table
 
               
             rowData.AddRange(new[] { Labels.Complexity, Labels.Artifacts, Labels.WithViolations });
-            rowData.AddRange(new[] { Labels.CplxExtreme, nbArtifactVeryHigh?.ToString(numberFormat), nbViolationVeryHigh?.ToString(numberFormat) });
-            rowData.AddRange(new[] { Labels.CplxHigh, nbArtifactHigh?.ToString(numberFormat), nbViolationHigh?.ToString(numberFormat) });
-            rowData.AddRange(new[] { Labels.CplxAverage, nbArtifactAve?.ToString(numberFormat), nbViolationAve?.ToString(numberFormat) });
-            rowData.AddRange(new[] { Labels.CplxLow, nbArtifactLow?.ToString(numberFormat), nbViolationLow?.ToString(numberFormat) });
+            rowData.AddRange(new[] { Labels.CplxExtreme, nbArtifactVeryHigh?.ToString(numberFormat) ?? Constants.No_Value, nbViolationVeryHigh?.ToString(numberFormat) ?? Constants.No_Value });
+            rowData.AddRange(new[] { Labels.CplxHigh, nbArtifactHigh?.ToString(numberFormat) ?? Constants.No_Value, nbViolationHigh?.ToString(numberFormat) ?? Constants.No_Value });
+            rowData.AddRange(new[] { Labels.CplxAverage, nbArtifactAve?.ToString(numberFormat) ?? Constants.No_Value, nbViolationAve?.ToString(numberFormat) ?? Constants.No_Value });
+            rowData.AddRange(new[] { Labels.CplxLow, nbArtifactLow?.ToString(numberFormat) ?? Constants.No_Value, nbViolationLow?.ToString(numberFormat) ?? Constants.No_Value });
 
             #endregion Data
 
