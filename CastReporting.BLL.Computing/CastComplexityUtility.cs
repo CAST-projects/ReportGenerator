@@ -17,7 +17,7 @@ namespace CastReporting.BLL.Computing
         {
             var result = snapshot?.CostComplexityResults?.FirstOrDefault(_ => _.Reference.Key == categorieId);
             var category = result?.DetailResult?.Categories?.FirstOrDefault(_ => _.key == metricId);
-            return (category != null) ? MathUtility.GetRound(category.Value) : 0;
+            return (category != null) ? MathUtility.GetRound(category.Value) : null;
         }
 
 
