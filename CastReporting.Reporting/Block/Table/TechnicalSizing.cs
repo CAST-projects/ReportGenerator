@@ -37,7 +37,7 @@ namespace CastReporting.Reporting.Block.Table
             double? sqlArtifactNumber = MeasureUtility.GetSqlArtifactNumber(reportData.CurrentSnapshot);
             double? tableNumber = MeasureUtility.GetTableNumber(reportData.CurrentSnapshot);
 
-            const string noData = Constants.No_Data;
+            const string noData = Constants.No_Value;
             const string metricFormat = "N0";
             var rowData = new List<string>{ Labels.Name, Labels.Value
                 , Labels.kLoC, (codeLineNumber / 1000)?.ToString(metricFormat) ?? noData

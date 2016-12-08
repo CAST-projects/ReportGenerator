@@ -21,6 +21,12 @@ namespace CastReporting.Reporting.Helper
             return (string.IsNullOrWhiteSpace(s) || s == Constants.No_Value) ? Constants.No_Data : s;
         }
 
+        public static string NAIfEmpty(this object data)
+        {
+            var s = data?.ToString();
+            return (string.IsNullOrWhiteSpace(s)) ? Constants.No_Value : s;
+        }
+
         /// <summary>
         /// Format the display of percent value into 3 digits if we can
         /// <para>Example : "3.65 %" or "10.4 %" or "243 %" or "10 052 %"</para>
@@ -102,7 +108,7 @@ namespace CastReporting.Reporting.Helper
             // this is an inconsistent behaviour compared to other "FormatXxxx" APIs
             // original code was in TableBlock.FormatEvolution() before refactoring
             // the behaviour has not been changed for compatibility with previous versions
-            return pValue.HasValue ? pValue.Value.FormatEvolution() : Constants.No_Data; 
+            return pValue.HasValue ? pValue.Value.FormatEvolution() : Constants.No_Value; 
         }
 
         /// <summary>

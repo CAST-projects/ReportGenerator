@@ -16,7 +16,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TABLE_METRIC_ID_ROW")]
-    class TableMetricIdRow : TableBlock
+    internal class TableMetricIdRow : TableBlock
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
@@ -121,7 +121,7 @@ namespace CastReporting.Reporting.Block.Table
                     cntCol = 2;
                     break;
                 case "PREVIOUS":
-                    rowData.AddRange(hasPreviousSnapshot ? new[] {" ", prevSnapshotLabel} : new[] {" ", Labels.NoData});
+                    rowData.AddRange(hasPreviousSnapshot ? new[] {" ", prevSnapshotLabel} : new[] {" ", Constants.No_Value});
                     cntCol = 2;
                     break;
                 default:
@@ -151,7 +151,7 @@ namespace CastReporting.Reporting.Block.Table
                     }
                     else
                     {
-                        rowData.AddRange(new[] { " ", currSnapshotLabel, Labels.NoData });
+                        rowData.AddRange(new[] { " ", currSnapshotLabel, Constants.No_Value });
                         cntCol = 3;
                     }
                     break;
@@ -187,7 +187,7 @@ namespace CastReporting.Reporting.Block.Table
                                 }
                                 else
                                 {
-                                    rowData.Add(Labels.NoData);
+                                    rowData.Add(Constants.No_Value);
                                 }
                                 break;
                             default:
@@ -238,7 +238,7 @@ namespace CastReporting.Reporting.Block.Table
                                 {
                                     rowData.AddRange(new[]
                                     {
-                                        _currentValue?.ToString(gradeFormat) ?? Constants.No_Value,Labels.NoData
+                                        _currentValue?.ToString(gradeFormat) ?? Constants.No_Value, Constants.No_Value
                                     });
 
                                 }
@@ -298,17 +298,17 @@ namespace CastReporting.Reporting.Block.Table
                             {
                                 case "CURRENT":
                                     curModValue = BusinessCriteriaUtility.GetQualityIndicatorModuleGrade(reportData.CurrentSnapshot, mod.Id, int.Parse(id));    
-                                    rowData.Add(curModValue?.ToString(gradeFormat) ?? Constants.No_Data);
+                                    rowData.Add(curModValue?.ToString(gradeFormat) ?? Constants.No_Value);
                                     break;
                                 case "PREVIOUS":
                                     if (hasPreviousSnapshot)
                                     {
                                         prevModValue = BusinessCriteriaUtility.GetQualityIndicatorModuleGrade(reportData.PreviousSnapshot, mod.Id, int.Parse(id));
-                                        rowData.Add(prevModValue?.ToString(gradeFormat) ?? Constants.No_Data);
+                                        rowData.Add(prevModValue?.ToString(gradeFormat) ?? Constants.No_Value);
                                     }
                                     else
                                     {
-                                        rowData.Add(Constants.No_Data);
+                                        rowData.Add(Constants.No_Value);
                                     }
                                     break;
                                 default:
@@ -328,9 +328,9 @@ namespace CastReporting.Reporting.Block.Table
                                                 modEvolutionPercent = prevModValue != 0 ? (curModValue - prevModValue)/prevModValue : 1;
                                                 rowData.AddRange(new []
                                                 {
-                                                    curModValue?.ToString(gradeFormat) ?? Constants.No_Data,
-                                                    prevModValue?.ToString(gradeFormat) ?? Constants.No_Data,
-                                                    modEvolution?.ToString(gradeFormat) ?? Constants.No_Data,
+                                                    curModValue?.ToString(gradeFormat) ?? Constants.No_Value,
+                                                    prevModValue?.ToString(gradeFormat) ?? Constants.No_Value,
+                                                    modEvolution?.ToString(gradeFormat) ?? Constants.No_Value,
                                                     modEvolutionPercent.HasValue ? FormatPercent(modEvolutionPercent) : Constants.No_Value
                                                 });
                                                 break;
@@ -338,9 +338,9 @@ namespace CastReporting.Reporting.Block.Table
                                                 modEvolution = curModValue - prevModValue;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curModValue?.ToString(gradeFormat) ?? Constants.No_Data,
-                                                    prevModValue?.ToString(gradeFormat) ?? Constants.No_Data,
-                                                    modEvolution?.ToString(gradeFormat) ?? Constants.No_Data
+                                                    curModValue?.ToString(gradeFormat) ?? Constants.No_Value,
+                                                    prevModValue?.ToString(gradeFormat) ?? Constants.No_Value,
+                                                    modEvolution?.ToString(gradeFormat) ?? Constants.No_Value
                                                 });
                                                 break;
                                             default:
@@ -348,8 +348,8 @@ namespace CastReporting.Reporting.Block.Table
                                                 modEvolutionPercent = prevModValue != 0 ? (curModValue - prevModValue) / prevModValue : 1;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curModValue?.ToString(gradeFormat) ?? Constants.No_Data,
-                                                    prevModValue?.ToString(gradeFormat) ?? Constants.No_Data,
+                                                    curModValue?.ToString(gradeFormat) ?? Constants.No_Value,
+                                                    prevModValue?.ToString(gradeFormat) ?? Constants.No_Value,
                                                     modEvolutionPercent.HasValue ? FormatPercent(modEvolutionPercent) : Constants.No_Value
                                                 });
                                                 break;
@@ -357,7 +357,7 @@ namespace CastReporting.Reporting.Block.Table
                                     }
                                     else
                                     {
-                                        rowData.AddRange(new[] { curModValue?.ToString(gradeFormat) ?? Constants.No_Data, Labels.NoData });
+                                        rowData.AddRange(new[] { curModValue?.ToString(gradeFormat) ?? Constants.No_Value, Constants.No_Value });
                                     }
                                     break;
                             }
@@ -453,17 +453,17 @@ namespace CastReporting.Reporting.Block.Table
                             {
                                 case "CURRENT":
                                     curTechnoValue = BusinessCriteriaUtility.GetQualityIndicatorTechnologyGrade(reportData.CurrentSnapshot, techno, int.Parse(id));
-                                    rowData.Add(curTechnoValue?.ToString(gradeFormat) ?? Constants.No_Data);
+                                    rowData.Add(curTechnoValue?.ToString(gradeFormat) ?? Constants.No_Value);
                                     break;
                                 case "PREVIOUS":
                                     if (hasPreviousSnapshot)
                                     {
                                         prevTechnoValue = BusinessCriteriaUtility.GetQualityIndicatorTechnologyGrade(reportData.PreviousSnapshot, techno, int.Parse(id));
-                                        rowData.Add(prevTechnoValue?.ToString(gradeFormat) ?? Constants.No_Data);
+                                        rowData.Add(prevTechnoValue?.ToString(gradeFormat) ?? Constants.No_Value);
                                     }
                                     else
                                     {
-                                        rowData.Add(Constants.No_Data);
+                                        rowData.Add(Constants.No_Value);
                                     }
                                     break;
                                 default:
@@ -483,9 +483,9 @@ namespace CastReporting.Reporting.Block.Table
                                                 techEvolutionPercent = prevTechnoValue != 0 ? (curTechnoValue - prevTechnoValue) / prevTechnoValue : 1;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curTechnoValue?.ToString(gradeFormat) ?? Constants.No_Data,
-                                                    prevTechnoValue?.ToString(gradeFormat) ?? Constants.No_Data,
-                                                    techEvolution?.ToString(gradeFormat) ?? Constants.No_Data,
+                                                    curTechnoValue?.ToString(gradeFormat) ?? Constants.No_Value,
+                                                    prevTechnoValue?.ToString(gradeFormat) ?? Constants.No_Value,
+                                                    techEvolution?.ToString(gradeFormat) ?? Constants.No_Value,
                                                     techEvolutionPercent.HasValue ? FormatPercent(techEvolutionPercent) : Constants.No_Value
                                                 });
                                                 break;
@@ -493,9 +493,9 @@ namespace CastReporting.Reporting.Block.Table
                                                 techEvolution = curTechnoValue - prevTechnoValue;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curTechnoValue?.ToString(gradeFormat) ?? Constants.No_Data,
-                                                    prevTechnoValue?.ToString(gradeFormat) ?? Constants.No_Data,
-                                                    techEvolution?.ToString(gradeFormat) ?? Constants.No_Data
+                                                    curTechnoValue?.ToString(gradeFormat) ?? Constants.No_Value,
+                                                    prevTechnoValue?.ToString(gradeFormat) ?? Constants.No_Value,
+                                                    techEvolution?.ToString(gradeFormat) ?? Constants.No_Value
                                                 });
                                                 break;
                                             default:
@@ -503,8 +503,8 @@ namespace CastReporting.Reporting.Block.Table
                                                 techEvolutionPercent = prevTechnoValue != 0 ? (curTechnoValue - prevTechnoValue) / prevTechnoValue : 1;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curTechnoValue?.ToString(gradeFormat) ?? Constants.No_Data,
-                                                    prevTechnoValue?.ToString(gradeFormat) ?? Constants.No_Data,
+                                                    curTechnoValue?.ToString(gradeFormat) ?? Constants.No_Value,
+                                                    prevTechnoValue?.ToString(gradeFormat) ?? Constants.No_Value,
                                                     techEvolutionPercent.HasValue ? FormatPercent(techEvolutionPercent) : Constants.No_Value
                                                 });
                                                 break;
@@ -512,7 +512,7 @@ namespace CastReporting.Reporting.Block.Table
                                     }
                                     else
                                     {
-                                        rowData.AddRange(new[] { curTechnoValue?.ToString(gradeFormat) ?? Constants.No_Data, Labels.NoData });
+                                        rowData.AddRange(new[] { curTechnoValue?.ToString(gradeFormat) ?? Constants.No_Value, Constants.No_Value });
                                     }
                                     break;
                             }
@@ -590,7 +590,7 @@ namespace CastReporting.Reporting.Block.Table
                                 }
                                 else
                                 {
-                                    rowData.Add(Labels.NoData);
+                                    rowData.Add(Constants.No_Value);
                                 }
                                 break;
                             default:
@@ -639,7 +639,7 @@ namespace CastReporting.Reporting.Block.Table
                                 {
                                     rowData.AddRange(new[]
                                     {
-                                        _currentValue?.ToString(valueFormat) ?? Constants.No_Value, Labels.NoData
+                                        _currentValue?.ToString(valueFormat) ?? Constants.No_Value,  Constants.No_Value
                                     });
 
                                 }
@@ -699,17 +699,17 @@ namespace CastReporting.Reporting.Block.Table
                             {
                                 case "CURRENT":
                                     curModValue = MeasureUtility.GetSizingMeasureModule(reportData.CurrentSnapshot, mod.Id, int.Parse(id));
-                                    rowData.Add(curModValue?.ToString(valueFormat) ?? Constants.No_Data);
+                                    rowData.Add(curModValue?.ToString(valueFormat) ?? Constants.No_Value);
                                     break;
                                 case "PREVIOUS":
                                     if (hasPreviousSnapshot)
                                     {
                                         prevModValue = MeasureUtility.GetSizingMeasureModule(reportData.PreviousSnapshot, mod.Id, int.Parse(id));
-                                        rowData.Add(prevModValue?.ToString(valueFormat) ?? Constants.No_Data);
+                                        rowData.Add(prevModValue?.ToString(valueFormat) ?? Constants.No_Value);
                                     }
                                     else
                                     {
-                                        rowData.Add(Constants.No_Data);
+                                        rowData.Add(Constants.No_Value);
                                     }
                                     break;
                                 default:
@@ -729,9 +729,9 @@ namespace CastReporting.Reporting.Block.Table
                                                 modEvolutionPercent = prevModValue != 0 ? (curModValue - prevModValue) / prevModValue : 1;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curModValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    prevModValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    modEvolution?.ToString(valueFormat) ?? Constants.No_Data,
+                                                    curModValue?.ToString(valueFormat) ??  Constants.No_Value,
+                                                    prevModValue?.ToString(valueFormat) ??  Constants.No_Value,
+                                                    modEvolution?.ToString(valueFormat) ??  Constants.No_Value,
                                                     modEvolutionPercent.HasValue ? FormatPercent(modEvolutionPercent) : Constants.No_Value
                                                 });
                                                 break;
@@ -739,9 +739,9 @@ namespace CastReporting.Reporting.Block.Table
                                                 modEvolution = curModValue - prevModValue;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curModValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    prevModValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    modEvolution?.ToString(valueFormat) ?? Constants.No_Data
+                                                    curModValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    prevModValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    modEvolution?.ToString(valueFormat) ?? Constants.No_Value
                                                 });
                                                 break;
                                             default:
@@ -749,8 +749,8 @@ namespace CastReporting.Reporting.Block.Table
                                                 modEvolutionPercent = prevModValue != 0 ? (curModValue - prevModValue) / prevModValue : 1;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curModValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    prevModValue?.ToString(valueFormat) ?? Constants.No_Data,
+                                                    curModValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    prevModValue?.ToString(valueFormat) ?? Constants.No_Value,
                                                     modEvolutionPercent.HasValue ? FormatPercent(modEvolutionPercent) : Constants.No_Value
                                                 });
                                                 break;
@@ -758,7 +758,7 @@ namespace CastReporting.Reporting.Block.Table
                                     }
                                     else
                                     {
-                                        rowData.AddRange(new[] { curModValue?.ToString(valueFormat) ?? Constants.No_Data, Labels.NoData });
+                                        rowData.AddRange(new[] { curModValue?.ToString(valueFormat) ?? Constants.No_Value, Constants.No_Value });
                                     }
                                     break;
                             }
@@ -853,17 +853,17 @@ namespace CastReporting.Reporting.Block.Table
                             {
                                 case "CURRENT":
                                     curTechnoValue = MeasureUtility.GetSizingMeasureTechnologie(reportData.CurrentSnapshot, techno, int.Parse(id));
-                                    rowData.Add(curTechnoValue?.ToString(valueFormat) ?? Constants.No_Data);
+                                    rowData.Add(curTechnoValue?.ToString(valueFormat) ?? Constants.No_Value);
                                     break;
                                 case "PREVIOUS":
                                     if (hasPreviousSnapshot)
                                     {
                                         prevTechnoValue = MeasureUtility.GetSizingMeasureTechnologie(reportData.PreviousSnapshot, techno, int.Parse(id));
-                                        rowData.Add(prevTechnoValue?.ToString(valueFormat) ?? Constants.No_Data);
+                                        rowData.Add(prevTechnoValue?.ToString(valueFormat) ?? Constants.No_Value);
                                     }
                                     else
                                     {
-                                        rowData.Add(Constants.No_Data);
+                                        rowData.Add(Constants.No_Value);
                                     }
                                     break;
                                 default:
@@ -883,9 +883,9 @@ namespace CastReporting.Reporting.Block.Table
                                                 techEvolutionPercent = prevTechnoValue != 0 ? (curTechnoValue - prevTechnoValue) / prevTechnoValue : 1;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curTechnoValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    prevTechnoValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    techEvolution?.ToString(valueFormat) ?? Constants.No_Data,
+                                                    curTechnoValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    prevTechnoValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    techEvolution?.ToString(valueFormat) ?? Constants.No_Value,
                                                     techEvolutionPercent.HasValue ? FormatPercent(techEvolutionPercent) : Constants.No_Value
                                                 });
                                                 break;
@@ -893,9 +893,9 @@ namespace CastReporting.Reporting.Block.Table
                                                 techEvolution = curTechnoValue - prevTechnoValue;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curTechnoValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    prevTechnoValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    techEvolution?.ToString(valueFormat) ?? Constants.No_Data
+                                                    curTechnoValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    prevTechnoValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    techEvolution?.ToString(valueFormat) ?? Constants.No_Value
                                                 });
                                                 break;
                                             default:
@@ -903,8 +903,8 @@ namespace CastReporting.Reporting.Block.Table
                                                 techEvolutionPercent = prevTechnoValue != 0 ? (curTechnoValue - prevTechnoValue) / prevTechnoValue : 1;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curTechnoValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    prevTechnoValue?.ToString(valueFormat) ?? Constants.No_Data,
+                                                    curTechnoValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    prevTechnoValue?.ToString(valueFormat) ?? Constants.No_Value,
                                                     techEvolutionPercent.HasValue ? FormatPercent(techEvolutionPercent) : Constants.No_Value
                                                 });
                                                 break;
@@ -912,7 +912,7 @@ namespace CastReporting.Reporting.Block.Table
                                     }
                                     else
                                     {
-                                        rowData.AddRange(new[] { curTechnoValue?.ToString(valueFormat) ?? Constants.No_Data, Labels.NoData });
+                                        rowData.AddRange(new[] { curTechnoValue?.ToString(valueFormat) ?? Constants.No_Value, Constants.No_Value });
                                     }
                                     break;
                             }
@@ -997,7 +997,7 @@ namespace CastReporting.Reporting.Block.Table
                                 }
                                 else
                                 {
-                                    rowData.Add(Labels.NoData);
+                                    rowData.Add(Constants.No_Value);
                                 }
                                 break;
                             default:
@@ -1050,7 +1050,7 @@ namespace CastReporting.Reporting.Block.Table
                                 {
                                     rowData.AddRange(new[]
                                     {
-                                        _currentValue?.ToString(valueFormat) ?? Constants.No_Value, Labels.NoData
+                                        _currentValue?.ToString(valueFormat) ?? Constants.No_Value, Constants.No_Value
                                     });
 
                                 }
@@ -1115,7 +1115,7 @@ namespace CastReporting.Reporting.Block.Table
                                     bfResult = bfResults.Keys.Contains(id) ? bfResults[id] : null;
                                     if (bfResult == null || !bfResult.ApplicationResults.Any()) continue;
                                     curModValue = bfResult.ApplicationResults[0].ModulesResult.FirstOrDefault(_ => _.Module.Id == mod.Id)?.DetailResult.Value;
-                                    rowData.Add(curModValue?.ToString(valueFormat) ?? Constants.No_Data);
+                                    rowData.Add(curModValue?.ToString(valueFormat) ?? Constants.No_Value);
                                     break;
                                 case "PREVIOUS":
                                     if (hasPreviousSnapshot)
@@ -1123,11 +1123,11 @@ namespace CastReporting.Reporting.Block.Table
                                         bfPrevResult = bfPrevResults.Keys.Contains(id) ? bfPrevResults[id] : null;
                                         if (bfPrevResult == null || !bfPrevResult.ApplicationResults.Any()) continue;
                                         prevModValue = bfPrevResult.ApplicationResults[0].ModulesResult.FirstOrDefault(_ => _.Module.Id == mod.Id)?.DetailResult.Value;
-                                        rowData.Add(prevModValue?.ToString(valueFormat) ?? Constants.No_Data);
+                                        rowData.Add(prevModValue?.ToString(valueFormat) ?? Constants.No_Value);
                                     }
                                     else
                                     {
-                                        rowData.Add(Constants.No_Data);
+                                        rowData.Add(Constants.No_Value);
                                     }
                                     break;
                                 default:
@@ -1151,9 +1151,9 @@ namespace CastReporting.Reporting.Block.Table
                                                 modEvolutionPercent = prevModValue != 0 ? (curModValue - prevModValue) / prevModValue : 1;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curModValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    prevModValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    modEvolution?.ToString(valueFormat) ?? Constants.No_Data,
+                                                    curModValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    prevModValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    modEvolution?.ToString(valueFormat) ?? Constants.No_Value,
                                                     modEvolutionPercent.HasValue ? FormatPercent(modEvolutionPercent) : Constants.No_Value
                                                 });
                                                 break;
@@ -1161,9 +1161,9 @@ namespace CastReporting.Reporting.Block.Table
                                                 modEvolution = curModValue - prevModValue;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curModValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    prevModValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    modEvolution?.ToString(valueFormat) ?? Constants.No_Data
+                                                    curModValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    prevModValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    modEvolution?.ToString(valueFormat) ?? Constants.No_Value
                                                 });
                                                 break;
                                             default:
@@ -1171,8 +1171,8 @@ namespace CastReporting.Reporting.Block.Table
                                                 modEvolutionPercent = prevModValue != 0 ? (curModValue - prevModValue) / prevModValue : 1;
                                                 rowData.AddRange(new[]
                                                 {
-                                                    curModValue?.ToString(valueFormat) ?? Constants.No_Data,
-                                                    prevModValue?.ToString(valueFormat) ?? Constants.No_Data,
+                                                    curModValue?.ToString(valueFormat) ?? Constants.No_Value,
+                                                    prevModValue?.ToString(valueFormat) ?? Constants.No_Value,
                                                     modEvolutionPercent.HasValue ? FormatPercent(modEvolutionPercent) : Constants.No_Value
                                                 });
                                                 break;
@@ -1180,7 +1180,7 @@ namespace CastReporting.Reporting.Block.Table
                                     }
                                     else
                                     {
-                                        rowData.AddRange(new[] { curModValue?.ToString(valueFormat) ?? Constants.No_Data, Labels.NoData });
+                                        rowData.AddRange(new[] { curModValue?.ToString(valueFormat) ?? Constants.No_Value, Constants.No_Value });
                                     }
                                     break;
                             }

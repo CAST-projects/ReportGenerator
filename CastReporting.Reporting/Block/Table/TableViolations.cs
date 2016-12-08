@@ -240,7 +240,7 @@ namespace CastReporting.Reporting.Block.Table
 
             if (_snapshot == "PREVIOUS" && !hasPreviousSnapshot)
             {
-                rowData.Add(Labels.NoData);
+                rowData.Add(Constants.No_Value);
                 for (int i = 0; i < cntMetric; i++) rowData.Add(" ");
                 cntRow++;
             }
