@@ -38,7 +38,7 @@ namespace CastReporting.Reporting.Block.Table
             double? numCritPerFile = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerFileNumber);
             string numCritPerFileIfNegative;
             if (numCritPerFile == -1)
-                numCritPerFileIfNegative = "N/A";
+                numCritPerFileIfNegative = Constants.No_Value;
             else
                 numCritPerFileIfNegative = numCritPerFile?.ToString("N2") ?? Constants.No_Value;
             double? _numCritPerKloc = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerKLOCNumber);
@@ -70,7 +70,7 @@ namespace CastReporting.Reporting.Block.Table
                 Constants.SizingInformations.ViolationsToCriticalQualityRulesPerFileNumber);
             string numCritPerFilePrevIfNegative;
             if (numCritPerFilePrev == -1)
-                numCritPerFilePrevIfNegative = "N/A";
+                numCritPerFilePrevIfNegative = Constants.No_Value;
             else
                 numCritPerFilePrevIfNegative = numCritPerFilePrev?.ToString("N2") ?? Constants.No_Value;
 

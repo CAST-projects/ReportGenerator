@@ -64,7 +64,7 @@ namespace CastReporting.Reporting.Block.Table
 	                                          name = cur.Name,
 	                                          curValue = cur.Value,
 	                                          preValue = null,
-	                                          evolValue = 0,
+	                                          evolValue = null,
 	
 	                                      }).ToList();
 	            	#endregion Current Snapshot
@@ -102,7 +102,7 @@ namespace CastReporting.Reporting.Block.Table
                                                     select new EvolutionSnapshots
                                                     {
                                                         name = prev.Name,
-                                                        curValue = 0,
+                                                        curValue = null,
                                                         preValue = prev.Value,
                                                         evolValue = -prev.Value,
                                                     }); 
