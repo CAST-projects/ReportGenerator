@@ -205,7 +205,7 @@ namespace CastReporting.Domain
         public const string ControllerName_SnapshotedApplicationQualityData = "SnapshotedApplicationQualityData";
         public const string ControllerName_Transactions = "Transactions";
         public const string ControllerName_CriticalObjectsRanking = "CriticalObjectsRanking";
-        public const string No_Value = "N/A";
+        public const string No_Value = "n/a";
 		public const string No_Data = "-";
         public const string Zero = "0";
         #endregion CONSTANTS
