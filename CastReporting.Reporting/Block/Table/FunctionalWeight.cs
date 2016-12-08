@@ -36,9 +36,9 @@ namespace CastReporting.Reporting.Block.Table
             const string metricFormat = "N0";
             var rowData = new List<string>() 
             {  Labels.Name, Labels.Total
-                , Labels.AutomatedFP, automatedFPoints?.ToString(metricFormat) ?? Domain.Constants.No_Data
-                , Labels.DecisionP,decisionPoints?.ToString(metricFormat) ?? Domain.Constants.No_Data
-                , Labels.BackfiredFP, backFiredFPoints?.ToString(metricFormat) ?? Domain.Constants.No_Data
+                , Labels.AutomatedFP, automatedFPoints?.ToString(metricFormat) ?? Domain.Constants.No_Value
+                , Labels.DecisionP,decisionPoints?.ToString(metricFormat) ?? Domain.Constants.No_Value
+                , Labels.BackfiredFP, backFiredFPoints?.ToString(metricFormat) ?? Domain.Constants.No_Value
             };
             var resultTable = new TableDefinition
             {

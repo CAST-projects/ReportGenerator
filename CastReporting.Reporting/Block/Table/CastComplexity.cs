@@ -87,7 +87,7 @@ namespace CastReporting.Reporting.Block.Table
             List<string> rowData = new List<string>();
             rowData.AddRange(new[] { Labels.Complexity, Labels.Current, Labels.Previous,  Labels.Evol, Labels.EvolPercent, Labels.TotalPercent });
 
-            const string noData = Constants.No_Data;
+            const string noData = Constants.No_Value;
            
             rowData.AddRange(new[]
             { Labels.ComplexityLow

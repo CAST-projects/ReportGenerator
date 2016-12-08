@@ -81,7 +81,7 @@ namespace CastReporting.Reporting.Block.Table
 
                 foreach (var module in modules) {
                     if (perModule) {
-                        dataRow.Set(Labels.ModuleName, module.Name.DashIfEmpty());
+                        dataRow.Set(Labels.ModuleName, module.Name.NAIfEmpty());
                     }
 
                     var query = sourceResults.Select(ar => new {ar.Reference, AppDetailResult = ar.DetailResult, ModDetailResult = GetModuleResult(ar, module) });
@@ -92,22 +92,22 @@ namespace CastReporting.Reporting.Block.Table
                         var detailResult = perModule ? result.ModDetailResult : result.AppDetailResult;
                         if (detailResult != null && detailResult.Grade > 0)
                         {
-                            dataRow.Set(Labels.RuleName, result.Reference?.Name.DashIfEmpty());
+                            dataRow.Set(Labels.RuleName, result.Reference?.Name.NAIfEmpty());
                             if (showGrades)
                             {
                                 dataRow.Set(Labels.Grade, detailResult.Grade?.ToString("N2"));
                             }
                             if (showFailedChecks)
                             {
-                                dataRow.Set(Labels.ViolationsCount, detailResult.ViolationRatio?.FailedChecks.DashIfEmpty());
+                                dataRow.Set(Labels.ViolationsCount, detailResult.ViolationRatio?.FailedChecks.NAIfEmpty());
                             }
                             if (showSuccessfulChecks)
                             {
-                                dataRow.Set(Labels.TotalOk, detailResult.ViolationRatio?.SuccessfulChecks.DashIfEmpty());
+                                dataRow.Set(Labels.TotalOk, detailResult.ViolationRatio?.SuccessfulChecks.NAIfEmpty());
                             }
                             if (showTotal)
                             {
-                                dataRow.Set(Labels.TotalChecks, detailResult.ViolationRatio?.TotalChecks.DashIfEmpty());
+                                dataRow.Set(Labels.TotalChecks, detailResult.ViolationRatio?.TotalChecks.NAIfEmpty());
                             }
                             if (showCompliance)
                             {
@@ -115,8 +115,8 @@ namespace CastReporting.Reporting.Block.Table
                             }
                             if (showAddedRemoved)
                             {
-                                dataRow.Set(Labels.ViolationsAdded, detailResult.EvolutionSummary?.AddedViolations.DashIfEmpty());
-                                dataRow.Set(Labels.ViolationsRemoved, detailResult.EvolutionSummary?.RemovedViolations.DashIfEmpty());
+                                dataRow.Set(Labels.ViolationsAdded, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
+                                dataRow.Set(Labels.ViolationsRemoved, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
                             }
                             var ruleId = result.Reference?.Key;
                             dataRow.Set(Labels.Critical, (ruleId.HasValue && targetRules.ContainsKey(ruleId.Value) && targetRules[ruleId.Value].Critical) ? "X" : "");
