@@ -64,7 +64,7 @@ namespace CastReporting.Reporting.Block.Table
 
             string numCritPerFileIfNegative;
             if (numCritPerFile == -1)
-                numCritPerFileIfNegative = "N/A";
+                numCritPerFileIfNegative = Constants.No_Value;
             else
                 numCritPerFileIfNegative = numCritPerFile?.ToString(metricFormatPrecision) ?? Constants.No_Value;
                 
