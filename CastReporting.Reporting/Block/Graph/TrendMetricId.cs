@@ -18,7 +18,7 @@ namespace CastReporting.Reporting.Block.Graph
 {
    
     [Block("TREND_METRIC_ID")]
-    class TrendMetricId : GraphBlock
+    internal class TrendMetricId : GraphBlock
     {
      
         #region METHODS
@@ -83,6 +83,7 @@ namespace CastReporting.Reporting.Block.Graph
                 foreach (Snapshot snapshot in reportData.Application.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
                 {
                     string snapshotDate = snapshot.Annotation.Date.DateSnapShot?.ToOADate().ToString(CultureInfo.CurrentCulture) ?? string.Empty;
+                    rowData.Add(snapshotDate);
 
                     Dictionary<string, string> values = new Dictionary<string, string>();
                     // iterate in QID
@@ -125,16 +126,7 @@ namespace CastReporting.Reporting.Block.Graph
                         }
                     }
 
-                    // ajouter les nom de res dans le rowdata
-                    string[] idvalues = new string[names.Count + 1];
-                    idvalues[0] = snapshotDate;
-                    int k = 1;
-                    foreach (string key in values.Keys)
-                    {
-                        idvalues[k] = values[key];
-                        k++;
-                    }
-                    rowData.AddRange(idvalues);
+                    rowData.AddRange(values.Values);
 
                 }
                 count = nbSnapshots;
@@ -144,18 +136,12 @@ namespace CastReporting.Reporting.Block.Graph
             // if there is only one snapshot, a fake snapshot is added with same data to have a line and not a point in the graph
 			if (count == 1)
             {
-                string[] range = new string[rowData.Count];
-                int k = 0;
+                string[] range = new string[names.Count + 1];
 
-                foreach (string row in rowData)
+                for (int k = 0; k < names.Count + 1; k++)
                 {
-                    range[k] = row;
-                    k++;
+                    range[k] = rowData[k + names.Count + 1];
                 }
-
-                // ReSharper disable once PossibleNullReferenceException
-                string prevSnapshotDate = reportData.CurrentSnapshot.Annotation.Date.DateSnapShot?.ToOADate().ToString(CultureInfo.CurrentCulture) ?? string.Empty;
-                range[0] = prevSnapshotDate;
 
                 rowData.AddRange(range);
                 count = count +1;
