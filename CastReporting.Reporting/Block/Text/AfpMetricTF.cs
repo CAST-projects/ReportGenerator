@@ -29,7 +29,7 @@ namespace CastReporting.Reporting.Block.Text
         {
             if (reportData?.CurrentSnapshot == null) return Domain.Constants.No_Value;
             double? result = MeasureUtility.GetAfpMetricTF(reportData.CurrentSnapshot);
-            return result?.ToString("N0");
+            return result?.ToString("N0") ?? Domain.Constants.No_Value;
         }
         #endregion METHODS
 
