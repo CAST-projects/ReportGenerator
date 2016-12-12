@@ -18,91 +18,57 @@ using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Domain;
-using System.Globalization;
-using System.Threading;
-using System.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cast.Util.Log;
+using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("PF_TECHDEBT_VS_AFP")]
-    class TechDebtVSAFPPortfolio : TextBlock
+    internal class TechDebtVsafpPortfolio : TextBlock
     {
         #region METHODS
         protected override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (null != reportData && null != reportData.Applications)
+            if (reportData == null) return Constants.No_Value;
+            if (reportData.Applications == null) return Constants.No_Value;
+
+            Application[] _allApps = reportData.Applications;
+            double? _allTechDebt = 0;
+            double? _afpAll = 0;
+
+            foreach (Application _app in _allApps)
             {
-                Application[] AllApps = reportData.Applications;
-                double? resultAllTechDebt = 0;
-                double? AFPAll = 0;
-
-                for (int j = 0; j < AllApps.Count(); j++)
+                try
                 {
-                    Application App = AllApps[j];
-
-                    int nbSnapshotsEachApp = App.Snapshots.Count();
-                    if (nbSnapshotsEachApp > 0)
+                    Snapshot _snapshot = _app.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
+                    if (_snapshot == null) continue;
+                    double? result = MeasureUtility.GetTechnicalDebtMetric(_snapshot);
+                    if (result != null)
                     {
-                        foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
-                        {
-                            double? result = MeasureUtility.GetTechnicalDebtMetric(snapshot);
-                            if (result == null)
-                            {
-                                result = 0.0;
-                            }
+                        _allTechDebt = _allTechDebt + result;
+                    }
 
-                            resultAllTechDebt = resultAllTechDebt + result;
-                            break;
-                        }
+                    double? _resultAfp = MeasureUtility.GetAutomatedIFPUGFunction(_snapshot);
+                    if (_resultAfp != null)
+                    {
+                        _afpAll = _afpAll + _resultAfp;
                     }
                 }
-
-                for (int j = 0; j < AllApps.Count(); j++)
+                catch (Exception ex)
                 {
-                    Application App = AllApps[j];
-
-                    int nbSnapshotsEachApp = App.Snapshots.Count();
-                    if (nbSnapshotsEachApp > 0)
-                    {
-                        foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
-                        {
-                            double? resultAFPDF = MeasureUtility.GetAfpMetricDF(snapshot);
-                            double? resultAFPTF = MeasureUtility.GetAfpMetricTF(snapshot);
-
-                            if (resultAFPDF == null)
-                            {
-                                resultAFPDF = 0.0;
-                            }
-                            if (resultAFPTF == null)
-                            {
-                                resultAFPTF = 0.0;
-                            }
-
-                            double? result = resultAFPDF + resultAFPTF;
-
-                            AFPAll = AFPAll + result;
-                            break;
-                        }
-                    }
+                    LogHelper.Instance.LogInfo(ex.Message);
                 }
-                //handle 0 functions case
-                if (resultAllTechDebt > 0 && AFPAll > 0)
-                {
-
-                    double? FinalValue = (resultAllTechDebt / AllApps.Count()) / (AFPAll / AllApps.Count());
-                    int intFinalValue = Convert.ToInt32(FinalValue);
-                    return string.Format("{0:n0}", intFinalValue) + "$";
-                }
-                else
-                {
-                    return "NA";
-                }
-                //return (result.HasValue ? String.Format("{0:N0} {1}", result.Value, reportData.CurrencySymbol) : CastReporting.Domain.Constants.No_Value);
             }
-            return CastReporting.Domain.Constants.No_Value;
+
+            if (!(_allTechDebt > 0) || !(_afpAll > 0)) return Constants.No_Value;
+            double? _finalValue = _allTechDebt / _afpAll;
+            if (_finalValue == null) return Constants.No_Value;
+            int intFinalValue = Convert.ToInt32(_finalValue);
+            return string.Format("{0:n0}", intFinalValue) + "$";
+            
         }
         #endregion METHODS
     }
