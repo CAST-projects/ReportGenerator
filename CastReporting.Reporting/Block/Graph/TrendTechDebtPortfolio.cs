@@ -20,6 +20,7 @@ using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.BLL.Computing.DTO;
 using CastReporting.Domain;
+using Cast.Util.Date;
 using System.Globalization;
 using System.Threading;
 using System.Data;
@@ -34,12 +35,6 @@ namespace CastReporting.Reporting.Block.Graph
     {
 
         #region METHODS
-
-        private static int GetQuarter(DateTime dt)
-        {
-            return (dt.Month / 4) + 1;
-        }
-
 
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
@@ -70,19 +65,15 @@ namespace CastReporting.Reporting.Block.Graph
                 Snapshot[] AllSnapshots = reportData.snapshots;
                 int generateQuater = 6;
                 int currentYear = DateNow.Year;
-                int currentQuater = GetQuarter(DateNow);
+                int currentQuater = DateUtil.GetQuarter(DateNow);
                 for (int i = generateQuater; i > 0; i--)
                 {
                     DataRow dr = dtDates.NewRow();
                     dr["Quarter"] = currentQuater;
                     dr["Year"] = currentYear;
                     dtDates.Rows.InsertAt(dr, 0);
-                    //dtDates.Rows.Add(currentQuater, currentYear);
-                    if (--currentQuater == 0)
-                    {
-                        currentQuater = 4;
-                        currentYear--;
-                    }
+                    currentQuater = (currentQuater == 1) ? 4 : currentQuater - 1;
+                    currentYear = (currentQuater == 4) ? currentYear - 1 : currentYear;
                 }
 
                 double? RemovedTechnicalDebt = 0;
@@ -104,7 +95,7 @@ namespace CastReporting.Reporting.Block.Graph
                             int intQuarter = Convert.ToInt32(dtDates.Rows[i]["Quarter"]);
                             int intYear = Convert.ToInt32(dtDates.Rows[i]["Year"]);
 
-                            int intSnapshotQuarter = GetQuarter(SnapshotDate);
+                            int intSnapshotQuarter = DateUtil.GetQuarter(SnapshotDate);
                             int intSnapshotYear = SnapshotDate.Year;
 
                             if (intQuarter == intSnapshotQuarter && intYear == intSnapshotYear)
@@ -117,37 +108,10 @@ namespace CastReporting.Reporting.Block.Graph
                         }
                     }
 
-                    if (RemovedTechnicalDebt > 0)
-                    {
-                        RemovedTechnicalDebt = RemovedTechnicalDebt * -1;
-                    }
+                    dtDates.Rows[i]["RemovedTechnicalDebt"] = RemovedTechnicalDebt != null ? RemovedTechnicalDebt * -1 : 0.0;
+                    dtDates.Rows[i]["AddedTechnicalDebt"] = AddedTechnicalDebt != null ? AddedTechnicalDebt : 0.0;
+                    dtDates.Rows[i]["TotalTechnicalDebt"] = TotalTechnicalDebt != null ? TotalTechnicalDebt : 0.0;
 
-                    if (RemovedTechnicalDebt != null)
-                    {
-                        dtDates.Rows[i]["RemovedTechnicalDebt"] = RemovedTechnicalDebt;
-                    }
-                    else
-                    {
-                        dtDates.Rows[i]["RemovedTechnicalDebt"] = 0.0;
-                    }
-
-                    if (AddedTechnicalDebt != null)
-                    {
-                        dtDates.Rows[i]["AddedTechnicalDebt"] = AddedTechnicalDebt;
-                    }
-                    else
-                    {
-                        dtDates.Rows[i]["AddedTechnicalDebt"] = 0.0;
-                    }
-
-                    if (TotalTechnicalDebt != null)
-                    {
-                        dtDates.Rows[i]["TotalTechnicalDebt"] = TotalTechnicalDebt;
-                    }
-                    else
-                    {
-                        dtDates.Rows[i]["TotalTechnicalDebt"] = 0.0;
-                    }
                 }
 
                 for (int i = 0; i < dtDates.Rows.Count; i++)

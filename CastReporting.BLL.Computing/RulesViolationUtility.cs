@@ -264,6 +264,21 @@ namespace CastReporting.BLL.Computing
         }
 
 
+        public static IEnumerable<ViolationSummaryDTO> GetBCEvolutionSummary(Snapshot snapshot, int bcid)
+        {
+            if (snapshot == null) return null;
+            if (snapshot.BusinessCriteriaResults == null) return null;
+
+            return snapshot.BusinessCriteriaResults.Where(_ => _.Reference.Key == bcid && _.DetailResult.EvolutionSummary != null)
+                .Select(_ => new ViolationSummaryDTO
+                {
+                    BusinessCriteria = (Constants.BusinessCriteria)bcid,
+                    Total = _.DetailResult.EvolutionSummary.TotalCriticalViolations,
+                    Added = _.DetailResult.EvolutionSummary.AddedCriticalViolations,
+                    Removed = _.DetailResult.EvolutionSummary.RemovedCriticalViolations,
+                });
+        }
+
         /// <summary>
         /// 
         /// </summary>

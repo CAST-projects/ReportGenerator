@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CryptoHelper.cs" />
+    <Compile Include="DateUtil.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="PathUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

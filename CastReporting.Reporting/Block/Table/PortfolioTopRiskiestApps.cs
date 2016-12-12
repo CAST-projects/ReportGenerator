@@ -23,6 +23,7 @@ using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using System.Data;
+using Cast.Util.Log;
 
 namespace CastReporting.Reporting.Block.Table
 {
@@ -95,83 +96,28 @@ namespace CastReporting.Reporting.Block.Table
 
 
                 Application[] AllApps = reportData.Applications;
-                for (int j = 0; j < AllApps.Count(); j++)
+                foreach (Application _app in AllApps)
                 {
-                    Application App = AllApps[j];
-
-                    int nbSnapshotsEachApp = App.Snapshots.Count();
-                    if (nbSnapshotsEachApp > 0)
+                    try
                     {
-                        foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
-                        {
-                            Snapshot[] BuiltSnapshots = reportData.snapshots;
+                        Snapshot _snapshot = _app.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
+                        if (_snapshot == null) continue;
+                        string strAppName = _app.Name;
 
-                            foreach (Snapshot BuiltSnapshot in BuiltSnapshots)
-                            {
-                                if (snapshot == BuiltSnapshot)
-                                {
-                                    string strAppName = App.Name;
-                                    double? CV = 0;
-                                    var results = RulesViolationUtility.GetStatViolation(BuiltSnapshot);
-                                    foreach (var resultModule in results.OrderBy(_ => _.ModuleName))
-                                   {
-                                       CV = CV + ((resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Total.HasValue) ?
-                         resultModule[(Constants.BusinessCriteria)metricId].Total.Value : 0);
+                        ViolationSummaryDTO result = RulesViolationUtility.GetBCEvolutionSummary(_snapshot, metricId).FirstOrDefault();
+                        double? _cv = result != null ? result.Total : 0;
 
-                                    }
+                        double? strCurrentBCGrade = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(_snapshot, (Constants.BusinessCriteria)metricId, false);
 
-                                    string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(BuiltSnapshot);
-                                    BusinessCriteriaDTO currSnapshotBisCriDTO = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(BuiltSnapshot, false);
+                        string strLastAnalysis = Convert.ToDateTime(_snapshot.Annotation.Date.DateSnapShot.Value).ToString("MMM dd yyyy");
 
-                                    double? strCurrentEfficiency = 0;
-                                     
-
-                                    if (metricId == 60012)
-                                    {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Changeability.HasValue ? currSnapshotBisCriDTO.Changeability.Value : 0;
-                                    }
-                                    else if (metricId == 60014)
-                                    {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Performance.HasValue ? currSnapshotBisCriDTO.Performance.Value : 0;
-                                    }
-                                    else if (metricId == 60013)
-                                    {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Robustness.HasValue ? currSnapshotBisCriDTO.Robustness.Value : 0;
-                                    }
-                                    else if (metricId == 60016)
-                                    {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Security.HasValue ? currSnapshotBisCriDTO.Security.Value : 0;
-                                    }
-                                    else if (metricId == 60017)
-                                    {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.TQI.HasValue ? currSnapshotBisCriDTO.TQI.Value : 0;
-                                    }
-                                    else if (metricId == 60011)
-                                    {
-                                        strCurrentEfficiency = currSnapshotBisCriDTO.Transferability.HasValue ? currSnapshotBisCriDTO.Transferability.Value : 0;
-                                    }
-
-                                    string strLastAnalysis = Convert.ToDateTime(BuiltSnapshot.Annotation.Date.DateSnapShot.Value).ToString("MMM dd yyyy");
-
-                                    dt.Rows.Add(strAppName, CV, strCurrentEfficiency, strLastAnalysis);
-
-
-                        //            rowData.AddRange
-                        //(new string[] { strAppName.ToString()
-                        //    , CV.ToString()
-                        //    , strCurrentEfficiency.GetValueOrDefault().ToString()
-                        //    , strLastAnalysis.ToString()
-                        //    });
-
-                                    nbRows++;
-
-                                    break;
-                                }
-                            }
-                            break;
-                        }
+                        dt.Rows.Add(strAppName, _cv, strCurrentBCGrade, strLastAnalysis);
+                        nbRows++;
                     }
-                    continue;
+                    catch (Exception ex)
+                    {
+                        LogHelper.Instance.LogInfo(ex.Message);
+                    }
                 }
 
                 DataView dv = dt.DefaultView;

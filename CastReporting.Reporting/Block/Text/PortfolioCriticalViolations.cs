@@ -18,6 +18,7 @@ using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Domain;
+using Cast.Util.Log;
 using System.Globalization;
 using System.Threading;
 using System.Data;
@@ -48,50 +49,19 @@ namespace CastReporting.Reporting.Block.Text
                 double? CV = 0;
 
                 Application[] AllApps = reportData.Applications;
-                for (int j = 0; j < AllApps.Count(); j++)
+                foreach (Application _app in AllApps)
                 {
-                    Application App = AllApps[j];
-
-                    int nbSnapshotsEachApp = App.Snapshots.Count();
-                    if (nbSnapshotsEachApp > 0)
+                    try
                     {
-                        foreach (Snapshot snapshot in App.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot))
-                        {
-                            Snapshot[] BuiltSnapshots = reportData.snapshots;
-
-                            foreach (Snapshot BuiltSnapshot in BuiltSnapshots)
-                            {
-                                if (snapshot == BuiltSnapshot)
-                                {
-                                    //double? criticalViolation = MeasureUtility.GetSizingMeasure(BuiltSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesNumber);
-                                    //var rulesViolation = RulesViolationUtility.GetRuleViolations(BuiltSnapshot,
-                                    //                                                Constants.RulesViolation.CriticalRulesViolation,
-                                    //                                                (Constants.BusinessCriteria)metricId,
-                                    //                                                true,
-                                    //                                                100);
-
-                                    //if (null != rulesViolation)
-                                    //{
-                                    //    foreach (var elt in rulesViolation)
-                                    //    {
-                                    //        CV = CV + elt.TotalFailed.Value;
-                                    //    }
-                                    //} 
-                                    var results = RulesViolationUtility.GetStatViolation(BuiltSnapshot);
-                                    foreach (var resultModule in results.OrderBy(_ => _.ModuleName))
-                                    {
-                                        CV = CV + ((resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Total.HasValue) ?
-                          resultModule[(Constants.BusinessCriteria)metricId].Total.Value : 0);
-
-
-                                    }
-
-
-                                    break;
-                                }
-                            }
-                            break;
-                        }
+                        Snapshot _snapshot = _app.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
+                        if (_snapshot == null) continue;
+                        ViolationSummaryDTO result = RulesViolationUtility.GetBCEvolutionSummary(_snapshot,metricId).FirstOrDefault();
+                        int? _snapCv = result != null ? result.Total : 0;
+                        CV = _snapCv != null ? CV + _snapCv : CV;
+                    }
+                    catch (Exception ex)
+                    {
+                        LogHelper.Instance.LogInfo(ex.Message);
                     }
                 }
 

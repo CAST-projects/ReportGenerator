@@ -20,6 +20,7 @@ using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.BLL.Computing.DTO;
 using CastReporting.Domain;
+using Cast.Util.Date;
 using System.Globalization;
 using System.Threading;
 using System.Data;
@@ -36,12 +37,6 @@ namespace CastReporting.Reporting.Block.Graph
 
         #region METHODS
 
-        private static int GetQuarter(DateTime dt)
-        {
-            return (dt.Month / 4) + 1;
-        }
-
-
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             int metricId;
@@ -50,7 +45,7 @@ namespace CastReporting.Reporting.Block.Graph
                 !options.ContainsKey("BCID") ||
                 !int.TryParse(options["BCID"], out metricId))
             {
-                metricId = reportData.Parameter.NbResultDefault;
+                metricId = 60017;
             }
             #endregion Item BCID
 
@@ -80,19 +75,16 @@ namespace CastReporting.Reporting.Block.Graph
                 Snapshot[] AllSnapshots = reportData.snapshots;
                 int generateQuater = 6;
                 int currentYear = DateNow.Year;
-                int currentQuater = GetQuarter(DateNow);
+                int currentQuater = DateUtil.GetQuarter(DateNow);
                 for (int i = generateQuater; i > 0; i--)
                 {
                     DataRow dr = dtDates.NewRow();
                     dr["Quarter"] = currentQuater;
                     dr["Year"] = currentYear;
                     dtDates.Rows.InsertAt(dr, 0);
-                    //dtDates.Rows.Add(currentQuater, currentYear);
-                    if (--currentQuater == 0)
-                    {
-                        currentQuater = 4;
-                        currentYear--;
-                    }
+                    
+                    currentQuater = (currentQuater == 1) ? 4 : currentQuater - 1;
+                    currentYear = (currentQuater == 4) ? currentYear - 1 : currentYear;
                 }
 
                 double? RemovedViol = 0;
@@ -109,46 +101,26 @@ namespace CastReporting.Reporting.Block.Graph
                     {
                         foreach (Snapshot snapshot in AllSnapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
                         {
+                            if (snapshot.Annotation.Date.DateSnapShot == null) continue;
                             DateTime SnapshotDate = Convert.ToDateTime(snapshot.Annotation.Date.DateSnapShot.Value);
                             int intQuarter = Convert.ToInt32(dtDates.Rows[i]["Quarter"]);
                             int intYear = Convert.ToInt32(dtDates.Rows[i]["Year"]);
 
-                            int intSnapshotQuarter = GetQuarter(SnapshotDate);
+                            int intSnapshotQuarter = DateUtil.GetQuarter(SnapshotDate);
                             int intSnapshotYear = SnapshotDate.Year;
 
-                            if (intQuarter == intSnapshotQuarter && intYear == intSnapshotYear)
-                            {
-                                var results = RulesViolationUtility.GetStatViolation(snapshot);
-                                foreach (var resultModule in results)
-                                {
-                                    if (resultModule[(Constants.BusinessCriteria)metricId] != null)
-                                    {
-                                        int CriticalViolThisModulePerformanceTotal = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Total.HasValue) ?
-                              resultModule[(Constants.BusinessCriteria)metricId].Total.Value : 0;
+                            if (intQuarter != intSnapshotQuarter || intYear != intSnapshotYear) continue;
 
-                                        int CriticalViolThisModulePerformanceAdded = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Added.HasValue) ?
-                              resultModule[(Constants.BusinessCriteria)metricId].Added.Value : 0;
-
-                                        int CriticalViolThisModulePerformanceRemoved = (resultModule != null && resultModule[(Constants.BusinessCriteria)metricId].Removed.HasValue) ?
-                              resultModule[(Constants.BusinessCriteria)metricId].Removed.Value : 0;
-
-                                        RemovedViol = RemovedViol + CriticalViolThisModulePerformanceRemoved;
-                                        AddedViol = AddedViol + CriticalViolThisModulePerformanceAdded;
-                                        TotalViol = TotalViol + CriticalViolThisModulePerformanceTotal;
-                                    }
-
-                                }
-                            }
+                            ViolationSummaryDTO results = RulesViolationUtility.GetBCEvolutionSummary(snapshot, metricId).First();
+                            if (results == null) continue;
+                            RemovedViol = RemovedViol + results.Removed;
+                            AddedViol = AddedViol + results.Added;
+                            TotalViol = TotalViol + results.Total;
 
                         }
                     }
 
-                    if (RemovedViol > 0)
-                    {
-                        RemovedViol = RemovedViol * -1;
-                    }
-
-                    dtDates.Rows[i]["RemovedViol"] = RemovedViol;
+                    dtDates.Rows[i]["RemovedViol"] = RemovedViol * -1;
                     dtDates.Rows[i]["AddedViol"] = AddedViol;
                     dtDates.Rows[i]["TotalViol"] = TotalViol;
                 }
