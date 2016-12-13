@@ -251,7 +251,7 @@ namespace CastReporting.BLL
             if (modules) modParam = "$all";
 
             string technoParam = string.Empty;
-            if (modules) technoParam = "$all";
+            if (technologies) technoParam = "$all";
 
             try
             {
