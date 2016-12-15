@@ -12,6 +12,7 @@ using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Block.Table
 {
+    [Block("GENERIC_TABLE")]
     internal class GenericTable : TableBlock
     {
         public class ObjConfig
@@ -48,19 +49,20 @@ namespace CastReporting.Reporting.Block.Table
             #region Get Configuration
             // get the configuration
             string type0 = options.GetOption("COL1");
-            _posConfig[0] = new ObjConfig {Type = type0, Parameters = options.GetOption(type0).Split('|')};
+            _posConfig[0] = type0 != null ? new ObjConfig {Type = type0, Parameters = options.GetOption(type0).Split('|')} : null;
             string type1 = options.GetOption("COL11");
-            _posConfig[1] = new ObjConfig { Type = type1, Parameters = options.GetOption(type1).Split('|') };
+            _posConfig[1] = type1 != null ? new ObjConfig { Type = type1, Parameters = options.GetOption(type1).Split('|') } : null;
             string type2 = options.GetOption("ROW1");
-            _posConfig[2] = new ObjConfig { Type = type2, Parameters = options.GetOption(type2).Split('|') };
+            _posConfig[2] = type2 != null ? new ObjConfig { Type = type2, Parameters = options.GetOption(type2).Split('|') } : null;
             string type3 = options.GetOption("ROW11");
-            _posConfig[3] = new ObjConfig { Type = type3, Parameters = options.GetOption(type3).Split('|') };
+            _posConfig[3] = type3 != null ? new ObjConfig { Type = type3, Parameters = options.GetOption(type3).Split('|') } : null;
 
-            string[] snapshotConfiguration = options.GetOption("SNAPSHOTS").Split('|');
+            string[] snapshotConfiguration = options.GetOption("SNAPSHOTS")?.Split('|');
 
             // get the data and calculate results : snapshots, metrics, modules, technologies, violations, critical_violations
             for (int i = 0; i < _posConfig.Length; i++)
             {
+                if (_posConfig[i] == null) continue;
                 switch (_posConfig[i].Type)
                 {
                     case "SNAPSHOTS":
@@ -70,8 +72,8 @@ namespace CastReporting.Reporting.Block.Table
                         }
                         else
                         {
-                            if (_posConfig[i].Parameters.Contains("CURRENT")) snapshots.Add(reportData.CurrentSnapshot);
-                            if (_posConfig[i].Parameters.Contains("PREVIOUS")) snapshots.Add(reportData.PreviousSnapshot);
+                            if (_posConfig[i].Parameters.Contains("CURRENT") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
+                            if (_posConfig[i].Parameters.Contains("PREVIOUS") && reportData.PreviousSnapshot != null) snapshots.Add(reportData.PreviousSnapshot);
                             positionSnapshots = i;
                         }
                         break;
@@ -167,16 +169,17 @@ namespace CastReporting.Reporting.Block.Table
             // if snapshotConfiguration contains EVOL_PERCENT and snapshots list contains 2 snapshots get the differential ratio between the snapshots 
             if (modules.Count == 0 && technologies.Count == 0)
             {
-                string[] _posResults = {string.Empty, string.Empty, string.Empty, string.Empty };
                 foreach (Snapshot _snapshot in snapshots)
                 {
                     foreach (string _metricId in metrics)
                     {
+                        string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
+
                         // case grade (quality indicator) or value (sizing measure or background fact)
                         if (violations.Count == 0 && criticalViolations.Count == 0)
                         {
                             string value = MetricsUtility.GetMetricResult(reportData, _snapshot, _metricId);
-                            if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name;
+                            if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
                             _posResults[positionMetrics] = _metricId;
                             results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]),value);
                         }
@@ -185,7 +188,7 @@ namespace CastReporting.Reporting.Block.Table
                         if (violations.Count != 0 && criticalViolations.Count == 0)
                         {
                             // _metricId should be a quality indicator, if not, return null
-                            if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name;
+                            if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
                             _posResults[positionMetrics] = _metricId;
                             string value;
                             ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(_snapshot, int.Parse(_metricId));
@@ -215,7 +218,7 @@ namespace CastReporting.Reporting.Block.Table
                         if (violations.Count == 0 && criticalViolations.Count != 0)
                         {
                             // _metricId should be a quality indicator, if not, return null
-                            if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name;
+                            if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
                             _posResults[positionMetrics] = _metricId;
                             string value;
                             ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(_snapshot, int.Parse(_metricId));
