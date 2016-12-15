@@ -69,6 +69,7 @@
     <Compile Include="Block\Graph\RadarMetricId.cs" />
     <Compile Include="Block\Graph\TrendMetricId.cs" />
     <Compile Include="Block\Graph\TrendTechDebtPortfolio.cs" />
+    <Compile Include="Block\Table\GenericTable.cs" />
     <Compile Include="Block\Table\TableViolations.cs" />
     <Compile Include="Block\Table\TableMetricIdRow.cs" />
     <Compile Include="Block\Table\TableMetricIdCol.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="DocumentBuilder\WordDocumentBuilder.cs" />
     <Compile Include="DocumentBuilder\WorksheetAccessorExt.cs" />
     <Compile Include="Helper\FormatHelper.cs" />
+    <Compile Include="Helper\MetricsUtility.cs" />
     <Compile Include="Helper\OptionsHelper.cs" />
     <Compile Include="Helper\StreamHelper.cs" />
     <Compile Include="Languages\Labels.Designer.cs">

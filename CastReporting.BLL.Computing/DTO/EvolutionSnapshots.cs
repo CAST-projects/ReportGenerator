@@ -27,4 +27,26 @@ namespace CastReporting.BLL.Computing.DTO
                             
         
     }
+
+    public enum metricType
+    {
+        BusinessCriteria,
+        TechnicalCriteria,
+        QualityRule,
+        SizingMeasure,
+        BackgroundFact,
+        NotKnown
+    }
+
+    public class EvolutionResult
+    {
+        public string name { get; set; }
+
+        public metricType type;
+        public string curResult { get; set; }
+        public string prevResult { get; set; }
+        public string evolution { get; set; }
+        public string evolutionPercent { get; set; }
+
+    }
 }

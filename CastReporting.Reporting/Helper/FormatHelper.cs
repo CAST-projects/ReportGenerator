@@ -6,21 +6,6 @@ namespace CastReporting.Reporting.Helper
 {
     public static class FormatHelper
     {
-        public static string Empty(this object data) {
-            var s = data?.ToString();
-            return string.IsNullOrWhiteSpace(s) ? string.Empty : s;
-        }
-
-        public static string NaIfEmpty(this object data) {
-            var s = data?.ToString();
-            return string.IsNullOrWhiteSpace(s) ? Constants.No_Value : s;
-        }
-
-        public static string DashIfEmpty(this object data) {
-            var s = data?.ToString();
-            return (string.IsNullOrWhiteSpace(s) || s == Constants.No_Value) ? Constants.No_Data : s;
-        }
-
         public static string NAIfEmpty(this object data)
         {
             var s = data?.ToString();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
 
@@ -22,6 +23,18 @@ namespace CastReporting.UnitTest
             // ReSharper disable once UnusedVariable
             var r =  sign + roundedValue.ToString("P", nfi);
             
+        }
+
+        [TestMethod]
+        public void TestMatrice()
+        {
+            var key = Tuple.Create(1234,"JEE",60017);
+            var values = new Dictionary<Tuple<int, string, int>, double>();
+            values[key] = 2.35;
+
+            var key2 = Tuple.Create(1234, "JEE", 60017);
+            Console.WriteLine(values[key]);
+            Console.WriteLine(values[key2]);
         }
     }
 }
