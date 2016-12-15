@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -8,7 +7,6 @@ using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using CastReporting.Reporting.Helper;
 using System.Linq;
-using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Block.Table
 {
@@ -19,7 +17,6 @@ namespace CastReporting.Reporting.Block.Table
         {
             public string Type;
             public string[] Parameters;
-
         }
 
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
@@ -40,10 +37,7 @@ namespace CastReporting.Reporting.Block.Table
             int positionViolations = -1;
             List<string> criticalViolations = new List<string>();
             int positionCriticalViolations = -1;
-            bool considerModules = false;
-            bool considerTechnologies = false;
             
-            Dictionary<Tuple<string,string,string,string>,string> names = new Dictionary<Tuple<string, string, string, string>,string>();
             Dictionary<Tuple<string, string, string, string>, string> results = new Dictionary<Tuple<string, string, string, string>, string>();
 
             #region Get Configuration
@@ -85,7 +79,6 @@ namespace CastReporting.Reporting.Block.Table
                     case "MODULES":
                         if (_posConfig[i].Parameters.Length != 0)
                         {
-                            considerModules = true;
                             positionModules = i;
                             if (_posConfig[i].Parameters[0] == "ALL")
                             {
@@ -114,7 +107,6 @@ namespace CastReporting.Reporting.Block.Table
                     case "TECHNOLOGIES":
                         if (_posConfig[i].Parameters.Length != 0)
                         {
-                            considerTechnologies = true;
                             positionTechnologies = i;
                             if (_posConfig[i].Parameters[0] == "ALL")
                             {
@@ -190,22 +182,21 @@ namespace CastReporting.Reporting.Block.Table
                             // _metricId should be a quality indicator, if not, return null
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
                             _posResults[positionMetrics] = _metricId;
-                            string value;
                             ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(_snapshot, int.Parse(_metricId));
-                            if (stat == null) value = Constants.No_Value;
                             foreach (string _violation in violations)
                             {
                                 _posResults[positionViolations] = _violation;
+                                string value;
                                 switch (_violation)
                                 {
                                     case "TOTAL":
-                                        value = stat.TotalViolations?.ToString("N0") ?? Constants.No_Value;
+                                        value = stat?.TotalViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     case "ADDED":
-                                        value = stat.AddedViolations?.ToString("N0") ?? Constants.No_Value;
+                                        value = stat?.AddedViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     case "DELETED":
-                                        value = stat.RemovedViolations?.ToString("N0") ?? Constants.No_Value;
+                                        value = stat?.RemovedViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     default:
                                         throw new ArgumentOutOfRangeException();
@@ -220,22 +211,21 @@ namespace CastReporting.Reporting.Block.Table
                             // _metricId should be a quality indicator, if not, return null
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
                             _posResults[positionMetrics] = _metricId;
-                            string value;
                             ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(_snapshot, int.Parse(_metricId));
-                            if (stat == null) value = Constants.No_Value;
                             foreach (string _violation in criticalViolations)
                             {
                                 _posResults[positionCriticalViolations] = _violation;
+                                string value;
                                 switch (_violation)
                                 {
                                     case "TOTAL":
-                                        value = stat.TotalCriticalViolations?.ToString("N0") ?? Constants.No_Value;
+                                        value = stat?.TotalCriticalViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     case "ADDED":
-                                        value = stat.AddedCriticalViolations?.ToString("N0") ?? Constants.No_Value;
+                                        value = stat?.AddedCriticalViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     case "DELETED":
-                                        value = stat.RemovedCriticalViolations?.ToString("N0") ?? Constants.No_Value;
+                                        value = stat?.RemovedCriticalViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     default:
                                         throw new ArgumentOutOfRangeException();
@@ -258,7 +248,6 @@ namespace CastReporting.Reporting.Block.Table
             // case modules : no technologies
             if (modules.Count != 0 && technologies.Count == 0)
             {
-                string[] _posResults = new string[4];
                 foreach (Snapshot _snapshot in snapshots)
                 {
                     foreach (string _metricId in metrics)
@@ -296,7 +285,6 @@ namespace CastReporting.Reporting.Block.Table
             // case technologies : no modules
             if (modules.Count == 0 && technologies.Count != 0)
             {
-                string[] _posResults = new string[4];
                 foreach (Snapshot _snapshot in snapshots)
                 {
                     foreach (string _metricId in metrics)
@@ -335,7 +323,6 @@ namespace CastReporting.Reporting.Block.Table
             // case modules and technologies
             if (modules.Count != 0 && technologies.Count != 0)
             {
-                string[] _posResults = new string[4];
                 foreach (Snapshot _snapshot in snapshots)
                 {
                     foreach (string _metricId in metrics)
