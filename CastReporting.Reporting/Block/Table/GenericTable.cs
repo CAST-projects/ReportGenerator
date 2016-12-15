@@ -362,20 +362,25 @@ namespace CastReporting.Reporting.Block.Table
             // define the table content in configuration order
             /*
              * Add in rowData :
-             * - row1.type.name 
+             * - row1.type.name (1)
              * - foreach itemcol1 in col1
              * ---- foreach itemcol11 in col11 (if col11 not null)
-             * -------- itemcol1.name - itemcol11.name
+             * -------- itemcol1.name - itemcol11.name (2)
              * - foreach itemrow1 in row1
-             * ---- itemrow1.name
+             * ---- itemrow1.name (2)
              * ---- foreach itemrow11 in row11 (if row11 not null)
              * -------- add as much spaces than number of column minus one
-             * -------- '    ' + itemrow11.name
+             * -------- '    ' + itemrow11.name (2)
              * -------- then or if row11 is null same process
              * -------- foreach itemcol1 in col1
              * ------------ foreach itemcol11 in col11 (if col11 not null)
-             * ----------------- results[Tuple.Create(itemcol1, itemcol11, itemrow1, itemrow11)]
+             * ----------------- results[Tuple.Create(itemcol1, itemcol11, itemrow1, itemrow11)] (3)
              * if col11 is null replace itemcol11 by "", idem for itemrow11 if row11 is null
+             * 
+             * 
+             * (1) create a function get type name, switching in the different possibilities : SNAPSHOTS, METRICS, MODULES, TECHNOLOGIES, VIOLATIONS, CRITICAL_VIOLATIONS, to get a proper name by language
+             * (2) here we have to reconstitute the name depending on the type and the value
+             * (3) be careful, the item should correspond to those that have been used to save the data, depending on the type, perhaps use the name and change the _metricId by the metric name lines 173, 184, 213
              */
              
             #endregion
