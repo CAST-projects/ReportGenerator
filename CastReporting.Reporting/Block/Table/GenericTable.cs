@@ -373,10 +373,24 @@ namespace CastReporting.Reporting.Block.Table
 
             #region Get Display Data
             // define the table content in configuration order
-
-
-
-
+            /*
+             * Add in rowData :
+             * - row1.type.name 
+             * - foreach itemcol1 in col1
+             * ---- foreach itemcol11 in col11 (if col11 not null)
+             * -------- itemcol1.name - itemcol11.name
+             * - foreach itemrow1 in row1
+             * ---- itemrow1.name
+             * ---- foreach itemrow11 in row11 (if row11 not null)
+             * -------- add as much spaces than number of column minus one
+             * -------- '    ' + itemrow11.name
+             * -------- then or if row11 is null same process
+             * -------- foreach itemcol1 in col1
+             * ------------ foreach itemcol11 in col11 (if col11 not null)
+             * ----------------- results[Tuple.Create(itemcol1, itemcol11, itemrow1, itemrow11)]
+             * if col11 is null replace itemcol11 by "", idem for itemrow11 if row11 is null
+             */
+             
             #endregion
 
             var resultTable = new TableDefinition
