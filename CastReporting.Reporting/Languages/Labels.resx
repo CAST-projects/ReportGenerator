@@ -421,7 +421,7 @@
     <value>Total Failed</value>
   </data>
   <data name="TotalOk" xml:space="preserve">
-    <value>Successfull Checks</value>
+    <value>Successful Checks</value>
   </data>
   <data name="TechnicalCriterion" xml:space="preserve">
     <value>Technical Criterion</value>

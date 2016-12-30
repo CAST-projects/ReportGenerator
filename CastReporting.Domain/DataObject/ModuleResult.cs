@@ -13,7 +13,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Runtime.Serialization;
 
 namespace CastReporting.Domain
@@ -35,7 +34,7 @@ namespace CastReporting.Domain
         /// 
         /// </summary>
         [DataMember(Name = "number")]
-        public Int32? Number { get; set; }
+        public int? Number { get; set; }
                       
         /// <summary>
         /// 

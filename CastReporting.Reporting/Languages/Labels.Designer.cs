@@ -1105,7 +1105,7 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfull Checks.
+        ///   Looks up a localized string similar to Successful Checks.
         /// </summary>
         public static string TotalOk {
             get {

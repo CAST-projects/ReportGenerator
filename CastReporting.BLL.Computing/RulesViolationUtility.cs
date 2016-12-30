@@ -460,6 +460,56 @@ namespace CastReporting.BLL.Computing
             return null;
         }
 
+        public static ViolStatMetricIdDTO GetViolStatModuleTechno(Snapshot snapshot, int modId, string techno, int metricId)
+        {
+            ApplicationResult resbc = snapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == metricId);
+            if (resbc != null)
+            {
+                return new ViolStatMetricIdDTO
+                {
+                    Id = metricId,
+                    TotalViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.TotalViolations,
+                    AddedViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.AddedViolations,
+                    RemovedViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.RemovedViolations,
+                    TotalCriticalViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.TotalCriticalViolations,
+                    AddedCriticalViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.AddedCriticalViolations,
+                    RemovedCriticalViolations = resbc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.RemovedCriticalViolations
+                };
+            }
+
+            ApplicationResult restc = snapshot.TechnicalCriteriaResults.FirstOrDefault(_ => _.Reference.Key == metricId);
+            if (restc != null)
+            {
+                return new ViolStatMetricIdDTO
+                {
+                    Id = metricId,
+                    TotalViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.TotalViolations,
+                    AddedViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.AddedViolations,
+                    RemovedViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.RemovedViolations,
+                    TotalCriticalViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.TotalCriticalViolations,
+                    AddedCriticalViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.AddedCriticalViolations,
+                    RemovedCriticalViolations = restc.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.RemovedCriticalViolations
+                };
+            }
+
+            ApplicationResult resqr = snapshot.QualityRulesResults.FirstOrDefault(_ => _.Reference.Key == metricId);
+            if (resqr != null)
+            {
+                // for a quality rule, there is no 'critical' violations. to simplify code, the critical are set to the same values than the violations itself
+                return new ViolStatMetricIdDTO
+                {
+                    Id = metricId,
+                    TotalViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.ViolationRatio?.FailedChecks,
+                    AddedViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.AddedViolations,
+                    RemovedViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.RemovedViolations,
+                    TotalCriticalViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.ViolationRatio?.FailedChecks,
+                    AddedCriticalViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.AddedViolations,
+                    RemovedCriticalViolations = resqr.ModulesResult.FirstOrDefault(m => m.Module.Id == modId)?.TechnologyResults.FirstOrDefault(t => t.Technology == techno)?.DetailResult.EvolutionSummary?.RemovedViolations
+                };
+            }
+
+            return null;
+        }
 
 
     }
