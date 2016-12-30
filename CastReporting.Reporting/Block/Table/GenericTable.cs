@@ -7,6 +7,7 @@ using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using CastReporting.Reporting.Helper;
 using System.Linq;
+using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Block.Table
 {
@@ -195,7 +196,7 @@ namespace CastReporting.Reporting.Block.Table
                                     case "ADDED":
                                         value = stat?.AddedViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
-                                    case "DELETED":
+                                    case "REMOVED":
                                         value = stat?.RemovedViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     default:
@@ -224,7 +225,7 @@ namespace CastReporting.Reporting.Block.Table
                                     case "ADDED":
                                         value = stat?.AddedCriticalViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
-                                    case "DELETED":
+                                    case "REMOVED":
                                         value = stat?.RemovedCriticalViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     default:
@@ -383,18 +384,142 @@ namespace CastReporting.Reporting.Block.Table
              * (3) be careful, the item should correspond to those that have been used to save the data, depending on the type, perhaps use the name and change the _metricId by the metric name lines 173, 184, 213
              */
              
+            rowData.Add(type2);
+            foreach (var itemcol1 in _posConfig[0].Parameters)
+            {
+                string _col1Name = GetItemName(type0, itemcol1,reportData);
+                if (_posConfig[1] != null)
+                {
+                    rowData.AddRange(_posConfig[1].Parameters.Select(itemcol11 => GetItemName(type1, itemcol11,reportData)).Select(col11Name => _col1Name + " - " + col11Name));
+                }
+                else
+                {
+                    rowData.Add(_col1Name);
+                }
+            }
+            cntCol = _posConfig[0].Parameters.Length * _posConfig[1]?.Parameters.Length ?? _posConfig[0].Parameters.Length;
+            cntRow = 1;
+            foreach (var itemrow1 in _posConfig[2].Parameters)
+            {
+                string itemrow1Name = GetItemName(type2, itemrow1, reportData);
+                rowData.Add(itemrow1Name);
+                if (_posConfig[3] != null)
+                {
+                    for (int s = 0; s < cntCol; s++)
+                    {
+                        rowData.Add(" ");
+                    }
+                    cntRow++;
+                    foreach (var itemrow11 in _posConfig[3].Parameters)
+                    {
+                        string itemrow11Name = GetItemName(type3, itemrow11, reportData);
+                        rowData.Add("    " + itemrow11Name);
+                        
+                        foreach (var itemcol1 in _posConfig[0].Parameters)
+                        {
+                            string itemcol1Name = GetItemName(type0, itemcol1, reportData);
+                            if (_posConfig[1] != null)
+                            {
+                                foreach (var itemcol11 in _posConfig[1].Parameters)
+                                {
+                                    string itemcol11Name = GetItemName(type1, itemcol11, reportData);
+                                    rowData.Add(results[Tuple.Create(itemcol1Name, itemcol11Name, itemrow1Name, itemrow11Name)]);
+                                }
+                                
+                            }
+                            else
+                            {
+                                rowData.Add(results[Tuple.Create(itemcol1Name, string.Empty, itemrow1Name, itemrow11Name)]);
+                            }
+                        }
+                        cntRow++;
+                    }
+                }
+                else
+                {
+                    foreach (var itemcol1 in _posConfig[0].Parameters)
+                    {
+                        string itemcol1Name = GetItemName(type0, itemcol1, reportData);
+                        if (_posConfig[1] != null)
+                        {
+                            foreach (var itemcol11 in _posConfig[1].Parameters)
+                            {
+                                string itemcol11Name = GetItemName(type1, itemcol11, reportData);
+                                rowData.Add(results[Tuple.Create(itemcol1Name, itemcol11Name, itemrow1Name, string.Empty)]);
+                            }
+
+                        }
+                        else
+                        {
+                            rowData.Add(results[Tuple.Create(itemcol1Name, string.Empty, itemrow1Name, string.Empty)]);
+                        }
+                    }
+                    cntRow++;
+                }
+            }
+
             #endregion
 
             var resultTable = new TableDefinition
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
-                NbRows = cntRow + 1,
+                NbRows = cntRow,
                 NbColumns = cntCol + 1,
                 Data = rowData
             };
             return resultTable;
 
+        }
+
+
+        protected string GetItemName(string type, string item, ReportData reportData)
+        {
+            // snapshots, metrics, modules, technologies, violations, critical_violations
+            switch (type)
+            {
+                case "SNAPSHOTS":
+                    Snapshot _snapshot = null;
+                    switch (item)
+                    {
+                        case "CURRENT":
+                            _snapshot = reportData.CurrentSnapshot;
+                            break;
+                        case "PREVIOUS":
+                            _snapshot = reportData.PreviousSnapshot;
+                            break;
+                    }
+                    return _snapshot?.Name + " - " + _snapshot?.Annotation.Version;
+                case "METRICS":
+                    break;
+                case "MODULES":
+                    break;
+                case "TECHNOLOGIES":
+                    break;
+                case "VIOLATIONS":
+                    switch (item)
+                    {
+                        case "ADDED":
+                            break;
+                        case "REMOVED":
+                            break;
+                        case "TOTAL":
+                            break;
+                    }
+                    break;
+                case "CRITICAL_VIOLATIONS":
+                    switch (item)
+                    {
+                        case "ADDED":
+                            break;
+                        case "REMOVED":
+                            break;
+                        case "TOTAL":
+                            break;
+                    }
+                    break;
+            }
+            return item;
         }
     }
 }
