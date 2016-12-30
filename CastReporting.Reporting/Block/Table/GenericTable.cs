@@ -196,7 +196,7 @@ namespace CastReporting.Reporting.Block.Table
                                     case "ADDED":
                                         value = stat?.AddedViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
-                                    case "DELETED":
+                                    case "REMOVED":
                                         value = stat?.RemovedViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     default:
@@ -225,7 +225,7 @@ namespace CastReporting.Reporting.Block.Table
                                     case "ADDED":
                                         value = stat?.AddedCriticalViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
-                                    case "DELETED":
+                                    case "REMOVED":
                                         value = stat?.RemovedCriticalViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     default:
@@ -405,7 +405,7 @@ namespace CastReporting.Reporting.Block.Table
                 rowData.Add(itemrow1Name);
                 if (_posConfig[3] != null)
                 {
-                    for (int s = 1; s < cntCol; s++)
+                    for (int s = 0; s < cntCol; s++)
                     {
                         rowData.Add(" ");
                     }
@@ -413,7 +413,7 @@ namespace CastReporting.Reporting.Block.Table
                     foreach (var itemrow11 in _posConfig[3].Parameters)
                     {
                         string itemrow11Name = GetItemName(type3, itemrow11, reportData);
-                        rowData.Add(itemrow11Name);
+                        rowData.Add("    " + itemrow11Name);
                         
                         foreach (var itemcol1 in _posConfig[0].Parameters)
                         {
@@ -501,7 +501,7 @@ namespace CastReporting.Reporting.Block.Table
                     {
                         case "ADDED":
                             break;
-                        case "DELETED":
+                        case "REMOVED":
                             break;
                         case "TOTAL":
                             break;
@@ -512,7 +512,7 @@ namespace CastReporting.Reporting.Block.Table
                     {
                         case "ADDED":
                             break;
-                        case "DELETED":
+                        case "REMOVED":
                             break;
                         case "TOTAL":
                             break;
