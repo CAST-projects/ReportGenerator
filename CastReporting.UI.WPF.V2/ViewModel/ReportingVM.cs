@@ -637,41 +637,40 @@ namespace CastReporting.UI.WPF.ViewModel
             }
             else
             {
-                List<Application> Apps = new List<Application>();
-                List<Snapshot> Snapshots = new List<Snapshot>();
-                //if (SelectedTag != null)
-                //{
-                //GetActive Connection           
-                ActiveConnection = Setting?.GetActiveConnection();
-
-                //Get list of domains
-                if (_ActiveConnection != null)
-                {
-                    try
-                    {
-                        using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
-                        {
-                            Apps = castDomainBLL.GetCommonTaggedApplications(SelectedTag);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageManager.OnErrorOccured(ex);
-                    }
-                }
-
-
-                if (Apps == null) return;
-                Application[] SelectedApps = Apps.ToArray<Application>();
-
                 const double progressStep = 25; //100 / 4;
                 Stopwatch stopWatchStep = new Stopwatch();
                 Stopwatch stopWatchGlobal = new Stopwatch();
+
+                List<Application> Apps = new List<Application>();
+                List<Snapshot> Snapshots = new List<Snapshot>();
 
                 try
                 {
                     stopWatchGlobal.Start();
                     System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), true);
+
+
+                    //GetActive Connection           
+                    ActiveConnection = Setting?.GetActiveConnection();
+
+                    //Get list of domains
+                    if (_ActiveConnection != null)
+                    {
+                        try
+                        {
+                            using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
+                            {
+                                Apps = castDomainBLL.GetCommonTaggedApplications(SelectedTag);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageManager.OnErrorOccured(ex);
+                        }
+                    }
+
+                    if (Apps == null) return;
+                    Application[] SelectedApps = Apps.ToArray<Application>();
 
                     //Set culture for the new thread
                     if (!string.IsNullOrEmpty(Setting?.ReportingParameter.CultureName))
