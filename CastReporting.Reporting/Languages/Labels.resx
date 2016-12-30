@@ -546,4 +546,22 @@
   <data name="NoSnapshot" xml:space="preserve">
     <value>No snapshot found for this application</value>
   </data>
+  <data name="AddedCriticalViolations" xml:space="preserve">
+    <value>Added Critical Violations</value>
+  </data>
+  <data name="AddedViolations" xml:space="preserve">
+    <value>Added Violations</value>
+  </data>
+  <data name="RemovedCriticalViolations" xml:space="preserve">
+    <value>Removed Critical Violations</value>
+  </data>
+  <data name="RemovedViolations" xml:space="preserve">
+    <value>Removed Violations</value>
+  </data>
+  <data name="TotalCriticalViolations" xml:space="preserve">
+    <value>Total Critical Violations</value>
+  </data>
+  <data name="TotalViolations" xml:space="preserve">
+    <value>Total Violations</value>
+  </data>
 </root>

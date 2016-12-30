@@ -115,6 +115,24 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Added Critical Violations.
+        /// </summary>
+        public static string AddedCriticalViolations {
+            get {
+                return ResourceManager.GetString("AddedCriticalViolations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Added Violations.
+        /// </summary>
+        public static string AddedViolations {
+            get {
+                return ResourceManager.GetString("AddedViolations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application.
         /// </summary>
         public static string Application {
@@ -844,6 +862,24 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Removed Critical Violations.
+        /// </summary>
+        public static string RemovedCriticalViolations {
+            get {
+                return ResourceManager.GetString("RemovedCriticalViolations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removed Violations.
+        /// </summary>
+        public static string RemovedViolations {
+            get {
+                return ResourceManager.GetString("RemovedViolations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Robu..
         /// </summary>
         public static string Robu {
@@ -1096,6 +1132,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Critical Violations.
+        /// </summary>
+        public static string TotalCriticalViolations {
+            get {
+                return ResourceManager.GetString("TotalCriticalViolations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Failed.
         /// </summary>
         public static string TotalFailed {
@@ -1119,6 +1164,15 @@ namespace CastReporting.Reporting.Languages {
         public static string TotalPercent {
             get {
                 return ResourceManager.GetString("TotalPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Violations.
+        /// </summary>
+        public static string TotalViolations {
+            get {
+                return ResourceManager.GetString("TotalViolations", resourceCulture);
             }
         }
         

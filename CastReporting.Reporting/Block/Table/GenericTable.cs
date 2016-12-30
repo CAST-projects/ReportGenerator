@@ -8,6 +8,7 @@ using CastReporting.Domain;
 using CastReporting.Reporting.Helper;
 using System.Linq;
 using CastReporting.Reporting.Languages;
+using CastReporting.BLL.Computing.DTO;
 
 namespace CastReporting.Reporting.Block.Table
 {
@@ -162,41 +163,66 @@ namespace CastReporting.Reporting.Block.Table
             // if snapshotConfiguration contains EVOL_PERCENT and snapshots list contains 2 snapshots get the differential ratio between the snapshots 
             if (modules.Count == 0 && technologies.Count == 0)
             {
-                foreach (Snapshot _snapshot in snapshots)
+                foreach (string _metricId in metrics)
                 {
-                    foreach (string _metricId in metrics)
+                    string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
+
+                    // case grade (quality indicator) or value (sizing measure or background fact)
+                    if (violations.Count == 0 && criticalViolations.Count == 0)
                     {
-                        string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
-
-                        // case grade (quality indicator) or value (sizing measure or background fact)
-                        if (violations.Count == 0 && criticalViolations.Count == 0)
+                        EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true);
+                        if (positionSnapshots == -1) continue; // TODO : case when snapshot is implicit
+                        foreach (string param in snapshotConfiguration)
                         {
-                            string value = MetricsUtility.GetMetricResult(reportData, _snapshot, _metricId);
-                            if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
-                            _posResults[positionMetrics] = _metricId;
-                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]),value);
+                            _posResults[positionMetrics] = res.name;
+                            switch (param)
+                            {
+                                case "CURRENT":
+                                    _posResults[positionSnapshots] = reportData.CurrentSnapshot.Name + " - " + reportData.CurrentSnapshot.Annotation.Version;
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
+                                    break;
+                                case "PREVIOUS":
+                                    _posResults[positionSnapshots] = reportData.PreviousSnapshot.Name + " - " + reportData.PreviousSnapshot.Annotation.Version;
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
+                                    break;
+                                case "EVOL":
+                                    _posResults[positionSnapshots] = Labels.Evolution;
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
+                                    break;
+                                case "EVOL_PERCENT":
+                                    _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
                         }
+                    }
 
-                        // case violations
-                        if (violations.Count != 0 && criticalViolations.Count == 0)
+                    // case violations
+                    if (violations.Count != 0 && criticalViolations.Count == 0)
+                    {
+                        foreach (Snapshot _snapshot in snapshots)
                         {
                             // _metricId should be a quality indicator, if not, return null
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
-                            _posResults[positionMetrics] = _metricId;
+                            _posResults[positionMetrics] = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
                             ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(_snapshot, int.Parse(_metricId));
                             foreach (string _violation in violations)
                             {
-                                _posResults[positionViolations] = _violation;
                                 string value;
                                 switch (_violation)
                                 {
                                     case "TOTAL":
+                                        _posResults[positionViolations] = Labels.TotalViolations;
                                         value = stat?.TotalViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     case "ADDED":
+                                        _posResults[positionViolations] = Labels.AddedViolations;
                                         value = stat?.AddedViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     case "REMOVED":
+                                        _posResults[positionViolations] = Labels.RemovedViolations;
                                         value = stat?.RemovedViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     default:
@@ -205,27 +231,32 @@ namespace CastReporting.Reporting.Block.Table
                                 results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
                             }
                         }
+                    }
 
-                        // case critical violations
-                        if (violations.Count == 0 && criticalViolations.Count != 0)
+                    // case critical violations
+                    if (violations.Count == 0 && criticalViolations.Count != 0)
+                    {
+                        foreach (Snapshot _snapshot in snapshots)
                         {
                             // _metricId should be a quality indicator, if not, return null
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
-                            _posResults[positionMetrics] = _metricId;
+                            _posResults[positionMetrics] = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
                             ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(_snapshot, int.Parse(_metricId));
                             foreach (string _violation in criticalViolations)
                             {
-                                _posResults[positionCriticalViolations] = _violation;
                                 string value;
                                 switch (_violation)
                                 {
                                     case "TOTAL":
+                                        _posResults[positionCriticalViolations] = Labels.TotalCriticalViolations;
                                         value = stat?.TotalCriticalViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     case "ADDED":
+                                        _posResults[positionCriticalViolations] = Labels.AddedCriticalViolations;
                                         value = stat?.AddedCriticalViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     case "REMOVED":
+                                        _posResults[positionCriticalViolations] = Labels.RemovedCriticalViolations;
                                         value = stat?.RemovedCriticalViolations?.ToString("N0") ?? Constants.No_Value;
                                         break;
                                     default:
@@ -234,12 +265,12 @@ namespace CastReporting.Reporting.Block.Table
                                 results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
                             }
                         }
+                    }
 
-                        // functionnaly impossible case
-                        if (violations.Count != 0 && criticalViolations.Count != 0)
-                        {
-                            return null;
-                        }
+                    // functionnaly impossible case
+                    if (violations.Count != 0 && criticalViolations.Count != 0)
+                    {
+                        return null;
                     }
                 }
             }
@@ -483,15 +514,19 @@ namespace CastReporting.Reporting.Block.Table
                     switch (item)
                     {
                         case "CURRENT":
-                            _snapshot = reportData.CurrentSnapshot;
-                            break;
+                            return reportData.CurrentSnapshot?.Name + " - " + reportData.CurrentSnapshot?.Annotation.Version;
                         case "PREVIOUS":
-                            _snapshot = reportData.PreviousSnapshot;
-                            break;
+                            return reportData.PreviousSnapshot?.Name + " - " + reportData.PreviousSnapshot?.Annotation.Version;
+                        case "EVOL":
+                            return Labels.Evolution;
+                        case "EVOL_PERCENT":
+                            return Labels.EvolutionPercent;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
-                    return _snapshot?.Name + " - " + _snapshot?.Annotation.Version;
+                    
                 case "METRICS":
-                    break;
+                    return MetricsUtility.GetMetricName(reportData, reportData.CurrentSnapshot, item) ?? Constants.No_Value;
                 case "MODULES":
                     break;
                 case "TECHNOLOGIES":
@@ -500,24 +535,28 @@ namespace CastReporting.Reporting.Block.Table
                     switch (item)
                     {
                         case "ADDED":
-                            break;
+                            return Labels.AddedViolations;
                         case "REMOVED":
-                            break;
+                            return Labels.RemovedViolations;
                         case "TOTAL":
-                            break;
+                            return Labels.TotalViolations;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
-                    break;
                 case "CRITICAL_VIOLATIONS":
                     switch (item)
                     {
                         case "ADDED":
-                            break;
+                            return Labels.AddedCriticalViolations;
                         case "REMOVED":
-                            break;
+                            return Labels.RemovedCriticalViolations;
                         case "TOTAL":
-                            break;
+                            return Labels.TotalCriticalViolations;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
-                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             return item;
         }

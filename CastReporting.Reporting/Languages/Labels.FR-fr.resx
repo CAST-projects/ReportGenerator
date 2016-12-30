@@ -546,4 +546,22 @@
   <data name="Technology" xml:space="preserve">
     <value>Technology</value>
   </data>
+  <data name="AddedCriticalViolations" xml:space="preserve">
+    <value>Non-conformitées critiques ajoutées</value>
+  </data>
+  <data name="AddedViolations" xml:space="preserve">
+    <value>Non-conformités ajoutées</value>
+  </data>
+  <data name="RemovedCriticalViolations" xml:space="preserve">
+    <value>Non-conformités critiques supprimées</value>
+  </data>
+  <data name="RemovedViolations" xml:space="preserve">
+    <value>Non-conformités supprimées</value>
+  </data>
+  <data name="TotalCriticalViolations" xml:space="preserve">
+    <value>Non-conformités critiques</value>
+  </data>
+  <data name="TotalViolations" xml:space="preserve">
+    <value>Non-conformités</value>
+  </data>
 </root>

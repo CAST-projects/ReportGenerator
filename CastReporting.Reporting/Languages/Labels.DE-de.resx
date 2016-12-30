@@ -546,4 +546,22 @@
   <data name="Technology" xml:space="preserve">
     <value>Technology</value>
   </data>
+  <data name="AddedCriticalViolations" xml:space="preserve">
+    <value>hinzugefügt kritische Verletzungen</value>
+  </data>
+  <data name="AddedViolations" xml:space="preserve">
+    <value>hinzugefügt Verletzungen</value>
+  </data>
+  <data name="RemovedCriticalViolations" xml:space="preserve">
+    <value>entfernt kritischen Verletzungen</value>
+  </data>
+  <data name="RemovedViolations" xml:space="preserve">
+    <value>entfernt Verletzungen</value>
+  </data>
+  <data name="TotalCriticalViolations" xml:space="preserve">
+    <value>Kritische Verletzungen</value>
+  </data>
+  <data name="TotalViolations" xml:space="preserve">
+    <value>Verletzungen</value>
+  </data>
 </root>

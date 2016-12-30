@@ -2,8 +2,8 @@
 using CastReporting.Domain;
 using System;
 using System.Linq;
-using CastReporting.BLL.Computing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Helper;
 
 namespace CastReporting.Reporting
 {
@@ -104,8 +104,8 @@ namespace CastReporting.Reporting
             EvolutionResult curResult = null;
             EvolutionResult prevResult = null;
             if (curSnapshot != null) curResult = GetMetricNameAndResult(reportData, curSnapshot, metricId);
-            if (prevSnapshot != null) prevResult = GetMetricNameAndResult(reportData, curSnapshot, metricId);
-            if (evol && (curResult?.curResult == null || prevResult?.curResult == null))
+            if (prevSnapshot != null) prevResult = GetMetricNameAndResult(reportData, prevSnapshot, metricId);
+            if (!evol && (curResult?.curResult != null || prevResult?.curResult != null))
             {
                 return new EvolutionResult
                 {
@@ -118,11 +118,12 @@ namespace CastReporting.Reporting
                 };
             }
 
-            if (!evol || curResult.curResult == null || prevResult.curResult == null) return null;
+            if (curResult?.curResult == null || prevResult?.curResult == null) return null;
 
             string evolution;
             string evolPercent;
-            switch (curResult.type)
+            double? evp;
+            switch (curResult?.type)
             {
                 case metricType.BusinessCriteria:
                 case metricType.TechnicalCriteria:
@@ -130,14 +131,16 @@ namespace CastReporting.Reporting
                     double? curValueD = double.Parse(curResult.curResult);
                     double? prevValueD = double.Parse(prevResult.curResult);
                     evolution = (curValueD - prevValueD).Value.ToString("N2");
-                    evolPercent = Math.Abs((double)prevValueD) > 0.0 ?  ((curValueD - prevValueD) /prevValueD).Value.ToString("N2") : Constants.No_Value;
+                    evp = Math.Abs((double) prevValueD) > 0.0 ? (curValueD - prevValueD)/prevValueD : null;
+                    evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
                     break;
                 case metricType.SizingMeasure:
                 case metricType.BackgroundFact:
                     int? curValueI = int.Parse(curResult.curResult);
                     int? prevValueI = int.Parse(prevResult.curResult);
                     evolution = (curValueI - prevValueI).Value.ToString("N0") ?? Constants.No_Value;
-                    evolPercent = prevValueI != 0 ? ((curValueI - prevValueI) / prevValueI).Value.ToString("N2") : Constants.No_Value;
+                    evp = prevValueI != 0 ? (curValueI - prevValueI)/prevValueI : null;
+                    evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
                     break;
                 case metricType.NotKnown:
                     evolution = Constants.No_Value;
