@@ -240,19 +240,35 @@ namespace CastReporting.Reporting
                 case metricType.BusinessCriteria:
                 case metricType.TechnicalCriteria:
                 case metricType.QualityRule:
-                    double? curValueD = double.Parse(curResult.curResult);
-                    double? prevValueD = double.Parse(prevResult.curResult);
-                    evolution = (curValueD - prevValueD).Value.ToString("N2");
-                    evp = Math.Abs((double) prevValueD) > 0.0 ? (curValueD - prevValueD)/prevValueD : null;
-                    evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
+                    if (curResult.curResult != Constants.No_Value && prevResult.curResult != Constants.No_Value)
+                    {
+                        double? curValueD = double.Parse(curResult.curResult);
+                        double? prevValueD = double.Parse(prevResult.curResult);
+                        evolution = (curValueD - prevValueD).Value.ToString("N2");
+                        evp = Math.Abs((double)prevValueD) > 0.0 ? (curValueD - prevValueD) / prevValueD : null;
+                        evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
+                    }
+                    else
+                    {
+                        evolution = Constants.No_Value;
+                        evolPercent = Constants.No_Value;
+                    }
                     break;
                 case metricType.SizingMeasure:
                 case metricType.BackgroundFact:
-                    int? curValueI = int.Parse(curResult.curResult);
-                    int? prevValueI = int.Parse(prevResult.curResult);
-                    evolution = (curValueI - prevValueI).Value.ToString("N0") ?? Constants.No_Value;
-                    evp = prevValueI != 0 ? (curValueI - prevValueI)/prevValueI : null;
-                    evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
+                    if (curResult.curResult != Constants.No_Value && prevResult.curResult != Constants.No_Value)
+                    {
+                        int? curValueI = int.Parse(curResult.curResult);
+                        int? prevValueI = int.Parse(prevResult.curResult);
+                        evolution = (curValueI - prevValueI).Value.ToString("N0") ?? Constants.No_Value;
+                        evp = prevValueI != 0 ? (curValueI - prevValueI)/prevValueI : null;
+                        evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
+                    }
+                    else
+                    {
+                        evolution = Constants.No_Value;
+                        evolPercent = Constants.No_Value;
+                    }
                     break;
                 case metricType.NotKnown:
                     evolution = Constants.No_Value;
