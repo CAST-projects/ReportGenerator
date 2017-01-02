@@ -75,7 +75,7 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                     case "METRICS":
                         if (_posConfig[i].Parameters.Length == 0) return null;
-                        metrics.AddRange(_posConfig[i].Parameters);
+                        metrics.AddRange(_posConfig[i].Parameters); // TODO : manage special cases to define, for example, METRICS=HEALTH_FACTORS
                         positionMetrics = i;
                         break;
                     case "MODULES":
@@ -89,20 +89,29 @@ namespace CastReporting.Reporting.Block.Table
                                 {
                                     foreach (Module module in reportData.PreviousSnapshot.Modules)
                                     {
-                                        if (!modules.Contains(module)) modules.Add(module);
+                                        string name = modules.FirstOrDefault(_ => _.Id == module.Id).Name;
+                                        if (name == null) modules.Add(module);
                                     }
                                 }
+                                string[] paramModules = new string[modules.Count];
+                                for (int j = 0; j < modules.Count; j++)
+                                {
+                                    paramModules[j] = modules[j].Name;
+                                }
+                                _posConfig[i].Parameters = paramModules;
                             }
                             else
                             {
-                                if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null) modules.AddRange(reportData.CurrentSnapshot.Modules.Where(_ => _posConfig[i].Parameters.Contains(_.Id.ToString())));
-                                if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null)
+                                if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null)
                                 {
-                                    foreach (Module module in reportData.PreviousSnapshot.Modules)
-                                    {
-                                        if (!modules.Contains(module)) modules.Add(module);
-                                    }
+                                    modules.AddRange(reportData.CurrentSnapshot.Modules.Where(_ => _posConfig[i].Parameters.Contains(_.Id.ToString())));
                                 }
+                                string[] paramModules = new string[modules.Count];
+                                for (int j = 0; j < modules.Count; j++)
+                                {
+                                    paramModules[j] = modules[j].Name;
+                                }
+                                _posConfig[i].Parameters = paramModules;
                             }
                         }
                         break;
@@ -120,16 +129,18 @@ namespace CastReporting.Reporting.Block.Table
                                         if (!technologies.Contains(technology)) technologies.Add(technology);
                                     }
                                 }
+                                string[] paramTechnos = new string[technologies.Count];
+                                for (int j = 0; j < technologies.Count; j++)
+                                {
+                                    paramTechnos[j] = technologies[j];
+                                }
+                                _posConfig[i].Parameters = paramTechnos;
                             }
                             else
                             {
-                                if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null) technologies.AddRange(reportData.CurrentSnapshot.Technologies.Where(_ => _posConfig[i].Parameters.Contains(_)));
-                                if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null)
+                                if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null)
                                 {
-                                    foreach (string technology in reportData.PreviousSnapshot.Technologies)
-                                    {
-                                        if (!technologies.Contains(technology)) technologies.Add(technology);
-                                    }
+                                    technologies.AddRange(reportData.CurrentSnapshot.Technologies.Where(_ => _posConfig[i].Parameters.Contains(_)));
                                 }
                             }
                         }
@@ -163,18 +174,18 @@ namespace CastReporting.Reporting.Block.Table
             // if snapshotConfiguration contains EVOL_PERCENT and snapshots list contains 2 snapshots get the differential ratio between the snapshots 
             if (modules.Count == 0 && technologies.Count == 0)
             {
-                foreach (string _metricId in metrics)
-                {
-                    string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
+                string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
 
                     // case grade (quality indicator) or value (sizing measure or background fact)
-                    if (violations.Count == 0 && criticalViolations.Count == 0)
+                if (violations.Count == 0 && criticalViolations.Count == 0)
+                {
+                    foreach (string _metricId in metrics)
                     {
-                        EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true);
-                        if (positionSnapshots == -1) continue; // TODO : case when snapshot is implicit
+                        EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, null, string.Empty);
+                        if (positionSnapshots == -1) continue; // TODO : case when snapshot is implicit, is it a real case when only application resutls to display ?
+                        _posResults[positionMetrics] = res.name;
                         foreach (string param in snapshotConfiguration)
                         {
-                            _posResults[positionMetrics] = res.name;
                             switch (param)
                             {
                                 case "CURRENT":
@@ -198,9 +209,12 @@ namespace CastReporting.Reporting.Block.Table
                             }
                         }
                     }
+                }
 
-                    // case violations
-                    if (violations.Count != 0 && criticalViolations.Count == 0)
+                // case violations
+                if (violations.Count != 0 && criticalViolations.Count == 0)
+                {
+                    foreach (string _metricId in metrics)
                     {
                         foreach (Snapshot _snapshot in snapshots)
                         {
@@ -232,9 +246,12 @@ namespace CastReporting.Reporting.Block.Table
                             }
                         }
                     }
+                }
 
-                    // case critical violations
-                    if (violations.Count == 0 && criticalViolations.Count != 0)
+                // case critical violations
+                if (violations.Count == 0 && criticalViolations.Count != 0)
+                {
+                    foreach (string _metricId in metrics)
                     {
                         foreach (Snapshot _snapshot in snapshots)
                         {
@@ -266,13 +283,14 @@ namespace CastReporting.Reporting.Block.Table
                             }
                         }
                     }
-
-                    // functionnaly impossible case
-                    if (violations.Count != 0 && criticalViolations.Count != 0)
-                    {
-                        return null;
-                    }
                 }
+
+                // functionnaly impossible case
+                if (violations.Count != 0 && criticalViolations.Count != 0)
+                {
+                    return null;
+                }
+
             }
             #endregion
 
@@ -280,36 +298,138 @@ namespace CastReporting.Reporting.Block.Table
             // case modules : no technologies
             if (modules.Count != 0 && technologies.Count == 0)
             {
-                foreach (Snapshot _snapshot in snapshots)
+                string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
+                // case grade
+                if (violations.Count == 0 && criticalViolations.Count == 0)
                 {
                     foreach (string _metricId in metrics)
                     {
-                        // case grade
-                        if (violations.Count == 0 && criticalViolations.Count == 0)
+                        if (positionSnapshots == -1) continue; // TODO : case when snapshot is implicit, is it a real case when only application resutls to display ?
+                        foreach (Module module in modules)
                         {
-
-                        }
-
-                        // case violations
-                        if (violations.Count != 0 && criticalViolations.Count == 0)
-                        {
-                            // _metricId should be a quality indicator, if not, return null
-
-                        }
-
-                        // case critical violations
-                        if (violations.Count == 0 && criticalViolations.Count != 0)
-                        {
-                            // _metricId should be a quality indicator, if not, return null
-                        }
-
-                        // functionnaly impossible case
-                        if (violations.Count != 0 && criticalViolations.Count != 0)
-                        {
-                            return null;
+                            _posResults[positionModules] = module.Name;
+                            EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, module, string.Empty);
+                            _posResults[positionMetrics] = res.name;
+                            foreach (string param in snapshotConfiguration)
+                            {
+                                switch (param)
+                                {
+                                    case "CURRENT":
+                                        _posResults[positionSnapshots] = reportData.CurrentSnapshot.Name + " - " + reportData.CurrentSnapshot.Annotation.Version;
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
+                                        break;
+                                    case "PREVIOUS":
+                                        _posResults[positionSnapshots] = reportData.PreviousSnapshot.Name + " - " + reportData.PreviousSnapshot.Annotation.Version;
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
+                                        break;
+                                    case "EVOL":
+                                        _posResults[positionSnapshots] = Labels.Evolution;
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
+                                        break;
+                                    case "EVOL_PERCENT":
+                                        _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
+                                        break;
+                                    default:
+                                        throw new ArgumentOutOfRangeException();
+                                }
+                            }
                         }
                     }
                 }
+
+                // case violations
+                if (violations.Count != 0 && criticalViolations.Count == 0)
+                {
+                    // _metricId should be a quality indicator, if not, return null
+                    foreach (string _metricId in metrics)
+                    {
+                        foreach (Snapshot _snapshot in snapshots)
+                        {
+                            // _metricId should be a quality indicator, if not, return null
+                            if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
+                            _posResults[positionMetrics] = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            foreach (Module _module in modules)
+                            {
+                                _posResults[positionModules] = _module.Name;
+                                ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStatModule(_snapshot, _module.Id, int.Parse(_metricId));
+                                foreach (string _violation in violations)
+                                {
+                                    string value;
+                                    switch (_violation)
+                                    {
+                                        case "TOTAL":
+                                            _posResults[positionViolations] = Labels.TotalViolations;
+                                            value = stat?.TotalViolations?.ToString("N0") ?? Constants.No_Value;
+                                            break;
+                                        case "ADDED":
+                                            _posResults[positionViolations] = Labels.AddedViolations;
+                                            value = stat?.AddedViolations?.ToString("N0") ?? Constants.No_Value;
+                                            break;
+                                        case "REMOVED":
+                                            _posResults[positionViolations] = Labels.RemovedViolations;
+                                            value = stat?.RemovedViolations?.ToString("N0") ?? Constants.No_Value;
+                                            break;
+                                        default:
+                                            throw new ArgumentOutOfRangeException();
+                                    }
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                }
+
+                            }
+                        }
+                    }
+
+                }
+
+                // case critical violations
+                if (violations.Count == 0 && criticalViolations.Count != 0)
+                {
+                    // _metricId should be a quality indicator, if not, return null
+                    foreach (string _metricId in metrics)
+                    {
+                        foreach (Snapshot _snapshot in snapshots)
+                        {
+                            // _metricId should be a quality indicator, if not, return null
+                            if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
+                            _posResults[positionMetrics] = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            foreach (Module _module in modules)
+                            {
+                                _posResults[positionModules] = _module.Name;
+                                ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStatModule(_snapshot, _module.Id, int.Parse(_metricId));
+                                foreach (string _violation in criticalViolations)
+                                {
+                                    string value;
+                                    switch (_violation)
+                                    {
+                                        case "TOTAL":
+                                            _posResults[positionCriticalViolations] = Labels.TotalCriticalViolations;
+                                            value = stat?.TotalCriticalViolations?.ToString("N0") ?? Constants.No_Value;
+                                            break;
+                                        case "ADDED":
+                                            _posResults[positionCriticalViolations] = Labels.AddedCriticalViolations;
+                                            value = stat?.AddedCriticalViolations?.ToString("N0") ?? Constants.No_Value;
+                                            break;
+                                        case "REMOVED":
+                                            _posResults[positionCriticalViolations] = Labels.RemovedCriticalViolations;
+                                            value = stat?.RemovedCriticalViolations?.ToString("N0") ?? Constants.No_Value;
+                                            break;
+                                        default:
+                                            throw new ArgumentOutOfRangeException();
+                                    }
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // functionnaly impossible case
+                if (violations.Count != 0 && criticalViolations.Count != 0)
+                {
+                    return null;
+                }
+
             }
             #endregion
 
@@ -317,35 +437,39 @@ namespace CastReporting.Reporting.Block.Table
             // case technologies : no modules
             if (modules.Count == 0 && technologies.Count != 0)
             {
-                foreach (Snapshot _snapshot in snapshots)
+                // case grade
+                if (violations.Count == 0 && criticalViolations.Count == 0)
                 {
                     foreach (string _metricId in metrics)
                     {
-                        // case grade
-                        if (violations.Count == 0 && criticalViolations.Count == 0)
-                        {
 
-                        }
-
-                        // case violations
-                        if (violations.Count != 0 && criticalViolations.Count == 0)
-                        {
-                            // _metricId should be a quality indicator, if not, return null
-
-                        }
-
-                        // case critical violations
-                        if (violations.Count == 0 && criticalViolations.Count != 0)
-                        {
-                            // _metricId should be a quality indicator, if not, return null
-                        }
-
-                        // functionnaly impossible case
-                        if (violations.Count != 0 && criticalViolations.Count != 0)
-                        {
-                            return null;
-                        }
                     }
+                }
+
+                // case violations
+                if (violations.Count != 0 && criticalViolations.Count == 0)
+                {
+                    // _metricId should be a quality indicator, if not, return null
+                    foreach (string _metricId in metrics)
+                    {
+
+                    }
+                }
+
+                // case critical violations
+                if (violations.Count == 0 && criticalViolations.Count != 0)
+                {
+                    // _metricId should be a quality indicator, if not, return null
+                    foreach (string _metricId in metrics)
+                    {
+
+                    }
+                }
+
+                // functionnaly impossible case
+                if (violations.Count != 0 && criticalViolations.Count != 0)
+                {
+                    return null;
                 }
             }
             #endregion
@@ -355,38 +479,35 @@ namespace CastReporting.Reporting.Block.Table
             // case modules and technologies
             if (modules.Count != 0 && technologies.Count != 0)
             {
-                foreach (Snapshot _snapshot in snapshots)
+                foreach (string _metricId in metrics)
                 {
-                    foreach (string _metricId in metrics)
+                    // case grade
+                    if (violations.Count == 0 && criticalViolations.Count == 0)
                     {
-                        // case grade
-                        if (violations.Count == 0 && criticalViolations.Count == 0)
-                        {
 
-                        }
+                    }
 
-                        // case violations
-                        if (violations.Count != 0 && criticalViolations.Count == 0)
-                        {
-                            // _metricId should be a quality indicator, if not, return null
+                    // case violations
+                    if (violations.Count != 0 && criticalViolations.Count == 0)
+                    {
+                        // _metricId should be a quality indicator, if not, return null
 
-                        }
+                    }
 
-                        // case critical violations
-                        if (violations.Count == 0 && criticalViolations.Count != 0)
-                        {
-                            // _metricId should be a quality indicator, if not, return null
-                        }
+                    // case critical violations
+                    if (violations.Count == 0 && criticalViolations.Count != 0)
+                    {
+                        // _metricId should be a quality indicator, if not, return null
+                    }
 
-                        // functionnaly impossible case
-                        if (violations.Count != 0 && criticalViolations.Count != 0)
-                        {
-                            return null;
-                        }
+                    // functionnaly impossible case
+                    if (violations.Count != 0 && criticalViolations.Count != 0)
+                    {
+                        return null;
                     }
                 }
             }
-            #endregion            
+            #endregion
 
             #endregion
 
@@ -400,21 +521,21 @@ namespace CastReporting.Reporting.Block.Table
              * -------- itemcol1.name - itemcol11.name (2)
              * - foreach itemrow1 in row1
              * ---- itemrow1.name (2)
-             * ---- foreach itemrow11 in row11 (if row11 not null)
+             * ---- if row11 not null
              * -------- add as much spaces than number of column minus one
-             * -------- '    ' + itemrow11.name (2)
-             * -------- then or if row11 is null same process
-             * -------- foreach itemcol1 in col1
-             * ------------ foreach itemcol11 in col11 (if col11 not null)
-             * ----------------- results[Tuple.Create(itemcol1, itemcol11, itemrow1, itemrow11)] (3)
+             * -------- foreach itemrow11 in row11 (if row11 not null)
+             * ------------ '    ' + itemrow11.name (2)
+             * ------------ then or if row11 is null same process
+             * ------------ foreach itemcol1 in col1
+             * ---------------- foreach itemcol11 in col11 (if col11 not null)
+             * -------------------- results[Tuple.Create(itemcol1, itemcol11, itemrow1, itemrow11)] (3)
              * if col11 is null replace itemcol11 by "", idem for itemrow11 if row11 is null
-             * 
              * 
              * (1) create a function get type name, switching in the different possibilities : SNAPSHOTS, METRICS, MODULES, TECHNOLOGIES, VIOLATIONS, CRITICAL_VIOLATIONS, to get a proper name by language
              * (2) here we have to reconstitute the name depending on the type and the value
              * (3) be careful, the item should correspond to those that have been used to save the data, depending on the type, perhaps use the name and change the _metricId by the metric name lines 173, 184, 213
              */
-             
+
             rowData.Add(type2);
             foreach (var itemcol1 in _posConfig[0].Parameters)
             {
@@ -510,7 +631,6 @@ namespace CastReporting.Reporting.Block.Table
             switch (type)
             {
                 case "SNAPSHOTS":
-                    Snapshot _snapshot = null;
                     switch (item)
                     {
                         case "CURRENT":
@@ -528,9 +648,9 @@ namespace CastReporting.Reporting.Block.Table
                 case "METRICS":
                     return MetricsUtility.GetMetricName(reportData, reportData.CurrentSnapshot, item) ?? Constants.No_Value;
                 case "MODULES":
-                    break;
+                    return item;
                 case "TECHNOLOGIES":
-                    break;
+                    return item;
                 case "VIOLATIONS":
                     switch (item)
                     {
