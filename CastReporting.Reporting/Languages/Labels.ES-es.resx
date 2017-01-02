@@ -544,6 +544,39 @@
     <value>Object Name</value>
   </data>
   <data name="Technology" xml:space="preserve">
-    <value>Technology</value>
+    <value>Technologia</value>
+  </data>
+  <data name="AddedCriticalViolations" xml:space="preserve">
+    <value>Violaciones críticos añadidos</value>
+  </data>
+  <data name="AddedViolations" xml:space="preserve">
+    <value>Violaciones añadidos</value>
+  </data>
+  <data name="RemovedCriticalViolations" xml:space="preserve">
+    <value>Violaciónes críticos eliminados</value>
+  </data>
+  <data name="RemovedViolations" xml:space="preserve">
+    <value>Violaciones eliminados</value>
+  </data>
+  <data name="TotalCriticalViolations" xml:space="preserve">
+    <value>Violaciónes críticos</value>
+  </data>
+  <data name="TotalViolations" xml:space="preserve">
+    <value>Violaciónes</value>
+  </data>
+  <data name="Metrics" xml:space="preserve">
+    <value>Métrica</value>
+  </data>
+  <data name="Modules" xml:space="preserve">
+    <value>Módulos</value>
+  </data>
+  <data name="Snapshots" xml:space="preserve">
+    <value>Instantáneas</value>
+  </data>
+  <data name="Technologies" xml:space="preserve">
+    <value>Tecnologías</value>
+  </data>
+  <data name="Violations" xml:space="preserve">
+    <value>Violaciones</value>
   </data>
 </root>

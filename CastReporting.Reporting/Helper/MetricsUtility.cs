@@ -2,8 +2,8 @@
 using CastReporting.Domain;
 using System;
 using System.Linq;
-using CastReporting.BLL.Computing;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Reporting.Helper;
 
 namespace CastReporting.Reporting
 {
@@ -35,11 +35,11 @@ namespace CastReporting.Reporting
             return result;
         }
 
-        public static EvolutionResult GetMetricNameAndResult(ReportData reportData, Snapshot snapshot, string metricId)
+        public static EvolutionResult GetMetricNameAndResult(ReportData reportData, Snapshot snapshot, string metricId, Module module, string technology)
         {
             metricType type = metricType.NotKnown;
             Result bfResult = null;
-            string result;
+            string result = Constants.No_Value;
 
             string name = snapshot.BusinessCriteriaResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault();
             if ( name != null) type = metricType.BusinessCriteria;
@@ -75,22 +75,134 @@ namespace CastReporting.Reporting
             switch (type)
             {
                 case metricType.BusinessCriteria:
-                    result = snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.DetailResult.Grade).FirstOrDefault()?.ToString("N2") ?? Constants.No_Value;
+                    if (module == null && technology == string.Empty)
+                    {
+                        result = snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId))
+                            .Select(_ => _.DetailResult.Grade).FirstOrDefault()?.ToString("N2") ?? Constants.No_Value;
+                    }
+                    else if (module != null && technology == string.Empty)
+                    {
+                        result = snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
+                            .SelectMany(_ => _.ModulesResult)
+                            .FirstOrDefault(_ => _.Module.Id == module.Id && _.DetailResult != null)?.DetailResult.Grade?.ToString("N2") ?? Constants.No_Value;
+                    }
+                    else if (module == null && technology != string.Empty)
+                    {
+                        result = snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.TechnologyResult != null)
+                            .SelectMany(_ => _.TechnologyResult)
+                            .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Grade?.ToString("N2") ?? Constants.No_Value;
+                    }
+                    else if (module != null && technology != string.Empty)
+                    {
+                        result = snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
+                            .SelectMany(_ => _.ModulesResult)
+                            .FirstOrDefault(_ => _.Module.Id == module.Id && _.TechnologyResults != null)?.TechnologyResults
+                            .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null )?.DetailResult.Grade?.ToString("N2") ?? Constants.No_Value;
+                    }
                     break;
                 case metricType.TechnicalCriteria:
-                    result = snapshot.TechnicalCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.DetailResult.Grade).FirstOrDefault()?.ToString("N2") ?? Constants.No_Value;
+                    if (module == null && technology == string.Empty)
+                    {
+                        result = snapshot.TechnicalCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId))
+                                     .Select(_ => _.DetailResult.Grade).FirstOrDefault()?.ToString("N2") ?? Constants.No_Value;
+                    }
+                    else if (module != null && technology == string.Empty)
+                    {
+                        result = snapshot.TechnicalCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
+                            .SelectMany(_ => _.ModulesResult)
+                            .FirstOrDefault(_ => _.Module.Id == module.Id && _.DetailResult != null)?.DetailResult.Grade?.ToString("N2") ?? Constants.No_Value;
+                    }
+                    else if (module == null && technology != string.Empty)
+                    {
+                        result = snapshot.TechnicalCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.TechnologyResult != null)
+                            .SelectMany(_ => _.TechnologyResult)
+                            .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Grade?.ToString("N2") ?? Constants.No_Value;
+                    }
+                    else if (module != null && technology != string.Empty)
+                    {
+                        result = snapshot.TechnicalCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
+                            .SelectMany(_ => _.ModulesResult)
+                            .FirstOrDefault(_ => _.Module.Id == module.Id && _.TechnologyResults != null)?.TechnologyResults
+                            .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Grade?.ToString("N2") ?? Constants.No_Value;
+                    }
                     break;
                 case metricType.QualityRule:
-                    result = snapshot.QualityRulesResults?.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.DetailResult.Grade).FirstOrDefault()?.ToString("N2") ?? Constants.No_Value;
+                    if (module == null && technology == string.Empty)
+                    {
+                        result = snapshot.QualityRulesResults?.Where(_ => _.Reference.Key == int.Parse(metricId))
+                            .Select(_ => _.DetailResult.Grade).FirstOrDefault()?.ToString("N2") ?? Constants.No_Value;
+                    }
+                    else if (module != null && technology == string.Empty)
+                    {
+                        result = snapshot.QualityRulesResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
+                            .SelectMany(_ => _.ModulesResult)
+                            .FirstOrDefault(_ => _.Module.Id == module.Id && _.DetailResult != null)?.DetailResult.Grade?.ToString("N2") ?? Constants.No_Value;
+                    }
+                    else if (module == null && technology != string.Empty)
+                    {
+                        result = snapshot.QualityRulesResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.TechnologyResult != null)
+                            .SelectMany(_ => _.TechnologyResult)
+                            .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Grade?.ToString("N2") ?? Constants.No_Value;
+                    }
+                    else if (module != null && technology != string.Empty)
+                    {
+                        result = snapshot.QualityRulesResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
+                            .SelectMany(_ => _.ModulesResult)
+                            .FirstOrDefault(_ => _.Module.Id == module.Id && _.TechnologyResults != null)?.TechnologyResults
+                            .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Grade?.ToString("N2") ?? Constants.No_Value;
+                    }
                     break;
                 case metricType.SizingMeasure:
-                    result = snapshot.SizingMeasuresResults?.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.DetailResult.Value).FirstOrDefault()?.ToString("N0") ?? Constants.No_Value;
+                    if (module == null && technology == string.Empty)
+                    {
+                        result = snapshot.SizingMeasuresResults?.Where(_ => _.Reference.Key == int.Parse(metricId))
+                            .Select(_ => _.DetailResult.Value).FirstOrDefault()?.ToString("N0") ?? Constants.No_Value;
+                    }
+                    else if (module != null && technology == string.Empty)
+                    {
+                        result = snapshot.SizingMeasuresResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
+                            .SelectMany(_ => _.ModulesResult)
+                            .FirstOrDefault(_ => _.Module.Id == module.Id && _.DetailResult != null)?.DetailResult.Value?.ToString("N0") ?? Constants.No_Value;
+                    }
+                    else if (module == null && technology != string.Empty)
+                    {
+                        result = snapshot.SizingMeasuresResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.TechnologyResult != null)
+                            .SelectMany(_ => _.TechnologyResult)
+                            .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Value?.ToString("N0") ?? Constants.No_Value;
+                    }
+                    else if (module != null && technology != string.Empty)
+                    {
+                        result = snapshot.SizingMeasuresResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
+                            .SelectMany(_ => _.ModulesResult)
+                            .FirstOrDefault(_ => _.Module.Id == module.Id && _.TechnologyResults != null)?.TechnologyResults
+                            .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Value?.ToString("N0") ?? Constants.No_Value;
+                    }
                     break;
                 case metricType.BackgroundFact:
-                    result = bfResult?.ApplicationResults[0].DetailResult.Value?.ToString("N0") ?? Constants.No_Value;
+                    if (module == null && technology == string.Empty)
+                    {
+                        result = bfResult?.ApplicationResults[0].DetailResult.Value?.ToString("N0") ?? Constants.No_Value;
+                    }
+                    else if (module != null && technology == string.Empty)
+                    {
+                        result = bfResult?.ApplicationResults[0].ModulesResult.FirstOrDefault(_ => _.Module.Id == module.Id)?
+                            .DetailResult.Value?.ToString("N0") ?? Constants.No_Value;
+                    }
+                    else if (module == null && technology != string.Empty)
+                    {
+                        result = bfResult?.ApplicationResults[0].TechnologyResult.FirstOrDefault(_ => _.Technology == technology)?
+                            .DetailResult.Value?.ToString("N0") ?? Constants.No_Value;
+                    }
+                    else if (module != null && technology != string.Empty)
+                    {
+                        result = bfResult?.ApplicationResults[0].ModulesResult.FirstOrDefault(_ => _.Module.Id == module.Id)?
+                            .TechnologyResults.FirstOrDefault(_ => _.Technology == technology)?
+                            .DetailResult.Value?.ToString("N0") ?? Constants.No_Value;
+                    }
                     break;
                 case metricType.NotKnown:
-                    return null;
+                    result = Constants.No_Value;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -99,13 +211,13 @@ namespace CastReporting.Reporting
             return evolres;
         }
 
-        public static EvolutionResult GetMetricEvolution(ReportData reportData, Snapshot curSnapshot, Snapshot prevSnapshot, string metricId, bool evol)
+        public static EvolutionResult GetMetricEvolution(ReportData reportData, Snapshot curSnapshot, Snapshot prevSnapshot, string metricId, bool evol, Module module, string technology)
         {
             EvolutionResult curResult = null;
             EvolutionResult prevResult = null;
-            if (curSnapshot != null) curResult = GetMetricNameAndResult(reportData, curSnapshot, metricId);
-            if (prevSnapshot != null) prevResult = GetMetricNameAndResult(reportData, curSnapshot, metricId);
-            if (evol && (curResult?.curResult == null || prevResult?.curResult == null))
+            if (curSnapshot != null) curResult = GetMetricNameAndResult(reportData, curSnapshot, metricId,module,technology);
+            if (prevSnapshot != null) prevResult = GetMetricNameAndResult(reportData, prevSnapshot, metricId, module, technology);
+            if (!evol && (curResult?.curResult != null || prevResult?.curResult != null))
             {
                 return new EvolutionResult
                 {
@@ -118,26 +230,45 @@ namespace CastReporting.Reporting
                 };
             }
 
-            if (!evol || curResult.curResult == null || prevResult.curResult == null) return null;
+            if (curResult?.curResult == null || prevResult?.curResult == null) return null;
 
             string evolution;
             string evolPercent;
+            double? evp;
             switch (curResult.type)
             {
                 case metricType.BusinessCriteria:
                 case metricType.TechnicalCriteria:
                 case metricType.QualityRule:
-                    double? curValueD = double.Parse(curResult.curResult);
-                    double? prevValueD = double.Parse(prevResult.curResult);
-                    evolution = (curValueD - prevValueD).Value.ToString("N2");
-                    evolPercent = Math.Abs((double)prevValueD) > 0.0 ?  ((curValueD - prevValueD) /prevValueD).Value.ToString("N2") : Constants.No_Value;
+                    if (curResult.curResult != Constants.No_Value && prevResult.curResult != Constants.No_Value)
+                    {
+                        double? curValueD = double.Parse(curResult.curResult);
+                        double? prevValueD = double.Parse(prevResult.curResult);
+                        evolution = (curValueD - prevValueD).Value.ToString("N2");
+                        evp = Math.Abs((double)prevValueD) > 0.0 ? (curValueD - prevValueD) / prevValueD : null;
+                        evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
+                    }
+                    else
+                    {
+                        evolution = Constants.No_Value;
+                        evolPercent = Constants.No_Value;
+                    }
                     break;
                 case metricType.SizingMeasure:
                 case metricType.BackgroundFact:
-                    int? curValueI = int.Parse(curResult.curResult);
-                    int? prevValueI = int.Parse(prevResult.curResult);
-                    evolution = (curValueI - prevValueI).Value.ToString("N0") ?? Constants.No_Value;
-                    evolPercent = prevValueI != 0 ? ((curValueI - prevValueI) / prevValueI).Value.ToString("N2") : Constants.No_Value;
+                    if (curResult.curResult != Constants.No_Value && prevResult.curResult != Constants.No_Value)
+                    {
+                        int? curValueI = int.Parse(curResult.curResult);
+                        int? prevValueI = int.Parse(prevResult.curResult);
+                        evolution = (curValueI - prevValueI).Value.ToString("N0") ?? Constants.No_Value;
+                        evp = prevValueI != 0 ? (curValueI - prevValueI)/prevValueI : null;
+                        evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
+                    }
+                    else
+                    {
+                        evolution = Constants.No_Value;
+                        evolPercent = Constants.No_Value;
+                    }
                     break;
                 case metricType.NotKnown:
                     evolution = Constants.No_Value;
