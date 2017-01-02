@@ -673,11 +673,29 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Metrics.
+        /// </summary>
+        public static string Metrics {
+            get {
+                return ResourceManager.GetString("Metrics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module Name.
         /// </summary>
         public static string ModuleName {
             get {
                 return ResourceManager.GetString("ModuleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modules.
+        /// </summary>
+        public static string Modules {
+            get {
+                return ResourceManager.GetString("Modules", resourceCulture);
             }
         }
         
@@ -1024,6 +1042,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Snapshots.
+        /// </summary>
+        public static string Snapshots {
+            get {
+                return ResourceManager.GetString("Snapshots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Statistics.
         /// </summary>
         public static string Statistics {
@@ -1101,6 +1128,15 @@ namespace CastReporting.Reporting.Languages {
         public static string Techno {
             get {
                 return ResourceManager.GetString("Techno", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technologies.
+        /// </summary>
+        public static string Technologies {
+            get {
+                return ResourceManager.GetString("Technologies", resourceCulture);
             }
         }
         
@@ -1299,6 +1335,15 @@ namespace CastReporting.Reporting.Languages {
         public static string VersionPrevious {
             get {
                 return ResourceManager.GetString("VersionPrevious", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Violations.
+        /// </summary>
+        public static string Violations {
+            get {
+                return ResourceManager.GetString("Violations", resourceCulture);
             }
         }
         

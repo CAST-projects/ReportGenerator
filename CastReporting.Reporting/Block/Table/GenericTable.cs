@@ -746,7 +746,7 @@ namespace CastReporting.Reporting.Block.Table
              * (3) be careful, the item should correspond to those that have been used to save the data, depending on the type, perhaps use the name and change the _metricId by the metric name lines 173, 184, 213
              */
 
-            rowData.Add(type2);
+            rowData.Add(GetTypeName(type2));
             foreach (var itemcol1 in _posConfig[0].Parameters)
             {
                 string _col1Name = GetItemName(type0, itemcol1,reportData);
@@ -885,6 +885,28 @@ namespace CastReporting.Reporting.Block.Table
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        protected string GetTypeName(string type)
+        {
+            // snapshots, metrics, modules, technologies, violations, critical_violations
+            switch (type)
+            {
+                case "SNAPSHOTS":
+                    return Labels.Snapshots;
+                case "METRICS":
+                    return Labels.Metrics;
+                case "MODULES":
+                    return Labels.Modules;
+                case "TECHNOLOGIES":
+                    return Labels.Technologies;
+                case "VIOLATIONS":
+                    return Labels.Violations;
+                case "CRITICAL_VIOLATIONS":
+                    return Labels.ViolationsCritical;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

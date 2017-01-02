@@ -544,7 +544,7 @@
     <value>Object Name</value>
   </data>
   <data name="Technology" xml:space="preserve">
-    <value>Technology</value>
+    <value>Technologie</value>
   </data>
   <data name="AddedCriticalViolations" xml:space="preserve">
     <value>Non-conformitées critiques ajoutées</value>
@@ -563,5 +563,20 @@
   </data>
   <data name="TotalViolations" xml:space="preserve">
     <value>Non-conformités</value>
+  </data>
+  <data name="Metrics" xml:space="preserve">
+    <value>Métriques</value>
+  </data>
+  <data name="Modules" xml:space="preserve">
+    <value>Modules</value>
+  </data>
+  <data name="Snapshots" xml:space="preserve">
+    <value>Snapshots</value>
+  </data>
+  <data name="Technologies" xml:space="preserve">
+    <value>Technologies</value>
+  </data>
+  <data name="Violations" xml:space="preserve">
+    <value>Non-confirmités</value>
   </data>
 </root>

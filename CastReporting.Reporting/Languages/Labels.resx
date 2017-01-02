@@ -564,4 +564,19 @@
   <data name="TotalViolations" xml:space="preserve">
     <value>Total Violations</value>
   </data>
+  <data name="Metrics" xml:space="preserve">
+    <value>Metrics</value>
+  </data>
+  <data name="Modules" xml:space="preserve">
+    <value>Modules</value>
+  </data>
+  <data name="Snapshots" xml:space="preserve">
+    <value>Snapshots</value>
+  </data>
+  <data name="Technologies" xml:space="preserve">
+    <value>Technologies</value>
+  </data>
+  <data name="Violations" xml:space="preserve">
+    <value>Violations</value>
+  </data>
 </root>
