@@ -161,6 +161,10 @@ namespace CastReporting.Reporting.Block.Table
                         throw new ArgumentOutOfRangeException();
                 }
             }
+            // case implicit snapshots
+            if (snapshots.Count == 0 && snapshotConfiguration.Contains("CURRENT") && snapshotConfiguration.Contains("PREVIOUS") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
+            if (snapshots.Count == 0 && snapshotConfiguration.Contains("CURRENT") && !snapshotConfiguration.Contains("PREVIOUS") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
+            if (snapshots.Count == 0 && !snapshotConfiguration.Contains("CURRENT") && snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null) snapshots.Add(reportData.PreviousSnapshot);
             #endregion
 
             #region Get Results
@@ -180,26 +184,25 @@ namespace CastReporting.Reporting.Block.Table
                     foreach (string _metricId in metrics)
                     {
                         EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, null, string.Empty);
-                        if (positionSnapshots == -1) continue; // TODO : case when snapshot is implicit, is it a real case when only application resutls to display ?
                         _posResults[positionMetrics] = res.name;
                         foreach (string param in snapshotConfiguration)
                         {
                             switch (param)
                             {
                                 case "CURRENT":
-                                    _posResults[positionSnapshots] = reportData.CurrentSnapshot.Name + " - " + reportData.CurrentSnapshot.Annotation.Version;
+                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = reportData.CurrentSnapshot.Name + " - " + reportData.CurrentSnapshot.Annotation.Version;
                                     results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
                                     break;
                                 case "PREVIOUS":
-                                    _posResults[positionSnapshots] = reportData.PreviousSnapshot.Name + " - " + reportData.PreviousSnapshot.Annotation.Version;
+                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = reportData.PreviousSnapshot.Name + " - " + reportData.PreviousSnapshot.Annotation.Version;
                                     results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
                                     break;
                                 case "EVOL":
-                                    _posResults[positionSnapshots] = Labels.Evolution;
+                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
                                     results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
                                     break;
                                 case "EVOL_PERCENT":
-                                    _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
                                     results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
                                     break;
                                 default:
@@ -302,7 +305,6 @@ namespace CastReporting.Reporting.Block.Table
                 {
                     foreach (string _metricId in metrics)
                     {
-                        if (positionSnapshots == -1) continue; // TODO : case when snapshot is implicit, is it a real case when only application resutls to display ?
                         foreach (Module module in modules)
                         {
                             _posResults[positionModules] = module.Name;
@@ -313,19 +315,19 @@ namespace CastReporting.Reporting.Block.Table
                                 switch (param)
                                 {
                                     case "CURRENT":
-                                        _posResults[positionSnapshots] = reportData.CurrentSnapshot.Name + " - " + reportData.CurrentSnapshot.Annotation.Version;
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = reportData.CurrentSnapshot.Name + " - " + reportData.CurrentSnapshot.Annotation.Version;
                                         results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
                                         break;
                                     case "PREVIOUS":
-                                        _posResults[positionSnapshots] = reportData.PreviousSnapshot.Name + " - " + reportData.PreviousSnapshot.Annotation.Version;
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = reportData.PreviousSnapshot.Name + " - " + reportData.PreviousSnapshot.Annotation.Version;
                                         results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
                                         break;
                                     case "EVOL":
-                                        _posResults[positionSnapshots] = Labels.Evolution;
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
                                         results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
                                         break;
                                     case "EVOL_PERCENT":
-                                        _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
                                         results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
                                         break;
                                     default:
@@ -441,7 +443,6 @@ namespace CastReporting.Reporting.Block.Table
                 {
                     foreach (string _metricId in metrics)
                     {
-                        if (positionSnapshots == -1) continue; // TODO : case when snapshot is implicit, is it a real case when only application resutls to display ?
                         foreach (string techno in technologies)
                         {
                             _posResults[positionTechnologies] = techno;
@@ -452,19 +453,19 @@ namespace CastReporting.Reporting.Block.Table
                                 switch (param)
                                 {
                                     case "CURRENT":
-                                        _posResults[positionSnapshots] = reportData.CurrentSnapshot.Name + " - " + reportData.CurrentSnapshot.Annotation.Version;
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = reportData.CurrentSnapshot.Name + " - " + reportData.CurrentSnapshot.Annotation.Version;
                                         results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
                                         break;
                                     case "PREVIOUS":
-                                        _posResults[positionSnapshots] = reportData.PreviousSnapshot.Name + " - " + reportData.PreviousSnapshot.Annotation.Version;
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = reportData.PreviousSnapshot.Name + " - " + reportData.PreviousSnapshot.Annotation.Version;
                                         results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
                                         break;
                                     case "EVOL":
-                                        _posResults[positionSnapshots] = Labels.Evolution;
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
                                         results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
                                         break;
                                     case "EVOL_PERCENT":
-                                        _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
                                         results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
                                         break;
                                     default:
@@ -580,7 +581,6 @@ namespace CastReporting.Reporting.Block.Table
                 {
                     foreach (string _metricId in metrics)
                     {
-                        if (positionSnapshots == -1) continue; // TODO : case when snapshot is implicit, is it a real case when only application resutls to display ?
                         foreach (Module module in modules)
                         {
                             _posResults[positionModules] = module.Name;
@@ -594,19 +594,19 @@ namespace CastReporting.Reporting.Block.Table
                                     switch (param)
                                     {
                                         case "CURRENT":
-                                            _posResults[positionSnapshots] = reportData.CurrentSnapshot.Name + " - " + reportData.CurrentSnapshot.Annotation.Version;
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = reportData.CurrentSnapshot.Name + " - " + reportData.CurrentSnapshot.Annotation.Version;
                                             results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
                                             break;
                                         case "PREVIOUS":
-                                            _posResults[positionSnapshots] = reportData.PreviousSnapshot.Name + " - " + reportData.PreviousSnapshot.Annotation.Version;
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = reportData.PreviousSnapshot.Name + " - " + reportData.PreviousSnapshot.Annotation.Version;
                                             results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
                                             break;
                                         case "EVOL":
-                                            _posResults[positionSnapshots] = Labels.Evolution;
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
                                             results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
                                             break;
                                         case "EVOL_PERCENT":
-                                            _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
                                             results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
                                             break;
                                         default:
