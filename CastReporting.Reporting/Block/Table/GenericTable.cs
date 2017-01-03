@@ -165,6 +165,7 @@ namespace CastReporting.Reporting.Block.Table
             if (snapshots.Count == 0 && snapshotConfiguration.Contains("CURRENT") && snapshotConfiguration.Contains("PREVIOUS") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
             if (snapshots.Count == 0 && snapshotConfiguration.Contains("CURRENT") && !snapshotConfiguration.Contains("PREVIOUS") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
             if (snapshots.Count == 0 && !snapshotConfiguration.Contains("CURRENT") && snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null) snapshots.Add(reportData.PreviousSnapshot);
+            if (snapshots.Count == 0 && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
             #endregion
 
             #region Get Results
