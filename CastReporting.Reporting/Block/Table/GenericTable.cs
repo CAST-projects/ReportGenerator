@@ -60,9 +60,18 @@ namespace CastReporting.Reporting.Block.Table
                 switch (_posConfig[i].Type)
                 {
                     case "SNAPSHOTS":
-                        if (_posConfig[i].Parameters.Length == 0)
+                        if (_posConfig[i].Parameters.Length == 0 || (_posConfig[i].Parameters.Length == 1 && _posConfig[i].Parameters[0]=="ALL"))
                         {
-                            snapshots.Add(reportData.CurrentSnapshot);
+                            if (reportData.CurrentSnapshot != null)
+                            {
+                                snapshotConfiguration = new[] {"CURRENT"};
+                                snapshots.Add(reportData.CurrentSnapshot);
+                                if (reportData.PreviousSnapshot != null)
+                                {
+                                    snapshotConfiguration = new[] { "CURRENT", "PREVIOUS", "EVOL", "EVOL_PERCENT"};
+                                    snapshots.Add(reportData.PreviousSnapshot);
+                                }
+                            }
                         }
                         else
                         {
@@ -73,8 +82,53 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                     case "METRICS":
                         if (_posConfig[i].Parameters.Length == 0) return null;
-                        metrics.AddRange(_posConfig[i].Parameters); // TODO : manage special cases to define, for example, METRICS=HEALTH_FACTORS
                         positionMetrics = i;
+                        metrics.AddRange(_posConfig[i].Parameters);
+                        if (metrics.Contains("HEALTH_FACTOR"))
+                        {
+                            metrics.Remove("HEALTH_FACTOR");
+                            metrics.AddRange(new []{"60011","60012","60013","60014","60016"});
+                        }
+                        if (metrics.Contains("BUSINESS_CRITERIA"))
+                        {
+                            metrics.Remove("BUSINESS_CRITERIA");
+                            metrics.AddRange(reportData.CurrentSnapshot.BusinessCriteriaResults.Select(_ => _.Reference.Key.ToString()));
+                        }
+                        if (metrics.Contains("TECHNICAL_CRITERIA"))
+                        {
+                            metrics.Remove("TECHNICAL_CRITERIA");
+                            metrics.AddRange(reportData.CurrentSnapshot.TechnicalCriteriaResults.Select(_ => _.Reference.Key.ToString()));
+                        }
+                        if (metrics.Contains("TECHNICAL_SIZING"))
+                        {
+                            metrics.Remove("TECHNICAL_SIZING");
+                            metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "technical-size-measures").Select(_ => _.Reference.Key.ToString()));
+                        }
+                        if (metrics.Contains("FUNCTIONAL_WEIGHT"))
+                        {
+                            metrics.Remove("FUNCTIONAL_WEIGHT");
+                            metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "functional-weight-measures").Select(_ => _.Reference.Key.ToString()));
+                        }
+                        if (metrics.Contains("TECHNICAL_DEBT"))
+                        {
+                            metrics.Remove("TECHNICAL_DEBT");
+                            metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "technical-debt-statistics").Select(_ => _.Reference.Key.ToString()));
+                        }
+                        if (metrics.Contains("VIOLATIONS_STATS"))
+                        {
+                            metrics.Remove("VIOLATIONS_STATS");
+                            metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "violation-statistics").Select(_ => _.Reference.Key.ToString()));
+                        }
+                        if (metrics.Contains("CRITICAL_VIOLATIONS_STATS"))
+                        {
+                            metrics.Remove("CRITICAL_VIOLATIONS_STATS");
+                            metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "critical-violation-statistics").Select(_ => _.Reference.Key.ToString()));
+                        }
+                        if (metrics.Contains("RUN_TIME_STATS"))
+                        {
+                            metrics.Remove("RUN_TIME_STATS");
+                            metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "run-time-statistics").Select(_ => _.Reference.Key.ToString()));
+                        }
                         break;
                     case "MODULES":
                         if (_posConfig[i].Parameters.Length != 0)
@@ -102,7 +156,7 @@ namespace CastReporting.Reporting.Block.Table
                             {
                                 if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null)
                                 {
-                                    modules.AddRange(reportData.CurrentSnapshot.Modules.Where(_ => _posConfig[i].Parameters.Contains(_.Id.ToString())));
+                                    modules.AddRange(reportData.CurrentSnapshot.Modules.Where(_ => _posConfig[i].Parameters.Contains(_.Name)));
                                 }
                                 string[] paramModules = new string[modules.Count];
                                 for (int j = 0; j < modules.Count; j++)
@@ -147,14 +201,39 @@ namespace CastReporting.Reporting.Block.Table
                         if (_posConfig[i].Parameters.Length != 0)
                         {
                             positionViolations = i;
-                            violations.AddRange(_posConfig[i].Parameters);
+                            if (_posConfig[i].Parameters.Length == 1 && _posConfig[i].Parameters[0] == "ALL")
+                            {
+                                violations.AddRange(new[] { "TOTAL", "ADDED", "REMOVED" });
+                            }
+                            else
+                            {
+                                violations.AddRange(_posConfig[i].Parameters);
+                            }
+                            
+                        }
+                        else
+                        {
+                            positionViolations = i;
+                            violations.AddRange(new[] { "TOTAL", "ADDED", "REMOVED" });
                         }
                         break;
                     case "CRITICAL_VIOLATIONS":
                         if (_posConfig[i].Parameters.Length != 0)
                         {
                             positionCriticalViolations = i;
-                            criticalViolations.AddRange(_posConfig[i].Parameters);
+                            if (_posConfig[i].Parameters.Length == 1 && _posConfig[i].Parameters[0] == "ALL")
+                            {
+                                criticalViolations.AddRange(new[] { "TOTAL", "ADDED", "REMOVED" });
+                            }
+                            else
+                            {
+                                criticalViolations.AddRange(_posConfig[i].Parameters);
+                            }
+                        }
+                        else
+                        {
+                            positionViolations = i;
+                            criticalViolations.AddRange(new[] { "TOTAL", "ADDED", "REMOVED" });
                         }
                         break;
                     default:
