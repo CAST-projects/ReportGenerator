@@ -230,7 +230,16 @@ namespace CastReporting.Reporting
                 };
             }
 
-            if (curResult?.curResult == null || prevResult?.curResult == null) return null;
+            if (curResult?.curResult == null || prevResult?.curResult == null)
+                return new EvolutionResult
+                {
+                    name = curResult?.name ?? prevResult?.name ?? Constants.No_Value,
+                    type = curResult?.type ?? prevResult?.type ?? metricType.NotKnown,
+                    curResult = curResult?.curResult ?? Constants.No_Value,
+                    prevResult = prevResult?.curResult ?? Constants.No_Value,
+                    evolution = Constants.No_Value,
+                    evolutionPercent = Constants.No_Value
+                };
 
             string evolution;
             string evolPercent;
@@ -258,10 +267,10 @@ namespace CastReporting.Reporting
                 case metricType.BackgroundFact:
                     if (curResult.curResult != Constants.No_Value && prevResult.curResult != Constants.No_Value)
                     {
-                        int? curValueI = int.Parse(curResult.curResult);
-                        int? prevValueI = int.Parse(prevResult.curResult);
+                        int? curValueI = int.Parse(curResult.curResult.Replace(",", "").Replace(".", ""));
+                        int? prevValueI = int.Parse(prevResult.curResult.Replace(",", "").Replace(".", ""));
                         evolution = (curValueI - prevValueI).Value.ToString("N0") ?? Constants.No_Value;
-                        evp = prevValueI != 0 ? (curValueI - prevValueI)/prevValueI : null;
+                        evp = prevValueI != 0 ? (curValueI - prevValueI) / prevValueI : null;
                         evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
                     }
                     else
