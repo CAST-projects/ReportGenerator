@@ -253,7 +253,7 @@
     <value>Añadidas</value>
   </data>
   <data name="Snapshot" xml:space="preserve">
-    <value>Instantánea</value>
+    <value>Snapshot</value>
   </data>
   <data name="SnapshotLabel" xml:space="preserve">
     <value>Etiqueta de la Instantánea</value>
@@ -547,25 +547,25 @@
     <value>Technologia</value>
   </data>
   <data name="AddedCriticalViolations" xml:space="preserve">
-    <value>Violaciones críticos añadidos</value>
+    <value>Violaciones Críticas Añadidas</value>
   </data>
   <data name="AddedViolations" xml:space="preserve">
-    <value>Violaciones añadidos</value>
+    <value>Violaciones Añadidas</value>
   </data>
   <data name="RemovedCriticalViolations" xml:space="preserve">
-    <value>Violaciónes críticos eliminados</value>
+    <value>Violaciones Críticas Eliminadas</value>
   </data>
   <data name="RemovedViolations" xml:space="preserve">
-    <value>Violaciones eliminados</value>
+    <value>Violaciones Eliminadas</value>
   </data>
   <data name="TotalCriticalViolations" xml:space="preserve">
-    <value>Violaciónes críticos</value>
+    <value>Violaciones Críticas Totales</value>
   </data>
   <data name="TotalViolations" xml:space="preserve">
-    <value>Violaciónes</value>
+    <value>Violaciones Totales</value>
   </data>
   <data name="Metrics" xml:space="preserve">
-    <value>Métrica</value>
+    <value>Métricas</value>
   </data>
   <data name="Modules" xml:space="preserve">
     <value>Módulos</value>
