@@ -61,7 +61,7 @@ namespace CastReporting.Reporting.Block.Table
                 {
                     case "SNAPSHOTS":
                         positionSnapshots = i;
-                        if (_posConfig[i].Parameters.Length == 0 || (_posConfig[i].Parameters.Length == 1 && _posConfig[i].Parameters[0]=="ALL"))
+                        if (_posConfig[i].Parameters.Length == 0 || _posConfig[i].Parameters.Contains("ALL"))
                         {
                             if (reportData.CurrentSnapshot != null)
                             {
@@ -140,7 +140,7 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                     case "MODULES":
                         positionModules = i;
-                        if (_posConfig[i].Parameters[0] == "ALL" || _posConfig[i].Parameters.Length == 0)
+                        if (_posConfig[i].Parameters.Contains("ALL") || _posConfig[i].Parameters.Length == 0)
                         {
                             if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null) modules.AddRange(reportData.CurrentSnapshot.Modules);
                             if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null)
@@ -174,7 +174,7 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                     case "TECHNOLOGIES":
                         positionTechnologies = i;
-                        if (_posConfig[i].Parameters[0] == "ALL" || _posConfig[i].Parameters.Length == 0)
+                        if (_posConfig[i].Parameters.Contains("ALL") || _posConfig[i].Parameters.Length == 0)
                         {
                             if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null) technologies.AddRange(reportData.CurrentSnapshot.Technologies);
                             if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null)
@@ -201,7 +201,7 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                     case "VIOLATIONS":
                         positionViolations = i;
-                        if (_posConfig[i].Parameters.Length == 0 || (_posConfig[i].Parameters.Length == 1 && _posConfig[i].Parameters[0] == "ALL"))
+                        if (_posConfig[i].Parameters.Length == 0 || _posConfig[i].Parameters.Contains("ALL"))
                         {
                             violations.AddRange(new[] { "TOTAL", "ADDED", "REMOVED" });
                             _posConfig[i].Parameters = violations.ToArray();
@@ -213,7 +213,7 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                     case "CRITICAL_VIOLATIONS":
                         positionCriticalViolations = i;
-                        if (_posConfig[i].Parameters.Length == 0 || (_posConfig[i].Parameters.Length == 1 && _posConfig[i].Parameters[0] == "ALL"))
+                        if (_posConfig[i].Parameters.Length == 0 || _posConfig[i].Parameters.Contains("ALL"))
                         {
                             criticalViolations.AddRange(new[] { "TOTAL", "ADDED", "REMOVED" });
                             _posConfig[i].Parameters = criticalViolations.ToArray();
@@ -227,6 +227,12 @@ namespace CastReporting.Reporting.Block.Table
                         throw new ArgumentOutOfRangeException();
                 }
             }
+            // implicit snapshots
+            if (snapshots.Count == 0 && snapshotConfiguration.Contains("CURRENT") && snapshotConfiguration.Contains("PREVIOUS") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
+            if (snapshots.Count == 0 && snapshotConfiguration.Contains("CURRENT") && !snapshotConfiguration.Contains("PREVIOUS") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
+            if (snapshots.Count == 0 && !snapshotConfiguration.Contains("CURRENT") && snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null) snapshots.Add(reportData.PreviousSnapshot);
+            if (snapshots.Count == 0 && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
+
             #endregion
 
             #region Get Results
