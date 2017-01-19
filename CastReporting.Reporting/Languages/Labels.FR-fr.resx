@@ -181,7 +181,7 @@
     <value>Actuel</value>
   </data>
   <data name="Previous" xml:space="preserve">
-    <value>score précédent</value>
+    <value>précédent</value>
   </data>
   <data name="NoItem" xml:space="preserve">
     <value>Aucun élément</value>
