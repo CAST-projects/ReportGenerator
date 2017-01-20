@@ -22,7 +22,6 @@ using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
-using System.Data;
 using Cast.Util.Log;
 using Cast.Util.Date;
 using CastReporting.Reporting.Helper;
@@ -34,11 +33,6 @@ namespace CastReporting.Reporting.Block.Table
     {
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            DataTable dtDates = new DataTable();
-            dtDates.Columns.Add("Quarter", typeof(int));
-            dtDates.Columns.Add("Year", typeof(int)); 
-            dtDates.AcceptChanges();
-
             string strBackgroundFacts = options.GetOption("BF", string.Empty);
             string _strSla = options.GetOption("SLA", string.Empty);
 
@@ -114,11 +108,8 @@ namespace CastReporting.Reporting.Block.Table
                         }
 
                         DateTime _dateNow = DateTime.Now;
-                        int currentQuarter = DateUtil.GetQuarter(_dateNow);
-                        int currentYear = _dateNow.Year;
-
-                        int previousQuarter = (currentQuarter == 1) ? 4 : currentQuarter - 1;
-                        int previousYear = (currentQuarter == 1) ? currentYear - 1 : currentYear;
+                        int previousQuarter = DateUtil.GetPreviousQuarter(_dateNow);
+                        int previousYear = DateUtil.GetPreviousQuarterYear(_dateNow);
 
                         Snapshot _previous = _app.Snapshots.Where(_ => _.Annotation.Date.DateSnapShot != null && (_.Annotation.Date.DateSnapShot.Value.Year <= previousYear && DateUtil.GetQuarter(_.Annotation.Date.DateSnapShot.Value) <= previousQuarter))
                             .OrderByDescending(_ => _.Annotation.Date.DateSnapShot)

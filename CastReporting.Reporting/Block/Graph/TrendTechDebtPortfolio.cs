@@ -69,8 +69,8 @@ namespace CastReporting.Reporting.Block.Graph
                     dr["Quarter"] = currentQuater;
                     dr["Year"] = currentYear;
                     dtDates.Rows.InsertAt(dr, 0);
-                    currentQuater = (currentQuater == 1) ? 4 : currentQuater - 1;
-                    currentYear = (currentQuater == 4) ? currentYear - 1 : currentYear;
+                    currentYear = DateUtil.GetPreviousQuarterYear(currentQuater, currentYear);
+                    currentQuater = DateUtil.GetPreviousQuarter(currentQuater);
                 }
 
                 for (int i = 0; i < dtDates.Rows.Count; i++)
