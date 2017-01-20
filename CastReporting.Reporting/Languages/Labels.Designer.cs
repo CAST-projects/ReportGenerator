@@ -106,15 +106,6 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actual score.
-        /// </summary>
-        public static string Actual {
-            get {
-                return ResourceManager.GetString("Actual", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Added Critical Violations.
         /// </summary>
         public static string AddedCriticalViolations {
@@ -399,6 +390,15 @@ namespace CastReporting.Reporting.Languages {
         public static string Current {
             get {
                 return ResourceManager.GetString("Current", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current score.
+        /// </summary>
+        public static string CurrentScore {
+            get {
+                return ResourceManager.GetString("CurrentScore", resourceCulture);
             }
         }
         
@@ -781,11 +781,20 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Previous score.
+        ///   Looks up a localized string similar to Previous.
         /// </summary>
         public static string Previous {
             get {
                 return ResourceManager.GetString("Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous score.
+        /// </summary>
+        public static string PreviousScore {
+            get {
+                return ResourceManager.GetString("PreviousScore", resourceCulture);
             }
         }
         

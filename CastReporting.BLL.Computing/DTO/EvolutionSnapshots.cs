@@ -38,6 +38,13 @@ namespace CastReporting.BLL.Computing.DTO
         NotKnown
     }
 
+    public class SimpleResult
+    {
+        public string name { get; set; }
+        public metricType type;
+        public double? result { get; set; }
+    }
+
     public class EvolutionResult
     {
         public string name { get; set; }

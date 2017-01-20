@@ -180,8 +180,8 @@
   <data name="Current" xml:space="preserve">
     <value>Attuale</value>
   </data>
-  <data name="Previous" xml:space="preserve">
-    <value>score precedente</value>
+  <data name="PreviousScore" xml:space="preserve">
+    <value>Score precedente</value>
   </data>
   <data name="NoItem" xml:space="preserve">
     <value>Nessun item abilitato</value>
@@ -496,10 +496,10 @@
     <value>Applicazione</value>
   </data>
   <data name="Target" xml:space="preserve">
-    <value>score bersaglio</value>
+    <value>Score bersaglio</value>
   </data>
-  <data name="Actual" xml:space="preserve">
-    <value>score attuale</value>
+  <data name="CurrentScore" xml:space="preserve">
+    <value>Score attuale</value>
   </data>
   <data name="SLAViolations" xml:space="preserve">
     <value>Violazioni SLA</value>
@@ -547,25 +547,25 @@
     <value>Tecnologia</value>
   </data>
   <data name="AddedCriticalViolations" xml:space="preserve">
-    <value>Violazioni Critiche aggiunti</value>
+    <value>Violazioni critiche aggiunte</value>
   </data>
   <data name="AddedViolations" xml:space="preserve">
-    <value>Violazioni aggiunti</value>
+    <value>Violazioni aggiunte</value>
   </data>
   <data name="RemovedCriticalViolations" xml:space="preserve">
-    <value>Violazioni Critiche eliminate</value>
+    <value>Violazioni critiche rimosse</value>
   </data>
   <data name="RemovedViolations" xml:space="preserve">
-    <value>Violazioni eliminate</value>
+    <value>Violazioni rimosse</value>
   </data>
   <data name="TotalCriticalViolations" xml:space="preserve">
-    <value>Violazioni Critiche</value>
+    <value>Violazioni critiche totali</value>
   </data>
   <data name="TotalViolations" xml:space="preserve">
-    <value>Violazioni</value>
+    <value>Violazioni totali</value>
   </data>
   <data name="Metrics" xml:space="preserve">
-    <value>Metrica</value>
+    <value>Metriche</value>
   </data>
   <data name="Modules" xml:space="preserve">
     <value>Moduli</value>
@@ -578,5 +578,8 @@
   </data>
   <data name="Violations" xml:space="preserve">
     <value>Violazioni</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Precedente</value>
   </data>
 </root>

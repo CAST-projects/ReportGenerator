@@ -43,13 +43,13 @@ namespace CastReporting.Reporting.Block.Table
             #region Get Configuration
             // get the configuration
             string type0 = options.GetOption("COL1");
-            _posConfig[0] = type0 != null ? new ObjConfig {Type = type0, Parameters = options.GetOption(type0).Split('|')} : null;
+            _posConfig[0] = type0 != null ? new ObjConfig {Type = type0, Parameters = options.GetOption(type0) != null ? options.GetOption(type0).Trim().Split('|') : new string[] { } } : null;
             string type1 = options.GetOption("COL11");
-            _posConfig[1] = type1 != null ? new ObjConfig { Type = type1, Parameters = options.GetOption(type1).Split('|') } : null;
+            _posConfig[1] = type1 != null ? new ObjConfig { Type = type1, Parameters = options.GetOption(type1) != null ? options.GetOption(type1).Split('|') : new string[] { } } : null;
             string type2 = options.GetOption("ROW1");
-            _posConfig[2] = type2 != null ? new ObjConfig { Type = type2, Parameters = options.GetOption(type2).Split('|') } : null;
+            _posConfig[2] = type2 != null ? new ObjConfig { Type = type2, Parameters = options.GetOption(type2) != null ? options.GetOption(type2).Split('|')  : new string[] { } } : null;
             string type3 = options.GetOption("ROW11");
-            _posConfig[3] = type3 != null ? new ObjConfig { Type = type3, Parameters = options.GetOption(type3).Split('|') } : null;
+            _posConfig[3] = type3 != null ? new ObjConfig { Type = type3, Parameters = options.GetOption(type3) != null ? options.GetOption(type3).Split('|')  : new string[] { } } : null;
 
             string[] snapshotConfiguration = options.GetOption("SNAPSHOTS")?.Split('|');
 
@@ -60,100 +60,172 @@ namespace CastReporting.Reporting.Block.Table
                 switch (_posConfig[i].Type)
                 {
                     case "SNAPSHOTS":
-                        if (_posConfig[i].Parameters.Length == 0)
+                        positionSnapshots = i;
+                        if (_posConfig[i].Parameters.Length == 0 || _posConfig[i].Parameters.Contains("ALL"))
                         {
-                            snapshots.Add(reportData.CurrentSnapshot);
+                            if (reportData.CurrentSnapshot != null)
+                            {
+                                snapshotConfiguration = new[] {"CURRENT"};
+                                snapshots.Add(reportData.CurrentSnapshot);
+                                if (reportData.PreviousSnapshot != null)
+                                {
+                                    snapshotConfiguration = new[] { "CURRENT", "PREVIOUS", "EVOL", "EVOL_PERCENT"};
+                                    snapshots.Add(reportData.PreviousSnapshot);
+                                }
+                                _posConfig[i].Parameters = snapshotConfiguration;
+                            }
                         }
                         else
                         {
                             if (_posConfig[i].Parameters.Contains("CURRENT") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
                             if (_posConfig[i].Parameters.Contains("PREVIOUS") && reportData.PreviousSnapshot != null) snapshots.Add(reportData.PreviousSnapshot);
-                            positionSnapshots = i;
                         }
                         break;
                     case "METRICS":
-                        if (_posConfig[i].Parameters.Length == 0) return null;
-                        metrics.AddRange(_posConfig[i].Parameters); // TODO : manage special cases to define, for example, METRICS=HEALTH_FACTORS
                         positionMetrics = i;
+                        if (_posConfig[i].Parameters.Length == 0)
+                        {
+                            metrics.AddRange(new[] { "60011", "60012", "60013", "60014", "60016" });
+                        }
+                        else
+                        {
+                            metrics.AddRange(_posConfig[i].Parameters);
+                            if (metrics.Contains("HEALTH_FACTOR"))
+                            {
+                                metrics.Remove("HEALTH_FACTOR");
+                                metrics.AddRange(new[] { "60011", "60012", "60013", "60014", "60016" });
+                            }
+                            if (metrics.Contains("BUSINESS_CRITERIA"))
+                            {
+                                metrics.Remove("BUSINESS_CRITERIA");
+                                metrics.AddRange(reportData.CurrentSnapshot.BusinessCriteriaResults.Select(_ => _.Reference.Key.ToString()));
+                            }
+                            if (metrics.Contains("TECHNICAL_CRITERIA"))
+                            {
+                                metrics.Remove("TECHNICAL_CRITERIA");
+                                metrics.AddRange(reportData.CurrentSnapshot.TechnicalCriteriaResults.Select(_ => _.Reference.Key.ToString()));
+                            }
+                            if (metrics.Contains("TECHNICAL_SIZING"))
+                            {
+                                metrics.Remove("TECHNICAL_SIZING");
+                                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "technical-size-measures").Select(_ => _.Reference.Key.ToString()));
+                            }
+                            if (metrics.Contains("FUNCTIONAL_WEIGHT"))
+                            {
+                                metrics.Remove("FUNCTIONAL_WEIGHT");
+                                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "functional-weight-measures").Select(_ => _.Reference.Key.ToString()));
+                            }
+                            if (metrics.Contains("TECHNICAL_DEBT"))
+                            {
+                                metrics.Remove("TECHNICAL_DEBT");
+                                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "technical-debt-statistics").Select(_ => _.Reference.Key.ToString()));
+                            }
+                            if (metrics.Contains("VIOLATION"))
+                            {
+                                metrics.Remove("VIOLATION");
+                                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "violation-statistics").Select(_ => _.Reference.Key.ToString()));
+                            }
+                            if (metrics.Contains("CRITICAL_VIOLATION"))
+                            {
+                                metrics.Remove("CRITICAL_VIOLATION");
+                                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "critical-violation-statistics").Select(_ => _.Reference.Key.ToString()));
+                            }
+                            if (metrics.Contains("RUN_TIME"))
+                            {
+                                metrics.Remove("RUN_TIME");
+                                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "run-time-statistics").Select(_ => _.Reference.Key.ToString()));
+                            }
+                        }
+                        _posConfig[i].Parameters = metrics.ToArray();
                         break;
                     case "MODULES":
-                        if (_posConfig[i].Parameters.Length != 0)
+                        positionModules = i;
+                        if (_posConfig[i].Parameters.Contains("ALL") || _posConfig[i].Parameters.Length == 0)
                         {
-                            positionModules = i;
-                            if (_posConfig[i].Parameters[0] == "ALL")
+                            if (snapshotConfiguration != null)
                             {
-                                if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null) modules.AddRange(reportData.CurrentSnapshot.Modules);
-                                if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null)
+                                if ((snapshotConfiguration.Contains("CURRENT") || snapshotConfiguration.Contains("ALL")) && reportData.CurrentSnapshot != null) modules.AddRange(reportData.CurrentSnapshot.Modules);
+                                if ((snapshotConfiguration.Contains("PREVIOUS") || snapshotConfiguration.Contains("ALL")) && reportData.PreviousSnapshot != null)
                                 {
                                     foreach (Module module in reportData.PreviousSnapshot.Modules)
                                     {
-                                        string name = modules.FirstOrDefault(_ => _.Id == module.Id).Name;
+                                        string name = modules.FirstOrDefault(_ => _.Id == module.Id)?.Name;
                                         if (name == null) modules.Add(module);
                                     }
                                 }
-                                string[] paramModules = new string[modules.Count];
-                                for (int j = 0; j < modules.Count; j++)
-                                {
-                                    paramModules[j] = modules[j].Name;
-                                }
-                                _posConfig[i].Parameters = paramModules;
                             }
                             else
                             {
-                                if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null)
-                                {
-                                    modules.AddRange(reportData.CurrentSnapshot.Modules.Where(_ => _posConfig[i].Parameters.Contains(_.Id.ToString())));
-                                }
-                                string[] paramModules = new string[modules.Count];
-                                for (int j = 0; j < modules.Count; j++)
-                                {
-                                    paramModules[j] = modules[j].Name;
-                                }
-                                _posConfig[i].Parameters = paramModules;
+                                if (reportData.CurrentSnapshot != null) modules.AddRange(reportData.CurrentSnapshot.Modules);
                             }
                         }
+                        else
+                        {
+                            if ((snapshotConfiguration == null || snapshotConfiguration.Contains("CURRENT")) && reportData.CurrentSnapshot != null)
+                            {
+                                modules.AddRange(reportData.CurrentSnapshot.Modules.Where(_ => _posConfig[i].Parameters.Contains(_.Name)));
+                            }
+                            else if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null)
+                            {
+                                modules.AddRange(reportData.PreviousSnapshot.Modules.Where(_ => _posConfig[i].Parameters.Contains(_.Name)));
+                            }
+                        }
+                        _posConfig[i].Parameters = modules.Select(_ => _.Name).ToArray();
                         break;
                     case "TECHNOLOGIES":
-                        if (_posConfig[i].Parameters.Length != 0)
+                        positionTechnologies = i;
+                        if (_posConfig[i].Parameters.Contains("ALL") || _posConfig[i].Parameters.Length == 0)
                         {
-                            positionTechnologies = i;
-                            if (_posConfig[i].Parameters[0] == "ALL")
+                            if (snapshotConfiguration != null)
                             {
-                                if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null) technologies.AddRange(reportData.CurrentSnapshot.Technologies);
-                                if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null)
+                                if ((snapshotConfiguration.Contains("CURRENT") || snapshotConfiguration.Contains("ALL")) && reportData.CurrentSnapshot != null) technologies.AddRange(reportData.CurrentSnapshot.Technologies);
+                                if ((snapshotConfiguration.Contains("PREVIOUS") || snapshotConfiguration.Contains("ALL")) && reportData.PreviousSnapshot != null)
                                 {
                                     foreach (string technology in reportData.PreviousSnapshot.Technologies)
                                     {
                                         if (!technologies.Contains(technology)) technologies.Add(technology);
                                     }
                                 }
-                                string[] paramTechnos = new string[technologies.Count];
-                                for (int j = 0; j < technologies.Count; j++)
-                                {
-                                    paramTechnos[j] = technologies[j];
-                                }
-                                _posConfig[i].Parameters = paramTechnos;
                             }
                             else
                             {
-                                if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null)
-                                {
-                                    technologies.AddRange(reportData.CurrentSnapshot.Technologies.Where(_ => _posConfig[i].Parameters.Contains(_)));
-                                }
+                                if (reportData.CurrentSnapshot != null) technologies.AddRange(reportData.CurrentSnapshot.Technologies);
                             }
                         }
+                        else
+                        {
+                            if ((snapshotConfiguration == null || snapshotConfiguration.Contains("CURRENT")) && reportData.CurrentSnapshot != null)
+                            {
+                                technologies.AddRange(reportData.CurrentSnapshot.Technologies.Where(_ => _posConfig[i].Parameters.Contains(_)));
+                            }
+                            else if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null)
+                            {
+                                technologies.AddRange(reportData.PreviousSnapshot.Technologies.Where(_ => _posConfig[i].Parameters.Contains(_)));
+                            }
+                        }
+                        _posConfig[i].Parameters = technologies.ToArray();
                         break;
                     case "VIOLATIONS":
-                        if (_posConfig[i].Parameters.Length != 0)
+                        positionViolations = i;
+                        if (_posConfig[i].Parameters.Length == 0 || _posConfig[i].Parameters.Contains("ALL"))
                         {
-                            positionViolations = i;
+                            violations.AddRange(new[] { "TOTAL", "ADDED", "REMOVED" });
+                            _posConfig[i].Parameters = violations.ToArray();
+                        }
+                        else
+                        {
                             violations.AddRange(_posConfig[i].Parameters);
                         }
                         break;
                     case "CRITICAL_VIOLATIONS":
-                        if (_posConfig[i].Parameters.Length != 0)
+                        positionCriticalViolations = i;
+                        if (_posConfig[i].Parameters.Length == 0 || _posConfig[i].Parameters.Contains("ALL"))
                         {
-                            positionCriticalViolations = i;
+                            criticalViolations.AddRange(new[] { "TOTAL", "ADDED", "REMOVED" });
+                            _posConfig[i].Parameters = criticalViolations.ToArray();
+                        }
+                        else
+                        {
                             criticalViolations.AddRange(_posConfig[i].Parameters);
                         }
                         break;
@@ -161,11 +233,25 @@ namespace CastReporting.Reporting.Block.Table
                         throw new ArgumentOutOfRangeException();
                 }
             }
-            // case implicit snapshots
-            if (snapshots.Count == 0 && snapshotConfiguration.Contains("CURRENT") && snapshotConfiguration.Contains("PREVIOUS") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
-            if (snapshots.Count == 0 && snapshotConfiguration.Contains("CURRENT") && !snapshotConfiguration.Contains("PREVIOUS") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
-            if (snapshots.Count == 0 && !snapshotConfiguration.Contains("CURRENT") && snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null) snapshots.Add(reportData.PreviousSnapshot);
-            if (snapshots.Count == 0 && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
+            // implicit snapshots
+            if (snapshots.Count == 0)
+            {
+                if (snapshotConfiguration != null)
+                {
+                    if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
+                    if (!snapshotConfiguration.Contains("CURRENT") && snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null) snapshots.Add(reportData.PreviousSnapshot);
+                    if (!snapshotConfiguration.Contains("CURRENT") && !snapshotConfiguration.Contains("PREVIOUS") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
+                }
+                else
+                {
+                    if (reportData.CurrentSnapshot != null)
+                    {
+                        snapshots.Add(reportData.CurrentSnapshot);
+                        snapshotConfiguration = new[] {"CURRENT"};
+                    }
+                }
+            }
+
             #endregion
 
             #region Get Results
@@ -185,6 +271,7 @@ namespace CastReporting.Reporting.Block.Table
                     foreach (string _metricId in metrics)
                     {
                         EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, null, string.Empty);
+                        if (res.name == Constants.No_Value) continue;
                         _posResults[positionMetrics] = res.name;
                         foreach (string param in snapshotConfiguration)
                         {
@@ -222,7 +309,9 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             // _metricId should be a quality indicator, if not, return null
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
-                            _posResults[positionMetrics] = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            if (name == Constants.No_Value) continue;
+                            _posResults[positionMetrics] = name;
                             ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(_snapshot, int.Parse(_metricId));
                             foreach (string _violation in violations)
                             {
@@ -259,7 +348,9 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             // _metricId should be a quality indicator, if not, return null
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
-                            _posResults[positionMetrics] = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            if (name == Constants.No_Value) continue;
+                            _posResults[positionMetrics] = name;
                             ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(_snapshot, int.Parse(_metricId));
                             foreach (string _violation in criticalViolations)
                             {
@@ -310,6 +401,7 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             _posResults[positionModules] = module.Name;
                             EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, module, string.Empty);
+                            if (res.name == Constants.No_Value) continue;
                             _posResults[positionMetrics] = res.name;
                             foreach (string param in snapshotConfiguration)
                             {
@@ -349,7 +441,9 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             // _metricId should be a quality indicator, if not, return null
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
-                            _posResults[positionMetrics] = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            if (name == Constants.No_Value) continue;
+                            _posResults[positionMetrics] = name;
                             foreach (Module _module in modules)
                             {
                                 _posResults[positionModules] = _module.Name;
@@ -393,7 +487,9 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             // _metricId should be a quality indicator, if not, return null
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
-                            _posResults[positionMetrics] = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            if (name == Constants.No_Value) continue;
+                            _posResults[positionMetrics] = name;
                             foreach (Module _module in modules)
                             {
                                 _posResults[positionModules] = _module.Name;
@@ -448,6 +544,7 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             _posResults[positionTechnologies] = techno;
                             EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, null, techno);
+                            if (res.name == Constants.No_Value) continue;
                             _posResults[positionMetrics] = res.name;
                             foreach (string param in snapshotConfiguration)
                             {
@@ -487,7 +584,9 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             // _metricId should be a quality indicator, if not, return null
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
-                            _posResults[positionMetrics] = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            if (name == Constants.No_Value) continue;
+                            _posResults[positionMetrics] = name;
                             foreach (string techno in technologies)
                             {
                                 _posResults[positionTechnologies] = techno;
@@ -531,7 +630,9 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             // _metricId should be a quality indicator, if not, return null
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
-                            _posResults[positionMetrics] = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            if (name == Constants.No_Value) continue;
+                            _posResults[positionMetrics] = name;
                             foreach (string techno in technologies)
                             {
                                 _posResults[positionTechnologies] = techno;
@@ -589,6 +690,7 @@ namespace CastReporting.Reporting.Block.Table
                             {
                                 _posResults[positionTechnologies] = techno;
                                 EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, module, techno);
+                                if (res.name == Constants.No_Value) continue;
                                 _posResults[positionMetrics] = res.name;
                                 foreach (string param in snapshotConfiguration)
                                 {
@@ -629,7 +731,9 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             // _metricId should be a quality indicator, if not, return null
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
-                            _posResults[positionMetrics] = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            if (name == Constants.No_Value) continue;
+                            _posResults[positionMetrics] = name;
                             foreach (Module _module in modules)
                             {
                                 _posResults[positionModules] = _module.Name;
@@ -676,7 +780,9 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             // _metricId should be a quality indicator, if not, return null
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = _snapshot.Name + " - " + _snapshot.Annotation.Version;
-                            _posResults[positionMetrics] = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
+                            if (name == Constants.No_Value) continue;
+                            _posResults[positionMetrics] = name;
                             foreach (Module _module in modules)
                             {
                                 _posResults[positionModules] = _module.Name;
@@ -786,13 +892,31 @@ namespace CastReporting.Reporting.Block.Table
                                 foreach (var itemcol11 in _posConfig[1].Parameters)
                                 {
                                     string itemcol11Name = GetItemName(type1, itemcol11, reportData);
-                                    rowData.Add(results[Tuple.Create(itemcol1Name, itemcol11Name, itemrow1Name, itemrow11Name)]);
+                                    string data;
+                                    try
+                                    {
+                                        data = results[Tuple.Create(itemcol1Name, itemcol11Name, itemrow1Name, itemrow11Name)];
+                                    }
+                                    catch (KeyNotFoundException)
+                                    {
+                                        data = Constants.No_Value;
+                                    }
+                                    rowData.Add(data);
                                 }
-                                
+                               
                             }
                             else
                             {
-                                rowData.Add(results[Tuple.Create(itemcol1Name, string.Empty, itemrow1Name, itemrow11Name)]);
+                                string data;
+                                try
+                                {
+                                    data = results[Tuple.Create(itemcol1Name, string.Empty, itemrow1Name, itemrow11Name)];
+                                }
+                                catch (KeyNotFoundException)
+                                {
+                                    data = Constants.No_Value;
+                                }
+                                rowData.Add(data);
                             }
                         }
                         cntRow++;
@@ -808,13 +932,31 @@ namespace CastReporting.Reporting.Block.Table
                             foreach (var itemcol11 in _posConfig[1].Parameters)
                             {
                                 string itemcol11Name = GetItemName(type1, itemcol11, reportData);
-                                rowData.Add(results[Tuple.Create(itemcol1Name, itemcol11Name, itemrow1Name, string.Empty)]);
+                                string data;
+                                try
+                                {
+                                    data = results[Tuple.Create(itemcol1Name, itemcol11Name, itemrow1Name, string.Empty)];
+                                }
+                                catch (KeyNotFoundException)
+                                {
+                                    data = Constants.No_Value;
+                                }
+                                rowData.Add(data);
                             }
 
                         }
                         else
                         {
-                            rowData.Add(results[Tuple.Create(itemcol1Name, string.Empty, itemrow1Name, string.Empty)]);
+                            string data;
+                            try
+                            {
+                                data = results[Tuple.Create(itemcol1Name, string.Empty, itemrow1Name, string.Empty)];
+                            }
+                            catch (KeyNotFoundException)
+                            {
+                                data = Constants.No_Value;
+                            }
+                            rowData.Add(data);
                         }
                     }
                     cntRow++;
