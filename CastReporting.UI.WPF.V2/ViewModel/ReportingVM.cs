@@ -362,28 +362,7 @@ namespace CastReporting.UI.WPF.ViewModel
             }
         }
 
-
-        ///// <summary>
-        ///// 
-        ///// </summary>      
-        //public bool IsDataFilledIn
-        //{
-        //    get
-        //    {
-        //        //if (_SelectedTag != null && _SelectedTemplateFile != null)
-        //        if (_SelectedTemplateFile != null && _SelectedTab==1)
-        //        {
-        //            return true;
-        //        }
-        //        else  
-        //        {
-        //            return _SelectedApplication != null &&
-        //                   _SelectedSnapshot != null &&
-        //                   _SelectedTemplateFile != null;
-        //        } 
-        //    }
-        //}
-     
+    
         /// <summary>
         /// 
         /// </summary>
