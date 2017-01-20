@@ -47,7 +47,7 @@ namespace CastReporting.Reporting.Block.Table
                 technicalCriteriasResults = technicalCriteriasResults.Take(count).ToList();
 
                 //Result of previous snapshot
-                List<TechnicalCriteriaResultDTO> prevTechnicalCriteriasResults = null; //new List<TechnicalCriteriaResultDTO>();
+                List<TechnicalCriteriaResultDTO> prevTechnicalCriteriasResults = null;
                 if (reportData.PreviousSnapshot != null)
                     prevTechnicalCriteriasResults = BusinessCriteriaUtility.GetTechnicalCriteriasByBusinessCriterias(reportData.PreviousSnapshot, strMetricId, count)?.ToList();                
 

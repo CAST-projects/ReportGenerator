@@ -106,21 +106,6 @@ namespace CastReporting.BLL
             public string label { get; set; }
         }
 
-        //public List<string> GetCommonTaggedApplications()
-        //{
-        //    List<string> CommonTaggedApplications = new List<string>();
-
-        //    using (var castRepository = GetRepository())
-        //    {
-        //        string strCommonTagsJson = castRepository.GetCommonTagsJson();
-        //        if (strCommonTagsJson != null)
-        //        {
-        //        }
-        //    }
-
-        //    return CommonTaggedApplications;
-        //}
-
         public List<Snapshot> GetAllSnapshots(Application[] applications)
         {
             List<Snapshot> _snapshots = new List<Snapshot>();
@@ -147,7 +132,6 @@ namespace CastReporting.BLL
                 {
                     string strCommonTagsJson = castRepository.GetCommonTagsJson();
                     if (strCommonTagsJson == null) return _commonTaggedApplications;
-                    //var CommonTags = Newtonsoft.Json.JsonConvert.DeserializeObject<CommonTags[]>(strCommonTagsJson);
                     var _commonTagsss3 = new DataContractJsonSerializer(typeof(CommonTags[]));
                     MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(strCommonTagsJson));
                     var _commonTags = _commonTagsss3.ReadObject(ms) as CommonTags[];
@@ -162,7 +146,6 @@ namespace CastReporting.BLL
                 {
                     string strCommonTagsJson = castRepository.GetCommonTagsJson();
                     if (strCommonTagsJson == null) return _commonTaggedApplications;
-                    //var CommonTags = Newtonsoft.Json.JsonConvert.DeserializeObject<CommonTags[]>(strCommonTagsJson);
 
                     var _commonTagsss3 = new DataContractJsonSerializer(typeof(CommonTags[]));
                     MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(strCommonTagsJson));
@@ -173,14 +156,7 @@ namespace CastReporting.BLL
                     {
                         Application app = GetApplications().First(_ => _.Href == ct.application.Href);
                         Tagg[] tags = ct.commonTags;
-                        foreach (Tagg tag in tags)
-                        {
-                            string strTagLabel = string.IsNullOrEmpty(tag.label) ? " " : tag.label;
-                            if (strTagLabel == strSelectedTag)
-                            {
-                                _commonTaggedApplications.Add(app);
-                            }
-                        }
+                        _commonTaggedApplications.AddRange(from tag in tags select string.IsNullOrEmpty(tag.label) ? " " : tag.label into strTagLabel where strTagLabel == strSelectedTag select app);
                     }
                 }
             }
@@ -195,7 +171,6 @@ namespace CastReporting.BLL
             {
                 string _commonCategoriesJson = castRepository.GetCommonCategoriesJson();
                 if (_commonCategoriesJson == "") return _tags;
-                //var CommonCategorys = Newtonsoft.Json.JsonConvert.DeserializeObject<CommonCategoriess[]>(CommonCategoriesJson);
                 var _commonTagsss3 = new DataContractJsonSerializer(typeof(CommonCategoriess[]));
                 MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(_commonCategoriesJson));
                 var _commonCategorys = _commonTagsss3.ReadObject(ms) as CommonCategoriess[];

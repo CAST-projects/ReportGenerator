@@ -980,7 +980,6 @@ namespace CastReporting.Reporting.Block.Table
 
         protected string GetItemName(string type, string item, ReportData reportData)
         {
-            // snapshots, metrics, modules, technologies, violations, critical_violations
             switch (type)
             {
                 case "SNAPSHOTS":
@@ -1035,7 +1034,6 @@ namespace CastReporting.Reporting.Block.Table
 
         protected string GetTypeName(string type)
         {
-            // snapshots, metrics, modules, technologies, violations, critical_violations
             switch (type)
             {
                 case "SNAPSHOTS":

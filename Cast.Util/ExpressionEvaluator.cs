@@ -10,14 +10,20 @@ namespace Cast.Util
 {
     public class ExpressionEvaluator
     {
+        /// <summary>
+        /// examples of parameters :
+        /// parameters = "double a, double b, double c, double d, double e";
+        /// expression = "a * b - (c + d) / e";
+        /// values = new object[] { 1.32, 2, 3.65, 2.6, 10 };
+        /// format="N2";
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <param name="expression"></param>
+        /// <param name="values"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
         public static string Eval(string parameters, string expression, object[] values, string format)
         {
-            /*
-            parameters = "double a, double b, double c, double d, double e";
-            expression = "a * b - (c + d) / e";
-            values = new object[] { 1.32, 2, 3.65, 2.6, 10 };
-            format="N2";
-            */
 
             const string source = @"
 class MyType

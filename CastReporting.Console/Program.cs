@@ -113,8 +113,6 @@ namespace CastReporting.Console
 
                     //Initialize temporary directory
                     string workDirectory = SettingsBLL.GetApplicationPath();
-                    //tmpReportFile = PathUtil.CreateTempCopy(workDirectory, Path.Combine(settings.ReportingParameter.TemplatePath, arguments.Template.Name));
-                    //tmpReportFile = PathUtil.CreateTempCopy(workDirectory, arguments.Template.Name);
 
                     //Initialize Web services
 
@@ -217,16 +215,12 @@ namespace CastReporting.Console
 
                         Snapshot[] _n_selectedApps_snapshots = _n_snaps.ToArray();
 
-                        //GenerateReportPortfolio(N_SelectedApps, N_SelectedApps_Snapshots);
-                        //string tmpReportFile = String.Empty;
-                        string tmpReportFileFlexi = String.Empty;
+                        string tmpReportFileFlexi = string.Empty;
 
                         try
                         {
 
                             //Create temporary report
-                            //string workDirectory = SettingsBLL.GetApplicationPath();
-                            //tmpReportFile = PathUtil.CreateTempCopy(workDirectory + "\\Portfolio\\", arguments.Template.Name);
                             tmpReportFile = PathUtil.CreateTempCopy(workDirectory, Path.Combine(settings.ReportingParameter.TemplatePath + "\\Portfolio", arguments.Template.Name));
                             if (tmpReportFile.Contains(".xlsx"))
                             {

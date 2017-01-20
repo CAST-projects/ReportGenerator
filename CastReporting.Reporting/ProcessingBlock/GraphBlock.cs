@@ -67,30 +67,28 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
             GraphBlock instance = BlockHelper.GetAssociatedBlockInstance<GraphBlock>(blockName);
-            if (null != instance)
+            if (null == instance) return;
+            LogHelper.Instance.LogDebugFormat("Start GraphBlock generation : Type {0}", blockName);
+            Stopwatch treatmentWatch = Stopwatch.StartNew();
+            TableDefinition content = instance.Content(client, options);
+            try
             {
-                LogHelper.Instance.LogDebugFormat("Start GraphBlock generation : Type {0}", blockName);
-                Stopwatch treatmentWatch = Stopwatch.StartNew();
-                TableDefinition content = instance.Content(client, options);
-                try
-                {
-                    if (null != content)
-                    {                       
-                        ApplyContent(client, pPackage, block, content, options);                        
-                    }
+                if (null != content)
+                {                       
+                    ApplyContent(client, pPackage, block, content, options);                        
                 }
-                finally
-                {
-                    Thread.CurrentThread.CurrentCulture = previousCulture;
+            }
+            finally
+            {
+                Thread.CurrentThread.CurrentCulture = previousCulture;
 
-                    treatmentWatch.Stop();
-                    LogHelper.Instance.LogDebugFormat
-                        ("End GraphBlock generation ({0}) in {1} millisecond{2}"
-                        , blockName
-                        , treatmentWatch.ElapsedMilliseconds
-                        , treatmentWatch.ElapsedMilliseconds > 1 ? "s" : string.Empty
-                        );
-                }
+                treatmentWatch.Stop();
+                LogHelper.Instance.LogDebugFormat
+                ("End GraphBlock generation ({0}) in {1} millisecond{2}"
+                    , blockName
+                    , treatmentWatch.ElapsedMilliseconds
+                    , treatmentWatch.ElapsedMilliseconds > 1 ? "s" : string.Empty
+                );
             }
         }
         [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
@@ -412,23 +410,9 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                     if (!pContent.GraphOptions.AxisConfiguration.VerticalAxisMaximal.HasValue) return;
                     // ReSharper disable once PossibleInvalidOperationException
                     if (primaryVerticalAxis != null) primaryVerticalAxis.Scaling.MaxAxisValue.Val = DoubleValue.FromDouble(pContent.GraphOptions.AxisConfiguration.VerticalAxisMaximal.Value);
-                    //if (content.GraphOptions.AxisConfiguration.HorizontalAxisMinimal.HasValue)
-                    //{
-                    //    p_c.Descendants<ValueAxis>().SingleOrDefault().Scaling.MinAxisValue.Val = DoubleValue.FromDouble(content.GraphOptions.AxisConfiguration.VerticalAxisMinimal.Value);
-                    //}
-                    //if (content.GraphOptions.AxisConfiguration.HorizontalAxisMaximal.HasValue)
-                    //{
-                    //    p_c.Descendants<ValueAxis>().SingleOrDefault().Scaling.MaxAxisValue.Val = DoubleValue.FromDouble(content.GraphOptions.AxisConfiguration.VerticalAxisMaximal.Value);
-                    //}
 
                     #endregion Additionnal parameters
                 }
-
-                // SPA : Delete replacement code in order to avoid mutiplication of tree nodes
-                //var parent = GetGraphContentBlock(pClient, pBlock);
-                //var replacementNode = GetReplacementNode(pClient, allElementInPlaceHolder, pBlock.OxpBlock);
-                //if (pBlock.OxpBlock != replacementNode)
-                //{ pBlock.OxpBlock.Parent.ReplaceChild(replacementNode, pBlock.OxpBlock); }
             }
             catch (Exception exception)
             {

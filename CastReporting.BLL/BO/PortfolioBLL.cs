@@ -185,27 +185,12 @@ namespace CastReporting.BLL
             //Build Quality Indicators
             using (PortfolioBLL applicationBLL = new PortfolioBLL(connection, application))
             {
-                List<string> appsSetSnapshots = applicationBLL.SetSnapshots();
+                List <string> appsSetSnapshots = applicationBLL.SetSnapshots();
                 List<string> appsSetQualityIndicators = applicationBLL.SetQualityIndicators();
                 List<string> appsSetSizingMeasure = applicationBLL.SetSizingMeasure();
 
                 string[] appsToIgnore = appsSetQualityIndicators.Concat(appsSetSnapshots).Concat(appsSetSizingMeasure).ToArray();
                 return appsToIgnore;
-                //Task taskSetSnapshots = new Task(() => applicationBLL.SetSnapshots());
-                //taskSetSnapshots.Start();
-
-
-                //Task taskQualityIndicators = new Task(() => applicationBLL.SetQualityIndicators());
-                //taskQualityIndicators.Start();
-
-
-                ////Build Quality Indicators
-                //Task taskSizingMeasure = new Task(() => applicationBLL.SetSizingMeasure());
-                //taskSizingMeasure.Start();
-
-                //taskSetSnapshots.Wait();
-                //taskQualityIndicators.Wait();
-                //taskSizingMeasure.Wait();
             }
 
         }

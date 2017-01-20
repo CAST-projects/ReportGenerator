@@ -9,6 +9,14 @@ namespace CastReporting.Reporting
 {
     public static class MetricsUtility
     {
+        /// <summary>
+        /// This method return the name of the metric from getting it in the results of the snapshot
+        /// The metric id can be a BC, TC, QR, sizing or background fact measure
+        /// </summary>
+        /// <param name="reportData"></param>
+        /// <param name="snapshot"></param>
+        /// <param name="metricId"></param>
+        /// <returns></returns>
         public static string GetMetricName(ReportData reportData, Snapshot snapshot, string metricId)
         {
             string name = ((snapshot.BusinessCriteriaResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault() ??
@@ -22,6 +30,14 @@ namespace CastReporting.Reporting
             return name;
         }
 
+        /// <summary>
+        /// This method return the result (grade or value) of the metric from getting it in the results of the snapshot
+        /// The metric id can be a BC, TC, QR, sizing or background fact measure
+        /// </summary>
+        /// <param name="reportData"></param>
+        /// <param name="snapshot"></param>
+        /// <param name="metricId"></param>
+        /// <returns></returns>
         public static string GetMetricResult(ReportData reportData, Snapshot snapshot, string metricId)
         {
             string result = ((snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.DetailResult.Grade).FirstOrDefault()?.ToString("N2") ??
@@ -35,6 +51,16 @@ namespace CastReporting.Reporting
             return result;
         }
 
+        /// <summary>
+        /// This method return the name, type and result (grade or value) of the metric from getting it in the results of the snapshot
+        /// The metric id can be a BC, TC, QR, sizing or background fact measure
+        /// </summary>
+        /// <param name="reportData"></param>
+        /// <param name="snapshot"></param>
+        /// <param name="metricId"></param>
+        /// <param name="module"></param>
+        /// <param name="technology"></param>
+        /// <returns></returns>
         public static SimpleResult GetMetricNameAndResult(ReportData reportData, Snapshot snapshot, string metricId, Module module, string technology)
         {
             metricType type = metricType.NotKnown;
@@ -210,6 +236,18 @@ namespace CastReporting.Reporting
             return res;
         }
 
+        /// <summary>
+        /// This method return the evolution of a metric between 2 snapshots results (name, type, current result, previous result, absolute evolution and percent evolution
+        /// The metric id can be a BC, TC, QR, sizing or background fact measure
+        /// </summary>
+        /// <param name="reportData"></param>
+        /// <param name="curSnapshot"></param>
+        /// <param name="prevSnapshot"></param>
+        /// <param name="metricId"></param>
+        /// <param name="evol"></param>
+        /// <param name="module"></param>
+        /// <param name="technology"></param>
+        /// <returns></returns>
         public static EvolutionResult GetMetricEvolution(ReportData reportData, Snapshot curSnapshot, Snapshot prevSnapshot, string metricId, bool evol, Module module, string technology)
         {
             SimpleResult curResult = null;

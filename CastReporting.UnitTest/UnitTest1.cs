@@ -29,8 +29,7 @@ namespace CastReporting.UnitTest
         public void TestMatrice()
         {
             var key = Tuple.Create(1234,"JEE",60017);
-            var values = new Dictionary<Tuple<int, string, int>, double>();
-            values[key] = 2.35;
+            var values = new Dictionary<Tuple<int, string, int>, double> {[key] = 2.35};
 
             var key2 = Tuple.Create(1234, "JEE", 60017);
             Console.WriteLine(values[key]);
