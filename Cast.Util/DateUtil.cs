@@ -29,5 +29,35 @@ namespace Cast.Util.Date
             }
         }
 
+        public static int GetYear(DateTime dt)
+        {
+            return dt.Year;
+        }
+
+        public static int GetPreviousQuarter(DateTime dt)
+        {
+            int currentQuarter = GetQuarter(dt);
+            int previousQuarter = (currentQuarter == 1) ? 4 : currentQuarter - 1;
+
+            return previousQuarter;
+        }
+
+        public static int GetPreviousQuarterYear(DateTime dt)
+        {
+            int currentQuarter = GetQuarter(dt);
+            int currentYear = dt.Year;
+            int previousYear = (currentQuarter == 1) ? currentYear - 1 : currentYear;
+            return previousYear;
+        }
+
+        public static int GetPreviousQuarter(int currentQuater)
+        {
+            return (currentQuater == 1) ? 4 : currentQuater - 1;
+        }
+
+        public static int GetPreviousQuarterYear(int currentQuater, int currentYear)
+        {
+            return (currentQuater == 1) ? currentYear - 1 : currentYear;
+        }
     }
 }
