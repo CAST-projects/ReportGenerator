@@ -65,10 +65,8 @@ namespace CastReporting.Reporting.Block.Table
                 }
                 foreach (var ifpugFunctionevolution in exportedList)
                 {
-                    //rowData.Add(string.IsNullOrEmpty(ifpugFunctionevolution.ElementType) ? " " : ifpugFunctionevolution.ElementType);
                     rowData.Add(string.IsNullOrEmpty(ifpugFunctionevolution.ObjectName) ? " " : ifpugFunctionevolution.ObjectName);
                     rowData.Add(string.IsNullOrEmpty(ifpugFunctionevolution.NoOfFPs) ? " " : ifpugFunctionevolution.NoOfFPs);
-                    //rowData.Add(string.IsNullOrEmpty(ifpugFunctionevolution.FPDetails) ? " " : ifpugFunctionevolution.FPDetails);
                     rowData.Add(string.IsNullOrEmpty(ifpugFunctionevolution.ObjectType) ? " " : ifpugFunctionevolution.ObjectType);
                     rowData.Add(string.IsNullOrEmpty(ifpugFunctionevolution.ModuleName) ? " " : ifpugFunctionevolution.ModuleName);
                     rowData.Add(string.IsNullOrEmpty(ifpugFunctionevolution.Technology) ? " " : ifpugFunctionevolution.Technology);

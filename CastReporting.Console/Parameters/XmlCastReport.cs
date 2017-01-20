@@ -125,11 +125,6 @@ namespace CastReporting.Console.Argument
         /// <returns></returns>
         public bool Check()
         {
-            //XmlTextReader schemaReader = new XmlTextReader("relativeSchemaPath");
-            //XmlSchemaSet schemaSet = new XmlSchemaSet();
-            // TO DO !!
-            //if (this.Application == null || string.IsNullOrEmpty(this.Application.Name))
-            //    return false;
             if (string.IsNullOrEmpty(Webservice?.Name))
                 return false;
             if (string.IsNullOrEmpty(Template?.Name))

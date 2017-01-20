@@ -36,9 +36,6 @@ namespace CastReporting.Repositories
     {
         #region CONSTANTS
         
-        //wow7010/applications/12/results?quality-indicators=(business-criteria,technical-criteria,quality-rules,quality-distributions,quality-measures)&sizing-measures=(technical-size-measures,run-time-statistics,technical-debt-statistics,critical-violation-statistics,functional-weight-measures)&background-facts=(66061,66002,66004,66006,66001,66003,66005,66007)
-        // private const string _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&snapshots=({2})&modules=({3})&technologies=({4})&categories=({5})&select=evolutionSummary";
-        // private const string _query_result_sizing_measures = "{0}/results?sizing-measures=({1})&snapshots=({2})&technologies=({3})&modules=({4})";
         // Sometimes modules, technologies, snapshots, categories are null and the rest api 8.2 does not support it anymore for security reasons
         private const string _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&select=(evolutionSummary,violationRatio)";
         private const string _query_result_sizing_measures = "{0}/results?sizing-measures=({1})";
@@ -383,7 +380,6 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         IEnumerable<Result> ICastRepsitory.GetResultsQualityIndicators(string hRef, string qiParam, string snapshotsParam, string modulesParam, string technologiesParam, string categoriesParam)
         {
-            // _query_result_quality_indicators = "{0}/results?quality-indicators=({1})&snapshots=({2})&modules=({3})&technologies=({4})&categories=({5})&select=evolutionSummary"
             string query = _query_result_quality_indicators;
             if (string.Empty != snapshotsParam)
                 query = query + "&snapshots=({2})";
@@ -409,7 +405,6 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         IEnumerable<Result> ICastRepsitory.GetResultsSizingMeasures(string hRef, string param, string snapshotsParam, string technologiesParam, string moduleParam)
         {
-            // _query_result_sizing_measures = "{0}/results?sizing-measures=({1})&snapshots=({2})&technologies=({3})&modules=({4})"
             string query = _query_result_sizing_measures;
 
             if (string.Empty != snapshotsParam)
@@ -428,7 +423,6 @@ namespace CastReporting.Repositories
 
         IEnumerable<Result> ICastRepsitory.GetResultsBackgroundFacts(string hRef, string param, string snapshotsParam, string technologiesParam, string moduleParam)
         {
-            // _query_result_background_facts = "{0}/results?background-facts=({1})&snapshots=({2})&technologies=({3})&modules=({4})"
             string query = _query_result_background_facts;
 
             if (string.Empty != snapshotsParam)
@@ -603,46 +597,6 @@ namespace CastReporting.Repositories
              return CallWS<T>(id, RequestComplexity.Standard);                     
         }
 
-
-        //private void ManageWebException(WebException pException)
-        //{
-        //    if (pException == null)
-        //        return;
-
-        //    #region WebException Management
-        //    switch (pException.Status)
-        //    {
-        //        case WebExceptionStatus.Timeout:
-        //            {
-        //                throw new NotSupportedException(_errorMessage_requestTimeout, pException);
-        //            }
-        //        case WebExceptionStatus.NameResolutionFailure:
-        //            {
-        //                throw new NotSupportedException(_errorMessage_unknownServer, pException);
-        //            }
-        //        case WebExceptionStatus.ProtocolError:
-        //            {
-        //                HttpWebResponse res = pException.Response as HttpWebResponse;
-        //                string message = _errorMessage_unknownError;
-        //                if (null != res)
-        //                {
-        //                    message = string.Format(_errorMessage_genericError, res.StatusCode.GetHashCode(), res.StatusDescription);                            
-        //                }
-        //                throw new NotSupportedException(message, pException);
-        //            }
-        //        default:
-        //            {
-        //                HttpWebResponse res = pException.Response as HttpWebResponse;
-        //                string message = _errorMessage_unknownError;
-        //                if (null != res)
-        //                {
-        //                    message = string.Format(_errorMessage_genericError, res.StatusCode, res.StatusDescription);
-        //                }
-        //                throw new NotSupportedException(message, pException);
-        //            }
-        //    }
-        //    #endregion WebException Management
-        //}
         #endregion
 
       

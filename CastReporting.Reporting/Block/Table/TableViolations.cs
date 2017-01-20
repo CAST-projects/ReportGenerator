@@ -129,7 +129,6 @@ namespace CastReporting.Reporting.Block.Table
                         }
                         break;
                     case "MODULES":
-                        // Dictionary<int, Dictionary<string,ViolStatMetricIdDTO>> curStatsModules = new Dictionary<int, Dictionary<string, ViolStatMetricIdDTO>>(); 
                         List<Module> curModules = reportData.CurrentSnapshot.Modules.Distinct()?.ToList();
                         foreach (Module module in curModules)
                         {
@@ -139,7 +138,6 @@ namespace CastReporting.Reporting.Block.Table
                                 ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStatModule(reportData.CurrentSnapshot, module.Id, int.Parse(id.Trim()));
                                 curStatsMod[id] = stat;
                             }
-                            // curStatsModules[module.Id] = curStatsMod;
 
                             string[] totalModuleRange = new string[cntMetric + 1];
                             string[] addedModuleRange = new string[cntMetric + 1];
@@ -179,7 +177,6 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                     case "TECHNOLOGIES":
                         List<string> curTechnos = reportData.CurrentSnapshot.Technologies?.ToList();
-                        // Dictionary<int, Dictionary<string,ViolStatMetricIdDTO>> curStatsTechnologies = new Dictionary<int, Dictionary<string, ViolStatMetricIdDTO>>(); 
                         foreach (string techno in curTechnos)
                         {
                             Dictionary<string, ViolStatMetricIdDTO> curStatsTech = new Dictionary<string, ViolStatMetricIdDTO>();
@@ -188,7 +185,6 @@ namespace CastReporting.Reporting.Block.Table
                                 ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStatTechno(reportData.CurrentSnapshot, techno, int.Parse(id.Trim()));
                                 curStatsTech[id] = stat;
                             }
-                            // curStatsTechnologies[module.Id] = curStatsMod;
 
                             string[] totalTechnoRange = new string[cntMetric + 1];
                             string[] addedTechnoRange = new string[cntMetric + 1];
@@ -318,7 +314,6 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                     case "MODULES":
                         List<Module> prevModules = reportData.PreviousSnapshot.Modules.Distinct()?.ToList();
-                        // Dictionary<int, Dictionary<string, ViolStatMetricIdDTO>> prevStatsModules = new Dictionary<int, Dictionary<string, ViolStatMetricIdDTO>>();
                         foreach (Module module in prevModules)
                         {
                             Dictionary<string, ViolStatMetricIdDTO> prevStatsMod = new Dictionary<string, ViolStatMetricIdDTO>();
@@ -327,7 +322,6 @@ namespace CastReporting.Reporting.Block.Table
                                 ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStatModule(reportData.PreviousSnapshot, module.Id, int.Parse(id.Trim()));
                                 prevStatsMod[id] = stat;
                             }
-                            // prevStatsModules[module.Id] = prevStatsMod;
 
                             string[] totalModuleRange = new string[cntMetric + 1];
                             string[] addedModuleRange = new string[cntMetric + 1];
@@ -369,7 +363,6 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                     case "TECHNOLOGIES":
                         List<string> prevTechnos = reportData.PreviousSnapshot.Technologies?.ToList();
-                        // Dictionary<int, Dictionary<string,ViolStatMetricIdDTO>> prevStatsTechnologies = new Dictionary<int, Dictionary<string, ViolStatMetricIdDTO>>(); 
                         foreach (string techno in prevTechnos)
                         {
                             Dictionary<string, ViolStatMetricIdDTO> prevStatsTech = new Dictionary<string, ViolStatMetricIdDTO>();
@@ -378,7 +371,6 @@ namespace CastReporting.Reporting.Block.Table
                                 ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStatTechno(reportData.PreviousSnapshot, techno, int.Parse(id.Trim()));
                                 prevStatsTech[id] = stat;
                             }
-                            // prevStatsTechnologies[module.Id] = prevStatsTech;
 
                             string[] totalTechnoRange = new string[cntMetric + 1];
                             string[] addedTechnoRange = new string[cntMetric + 1];

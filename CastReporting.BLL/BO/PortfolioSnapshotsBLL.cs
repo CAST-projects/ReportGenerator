@@ -82,9 +82,9 @@ namespace CastReporting.BLL
             }
 
 
-            List<string> _ignore_setBusinessCriteriaCCRulesViolations = SetBusinessCriteriaCCRulesViolations();
-            List<string> _ignore_setBusinessCriteriaNCRulesViolations = SetBusinessCriteriaNCRulesViolations();
-            List<string> _ignore_setTechnicalCriteriaRulesViolations = SetTechnicalCriteriaRulesViolations();
+            IEnumerable<string> _ignore_setBusinessCriteriaCCRulesViolations = SetBusinessCriteriaCCRulesViolations();
+            IEnumerable<string> _ignore_setBusinessCriteriaNCRulesViolations = SetBusinessCriteriaNCRulesViolations();
+            IEnumerable<string> _ignore_setTechnicalCriteriaRulesViolations = SetTechnicalCriteriaRulesViolations();
 
             var _all = _ignore_snaps.Concat(_ignore_setBusinessCriteriaCCRulesViolations).Concat(_ignore_setBusinessCriteriaNCRulesViolations).Concat(_ignore_setTechnicalCriteriaRulesViolations).ToList();
 
@@ -228,48 +228,7 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
-        public void SetActionsPlan()
-        {
-            // no action plan on portfolio
-            /*
-            try
-            {
-                using (var castRepsitory = GetRepository())
-                {
-                    if (Snapshots.Length <= 0) return;
-                    foreach (Snapshot snap in Snapshots)
-                    {
-                        snap.ActionsPlan = castRepsitory.GetActionPlanBySnapshot(snap.Href);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Instance.LogInfo(ex.Message);
-                if (Snapshots.Length > 0)
-                {
-                    foreach (Snapshot snap in Snapshots)
-                    {
-                        snap.ActionsPlan = null;
-                    }
-                }
-            }
-            */
-            if (Snapshots.Length <= 0) return;
-            foreach (Snapshot snap in Snapshots)
-            {
-                snap.ActionsPlan = null;
-            }
-        }
-
-
-
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private List<string> SetBusinessCriteriaCCRulesViolations()
+        private IEnumerable<string> SetBusinessCriteriaCCRulesViolations()
         {
             List<string> _ignoreSnaps = new List<string>();
             using (var castRepsitory = GetRepository())
@@ -299,7 +258,7 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
-        private List<string> SetBusinessCriteriaNCRulesViolations()
+        private IEnumerable<string> SetBusinessCriteriaNCRulesViolations()
         {
             List<string> _ignore_snaps = new List<string>();
             using (var castRepsitory = GetRepository())
@@ -330,7 +289,7 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
-        private List<string> SetTechnicalCriteriaRulesViolations()
+        private IEnumerable<string> SetTechnicalCriteriaRulesViolations()
         {
             List<string> _ignoreSnaps = new List<string>();
             using (var castRepsitory = GetRepository())

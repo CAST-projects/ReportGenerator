@@ -218,7 +218,6 @@ namespace CastReporting.Domain
         #region CONSTRUCTORS
         private Constants()
         {
-            //this.ApplicationQuality = new ApplicationQuality();
         }
         #endregion CONSTRUCTORS
 
@@ -240,7 +239,6 @@ namespace CastReporting.Domain
             }
         }
 
-        //public ApplicationQuality ApplicationQuality { get; set; }
         #endregion PROPERTIES
     }
 

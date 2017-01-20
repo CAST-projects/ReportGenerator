@@ -132,7 +132,6 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             OXP.Shape shape = (OXP.Shape)block.CloneNode(true);
             OXD.Run run = (OXD.Run)shape.TextBody.Descendants<OXD.Run>().First().CloneNode(true);
             run.Text = new OXD.Text(content);
-            //shape.NonVisualShapeProperties.NonVisualDrawingProperties.Description = string.Empty;
             OXD.Paragraph paragraph = shape.TextBody.GetFirstChild<OXD.Paragraph>();
             paragraph.RemoveAllChildren<OXD.Run>();
             OXD.EndParagraphRunProperties endP = paragraph.GetFirstChild<OXD.EndParagraphRunProperties>();

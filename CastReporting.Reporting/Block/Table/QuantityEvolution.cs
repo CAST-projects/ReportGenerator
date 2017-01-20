@@ -307,15 +307,6 @@ namespace CastReporting.Reporting.Block.Table
                     , dtFinalRepository.Rows[i]["Classes"].ToString()
                 });
             }
-            //foreach (var item in ResultCompartTecno)
-            //{
-            //    rowData.AddRange(new string[] { 
-            //        item.name
-            //        , ""
-            //        , (item.evolValue.HasValue) ? FormatEvolution((Int32)item.evolValue.Value) : CastReporting.Domain.Constants.No_Value
-            //        , ""
-            //    });
-            //}
 
             var resultTable = new TableDefinition
             {

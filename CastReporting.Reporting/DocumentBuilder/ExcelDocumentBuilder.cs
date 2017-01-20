@@ -63,7 +63,6 @@ namespace CastReporting.Reporting.Builder
         protected override BlockConfiguration GetBlockConfiguration(BlockItem block)
         {
             // TODO : Finalize Excel alimentation
-            //throw new NotImplementedException();
             return null;
         }
 
@@ -122,7 +121,6 @@ namespace CastReporting.Reporting.Builder
         {
             string strTargetFile = ReportData.FileName;
             string fileName = StrFinalTempFile;
-            //File.Copy(strTargetFile, fileName, true);
 
             if (strTargetFile != "")
             {
@@ -179,8 +177,6 @@ namespace CastReporting.Reporting.Builder
                     foreach (var sheetData in worksheetpart.Worksheet.Elements<SheetData>())
                     {
                         // reset accross sheets
-                        //Cell FinaleCell = null;
-                        //TableDefinition FinaleTable = null;
                         tableTargets.Clear();
 
                         #region TextPopulate
@@ -220,8 +216,6 @@ namespace CastReporting.Reporting.Builder
                                                     cell = cell,
                                                     table = instance.GetContent(reportData, config.Options)
                                                 });
-                                                //FinaleCell = cell;
-                                                //FinaleTable = instance.GetContent(reportData, config.Options);
                                             }
                                         }
                                     }
@@ -509,7 +503,6 @@ namespace CastReporting.Reporting.Builder
                     // actually insert the new row into the sheet
                     retRow = sheetData.InsertBefore(insertRow, retRow);  // at this point, retRow still points to the row that had the insert rowIndex
 
-                    //string curIndex = retRow.RowIndex.ToString();
                     string curIndex = rowIndex.ToString();
                     string newIndex = rowIndex.ToString();
 
@@ -569,7 +562,6 @@ namespace CastReporting.Reporting.Builder
 
                     WriteDatasheet(doc, sheetPart, source, tabName);
                 }
-                //streamDoc.GetModifiedSmlDocument().SaveAs(targetFile);
                 streamDoc.GetModifiedSmlDocument().SaveAs(targetFile);
             }
         }
@@ -637,27 +629,9 @@ namespace CastReporting.Reporting.Builder
                         new WorksheetAccessor.ColorInfo(WorksheetAccessor.ColorInfo.ColorType.Indexed, 1),
                         new WorksheetAccessor.ColorInfo(WorksheetAccessor.ColorInfo.ColorType.Theme, 4)
                         ));
-
-                //fill = WorksheetAccessor.GetFillIndex(doc,
-                //                                      new WorksheetAccessor.PatternFill(
-                //                                          WorksheetAccessor.PatternFill.PatternType.Solid,
-                //                                          new WorksheetAccessor.ColorInfo(
-                //                                              WorksheetAccessor.ColorInfo.ColorType.Theme, 2),
-                //                                          new WorksheetAccessor.ColorInfo(
-                //                                              WorksheetAccessor.ColorInfo.ColorType.Theme, 2)));
             }
             else
             {
-                //numFmt = 1;
-                //font = WorksheetAccessor.GetFontIndex(doc, new WorksheetAccessor.Font
-                //                                               {
-                //                                                   Bold = true,
-                //                                                   Size = 8,
-                //                                                   Color = 
-                //                                                       new WorksheetAccessor.ColorInfo(WorksheetAccessor.ColorInfo.ColorType.Indexed, 0),
-                //                                                   Name = "Calibri",
-                //                                                   Family = 1
-                //                                               });
                 border.Top = new WorksheetAccessor.BorderLine(
                     WorksheetAccessor.BorderLine.LineStyle.Thin,
                     new WorksheetAccessor.ColorInfo(colorHtmlStr));

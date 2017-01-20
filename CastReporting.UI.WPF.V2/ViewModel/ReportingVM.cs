@@ -347,7 +347,6 @@ namespace CastReporting.UI.WPF.ViewModel
         {
             get
             {
-                //if (_SelectedTag != null && _SelectedTemplateFile != null)
                 if (_SelectedTemplateFile != null && _SelectedTab == 1)
                 {
                     return true;
@@ -423,16 +422,6 @@ namespace CastReporting.UI.WPF.ViewModel
         /// </summary>
         void ExecuteReloadTemplatesCommand(object parameter)
         {
-            //if (_SelectedTag != null && _SelectedTemplateFile != null)
-            //{
-            //    return true;
-            //}
-            //else
-            //{
-            //    return _SelectedApplication != null &&
-            //           _SelectedSnapshot != null &&
-            //           _SelectedTemplateFile != null;
-            //}
             switch (SelectedTab)
             {
                 case 0:

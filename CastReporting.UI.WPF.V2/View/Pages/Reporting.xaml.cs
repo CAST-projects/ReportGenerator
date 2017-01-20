@@ -39,7 +39,6 @@ namespace CastReporting.UI.WPF.View
 
             Loaded += OnLoaded; 
 
-            //BindCategories();
         }
 
         public WSConnection ActiveConnection { get; set; }
