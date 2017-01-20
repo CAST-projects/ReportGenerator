@@ -158,12 +158,6 @@ namespace CastReporting.Reporting.Block.Table
                             {
                                 if (reportData.CurrentSnapshot != null) modules.AddRange(reportData.CurrentSnapshot.Modules);
                             }
-                            string[] paramModules = new string[modules.Count];
-                            for (int j = 0; j < modules.Count; j++)
-                            {
-                                paramModules[j] = modules[j].Name;
-                            }
-                            _posConfig[i].Parameters = paramModules;
                         }
                         else
                         {
@@ -175,40 +169,41 @@ namespace CastReporting.Reporting.Block.Table
                             {
                                 modules.AddRange(reportData.PreviousSnapshot.Modules.Where(_ => _posConfig[i].Parameters.Contains(_.Name)));
                             }
-                            string[] paramModules = new string[modules.Count];
-                            for (int j = 0; j < modules.Count; j++)
-                            {
-                                paramModules[j] = modules[j].Name;
-                            }
-                            _posConfig[i].Parameters = paramModules;
                         }
+                        _posConfig[i].Parameters = modules.Select(_ => _.Name).ToArray();
                         break;
                     case "TECHNOLOGIES":
                         positionTechnologies = i;
                         if (_posConfig[i].Parameters.Contains("ALL") || _posConfig[i].Parameters.Length == 0)
                         {
-                            if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null) technologies.AddRange(reportData.CurrentSnapshot.Technologies);
-                            if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null)
+                            if (snapshotConfiguration != null)
                             {
-                                foreach (string technology in reportData.PreviousSnapshot.Technologies)
+                                if ((snapshotConfiguration.Contains("CURRENT") || snapshotConfiguration.Contains("ALL")) && reportData.CurrentSnapshot != null) technologies.AddRange(reportData.CurrentSnapshot.Technologies);
+                                if ((snapshotConfiguration.Contains("PREVIOUS") || snapshotConfiguration.Contains("ALL")) && reportData.PreviousSnapshot != null)
                                 {
-                                    if (!technologies.Contains(technology)) technologies.Add(technology);
+                                    foreach (string technology in reportData.PreviousSnapshot.Technologies)
+                                    {
+                                        if (!technologies.Contains(technology)) technologies.Add(technology);
+                                    }
                                 }
                             }
-                            string[] paramTechnos = new string[technologies.Count];
-                            for (int j = 0; j < technologies.Count; j++)
+                            else
                             {
-                                paramTechnos[j] = technologies[j];
+                                if (reportData.CurrentSnapshot != null) technologies.AddRange(reportData.CurrentSnapshot.Technologies);
                             }
-                            _posConfig[i].Parameters = paramTechnos;
                         }
                         else
                         {
-                            if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null)
+                            if ((snapshotConfiguration == null || snapshotConfiguration.Contains("CURRENT")) && reportData.CurrentSnapshot != null)
                             {
                                 technologies.AddRange(reportData.CurrentSnapshot.Technologies.Where(_ => _posConfig[i].Parameters.Contains(_)));
                             }
+                            else if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null)
+                            {
+                                technologies.AddRange(reportData.PreviousSnapshot.Technologies.Where(_ => _posConfig[i].Parameters.Contains(_)));
+                            }
                         }
+                        _posConfig[i].Parameters = technologies.ToArray();
                         break;
                     case "VIOLATIONS":
                         positionViolations = i;
