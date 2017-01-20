@@ -31,7 +31,7 @@ namespace CastReporting.Reporting.Helper
             if (options == null || !options.TryGetValue(key, out value)) {
                 value = defaultValue;
             }
-            return value?.Replace(" ", "").Replace("\t", "").Replace("\n", "").Replace("\r", "");
+            return value?.Replace("\t", "").Replace("\n", "").Replace("\r", "");
         }
 
         public static int GetIntOption(this Dictionary<string, string> options, string key, int defaultValue = default(int)) {
