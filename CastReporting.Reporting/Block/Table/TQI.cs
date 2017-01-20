@@ -41,7 +41,7 @@ namespace CastReporting.Reporting.Block.Table
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             List<string> rowData = new List<string>();
-            rowData.AddRange(new[] { Labels.Statistics, Labels.Current, Labels.Previous });
+            rowData.AddRange(new[] { Labels.Statistics, Labels.CurrentScore, Labels.PreviousScore });
 
 
             double? currentTqi= BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Domain.Constants.BusinessCriteria.TechnicalQualityIndex, true);

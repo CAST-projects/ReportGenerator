@@ -180,8 +180,8 @@
   <data name="Current" xml:space="preserve">
     <value>Actual</value>
   </data>
-  <data name="Previous" xml:space="preserve">
-    <value>score anterior</value>
+  <data name="PreviousScore" xml:space="preserve">
+    <value>Score anterior</value>
   </data>
   <data name="NoItem" xml:space="preserve">
     <value>Item no habilitado</value>
@@ -496,10 +496,10 @@
     <value>Aplicación</value>
   </data>
   <data name="Target" xml:space="preserve">
-    <value>score objetivo</value>
+    <value>Score objetivo</value>
   </data>
-  <data name="Actual" xml:space="preserve">
-    <value>score actual</value>
+  <data name="CurrentScore" xml:space="preserve">
+    <value>Score actual</value>
   </data>
   <data name="SLAViolations" xml:space="preserve">
     <value>Violaciones SLA</value>
@@ -578,5 +578,8 @@
   </data>
   <data name="Violations" xml:space="preserve">
     <value>Violaciones</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Anterior</value>
   </data>
 </root>

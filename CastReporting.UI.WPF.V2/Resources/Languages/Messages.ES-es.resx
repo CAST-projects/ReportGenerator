@@ -139,7 +139,7 @@
     <value>Informe generado con éxito!</value>
   </data>
   <data name="mnuReporting" xml:space="preserve">
-    <value>inicio</value>
+    <value>Inicio</value>
   </data>
   <data name="mnuWSConfiguration" xml:space="preserve">
     <value>Configuración WebService</value>

@@ -81,7 +81,7 @@ namespace CastReporting.Reporting.Block.Table
                 double? strPreviousProgrammingAll = 0;
                 double? strPreviousDocumentAll = 0;
 
-                rowData.AddRange(new[] { Labels.BusinessCriterionName, Labels.Previous, Labels.Target, Labels.Actual, Labels.SLAViolations });
+                rowData.AddRange(new[] { Labels.BusinessCriterionName, Labels.PreviousScore, Labels.Target, Labels.CurrentScore, Labels.SLAViolations });
 
                 Application[] _allApps = reportData.Applications;
                 foreach (Application _app in _allApps)
