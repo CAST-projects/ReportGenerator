@@ -871,6 +871,7 @@ namespace CastReporting.Reporting.Block.Table
             foreach (var itemrow1 in _posConfig[2].Parameters)
             {
                 string itemrow1Name = GetItemName(type2, itemrow1, reportData);
+                if (itemrow1Name == Constants.No_Value) continue;
                 rowData.Add(itemrow1Name);
                 if (_posConfig[3] != null)
                 {
@@ -882,6 +883,7 @@ namespace CastReporting.Reporting.Block.Table
                     foreach (var itemrow11 in _posConfig[3].Parameters)
                     {
                         string itemrow11Name = GetItemName(type3, itemrow11, reportData);
+                        if (itemrow11Name == Constants.No_Value) continue;
                         rowData.Add("    " + itemrow11Name);
                         
                         foreach (var itemcol1 in _posConfig[0].Parameters)
