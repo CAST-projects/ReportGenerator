@@ -201,7 +201,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                     {
                         for (int i = 0, lim = content.NbColumns - columns.Count; i < lim; i++)
                         {
-                            tablegrid.AppendChild(new OXW.GridColumn() { Width = "1000" });
+                            tablegrid.AppendChild(new OXW.GridColumn() { Width = "200" });
                         }
                     }
                 }
