@@ -163,6 +163,19 @@ namespace CastReporting.Reporting.Builder
             string fileName = strTargetFile;
 
             const string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string[] alph = new string[676]; // 676 = 26*26
+            for (int i = 0; i < 26; i++)
+            {
+                alph[i] = alphabet.Substring(i, 1);
+            }
+            for (int i = 0; i < 26; i++)
+            {
+                for (int j = 0; j < 26; j++)
+                {
+                    alph[26 + i + j] = alphabet.Substring(i,1) + alphabet.Substring(j, 1);
+
+                }
+            }
 
             var tableTargets = new List<TableInfo>();
 
@@ -233,11 +246,11 @@ namespace CastReporting.Reporting.Builder
 
                             int intColumns = _finaleTable.NbColumns;
 
-                            // TODO: handle cell references after 'Znn' (AA1, AB1...)
-                            // TODO: current limitation: the generated cells must be in the range "A-Z"
+                            // TODO: handle cell references after 'ZZ' (AA1, AB1...)
+                            // TODO: current limitation: the generated cells must be in the range "A-ZZ"
 
-                            char firstLetter = _finaleCell.CellReference.InnerText[0];
-                            int firstColIdx = alphabet.IndexOf(firstLetter) + 1;
+                            string firstLetter = _finaleCell.CellReference.InnerText[0].ToString();
+                            int firstColIdx = alph.ToList().IndexOf(firstLetter) + 1;
                             int lastColIdx = firstColIdx + intColumns - 1;
                             int curColIdx = firstColIdx;
 
@@ -252,7 +265,9 @@ namespace CastReporting.Reporting.Builder
                                 // append cell to current row
                                 Cell c = new Cell();
                                 SetCellValue(c, result);
-                                c.CellReference = alphabet[curColIdx - 1] + curRowIdx.ToString();
+                                // to avoid crash when too many columns generated
+                                if (curColIdx > 676) continue;
+                                c.CellReference = alph[curColIdx - 1] + curRowIdx.ToString();
                                 c.StyleIndex = 0;
                                 // ReSharper disable once PossiblyMistakenUseOfParamsMethod
                                 curRow.Append(c);
