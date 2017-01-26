@@ -143,7 +143,7 @@ namespace CastReporting.Reporting.Block.Table
                         foreach (Module module in curModules)
                         {
                             Dictionary<string, string> currValues = new Dictionary<string, string>();
-                            rowData.Add(module.Name);
+                            rowData.Add("    " + module.Name);
                             if (qidList != null)
                             {
                                 foreach (string id in qidList)
@@ -183,7 +183,7 @@ namespace CastReporting.Reporting.Block.Table
                         foreach (string techno in curTechnos)
                         {
                             Dictionary<string, string> currValues = new Dictionary<string, string>();
-                            rowData.Add(techno);
+                            rowData.Add("    " + techno);
                             if (qidList != null)
                             {
                                 foreach (string id in qidList)
@@ -212,11 +212,11 @@ namespace CastReporting.Reporting.Block.Table
 
             #endregion
 
-            if (_snapshot == "BOTH" && hasPreviousSnapshot)
+            /*if (_snapshot == "BOTH" && hasPreviousSnapshot)
             {
                 for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
                 cntRow++;
-            }
+            }*/
 
             if (_snapshot == "PREVIOUS" && !hasPreviousSnapshot)
             {
@@ -289,7 +289,7 @@ namespace CastReporting.Reporting.Block.Table
                         foreach (Module module in prevModules)
                         {
                             Dictionary<string, string> prevValues = new Dictionary<string, string>();
-                            rowData.Add(module.Name);
+                            rowData.Add("    " + module.Name);
                             if (qidList != null)
                             {
                                 foreach (string id in qidList)
@@ -329,7 +329,7 @@ namespace CastReporting.Reporting.Block.Table
                         foreach (string techno in curTechnos)
                         {
                             Dictionary<string, string> prevValues = new Dictionary<string, string>();
-                            rowData.Add(techno);
+                            rowData.Add("    " + techno);
                             if (qidList != null)
                             {
                                 foreach (string id in qidList)
@@ -362,8 +362,8 @@ namespace CastReporting.Reporting.Block.Table
 
             if (_snapshot == "BOTH" && hasPreviousSnapshot)
             {
-                for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
-                cntRow++;
+                /*for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
+                cntRow++;*/
 
                 if (_variation == "VALUE" || _variation == "BOTH")
                 {
@@ -458,7 +458,7 @@ namespace CastReporting.Reporting.Block.Table
                             for (int i = 0; i < cntMetric; i++) rowData.Add(" ");
                             foreach (Module module in curModules)
                             {
-                                rowData.Add(module.Name);
+                                rowData.Add("    " + module.Name);
                                 var curModValues = modCurValues[module.Id];
                                 var prevModValues = modPrevValues[module.Id];
                                 if (qidList != null)
@@ -548,7 +548,7 @@ namespace CastReporting.Reporting.Block.Table
                             for (int i = 0; i < cntMetric; i++) rowData.Add(" ");
                             foreach (string techno in curTechnos)
                             {
-                                rowData.Add(techno);
+                                rowData.Add("    " + techno);
                                 var curTechnoValues = technoCurValues[techno];
                                 var prevTechnoValues = technoPrevValues[techno];
                                 if (qidList != null)
@@ -611,11 +611,11 @@ namespace CastReporting.Reporting.Block.Table
                     }
                 }
 
-                if (_variation == "BOTH")
+                /*if (_variation == "BOTH")
                 {
                     for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
                     cntRow++;
-                }
+                }*/
 
                 if (_variation == "PERCENT" || _variation == "BOTH")
                 {
@@ -653,7 +653,7 @@ namespace CastReporting.Reporting.Block.Table
                             for (int i = 0; i < cntMetric; i++) rowData.Add(" ");
                             foreach (Module module in curModules)
                             {
-                                rowData.Add(module.Name);
+                                rowData.Add("    " + module.Name);
                                 var curModValues = modCurValues[module.Id];
                                 var prevModValues = modPrevValues[module.Id];
                                 foreach (var id in curModValues.Keys)
@@ -686,7 +686,7 @@ namespace CastReporting.Reporting.Block.Table
                             for (int i = 0; i < cntMetric; i++) rowData.Add(" ");
                             foreach (string techno in curTechnos)
                             {
-                                rowData.Add(techno);
+                                rowData.Add("    " + techno);
                                 var curTechnoValues = technoCurValues[techno];
                                 var prevTechnoValues = technoPrevValues[techno];
                                 foreach (var id in curTechnoValues.Keys)
