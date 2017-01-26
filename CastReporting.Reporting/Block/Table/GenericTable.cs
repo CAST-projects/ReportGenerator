@@ -178,7 +178,13 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             if (snapshotConfiguration != null)
                             {
-                                if ((snapshotConfiguration.Contains("CURRENT") || snapshotConfiguration.Contains("ALL")) && reportData.CurrentSnapshot != null) technologies.AddRange(reportData.CurrentSnapshot.Technologies);
+                                if ((snapshotConfiguration.Contains("CURRENT") || snapshotConfiguration.Contains("ALL")) && reportData.CurrentSnapshot != null)
+                                {
+                                    foreach (var technology in reportData.CurrentSnapshot.Technologies)
+                                    {
+                                        if (!technologies.Contains(technology)) technologies.Add(technology);
+                                    }
+                                }
                                 if ((snapshotConfiguration.Contains("PREVIOUS") || snapshotConfiguration.Contains("ALL")) && reportData.PreviousSnapshot != null)
                                 {
                                     foreach (string technology in reportData.PreviousSnapshot.Technologies)
