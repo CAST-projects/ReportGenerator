@@ -32,7 +32,7 @@ namespace CastReporting.Reporting.Block.Table
         protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             List<string> rowData = new List<string>();
-            int count = reportData.Parameter.NbResultDefault, nbRows = 0, nbColumns = 0, nb;
+            int count = -1, nbRows = 0, nbColumns = 0, nb;
             
             IList<string> strMetricId = ((options != null && options.ContainsKey("PAR")) ? options["PAR"] : string.Empty).Split(',');
                         
@@ -42,9 +42,8 @@ namespace CastReporting.Reporting.Block.Table
 
             if (reportData.CurrentSnapshot != null)
             {
-                //Result of current snapshot
+                //Result of current snapshot - the count is taken into account in the method to return results (if -1 return all results)
                 var technicalCriteriasResults = BusinessCriteriaUtility.GetTechnicalCriteriasByBusinessCriterias(reportData.CurrentSnapshot, strMetricId, count);
-                technicalCriteriasResults = technicalCriteriasResults.Take(count).ToList();
 
                 //Result of previous snapshot
                 List<TechnicalCriteriaResultDTO> prevTechnicalCriteriasResults = null;
