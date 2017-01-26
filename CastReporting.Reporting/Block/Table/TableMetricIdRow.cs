@@ -111,8 +111,8 @@ namespace CastReporting.Reporting.Block.Table
 
             #region headersCol
 
-            string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);
-            string prevSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot);
+            string currSnapshotLabel = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
+            string prevSnapshotLabel = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
 
             switch (_snapshot)
             {

@@ -18,6 +18,10 @@ namespace CastReporting.BLL.Computing
             return snapshot?.Annotation?.Version;
         }
 
+        public static string GetSnapshotNameVersion(Snapshot snapshot)
+        {
+            return snapshot?.Annotation?.Name + " - " + snapshot?.Annotation?.Version;
+        }
         /// <summary>
         /// 
         /// </summary>

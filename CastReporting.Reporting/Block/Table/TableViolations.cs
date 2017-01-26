@@ -61,7 +61,7 @@ namespace CastReporting.Reporting.Block.Table
 
             if (_snapshot == "CURRENT" || _snapshot == "BOTH")
             {
-                string currSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot);
+                string currSnapshotLabel = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
                 rowData.Add(currSnapshotLabel);
                 for (int i = 0; i < cntMetric; i++) rowData.Add(" ");
 
@@ -245,7 +245,7 @@ namespace CastReporting.Reporting.Block.Table
 
             if (hasPreviousSnapshot && (_snapshot == "PREVIOUS" || _snapshot == "BOTH"))
             {
-                string prevSnapshotLabel = SnapshotUtility.GetSnapshotVersionNumber(reportData.PreviousSnapshot);
+                string prevSnapshotLabel = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
                 rowData.Add(prevSnapshotLabel);
                 for (int i = 0; i < cntMetric; i++) rowData.Add(" ");
 
