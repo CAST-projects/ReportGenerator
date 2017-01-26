@@ -33,7 +33,8 @@ namespace CastReporting.Reporting.Block.Table
     internal class TechnoLoCEvolution : TableBlock
     {
           #region METHODS
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             bool hasPrevious = reportData.PreviousSnapshot != null;
             List<EvolutionSnapshots> _resultCompartTecno = null;

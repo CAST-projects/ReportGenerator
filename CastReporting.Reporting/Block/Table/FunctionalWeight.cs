@@ -26,7 +26,8 @@ namespace CastReporting.Reporting.Block.Table
     internal class FunctionalWeight : TableBlock
     {
         #region METHODS
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             if (reportData?.CurrentSnapshot == null) return null;
             double? automatedFPoints = MeasureUtility.GetAutomatedIFPUGFunction(reportData.CurrentSnapshot);

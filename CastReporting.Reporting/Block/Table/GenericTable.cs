@@ -13,7 +13,7 @@ using CastReporting.BLL.Computing.DTO;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("GENERIC_TABLE")]
-    internal class GenericTable : TableBlock
+    public class GenericTable : TableBlock
     {
         public class ObjConfig
         {
@@ -21,7 +21,7 @@ namespace CastReporting.Reporting.Block.Table
             public string[] Parameters;
         }
 
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             var rowData = new List<string>();
             ObjConfig[] _posConfig = new ObjConfig[4];

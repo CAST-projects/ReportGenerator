@@ -31,7 +31,8 @@ namespace CastReporting.Reporting.Block.Table
     internal class TechnicalSizingEvolution : TableBlock
     {
         #region METHODS
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             bool hasPrevious = reportData.PreviousSnapshot != null;
             if (reportData?.CurrentSnapshot == null) return null;

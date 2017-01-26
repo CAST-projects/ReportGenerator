@@ -11,7 +11,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("IFPUG_DATA_FUNCTIONS")]
     internal class IfpugDataFunctions : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             int nbLimitTop;
             if (null == options || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop))

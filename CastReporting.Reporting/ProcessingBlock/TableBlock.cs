@@ -34,7 +34,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
     public abstract class TableBlock
     {
         #region ABSTRACTS - To be implemented by Inherited children
-        protected abstract TableDefinition Content(ReportData client, Dictionary<string, string> options);
+        public abstract TableDefinition Content(ReportData client, Dictionary<string, string> options);
         #endregion ABSTRACTS - To be implemented by Inherited children
 
         #region PROPERTIES

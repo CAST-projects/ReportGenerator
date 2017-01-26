@@ -29,7 +29,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("QUANTITY_EVOLUTION")]
     internal class QuantityEvolution : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             bool hasPrevious = reportData.PreviousSnapshot != null;
 

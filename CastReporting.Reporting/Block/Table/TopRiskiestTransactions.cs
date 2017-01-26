@@ -27,7 +27,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("TOP_RISKIEST_TRANSACTIONS")]
     internal class TopRiskiestTransactions : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             const string metricFormat = "N0";
             int nbLimitTop;

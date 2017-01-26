@@ -26,7 +26,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("TECHNO_LOC")]
     internal class TechnoLoC : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             #region METHODS
             int _intLocFlag = 0;

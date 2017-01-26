@@ -1,0 +1,82 @@
+﻿[
+	{
+		"href": "AED/modules/7",
+		"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content",
+		"technologies": [
+			"PL/SQL"
+		],
+		"snapshots": {
+			"href": "AED/modules/7/snapshots",
+			"name": "Snapshots of SHOPIZER/AppliAEPtran/Shopizer_sql content"
+		},
+		"results": {
+			"href": "AED/modules/7/results",
+			"name": "Results for SHOPIZER/AppliAEPtran/Shopizer_sql content"
+		},
+		"adgLocalId": null,
+		"applications": {
+			"href": "AED/modules/7/application",
+			"name": "AppliAEPtran"
+		}
+	},
+	{
+		"href": "AED/modules/4",
+		"name": "sm-central/AppliAEPtran/Shopizer_src content",
+		"technologies": [
+			"JEE"
+		],
+		"snapshots": {
+			"href": "AED/modules/4/snapshots",
+			"name": "Snapshots of sm-central/AppliAEPtran/Shopizer_src content"
+		},
+		"results": {
+			"href": "AED/modules/4/results",
+			"name": "Results for sm-central/AppliAEPtran/Shopizer_src content"
+		},
+		"adgLocalId": null,
+		"applications": {
+			"href": "AED/modules/4/application",
+			"name": "AppliAEPtran"
+		}
+	},
+	{
+		"href": "AED/modules/5",
+		"name": "sm-core/AppliAEPtran/Shopizer_src content",
+		"technologies": [
+			"JEE"
+		],
+		"snapshots": {
+			"href": "AED/modules/5/snapshots",
+			"name": "Snapshots of sm-core/AppliAEPtran/Shopizer_src content"
+		},
+		"results": {
+			"href": "AED/modules/5/results",
+			"name": "Results for sm-core/AppliAEPtran/Shopizer_src content"
+		},
+		"adgLocalId": null,
+		"applications": {
+			"href": "AED/modules/5/application",
+			"name": "AppliAEPtran"
+		}
+	},
+	{
+		"href": "AED/modules/6",
+		"name": "sm-shop/AppliAEPtran/Shopizer_src content",
+		"technologies": [
+			"JEE"
+		],
+		"snapshots": {
+			"href": "AED/modules/6/snapshots",
+			"name": "Snapshots of sm-shop/AppliAEPtran/Shopizer_src content"
+		},
+		"results": {
+			"href": "AED/modules/6/results",
+			"name": "Results for sm-shop/AppliAEPtran/Shopizer_src content"
+		},
+		"adgLocalId": null,
+		"applications": {
+			"href": "AED/modules/6/application",
+			"name": "AppliAEPtran"
+		}
+	}
+]

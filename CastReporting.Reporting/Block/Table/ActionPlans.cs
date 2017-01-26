@@ -27,7 +27,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("ACTION_PLANS")]
     internal class ActionPlans : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             List<string> rowData = new List<string>();
 

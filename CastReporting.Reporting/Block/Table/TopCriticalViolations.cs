@@ -28,7 +28,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("TOP_CRITICAL_VIOLATIONS")]
     internal class TopCriticalViolations : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             List<string> rowData = new List<string>();
 			rowData.AddRange(new[] {

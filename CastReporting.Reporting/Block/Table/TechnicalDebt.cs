@@ -29,9 +29,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("TECHNICAL_DEBT")]
     public class TechnicalDebt : TableBlock
     {
-
-
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             const string numberFormat = "N0";
 

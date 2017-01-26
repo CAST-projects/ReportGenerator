@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using CastReporting.BLL.Computing;
@@ -12,6 +14,7 @@ namespace CastReporting.UnitTest
     public class ComputingTest
     {
         [TestMethod]
+        [DeploymentItem(@".\Data\ComputingTest1.json", "Data")]
         public void GetDCGradesTest()
         {
 
@@ -21,10 +24,17 @@ namespace CastReporting.UnitTest
                 Href = "AED1/applications/3/snapshots/3",
                 Annotation = new Annotation() {Version = "2.1"}
             };
-            // selectedSnapshot.BusinessCriteriaResults = GetSampleResult(@"Data\JSonTest3.txt").SelectMany(_ => _.ApplicationResults);
+
+            var jsonString = File.ReadAllText(@".\Data\ComputingTest1.json");
+            MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
+            var serializer = new DataContractJsonSerializer(typeof(IEnumerable<ApplicationResult>));
+            selectedSnapshot.BusinessCriteriaResults = serializer.ReadObject(ms) as IEnumerable<ApplicationResult>;
 
             // ReSharper disable once UnusedVariable
-            var result = BusinessCriteriaUtility.GetBusinessCriteriaGradesModules(selectedSnapshot, true);
+            var result = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(selectedSnapshot, Constants.BusinessCriteria.TechnicalQualityIndex, true);
+
+            Debug.Assert(result != null, "result != null");
+            Assert.AreEqual(3.4, result.Value);
             
         }
 

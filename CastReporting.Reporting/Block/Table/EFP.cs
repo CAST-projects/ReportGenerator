@@ -11,7 +11,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("EFP")]
     internal class EFP : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             int nbLimitTop;
             if (null == options || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop))

@@ -12,7 +12,7 @@ namespace CastReporting.Reporting.Block.Table
 	[Block("CRITICAL_VIOL_BY_APPLICATION")]
 	internal class CriticalVIolationByApplication : TableBlock
 	{
-		protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+	    public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
 		{
 			var results = RulesViolationUtility.GetStatViolation(reportData.CurrentSnapshot);
 

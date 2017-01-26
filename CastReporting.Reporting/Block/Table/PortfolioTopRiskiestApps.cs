@@ -32,7 +32,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("PF_TOP_RISKIEST_APPS")]
     internal class PortfolioTopRiskiestApps : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             int metricId = options.GetIntOption("ALT", (int)Constants.BusinessCriteria.TechnicalQualityIndex);
             int nbLimitTop = options.GetIntOption("COUNT", reportData.Parameter.NbResultDefault);

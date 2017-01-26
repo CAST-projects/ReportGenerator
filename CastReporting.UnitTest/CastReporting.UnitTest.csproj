@@ -105,6 +105,10 @@
       <Project>{e696cc9d-e471-4360-8664-fba3c5b3d375}</Project>
       <Name>CastReporting.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CastReporting.Reporting\CastReporting.Reporting.csproj">
+      <Project>{A00B1634-960E-44E0-94C3-BBFEB0E98E23}</Project>
+      <Name>CastReporting.Reporting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CastReporting.Repositories.Interfaces\CastReporting.Repositories.Interfaces.csproj">
       <Project>{bf557781-bd7e-4ec2-bb64-ed7981b4d9d0}</Project>
       <Name>CastReporting.Repositories.Interfaces</Name>
@@ -113,7 +117,20 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Data\ComputingTest1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Modules1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Snapshot_QIresults1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Snapshot_QIresults2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
