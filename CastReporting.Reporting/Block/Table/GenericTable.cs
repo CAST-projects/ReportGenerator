@@ -994,9 +994,9 @@ namespace CastReporting.Reporting.Block.Table
                     switch (item)
                     {
                         case "CURRENT":
-                            return reportData.CurrentSnapshot?.Name + " - " + reportData.CurrentSnapshot?.Annotation.Version;
+                            return reportData.CurrentSnapshot?.Annotation.Name + " - " + reportData.CurrentSnapshot?.Annotation.Version;
                         case "PREVIOUS":
-                            return reportData.PreviousSnapshot?.Name + " - " + reportData.PreviousSnapshot?.Annotation.Version;
+                            return reportData.PreviousSnapshot?.Annotation.Name + " - " + reportData.PreviousSnapshot?.Annotation.Version;
                         case "EVOL":
                             return Labels.Evolution;
                         case "EVOL_PERCENT":
