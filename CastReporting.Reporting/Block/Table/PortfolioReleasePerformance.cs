@@ -31,7 +31,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("PF_BC_RELEASE_PERFORMANCE")]
     internal class PortfolioReleasePerformance : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             string strBackgroundFacts = options.GetOption("BF", string.Empty);
             string _strSla = options.GetOption("SLA", string.Empty);

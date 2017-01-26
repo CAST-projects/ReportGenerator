@@ -18,7 +18,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("TABLE_METRIC_ID_ROW")]
     internal class TableMetricIdRow : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             #region METHODS
 

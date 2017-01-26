@@ -38,7 +38,7 @@ namespace CastReporting.Reporting.Block.Table
             return detailResult;
         }
 
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             int nbLimit = options.GetIntOption("COUNT", reportData.Parameter.NbResultDefault); // Max number of rows; -1 correspond to all results
             bool perModule = options.GetBoolOption("MODULES"); // module or application mode

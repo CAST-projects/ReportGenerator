@@ -27,7 +27,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("HEALTH_FACTOR")]
     internal class HealthFactor : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             #region METHODS
 

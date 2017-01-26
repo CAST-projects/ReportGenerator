@@ -28,7 +28,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("CAST_DISTRIBUTION")]
     internal class CastDistribution : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             TableDefinition result = new TableDefinition();
             List<string> rowData = new List<string>();

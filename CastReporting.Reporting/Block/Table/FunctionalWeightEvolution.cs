@@ -31,7 +31,8 @@ namespace CastReporting.Reporting.Block.Table
     internal class FunctionalWeightEvolution : TableBlock
     {
          #region METHODS
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             TableDefinition resultTable = null;
             if (reportData?.CurrentSnapshot == null) return resultTable;

@@ -27,7 +27,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("TECHNICAL_CRITERIA_RULES")]
     internal class TechnicalCriteriaRules : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             int rowCount = 0;
 

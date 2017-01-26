@@ -1,0 +1,46 @@
+[
+	{
+		"type": "business-criteria",
+		"reference": {
+			"href": "ADG705/quality-indicators/60017/snapshots/137",
+			"name": "Technical Quality Index",
+			"shortName": "TQI",
+			"key": "60017",
+			"gradeAggregators": null
+		},
+		"result": {
+			"grade": 3.3951769398345872,
+			"boundaries": null,
+			"evolutionSummary": null
+		},
+		"technologyResults": [],
+		"moduleResults": [
+			{
+				"number": 69,
+				"moduleSnapshot": {
+					"href": "ADG705/modules/7/snapshots/137",
+					"name": "ADG"
+				},
+				"result": {
+					"grade": 2.790353879669175,
+					"boundaries": null,
+					"evolutionSummary": null
+				},
+				"technologyResults": []
+			},
+			{
+				"number": 69,
+				"moduleSnapshot": {
+					"href": "ADG705/modules/6/snapshots/137",
+					"name": "SQL"
+				},
+				"result": {
+					"grade": 4,
+					"boundaries": null,
+					"evolutionSummary": null
+				},
+				"technologyResults": []
+			}
+		]
+	}
+]

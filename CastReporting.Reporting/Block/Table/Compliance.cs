@@ -28,7 +28,8 @@ namespace CastReporting.Reporting.Block.Table
     {   
 
          #region METHODS
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
 
           

@@ -1,0 +1,1167 @@
+﻿[
+	{
+		"number": 3,
+		"date": {
+			"time": 1463090400000,
+			"isoDate": "2016-05-13"
+		},
+		"application": {
+			"href": "AED/applications/3",
+			"name": "AppliAEPtran",
+			"adgDatabase": "aeptran82_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED/applications/3/snapshots/3",
+			"name": "AppliAEPtran"
+		},
+		"applicationResults": [
+			{
+				"type": "quality-rules",
+				"reference": {
+					"href": "AED/quality-indicators/1576/snapshots/3",
+					"name": "Use varchar2 instead of char and varchar",
+					"key": "1576",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.9444444444444442
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"grade": 1.9444444444444442
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/7/snapshots/3",
+							"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content"
+						},
+						"result": {
+							"grade": 1.9444444444444442
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"grade": 1.9444444444444442
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-rules",
+				"reference": {
+					"href": "AED/quality-indicators/1596/snapshots/3",
+					"name": "Avoid using \"nullable\" Columns except in the last position in a Table",
+					"key": "1596",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.4166666666666667
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"grade": 1.4166666666666667
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/7/snapshots/3",
+							"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content"
+						},
+						"result": {
+							"grade": 1.4166666666666667
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"grade": 1.4166666666666667
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-rules",
+				"reference": {
+					"href": "AED/quality-indicators/4656/snapshots/3",
+					"name": "Avoid declaring throwing an exception and not throwing it",
+					"key": "4656",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.025793039728981
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 3.025793039728981
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 2.931710615280596
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.931710615280596
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 2.9806678383128284
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.9806678383128284
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.8720302375809936
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.8720302375809936
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-rules",
+				"reference": {
+					"href": "AED/quality-indicators/7254/snapshots/3",
+					"name": "Declare as Static all methods not using instance members",
+					"key": "7254",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.701120011867676
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 3.701120011867676
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.7751017639077347
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.7751017639077347
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.667637271214641
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.667637271214641
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.814270152505447
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.814270152505447
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60011/snapshots/3",
+					"name": "Transferability",
+					"shortName": "Trsf",
+					"key": "60011",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 3.1326902386316147
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 3.007869357081009
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"grade": 3.3678748670684153
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/7/snapshots/3",
+							"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content"
+						},
+						"result": {
+							"grade": 3.3678748670684153
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"grade": 3.3678748670684153
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.0062497380093736
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.0062497380093736
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.1633148492568983
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.1633148492568983
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 2.9562695995993407
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.9562695995993407
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60012/snapshots/3",
+					"name": "Changeability",
+					"shortName": "Chng",
+					"key": "60012",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.9808216934348204
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 2.975945071644943
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"grade": 3.5384574915824913
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/7/snapshots/3",
+							"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content"
+						},
+						"result": {
+							"grade": 3.5384574915824913
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"grade": 3.5384574915824913
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.1146954195197183
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.1146954195197183
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 2.973044561345782
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.973044561345782
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.0264934336391085
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.0264934336391085
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60013/snapshots/3",
+					"name": "Robustness",
+					"shortName": "Rbst",
+					"key": "60013",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.5517577867867476
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 2.5524620556963233
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"grade": 3.700802608697346
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/7/snapshots/3",
+							"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content"
+						},
+						"result": {
+							"grade": 3.700802608697346
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"grade": 3.700802608697346
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 2.553981298633474
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.553981298633474
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 2.6731170250038185
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.6731170250038185
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 2.5124368224694584
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.5124368224694584
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60014/snapshots/3",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.8780487804878048
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 1.8780487804878048
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"grade": 3.2635314542483655
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/7/snapshots/3",
+							"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content"
+						},
+						"result": {
+							"grade": 3.2635314542483655
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"grade": 3.2635314542483655
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 1.8373983739837396
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 1.8373983739837396
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 1.8780487804878048
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 1.8780487804878048
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 1.8373983739837396
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 1.8373983739837396
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60016/snapshots/3",
+					"name": "Security",
+					"shortName": "Secu",
+					"key": "60016",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.7008227832331317
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 1.7008227832331317
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"grade": 3.6661779081133923
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/7/snapshots/3",
+							"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content"
+						},
+						"result": {
+							"grade": 3.6661779081133923
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"grade": 3.6661779081133923
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 1.7477868061005675
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 1.7477868061005675
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 2.3287990752618613
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.3287990752618613
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 1.7565714330634805
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 1.7565714330634805
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60017/snapshots/3",
+					"name": "Total Quality Index",
+					"shortName": "TQI",
+					"key": "60017",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.5223995019830845
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 2.49215553087527
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"grade": 3.468422910240344
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/7/snapshots/3",
+							"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content"
+						},
+						"result": {
+							"grade": 3.468422910240344
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"grade": 3.468422910240344
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 2.5303310191995094
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.5303310191995094
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 2.6837223177106257
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.6837223177106257
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 2.4872821033844064
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.4872821033844064
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61001/snapshots/3",
+					"name": "Architecture - Multi-Layers and Data Access",
+					"key": "61001",
+					"critical": false
+				},
+				"result": {
+					"grade": 1
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 1
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"grade": 3.9911616161616155
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/7/snapshots/3",
+							"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content"
+						},
+						"result": {
+							"grade": 3.9911616161616155
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"grade": 3.9911616161616155
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 1
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 1
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 1
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 1
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 1
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 1
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61003/snapshots/3",
+					"name": "Programming Practices - OO Inheritance and Polymorphism",
+					"key": "61003",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.9969457095351695
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 3.9969457095351695
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.9464087080883523
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.9464087080883523
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 4
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 4
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.9163929939792013
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.9163929939792013
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61007/snapshots/3",
+					"name": "Documentation - Bad Comments",
+					"key": "61007",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.8064247498583184
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 3.8059701071946543
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"grade": 4
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/7/snapshots/3",
+							"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content"
+						},
+						"result": {
+							"grade": 4
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"grade": 4
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.87060353065944
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.87060353065944
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.6026873283640626
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.6026873283640626
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"grade": 3.1193467336683405
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 3.1193467336683405
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			}
+		]
+	}
+]

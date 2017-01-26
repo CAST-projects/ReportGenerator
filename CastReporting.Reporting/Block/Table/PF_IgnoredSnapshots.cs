@@ -25,7 +25,7 @@ namespace CastReporting.Reporting.Block.Table
     // ReSharper disable once InconsistentNaming
     internal class PF_IgnoredSnapshots : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             List<string> rowData = new List<string>();
             int nbRows = 0;

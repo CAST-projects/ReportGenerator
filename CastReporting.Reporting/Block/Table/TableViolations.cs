@@ -18,7 +18,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("TABLE_VIOLATIONS")]
     internal class TableViolations : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             #region METHODS
 

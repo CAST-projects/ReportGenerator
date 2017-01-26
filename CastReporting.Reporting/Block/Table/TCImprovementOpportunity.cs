@@ -27,7 +27,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("TC_IMPROVEMENT_OPPORTUNITY")]
     internal class TCImprovementOpportunity : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             int rowCount = 0;
             List<string> rowData = new List<string>();

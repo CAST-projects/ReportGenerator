@@ -29,7 +29,7 @@ namespace CastReporting.Reporting.Block.Table
     {
         private const string MetricFormat = "N0";
 
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             var results = RulesViolationUtility.GetStatViolation(reportData.CurrentSnapshot);
             List<string> rowData = new List<string>();

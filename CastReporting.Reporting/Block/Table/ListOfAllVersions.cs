@@ -11,7 +11,7 @@ namespace CastReporting.Reporting.Block.Table
 	[Block("LIST_OF_ALL_VERSIONS")]
 	internal class ListOfAllVersions : TableBlock
 	{
-		protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+	    public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
 		{
             int rowCount = 0;
             int nbLimitTop;

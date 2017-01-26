@@ -26,7 +26,7 @@ namespace CastReporting.Reporting.Block.Table
     [Block("MODULE_LIST")]
     internal class ModuleList : TableBlock
     {
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             if (reportData?.CurrentSnapshot?.Modules == null) return null;
             List<string> rowData = reportData.CurrentSnapshot.Modules.Select(x => x.Name).ToList();
