@@ -75,12 +75,11 @@
                                 <ImageBrush ImageSource="/CastReporting.UI.WPF;component/Resources/Images/url-tooltip.png" Stretch="Fill" />
                             </Border.Background>
                             <TextBlock Margin="6,6,0,0"> 
-                        <Span FontWeight="Regular">Enter a valid URL as</Span> 
                         <Span FontWeight="Bold">http://<Span Foreground="#FF0078fe">SERVER</Span>:<Span Foreground="#FF0078fe">PORT</Span>/<Span Foreground="#FF0078fe">WAR</Span>/rest</Span>
                             </TextBlock>
                         </Border>
                     </Grid>
-                    
+                   
                     <Label  Grid.Row="1" Grid.Column="0" Content="{x:Static label:Messages.lblFieldUrlWS}" HorizontalAlignment="Right" Height="26" Margin="0,7" Width="85" Foreground="White"/>
                     <TextBox Style="{StaticResource EditBox}" ToolTip="{x:Static label:Messages.toolTipUrlWs}" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="1" x:Name="TxtUrl" Text="{Binding NewConnectionUrl, Mode=TwoWay}" Margin="0,5" Height="Auto"/>
 
@@ -193,3 +192,4 @@
 
     </Grid>
 </Page>
+

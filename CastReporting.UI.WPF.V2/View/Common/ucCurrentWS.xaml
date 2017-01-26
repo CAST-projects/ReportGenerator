@@ -61,13 +61,12 @@
                     <ImageBrush ImageSource="/CastReporting.UI.WPF;component/Resources/Images/url-tooltip.png" Stretch="Fill" />
                 </Border.Background>
                 <TextBlock Margin="6,6,0,0"> 
-                        <Span FontWeight="Regular">Enter a valid URL as</Span> 
-                        <Span FontWeight="Bold">http://<Span Foreground="#FF0078fe">SERVER</Span>:<Span Foreground="#FF0078fe">PORT</Span>/<Span Foreground="#FF0078fe">WAR</Span>/rest</Span>
+                       <Span FontWeight="Bold">http://<Span Foreground="#FF0078fe">SERVER</Span>:<Span Foreground="#FF0078fe">PORT</Span>/<Span Foreground="#FF0078fe">WAR</Span>/rest</Span>
                 </TextBlock>
             </Border>
         </Grid>
         <Label  Grid.Row="1" Grid.Column="0" Content="{x:Static label:Messages.lblFieldUrlWS}" HorizontalAlignment="Right" Height="25.96" Margin="0,7.02,10,7.02" Width="76" Foreground="White"/>
-        <TextBox Grid.Row="1" Style="{StaticResource EditBox}" Grid.ColumnSpan="4" Grid.Column="1" x:Name="TxtCurrentWs" Text="{Binding Url, Mode=TwoWay}" Margin="0,3"/>
+        <TextBox Grid.Row="1" ToolTip="{x:Static label:Messages.toolTipUrlWs}" Style="{StaticResource EditBox}" Grid.ColumnSpan="4" Grid.Column="1" x:Name="TxtCurrentWs" Text="{Binding Url, Mode=TwoWay}" Margin="0,3"/>
 
         <Label Grid.Row="2" Grid.Column="0" Content="{x:Static label:Messages.lblFieldWSLogin}"  HorizontalAlignment="Right" Height="25.96" Margin="0,22.02,10,12.02" Foreground="White"/>
         <TextBox Style="{StaticResource EditBox}" Grid.Row="2" Grid.Column="1" x:Name="TxtLogin" Text="{Binding Login, Mode=TwoWay}"   Margin="0,20,0,8" />
