@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CastReporting.Reporting.Block.Table;
 using CastReporting.Reporting.ReportingModel;
@@ -438,6 +439,78 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "    Added Critical Violations", "0", "3", "0", "3", "0" });
             expectedData.AddRange(new List<string> { "    Removed Critical Violations", "0", "0", "0", "1", "0" });
             TestUtility.AssertTableContent(table, expectedData, 6, 13);
+        }
+
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\DreamTeamSnap4Sample12.json", "Data")]
+        [DeploymentItem(@".\Data\DreamTeamSnap1Sample12.json", "Data")]
+        public void TestSample12()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=10151|10107|10152|10154|10161,SNAPSHOTS=ALL
+             * DreamTeamSnap4Sample12.json : AED3/applications/7/snapshots/15/results?sizing-measures=(10151,10107,10152,10154,10161)
+             * DreamTeamSnap1Sample12.json : AED3/applications/7/snapshots/15/results?sizing-measures=(10151,10107,10152,10154,10161)
+             */
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+                null, @".\Data\DreamTeamSnap4Sample12.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+                null, @".\Data\DreamTeamSnap1Sample12.json", "AED3/applications/7/snapshots/3", "ADGAutoSnap_Dream Team_1", "1");
+
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "SNAPSHOTS"},
+                {"ROW1", "METRICS"},
+                {"METRICS", "10151|10107|10152|10154|10161" },
+                {"SNAPSHOTS", "ALL"}
+            };
+            TestUtility.SetCulture("en-US");
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> {"Metrics", "ADGAutoSnap_Dream Team_4 - 4", "ADGAutoSnap_Dream Team_1 - 1", "Evolution", "% Evolution" });
+            expectedData.AddRange(new List<string> {"Number of Code Lines", "104,851", "92,762", "12,089", "+13.0 %" });
+            expectedData.AddRange(new List<string> {"Number of Comment Lines", "10,626", "10,009", "617", "+6.16 %" });
+            expectedData.AddRange(new List<string> {"Number of Artifacts",  "6,727", "6,089", "638", "+10.5 %" });
+            expectedData.AddRange(new List<string> {"Number of Files", "579", "485", "94", "+19.4 %" });
+            expectedData.AddRange(new List<string> {"Number of Methods", "6,477", "5,883", "594", "+10.1 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 6);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\DreamTeamSnap4TechnicalDebt.json", "Data")]
+        public void TestTechnicalSizingType()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=TECHNICAL_DEBT,SNAPSHOTS=CURRENT
+             * DreamTeamSnap4TechnicalDebt.json : AED3/applications/7/snapshots/15/results?sizing-measures=(technical-debt-statistics)
+             */
+
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+                null, @".\Data\DreamTeamSnap4TechnicalDebt.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+                null, null, null, null, null);
+
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "SNAPSHOTS"},
+                {"ROW1", "METRICS"},
+                {"METRICS", "TECHNICAL_DEBT" },
+                {"SNAPSHOTS", "CURRENT"}
+            };
+            
+            var table = component.Content(reportData, config);
+            Assert.AreEqual(2, table.NbColumns);
+            Assert.AreEqual(5, table.NbRows);
+
+            var data = table.Data.ToList();
+            Assert.IsTrue(data.Contains("Technical Debt"));
+            Assert.IsTrue(data.Contains("Technical Debt density"));
+            Assert.IsTrue(data.Contains("Technical Debt of added Violations"));
+            Assert.IsTrue(data.Contains("Technical Debt of removed Violations"));
+            Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
+            Assert.IsFalse(data.Contains("Number of Code Lines"));
+            Assert.IsFalse(data.Contains("Robustness"));
+
         }
     }
 }

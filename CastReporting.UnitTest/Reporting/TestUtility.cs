@@ -73,6 +73,7 @@ namespace CastReporting.UnitTest.Reporting
             var businessCriteriaResults = new List<ApplicationResult>();
             var technicalCriteriaResults = new List<ApplicationResult>();
             var qualityRulesResults = new List<ApplicationResult>();
+            var sizingMeasures = new List<ApplicationResult>();
 
             foreach (var appRes in qualityIndicatorsResults.SelectMany(_ => _.ApplicationResults).ToList())
             {
@@ -81,6 +82,14 @@ namespace CastReporting.UnitTest.Reporting
                     case "business-criteria": businessCriteriaResults.Add(appRes); break;
                     case "technical-criteria": technicalCriteriaResults.Add(appRes); break;
                     case "quality-rules": qualityRulesResults.Add(appRes); break;
+                    case "technical-size-measures":
+                    case "run-time-statistics":
+                    case "technical-debt-statistics":
+                    case "functional -weight-measures":
+                    case "critical-violation-statistics":
+                    case "violation-statistics":
+                        sizingMeasures.Add(appRes);
+                        break;
                     default: throw new ArgumentOutOfRangeException();
                 }
             }
@@ -88,6 +97,7 @@ namespace CastReporting.UnitTest.Reporting
             currentSnap.BusinessCriteriaResults = businessCriteriaResults;
             currentSnap.TechnicalCriteriaResults = technicalCriteriaResults;
             currentSnap.QualityRulesResults = qualityRulesResults;
+            currentSnap.SizingMeasuresResults = sizingMeasures;
 
             reportData.CurrentSnapshot = currentSnap;
 
@@ -103,6 +113,7 @@ namespace CastReporting.UnitTest.Reporting
             var businessCriteriaResults2 = new List<ApplicationResult>();
             var technicalCriteriaResults2 = new List<ApplicationResult>();
             var qualityRulesResults2 = new List<ApplicationResult>();
+            var sizingMeasures2 = new List<ApplicationResult>();
 
             foreach (var appRes in qualityIndicatorsResults2.SelectMany(_ => _.ApplicationResults).ToList())
             {
@@ -111,6 +122,14 @@ namespace CastReporting.UnitTest.Reporting
                     case "business-criteria": businessCriteriaResults2.Add(appRes); break;
                     case "technical-criteria": technicalCriteriaResults2.Add(appRes); break;
                     case "quality-rules": qualityRulesResults2.Add(appRes); break;
+                    case "technical-size-measures":
+                    case "run-time-statistics":
+                    case "technical-debt-statistics":
+                    case "functional -weight-measures":
+                    case "critical-violation-statistics":
+                    case "violation-statistics":
+                        sizingMeasures2.Add(appRes);
+                        break;
                     default: throw new ArgumentOutOfRangeException();
                 }
             }
@@ -118,6 +137,7 @@ namespace CastReporting.UnitTest.Reporting
             previousSnap.BusinessCriteriaResults = businessCriteriaResults2;
             previousSnap.TechnicalCriteriaResults = technicalCriteriaResults2;
             previousSnap.QualityRulesResults = qualityRulesResults2;
+            previousSnap.SizingMeasuresResults = sizingMeasures2;
 
             reportData.PreviousSnapshot = previousSnap;
 
