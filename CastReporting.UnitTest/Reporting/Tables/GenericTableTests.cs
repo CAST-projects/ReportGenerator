@@ -409,6 +409,35 @@ namespace CastReporting.UnitTest.Reporting.Tables
             null, null, null, null, null);
             reportData.CurrentSnapshot.Technologies = new[] { "JEE", "PL/SQL", "C++", ".NET" };
 
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "METRICS"},
+                {"ROW1", "TECHNOLOGIES"},
+                {"ROW11", "CRITICAL_VIOLATIONS"},
+                {"METRICS", "HEALTH_FACTOR" },
+                {"CRITICAL_VIOLATIONS", "ADDED|REMOVED" },
+                {"TECHNOLOGIES", "ALL"},
+                {"SNAPSHOTS", "CURRENT"}
+            };
+            TestUtility.SetCulture("en-US");
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Technologies", "Transferability", "Changeability", "Robustness", "Efficiency", "Security" });
+            expectedData.AddRange(new List<string> { "JEE", " ", " ", " ", " ", " " });
+            expectedData.AddRange(new List<string> { "    Added Critical Violations", "0", "3", "11", "17", "22" });
+            expectedData.AddRange(new List<string> { "    Removed Critical Violations", "0", "0", "0", "0", "0" });
+            expectedData.AddRange(new List<string> { "PL/SQL", " ", " ", " ", " ", " " });
+            expectedData.AddRange(new List<string> { "    Added Critical Violations", "0", "0", "0", "0", "0" });
+            expectedData.AddRange(new List<string> { "    Removed Critical Violations", "0", "0", "0", "0", "0" });
+            expectedData.AddRange(new List<string> { "C++", " ", " ", " ", " ", " " });
+            expectedData.AddRange(new List<string> { "    Added Critical Violations", "0", "0", "0", "0", "0" });
+            expectedData.AddRange(new List<string> { "    Removed Critical Violations", "0", "0", "0", "0", "0" });
+            expectedData.AddRange(new List<string> { ".NET", " ", " ", " ", " ", " " });
+            expectedData.AddRange(new List<string> { "    Added Critical Violations", "0", "3", "0", "3", "0" });
+            expectedData.AddRange(new List<string> { "    Removed Critical Violations", "0", "0", "0", "1", "0" });
+            TestUtility.AssertTableContent(table, expectedData, 6, 13);
         }
     }
 }
