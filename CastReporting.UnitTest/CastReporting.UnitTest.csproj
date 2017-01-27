@@ -71,6 +71,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Reporting\Tables\GenericTableTests.cs" />
+    <Compile Include="Reporting\TestUtility.cs" />
     <Compile Include="Util\ExpressionEvaluatorTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Util\DateUtilTests.cs" />
@@ -97,6 +99,10 @@
       <Project>{692f3269-684c-44ed-8f1b-98d458da3f9a}</Project>
       <Name>CastReporting.BLL.Computing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CastReporting.BLL\CastReporting.BLL.csproj">
+      <Project>{2f09fbca-1a16-4517-a485-ba2a5c0bc9f4}</Project>
+      <Name>CastReporting.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CastReporting.DAL\CastReporting.Repositories.csproj">
       <Project>{3c791d3a-83b6-490f-86c8-11fa3076a739}</Project>
       <Name>CastReporting.Repositories</Name>
@@ -121,7 +127,34 @@
     <None Include="Data\ComputingTest1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\DreamTeamSnap1Sample7.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\DreamTeamSnap1Sample9.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\DreamTeamSnap4Sample11.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\DreamTeamSnap4Sample10.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\DreamTeamSnap4Sample9.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\DreamTeamSnap4Sample7.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\ModulesDreamTeam.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Modules1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Sample1Previous.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Sample1Current.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\Snapshot_QIresults1.json">

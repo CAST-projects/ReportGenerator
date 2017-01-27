@@ -6,7 +6,7 @@ using CastReporting.Repositories;
 using CastReporting.Repositories.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CastReporting.UnitTests
+namespace CastReporting.UnitTest.DAL
 {
 
 

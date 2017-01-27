@@ -1,12 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Json;
-using System.Text;
+﻿using System.Diagnostics;
 using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CastReporting.UnitTest.Reporting;
 
 namespace CastReporting.UnitTest
 {
@@ -22,38 +18,18 @@ namespace CastReporting.UnitTest
             {
                 Name = "Test",
                 Href = "AED1/applications/3/snapshots/3",
-                Annotation = new Annotation() {Version = "2.1"}
+                Annotation = new Annotation() {Name = "My Snapshot", Version = "2.1"},
+                BusinessCriteriaResults = TestUtility.GetSampleResult<ApplicationResult>(@".\Data\ComputingTest1.json")
             };
 
-            var jsonString = File.ReadAllText(@".\Data\ComputingTest1.json");
-            MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
-            var serializer = new DataContractJsonSerializer(typeof(IEnumerable<ApplicationResult>));
-            selectedSnapshot.BusinessCriteriaResults = serializer.ReadObject(ms) as IEnumerable<ApplicationResult>;
-
-            // ReSharper disable once UnusedVariable
             var result = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(selectedSnapshot, Constants.BusinessCriteria.TechnicalQualityIndex, true);
-
             Debug.Assert(result != null, "result != null");
             Assert.AreEqual(3.4, result.Value);
-            
+            result = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(selectedSnapshot, Constants.BusinessCriteria.TechnicalQualityIndex, false);
+            Assert.AreEqual("3.40", result?.ToString("N2"));
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sampleFile"></param>
-        /// <returns></returns>
-        // ReSharper disable once UnusedMember.Local
-        private IEnumerable<Result> GetSampleResult(string sampleFile)
-        {
-            var jsonString = File.ReadAllText(sampleFile);
 
-            var serializer = new DataContractJsonSerializer(typeof(IEnumerable<Result>));
-            MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
-
-
-            return serializer.ReadObject(ms) as IEnumerable<Result>;
-        }
     }
 }
