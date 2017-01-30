@@ -9,6 +9,12 @@ namespace CastReporting.UnitTest.Reporting.Tables
     [TestClass]
     public class GenericTableTests
     {
+        [TestInitialize()]
+        public void Initialize()
+        {
+            TestUtility.SetCulture("en-US");
+        }
+
         [TestMethod]
         [DeploymentItem(@".\Data\Sample1Current.json", "Data")]
         public void TestSample1()

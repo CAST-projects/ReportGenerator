@@ -69,7 +69,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void IsServiceValidTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -83,7 +82,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetDomainsTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -97,7 +95,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetApplicationsByDomainTest()
         {
             string domainHref = "AED1";
@@ -111,7 +108,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -125,7 +121,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetSnapshotsByApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -139,7 +134,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetSnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -152,7 +146,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetModulesByApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -167,7 +160,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetModulesBySnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -182,7 +174,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetModuleTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -196,7 +187,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetQualityIndicatorsByApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -218,7 +208,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetQualityIndicatorsBySnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -241,7 +230,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetQualityIndicatorsByModuleTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -265,7 +253,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetSizingMeasuresByApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -287,7 +274,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetSizingMeasuresBySnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
@@ -310,7 +296,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetConfBusinessCriteriaBySnapshot()
         {
 
@@ -328,7 +313,6 @@ namespace CastReporting.UnitTest.DAL
         ///
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("CastReporting.DAL.dll")]
         public void GetConfBusinessCriteria()
         {
 

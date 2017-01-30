@@ -9,6 +9,12 @@ namespace CastReporting.UnitTest
     [TestClass]
     public class ComputingTest
     {
+        [TestInitialize()]
+        public void Initialize()
+        {
+            TestUtility.SetCulture("en-US");
+        }
+
         [TestMethod]
         [DeploymentItem(@".\Data\ComputingTest1.json", "Data")]
         public void GetDCGradesTest()
