@@ -1,4 +1,5 @@
 ﻿using Cast.Util;
+using CastReporting.UnitTest.Reporting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
@@ -29,8 +30,11 @@ namespace CastReporting.UnitTest
         // public static void MyClassCleanup() { }
         //
         // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
+        [TestInitialize()]
+        public void MyTestInitialize()
+        {
+            TestUtility.SetCulture("en-US");
+        }
         //
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]

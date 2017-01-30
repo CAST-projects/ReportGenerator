@@ -85,7 +85,7 @@ namespace CastReporting.UnitTest.Reporting
                     case "technical-size-measures":
                     case "run-time-statistics":
                     case "technical-debt-statistics":
-                    case "functional -weight-measures":
+                    case "functional-weight-measures":
                     case "critical-violation-statistics":
                     case "violation-statistics":
                         sizingMeasures.Add(appRes);
@@ -125,7 +125,7 @@ namespace CastReporting.UnitTest.Reporting
                     case "technical-size-measures":
                     case "run-time-statistics":
                     case "technical-debt-statistics":
-                    case "functional -weight-measures":
+                    case "functional-weight-measures":
                     case "critical-violation-statistics":
                     case "violation-statistics":
                         sizingMeasures2.Add(appRes);

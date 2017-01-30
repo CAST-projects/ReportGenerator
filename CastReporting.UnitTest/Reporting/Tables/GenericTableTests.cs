@@ -9,6 +9,12 @@ namespace CastReporting.UnitTest.Reporting.Tables
     [TestClass]
     public class GenericTableTests
     {
+        [TestInitialize()]
+        public void Initialize()
+        {
+            TestUtility.SetCulture("en-US");
+        }
+
         [TestMethod]
         [DeploymentItem(@".\Data\Sample1Current.json", "Data")]
         public void TestSample1()
@@ -477,16 +483,16 @@ namespace CastReporting.UnitTest.Reporting.Tables
         }
 
         [TestMethod]
-        [DeploymentItem(@".\Data\DreamTeamSnap4TechnicalDebt.json", "Data")]
-        public void TestTechnicalSizingType()
+        [DeploymentItem(@".\Data\DreamTeamSnap4Metrics.json", "Data")]
+        public void TestTechnicalDebtType()
         {
             /*
              * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=TECHNICAL_DEBT,SNAPSHOTS=CURRENT
-             * DreamTeamSnap4TechnicalDebt.json : AED3/applications/7/snapshots/15/results?sizing-measures=(technical-debt-statistics)
+             * DreamTeamSnap4Metrics.json : AED3/applications/7/snapshots/15/results?quality-indicators=(60014,61004,550)&sizing-measures=(10151,68001,10202,67210,67011)
              */
 
             ReportData reportData = TestUtility.PrepaReportData("Dream Team",
-                null, @".\Data\DreamTeamSnap4TechnicalDebt.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+                null, @".\Data\DreamTeamSnap4Metrics.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
                 null, null, null, null, null);
 
             var component = new GenericTable();
@@ -500,17 +506,285 @@ namespace CastReporting.UnitTest.Reporting.Tables
             
             var table = component.Content(reportData, config);
             Assert.AreEqual(2, table.NbColumns);
-            Assert.AreEqual(5, table.NbRows);
+            Assert.AreEqual(2, table.NbRows);
 
             var data = table.Data.ToList();
-            Assert.IsTrue(data.Contains("Technical Debt"));
-            Assert.IsTrue(data.Contains("Technical Debt density"));
-            Assert.IsTrue(data.Contains("Technical Debt of added Violations"));
-            Assert.IsTrue(data.Contains("Technical Debt of removed Violations"));
             Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
+            Assert.IsFalse(data.Contains("Class naming convention - case control"));
             Assert.IsFalse(data.Contains("Number of Code Lines"));
-            Assert.IsFalse(data.Contains("Robustness"));
-
+            Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
+            Assert.IsFalse(data.Contains("Efficiency"));
+            Assert.IsFalse(data.Contains("Architecture - OS and Platform Independence"));
+            Assert.IsFalse(data.Contains("Number of violations to critical quality rules"));
+            Assert.IsFalse(data.Contains("Number of quality rules with violations"));
+            Assert.IsTrue(data.Contains("Technical Debt"));
         }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\DreamTeamSnap4Metrics.json", "Data")]
+        public void TestTechnicalSizingType()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=TECHNICAL_SIZING,SNAPSHOTS=CURRENT
+             * DreamTeamSnap4Metrics.json : AED3/applications/7/snapshots/15/results?quality-indicators=(60014,61004,550)&sizing-measures=(10151,68001,10202,67210,67011)
+             */
+
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+                null, @".\Data\DreamTeamSnap4Metrics.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+                null, null, null, null, null);
+
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "SNAPSHOTS"},
+                {"ROW1", "METRICS"},
+                {"METRICS", "TECHNICAL_SIZING" },
+                {"SNAPSHOTS", "CURRENT"}
+            };
+
+            var table = component.Content(reportData, config);
+            Assert.AreEqual(2, table.NbColumns);
+            Assert.AreEqual(2, table.NbRows);
+
+            var data = table.Data.ToList();
+            Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
+            Assert.IsFalse(data.Contains("Class naming convention - case control"));
+            Assert.IsTrue(data.Contains("Number of Code Lines"));
+            Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
+            Assert.IsFalse(data.Contains("Efficiency"));
+            Assert.IsFalse(data.Contains("Architecture - OS and Platform Independence"));
+            Assert.IsFalse(data.Contains("Number of violations to critical quality rules"));
+            Assert.IsFalse(data.Contains("Number of quality rules with violations"));
+            Assert.IsFalse(data.Contains("Technical Debt"));
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\DreamTeamSnap4Metrics.json", "Data")]
+        public void TestFunctionalWeightType()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=FUNCTIONAL_WEIGHT,SNAPSHOTS=CURRENT
+             * DreamTeamSnap4Metrics.json : AED3/applications/7/snapshots/15/results?quality-indicators=(60014,61004,550)&sizing-measures=(10151,68001,10202,67210,67011)
+             */
+
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+                null, @".\Data\DreamTeamSnap4Metrics.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+                null, null, null, null, null);
+
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "SNAPSHOTS"},
+                {"ROW1", "METRICS"},
+                {"METRICS", "FUNCTIONAL_WEIGHT" },
+                {"SNAPSHOTS", "CURRENT"}
+            };
+
+            var table = component.Content(reportData, config);
+            Assert.AreEqual(2, table.NbColumns);
+            Assert.AreEqual(2, table.NbRows);
+
+            var data = table.Data.ToList();
+            Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
+            Assert.IsFalse(data.Contains("Class naming convention - case control"));
+            Assert.IsFalse(data.Contains("Number of Code Lines"));
+            Assert.IsTrue(data.Contains("OMG-Compliant Automated Function Points"));
+            Assert.IsFalse(data.Contains("Efficiency"));
+            Assert.IsFalse(data.Contains("Architecture - OS and Platform Independence"));
+            Assert.IsFalse(data.Contains("Number of violations to critical quality rules"));
+            Assert.IsFalse(data.Contains("Number of quality rules with violations"));
+            Assert.IsFalse(data.Contains("Technical Debt"));
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\DreamTeamSnap4Metrics.json", "Data")]
+        public void TestViolationType()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=VIOLATION,SNAPSHOTS=CURRENT
+             * DreamTeamSnap4Metrics.json : AED3/applications/7/snapshots/15/results?quality-indicators=(60014,61004,550)&sizing-measures=(10151,68001,10202,67210,67011)
+             */
+
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+                null, @".\Data\DreamTeamSnap4Metrics.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+                null, null, null, null, null);
+
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "SNAPSHOTS"},
+                {"ROW1", "METRICS"},
+                {"METRICS", "VIOLATION" },
+                {"SNAPSHOTS", "CURRENT"}
+            };
+
+            var table = component.Content(reportData, config);
+            Assert.AreEqual(2, table.NbColumns);
+            Assert.AreEqual(2, table.NbRows);
+
+            var data = table.Data.ToList();
+            Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
+            Assert.IsFalse(data.Contains("Class naming convention - case control"));
+            Assert.IsFalse(data.Contains("Number of Code Lines"));
+            Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
+            Assert.IsFalse(data.Contains("Efficiency"));
+            Assert.IsFalse(data.Contains("Architecture - OS and Platform Independence"));
+            Assert.IsFalse(data.Contains("Number of violations to critical quality rules"));
+            Assert.IsTrue(data.Contains("Number of quality rules with violations"));
+            Assert.IsFalse(data.Contains("Technical Debt"));
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\DreamTeamSnap4Metrics.json", "Data")]
+        public void TestCriticalViolationType()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=CRITICAL_VIOLATION,SNAPSHOTS=CURRENT
+             * DreamTeamSnap4Metrics.json : AED3/applications/7/snapshots/15/results?quality-indicators=(60014,61004,550)&sizing-measures=(10151,68001,10202,67210,67011)
+             */
+
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+                null, @".\Data\DreamTeamSnap4Metrics.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+                null, null, null, null, null);
+
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "SNAPSHOTS"},
+                {"ROW1", "METRICS"},
+                {"METRICS", "CRITICAL_VIOLATION" },
+                {"SNAPSHOTS", "CURRENT"}
+            };
+
+            var table = component.Content(reportData, config);
+            Assert.AreEqual(2, table.NbColumns);
+            Assert.AreEqual(2, table.NbRows);
+
+            var data = table.Data.ToList();
+            Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
+            Assert.IsFalse(data.Contains("Class naming convention - case control"));
+            Assert.IsFalse(data.Contains("Number of Code Lines"));
+            Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
+            Assert.IsFalse(data.Contains("Efficiency"));
+            Assert.IsFalse(data.Contains("Architecture - OS and Platform Independence"));
+            Assert.IsTrue(data.Contains("Number of violations to critical quality rules"));
+            Assert.IsFalse(data.Contains("Number of quality rules with violations"));
+            Assert.IsFalse(data.Contains("Technical Debt"));
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\DreamTeamSnap4Metrics.json", "Data")]
+        public void TestCriticalBusinessCriteriaType()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=BUSINESS_CRITERIA,SNAPSHOTS=CURRENT
+             * DreamTeamSnap4Metrics.json : AED3/applications/7/snapshots/15/results?quality-indicators=(60014,61004,550)&sizing-measures=(10151,68001,10202,67210,67011)
+             */
+
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+                null, @".\Data\DreamTeamSnap4Metrics.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+                null, null, null, null, null);
+
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "SNAPSHOTS"},
+                {"ROW1", "METRICS"},
+                {"METRICS", "BUSINESS_CRITERIA" },
+                {"SNAPSHOTS", "CURRENT"}
+            };
+
+            var table = component.Content(reportData, config);
+            Assert.AreEqual(2, table.NbColumns);
+            Assert.AreEqual(2, table.NbRows);
+
+            var data = table.Data.ToList();
+            Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
+            Assert.IsFalse(data.Contains("Class naming convention - case control"));
+            Assert.IsFalse(data.Contains("Number of Code Lines"));
+            Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
+            Assert.IsTrue(data.Contains("Efficiency"));
+            Assert.IsFalse(data.Contains("Architecture - OS and Platform Independence"));
+            Assert.IsFalse(data.Contains("Number of violations to critical quality rules"));
+            Assert.IsFalse(data.Contains("Number of quality rules with violations"));
+            Assert.IsFalse(data.Contains("Technical Debt"));
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\DreamTeamSnap4Metrics.json", "Data")]
+        public void TestCriticalTechnicalCriteriaType()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=TECHNICAL_CRITERIA,SNAPSHOTS=CURRENT
+             * DreamTeamSnap4Metrics.json : AED3/applications/7/snapshots/15/results?quality-indicators=(60014,61004,550)&sizing-measures=(10151,68001,10202,67210,67011)
+             */
+
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+                null, @".\Data\DreamTeamSnap4Metrics.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+                null, null, null, null, null);
+
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "SNAPSHOTS"},
+                {"ROW1", "METRICS"},
+                {"METRICS", "TECHNICAL_CRITERIA" },
+                {"SNAPSHOTS", "CURRENT"}
+            };
+
+            var table = component.Content(reportData, config);
+            Assert.AreEqual(2, table.NbColumns);
+            Assert.AreEqual(2, table.NbRows);
+
+            var data = table.Data.ToList();
+            Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
+            Assert.IsFalse(data.Contains("Class naming convention - case control"));
+            Assert.IsFalse(data.Contains("Number of Code Lines"));
+            Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
+            Assert.IsFalse(data.Contains("Efficiency"));
+            Assert.IsTrue(data.Contains("Architecture - OS and Platform Independence"));
+            Assert.IsFalse(data.Contains("Number of violations to critical quality rules"));
+            Assert.IsFalse(data.Contains("Number of quality rules with violations"));
+            Assert.IsFalse(data.Contains("Technical Debt"));
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\DreamTeamSnap4Metrics.json", "Data")]
+        public void TestCriticalQualityRuleType()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=QUALITY_RULES,SNAPSHOTS=CURRENT
+             * DreamTeamSnap4Metrics.json : AED3/applications/7/snapshots/15/results?quality-indicators=(60014,61004,550)&sizing-measures=(10151,68001,10202,67210,67011)
+             */
+
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+                null, @".\Data\DreamTeamSnap4Metrics.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+                null, null, null, null, null);
+
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "SNAPSHOTS"},
+                {"ROW1", "METRICS"},
+                {"METRICS", "QUALITY_RULES" },
+                {"SNAPSHOTS", "CURRENT"}
+            };
+
+            var table = component.Content(reportData, config);
+            Assert.AreEqual(2, table.NbColumns);
+            Assert.AreEqual(2, table.NbRows);
+
+            var data = table.Data.ToList();
+            Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
+            Assert.IsTrue(data.Contains("Class naming convention - case control"));
+            Assert.IsFalse(data.Contains("Number of Code Lines"));
+            Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
+            Assert.IsFalse(data.Contains("Efficiency"));
+            Assert.IsFalse(data.Contains("Architecture - OS and Platform Independence"));
+            Assert.IsFalse(data.Contains("Number of violations to critical quality rules"));
+            Assert.IsFalse(data.Contains("Number of quality rules with violations"));
+            Assert.IsFalse(data.Contains("Technical Debt"));
+        }
+
     }
 }
