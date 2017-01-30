@@ -127,7 +127,7 @@
     <None Include="Data\ComputingTest1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\DreamTeamSnap4TechnicalDebt.json">
+    <None Include="Data\DreamTeamSnap4Metrics.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\DreamTeamSnap1Sample7.json">
