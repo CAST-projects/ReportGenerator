@@ -1,0 +1,248 @@
+﻿[
+	{
+		"number": 4,
+		"date": {
+			"time": 1385852400000,
+			"isoDate": "2013-12-01"
+		},
+		"application": {
+			"href": "AED3/applications/7",
+			"name": "Dream Team",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED3/applications/7/snapshots/15",
+			"name": "Dream Team"
+		},
+		"applicationResults": [
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/60014/snapshots/15",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.7034874398555175
+				},
+				"technologyResults": [
+					{
+						"technology": ".NET",
+						"result": {
+							"grade": 2.141762452107281
+						}
+					},
+					{
+						"technology": "C++",
+						"result": {
+							"grade": 3.3147098620185504
+						}
+					},
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 2.642116724738677
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"grade": 1.7095439643017498
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/8/snapshots/15",
+							"name": "Adg"
+						},
+						"result": {
+							"grade": 2.642116724738677
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.642116724738677
+								}
+							}
+						]
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/9/snapshots/15",
+							"name": "Central"
+						},
+						"result": {
+							"grade": 1.7095439643017498
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"grade": 1.7095439643017498
+								}
+							}
+						]
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/10/snapshots/15",
+							"name": "DssAdmin"
+						},
+						"result": {
+							"grade": 3.3147098620185504
+						},
+						"technologyResults": [
+							{
+								"technology": "C++",
+								"result": {
+									"grade": 3.3147098620185504
+								}
+							}
+						]
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/11/snapshots/15",
+							"name": "Pchit"
+						},
+						"result": {
+							"grade": 2.141762452107281
+						},
+						"technologyResults": [
+							{
+								"technology": ".NET",
+								"result": {
+									"grade": 2.141762452107281
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/60017/snapshots/15",
+					"name": "Total Quality Index",
+					"shortName": "TQI",
+					"key": "60017",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.0959690052169186
+				},
+				"technologyResults": [
+					{
+						"technology": ".NET",
+						"result": {
+							"grade": 2.619838155995458
+						}
+					},
+					{
+						"technology": "C++",
+						"result": {
+							"grade": 3.0787060378208375
+						}
+					},
+					{
+						"technology": "JEE",
+						"result": {
+							"grade": 2.3528691540777955
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"grade": 2.4017273349745807
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/8/snapshots/15",
+							"name": "Adg"
+						},
+						"result": {
+							"grade": 2.3528691540777955
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"grade": 2.3528691540777955
+								}
+							}
+						]
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/9/snapshots/15",
+							"name": "Central"
+						},
+						"result": {
+							"grade": 2.4017273349745807
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"grade": 2.4017273349745807
+								}
+							}
+						]
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/10/snapshots/15",
+							"name": "DssAdmin"
+						},
+						"result": {
+							"grade": 3.0787060378208375
+						},
+						"technologyResults": [
+							{
+								"technology": "C++",
+								"result": {
+									"grade": 3.0787060378208375
+								}
+							}
+						]
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/11/snapshots/15",
+							"name": "Pchit"
+						},
+						"result": {
+							"grade": 2.619838155995458
+						},
+						"technologyResults": [
+							{
+								"technology": ".NET",
+								"result": {
+									"grade": 2.619838155995458
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			}
+		]
+	}
+]

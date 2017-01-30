@@ -212,12 +212,6 @@ namespace CastReporting.Reporting.Block.Table
 
             #endregion
 
-            /*if (_snapshot == "BOTH" && hasPreviousSnapshot)
-            {
-                for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
-                cntRow++;
-            }*/
-
             if (_snapshot == "PREVIOUS" && !hasPreviousSnapshot)
             {
                 rowData.Add(Labels.NoData);
@@ -362,9 +356,6 @@ namespace CastReporting.Reporting.Block.Table
 
             if (_snapshot == "BOTH" && hasPreviousSnapshot)
             {
-                /*for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
-                cntRow++;*/
-
                 if (_variation == "VALUE" || _variation == "BOTH")
                 {
                     rowData.Add(Labels.Evol);
@@ -610,12 +601,6 @@ namespace CastReporting.Reporting.Block.Table
                             break;
                     }
                 }
-
-                /*if (_variation == "BOTH")
-                {
-                    for (int i = 0; i < cntMetric + 1; i++) rowData.Add(" ");
-                    cntRow++;
-                }*/
 
                 if (_variation == "PERCENT" || _variation == "BOTH")
                 {

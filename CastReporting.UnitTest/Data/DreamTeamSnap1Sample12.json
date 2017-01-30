@@ -1,0 +1,100 @@
+﻿[
+	{
+		"number": 1,
+		"date": {
+			"time": 1356998460000,
+			"isoDate": "2013-01-01"
+		},
+		"application": {
+			"href": "AED3/applications/7",
+			"name": "Dream Team",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED3/applications/7/snapshots/3",
+			"name": "Dream Team"
+		},
+		"applicationResults": [
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AED3/sizing-measures/10107/snapshots/3",
+					"name": "Number of Comment Lines",
+					"shortName": "Comment Lines",
+					"key": "10107",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 10009
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AED3/sizing-measures/10151/snapshots/3",
+					"name": "Number of Code Lines",
+					"shortName": "LOCs",
+					"key": "10151",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 92762
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AED3/sizing-measures/10152/snapshots/3",
+					"name": "Number of Artifacts",
+					"shortName": "Artifacts",
+					"key": "10152",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 6089
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AED3/sizing-measures/10154/snapshots/3",
+					"name": "Number of Files",
+					"shortName": "Files",
+					"key": "10154",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 485
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AED3/sizing-measures/10161/snapshots/3",
+					"name": "Number of Methods",
+					"shortName": "Methods",
+					"key": "10161",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 5883
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	}
+]

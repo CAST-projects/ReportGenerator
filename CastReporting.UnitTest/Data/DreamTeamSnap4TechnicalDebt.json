@@ -1,0 +1,84 @@
+﻿[
+	{
+		"number": 4,
+		"date": {
+			"time": 1385852400000,
+			"isoDate": "2013-12-01"
+		},
+		"application": {
+			"href": "AED3/applications/7",
+			"name": "Dream Team",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED3/applications/7/snapshots/15",
+			"name": "Dream Team"
+		},
+		"applicationResults": [
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AED3/sizing-measures/68001/snapshots/15",
+					"name": "Technical Debt",
+					"shortName": "Debt",
+					"key": "68001",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 1503963.75
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AED3/sizing-measures/68002/snapshots/15",
+					"name": "Technical Debt density",
+					"shortName": "Debt density",
+					"key": "68002",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 14343.818847698161
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AED3/sizing-measures/68901/snapshots/15",
+					"name": "Technical Debt of added Violations",
+					"shortName": "Debt added",
+					"key": "68901",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 76714.125
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AED3/sizing-measures/68902/snapshots/15",
+					"name": "Technical Debt of removed Violations",
+					"shortName": "Debt removed",
+					"key": "68902",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 30437.625000000004
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	}
+]

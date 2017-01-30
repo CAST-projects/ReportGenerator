@@ -1,0 +1,82 @@
+﻿[
+	{
+		"href": "AED3/modules/8",
+		"name": "Adg",
+		"technologies": [
+			"JEE"
+		],
+		"snapshots": {
+			"href": "AED3/modules/8/snapshots",
+			"name": "Snapshots of Adg"
+		},
+		"results": {
+			"href": "AED3/modules/8/results",
+			"name": "Results for Adg"
+		},
+		"adgLocalId": null,
+		"applications": {
+			"href": "AED3/modules/8/application",
+			"name": "Dream Team"
+		}
+	},
+	{
+		"href": "AED3/modules/9",
+		"name": "Central",
+		"technologies": [
+			"PL/SQL"
+		],
+		"snapshots": {
+			"href": "AED3/modules/9/snapshots",
+			"name": "Snapshots of Central"
+		},
+		"results": {
+			"href": "AED3/modules/9/results",
+			"name": "Results for Central"
+		},
+		"adgLocalId": null,
+		"applications": {
+			"href": "AED3/modules/9/application",
+			"name": "Dream Team"
+		}
+	},
+	{
+		"href": "AED3/modules/10",
+		"name": "DssAdmin",
+		"technologies": [
+			"C++"
+		],
+		"snapshots": {
+			"href": "AED3/modules/10/snapshots",
+			"name": "Snapshots of DssAdmin"
+		},
+		"results": {
+			"href": "AED3/modules/10/results",
+			"name": "Results for DssAdmin"
+		},
+		"adgLocalId": null,
+		"applications": {
+			"href": "AED3/modules/10/application",
+			"name": "Dream Team"
+		}
+	},
+	{
+		"href": "AED3/modules/11",
+		"name": "Pchit",
+		"technologies": [
+			".NET"
+		],
+		"snapshots": {
+			"href": "AED3/modules/11/snapshots",
+			"name": "Snapshots of Pchit"
+		},
+		"results": {
+			"href": "AED3/modules/11/results",
+			"name": "Results for Pchit"
+		},
+		"adgLocalId": null,
+		"applications": {
+			"href": "AED3/modules/11/application",
+			"name": "Dream Team"
+		}
+	}
+]

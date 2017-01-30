@@ -1,0 +1,1130 @@
+﻿[
+	{
+		"number": 4,
+		"date": {
+			"time": 1385852400000,
+			"isoDate": "2013-12-01"
+		},
+		"application": {
+			"href": "AED3/applications/7",
+			"name": "Dream Team",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED3/applications/7/snapshots/15",
+			"name": "Dream Team"
+		},
+		"applicationResults": [
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/60011/snapshots/15",
+					"name": "Transferability",
+					"shortName": "Trsf",
+					"key": "60011",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.5768490582373302,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 3,
+						"totalCriticalViolations": 23,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 2268,
+						"totalViolations": 25328,
+						"addedViolations": 1040,
+						"removedViolations": 452
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/8/snapshots/15",
+							"name": "Adg"
+						},
+						"result": {
+							"grade": 2.8294775582575076,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 2,
+								"totalCriticalViolations": 22,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 1779,
+								"totalViolations": 20765,
+								"addedViolations": 915,
+								"removedViolations": 375
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/9/snapshots/15",
+							"name": "Central"
+						},
+						"result": {
+							"grade": 2.3803026033427037,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 930,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/10/snapshots/15",
+							"name": "DssAdmin"
+						},
+						"result": {
+							"grade": 2.8891827696289587,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 361,
+								"totalViolations": 3377,
+								"addedViolations": 14,
+								"removedViolations": 46
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/11/snapshots/15",
+							"name": "Pchit"
+						},
+						"result": {
+							"grade": 2.692371007320013,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 1,
+								"totalCriticalViolations": 1,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 128,
+								"totalViolations": 256,
+								"addedViolations": 111,
+								"removedViolations": 31
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/60012/snapshots/15",
+					"name": "Changeability",
+					"shortName": "Chng",
+					"key": "60012",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.083036601327378,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 7,
+						"totalCriticalViolations": 160,
+						"addedCriticalViolations": 6,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 1690,
+						"totalViolations": 13864,
+						"addedViolations": 650,
+						"removedViolations": 337
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/8/snapshots/15",
+							"name": "Adg"
+						},
+						"result": {
+							"grade": 2.438276767272866,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 3,
+								"totalCriticalViolations": 155,
+								"addedCriticalViolations": 3,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 1116,
+								"totalViolations": 8907,
+								"addedViolations": 534,
+								"removedViolations": 287
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/9/snapshots/15",
+							"name": "Central"
+						},
+						"result": {
+							"grade": 2.5116639190203145,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 854,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/10/snapshots/15",
+							"name": "DssAdmin"
+						},
+						"result": {
+							"grade": 2.903227710548625,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 448,
+								"totalViolations": 3856,
+								"addedViolations": 12,
+								"removedViolations": 35
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/11/snapshots/15",
+							"name": "Pchit"
+						},
+						"result": {
+							"grade": 2.3348088418031385,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 4,
+								"totalCriticalViolations": 5,
+								"addedCriticalViolations": 3,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 126,
+								"totalViolations": 247,
+								"addedViolations": 104,
+								"removedViolations": 15
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/60013/snapshots/15",
+					"name": "Robustness",
+					"shortName": "Rbst",
+					"key": "60013",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.0617893020569182,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 20,
+						"totalCriticalViolations": 187,
+						"addedCriticalViolations": 11,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 979,
+						"totalViolations": 5970,
+						"addedViolations": 378,
+						"removedViolations": 249
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/8/snapshots/15",
+							"name": "Adg"
+						},
+						"result": {
+							"grade": 2.2794421528025763,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 17,
+								"totalCriticalViolations": 181,
+								"addedCriticalViolations": 11,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 648,
+								"totalViolations": 4018,
+								"addedViolations": 306,
+								"removedViolations": 203
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/9/snapshots/15",
+							"name": "Central"
+						},
+						"result": {
+							"grade": 2.6434707160220565,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 569,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/10/snapshots/15",
+							"name": "DssAdmin"
+						},
+						"result": {
+							"grade": 3.178351257962882,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 248,
+								"totalViolations": 1251,
+								"addedViolations": 6,
+								"removedViolations": 31
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/11/snapshots/15",
+							"name": "Pchit"
+						},
+						"result": {
+							"grade": 2.998089469130369,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 3,
+								"totalCriticalViolations": 6,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 83,
+								"totalViolations": 132,
+								"addedViolations": 66,
+								"removedViolations": 15
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/60014/snapshots/15",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.7034874398555175,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 30,
+						"totalCriticalViolations": 206,
+						"addedCriticalViolations": 20,
+						"removedCriticalViolations": 1,
+						"violationsInNewAndModifiedCode": 206,
+						"totalViolations": 1451,
+						"addedViolations": 124,
+						"removedViolations": 107
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/8/snapshots/15",
+							"name": "Adg"
+						},
+						"result": {
+							"grade": 2.642116724738677,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 23,
+								"totalCriticalViolations": 88,
+								"addedCriticalViolations": 17,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 140,
+								"totalViolations": 754,
+								"addedViolations": 94,
+								"removedViolations": 101
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/9/snapshots/15",
+							"name": "Central"
+						},
+						"result": {
+							"grade": 1.7095439643017498,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 105,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 559,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/10/snapshots/15",
+							"name": "DssAdmin"
+						},
+						"result": {
+							"grade": 3.3147098620185504,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 2,
+								"totalCriticalViolations": 4,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 27,
+								"totalViolations": 80,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/11/snapshots/15",
+							"name": "Pchit"
+						},
+						"result": {
+							"grade": 2.141762452107281,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 5,
+								"totalCriticalViolations": 9,
+								"addedCriticalViolations": 3,
+								"removedCriticalViolations": 1,
+								"violationsInNewAndModifiedCode": 39,
+								"totalViolations": 58,
+								"addedViolations": 30,
+								"removedViolations": 6
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/60015/snapshots/15",
+					"name": "SEI Maintainability",
+					"shortName": "SEI",
+					"key": "60015",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 3.1413750222852506,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 0,
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/8/snapshots/15",
+							"name": "Adg"
+						},
+						"result": {
+							"grade": 3.221283106895438,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/9/snapshots/15",
+							"name": "Central"
+						},
+						"result": {
+							"grade": 2.7707810499355596,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/10/snapshots/15",
+							"name": "DssAdmin"
+						},
+						"result": {
+							"grade": 3.1601089651215553,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/11/snapshots/15",
+							"name": "Pchit"
+						},
+						"result": {
+							"grade": 3.0137865441375107,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/60016/snapshots/15",
+					"name": "Security",
+					"shortName": "Secu",
+					"key": "60016",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.879050239210727,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 35,
+						"totalCriticalViolations": 200,
+						"addedCriticalViolations": 22,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 510,
+						"totalViolations": 2452,
+						"addedViolations": 181,
+						"removedViolations": 132
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/8/snapshots/15",
+							"name": "Adg"
+						},
+						"result": {
+							"grade": 1.6275405378173877,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 31,
+								"totalCriticalViolations": 190,
+								"addedCriticalViolations": 22,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 234,
+								"totalViolations": 1394,
+								"addedViolations": 144,
+								"removedViolations": 104
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/9/snapshots/15",
+							"name": "Central"
+						},
+						"result": {
+							"grade": 2.431372647950188,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 129,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/10/snapshots/15",
+							"name": "DssAdmin"
+						},
+						"result": {
+							"grade": 3.126472809323167,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 2,
+								"totalCriticalViolations": 4,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 230,
+								"totalViolations": 851,
+								"addedViolations": 2,
+								"removedViolations": 19
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/11/snapshots/15",
+							"name": "Pchit"
+						},
+						"result": {
+							"grade": 2.8521316646316652,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 2,
+								"totalCriticalViolations": 6,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 46,
+								"totalViolations": 78,
+								"addedViolations": 35,
+								"removedViolations": 9
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/60017/snapshots/15",
+					"name": "Total Quality Index",
+					"shortName": "TQI",
+					"key": "60017",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.0959690052169186,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 58,
+						"totalCriticalViolations": 520,
+						"addedCriticalViolations": 37,
+						"removedCriticalViolations": 1,
+						"violationsInNewAndModifiedCode": 3180,
+						"totalViolations": 30388,
+						"addedViolations": 1332,
+						"removedViolations": 640
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/8/snapshots/15",
+							"name": "Adg"
+						},
+						"result": {
+							"grade": 2.3528691540777955,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 45,
+								"totalCriticalViolations": 392,
+								"addedCriticalViolations": 31,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 2247,
+								"totalViolations": 23742,
+								"addedViolations": 1141,
+								"removedViolations": 530
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/9/snapshots/15",
+							"name": "Central"
+						},
+						"result": {
+							"grade": 2.4017273349745807,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 105,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 1609,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/10/snapshots/15",
+							"name": "DssAdmin"
+						},
+						"result": {
+							"grade": 3.0787060378208375,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 2,
+								"totalCriticalViolations": 4,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 723,
+								"totalViolations": 4655,
+								"addedViolations": 20,
+								"removedViolations": 69
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/11/snapshots/15",
+							"name": "Pchit"
+						},
+						"result": {
+							"grade": 2.619838155995458,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 11,
+								"totalCriticalViolations": 19,
+								"addedCriticalViolations": 6,
+								"removedCriticalViolations": 1,
+								"violationsInNewAndModifiedCode": 210,
+								"totalViolations": 382,
+								"addedViolations": 171,
+								"removedViolations": 41
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/66031/snapshots/15",
+					"name": "Programming Practices",
+					"shortName": "Prog",
+					"key": "66031",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.139885861969072,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 57,
+						"totalCriticalViolations": 428,
+						"addedCriticalViolations": 36,
+						"removedCriticalViolations": 1,
+						"violationsInNewAndModifiedCode": 1345,
+						"totalViolations": 7387,
+						"addedViolations": 427,
+						"removedViolations": 262
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/8/snapshots/15",
+							"name": "Adg"
+						},
+						"result": {
+							"grade": 2.501492557525106,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 44,
+								"totalCriticalViolations": 300,
+								"addedCriticalViolations": 30,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 790,
+								"totalViolations": 4244,
+								"addedViolations": 344,
+								"removedViolations": 230
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/9/snapshots/15",
+							"name": "Central"
+						},
+						"result": {
+							"grade": 2.3633433241320008,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 105,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 1023,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/10/snapshots/15",
+							"name": "DssAdmin"
+						},
+						"result": {
+							"grade": 2.993117669703094,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 2,
+								"totalCriticalViolations": 4,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 452,
+								"totalViolations": 1965,
+								"addedViolations": 8,
+								"removedViolations": 16
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/11/snapshots/15",
+							"name": "Pchit"
+						},
+						"result": {
+							"grade": 2.658314991293471,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 11,
+								"totalCriticalViolations": 19,
+								"addedCriticalViolations": 6,
+								"removedCriticalViolations": 1,
+								"violationsInNewAndModifiedCode": 103,
+								"totalViolations": 155,
+								"addedViolations": 75,
+								"removedViolations": 16
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/66032/snapshots/15",
+					"name": "Architectural Design",
+					"shortName": "Arch",
+					"key": "66032",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.4731593997681545,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 0,
+						"totalCriticalViolations": 34,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 346,
+						"totalViolations": 2502,
+						"addedViolations": 160,
+						"removedViolations": 96
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/8/snapshots/15",
+							"name": "Adg"
+						},
+						"result": {
+							"grade": 2.512468658772035,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 34,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 236,
+								"totalViolations": 2089,
+								"addedViolations": 127,
+								"removedViolations": 88
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/9/snapshots/15",
+							"name": "Central"
+						},
+						"result": {
+							"grade": 2.516763248559522,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 141,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/10/snapshots/15",
+							"name": "DssAdmin"
+						},
+						"result": {
+							"grade": 2.4075890854197133,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 72,
+								"totalViolations": 212,
+								"addedViolations": 1,
+								"removedViolations": 1
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/11/snapshots/15",
+							"name": "Pchit"
+						},
+						"result": {
+							"grade": 2.7572142703040594,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 38,
+								"totalViolations": 60,
+								"addedViolations": 32,
+								"removedViolations": 7
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/66033/snapshots/15",
+					"name": "Documentation",
+					"shortName": "Doc",
+					"key": "66033",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.4386033299006407,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 0,
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 1462,
+						"totalViolations": 20301,
+						"addedViolations": 748,
+						"removedViolations": 262
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/8/snapshots/15",
+							"name": "Adg"
+						},
+						"result": {
+							"grade": 2.4760725011779146,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 1225,
+								"totalViolations": 17350,
+								"addedViolations": 674,
+								"removedViolations": 210
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/9/snapshots/15",
+							"name": "Central"
+						},
+						"result": {
+							"grade": 1.8406019225872163,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 437,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/10/snapshots/15",
+							"name": "DssAdmin"
+						},
+						"result": {
+							"grade": 2.3174219581150393,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 168,
+								"totalViolations": 2347,
+								"addedViolations": 10,
+								"removedViolations": 34
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 4,
+						"moduleSnapshot": {
+							"href": "AED3/modules/11/snapshots/15",
+							"name": "Pchit"
+						},
+						"result": {
+							"grade": 2.282473216432616,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 69,
+								"totalViolations": 167,
+								"addedViolations": 64,
+								"removedViolations": 18
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			}
+		]
+	}
+]
