@@ -73,14 +73,4 @@
 		</trycatch>
 	</target>
 	
-	<target name="runUnitTests">
-		<exec executable="${PF86}\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" dir="${wksp.dir}/ReportGenerator/">
-			<arg value="${wksp.dir}/CastReporting.UnitTest/bin/Release/CastReporting.UnitTest.dll"/>
-			<arg value="/Logger:trx"/>
-		</exec>
-		<xslt in="${wksp.dir}/TestResults"
-		   style="${wksp.dir}/ReportGenerator/_build/ant/mstest-to-junit.xsl"
-			 out="${wksp.dir}/TestResults/testResults.xml"/>
-	</target>
-
 </project>
