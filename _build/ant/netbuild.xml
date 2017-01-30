@@ -74,7 +74,7 @@
 	</target>
 	
 	<target name="runUnitTests">
-		<exec executable="%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" dir="${wksp.dir}/ReportGenerator/">
+		<exec executable="${PF86}\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" dir="${wksp.dir}/ReportGenerator/">
 			<arg value="${wksp.dir}/CastReporting.UnitTest/bin/Release/CastReporting.UnitTest.dll"/>
 			<arg value="/Logger:trx"/>
 		</exec>
