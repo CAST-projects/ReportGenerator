@@ -64,6 +64,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Block\Graph\PortfolioBarChart.cs" />
     <Compile Include="Block\Graph\PortfolioCritViolPerformance.cs" />
     <Compile Include="Block\Graph\PortfolioQSByCV_LOV.cs" />
     <Compile Include="Block\Graph\RadarMetricId.cs" />

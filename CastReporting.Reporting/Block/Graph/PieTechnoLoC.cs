@@ -27,8 +27,7 @@ namespace CastReporting.Reporting.Block.Graph
     [Block("TECHNO_LOC")]
     internal class PieTechnoLoC : GraphBlock
     {
-      
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             int nbResult = reportData.Parameter.NbResultDefault, tmpNb;
             if (null != options && options.ContainsKey("COUNT") && int.TryParse(options["COUNT"], out tmpNb) && tmpNb > 0)

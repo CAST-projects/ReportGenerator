@@ -33,7 +33,8 @@ namespace CastReporting.Reporting.Block.Graph
      
 
         #region METHODS
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             List<string> rowData = new List<string>();
             int parId;

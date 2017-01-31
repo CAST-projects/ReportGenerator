@@ -1,0 +1,51 @@
+[
+  {
+    "href": "AAD2/applications/24/snapshots/12",
+    "name": "Big Ben",
+    "number": 4,
+    "technologies": [
+      "ABAP",
+      "CICS",
+      "Cobol",
+      "IMS",
+      "JCL",
+      "SAP SQL"
+    ],
+    "annotation": {
+      "version": "4",
+      "date": {
+        "time": 1384484640000,
+        "isoDate": "2013-11-15"
+      },
+      "description": null,
+      "name": "ADGAutoSnap_Big Ben_4",
+      "enhancementMeasure": "AEP"
+    },
+    "configurationSnapshot": {
+      "href": "AAD2/configuration/snapshots/12",
+      "name": "Configuration Snapshot #4"
+    },
+    "systems": null,
+    "application": {
+      "href": "AAD2/applications/24",
+      "name": "Big Ben",
+      "adgDatabase": "endtoend_820_central"
+    },
+    "moduleSnapshots": {
+      "href": "AAD2/applications/24/snapshots/12/modules",
+      "name": "Module Snapshots for Big Ben #4"
+    },
+    "results": {
+      "href": "AAD2/applications/24/snapshots/12/results",
+      "name": "Results breakdown by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED3/applications/20/snapshots/14",
+      "name": "Origin of Big Ben snapshot 4"
+    },
+    "actionPlan": null,
+    "components": null,
+    "transactions": null,
+    "treeNode": null
+  }
+]

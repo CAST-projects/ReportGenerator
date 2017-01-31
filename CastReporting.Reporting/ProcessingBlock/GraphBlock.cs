@@ -46,7 +46,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         #endregion PROPERTIES
 
         #region METHODS
-        protected abstract TableDefinition Content(ReportData client, Dictionary<string, string> options);
+        public abstract TableDefinition Content(ReportData client, Dictionary<string, string> options);
 
         public static bool IsMatching(string blockType)
         {

@@ -17,8 +17,7 @@ namespace CastReporting.Reporting.Block.Graph
 	[Block("RADAR_METRIC_ID")]
 	class RadarMetricId : GraphBlock
     {
-        
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             string[] qidList = options.GetOption("ID")?.Split('|') ;
             string _version = options.GetOption("SNAPSHOT", "BOTH");

@@ -1,0 +1,64 @@
+[
+	{
+		"href": "AAD2/applications/3",
+		"name": "AppliAEPtran",
+		"technologies": [
+			"JEE",
+			"PL/SQL"
+		],
+		"systems": null,
+		"modules": {
+			"href": "AAD2/applications/3/modules",
+			"name": "Modules of AppliAEPtran"
+		},
+		"snapshots": {
+			"href": "AAD2/applications/3/snapshots",
+			"name": "Snapshots of AppliAEPtran"
+		},
+		"results": {
+			"href": "AAD2/applications/3/results",
+			"name": "Results breakdown for AppliAEPtran by snapshots, by modules, by technologies"
+		},
+		"origin": {
+			"href": "AED2/applications/3",
+			"name": "Origin of AppliAEPtran"
+		},
+		"adgDatabase": "aeptran82_central",
+		"adgWebSite": "./InfoNoDrillDown.htm",
+		"adgLocalId": "3",
+		"adgVersion": "8.2.0"
+	},
+	{
+		"href": "AAD2/applications/24",
+		"name": "Big Ben",
+		"technologies": [
+			"ABAP",
+			"CICS",
+			"Cobol",
+			"IMS",
+			"JCL",
+			"SAP SQL"
+		],
+		"systems": null,
+		"modules": {
+			"href": "AAD2/applications/24/modules",
+			"name": "Modules of Big Ben"
+		},
+		"snapshots": {
+			"href": "AAD2/applications/24/snapshots",
+			"name": "Snapshots of Big Ben"
+		},
+		"results": {
+			"href": "AAD2/applications/24/results",
+			"name": "Results breakdown for Big Ben by snapshots, by modules, by technologies"
+		},
+		"origin": {
+			"href": "AED3/applications/20",
+			"name": "Origin of Big Ben"
+		},
+		"adgDatabase": "endtoend_820_central",
+		"adgWebSite": "./InfoNoDrillDown.htm",
+		"adgLocalId": "20",
+		"adgVersion": "8.2.0"
+	}
+]

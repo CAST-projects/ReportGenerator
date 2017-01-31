@@ -30,8 +30,7 @@ namespace CastReporting.Reporting.Block.Graph
     [Block("TREND_HEALTH_FACTOR")]
     internal class TrendHealthFactor : GraphBlock
     {
-
-        protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+        public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
              
             double minVVal = short.MaxValue;

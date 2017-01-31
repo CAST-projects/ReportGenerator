@@ -155,5 +155,49 @@ namespace CastReporting.UnitTest.Reporting
             }
         }
 
+        public static ReportData PrepaPortfolioReportData(string applicationsJSON, List<string> snapshotsJSON, List<string> snapshotsResultsJSON)
+        {
+            ReportData reportData = new ReportData
+            {
+                Applications = GetSampleResult<Application>(applicationsJSON).ToArray()
+            };
+            int i = 0;
+            foreach (Application _application in reportData.Applications)
+            {
+                _application.Snapshots = GetSampleResult<Snapshot>(snapshotsJSON[i]);
+                var snapshotResults = GetSampleResult<Result>(snapshotsResultsJSON[i]);
+                var businessCriteriaResults = new List<ApplicationResult>();
+                var technicalCriteriaResults = new List<ApplicationResult>();
+                var qualityRulesResults = new List<ApplicationResult>();
+                var sizingMeasures = new List<ApplicationResult>();
+                foreach (var appRes in snapshotResults.SelectMany(_ => _.ApplicationResults).ToList())
+                {
+                    switch (appRes.Type)
+                    {
+                        case "business-criteria": businessCriteriaResults.Add(appRes); break;
+                        case "technical-criteria": technicalCriteriaResults.Add(appRes); break;
+                        case "quality-rules": qualityRulesResults.Add(appRes); break;
+                        case "technical-size-measures":
+                        case "run-time-statistics":
+                        case "technical-debt-statistics":
+                        case "functional-weight-measures":
+                        case "critical-violation-statistics":
+                        case "violation-statistics":
+                            sizingMeasures.Add(appRes);
+                            break;
+                        default: throw new ArgumentOutOfRangeException();
+                    }
+                }
+                Snapshot _snapshot = _application.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
+                _snapshot.BusinessCriteriaResults = businessCriteriaResults;
+                _snapshot.TechnicalCriteriaResults = technicalCriteriaResults;
+                _snapshot.QualityRulesResults = qualityRulesResults;
+                _snapshot.SizingMeasuresResults = sizingMeasures;
+                
+                i++;
+            }
+            return reportData;
+        }
+
     }
 }
