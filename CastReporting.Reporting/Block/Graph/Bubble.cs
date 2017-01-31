@@ -29,7 +29,8 @@ namespace CastReporting.Reporting.Block.Graph
         internal class Bubble : GraphBlock
         {
             #region METHODS
-            protected override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
+
+            public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
             {
              
 

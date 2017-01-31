@@ -101,12 +101,12 @@ namespace CastReporting.Reporting
             switch (type)
             {
                 case metricType.BusinessCriteria:
-                    if (module == null && technology == string.Empty)
+                    if (module == null && string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId))
                             .Select(_ => _.DetailResult.Grade).FirstOrDefault();
                     }
-                    else if (module != null && technology == string.Empty)
+                    else if (module != null && string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
                             .SelectMany(_ => _.ModulesResult)
@@ -127,12 +127,12 @@ namespace CastReporting.Reporting
                     }
                     break;
                 case metricType.TechnicalCriteria:
-                    if (module == null && technology == string.Empty)
+                    if (module == null && string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.TechnicalCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId))
                                      .Select(_ => _.DetailResult.Grade).FirstOrDefault();
                     }
-                    else if (module != null && technology == string.Empty)
+                    else if (module != null && string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.TechnicalCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
                             .SelectMany(_ => _.ModulesResult)
@@ -153,12 +153,12 @@ namespace CastReporting.Reporting
                     }
                     break;
                 case metricType.QualityRule:
-                    if (module == null && technology == string.Empty)
+                    if (module == null && string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.QualityRulesResults?.Where(_ => _.Reference.Key == int.Parse(metricId))
                             .Select(_ => _.DetailResult.Grade).FirstOrDefault();
                     }
-                    else if (module != null && technology == string.Empty)
+                    else if (module != null && string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.QualityRulesResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
                             .SelectMany(_ => _.ModulesResult)
@@ -179,12 +179,12 @@ namespace CastReporting.Reporting
                     }
                     break;
                 case metricType.SizingMeasure:
-                    if (module == null && technology == string.Empty)
+                    if (module == null && string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.SizingMeasuresResults?.Where(_ => _.Reference.Key == int.Parse(metricId))
                             .Select(_ => _.DetailResult.Value).FirstOrDefault();
                     }
-                    else if (module != null && technology == string.Empty)
+                    else if (module != null && string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.SizingMeasuresResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
                             .SelectMany(_ => _.ModulesResult)
@@ -205,11 +205,11 @@ namespace CastReporting.Reporting
                     }
                     break;
                 case metricType.BackgroundFact:
-                    if (module == null && technology == string.Empty)
+                    if (module == null && string.IsNullOrEmpty(technology))
                     {
                         result = bfResult?.ApplicationResults[0].DetailResult.Value;
                     }
-                    else if (module != null && technology == string.Empty)
+                    else if (module != null && string.IsNullOrEmpty(technology))
                     {
                         result = bfResult?.ApplicationResults[0].ModulesResult.FirstOrDefault(_ => _.Module.Id == module.Id)?
                             .DetailResult.Value;
