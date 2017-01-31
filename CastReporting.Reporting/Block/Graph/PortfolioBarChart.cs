@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Cast.Util.Log;
 using CastReporting.BLL.Computing.DTO;
 using CastReporting.Domain;
