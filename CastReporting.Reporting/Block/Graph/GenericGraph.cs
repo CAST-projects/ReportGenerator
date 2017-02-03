@@ -10,10 +10,10 @@ using System.Linq;
 using CastReporting.Reporting.Languages;
 using CastReporting.BLL.Computing.DTO;
 
-namespace CastReporting.Reporting.Block.Table
+namespace CastReporting.Reporting.Block.Graph
 {
-    [Block("GENERIC_TABLE")]
-    public class GenericTable : TableBlock
+    [Block("GENERIC_GRAPH")]
+    public class GenericGraph : GraphBlock
     {
         public class ObjConfig
         {
