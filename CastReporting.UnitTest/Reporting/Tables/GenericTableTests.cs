@@ -674,7 +674,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
         [TestMethod]
         [DeploymentItem(@".\Data\DreamTeamSnap4Metrics.json", "Data")]
-        public void TestCriticalBusinessCriteriaType()
+        public void TestBusinessCriteriaType()
         {
             /*
              * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=BUSINESS_CRITERIA,SNAPSHOTS=CURRENT
@@ -712,7 +712,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
         [TestMethod]
         [DeploymentItem(@".\Data\DreamTeamSnap4Metrics.json", "Data")]
-        public void TestCriticalTechnicalCriteriaType()
+        public void TestTechnicalCriteriaType()
         {
             /*
              * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=TECHNICAL_CRITERIA,SNAPSHOTS=CURRENT
@@ -750,7 +750,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
         [TestMethod]
         [DeploymentItem(@".\Data\DreamTeamSnap4Metrics.json", "Data")]
-        public void TestCriticalQualityRuleType()
+        public void TestQualityRuleType()
         {
             /*
              * Configuration : TABLE;GENERIC_TABLE;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=QUALITY_RULES,SNAPSHOTS=CURRENT
@@ -772,11 +772,12 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var table = component.Content(reportData, config);
             Assert.AreEqual(2, table.NbColumns);
-            Assert.AreEqual(2, table.NbRows);
+            Assert.AreEqual(3, table.NbRows);
 
             var data = table.Data.ToList();
             Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
             Assert.IsTrue(data.Contains("Class naming convention - case control"));
+            Assert.IsTrue(data.Contains("My Critical quality rule"));
             Assert.IsFalse(data.Contains("Number of Code Lines"));
             Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
             Assert.IsFalse(data.Contains("Efficiency"));

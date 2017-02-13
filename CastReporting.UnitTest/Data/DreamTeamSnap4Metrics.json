@@ -31,6 +31,21 @@
 				"transactionResults": []
 			},
 			{
+				"type": "quality-rules",
+				"reference": {
+					"href": "AED3/quality-indicators/556/snapshots/15",
+					"name": "My Critical quality rule",
+					"key": "556",
+					"critical": true
+				},
+				"result": {
+					"grade": 3.8928571428571423
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
 				"type": "technical-size-measures",
 				"reference": {
 					"href": "AED3/sizing-measures/10151/snapshots/15",
@@ -84,7 +99,7 @@
 					"href": "AED3/quality-indicators/61004/snapshots/15",
 					"name": "Architecture - OS and Platform Independence",
 					"key": "61004",
-					"critical": false
+					"critical": true
 				},
 				"result": {
 					"grade": 3.9247851002865333
