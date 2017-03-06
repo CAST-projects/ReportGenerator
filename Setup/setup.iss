@@ -176,35 +176,32 @@ function IsDotNetDetected(version: string; service: cardinal): boolean;
 //    'v3.5'          .NET Framework 3.5
 //    'v4\Client'     .NET Framework 4.0 Client Profile
 //    'v4\Full'       .NET Framework 4.0 Full Installation
+// Version 4.6 is needed for TLS 1.2 support
 //
 // service -- Specify any non-negative integer for the required service pack level:
 //    0               No service packs required
 //    1, 2, etc.      Service pack 1, 2, etc. required
 var
-    key: string;
-    install, serviceCount: cardinal;
+    key, fwkversion: string;
+    install, serviceCount : cardinal;
     success: boolean;
 begin
     key := 'SOFTWARE\Microsoft\NET Framework Setup\NDP\' + version;
-    // .NET 3.0 uses value InstallSuccess in subkey Setup
-    if Pos('v3.0', version) = 1 then begin
-        success := RegQueryDWordValue(HKLM, key + '\Setup', 'InstallSuccess', install);
-    end else begin
-        success := RegQueryDWordValue(HKLM, key, 'Install', install);
-    end;
+    success := RegQueryDWordValue(HKLM, key, 'Install', install);
     // .NET 4.0 uses value Servicing instead of SP
+    // NET 4.6 in version key in registry
     if Pos('v4', version) = 1 then begin
-        success := success and RegQueryDWordValue(HKLM, key, 'Servicing', serviceCount);
+      success := success and RegQueryStringValue(HKLM, key, 'Version', fwkversion);
     end else begin
         success := success and RegQueryDWordValue(HKLM, key, 'SP', serviceCount);
     end;
-    result := success and (install = 1) and (serviceCount >= service);
+    result := success and (install = 1) and (Pos('4.6', fwkversion) = 1);
 end;
 
 function InitializeSetup(): Boolean;
 begin
     if not IsDotNetDetected('v4\Client', 0) then begin
-        MsgBox('{#MyAppName} requires Microsoft .NET Framework 4.0 Client Profile.'#13#13
+        MsgBox('{#MyAppName} requires Microsoft .NET Framework 4.6.'#13#13
             'Please use Windows Update to install this version,'#13
             'and then re-run the {#MyAppName} setup program.', mbInformation, MB_OK);
         result := false;
