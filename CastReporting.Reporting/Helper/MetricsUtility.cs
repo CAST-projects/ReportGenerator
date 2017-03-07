@@ -37,8 +37,9 @@ namespace CastReporting.Reporting
         /// <param name="reportData"></param>
         /// <param name="snapshot"></param>
         /// <param name="metricId"></param>
+        /// <param name="format"></param> format is true for table component and false for graph component
         /// <returns></returns>
-        public static string GetMetricResult(ReportData reportData, Snapshot snapshot, string metricId)
+        public static string GetMetricResult(ReportData reportData, Snapshot snapshot, string metricId, bool format)
         {
             string result = ((snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.DetailResult.Grade).FirstOrDefault()?.ToString("N2") ??
                        snapshot.TechnicalCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.DetailResult.Grade).FirstOrDefault()?.ToString("N2")) ?? 
@@ -47,7 +48,15 @@ namespace CastReporting.Reporting
             if (result != null) return result;
             Result bfResult = reportData.SnapshotExplorer.GetBackgroundFacts(snapshot.Href, metricId, true, true).FirstOrDefault();
             if (bfResult == null || !bfResult.ApplicationResults.Any()) return null;
-            result = bfResult.ApplicationResults[0].DetailResult.Value?.ToString("N0") ?? Constants.No_Value;
+            if (format)
+            {
+                result = bfResult.ApplicationResults[0].DetailResult.Value?.ToString("N0") ?? Constants.No_Value;
+            }
+            else
+            {
+                result = bfResult.ApplicationResults[0].DetailResult.Value?.ToString() ?? Constants.No_Value;
+            }
+            
             return result;
         }
 
@@ -247,8 +256,9 @@ namespace CastReporting.Reporting
         /// <param name="evol"></param>
         /// <param name="module"></param>
         /// <param name="technology"></param>
+        /// <param name="format"></param> format is true for table component and false for graph component
         /// <returns></returns>
-        public static EvolutionResult GetMetricEvolution(ReportData reportData, Snapshot curSnapshot, Snapshot prevSnapshot, string metricId, bool evol, Module module, string technology)
+        public static EvolutionResult GetMetricEvolution(ReportData reportData, Snapshot curSnapshot, Snapshot prevSnapshot, string metricId, bool evol, Module module, string technology, bool format)
         {
             SimpleResult curResult = null;
             SimpleResult prevResult = null;
@@ -270,8 +280,17 @@ namespace CastReporting.Reporting
                         break;
                     case metricType.SizingMeasure:
                     case metricType.BackgroundFact:
-                        curRes = curResult?.result?.ToString("N0") ?? Constants.No_Value;
-                        prevRes = prevResult?.result?.ToString("N0") ?? Constants.No_Value;
+                        if (format)
+                        {
+                            curRes = curResult?.result?.ToString("N0") ?? Constants.No_Value;
+                            prevRes = prevResult?.result?.ToString("N0") ?? Constants.No_Value;
+                        }
+                        else
+                        {
+                            curRes = curResult?.result?.ToString() ?? Constants.No_Value;
+                            prevRes = prevResult?.result?.ToString() ?? Constants.No_Value;
+
+                        }
                         break;
                     case metricType.NotKnown:
                         break;
@@ -305,8 +324,16 @@ namespace CastReporting.Reporting
                         break;
                     case metricType.SizingMeasure:
                     case metricType.BackgroundFact:
-                        curRes = curResult?.result?.ToString("N0") ?? Constants.No_Value;
-                        prevRes = prevResult?.result?.ToString("N0") ?? Constants.No_Value;
+                        if (format)
+                        {
+                            curRes = curResult?.result?.ToString("N0") ?? Constants.No_Value;
+                            prevRes = prevResult?.result?.ToString("N0") ?? Constants.No_Value;
+                        }
+                        else
+                        {
+                            curRes = curResult?.result?.ToString() ?? Constants.No_Value;
+                            prevRes = prevResult?.result?.ToString() ?? Constants.No_Value;
+                        }
                         break;
                     case metricType.NotKnown:
                         break;
@@ -356,9 +383,18 @@ namespace CastReporting.Reporting
                 case metricType.BackgroundFact:
                     if (curResult.result != null && prevResult.result != null)
                     {
-                        finalCurRes = curResult.result.Value.ToString("N0");
-                        finalPrevRes = prevResult.result.Value.ToString("N0");
-                        evolution = (curResult.result - prevResult.result).Value.ToString("N0");
+                        if (format)
+                        {
+                            finalCurRes = curResult.result.Value.ToString("N0");
+                            finalPrevRes = prevResult.result.Value.ToString("N0");
+                            evolution = (curResult.result - prevResult.result).Value.ToString("N0");
+                        }
+                        else
+                        {
+                            finalCurRes = curResult.result.ToString();
+                            finalPrevRes = prevResult.result.ToString();
+                            evolution = (curResult.result - prevResult.result).ToString();
+                        }
                         evp = prevResult.result != 0 ? (curResult.result - prevResult.result) / prevResult.result : null;
                         evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
                     }

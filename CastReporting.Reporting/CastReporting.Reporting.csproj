@@ -182,6 +182,7 @@
     <Compile Include="DocumentBuilder\WordDocumentBuilder.cs" />
     <Compile Include="DocumentBuilder\WorksheetAccessorExt.cs" />
     <Compile Include="Helper\FormatHelper.cs" />
+    <Compile Include="Helper\GenericContent.cs" />
     <Compile Include="Helper\MetricsUtility.cs" />
     <Compile Include="Helper\OptionsHelper.cs" />
     <Compile Include="Helper\StreamHelper.cs" />
