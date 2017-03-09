@@ -203,6 +203,7 @@
     <None Include="Data\Snapshot_QIresults2.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\tomcat.cer" />
   </ItemGroup>
   <ItemGroup />
   <Choose>
