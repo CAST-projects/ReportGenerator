@@ -30,7 +30,7 @@ namespace CastReporting.Reporting.Block.Text
     internal class FailedChecksOnTotalViolationsByRule : TextBlock
     {
         #region METHODS
-        protected override string Content(ReportData reportData, Dictionary<string, string> options)
+        public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
 
             string strRuleId = options.GetOption("RULID", string.Empty);

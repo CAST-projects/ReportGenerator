@@ -1,0 +1,36 @@
+[
+  {
+    "number": 15,
+    "date": {
+      "time": 1385852400000,
+      "isoDate": "2013-12-01"
+    },
+    "application": {
+      "href": "AED3/applications/7",
+      "name": "CAIP",
+      "adgDatabase": "castoncast_central"
+    },
+    "applicationSnapshot": {
+      "href": "AED3/applications/7/snapshots/15",
+      "name": "CAIP"
+    },
+    "applicationResults": [
+      {
+        "type": "background-facts",
+        "reference": {
+          "href": "AED3/background-facts/66061/snapshots/15",
+          "name": "Business Value",
+          "shortName": "Biz Value",
+          "key": "66061",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 2
+        },
+        "technologyResults": [ ],
+        "moduleResults": [ ],
+        "transactionResults": [ ]
+      }
+    ]
+  }
+]

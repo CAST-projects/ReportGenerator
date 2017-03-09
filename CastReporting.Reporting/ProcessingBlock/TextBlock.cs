@@ -42,7 +42,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         /// <param name="client"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        protected abstract string Content(ReportData client, Dictionary<string, string> options);
+        public abstract string Content(ReportData client, Dictionary<string, string> options);
         #endregion ABSTRACT - To be implemented by Inherited children
 
         #region PROPERTIES

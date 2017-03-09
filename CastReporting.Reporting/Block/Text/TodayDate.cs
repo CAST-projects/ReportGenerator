@@ -26,7 +26,7 @@ namespace CastReporting.Reporting.Block.Text
     internal class TodayDate : TextBlock
     {
         #region METHODS
-        protected override string Content(ReportData reportData, Dictionary<string, string> options)
+        public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             return DateTime.Now.ToString(Labels.FORMAT_LONG_DATE);
         }

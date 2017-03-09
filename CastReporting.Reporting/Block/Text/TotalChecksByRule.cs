@@ -29,7 +29,7 @@ namespace CastReporting.Reporting.Block.Text
     internal class TotalChecksByRule : TextBlock
     {
         #region METHODS
-        protected override string Content(ReportData reportData, Dictionary<string, string> options)
+        public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             string strRuleId = options.GetOption("RULID",string.Empty);
             string _snapshot = options.GetOption("SNAPSHOT", "CURRENT");

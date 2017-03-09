@@ -25,10 +25,10 @@ namespace CastReporting.Reporting.Block.Text
     [Block("APPLICATION_SIZE_TYPE")]
     internal class ApplicationSizeType : TextBlock
     {
-       
+
 
         #region METHODS
-        protected override string Content(ReportData reportData, Dictionary<string, string> options)
+        public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             if (reportData?.CurrentSnapshot == null) return Domain.Constants.No_Value;
             double? codeLineNumber = MeasureUtility.GetCodeLineNumber(reportData.CurrentSnapshot);

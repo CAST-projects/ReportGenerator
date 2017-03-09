@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CastReporting.Domain;
 using CastReporting.Reporting.Block.Graph;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CastReporting.Reporting.ReportingModel;
@@ -787,5 +788,45 @@ namespace CastReporting.UnitTest.Reporting.Graph
             Assert.IsFalse(data.Contains("Technical Debt"));
         }
 
+        [TestMethod]
+        [DeploymentItem(@".\Data\DreamTeamSnap4Metrics.json", "Data")]
+        [DeploymentItem(@".\Data\BusinessValue.json", "Data")]
+        public void TestBackgroundFactType()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_GRAPH;COL1=SNAPSHOTS,ROW1=METRICS,METRICS=66061,SNAPSHOTS=CURRENT
+             * DreamTeamSnap4Metrics.json : AED3/applications/7/snapshots/15/results?quality-indicators=(60014,61004,550)&sizing-measures=(10151,68001,10202,67210,67011)
+             */
+
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+                null, @".\Data\DreamTeamSnap4Metrics.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+                null, null, null, null, null);
+
+            var component = new GenericGraph();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "SNAPSHOTS"},
+                {"ROW1", "METRICS"},
+                {"METRICS", "66061" },
+                {"SNAPSHOTS", "CURRENT"}
+            };
+
+            // Needed for background facts, as there are retrieved one by one by url request
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Metrics", "ADGAutoSnap_Dream Team_4 - 4" });
+            expectedData.AddRange(new List<string> { "Business Value", "3" });
+            TestUtility.AssertTableContent(table, expectedData, 2, 2);
+        }
     }
 }

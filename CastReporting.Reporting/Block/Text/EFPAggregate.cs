@@ -23,9 +23,9 @@ namespace CastReporting.Reporting.Block.Text
 {
     [Block("METRIC_EFP")]
     internal class EFPAggregate : TextBlock
-    { 
+    {
         #region METHODS
-        protected override string Content(ReportData reportData, Dictionary<string, string> options)
+        public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             if (reportData?.CurrentSnapshot == null) return Domain.Constants.No_Value;
             double? result = MeasureUtility.GetAddedFunctionPoint(reportData.CurrentSnapshot) 

@@ -25,7 +25,7 @@ namespace CastReporting.Reporting.Block.Text
     {
 
         #region METHODS
-        protected override string Content(ReportData reportData, Dictionary<string, string> options)
+        public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             return reportData != null ? reportData.Application.AdgDatabase : Domain.Constants.No_Value;
         }

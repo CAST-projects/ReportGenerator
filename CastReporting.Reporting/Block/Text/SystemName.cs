@@ -24,7 +24,7 @@ namespace CastReporting.Reporting.Block.Text
     internal class SystemName : TextBlock
     {
         #region METHODS
-        protected override string Content(ReportData reportData, Dictionary<string, string> options)
+        public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             return reportData != null ? reportData.Application.SystemNames : Domain.Constants.No_Value;
         }
