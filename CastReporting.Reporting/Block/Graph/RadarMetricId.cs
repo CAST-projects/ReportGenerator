@@ -15,7 +15,7 @@ using CastReporting.Reporting.Helper;
 namespace CastReporting.Reporting.Block.Graph
 {
 	[Block("RADAR_METRIC_ID")]
-	class RadarMetricId : GraphBlock
+	public class RadarMetricId : GraphBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {

@@ -66,14 +66,19 @@ namespace CastReporting.UnitTest.Reporting
             throw new NotImplementedException();
         }
 
+        [DeploymentItem(@".\Data\Snapshot_QIresults1.json", "Data")]
         public IEnumerable<Result> GetQualityIndicatorResults(string snapshotHref, string qualityIndicator)
         {
-            throw new NotImplementedException();
+            IEnumerable<Result> res = TestUtility.GetSampleResult<Result>(@".\Data\Snapshot_QIresults1.json").ToList();
+            return res;
+
         }
 
+        [DeploymentItem(@".\Data\DreamTeamSnap4Sample12.json", "Data")]
         public IEnumerable<Result> GetSizingMeasureResults(string snapshotHref, string sizingMeasure)
         {
-            throw new NotImplementedException();
+            IEnumerable<Result> res = TestUtility.GetSampleResult<Result>(@".\Data\DreamTeamSnap4Sample12.json").ToList();
+            return res;
         }
 
         public IEnumerable<Transaction> GetTransactions(string snapshotHref, string businessCriteria, int count)

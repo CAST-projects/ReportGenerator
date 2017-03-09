@@ -57,15 +57,13 @@ namespace CastReporting.UnitTest.DAL
             Assert.IsTrue( result);           
         }
 
-        [Ignore]
         [TestMethod()]
         public void IsHttpsTlsv12ServiceValidTest()
         {
-            // Ignored because on jenkins machine, the certificat tomcat.cer is not installed, and test failed
+            // Ignored on jenkins machine, because the certificat tomcat.cer is not installed, and test failed
+            if (Environment.MachineName != "ABDLAP") return;
             ICastRepsitory context2 = new CastRepository(_connection2);
-
             bool result = context2.IsServiceValid();
-
             Assert.IsTrue(result);
         }
 
