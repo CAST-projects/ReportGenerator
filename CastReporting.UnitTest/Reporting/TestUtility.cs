@@ -155,6 +155,24 @@ namespace CastReporting.UnitTest.Reporting
             }
         }
 
+        public static ReportData PrepareApplicationReportData(string appliName,
+            string moduleJson, string currentJson, string currentHref, string currentName, string currentVersion, CastDate currentDate,
+            string modulePrevJson, string previousJson, string previousHref, string previousName, string previousVersion, CastDate previousDate)
+        {
+            ReportData reportData = PrepaReportData(appliName,
+                moduleJson, currentJson, currentHref, currentName, currentVersion,
+                modulePrevJson, previousJson, previousHref, previousName, previousVersion);
+
+            Application appli = new Application();
+            reportData.CurrentSnapshot.Annotation.Date = currentDate;
+            reportData.PreviousSnapshot.Annotation.Date = previousDate;
+            List<Snapshot> snapshotList = new List<Snapshot> {reportData.CurrentSnapshot, reportData.PreviousSnapshot};
+            appli.Snapshots = snapshotList;
+            reportData.Application = appli;
+            return reportData;
+
+        }
+
         public static ReportData PrepaPortfolioReportData(string applicationsJSON, List<string> snapshotsJSON, List<string> snapshotsResultsJSON)
         {
             ReportData reportData = new ReportData
