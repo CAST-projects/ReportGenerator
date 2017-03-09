@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CastReporting.Domain;
 using CastReporting.Reporting.Block.Graph;
 using CastReporting.Reporting.ReportingModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -146,6 +147,52 @@ namespace CastReporting.UnitTest.Reporting.Graph
             expectedData.AddRange(new List<string> { " ", "Number of Code Lines" });
             expectedData.AddRange(new List<string> { "AppliAEPtran", "89848" });
             expectedData.AddRange(new List<string> { "Big Ben", "219490" });
+            TestUtility.AssertTableContent(table, expectedData, 2, 3);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADApplication1Snap.json", "Data")]
+        [DeploymentItem(@".\Data\AADApplication1SnapResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADApplication2Snap.json", "Data")]
+        [DeploymentItem(@".\Data\AADApplication2SnapResults.json", "Data")]
+        [DeploymentItem(@".\Data\BusinessValue.json", "Data")]
+        public void TestContentBackgroundFact()
+        {
+            /*
+             * Configuration : GRAPH;PF_BAR_CHART;METRIC=66061
+             * AADApplications.json : AAD2/applications
+             * AADApplication1Snap.json : AAD2/applications/3/snapshots/4
+             * AADApplication1Snap.json : AAD2/applications/3/snapshots/4/results?quality-indicators=(60014,61004,550,7654,7856)&sizing-measures=(10151,68001,10202,67210,67011)
+             * AADApplication2Snap.json : AAD2/applications/24/snapshots/12
+             * AADApplication2SnapResults.json : AAD2/applications/24/snapshots/12/results?quality-indicators=(60014,61004,550,7654,7856)&sizing-measures=(10151,68001,10202,67210,67011)
+             */
+            List<string> snapList = new List<string> { @".\Data\AADApplication1Snap.json", @".\Data\AADApplication2Snap.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADApplication1SnapResults.json", @".\Data\AADApplication2SnapResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADApplications.json", snapList, snapResultsList);
+
+            var component = new PortfolioBarChart();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"METRIC", "66061"}
+            };
+
+            // Needed for background facts, as there are retrieved one by one by url request
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { " ", "Business Value" });
+            expectedData.AddRange(new List<string> { "AppliAEPtran", "3" });
+            expectedData.AddRange(new List<string> { "Big Ben", "3" });
             TestUtility.AssertTableContent(table, expectedData, 2, 3);
         }
 

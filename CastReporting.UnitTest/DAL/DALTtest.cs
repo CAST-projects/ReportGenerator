@@ -35,35 +35,14 @@ namespace CastReporting.UnitTest.DAL
             Name = "Default"
         };
 
-        #region Additional test attributes
-        // 
-        //You can use the following additional attributes as you write your tests:
-        //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
-        //public static void MyClassInitialize(TestContext testContext)
-        //{
-        //}
-        //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
-        //public static void MyClassCleanup()
-        //{
-        //}
-        //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
-        //public void MyTestInitialize()
-        //{
-        //}
-        //
-        //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
-        //public void MyTestCleanup()
-        //{
-        //}
-        //
-        #endregion
+        readonly WSConnection _connection2 = new WSConnection()
+        {
+            Url = "https://192.168.17.26:8400/CAST-RESTAPI/rest/",
+            Login = "cio",
+            Password = "cast",
+            IsActive = true,
+            Name = "Default"
+        };
 
         /// <summary>
         ///
@@ -76,6 +55,16 @@ namespace CastReporting.UnitTest.DAL
             bool result = context.IsServiceValid();
            
             Assert.IsTrue( result);           
+        }
+
+        [TestMethod()]
+        public void IsHttpsTlsv12ServiceValidTest()
+        {
+            ICastRepsitory context2 = new CastRepository(_connection2);
+
+            bool result = context2.IsServiceValid();
+
+            Assert.IsTrue(result);
         }
 
         /// <summary>

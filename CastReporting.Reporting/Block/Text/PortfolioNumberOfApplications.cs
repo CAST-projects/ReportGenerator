@@ -26,7 +26,7 @@ namespace CastReporting.Reporting.Block.Text
     internal class PortfolioNumberOfApplications : TextBlock
     {
         #region METHODS
-        protected override string Content(ReportData reportData, Dictionary<string, string> options)
+        public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             if (reportData?.Applications == null || null == reportData.snapshots) return Constants.No_Value;
             Application[] _allApps = reportData.Applications;

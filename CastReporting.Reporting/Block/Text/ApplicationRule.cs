@@ -26,10 +26,10 @@ using CastReporting.Reporting.Helper;
 namespace CastReporting.Reporting.Block.Text
 {
 	[Block("APPLICATION_RULE"), Block("APPLICATION_METRIC")]
-    class ApplicationRule : TextBlock
+    public class ApplicationRule : TextBlock
     {
         #region METHODS
-        protected override string Content(ReportData reportData, Dictionary<string, string> options)
+        public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
           
             int metricId = options.GetIntOption("ID");

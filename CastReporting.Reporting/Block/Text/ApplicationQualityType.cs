@@ -27,9 +27,9 @@ namespace CastReporting.Reporting.Block.Text
     internal class ApplicationQualityType : TextBlock
     {
 
-        
+
         #region METHODS
-        protected override string Content(ReportData reportData, Dictionary<string, string> options)
+        public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             if (reportData?.CurrentSnapshot == null) return Constants.No_Value;
             double? tqi = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(reportData.CurrentSnapshot, Constants.BusinessCriteria.TechnicalQualityIndex, true);

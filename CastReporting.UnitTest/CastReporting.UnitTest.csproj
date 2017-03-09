@@ -75,8 +75,10 @@
   <ItemGroup>
     <Compile Include="Reporting\Graph\GenericGraphTests.cs" />
     <Compile Include="Reporting\Graph\PortfolioBarChartTests.cs" />
+    <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\GenericTableTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
+    <Compile Include="Reporting\Text\ApplicationRuleTest.cs" />
     <Compile Include="Util\ExpressionEvaluatorTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Util\DateUtilTests.cs" />
@@ -147,6 +149,12 @@
     <None Include="Data\AADApplications.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\BackFacts.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\BusinessValue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\ComputingTest1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -196,6 +204,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

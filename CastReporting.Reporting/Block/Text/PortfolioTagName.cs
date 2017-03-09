@@ -24,7 +24,7 @@ namespace CastReporting.Reporting.Block.Text
     internal class PortfolioTagName : TextBlock
     {
         #region METHODS
-        protected override string Content(ReportData reportData, Dictionary<string, string> options)
+        public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             if (reportData?.Tag != null)
             {

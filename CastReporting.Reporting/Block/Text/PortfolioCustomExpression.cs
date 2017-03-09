@@ -17,7 +17,7 @@ namespace CastReporting.Reporting.Block.Text
     {
         #region METHODS
 
-        protected override string Content(ReportData reportData, Dictionary<string, string> options)
+        public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             string _metricFormat = options.GetOption("FORMAT", "N2");
             string _params = options.GetOption("PARAMS", string.Empty);
