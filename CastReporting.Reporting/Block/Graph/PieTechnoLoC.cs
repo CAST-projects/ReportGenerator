@@ -25,7 +25,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Graph
 {
     [Block("TECHNO_LOC")]
-    internal class PieTechnoLoC : GraphBlock
+    public class PieTechnoLoC : GraphBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
