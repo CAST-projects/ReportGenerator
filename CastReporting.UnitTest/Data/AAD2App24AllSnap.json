@@ -1,0 +1,186 @@
+﻿[
+	{
+		"href": "AAD2/applications/24/snapshots/12",
+		"name": "Big Ben",
+		"number": 4,
+		"technologies": [
+			"ABAP",
+			"CICS",
+			"Cobol",
+			"IMS",
+			"JCL",
+			"SAP SQL"
+		],
+		"annotation": {
+			"version": "4",
+			"date": {
+				"time": 1384484640000,
+				"isoDate": "2013-11-15"
+			},
+			"description": null,
+			"name": "ADGAutoSnap_Big Ben_4",
+			"enhancementMeasure": "AEP"
+		},
+		"configurationSnapshot": {
+			"href": "AAD2/configuration/snapshots/12",
+			"name": "Configuration Snapshot #4"
+		},
+		"systems": null,
+		"application": {
+			"href": "AAD2/applications/24",
+			"name": "Big Ben",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"moduleSnapshots": {
+			"href": "AAD2/applications/24/snapshots/12/modules",
+			"name": "Module Snapshots for Big Ben #4"
+		},
+		"results": {
+			"href": "AAD2/applications/24/snapshots/12/results",
+			"name": "Results breakdown by modules, by technologies"
+		},
+		"origin": null,
+		"actionPlan": null,
+		"components": null,
+		"transactions": null,
+		"treeNode": null
+	},
+	{
+		"href": "AAD2/applications/24/snapshots/11",
+		"name": "Big Ben",
+		"number": 3,
+		"technologies": [
+			"ABAP",
+			"CICS",
+			"Cobol",
+			"IMS",
+			"JCL",
+			"SAP SQL"
+		],
+		"annotation": {
+			"version": "3",
+			"date": {
+				"time": 1380578400000,
+				"isoDate": "2013-10-01"
+			},
+			"description": null,
+			"name": "ADGAutoSnap_Big Ben_3",
+			"enhancementMeasure": "AEP"
+		},
+		"configurationSnapshot": {
+			"href": "AAD2/configuration/snapshots/11",
+			"name": "Configuration Snapshot #3"
+		},
+		"systems": null,
+		"application": {
+			"href": "AAD2/applications/24",
+			"name": "Big Ben",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"moduleSnapshots": {
+			"href": "AAD2/applications/24/snapshots/11/modules",
+			"name": "Module Snapshots for Big Ben #3"
+		},
+		"results": {
+			"href": "AAD2/applications/24/snapshots/11/results",
+			"name": "Results breakdown by modules, by technologies"
+		},
+		"origin": null,
+		"actionPlan": null,
+		"components": null,
+		"transactions": null,
+		"treeNode": null
+	},
+	{
+		"href": "AAD2/applications/24/snapshots/10",
+		"name": "Big Ben",
+		"number": 2,
+		"technologies": [
+			"ABAP",
+			"CICS",
+			"Cobol",
+			"IMS",
+			"JCL",
+			"SAP SQL"
+		],
+		"annotation": {
+			"version": "2",
+			"date": {
+				"time": 1364767200000,
+				"isoDate": "2013-04-01"
+			},
+			"description": null,
+			"name": "ADGAutoSnap_Big Ben_2",
+			"enhancementMeasure": "AEP"
+		},
+		"configurationSnapshot": {
+			"href": "AAD2/configuration/snapshots/10",
+			"name": "Configuration Snapshot #2"
+		},
+		"systems": null,
+		"application": {
+			"href": "AAD2/applications/24",
+			"name": "Big Ben",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"moduleSnapshots": {
+			"href": "AAD2/applications/24/snapshots/10/modules",
+			"name": "Module Snapshots for Big Ben #2"
+		},
+		"results": {
+			"href": "AAD2/applications/24/snapshots/10/results",
+			"name": "Results breakdown by modules, by technologies"
+		},
+		"origin": null,
+		"actionPlan": null,
+		"components": null,
+		"transactions": null,
+		"treeNode": null
+	},
+	{
+		"href": "AAD2/applications/24/snapshots/9",
+		"name": "Big Ben",
+		"number": 1,
+		"technologies": [
+			"ABAP",
+			"CICS",
+			"Cobol",
+			"IMS",
+			"JCL",
+			"SAP SQL"
+		],
+		"annotation": {
+			"version": "1",
+			"date": {
+				"time": 1362103380000,
+				"isoDate": "2013-03-01"
+			},
+			"description": null,
+			"name": "ADGAutoSnap_Big Ben_1",
+			"enhancementMeasure": "AEP"
+		},
+		"configurationSnapshot": {
+			"href": "AAD2/configuration/snapshots/9",
+			"name": "Configuration Snapshot #1"
+		},
+		"systems": null,
+		"application": {
+			"href": "AAD2/applications/24",
+			"name": "Big Ben",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"moduleSnapshots": {
+			"href": "AAD2/applications/24/snapshots/9/modules",
+			"name": "Module Snapshots for Big Ben #1"
+		},
+		"results": {
+			"href": "AAD2/applications/24/snapshots/9/results",
+			"name": "Results breakdown by modules, by technologies"
+		},
+		"origin": null,
+		"actionPlan": null,
+		"components": null,
+		"transactions": null,
+		"treeNode": null
+	}
+]

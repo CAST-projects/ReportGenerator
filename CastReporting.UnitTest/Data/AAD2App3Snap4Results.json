@@ -1,0 +1,167 @@
+﻿[
+	{
+		"number": 4,
+		"date": {
+			"time": 1468360800000,
+			"isoDate": "2016-07-13"
+		},
+		"application": {
+			"href": "AAD2/applications/3",
+			"name": "AppliAEPtran",
+			"adgDatabase": "aeptran82_central"
+		},
+		"applicationSnapshot": {
+			"href": "AAD2/applications/3/snapshots/4",
+			"name": "AppliAEPtran"
+		},
+		"applicationResults": [
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AAD2/sizing-measures/10151/snapshots/4",
+					"name": "Number of Code Lines",
+					"shortName": "LOCs",
+					"key": "10151",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 89848
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "functional-weight-measures",
+				"reference": {
+					"href": "AAD2/sizing-measures/10202/snapshots/4",
+					"name": "OMG-Compliant Automated Function Points",
+					"shortName": "AFP",
+					"key": "10202",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 1455
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AAD2/quality-indicators/60014/snapshots/4",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.8780487804878048,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 57,
+						"totalCriticalViolations": 198,
+						"addedCriticalViolations": 42,
+						"removedCriticalViolations": 38,
+						"violationsInNewAndModifiedCode": 169,
+						"totalViolations": 1199,
+						"addedViolations": 74,
+						"removedViolations": 51
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AAD2/quality-indicators/60017/snapshots/4",
+					"name": "Total Quality Index",
+					"shortName": "TQI",
+					"key": "60017",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.519249954675259,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 160,
+						"totalCriticalViolations": 1560,
+						"addedCriticalViolations": 79,
+						"removedCriticalViolations": 42,
+						"violationsInNewAndModifiedCode": 1794,
+						"totalViolations": 41463,
+						"addedViolations": 704,
+						"removedViolations": 229
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/67013/snapshots/4",
+					"name": "Number of violations to critical quality rules per KLOC (average)",
+					"key": "67013",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 17.362656931706884
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68001/snapshots/4",
+					"name": "Technical Debt",
+					"shortName": "Debt",
+					"key": "68001",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 2316801.75
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68901/snapshots/4",
+					"name": "Technical Debt of added Violations",
+					"shortName": "Debt added",
+					"key": "68901",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 44787.00000000001
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68902/snapshots/4",
+					"name": "Technical Debt of removed Violations",
+					"shortName": "Debt removed",
+					"key": "68902",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 18742.875
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	}
+]

@@ -29,7 +29,7 @@ using CastReporting.Reporting.Helper;
 namespace CastReporting.Reporting.Block.Graph
 {
     [Block("PF_TREND_CRIT_VIOL")]
-    internal class PortfolioCritViolPerformance : GraphBlock
+    public class PortfolioCritViolPerformance : GraphBlock
     {
         #region METHODS
 

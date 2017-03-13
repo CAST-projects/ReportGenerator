@@ -196,41 +196,50 @@ namespace CastReporting.UnitTest.Reporting
             {
                 Applications = GetSampleResult<Application>(applicationsJSON).ToArray()
             };
+            List<Snapshot> snapList = new List<Snapshot>();
             int i = 0;
             foreach (Application _application in reportData.Applications)
             {
                 _application.Snapshots = GetSampleResult<Snapshot>(snapshotsJSON[i]);
-                var snapshotResults = GetSampleResult<Result>(snapshotsResultsJSON[i]);
-                var businessCriteriaResults = new List<ApplicationResult>();
-                var technicalCriteriaResults = new List<ApplicationResult>();
-                var qualityRulesResults = new List<ApplicationResult>();
-                var sizingMeasures = new List<ApplicationResult>();
-                foreach (var appRes in snapshotResults.SelectMany(_ => _.ApplicationResults).ToList())
+                var snapshotResults = GetSampleResult<Result>(snapshotsResultsJSON[i]).ToList();
+                var _applicationSnapshots = _application.Snapshots.ToList();
+                foreach (Snapshot snap in _applicationSnapshots)
                 {
-                    switch (appRes.Type)
+                    var businessCriteriaResults = new List<ApplicationResult>();
+                    var technicalCriteriaResults = new List<ApplicationResult>();
+                    var qualityRulesResults = new List<ApplicationResult>();
+                    var sizingMeasures = new List<ApplicationResult>();
+                    foreach (var snapAppRes in snapshotResults)
                     {
-                        case "business-criteria": businessCriteriaResults.Add(appRes); break;
-                        case "technical-criteria": technicalCriteriaResults.Add(appRes); break;
-                        case "quality-rules": qualityRulesResults.Add(appRes); break;
-                        case "technical-size-measures":
-                        case "run-time-statistics":
-                        case "technical-debt-statistics":
-                        case "functional-weight-measures":
-                        case "critical-violation-statistics":
-                        case "violation-statistics":
-                            sizingMeasures.Add(appRes);
-                            break;
-                        default: throw new ArgumentOutOfRangeException();
+                        if (snapAppRes.Snapshot.Id != snap.Id) continue;
+                        foreach (var appRes in snapAppRes.ApplicationResults)
+                        {
+                            switch (appRes.Type)
+                            {
+                                case "business-criteria": businessCriteriaResults.Add(appRes); break;
+                                case "technical-criteria": technicalCriteriaResults.Add(appRes); break;
+                                case "quality-rules": qualityRulesResults.Add(appRes); break;
+                                case "technical-size-measures":
+                                case "run-time-statistics":
+                                case "technical-debt-statistics":
+                                case "functional-weight-measures":
+                                case "critical-violation-statistics":
+                                case "violation-statistics":
+                                    sizingMeasures.Add(appRes);
+                                    break;
+                                default: throw new ArgumentOutOfRangeException();
+                            }
+                       }
+                        snap.BusinessCriteriaResults = businessCriteriaResults;
+                        snap.TechnicalCriteriaResults = technicalCriteriaResults;
+                        snap.QualityRulesResults = qualityRulesResults;
+                        snap.SizingMeasuresResults = sizingMeasures;
+                        snapList.Add(snap);
                     }
                 }
-                Snapshot _snapshot = _application.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
-                _snapshot.BusinessCriteriaResults = businessCriteriaResults;
-                _snapshot.TechnicalCriteriaResults = technicalCriteriaResults;
-                _snapshot.QualityRulesResults = qualityRulesResults;
-                _snapshot.SizingMeasuresResults = sizingMeasures;
-                
                 i++;
             }
+            reportData.snapshots = snapList.ToArray();
             return reportData;
         }
 

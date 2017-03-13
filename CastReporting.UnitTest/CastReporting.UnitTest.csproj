@@ -82,6 +82,7 @@
     <Compile Include="Reporting\Graph\CastComplexityTests.cs" />
     <Compile Include="Reporting\Graph\CastDistributionTests.cs" />
     <Compile Include="Reporting\Graph\PieModuleArtifactsTests.cs" />
+    <Compile Include="Reporting\Graph\PortfolioCritViolPerformanceTests.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\GenericTableTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
@@ -141,6 +142,24 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\AAD2App24AllSnapResults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AAD2App24Snap12Results.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AAD2App24AllSnap.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AAD2App3AllSnap.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AAD2App3AllSnapResults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AAD2App3Snap4Results.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\AADApplication2SnapResults.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
