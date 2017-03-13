@@ -78,6 +78,8 @@
     <Compile Include="Reporting\Graph\RadarMetricIdTests.cs" />
     <Compile Include="Reporting\Graph\TrendMetricIdTests.cs" />
     <Compile Include="Reporting\Graph\BubbleTests.cs" />
+    <Compile Include="Reporting\Graph\CastComplexityTests.cs" />
+    <Compile Include="Reporting\Graph\CastDistributionTests.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\GenericTableTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
@@ -156,6 +158,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\BusinessValue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\ComplexitySnapPrevious.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\ComplexitySnapCurrent.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\ComputingTest1.json">

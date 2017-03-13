@@ -26,7 +26,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Graph
 {
     [Block("CAST_COMPLEXITY")]
-    internal class CastComplexity : GraphBlock
+    public class CastComplexity : GraphBlock
     {
         #region METHODS
 

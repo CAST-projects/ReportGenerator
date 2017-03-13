@@ -1,0 +1,500 @@
+﻿[
+	{
+		"number": 4,
+		"date": {
+			"time": 1468360800000,
+			"isoDate": "2016-07-13"
+		},
+		"application": {
+			"href": "AED/applications/3",
+			"name": "AppliAEPtran",
+			"adgDatabase": "aeptran82_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED/applications/3/snapshots/4",
+			"name": "AppliAEPtran"
+		},
+		"applicationResults": [
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/65105/snapshots/4",
+					"name": "Size Distribution",
+					"key": "65105",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.825089884364979,
+					"categories": [
+						{
+							"key": "65104",
+							"name": "Very Large Size Artifacts",
+							"value": 36
+						},
+						{
+							"key": "65103",
+							"name": "Large Size Artifacts",
+							"value": 321
+						},
+						{
+							"key": "65102",
+							"name": "Average Size Artifacts",
+							"value": 1315
+						},
+						{
+							"key": "65101",
+							"name": "Small Size Artifacts",
+							"value": 8619
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/65350/snapshots/4",
+					"name": "Coupling Distribution",
+					"key": "65350",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.795938198425809,
+					"categories": [
+						{
+							"key": "65304",
+							"name": "Very High Coupling Artifacts",
+							"value": 42
+						},
+						{
+							"key": "65303",
+							"name": "High Coupling Artifacts",
+							"value": 170
+						},
+						{
+							"key": "65302",
+							"name": "Average Coupling Artifacts",
+							"value": 666
+						},
+						{
+							"key": "65301",
+							"name": "Low Coupling Artifacts",
+							"value": 9413
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/65501/snapshots/4",
+					"name": "Cyclomatic Complexity Distribution",
+					"key": "65501",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.6213333333333333,
+					"categories": [
+						{
+							"key": "65505",
+							"name": "Very High Complexity Artifacts",
+							"value": 71
+						},
+						{
+							"key": "65504",
+							"name": "High Complexity Artifacts",
+							"value": 161
+						},
+						{
+							"key": "65503",
+							"name": "Moderate Complexity Artifacts",
+							"value": 838
+						},
+						{
+							"key": "65502",
+							"name": "Low Complexity Artifacts",
+							"value": 8305
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/65601/snapshots/4",
+					"name": "4GL Complexity Distribution",
+					"key": "65601",
+					"critical": false
+				},
+				"result": {
+					"categories": [
+						{
+							"key": "65605",
+							"name": "Very High 4GL Complexity Forms",
+							"value": 0
+						},
+						{
+							"key": "65604",
+							"name": "High 4GL Complexity Forms",
+							"value": 0
+						},
+						{
+							"key": "65603",
+							"name": "Moderate 4GL Complexity Forms",
+							"value": 0
+						},
+						{
+							"key": "65602",
+							"name": "Low 4GL Complexity Forms",
+							"value": 0
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/65701/snapshots/4",
+					"name": "OO Complexity Distribution",
+					"key": "65701",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.2901023890784984,
+					"categories": [
+						{
+							"key": "65705",
+							"name": "Very High OO Complexity Class",
+							"value": 0
+						},
+						{
+							"key": "65704",
+							"name": "High OO Complexity Class",
+							"value": 17
+						},
+						{
+							"key": "65703",
+							"name": "Moderate OO Complexity Class",
+							"value": 569
+						},
+						{
+							"key": "65702",
+							"name": "Low OO Complexity Class",
+							"value": 0
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/65801/snapshots/4",
+					"name": "SQL Complexity Distribution",
+					"key": "65801",
+					"critical": false
+				},
+				"result": {
+					"grade": 4,
+					"categories": [
+						{
+							"key": "65805",
+							"name": "Very High SQL Complexity Artifacts",
+							"value": 0
+						},
+						{
+							"key": "65804",
+							"name": "High SQL Complexity Artifacts",
+							"value": 12
+						},
+						{
+							"key": "65803",
+							"name": "Moderate SQL Complexity Artifacts",
+							"value": 1
+						},
+						{
+							"key": "65802",
+							"name": "Low SQL Complexity Artifacts",
+							"value": 522
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/66010/snapshots/4",
+					"name": "Reuse by Call Distribution",
+					"key": "66010",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.7063453503060941,
+					"categories": [
+						{
+							"key": "66014",
+							"name": "Low Reuse by Call",
+							"value": 9413
+						},
+						{
+							"key": "66013",
+							"name": "Average Reuse by Call",
+							"value": 666
+						},
+						{
+							"key": "66012",
+							"name": "High Reuse by Call",
+							"value": 170
+						},
+						{
+							"key": "66011",
+							"name": "Very High Reuse by Call",
+							"value": 42
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/66015/snapshots/4",
+					"name": "Class Complexity Distribution (WMC)",
+					"key": "66015",
+					"critical": false
+				},
+				"result": {
+					"grade": 2.5494880546075085,
+					"categories": [
+						{
+							"key": "66019",
+							"name": "Low Complexity classes",
+							"value": 434
+						},
+						{
+							"key": "66018",
+							"name": "Moderate Complexity classes",
+							"value": 76
+						},
+						{
+							"key": "66017",
+							"name": "High Complexity classes",
+							"value": 59
+						},
+						{
+							"key": "66016",
+							"name": "Very High Complexity classes",
+							"value": 17
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/66020/snapshots/4",
+					"name": "Class Fan-Out Distribution",
+					"key": "66020",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.744027303754266,
+					"categories": [
+						{
+							"key": "66025",
+							"name": "Low Fan-Out classes",
+							"value": 411
+						},
+						{
+							"key": "66024",
+							"name": "Moderate Fan-Out classes",
+							"value": 132
+						},
+						{
+							"key": "66023",
+							"name": "High Fan-Out classes",
+							"value": 40
+						},
+						{
+							"key": "66022",
+							"name": "Very High Fan-Out classes",
+							"value": 3
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/66021/snapshots/4",
+					"name": "Class Fan-In Distribution",
+					"key": "66021",
+					"critical": false
+				},
+				"result": {
+					"grade": 2.1228668941979523,
+					"categories": [
+						{
+							"key": "66029",
+							"name": "Low Fan-In classes",
+							"value": 527
+						},
+						{
+							"key": "66028",
+							"name": "Moderate Fan-In classes",
+							"value": 18
+						},
+						{
+							"key": "66027",
+							"name": "High Fan-In classes",
+							"value": 19
+						},
+						{
+							"key": "66026",
+							"name": "Very High Fan-In classes",
+							"value": 22
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/67001/snapshots/4",
+					"name": "Cost Complexity distribution",
+					"key": "67001",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.3701292391409963,
+					"categories": [
+						{
+							"key": "67005",
+							"name": "Low Cost Complexity Artifacts",
+							"value": 8881
+						},
+						{
+							"key": "67004",
+							"name": "Average Cost Complexity Artifacts",
+							"value": 1167
+						},
+						{
+							"key": "67003",
+							"name": "High Cost Complexity Artifacts",
+							"value": 172
+						},
+						{
+							"key": "67002",
+							"name": "Very High Cost Complexity Artifacts",
+							"value": 71
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/67020/snapshots/4",
+					"name": "Distribution of violations to critical diagnostic-based metrics per cost complexity",
+					"key": "67020",
+					"critical": false
+				},
+				"result": {
+					"grade": 1,
+					"categories": [
+						{
+							"key": "67024",
+							"name": "Low Cost Complexity Violations",
+							"value": 227
+						},
+						{
+							"key": "67023",
+							"name": "Average Cost Complexity Violations",
+							"value": 308
+						},
+						{
+							"key": "67022",
+							"name": "High Cost Complexity Violations",
+							"value": 107
+						},
+						{
+							"key": "67021",
+							"name": "Very High Cost Complexity Violations",
+							"value": 59
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-distributions",
+				"reference": {
+					"href": "AED/quality-indicators/67030/snapshots/4",
+					"name": "Distribution of defects to critical diagnostic-based metrics per cost complexity",
+					"key": "67030",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.1178451178451176,
+					"categories": [
+						{
+							"key": "67034",
+							"name": "Low Cost Complexity Defects",
+							"value": 221
+						},
+						{
+							"key": "67033",
+							"name": "Average Cost Complexity Defects",
+							"value": 270
+						},
+						{
+							"key": "67032",
+							"name": "High Cost Complexity Defects",
+							"value": 74
+						},
+						{
+							"key": "67031",
+							"name": "Very High Cost Complexity Defects",
+							"value": 29
+						}
+					]
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	}
+]
