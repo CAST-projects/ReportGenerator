@@ -1,0 +1,31 @@
+[
+	{
+		"href": "AAD2/applications/3",
+		"name": "AppliAEPtran",
+		"technologies": [
+			"JEE",
+			"PL/SQL"
+		],
+		"systems": null,
+		"modules": {
+			"href": "AAD2/applications/3/modules",
+			"name": "Modules of AppliAEPtran"
+		},
+		"snapshots": {
+			"href": "AAD2/applications/3/snapshots",
+			"name": "Snapshots of AppliAEPtran"
+		},
+		"results": {
+			"href": "AAD2/applications/3/results",
+			"name": "Results breakdown for AppliAEPtran by snapshots, by modules, by technologies"
+		},
+		"origin": {
+			"href": "AED2/applications/3",
+			"name": "Origin of AppliAEPtran"
+		},
+		"adgDatabase": "aeptran82_central",
+		"adgWebSite": "./InfoNoDrillDown.htm",
+		"adgLocalId": "3",
+		"adgVersion": "8.2.0"
+	}
+]
