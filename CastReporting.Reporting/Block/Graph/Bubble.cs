@@ -26,7 +26,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Graph
     {
         [Block("BUBBLE")]
-        internal class Bubble : GraphBlock
+        public class Bubble : GraphBlock
         {
             #region METHODS
 
@@ -45,7 +45,7 @@ namespace CastReporting.Reporting.Block.Graph
                 #endregion Required Options
 
                 List<string> rowData = new List<string>();
-                rowData.AddRange(new[] { Labels.TechnicalDebt + " (" + reportData.CurrencySymbol + ")", Labels.TQI, Labels.Size });
+                rowData.AddRange(new[] { Labels.TQI, Labels.TechnicalDebt + " (" + reportData.CurrencySymbol + ")", Labels.Size });
 
                 if (reportData.CurrentSnapshot != null)
                 {
@@ -58,8 +58,8 @@ namespace CastReporting.Reporting.Block.Graph
                     {
 
                         _tqiValue = BusinessCriteriaUtility.GetBusinessCriteriaModuleGrade(reportData.CurrentSnapshot, moduleId, Constants.BusinessCriteria.TechnicalQualityIndex, true);
-                        _techDebtValue = MeasureUtility.GetModuleMeasureGrade(reportData.CurrentSnapshot, moduleId, Constants.SizingInformations.TechnicalDebt);
-                        _colValue = MeasureUtility.GetModuleMeasureGrade(reportData.CurrentSnapshot, moduleId, Constants.SizingInformations.CodeLineNumber);
+                        _techDebtValue = MeasureUtility.GetSizingMeasureModule(reportData.CurrentSnapshot, moduleId, Constants.SizingInformations.TechnicalDebt.GetHashCode());
+                        _colValue = MeasureUtility.GetSizingMeasureModule(reportData.CurrentSnapshot, moduleId, Constants.SizingInformations.CodeLineNumber.GetHashCode());
                     }
                     else
                     {
