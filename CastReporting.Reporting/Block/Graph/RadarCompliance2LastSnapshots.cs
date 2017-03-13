@@ -25,7 +25,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Graph
 {
     [Block("RADAR_COMPLIANCE_2_LAST_SNAPSHOTS")]
-    internal class RadarCompliance2LastSnapshots : GraphBlock
+    public class RadarCompliance2LastSnapshots : GraphBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {

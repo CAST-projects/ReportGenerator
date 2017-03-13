@@ -165,8 +165,13 @@ namespace CastReporting.UnitTest.Reporting
 
             Application appli = new Application();
             reportData.CurrentSnapshot.Annotation.Date = currentDate;
-            reportData.PreviousSnapshot.Annotation.Date = previousDate;
-            List<Snapshot> snapshotList = new List<Snapshot> {reportData.CurrentSnapshot, reportData.PreviousSnapshot};
+            List<Snapshot> snapshotList = new List<Snapshot> {reportData.CurrentSnapshot};
+            if (reportData.PreviousSnapshot != null)
+            {
+                reportData.PreviousSnapshot.Annotation.Date = previousDate;
+                snapshotList.Add(reportData.PreviousSnapshot);
+            }
+            
             appli.Snapshots = snapshotList;
             reportData.Application = appli;
             return reportData;

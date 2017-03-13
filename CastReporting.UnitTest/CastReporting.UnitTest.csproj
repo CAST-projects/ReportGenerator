@@ -84,6 +84,8 @@
     <Compile Include="Reporting\Graph\PieModuleArtifactsTests.cs" />
     <Compile Include="Reporting\Graph\PortfolioCritViolPerformanceTests.cs" />
     <Compile Include="Reporting\Graph\PortfolioQSByCV_LOVTests.cs" />
+    <Compile Include="Reporting\Graph\RadarCompliance2LastSnapshotsTests.cs" />
+    <Compile Include="Reporting\Graph\RadarHealthFactor2LastSnapshotsTests.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\GenericTableTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
@@ -189,6 +191,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\ComplexitySnapCurrent.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\PreviousBCresults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\CurrentBCresults.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\TechSizeModTechnoPrevious.json">
