@@ -28,7 +28,7 @@ using Cast.Util.Date;
 namespace CastReporting.Reporting.Block.Graph
 {
     [Block("PF_TREND_TECH_DEBT")]
-    internal class TrendTechDebtPortfolio : GraphBlock
+    public class TrendTechDebtPortfolio : GraphBlock
     {
 
         #region METHODS

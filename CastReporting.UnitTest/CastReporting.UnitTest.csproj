@@ -88,6 +88,8 @@
     <Compile Include="Reporting\Graph\RadarCompliance2LastSnapshotsTests.cs" />
     <Compile Include="Reporting\Graph\RadarHealthFactor2LastSnapshotsTests.cs" />
     <Compile Include="Reporting\Graph\TrendComplianceTests.cs" />
+    <Compile Include="Reporting\Graph\TrendTechDebtTests.cs" />
+    <Compile Include="Reporting\Graph\TrendTechDebtPortfolioTests.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\GenericTableTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />

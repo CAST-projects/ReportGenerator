@@ -175,17 +175,81 @@
 				"moduleResults": [],
 				"transactionResults": []
 			},
-			{
-				"type": "business-criteria",
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/66033/snapshots/6",
+          "name": "Documentation",
+          "shortName": "Doc",
+          "key": "66033",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.6539073644920874
+        },
+        "technologyResults": [ ],
+        "moduleResults": [ ],
+        "transactionResults": [ ]
+      },
+      {
+				"type": "technical-debt-statistics",
 				"reference": {
-					"href": "AED/quality-indicators/66033/snapshots/6",
-					"name": "Documentation",
-					"shortName": "Doc",
-					"key": "66033",
+					"href": "AED/sizing-measures/68001/snapshots/6",
+					"name": "Technical Debt",
+					"shortName": "Debt",
+					"key": "68001",
 					"critical": "N/A"
 				},
 				"result": {
-					"grade": 2.6539073644920874
+					"value": 236647.5
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AED/sizing-measures/68002/snapshots/6",
+					"name": "Technical Debt density",
+					"shortName": "Debt density",
+					"key": "68002",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 11130.591223366728
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AED/sizing-measures/68901/snapshots/6",
+					"name": "Technical Debt of added Violations",
+					"shortName": "Debt added",
+					"key": "68901",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 1946.25
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AED/sizing-measures/68902/snapshots/6",
+					"name": "Technical Debt of removed Violations",
+					"shortName": "Debt removed",
+					"key": "68902",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 23599.500000000004
 				},
 				"technologyResults": [],
 				"moduleResults": [],

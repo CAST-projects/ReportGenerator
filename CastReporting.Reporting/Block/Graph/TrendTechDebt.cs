@@ -27,7 +27,7 @@ using System.Globalization;
 namespace CastReporting.Reporting.Block.Graph
 { 
     [Block("TREND_TECH_DEBT")]
-    internal class TrendTechDebt : GraphBlock
+    public class TrendTechDebt : GraphBlock
     {
 
         #region METHODS
