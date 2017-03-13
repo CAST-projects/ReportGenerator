@@ -28,7 +28,7 @@ namespace CastReporting.Reporting.Block.Graph
 {
    
     [Block("TREND_HEALTH_FACTOR")]
-    internal class TrendHealthFactor : GraphBlock
+    public class TrendHealthFactor : GraphBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {

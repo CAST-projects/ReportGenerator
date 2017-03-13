@@ -15,7 +15,23 @@
 			"name": "ReportGenerator"
 		},
 		"applicationResults": [
-			{
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10151/snapshots/5",
+          "name": "Number of Code Lines",
+          "shortName": "LOCs",
+          "key": "10151",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 22347
+        },
+        "technologyResults": [ ],
+        "moduleResults": [ ],
+        "transactionResults": [ ]
+      },
+      {
 				"type": "business-criteria",
 				"reference": {
 					"href": "AED/quality-indicators/60011/snapshots/5",
