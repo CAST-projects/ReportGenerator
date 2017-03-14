@@ -1,0 +1,64 @@
+﻿[
+	{
+		"rulePattern": {
+			"href": "AED/rule-patterns/3576",
+			"name": "Avoid declaring public Fields"
+		},
+		"objectSamples": [
+			{
+				"href": "AED/components/3809/snapshots/6",
+				"name": "CastReporting.Reporting.Builder.ExcelDocumentBuilder.reportData"
+			},
+			{
+				"href": "AED/components/4569/snapshots/6",
+				"name": "CastReporting.Reporting.Builder.ExcelDocumentBuilder.StrFinalTempFile"
+			},
+			{
+				"href": "AED/components/3569/snapshots/6",
+				"name": "CastReporting.Reporting.Builder.ExcelDocumentBuilder.TableInfo.cell"
+			},
+			{
+				"href": "AED/components/3601/snapshots/6",
+				"name": "CastReporting.Reporting.Builder.ExcelDocumentBuilder.TableInfo.table"
+			},
+			{
+				"href": "AED/components/2979/snapshots/6",
+				"name": "CastReporting.Reporting.ReportingModel.ReportData.RuleExplorer"
+			}
+		],
+		"addedIssues": 3,
+		"pendingIssues": 14,
+		"solvedIssues": 5
+	},
+	{
+		"rulePattern": {
+			"href": "AED/rule-patterns/7212",
+			"name": "Avoid instantiations inside loops"
+		},
+		"objectSamples": [
+			{
+				"href": "AED/components/2838/snapshots/6",
+				"name": "CastReporting.BLL.Computing.RulesViolationUtility.GetNbViolationByRule"
+			},
+			{
+				"href": "AED/components/1103/snapshots/6",
+				"name": "CastReporting.Reporting.Block.Graph.PieModuleArtifact.Content"
+			},
+			{
+				"href": "AED/components/1526/snapshots/6",
+				"name": "CastReporting.Reporting.Block.Graph.PieTechnoLoC.Content"
+			},
+			{
+				"href": "AED/components/3420/snapshots/6",
+				"name": "CastReporting.Reporting.Block.Graph.PortfolioCritViolPerformance.Content"
+			},
+			{
+				"href": "AED/components/4530/snapshots/6",
+				"name": "CastReporting.Reporting.Block.Graph.PortfolioQsbyCvLov.Content"
+			}
+		],
+		"addedIssues": 0,
+		"pendingIssues": 42,
+		"solvedIssues": 0
+	}
+]

@@ -195,6 +195,106 @@ namespace CastReporting.UnitTest.Reporting
             return reportData;
         }
 
+        public static ReportData AddApplicationActionPlan(ReportData reportData, string currentJsonActionPlan, string previousJsonActionPlan)
+        {
+            if (currentJsonActionPlan != null)
+            {
+                var currentActionPlanSummary = new List<ActionPlan>();
+                currentActionPlanSummary.AddRange(GetSampleResult<ActionPlan>(currentJsonActionPlan));
+                reportData.CurrentSnapshot.ActionsPlan = currentActionPlanSummary;
+            }
+            if (previousJsonActionPlan != null)
+            {
+                var previousActionPlanSummary = new List<ActionPlan>();
+                previousActionPlanSummary.AddRange(GetSampleResult<ActionPlan>(previousJsonActionPlan));
+                reportData.PreviousSnapshot.ActionsPlan = previousActionPlanSummary;
+            }
+            return reportData;
+        }
+
+        public static ReportData AddCriticalRuleViolations(ReportData reportData, int bcid, string currentJsonCriticalRuleViolations, string previousJsonCriticalRuleViolations)
+        {
+            if (currentJsonCriticalRuleViolations != null)
+            {
+                var currentCriticalRuleViolations = new List<ApplicationResult>();
+                var bcres = reportData.CurrentSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == bcid);
+                var results = GetSampleResult<Result>(currentJsonCriticalRuleViolations);
+                foreach (var _result in results)
+                {
+                    currentCriticalRuleViolations.AddRange(_result.ApplicationResults);
+                }
+                if (bcres != null) bcres.CriticalRulesViolation = currentCriticalRuleViolations;
+            }
+            if (previousJsonCriticalRuleViolations != null)
+            {
+                var previousCriticalRuleViolations = new List<ApplicationResult>();
+                var bcres = reportData.PreviousSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == bcid);
+                var results = GetSampleResult<Result>(previousJsonCriticalRuleViolations);
+                foreach (var _result in results)
+                {
+                    previousCriticalRuleViolations.AddRange(_result.ApplicationResults);
+                }
+                if (bcres != null) bcres.CriticalRulesViolation = previousCriticalRuleViolations;
+            }
+            return reportData;
+        }
+
+        public static ReportData AddSameCriticalRuleViolationsForAllBC(ReportData reportData, string currentJsonCriticalRuleViolations, string previousJsonCriticalRuleViolations)
+        {
+            int[] bizCrit = { 60011, 60012, 60013, 60014, 60015, 60016, 60017, 66031, 66032, 66033 };
+            foreach (int bizId in bizCrit)
+            {
+                reportData = AddCriticalRuleViolations(reportData, bizId, currentJsonCriticalRuleViolations, previousJsonCriticalRuleViolations);
+            }
+            return reportData;
+        }
+
+        public static ReportData AddSizingResults(ReportData reportData, string currentJsonSizingResults, string previousJsonSizingResults)
+        {
+            if (currentJsonSizingResults != null)
+            {
+                var results = GetSampleResult<Result>(currentJsonSizingResults).ToList();
+                List<ApplicationResult> sizingAppRes = reportData.CurrentSnapshot.SizingMeasuresResults.ToList();
+                foreach (var res in results)
+                {
+                    foreach (var appres in res.ApplicationResults)
+                    {
+                        var szres = sizingAppRes.FirstOrDefault(_ => _.Reference.Key == appres.Reference.Key);
+                        if (szres != null) sizingAppRes.Remove(szres);
+                        sizingAppRes.Add(appres);
+                    }
+                }
+                reportData.CurrentSnapshot.SizingMeasuresResults = sizingAppRes;
+            }
+            if (previousJsonSizingResults != null)
+            {
+                var results = GetSampleResult<Result>(previousJsonSizingResults).ToList();
+                List<ApplicationResult> sizingAppRes = reportData.PreviousSnapshot.SizingMeasuresResults.ToList();
+                foreach (var res in results)
+                {
+                    foreach (var appres in res.ApplicationResults)
+                    {
+                        var szres = sizingAppRes.FirstOrDefault(_ => _.Reference.Key == appres.Reference.Key);
+                        if (szres != null) sizingAppRes.Remove(szres);
+                        sizingAppRes.Add(appres);
+                    }
+                }
+                reportData.PreviousSnapshot.SizingMeasuresResults = sizingAppRes;
+            }
+            return reportData;
+        }
+
+        public static ReportData AddQIBusinessCriteriaConfiguration(ReportData reportData, string qiBusinessCriteriaConfJSON)
+        {
+            if (qiBusinessCriteriaConfJSON == null) return reportData;
+            List<QIBusinessCriteria> _qiBizCrit = new List<QIBusinessCriteria>();
+            var results = GetSampleResult<QIBusinessCriteria>(qiBusinessCriteriaConfJSON).ToList();
+            _qiBizCrit.AddRange(results);
+            reportData.CurrentSnapshot.QIBusinessCriterias = _qiBizCrit;
+            if (reportData.PreviousSnapshot != null) reportData.PreviousSnapshot.QIBusinessCriterias = _qiBizCrit;
+            return reportData;
+        }
+
         public static ReportData PrepaPortfolioReportData(string applicationsJSON, List<string> snapshotsJSON, List<string> snapshotsResultsJSON)
         {
             ReportData reportData = new ReportData

@@ -91,9 +91,19 @@
     <Compile Include="Reporting\Graph\TrendTechDebtTests.cs" />
     <Compile Include="Reporting\Graph\TrendTechDebtPortfolioTests.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
+    <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
+    <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
+    <Compile Include="Reporting\Tables\ComplianceObjectifTableTests.cs" />
     <Compile Include="Reporting\Tables\GenericTableTests.cs" />
+    <Compile Include="Reporting\Tables\CastComplexityTests.cs" />
+    <Compile Include="Reporting\Tables\CastDistributionTests.cs" />
+    <Compile Include="Reporting\Tables\CastHighComplexityTests.cs" />
+    <Compile Include="Reporting\Tables\ComplianceTests.cs" />
+    <Compile Include="Reporting\Tables\CriteriaAndGradeTests.cs" />
+    <Compile Include="Reporting\Tables\CriticalViolationByApplicationTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
     <Compile Include="Reporting\Text\ApplicationRuleTest.cs" />
+    <Compile Include="Reporting\Tables\ActionPlansTests.cs" />
     <Compile Include="Util\ExpressionEvaluatorTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Util\DateUtilTests.cs" />
@@ -185,10 +195,22 @@
     <None Include="Data\AADApplications.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\ActionPlanSummaryApp3Previous.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\ActionPlanSummaryApp3.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\BackFacts.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\BusinessValue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\cc60017Previous.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\cc60017.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\ComplexitySnapPrevious.json">
@@ -197,10 +219,25 @@
     <None Include="Data\ComplexitySnapCurrent.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\critViolStatsPrevious.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\critViolStats.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\PreviousBCTC.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\CurrentBCTC.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\PreviousBCresults.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\CurrentBCresults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\QIBusinessCriteriaConf.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\TechSizeModTechnoPrevious.json">

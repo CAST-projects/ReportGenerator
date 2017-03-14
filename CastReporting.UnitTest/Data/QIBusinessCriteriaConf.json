@@ -1,0 +1,1158 @@
+﻿[
+{
+	"href": "AED/quality-indicators/60011/snapshots/6",
+	"key": "60011",
+	"name": "Transferability",
+	"description": "Transferability measures how easily applications can be moved across teams or team members including in-house and outsourced development teams.",
+	"type": "business-criteria",
+	"annotation": {
+		"version": "V-1.5.0_Sprint 2_2",
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"description": "",
+		"name": "PreVersion 1.5.0 sprint 2 shot 2",
+		"enhancementMeasure": "AEP"
+	},
+	"number": 6,
+	"gradeContributors": [
+		{
+			"href": "AED/quality-indicators/61013/snapshots/6",
+			"key": "61013",
+			"name": "Architecture - Object-level Dependencies",
+			"weight": 3,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61009/snapshots/6",
+			"key": "61009",
+			"name": "Complexity - Algorithmic and Control Structure Complexity",
+			"weight": 9,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61029/snapshots/6",
+			"key": "61029",
+			"name": "Complexity - Dynamic Instantiation",
+			"weight": 4,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61031/snapshots/6",
+			"key": "61031",
+			"name": "Complexity - Empty Code",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61010/snapshots/6",
+			"key": "61010",
+			"name": "Complexity - OO Inheritance and Polymorphism",
+			"weight": 5,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61011/snapshots/6",
+			"key": "61011",
+			"name": "Complexity - SQL Queries",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61027/snapshots/6",
+			"key": "61027",
+			"name": "Dead code (static)",
+			"weight": 3,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61008/snapshots/6",
+			"key": "61008",
+			"name": "Documentation - Automated Documentation",
+			"weight": 6,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61007/snapshots/6",
+			"key": "61007",
+			"name": "Documentation - Bad Comments",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61017/snapshots/6",
+			"key": "61017",
+			"name": "Documentation - Naming Convention Conformity",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61006/snapshots/6",
+			"key": "61006",
+			"name": "Documentation - Style Conformity",
+			"weight": 6,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61028/snapshots/6",
+			"key": "61028",
+			"name": "Documentation - Volume of Comments",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61015/snapshots/6",
+			"key": "61015",
+			"name": "Programming Practices - File Organization Conformity",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61003/snapshots/6",
+			"key": "61003",
+			"name": "Programming Practices - OO Inheritance and Polymorphism",
+			"weight": 3,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61024/snapshots/6",
+			"key": "61024",
+			"name": "Programming Practices - Structuredness",
+			"weight": 3,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61022/snapshots/6",
+			"key": "61022",
+			"name": "Volume - Number of Components",
+			"weight": 3,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61023/snapshots/6",
+			"key": "61023",
+			"name": "Volume - Number of LOC",
+			"weight": 3,
+			"critical": false
+		}
+	],
+	"baseQualityIndicators": {
+		"href": "AED/quality-indicators/60011/snapshots/6/base-quality-indicators",
+		"name": "All indirect grade contributors"
+	},
+	"gradeAggregators": [],
+	"shortName": "Trsf"
+},
+{
+	"href": "AED/quality-indicators/60012/snapshots/6",
+	"key": "60012",
+	"name": "Changeability",
+	"description": "Changeability measures how easily applications can be modified in order to implement new features, correct errors, or change the applications environment.",
+	"type": "business-criteria",
+	"annotation": {
+		"version": "V-1.5.0_Sprint 2_2",
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"description": "",
+		"name": "PreVersion 1.5.0 sprint 2 shot 2",
+		"enhancementMeasure": "AEP"
+	},
+	"number": 6,
+	"gradeContributors": [
+		{
+			"href": "AED/quality-indicators/66070/snapshots/6",
+			"key": "66070",
+			"name": "Architecture - Architecture Models Automated Checks",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61001/snapshots/6",
+			"key": "61001",
+			"name": "Architecture - Multi-Layers and Data Access",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61013/snapshots/6",
+			"key": "61013",
+			"name": "Architecture - Object-level Dependencies",
+			"weight": 7,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61004/snapshots/6",
+			"key": "61004",
+			"name": "Architecture - OS and Platform Independence",
+			"weight": 3,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66009/snapshots/6",
+			"key": "66009",
+			"name": "Architecture - Reuse",
+			"weight": 4,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61009/snapshots/6",
+			"key": "61009",
+			"name": "Complexity - Algorithmic and Control Structure Complexity",
+			"weight": 3,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61029/snapshots/6",
+			"key": "61029",
+			"name": "Complexity - Dynamic Instantiation",
+			"weight": 5,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61031/snapshots/6",
+			"key": "61031",
+			"name": "Complexity - Empty Code",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61010/snapshots/6",
+			"key": "61010",
+			"name": "Complexity - OO Inheritance and Polymorphism",
+			"weight": 3,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61011/snapshots/6",
+			"key": "61011",
+			"name": "Complexity - SQL Queries",
+			"weight": 4,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61027/snapshots/6",
+			"key": "61027",
+			"name": "Dead code (static)",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61017/snapshots/6",
+			"key": "61017",
+			"name": "Documentation - Naming Convention Conformity",
+			"weight": 3,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61028/snapshots/6",
+			"key": "61028",
+			"name": "Documentation - Volume of Comments",
+			"weight": 3,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61020/snapshots/6",
+			"key": "61020",
+			"name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61024/snapshots/6",
+			"key": "61024",
+			"name": "Programming Practices - Structuredness",
+			"weight": 7,
+			"critical": false
+		}
+	],
+	"baseQualityIndicators": {
+		"href": "AED/quality-indicators/60012/snapshots/6/base-quality-indicators",
+		"name": "All indirect grade contributors"
+	},
+	"gradeAggregators": [],
+	"shortName": "Chng"
+},
+{
+	"href": "AED/quality-indicators/60013/snapshots/6",
+	"key": "60013",
+	"name": "Robustness",
+	"description": "Robustness measures the level of risk and the likelihood of having application failures and application defects due to modifications. Robustness measures as well the level of effort necessary to test the application",
+	"type": "business-criteria",
+	"annotation": {
+		"version": "V-1.5.0_Sprint 2_2",
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"description": "",
+		"name": "PreVersion 1.5.0 sprint 2 shot 2",
+		"enhancementMeasure": "AEP"
+	},
+	"number": 6,
+	"gradeContributors": [
+		{
+			"href": "AED/quality-indicators/66070/snapshots/6",
+			"key": "66070",
+			"name": "Architecture - Architecture Models Automated Checks",
+			"weight": 6,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61001/snapshots/6",
+			"key": "61001",
+			"name": "Architecture - Multi-Layers and Data Access",
+			"weight": 6,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61013/snapshots/6",
+			"key": "61013",
+			"name": "Architecture - Object-level Dependencies",
+			"weight": 7,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61004/snapshots/6",
+			"key": "61004",
+			"name": "Architecture - OS and Platform Independence",
+			"weight": 4,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66009/snapshots/6",
+			"key": "66009",
+			"name": "Architecture - Reuse",
+			"weight": 4,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61009/snapshots/6",
+			"key": "61009",
+			"name": "Complexity - Algorithmic and Control Structure Complexity",
+			"weight": 7,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61029/snapshots/6",
+			"key": "61029",
+			"name": "Complexity - Dynamic Instantiation",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61010/snapshots/6",
+			"key": "61010",
+			"name": "Complexity - OO Inheritance and Polymorphism",
+			"weight": 4,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61011/snapshots/6",
+			"key": "61011",
+			"name": "Complexity - SQL Queries",
+			"weight": 6,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61026/snapshots/6",
+			"key": "61026",
+			"name": "Complexity - Technical Complexity",
+			"weight": 5,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61027/snapshots/6",
+			"key": "61027",
+			"name": "Dead code (static)",
+			"weight": 2,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61014/snapshots/6",
+			"key": "61014",
+			"name": "Programming Practices - Error and Exception Handling",
+			"weight": 10,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61003/snapshots/6",
+			"key": "61003",
+			"name": "Programming Practices - OO Inheritance and Polymorphism",
+			"weight": 4,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61024/snapshots/6",
+			"key": "61024",
+			"name": "Programming Practices - Structuredness",
+			"weight": 3,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66069/snapshots/6",
+			"key": "66069",
+			"name": "Programming Practices - Unexpected Behavior",
+			"weight": 10,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66065/snapshots/6",
+			"key": "66065",
+			"name": "Secure Coding - Time and State",
+			"weight": 10,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61022/snapshots/6",
+			"key": "61022",
+			"name": "Volume - Number of Components",
+			"weight": 1,
+			"critical": false
+		}
+	],
+	"baseQualityIndicators": {
+		"href": "AED/quality-indicators/60013/snapshots/6/base-quality-indicators",
+		"name": "All indirect grade contributors"
+	},
+	"gradeAggregators": [],
+	"shortName": "Rbst"
+},
+{
+	"href": "AED/quality-indicators/60014/snapshots/6",
+	"key": "60014",
+	"name": "Efficiency",
+	"description": "Efficiency measures the likelihood of potential performance bottlenecks and the potential future scalability issues linked to coding practices.",
+	"type": "business-criteria",
+	"annotation": {
+		"version": "V-1.5.0_Sprint 2_2",
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"description": "",
+		"name": "PreVersion 1.5.0 sprint 2 shot 2",
+		"enhancementMeasure": "AEP"
+	},
+	"number": 6,
+	"gradeContributors": [
+		{
+			"href": "AED/quality-indicators/61029/snapshots/6",
+			"key": "61029",
+			"name": "Complexity - Dynamic Instantiation",
+			"weight": 7,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61011/snapshots/6",
+			"key": "61011",
+			"name": "Complexity - SQL Queries",
+			"weight": 5,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66068/snapshots/6",
+			"key": "66068",
+			"name": "Efficiency - Expensive Calls in Loops",
+			"weight": 10,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61018/snapshots/6",
+			"key": "61018",
+			"name": "Efficiency - Memory, Network and Disk Space Management",
+			"weight": 10,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61019/snapshots/6",
+			"key": "61019",
+			"name": "Efficiency - SQL and Data Handling Performance",
+			"weight": 9,
+			"critical": false
+		}
+	],
+	"baseQualityIndicators": {
+		"href": "AED/quality-indicators/60014/snapshots/6/base-quality-indicators",
+		"name": "All indirect grade contributors"
+	},
+	"gradeAggregators": [],
+	"shortName": "Efcy"
+},
+{
+	"href": "AED/quality-indicators/60015/snapshots/6",
+	"key": "60015",
+	"name": "SEI Maintainability",
+	"description": "Maintainability (SEI)",
+	"type": "business-criteria",
+	"annotation": {
+		"version": "V-1.5.0_Sprint 2_2",
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"description": "",
+		"name": "PreVersion 1.5.0 sprint 2 shot 2",
+		"enhancementMeasure": "AEP"
+	},
+	"number": 6,
+	"gradeContributors": [
+		{
+			"href": "AED/quality-indicators/61016/snapshots/6",
+			"key": "61016",
+			"name": "Maintainability Indexes (SEI)",
+			"weight": 1,
+			"critical": false
+		}
+	],
+	"baseQualityIndicators": {
+		"href": "AED/quality-indicators/60015/snapshots/6/base-quality-indicators",
+		"name": "All indirect grade contributors"
+	},
+	"gradeAggregators": [],
+	"shortName": "SEI"
+},
+{
+	"href": "AED/quality-indicators/60016/snapshots/6",
+	"key": "60016",
+	"name": "Security",
+	"description": "Security measures the likelihood of potential security breaches linked to coding practices and application source code.",
+	"type": "business-criteria",
+	"annotation": {
+		"version": "V-1.5.0_Sprint 2_2",
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"description": "",
+		"name": "PreVersion 1.5.0 sprint 2 shot 2",
+		"enhancementMeasure": "AEP"
+	},
+	"number": 6,
+	"gradeContributors": [
+		{
+			"href": "AED/quality-indicators/66070/snapshots/6",
+			"key": "66070",
+			"name": "Architecture - Architecture Models Automated Checks",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61001/snapshots/6",
+			"key": "61001",
+			"name": "Architecture - Multi-Layers and Data Access",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61004/snapshots/6",
+			"key": "61004",
+			"name": "Architecture - OS and Platform Independence",
+			"weight": 3,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61018/snapshots/6",
+			"key": "61018",
+			"name": "Efficiency - Memory, Network and Disk Space Management",
+			"weight": 5,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61014/snapshots/6",
+			"key": "61014",
+			"name": "Programming Practices - Error and Exception Handling",
+			"weight": 10,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66069/snapshots/6",
+			"key": "66069",
+			"name": "Programming Practices - Unexpected Behavior",
+			"weight": 10,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66063/snapshots/6",
+			"key": "66063",
+			"name": "Secure Coding - API Abuse",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66066/snapshots/6",
+			"key": "66066",
+			"name": "Secure Coding - Encapsulation",
+			"weight": 5,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66062/snapshots/6",
+			"key": "66062",
+			"name": "Secure Coding - Input Validation",
+			"weight": 10,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66065/snapshots/6",
+			"key": "66065",
+			"name": "Secure Coding - Time and State",
+			"weight": 4,
+			"critical": false
+		}
+	],
+	"baseQualityIndicators": {
+		"href": "AED/quality-indicators/60016/snapshots/6/base-quality-indicators",
+		"name": "All indirect grade contributors"
+	},
+	"gradeAggregators": [],
+	"shortName": "Secu"
+},
+{
+	"href": "AED/quality-indicators/60017/snapshots/6",
+	"key": "60017",
+	"name": "Total Quality Index",
+	"description": "Total Quality Index measures the general maintainability level of the application based on hundreds of metrics provided by CAST.",
+	"type": "business-criteria",
+	"annotation": {
+		"version": "V-1.5.0_Sprint 2_2",
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"description": "",
+		"name": "PreVersion 1.5.0 sprint 2 shot 2",
+		"enhancementMeasure": "AEP"
+	},
+	"number": 6,
+	"gradeContributors": [
+		{
+			"href": "AED/quality-indicators/66070/snapshots/6",
+			"key": "66070",
+			"name": "Architecture - Architecture Models Automated Checks",
+			"weight": 22,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61001/snapshots/6",
+			"key": "61001",
+			"name": "Architecture - Multi-Layers and Data Access",
+			"weight": 22,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61013/snapshots/6",
+			"key": "61013",
+			"name": "Architecture - Object-level Dependencies",
+			"weight": 17,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61004/snapshots/6",
+			"key": "61004",
+			"name": "Architecture - OS and Platform Independence",
+			"weight": 10,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66009/snapshots/6",
+			"key": "66009",
+			"name": "Architecture - Reuse",
+			"weight": 4,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61009/snapshots/6",
+			"key": "61009",
+			"name": "Complexity - Algorithmic and Control Structure Complexity",
+			"weight": 19,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61029/snapshots/6",
+			"key": "61029",
+			"name": "Complexity - Dynamic Instantiation",
+			"weight": 20,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61031/snapshots/6",
+			"key": "61031",
+			"name": "Complexity - Empty Code",
+			"weight": 2,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61010/snapshots/6",
+			"key": "61010",
+			"name": "Complexity - OO Inheritance and Polymorphism",
+			"weight": 12,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61011/snapshots/6",
+			"key": "61011",
+			"name": "Complexity - SQL Queries",
+			"weight": 18,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61026/snapshots/6",
+			"key": "61026",
+			"name": "Complexity - Technical Complexity",
+			"weight": 5,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61027/snapshots/6",
+			"key": "61027",
+			"name": "Dead code (static)",
+			"weight": 6,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61008/snapshots/6",
+			"key": "61008",
+			"name": "Documentation - Automated Documentation",
+			"weight": 6,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61007/snapshots/6",
+			"key": "61007",
+			"name": "Documentation - Bad Comments",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61017/snapshots/6",
+			"key": "61017",
+			"name": "Documentation - Naming Convention Conformity",
+			"weight": 11,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61006/snapshots/6",
+			"key": "61006",
+			"name": "Documentation - Style Conformity",
+			"weight": 6,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61028/snapshots/6",
+			"key": "61028",
+			"name": "Documentation - Volume of Comments",
+			"weight": 11,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66068/snapshots/6",
+			"key": "66068",
+			"name": "Efficiency - Expensive Calls in Loops",
+			"weight": 10,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61018/snapshots/6",
+			"key": "61018",
+			"name": "Efficiency - Memory, Network and Disk Space Management",
+			"weight": 20,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61019/snapshots/6",
+			"key": "61019",
+			"name": "Efficiency - SQL and Data Handling Performance",
+			"weight": 9,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61014/snapshots/6",
+			"key": "61014",
+			"name": "Programming Practices - Error and Exception Handling",
+			"weight": 20,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61015/snapshots/6",
+			"key": "61015",
+			"name": "Programming Practices - File Organization Conformity",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61020/snapshots/6",
+			"key": "61020",
+			"name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61003/snapshots/6",
+			"key": "61003",
+			"name": "Programming Practices - OO Inheritance and Polymorphism",
+			"weight": 7,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61024/snapshots/6",
+			"key": "61024",
+			"name": "Programming Practices - Structuredness",
+			"weight": 13,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66069/snapshots/6",
+			"key": "66069",
+			"name": "Programming Practices - Unexpected Behavior",
+			"weight": 20,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66063/snapshots/6",
+			"key": "66063",
+			"name": "Secure Coding - API Abuse",
+			"weight": 8,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66066/snapshots/6",
+			"key": "66066",
+			"name": "Secure Coding - Encapsulation",
+			"weight": 5,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66062/snapshots/6",
+			"key": "66062",
+			"name": "Secure Coding - Input Validation",
+			"weight": 10,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66065/snapshots/6",
+			"key": "66065",
+			"name": "Secure Coding - Time and State",
+			"weight": 4,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61022/snapshots/6",
+			"key": "61022",
+			"name": "Volume - Number of Components",
+			"weight": 4,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61023/snapshots/6",
+			"key": "61023",
+			"name": "Volume - Number of LOC",
+			"weight": 3,
+			"critical": false
+		}
+	],
+	"baseQualityIndicators": {
+		"href": "AED/quality-indicators/60017/snapshots/6/base-quality-indicators",
+		"name": "All indirect grade contributors"
+	},
+	"gradeAggregators": [],
+	"shortName": "TQI"
+},
+{
+	"href": "AED/quality-indicators/66031/snapshots/6",
+	"key": "66031",
+	"name": "Programming Practices",
+	"description": "Programming Practices",
+	"type": "business-criteria",
+	"annotation": {
+		"version": "V-1.5.0_Sprint 2_2",
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"description": "",
+		"name": "PreVersion 1.5.0 sprint 2 shot 2",
+		"enhancementMeasure": "AEP"
+	},
+	"number": 6,
+	"gradeContributors": [
+		{
+			"href": "AED/quality-indicators/61009/snapshots/6",
+			"key": "61009",
+			"name": "Complexity - Algorithmic and Control Structure Complexity",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61029/snapshots/6",
+			"key": "61029",
+			"name": "Complexity - Dynamic Instantiation",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61031/snapshots/6",
+			"key": "61031",
+			"name": "Complexity - Empty Code",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61010/snapshots/6",
+			"key": "61010",
+			"name": "Complexity - OO Inheritance and Polymorphism",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61011/snapshots/6",
+			"key": "61011",
+			"name": "Complexity - SQL Queries",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61026/snapshots/6",
+			"key": "61026",
+			"name": "Complexity - Technical Complexity",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61027/snapshots/6",
+			"key": "61027",
+			"name": "Dead code (static)",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66068/snapshots/6",
+			"key": "66068",
+			"name": "Efficiency - Expensive Calls in Loops",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61018/snapshots/6",
+			"key": "61018",
+			"name": "Efficiency - Memory, Network and Disk Space Management",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61019/snapshots/6",
+			"key": "61019",
+			"name": "Efficiency - SQL and Data Handling Performance",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61014/snapshots/6",
+			"key": "61014",
+			"name": "Programming Practices - Error and Exception Handling",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61015/snapshots/6",
+			"key": "61015",
+			"name": "Programming Practices - File Organization Conformity",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61020/snapshots/6",
+			"key": "61020",
+			"name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61003/snapshots/6",
+			"key": "61003",
+			"name": "Programming Practices - OO Inheritance and Polymorphism",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61024/snapshots/6",
+			"key": "61024",
+			"name": "Programming Practices - Structuredness",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66063/snapshots/6",
+			"key": "66063",
+			"name": "Secure Coding - API Abuse",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66066/snapshots/6",
+			"key": "66066",
+			"name": "Secure Coding - Encapsulation",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66062/snapshots/6",
+			"key": "66062",
+			"name": "Secure Coding - Input Validation",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66065/snapshots/6",
+			"key": "66065",
+			"name": "Secure Coding - Time and State",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61022/snapshots/6",
+			"key": "61022",
+			"name": "Volume - Number of Components",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61023/snapshots/6",
+			"key": "61023",
+			"name": "Volume - Number of LOC",
+			"weight": 1,
+			"critical": false
+		}
+	],
+	"baseQualityIndicators": {
+		"href": "AED/quality-indicators/66031/snapshots/6/base-quality-indicators",
+		"name": "All indirect grade contributors"
+	},
+	"gradeAggregators": [],
+	"shortName": "Prog"
+},
+{
+	"href": "AED/quality-indicators/66032/snapshots/6",
+	"key": "66032",
+	"name": "Architectural Design",
+	"description": "Architectural Design",
+	"type": "business-criteria",
+	"annotation": {
+		"version": "V-1.5.0_Sprint 2_2",
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"description": "",
+		"name": "PreVersion 1.5.0 sprint 2 shot 2",
+		"enhancementMeasure": "AEP"
+	},
+	"number": 6,
+	"gradeContributors": [
+		{
+			"href": "AED/quality-indicators/66070/snapshots/6",
+			"key": "66070",
+			"name": "Architecture - Architecture Models Automated Checks",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61001/snapshots/6",
+			"key": "61001",
+			"name": "Architecture - Multi-Layers and Data Access",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61013/snapshots/6",
+			"key": "61013",
+			"name": "Architecture - Object-level Dependencies",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61004/snapshots/6",
+			"key": "61004",
+			"name": "Architecture - OS and Platform Independence",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/66009/snapshots/6",
+			"key": "66009",
+			"name": "Architecture - Reuse",
+			"weight": 1,
+			"critical": false
+		}
+	],
+	"baseQualityIndicators": {
+		"href": "AED/quality-indicators/66032/snapshots/6/base-quality-indicators",
+		"name": "All indirect grade contributors"
+	},
+	"gradeAggregators": [],
+	"shortName": "Arch"
+},
+{
+	"href": "AED/quality-indicators/66033/snapshots/6",
+	"key": "66033",
+	"name": "Documentation",
+	"description": "Documentation",
+	"type": "business-criteria",
+	"annotation": {
+		"version": "V-1.5.0_Sprint 2_2",
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"description": "",
+		"name": "PreVersion 1.5.0 sprint 2 shot 2",
+		"enhancementMeasure": "AEP"
+	},
+	"number": 6,
+	"gradeContributors": [
+		{
+			"href": "AED/quality-indicators/61008/snapshots/6",
+			"key": "61008",
+			"name": "Documentation - Automated Documentation",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61007/snapshots/6",
+			"key": "61007",
+			"name": "Documentation - Bad Comments",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61017/snapshots/6",
+			"key": "61017",
+			"name": "Documentation - Naming Convention Conformity",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61006/snapshots/6",
+			"key": "61006",
+			"name": "Documentation - Style Conformity",
+			"weight": 1,
+			"critical": false
+		},
+		{
+			"href": "AED/quality-indicators/61028/snapshots/6",
+			"key": "61028",
+			"name": "Documentation - Volume of Comments",
+			"weight": 1,
+			"critical": false
+		}
+	],
+	"baseQualityIndicators": {
+		"href": "AED/quality-indicators/66033/snapshots/6/base-quality-indicators",
+		"name": "All indirect grade contributors"
+	},
+	"gradeAggregators": [],
+	"shortName": "Doc"
+}
+]

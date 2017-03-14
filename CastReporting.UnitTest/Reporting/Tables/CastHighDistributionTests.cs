@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using CastReporting.Reporting.Block.Graph;
+using CastReporting.Reporting.Block.Table;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CastReporting.Reporting.ReportingModel;
 
-namespace CastReporting.UnitTest.Reporting.Graph
+namespace CastReporting.UnitTest.Reporting.Tables
 {
     [TestClass]
-    public class CastDistributionTests
+    public class CastHighDistributionTests
     {
         [TestInitialize()]
         public void Initialize()
@@ -24,19 +24,15 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, null, null, null, null);
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", null);
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>();
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2" });
-            expectedData.AddRange(new List<string> { " ", "0" });
-            expectedData.AddRange(new List<string> { "Low", "8881" });
-            expectedData.AddRange(new List<string> { "Average", "1167" });
-            expectedData.AddRange(new List<string> { "High", "172" });
-            expectedData.AddRange(new List<string> { "Very High", "71" });
-            expectedData.AddRange(new List<string> { " ", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 2, 7);
+            expectedData.AddRange(new List<string> { "Cost Complexity distribution", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "243", "n/a", "n/a", "2.36 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
 
         }
 
@@ -50,7 +46,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, null, null, null, null);
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", null);
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "67001"}
@@ -58,15 +54,11 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2" });
-            expectedData.AddRange(new List<string> { " ", "0" });
-            expectedData.AddRange(new List<string> { "Low", "8881" });
-            expectedData.AddRange(new List<string> { "Average", "1167" });
-            expectedData.AddRange(new List<string> { "High", "172" });
-            expectedData.AddRange(new List<string> { "Very High", "71" });
-            expectedData.AddRange(new List<string> { " ", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 2, 7);
-
+            expectedData.AddRange(new List<string> { "Cost Complexity distribution", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "243", "n/a", "n/a", "2.36 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -81,7 +73,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "67001"}
@@ -89,15 +81,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "8881", "8824" });
-            expectedData.AddRange(new List<string> { "Average", "1167", "1140" });
-            expectedData.AddRange(new List<string> { "High", "172", "170" });
-            expectedData.AddRange(new List<string> { "Very High", "71", "68" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "Cost Complexity distribution", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "243", "238", "+5", "2.36 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -112,7 +99,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "65501"}
@@ -120,15 +107,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "8305", "8235" });
-            expectedData.AddRange(new List<string> { "Average", "838", "824" });
-            expectedData.AddRange(new List<string> { "High", "161", "159" });
-            expectedData.AddRange(new List<string> { "Very High", "71", "68" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "Cyclomatic Complexity Distribution", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "232", "227", "+5", "2.47 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -143,7 +125,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "65601"}
@@ -151,15 +133,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "0", "0" });
-            expectedData.AddRange(new List<string> { "Average", "0", "0" });
-            expectedData.AddRange(new List<string> { "High", "0", "0" });
-            expectedData.AddRange(new List<string> { "Very High", "0", "0" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "4GL Complexity Distribution", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "0", "0", "0", "n/a" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -174,7 +151,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "66015"}
@@ -182,15 +159,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "434", "433" });
-            expectedData.AddRange(new List<string> { "Average", "76", "78" });
-            expectedData.AddRange(new List<string> { "High", "59", "54" });
-            expectedData.AddRange(new List<string> { "Very High", "17", "17" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "Class Complexity Distribution (WMC)", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "76", "71", "+5", "13.0 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -205,7 +177,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "65701"}
@@ -213,15 +185,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "0", "0" });
-            expectedData.AddRange(new List<string> { "Average", "569", "565" });
-            expectedData.AddRange(new List<string> { "High", "17", "17" });
-            expectedData.AddRange(new List<string> { "Very High", "0", "0" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "OO Complexity Distribution", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "17", "17", "0", "2.90 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -236,7 +203,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "65801"}
@@ -244,15 +211,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "522", "509" });
-            expectedData.AddRange(new List<string> { "Average", "1", "1" });
-            expectedData.AddRange(new List<string> { "High", "12", "12" });
-            expectedData.AddRange(new List<string> { "Very High", "0", "0" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "SQL Complexity Distribution", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "12", "12", "0", "2.24 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -267,7 +229,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "65350"}
@@ -275,15 +237,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "9413", "9345" });
-            expectedData.AddRange(new List<string> { "Average", "666", "653" });
-            expectedData.AddRange(new List<string> { "High", "170", "163" });
-            expectedData.AddRange(new List<string> { "Very High", "42", "41" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "Coupling Distribution", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "212", "204", "+8", "2.06 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -298,7 +255,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "66020"}
@@ -306,15 +263,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "411", "412" });
-            expectedData.AddRange(new List<string> { "Average", "132", "130" });
-            expectedData.AddRange(new List<string> { "High", "40", "37" });
-            expectedData.AddRange(new List<string> { "Very High", "3", "3" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "Class Fan-Out Distribution", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "43", "40", "+3", "7.34 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -329,7 +281,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "66021"}
@@ -337,15 +289,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "527", "525" });
-            expectedData.AddRange(new List<string> { "Average", "18", "17" });
-            expectedData.AddRange(new List<string> { "High", "19", "19" });
-            expectedData.AddRange(new List<string> { "Very High", "22", "21" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "Class Fan-In Distribution", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "41", "40", "+1", "7 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -360,7 +307,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "65105"}
@@ -368,15 +315,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "8619", "8558" });
-            expectedData.AddRange(new List<string> { "Average", "1315", "1298" });
-            expectedData.AddRange(new List<string> { "High", "321", "310" });
-            expectedData.AddRange(new List<string> { "Very High", "36", "36" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "Size Distribution", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "357", "346", "+11", "3.47 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -391,7 +333,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "66010"}
@@ -399,15 +341,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "9413", "9345" });
-            expectedData.AddRange(new List<string> { "Average", "666", "653" });
-            expectedData.AddRange(new List<string> { "High", "170", "163" });
-            expectedData.AddRange(new List<string> { "Very High", "42", "41" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "Reuse by Call Distribution", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "212", "204", "+8", "2.06 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -422,7 +359,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "67020"}
@@ -430,15 +367,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "227", "226" });
-            expectedData.AddRange(new List<string> { "Average", "308", "299" });
-            expectedData.AddRange(new List<string> { "High", "107", "106" });
-            expectedData.AddRange(new List<string> { "Very High", "59", "55" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "Distribution of violations to critical diagnostic-based metrics per cost complexity", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "166", "161", "+5", "23.7 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
 
         [TestMethod]
@@ -453,7 +385,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\Sample1Previous.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1");
             reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
 
-            var component = new CastDistribution();
+            var component = new CastHighDistribution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"PAR", "67030"}
@@ -461,15 +393,10 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "V-1.5.0_Sprint 2_2", "V-1.4.1" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            expectedData.AddRange(new List<string> { "Low", "221", "221" });
-            expectedData.AddRange(new List<string> { "Average", "270", "262" });
-            expectedData.AddRange(new List<string> { "High", "74", "73" });
-            expectedData.AddRange(new List<string> { "Very High", "29", "26" });
-            expectedData.AddRange(new List<string> { " ", "0", "0" });
-            TestUtility.AssertTableContent(table, expectedData, 3, 7);
-
+            expectedData.AddRange(new List<string> { "Distribution of defects to critical diagnostic-based metrics per cost complexity", "Current", "Previous", "Evol.", "% Total" });
+            expectedData.AddRange(new List<string> { "High and Very High Complexity", "103", "99", "+4", "17.3 %" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            Assert.IsTrue(table.HasColumnHeaders);
         }
     }
 }
