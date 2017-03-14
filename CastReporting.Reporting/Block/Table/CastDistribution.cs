@@ -26,7 +26,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("CAST_DISTRIBUTION")]
-    internal class CastDistribution : TableBlock
+    public class CastDistribution : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
@@ -49,19 +49,14 @@ namespace CastReporting.Reporting.Block.Table
             #region Selected Snapshot
 
             var selectedLowVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                distributionId.GetHashCode(),
-                Constants.CyclomaticComplexity.ComplexityArtifacts_Low.GetHashCode());
+                distributionId.GetHashCode(),"low");
             var selectedAveVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                distributionId.GetHashCode(),
-                Constants.CyclomaticComplexity.ComplexityArtifacts_Moderate.GetHashCode());
+                distributionId.GetHashCode(),"average");
             var selectedHigVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                distributionId.GetHashCode(),
-                Constants.CyclomaticComplexity.ComplexityArtifacts_High.GetHashCode());
+                distributionId.GetHashCode(), "high");
             var selectedVhiVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                distributionId.GetHashCode(),
-                Constants.CyclomaticComplexity.ComplexityArtifacts_VeryHigh.GetHashCode());
-
-
+                distributionId.GetHashCode(),"very_high");
+            
             if (selectedLowVal.HasValue && selectedAveVal.HasValue && selectedHigVal.HasValue && selectedVhiVal.HasValue)
                 selectedTotal = selectedLowVal + selectedAveVal + selectedHigVal + selectedVhiVal;
 
@@ -73,24 +68,17 @@ namespace CastReporting.Reporting.Block.Table
             double? previousAveVal = null;
             double? previousHigVal = null;
             double? previousVhiVal = null;
-
-
+            
             if (reportData.PreviousSnapshot != null)
             {                    
-
                 previousLowVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
-                    distributionId.GetHashCode(),
-                    Constants.CyclomaticComplexity.ComplexityArtifacts_Low.GetHashCode());
+                    distributionId.GetHashCode(), "low");
                 previousAveVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
-                    distributionId.GetHashCode(),
-                    Constants.CyclomaticComplexity.ComplexityArtifacts_Moderate.GetHashCode());
+                    distributionId.GetHashCode(), "average");
                 previousHigVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
-                    distributionId.GetHashCode(),
-                    Constants.CyclomaticComplexity.ComplexityArtifacts_High.GetHashCode());
+                    distributionId.GetHashCode(),"high");
                 previousVhiVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
-                    distributionId.GetHashCode(),
-                    Constants.CyclomaticComplexity.ComplexityArtifacts_VeryHigh.GetHashCode());
-
+                    distributionId.GetHashCode(),"very_high");
 
             }
 

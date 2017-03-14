@@ -94,6 +94,7 @@
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
     <Compile Include="Reporting\Tables\GenericTableTests.cs" />
     <Compile Include="Reporting\Tables\CastComplexityTests.cs" />
+    <Compile Include="Reporting\Tables\CastDistributionTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
     <Compile Include="Reporting\Text\ApplicationRuleTest.cs" />
     <Compile Include="Reporting\Tables\ActionPlansTests.cs" />
