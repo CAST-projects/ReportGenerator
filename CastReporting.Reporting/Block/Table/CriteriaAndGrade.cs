@@ -27,7 +27,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("CRITERIA_GRADE")]
-    internal class CriteriaAndGrade : TableBlock
+    public class CriteriaAndGrade : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {

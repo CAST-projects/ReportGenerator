@@ -284,6 +284,17 @@ namespace CastReporting.UnitTest.Reporting
             return reportData;
         }
 
+        public static ReportData AddQIBusinessCriteriaConfiguration(ReportData reportData, string qiBusinessCriteriaConfJSON)
+        {
+            if (qiBusinessCriteriaConfJSON == null) return reportData;
+            List<QIBusinessCriteria> _qiBizCrit = new List<QIBusinessCriteria>();
+            var results = GetSampleResult<QIBusinessCriteria>(qiBusinessCriteriaConfJSON).ToList();
+            _qiBizCrit.AddRange(results);
+            reportData.CurrentSnapshot.QIBusinessCriterias = _qiBizCrit;
+            if (reportData.PreviousSnapshot != null) reportData.PreviousSnapshot.QIBusinessCriterias = _qiBizCrit;
+            return reportData;
+        }
+
         public static ReportData PrepaPortfolioReportData(string applicationsJSON, List<string> snapshotsJSON, List<string> snapshotsResultsJSON)
         {
             ReportData reportData = new ReportData

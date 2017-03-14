@@ -99,6 +99,7 @@
     <Compile Include="Reporting\Tables\CastDistributionTests.cs" />
     <Compile Include="Reporting\Tables\CastHighComplexityTests.cs" />
     <Compile Include="Reporting\Tables\ComplianceTests.cs" />
+    <Compile Include="Reporting\Tables\CriteriaAndGradeTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
     <Compile Include="Reporting\Text\ApplicationRuleTest.cs" />
     <Compile Include="Reporting\Tables\ActionPlansTests.cs" />
@@ -223,10 +224,19 @@
     <None Include="Data\critViolStats.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\PreviousBCTC.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\CurrentBCTC.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\PreviousBCresults.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\CurrentBCresults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\QIBusinessCriteriaConf.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\TechSizeModTechnoPrevious.json">

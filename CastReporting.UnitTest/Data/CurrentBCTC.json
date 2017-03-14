@@ -1,0 +1,685 @@
+﻿[
+	{
+		"number": 6,
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"application": {
+			"href": "AED/applications/3",
+			"name": "ReportGenerator",
+			"adgDatabase": "repgen82_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED/applications/3/snapshots/6",
+			"name": "ReportGenerator"
+		},
+		"applicationResults": [
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60011/snapshots/6",
+					"name": "Transferability",
+					"shortName": "Trsf",
+					"key": "60011",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.915002923820198
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60012/snapshots/6",
+					"name": "Changeability",
+					"shortName": "Chng",
+					"key": "60012",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.9292488390128553
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60013/snapshots/6",
+					"name": "Robustness",
+					"shortName": "Rbst",
+					"key": "60013",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 3.1934772018853566
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60014/snapshots/6",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.590669368680213
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60015/snapshots/6",
+					"name": "SEI Maintainability",
+					"shortName": "SEI",
+					"key": "60015",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 3.328550361785278
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60016/snapshots/6",
+					"name": "Security",
+					"shortName": "Secu",
+					"key": "60016",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 3.168514287491462
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60017/snapshots/6",
+					"name": "Total Quality Index",
+					"shortName": "TQI",
+					"key": "60017",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.7781377635159017
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61001/snapshots/6",
+					"name": "Architecture - Multi-Layers and Data Access",
+					"key": "61001",
+					"critical": false
+				},
+				"result": {
+					"grade": 1
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61003/snapshots/6",
+					"name": "Programming Practices - OO Inheritance and Polymorphism",
+					"key": "61003",
+					"critical": false
+				},
+				"result": {
+					"grade": 4
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61004/snapshots/6",
+					"name": "Architecture - OS and Platform Independence",
+					"key": "61004",
+					"critical": false
+				},
+				"result": {},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61006/snapshots/6",
+					"name": "Documentation - Style Conformity",
+					"key": "61006",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.5893939393939394
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61007/snapshots/6",
+					"name": "Documentation - Bad Comments",
+					"key": "61007",
+					"critical": false
+				},
+				"result": {
+					"grade": 4
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61008/snapshots/6",
+					"name": "Documentation - Automated Documentation",
+					"key": "61008",
+					"critical": false
+				},
+				"result": {},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61009/snapshots/6",
+					"name": "Complexity - Algorithmic and Control Structure Complexity",
+					"key": "61009",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.4429719452119034
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61010/snapshots/6",
+					"name": "Complexity - OO Inheritance and Polymorphism",
+					"key": "61010",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.480966589212786
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61011/snapshots/6",
+					"name": "Complexity - SQL Queries",
+					"key": "61011",
+					"critical": false
+				},
+				"result": {},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61013/snapshots/6",
+					"name": "Architecture - Object-level Dependencies",
+					"key": "61013",
+					"critical": false
+				},
+				"result": {
+					"grade": 2.932856968482597
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61014/snapshots/6",
+					"name": "Programming Practices - Error and Exception Handling",
+					"key": "61014",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.7619674963886034
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61015/snapshots/6",
+					"name": "Programming Practices - File Organization Conformity",
+					"key": "61015",
+					"critical": false
+				},
+				"result": {},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61016/snapshots/6",
+					"name": "Maintainability Indexes (SEI)",
+					"key": "61016",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.328550361785278
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61017/snapshots/6",
+					"name": "Documentation - Naming Convention Conformity",
+					"key": "61017",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.6652616670897107
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61018/snapshots/6",
+					"name": "Efficiency - Memory, Network and Disk Space Management",
+					"key": "61018",
+					"critical": false
+				},
+				"result": {
+					"grade": 2.9129411691726173
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61019/snapshots/6",
+					"name": "Efficiency - SQL and Data Handling Performance",
+					"key": "61019",
+					"critical": false
+				},
+				"result": {
+					"grade": 4
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61020/snapshots/6",
+					"name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+					"key": "61020",
+					"critical": false
+				},
+				"result": {
+					"grade": 1
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61022/snapshots/6",
+					"name": "Volume - Number of Components",
+					"key": "61022",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.2947499268792053
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61023/snapshots/6",
+					"name": "Volume - Number of LOC",
+					"key": "61023",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.777152051488336
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61024/snapshots/6",
+					"name": "Programming Practices - Structuredness",
+					"key": "61024",
+					"critical": false
+				},
+				"result": {
+					"grade": 1
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61026/snapshots/6",
+					"name": "Complexity - Technical Complexity",
+					"key": "61026",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.1002417732267524
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61027/snapshots/6",
+					"name": "Dead code (static)",
+					"key": "61027",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.8593587327906338
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61028/snapshots/6",
+					"name": "Documentation - Volume of Comments",
+					"key": "61028",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.3609738514846983
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61029/snapshots/6",
+					"name": "Complexity - Dynamic Instantiation",
+					"key": "61029",
+					"critical": false
+				},
+				"result": {},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61031/snapshots/6",
+					"name": "Complexity - Empty Code",
+					"key": "61031",
+					"critical": false
+				},
+				"result": {},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66008/snapshots/6",
+					"name": "Complexity - Functional Evolvability",
+					"key": "66008",
+					"critical": false
+				},
+				"result": {},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66009/snapshots/6",
+					"name": "Architecture - Reuse",
+					"key": "66009",
+					"critical": false
+				},
+				"result": {
+					"grade": 2.3587039406095234
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66031/snapshots/6",
+					"name": "Programming Practices",
+					"shortName": "Prog",
+					"key": "66031",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.9339329024899525
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66032/snapshots/6",
+					"name": "Architectural Design",
+					"shortName": "Arch",
+					"key": "66032",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.0971869696973733
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66033/snapshots/6",
+					"name": "Documentation",
+					"shortName": "Doc",
+					"key": "66033",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.6539073644920874
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66062/snapshots/6",
+					"name": "Secure Coding - Input Validation",
+					"key": "66062",
+					"critical": false
+				},
+				"result": {},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66063/snapshots/6",
+					"name": "Secure Coding - API Abuse",
+					"key": "66063",
+					"critical": false
+				},
+				"result": {},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66064/snapshots/6",
+					"name": "Secure Coding - Weak Security Features",
+					"key": "66064",
+					"critical": false
+				},
+				"result": {},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66065/snapshots/6",
+					"name": "Secure Coding - Time and State",
+					"key": "66065",
+					"critical": false
+				},
+				"result": {
+					"grade": 4
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66066/snapshots/6",
+					"name": "Secure Coding - Encapsulation",
+					"key": "66066",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.378643852978454
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66068/snapshots/6",
+					"name": "Efficiency - Expensive Calls in Loops",
+					"key": "66068",
+					"critical": false
+				},
+				"result": {
+					"grade": 1
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66069/snapshots/6",
+					"name": "Programming Practices - Unexpected Behavior",
+					"key": "66069",
+					"critical": false
+				},
+				"result": {
+					"grade": 4
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66070/snapshots/6",
+					"name": "Architecture - Architecture Models Automated Checks",
+					"key": "66070",
+					"critical": false
+				},
+				"result": {
+				  "grade": 3.56
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	}
+]
