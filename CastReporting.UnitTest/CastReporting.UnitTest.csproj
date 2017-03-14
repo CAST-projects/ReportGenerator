@@ -100,6 +100,7 @@
     <Compile Include="Reporting\Tables\CastHighComplexityTests.cs" />
     <Compile Include="Reporting\Tables\ComplianceTests.cs" />
     <Compile Include="Reporting\Tables\CriteriaAndGradeTests.cs" />
+    <Compile Include="Reporting\Tables\CriticalViolationByApplicationTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
     <Compile Include="Reporting\Text\ApplicationRuleTest.cs" />
     <Compile Include="Reporting\Tables\ActionPlansTests.cs" />
