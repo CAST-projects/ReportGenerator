@@ -92,9 +92,11 @@
     <Compile Include="Reporting\Graph\TrendTechDebtPortfolioTests.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
+    <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
     <Compile Include="Reporting\Tables\GenericTableTests.cs" />
     <Compile Include="Reporting\Tables\CastComplexityTests.cs" />
     <Compile Include="Reporting\Tables\CastDistributionTests.cs" />
+    <Compile Include="Reporting\Tables\CastHighComplexityTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
     <Compile Include="Reporting\Text\ApplicationRuleTest.cs" />
     <Compile Include="Reporting\Tables\ActionPlansTests.cs" />
