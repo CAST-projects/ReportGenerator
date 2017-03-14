@@ -195,6 +195,23 @@ namespace CastReporting.UnitTest.Reporting
             return reportData;
         }
 
+        public static ReportData AddApplicationActionPlan(ReportData reportData, string currentJsonActionPlan, string previousJsonActionPlan)
+        {
+            if (currentJsonActionPlan != null)
+            {
+                var currentActionPlanSummary = new List<ActionPlan>();
+                currentActionPlanSummary.AddRange(GetSampleResult<ActionPlan>(currentJsonActionPlan));
+                reportData.CurrentSnapshot.ActionsPlan = currentActionPlanSummary;
+            }
+            if (previousJsonActionPlan != null)
+            {
+                var previousActionPlanSummary = new List<ActionPlan>();
+                previousActionPlanSummary.AddRange(GetSampleResult<ActionPlan>(previousJsonActionPlan));
+                reportData.PreviousSnapshot.ActionsPlan = previousActionPlanSummary;
+            }
+            return reportData;
+        }
+
         public static ReportData PrepaPortfolioReportData(string applicationsJSON, List<string> snapshotsJSON, List<string> snapshotsResultsJSON)
         {
             ReportData reportData = new ReportData
