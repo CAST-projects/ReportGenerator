@@ -24,7 +24,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("COMPLIANCE")]
-    internal class Compliance : TableBlock
+    public class Compliance : TableBlock
     {   
 
          #region METHODS
