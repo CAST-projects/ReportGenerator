@@ -28,7 +28,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Graph 
 {
     [Block("MODULES_ARTIFACTS")]
-    internal class PieModuleArtifact : GraphBlock
+    public class PieModuleArtifact : GraphBlock
     {
 
 

@@ -1,0 +1,182 @@
+﻿[
+	{
+		"href": "AAD2/applications/3/snapshots/4",
+		"name": "AppliAEPtran",
+		"number": 4,
+		"technologies": [
+			"JEE",
+			"PL/SQL"
+		],
+		"annotation": {
+			"version": "v1.1.4",
+			"date": {
+				"time": 1468360800000,
+				"isoDate": "2016-07-13"
+			},
+			"description": null,
+			"name": "Snap_v1.1.4",
+			"enhancementMeasure": "AEP"
+		},
+		"configurationSnapshot": {
+			"href": "AAD2/configuration/snapshots/4",
+			"name": "Configuration Snapshot #4"
+		},
+		"systems": null,
+		"application": {
+			"href": "AAD2/applications/3",
+			"name": "AppliAEPtran",
+			"adgDatabase": "aeptran82_central"
+		},
+		"moduleSnapshots": {
+			"href": "AAD2/applications/3/snapshots/4/modules",
+			"name": "Module Snapshots for AppliAEPtran #4"
+		},
+		"results": {
+			"href": "AAD2/applications/3/snapshots/4/results",
+			"name": "Results breakdown by modules, by technologies"
+		},
+		"origin": {
+			"href": "AED2/applications/3/snapshots/4",
+			"name": "Origin of AppliAEPtran snapshot 4"
+		},
+		"actionPlan": null,
+		"components": null,
+		"transactions": null,
+		"treeNode": null
+	},
+	{
+		"href": "AAD2/applications/3/snapshots/3",
+		"name": "AppliAEPtran",
+		"number": 3,
+		"technologies": [
+			"JEE",
+			"PL/SQL"
+		],
+		"annotation": {
+			"version": "v1.1.3",
+			"date": {
+				"time": 1463090400000,
+				"isoDate": "2016-05-13"
+			},
+			"description": null,
+			"name": "Snap_v1.1.3",
+			"enhancementMeasure": "AEP"
+		},
+		"configurationSnapshot": {
+			"href": "AAD2/configuration/snapshots/3",
+			"name": "Configuration Snapshot #3"
+		},
+		"systems": null,
+		"application": {
+			"href": "AAD2/applications/3",
+			"name": "AppliAEPtran",
+			"adgDatabase": "aeptran82_central"
+		},
+		"moduleSnapshots": {
+			"href": "AAD2/applications/3/snapshots/3/modules",
+			"name": "Module Snapshots for AppliAEPtran #3"
+		},
+		"results": {
+			"href": "AAD2/applications/3/snapshots/3/results",
+			"name": "Results breakdown by modules, by technologies"
+		},
+		"origin": {
+			"href": "AED2/applications/3/snapshots/3",
+			"name": "Origin of AppliAEPtran snapshot 3"
+		},
+		"actionPlan": null,
+		"components": null,
+		"transactions": null,
+		"treeNode": null
+	},
+	{
+		"href": "AAD2/applications/3/snapshots/2",
+		"name": "AppliAEPtran",
+		"number": 2,
+		"technologies": [
+			"JEE",
+			"PL/SQL"
+		],
+		"annotation": {
+			"version": "v1.1.2",
+			"date": {
+				"time": 1457823600000,
+				"isoDate": "2016-03-13"
+			},
+			"description": null,
+			"name": "Snap_v1.1.2",
+			"enhancementMeasure": "AEP"
+		},
+		"configurationSnapshot": {
+			"href": "AAD2/configuration/snapshots/2",
+			"name": "Configuration Snapshot #2"
+		},
+		"systems": null,
+		"application": {
+			"href": "AAD2/applications/3",
+			"name": "AppliAEPtran",
+			"adgDatabase": "aeptran82_central"
+		},
+		"moduleSnapshots": {
+			"href": "AAD2/applications/3/snapshots/2/modules",
+			"name": "Module Snapshots for AppliAEPtran #2"
+		},
+		"results": {
+			"href": "AAD2/applications/3/snapshots/2/results",
+			"name": "Results breakdown by modules, by technologies"
+		},
+		"origin": {
+			"href": "AED2/applications/3/snapshots/2",
+			"name": "Origin of AppliAEPtran snapshot 2"
+		},
+		"actionPlan": null,
+		"components": null,
+		"transactions": null,
+		"treeNode": null
+	},
+	{
+		"href": "AAD2/applications/3/snapshots/1",
+		"name": "AppliAEPtran",
+		"number": 1,
+		"technologies": [
+			"JEE",
+			"PL/SQL"
+		],
+		"annotation": {
+			"version": "v1.1.1",
+			"date": {
+				"time": 1452639600000,
+				"isoDate": "2016-01-13"
+			},
+			"description": null,
+			"name": "Snap_v1.1.1",
+			"enhancementMeasure": "AEP"
+		},
+		"configurationSnapshot": {
+			"href": "AAD2/configuration/snapshots/1",
+			"name": "Configuration Snapshot #1"
+		},
+		"systems": null,
+		"application": {
+			"href": "AAD2/applications/3",
+			"name": "AppliAEPtran",
+			"adgDatabase": "aeptran82_central"
+		},
+		"moduleSnapshots": {
+			"href": "AAD2/applications/3/snapshots/1/modules",
+			"name": "Module Snapshots for AppliAEPtran #1"
+		},
+		"results": {
+			"href": "AAD2/applications/3/snapshots/1/results",
+			"name": "Results breakdown by modules, by technologies"
+		},
+		"origin": {
+			"href": "AED2/applications/3/snapshots/1",
+			"name": "Origin of AppliAEPtran snapshot 1"
+		},
+		"actionPlan": null,
+		"components": null,
+		"transactions": null,
+		"treeNode": null
+	}
+]

@@ -27,7 +27,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Graph
 {
     [Block("CAST_DISTRIBUTION")]
-    internal class CastDistribution : GraphBlock
+    public class CastDistribution : GraphBlock
     {
 
      
@@ -65,17 +65,13 @@ namespace CastReporting.Reporting.Block.Graph
                 #region Selected Snapshot
 
                 var selectedLowVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                    distributionId.GetHashCode(),
-                    Constants.CyclomaticComplexity.ComplexityArtifacts_Low.GetHashCode());
+                    distributionId.GetHashCode(), "low");
                 var selectedAveVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                    distributionId.GetHashCode(),
-                    Constants.CyclomaticComplexity.ComplexityArtifacts_Moderate.GetHashCode());
+                    distributionId.GetHashCode(),"average");
                 var selectedHigVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                    distributionId.GetHashCode(),
-                    Constants.CyclomaticComplexity.ComplexityArtifacts_High.GetHashCode());
+                    distributionId.GetHashCode(),"high");
                 var selectedVhiVal = CastComplexityUtility.GetCostComplexityGrade(reportData.CurrentSnapshot,
-                    distributionId.GetHashCode(),
-                    Constants.CyclomaticComplexity.ComplexityArtifacts_VeryHigh.GetHashCode());
+                    distributionId.GetHashCode(),"very_high");
 
                
 
@@ -90,16 +86,16 @@ namespace CastReporting.Reporting.Block.Graph
 
                     previousLowVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
                                                                                distributionId.GetHashCode(),
-                                                                               Constants.CyclomaticComplexity.ComplexityArtifacts_Low.GetHashCode());
+                                                                               "low");
                     previousAveVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
                                                                                    distributionId.GetHashCode(),
-                                                                                   Constants.CyclomaticComplexity.ComplexityArtifacts_Moderate.GetHashCode());
+                                                                                  "average");
                     previousHigVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
                                                                                     distributionId.GetHashCode(),
-                                                                                    Constants.CyclomaticComplexity.ComplexityArtifacts_High.GetHashCode());
+                                                                                    "high");
                     previousVhiVal = CastComplexityUtility.GetCostComplexityGrade(reportData.PreviousSnapshot,
                                                                                     distributionId.GetHashCode(),
-                                                                                     Constants.CyclomaticComplexity.ComplexityArtifacts_VeryHigh.GetHashCode());
+                                                                                    "very_high");
 
                                      
                 }

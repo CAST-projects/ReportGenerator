@@ -20,7 +20,32 @@ namespace CastReporting.BLL.Computing
             return (category != null) ? MathUtility.GetRound(category.Value) : null;
         }
 
+        public static double? GetCostComplexityGrade(Snapshot snapshot, int categorieId, string position)
+        {
+            var result = snapshot?.CostComplexityResults?.FirstOrDefault(_ => _.Reference.Key == categorieId);
+            Category category = null;
+            switch (position)
+            {
+                case "low":
+                    category = result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("low"))
+                               ?? result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("small"));
+                    break;
+                case "average":
+                    category = result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("average"))
+                        ?? result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("moderate"));
+                    break;
+                case "high":
+                    category = result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("high") && !(_.Name.ToLower().Contains("very")))
+                               ?? result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("large") && !(_.Name.ToLower().Contains("very")));
+                    break;
+                case "very_high":
+                    category = result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("high") && _.Name.ToLower().Contains("very"))
+                               ?? result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("large") && _.Name.ToLower().Contains("very"));
+                    break;
+            }
 
+            return (category != null) ? MathUtility.GetRound(category.Value) : null;
+        }
         /// <summary>
         /// 
         /// </summary>

@@ -1,0 +1,224 @@
+[
+	{
+		"number": 3,
+		"date": {
+			"time": 1463090400000,
+			"isoDate": "2016-05-13"
+		},
+		"application": {
+			"href": "AED/applications/3",
+			"name": "AppliAEPtran",
+			"adgDatabase": "aeptran82_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED/applications/3/snapshots/3",
+			"name": "AppliAEPtran"
+		},
+		"applicationResults": [
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AED/sizing-measures/10151/snapshots/3",
+					"name": "Number of Code Lines",
+					"shortName": "LOCs",
+					"key": "10151",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 87828
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"value": 87828
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"value": 0
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/7/snapshots/3",
+							"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content"
+						},
+						"result": {
+							"value": 0
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"value": 0
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"value": 31181
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"value": 31181
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"value": 42829
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"value": 42829
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"value": 13818
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"value": 13818
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AED/sizing-measures/10152/snapshots/3",
+					"name": "Number of Artifacts",
+					"shortName": "Artifacts",
+					"key": "10152",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 10202
+				},
+				"technologyResults": [
+					{
+						"technology": "JEE",
+						"result": {
+							"value": 10187
+						}
+					},
+					{
+						"technology": "PL/SQL",
+						"result": {
+							"value": 15
+						}
+					}
+				],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/7/snapshots/3",
+							"name": "SHOPIZER/AppliAEPtran/Shopizer_sql content"
+						},
+						"result": {
+							"value": 15
+						},
+						"technologyResults": [
+							{
+								"technology": "PL/SQL",
+								"result": {
+									"value": 15
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "sm-central/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"value": 4293
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"value": 4293
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "sm-core/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"value": 5098
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"value": 5098
+								}
+							}
+						]
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "sm-shop/AppliAEPtran/Shopizer_src content"
+						},
+						"result": {
+							"value": 796
+						},
+						"technologyResults": [
+							{
+								"technology": "JEE",
+								"result": {
+									"value": 796
+								}
+							}
+						]
+					}
+				],
+				"transactionResults": []
+			}
+		]
+	}
+]
