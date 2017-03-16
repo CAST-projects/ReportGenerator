@@ -25,7 +25,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("CRITICAL_VIOL_BY_MODULE")]
-    internal class CriticalViolationByModule : TableBlock
+    public class CriticalViolationByModule : TableBlock
     {
         private const string MetricFormat = "N0";
 
@@ -115,8 +115,6 @@ namespace CastReporting.Reporting.Block.Table
                           resultModule[Constants.BusinessCriteria.Changeability].RemovedCriticalViolations.Value.ToString(MetricFormat):Constants.No_Value ,
 
                         });
-
-
 
             }
             var resultTable = new TableDefinition

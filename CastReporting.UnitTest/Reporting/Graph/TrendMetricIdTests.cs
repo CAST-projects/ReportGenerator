@@ -1,5 +1,4 @@
 ﻿
-using System;
 using System.Collections.Generic;
 using CastReporting.Domain;
 using CastReporting.Reporting.Block.Graph;

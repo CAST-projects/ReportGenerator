@@ -10,6 +10,8 @@ namespace CastReporting.UnitTest.Reporting
 {
     public class SnapshotBLLStub : BaseBLL, ISnapshotExplorer
     {
+        // ReSharper disable once InconsistentNaming
+        // ReSharper disable once NotAccessedField.Local
         Snapshot _Snapshot;
 
         public SnapshotBLLStub(WSConnection connection, Snapshot snapshot)
