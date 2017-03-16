@@ -126,8 +126,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var expectedData = new List<string>();
             expectedData.AddRange(new List<string> { "Snapshots", "Transferability", "Changeability", "Robustness", "Efficiency", "Security" });
             expectedData.AddRange(new List<string> { "Snap_v1.1.4 - v1.1.4", "3.12", "2.98", "2.55", "1.88", "1.70" });
-            expectedData.AddRange(new List<string> { " - ", "n/a", "n/a", "n/a", "n/a", "n/a" });
-            TestUtility.AssertTableContent(table, expectedData, 6, 3);
+            TestUtility.AssertTableContent(table, expectedData, 6, 2);
         }
 
         [TestMethod]

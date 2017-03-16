@@ -153,7 +153,7 @@ namespace CastReporting.Reporting.Helper
                         {
                             if (_posConfig[i].Parameters.Contains("CURRENT") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
                             if (_posConfig[i].Parameters.Contains("PREVIOUS") && reportData.PreviousSnapshot != null) snapshots.Add(reportData.PreviousSnapshot);
-                            if (!format && _posConfig[i].Parameters.Contains("PREVIOUS") && reportData.PreviousSnapshot == null)
+                            if (_posConfig[i].Parameters.Contains("PREVIOUS") && reportData.PreviousSnapshot == null)
                             {
                                 if (_posConfig[i].Parameters.Contains("CURRENT") && reportData.CurrentSnapshot != null)
                                 {
@@ -339,6 +339,11 @@ namespace CastReporting.Reporting.Helper
                     if (snapshotConfiguration.Contains("CURRENT") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
                     if (!snapshotConfiguration.Contains("CURRENT") && snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null) snapshots.Add(reportData.PreviousSnapshot);
                     if (!snapshotConfiguration.Contains("CURRENT") && !snapshotConfiguration.Contains("PREVIOUS") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
+
+                    if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot == null)
+                    {
+                        if (reportData.CurrentSnapshot != null) snapshotConfiguration = new[] { "CURRENT" };
+                    }
                 }
                 else
                 {

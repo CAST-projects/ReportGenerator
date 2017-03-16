@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -15,6 +16,6 @@ namespace CastReporting.Reporting.Block.Graph
         {
             // false for graph component
             return GenericContent.Content(reportData, options, false);
-        }
+         }
     }
 }
