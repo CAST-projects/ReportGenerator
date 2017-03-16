@@ -268,15 +268,15 @@ namespace CastReporting.Reporting
             {
                 string name = curResult?.name ?? prevResult?.name ?? Constants.No_Value;
                 metricType type = curResult?.type ?? prevResult?.type ?? metricType.NotKnown;
-                string curRes = Constants.No_Value;
-                string prevRes = Constants.No_Value;
+                string curRes = format ? Constants.No_Value : "0";
+                string prevRes = format ? Constants.No_Value : "0";
                 switch (type)
                 {
                     case metricType.BusinessCriteria:
                     case metricType.TechnicalCriteria:
                     case metricType.QualityRule:
-                        curRes = curResult?.result?.ToString("N2") ?? Constants.No_Value;
-                        prevRes = prevResult?.result?.ToString("N2") ?? Constants.No_Value;
+                        curRes = curResult?.result?.ToString("N2") ?? (format ? Constants.No_Value : "0") ;
+                        prevRes = prevResult?.result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                         break;
                     case metricType.SizingMeasure:
                     case metricType.BackgroundFact:
@@ -287,8 +287,8 @@ namespace CastReporting.Reporting
                         }
                         else
                         {
-                            curRes = curResult?.result?.ToString() ?? Constants.No_Value;
-                            prevRes = prevResult?.result?.ToString() ?? Constants.No_Value;
+                            curRes = curResult?.result?.ToString() ?? "0";
+                            prevRes = prevResult?.result?.ToString() ?? "0";
 
                         }
                         break;
@@ -303,8 +303,8 @@ namespace CastReporting.Reporting
                     type = type,
                     curResult = curRes,
                     prevResult = prevRes,
-                    evolution = Constants.No_Value,
-                    evolutionPercent = Constants.No_Value
+                    evolution = format ? Constants.No_Value : "0",
+                    evolutionPercent = format ? Constants.No_Value : "0"
                 };
             }
 
@@ -312,15 +312,15 @@ namespace CastReporting.Reporting
             {
                 string name = curResult?.name ?? prevResult?.name ?? Constants.No_Value;
                 metricType type = curResult?.type ?? prevResult?.type ?? metricType.NotKnown;
-                string curRes = Constants.No_Value;
-                string prevRes = Constants.No_Value;
+                string curRes = format ? Constants.No_Value : "0";
+                string prevRes = format ? Constants.No_Value : "0";
                 switch (type)
                 {
                     case metricType.BusinessCriteria:
                     case metricType.TechnicalCriteria:
                     case metricType.QualityRule:
-                        curRes = curResult?.result?.ToString("N2") ?? Constants.No_Value;
-                        prevRes = prevResult?.result?.ToString("N2") ?? Constants.No_Value;
+                        curRes = curResult?.result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
+                        prevRes = prevResult?.result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                         break;
                     case metricType.SizingMeasure:
                     case metricType.BackgroundFact:
@@ -331,8 +331,8 @@ namespace CastReporting.Reporting
                         }
                         else
                         {
-                            curRes = curResult?.result?.ToString() ?? Constants.No_Value;
-                            prevRes = prevResult?.result?.ToString() ?? Constants.No_Value;
+                            curRes = curResult?.result?.ToString() ?? "0";
+                            prevRes = prevResult?.result?.ToString() ?? "0";
                         }
                         break;
                     case metricType.NotKnown:
@@ -347,8 +347,8 @@ namespace CastReporting.Reporting
                     type = type,
                     curResult = curRes,
                     prevResult = prevRes,
-                    evolution = Constants.No_Value,
-                    evolutionPercent = Constants.No_Value
+                    evolution = format ? Constants.No_Value : "0",
+                    evolutionPercent = format ? Constants.No_Value : "0"
                 };
 
             }
@@ -369,14 +369,14 @@ namespace CastReporting.Reporting
                         finalPrevRes = prevResult.result.Value.ToString("N2");
                         evolution = (curResult.result - prevResult.result).Value.ToString("N2");
                         evp = Math.Abs((double)prevResult.result) > 0.0 ? (curResult.result - prevResult.result) / prevResult.result : null;
-                        evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
+                        evolPercent = evp != null ? evp.FormatPercent() : format ? Constants.No_Value : "0";
                     }
                     else
                     {
-                        finalCurRes = Constants.No_Value;
-                        finalPrevRes = Constants.No_Value;
-                        evolution = Constants.No_Value;
-                        evolPercent = Constants.No_Value;
+                        finalCurRes = format ? Constants.No_Value : "0";
+                        finalPrevRes = format ? Constants.No_Value : "0";
+                        evolution = format ? Constants.No_Value : "0";
+                        evolPercent = format ? Constants.No_Value : "0";
                     }
                     break;
                 case metricType.SizingMeasure:
@@ -396,21 +396,21 @@ namespace CastReporting.Reporting
                             evolution = (curResult.result - prevResult.result).ToString();
                         }
                         evp = Math.Abs((double)prevResult.result) > 0.0 ? (curResult.result - prevResult.result) / prevResult.result : null;
-                        evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
+                        evolPercent = evp != null ? evp.FormatPercent() : format ? Constants.No_Value : "0";
                     }
                     else
                     {
-                        finalCurRes = Constants.No_Value;
-                        finalPrevRes = Constants.No_Value;
-                        evolution = Constants.No_Value;
-                        evolPercent = Constants.No_Value;
+                        finalCurRes = format ? Constants.No_Value : "0";
+                        finalPrevRes = format ? Constants.No_Value : "0";
+                        evolution = format ? Constants.No_Value : "0";
+                        evolPercent = format ? Constants.No_Value : "0";
                     }
                     break;
                 case metricType.NotKnown:
-                    finalCurRes = Constants.No_Value;
-                    finalPrevRes = Constants.No_Value;
-                    evolution = Constants.No_Value;
-                    evolPercent = Constants.No_Value;
+                    finalCurRes = format ? Constants.No_Value : "0";
+                    finalPrevRes = format ? Constants.No_Value : "0";
+                    evolution = format ? Constants.No_Value : "0";
+                    evolPercent = format ? Constants.No_Value : "0";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

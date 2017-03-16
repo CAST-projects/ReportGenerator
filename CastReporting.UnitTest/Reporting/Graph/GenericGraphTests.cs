@@ -332,15 +332,15 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 "DssAdmin - Total Quality Index", "DssAdmin - Efficiency",
                 "Pchit - Total Quality Index", "Pchit - Efficiency"});
             expectedData.AddRange(new List<string> { "ADGAutoSnap_Dream Team_4 - 4", " ", " ", " ", " ", " ", " ", " ", " " });
-            expectedData.AddRange(new List<string> { "    JEE", "2.35", "2.64", "n/a", "n/a", "n/a", "n/a", "n/a", "n/a" });
-            expectedData.AddRange(new List<string> { "    PL/SQL", "n/a", "n/a", "2.40", "1.71", "n/a", "n/a", "n/a", "n/a" });
-            expectedData.AddRange(new List<string> { "    C++", "n/a", "n/a", "n/a", "n/a", "3.08", "3.31", "n/a", "n/a" });
-            expectedData.AddRange(new List<string> { "    .NET", "n/a", "n/a", "n/a", "n/a", "n/a", "n/a", "2.62", "2.14" });
+            expectedData.AddRange(new List<string> { "    JEE", "2.35", "2.64", "0", "0", "0", "0", "0", "0" });
+            expectedData.AddRange(new List<string> { "    PL/SQL", "0", "0", "2.40", "1.71", "0", "0", "0", "0" });
+            expectedData.AddRange(new List<string> { "    C++", "0", "0", "0", "0", "3.08", "3.31", "0", "0" });
+            expectedData.AddRange(new List<string> { "    .NET", "0", "0", "0", "0", "0", "0", "2.62", "2.14" });
             expectedData.AddRange(new List<string> { "ADGAutoSnap_Dream Team_1 - 1", " ", " ", " ", " ", " ", " ", " ", " " });
-            expectedData.AddRange(new List<string> { "    JEE", "2.43", "2.64", "n/a", "n/a", "n/a", "n/a", "n/a", "n/a" });
-            expectedData.AddRange(new List<string> { "    PL/SQL", "n/a", "n/a", "2.40", "1.71", "n/a", "n/a", "n/a", "n/a" });
-            expectedData.AddRange(new List<string> { "    C++", "n/a", "n/a", "n/a", "n/a", "3.08", "3.32", "n/a", "n/a" });
-            expectedData.AddRange(new List<string> { "    .NET", "n/a", "n/a", "n/a", "n/a", "n/a", "n/a", "2.63", "2.09" });
+            expectedData.AddRange(new List<string> { "    JEE", "2.43", "2.64", "0", "0", "0", "0", "0", "0" });
+            expectedData.AddRange(new List<string> { "    PL/SQL", "0", "0", "2.40", "1.71", "0", "0", "0", "0" });
+            expectedData.AddRange(new List<string> { "    C++", "0", "0", "0", "0", "3.08", "3.32", "0", "0" });
+            expectedData.AddRange(new List<string> { "    .NET", "0", "0", "0", "0", "0", "0", "2.63", "2.09" });
             TestUtility.AssertTableContent(table, expectedData, 9, 11);
         }
 
