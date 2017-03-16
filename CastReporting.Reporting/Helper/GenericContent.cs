@@ -92,6 +92,9 @@ namespace CastReporting.Reporting.Helper
             }
         }
 
+        /*
+         * the bool format parameter is true for table component, and false for graph component
+         */
         public static TableDefinition Content(ReportData reportData, Dictionary<string, string> options, bool format)
         {
             var rowData = new List<string>();
@@ -150,6 +153,14 @@ namespace CastReporting.Reporting.Helper
                         {
                             if (_posConfig[i].Parameters.Contains("CURRENT") && reportData.CurrentSnapshot != null) snapshots.Add(reportData.CurrentSnapshot);
                             if (_posConfig[i].Parameters.Contains("PREVIOUS") && reportData.PreviousSnapshot != null) snapshots.Add(reportData.PreviousSnapshot);
+                            if (!format && _posConfig[i].Parameters.Contains("PREVIOUS") && reportData.PreviousSnapshot == null)
+                            {
+                                if (_posConfig[i].Parameters.Contains("CURRENT") && reportData.CurrentSnapshot != null)
+                                {
+                                    snapshotConfiguration = new[] { "CURRENT" };
+                                    _posConfig[i].Parameters = snapshotConfiguration;
+                                }
+                            }
                         }
                         break;
                     case "METRICS":

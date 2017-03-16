@@ -103,6 +103,34 @@ namespace CastReporting.UnitTest.Reporting.Tables
         }
 
         [TestMethod]
+        [DeploymentItem(@".\Data\Snapshot_QIresults1.json", "Data")]
+        public void TestSample3OneSnapshot()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_TABLE;COL1=METRICS,ROW1=SNAPSHOTS,METRICS=HEALTH_FACTOR,SNAPSHOTS=CURRENT|PREVIOUS
+             * @".\Data\Snapshot_QIresults1.json" is the result of http://localhost:7070/CAST-AAD-AED/rest/AED2/applications/3/snapshots/4/results?quality-indicators=(60011,60012,60013,60014,60016,60017,61001,61003,61007,1576,1596,4656,7254)&modules=$all&technologies=$all&categories=$all
+             * @".\Data\Snapshot_QIresults2.json" is the result of http://localhost:7070/CAST-AAD-AED/rest/AED2/applications/3/snapshots/3/results?quality-indicators=(60011,60012,60013,60014,60016,60017,61001,61003,61007,1576,1596,4656,7254)&modules=$all&technologies=$all&categories=$all
+             */
+            ReportData reportData = TestUtility.PrepaReportData("AppliAEP",
+                null, @".\Data\Snapshot_QIresults1.json", "AED3/applications/3/snapshots/4", "Snap_v1.1.4", "v1.1.4",
+                null, null, null, null, null);
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "METRICS"},
+                {"ROW1", "SNAPSHOTS"},
+                {"METRICS", "HEALTH_FACTOR"},
+                {"SNAPSHOTS", "CURRENT|PREVIOUS"}
+            };
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Snapshots", "Transferability", "Changeability", "Robustness", "Efficiency", "Security" });
+            expectedData.AddRange(new List<string> { "Snap_v1.1.4 - v1.1.4", "3.12", "2.98", "2.55", "1.88", "1.70" });
+            expectedData.AddRange(new List<string> { " - ", "n/a", "n/a", "n/a", "n/a", "n/a" });
+            TestUtility.AssertTableContent(table, expectedData, 6, 3);
+        }
+
+        [TestMethod]
         [DeploymentItem(@".\Data\Modules1.json", "Data")]
         [DeploymentItem(@".\Data\Snapshot_QIresults1.json", "Data")]
         [DeploymentItem(@".\Data\Snapshot_QIresults2.json", "Data")]
