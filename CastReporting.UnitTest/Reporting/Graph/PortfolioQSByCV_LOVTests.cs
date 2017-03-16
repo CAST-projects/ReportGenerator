@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using CastReporting.Domain;
 using CastReporting.Reporting.Block.Graph;
 using CastReporting.Reporting.ReportingModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

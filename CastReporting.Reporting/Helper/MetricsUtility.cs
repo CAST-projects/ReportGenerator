@@ -395,7 +395,7 @@ namespace CastReporting.Reporting
                             finalPrevRes = prevResult.result.ToString();
                             evolution = (curResult.result - prevResult.result).ToString();
                         }
-                        evp = prevResult.result != 0 ? (curResult.result - prevResult.result) / prevResult.result : null;
+                        evp = Math.Abs((double)prevResult.result) > 0.0 ? (curResult.result - prevResult.result) / prevResult.result : null;
                         evolPercent = evp != null ? evp.FormatPercent() : Constants.No_Value;
                     }
                     else
