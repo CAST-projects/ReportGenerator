@@ -172,61 +172,7 @@ namespace CastReporting.Reporting.Helper
                         else
                         {
                             metrics.AddRange(_posConfig[i].Parameters);
-                            if (metrics.Contains("HEALTH_FACTOR"))
-                            {
-                                metrics.Remove("HEALTH_FACTOR");
-                                metrics.AddRange(new[] { "60011", "60012", "60013", "60014", "60016" });
-                            }
-                            if (metrics.Contains("BUSINESS_CRITERIA"))
-                            {
-                                metrics.Remove("BUSINESS_CRITERIA");
-                                metrics.AddRange(reportData.CurrentSnapshot.BusinessCriteriaResults.Select(_ => _.Reference.Key.ToString()));
-                            }
-                            if (metrics.Contains("TECHNICAL_CRITERIA"))
-                            {
-                                metrics.Remove("TECHNICAL_CRITERIA");
-                                metrics.AddRange(reportData.CurrentSnapshot.TechnicalCriteriaResults.Select(_ => _.Reference.Key.ToString()));
-                            }
-                            if (metrics.Contains("CRITICAL_QUALITY_RULES"))
-                            {
-                                metrics.Remove("CRITICAL_QUALITY_RULES");
-                                metrics.AddRange(reportData.CurrentSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == 60017).CriticalRulesViolation.Select(_ => _.Reference.Key.ToString()));
-                            }
-                            if (metrics.Contains("QUALITY_RULES"))
-                            {
-                                metrics.Remove("QUALITY_RULES");
-                                metrics.AddRange(reportData.CurrentSnapshot.QualityRulesResults.Select(_ => _.Reference.Key.ToString()));
-                            }
-                            if (metrics.Contains("TECHNICAL_SIZING"))
-                            {
-                                metrics.Remove("TECHNICAL_SIZING");
-                                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "technical-size-measures").Select(_ => _.Reference.Key.ToString()));
-                            }
-                            if (metrics.Contains("FUNCTIONAL_WEIGHT"))
-                            {
-                                metrics.Remove("FUNCTIONAL_WEIGHT");
-                                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "functional-weight-measures").Select(_ => _.Reference.Key.ToString()));
-                            }
-                            if (metrics.Contains("TECHNICAL_DEBT"))
-                            {
-                                metrics.Remove("TECHNICAL_DEBT");
-                                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "technical-debt-statistics").Select(_ => _.Reference.Key.ToString()));
-                            }
-                            if (metrics.Contains("VIOLATION"))
-                            {
-                                metrics.Remove("VIOLATION");
-                                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "violation-statistics").Select(_ => _.Reference.Key.ToString()));
-                            }
-                            if (metrics.Contains("CRITICAL_VIOLATION"))
-                            {
-                                metrics.Remove("CRITICAL_VIOLATION");
-                                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "critical-violation-statistics").Select(_ => _.Reference.Key.ToString()));
-                            }
-                            if (metrics.Contains("RUN_TIME"))
-                            {
-                                metrics.Remove("RUN_TIME");
-                                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "run-time-statistics").Select(_ => _.Reference.Key.ToString()));
-                            }
+                            BuildMetricsList(reportData, metrics);
                         }
                         _posConfig[i].Parameters = metrics.ToArray();
                         break;
@@ -354,6 +300,26 @@ namespace CastReporting.Reporting.Helper
                     }
                 }
             }
+            // implicit metrics
+            if (metrics.Count == 0)
+            {
+                string[] metricConfiguration = options.GetOption("METRICS")?.Split('|');
+                if (metricConfiguration != null)
+                {
+                    metrics.AddRange(metricConfiguration);
+                    BuildMetricsList(reportData, metrics);
+                    if (metrics.Count > 1)
+                    {
+                        var metric = metrics.FirstOrDefault();
+                        metrics.Clear();
+                        metrics.Add(metric);
+                    }
+                }
+                else
+                {
+                    metrics.Add("60017");
+                }
+            }
 
             #endregion
 
@@ -375,7 +341,7 @@ namespace CastReporting.Reporting.Helper
                     {
                         EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, null, string.Empty,format);
                         if (res.name == Constants.No_Value) continue;
-                        _posResults[positionMetrics] = res.name;
+                        if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                         foreach (string param in snapshotConfiguration)
                         {
                             switch (param)
@@ -414,7 +380,7 @@ namespace CastReporting.Reporting.Helper
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(_snapshot);
                             string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
                             if (name == Constants.No_Value) continue;
-                            _posResults[positionMetrics] = name;
+                            if (positionMetrics != -1) _posResults[positionMetrics] = name;
                             ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(_snapshot, int.Parse(_metricId));
                             foreach (string _violation in violations)
                             {
@@ -453,7 +419,7 @@ namespace CastReporting.Reporting.Helper
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(_snapshot);
                             string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
                             if (name == Constants.No_Value) continue;
-                            _posResults[positionMetrics] = name;
+                            if (positionMetrics != -1) _posResults[positionMetrics] = name;
                             ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(_snapshot, int.Parse(_metricId));
                             foreach (string _violation in criticalViolations)
                             {
@@ -505,7 +471,7 @@ namespace CastReporting.Reporting.Helper
                             _posResults[positionModules] = module.Name;
                             EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, module, string.Empty, format);
                             if (res.name == Constants.No_Value) continue;
-                            _posResults[positionMetrics] = res.name;
+                            if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                             foreach (string param in snapshotConfiguration)
                             {
                                 switch (param)
@@ -546,7 +512,7 @@ namespace CastReporting.Reporting.Helper
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(_snapshot);
                             string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
                             if (name == Constants.No_Value) continue;
-                            _posResults[positionMetrics] = name;
+                            if (positionMetrics != -1) _posResults[positionMetrics] = name;
                             foreach (Module _module in modules)
                             {
                                 _posResults[positionModules] = _module.Name;
@@ -592,7 +558,7 @@ namespace CastReporting.Reporting.Helper
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(_snapshot);
                             string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
                             if (name == Constants.No_Value) continue;
-                            _posResults[positionMetrics] = name;
+                            if (positionMetrics != -1) _posResults[positionMetrics] = name;
                             foreach (Module _module in modules)
                             {
                                 _posResults[positionModules] = _module.Name;
@@ -648,7 +614,7 @@ namespace CastReporting.Reporting.Helper
                             _posResults[positionTechnologies] = techno;
                             EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, null, techno, format);
                             if (res.name == Constants.No_Value) continue;
-                            _posResults[positionMetrics] = res.name;
+                            if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                             foreach (string param in snapshotConfiguration)
                             {
                                 switch (param)
@@ -689,7 +655,7 @@ namespace CastReporting.Reporting.Helper
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(_snapshot);
                             string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
                             if (name == Constants.No_Value) continue;
-                            _posResults[positionMetrics] = name;
+                            if (positionMetrics != -1) _posResults[positionMetrics] = name;
                             foreach (string techno in technologies)
                             {
                                 _posResults[positionTechnologies] = techno;
@@ -735,7 +701,7 @@ namespace CastReporting.Reporting.Helper
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(_snapshot);
                             string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
                             if (name == Constants.No_Value) continue;
-                            _posResults[positionMetrics] = name;
+                            if (positionMetrics != -1) _posResults[positionMetrics] = name;
                             foreach (string techno in technologies)
                             {
                                 _posResults[positionTechnologies] = techno;
@@ -794,7 +760,7 @@ namespace CastReporting.Reporting.Helper
                                 _posResults[positionTechnologies] = techno;
                                 EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, module, techno, format);
                                 if (res.name == Constants.No_Value) continue;
-                                _posResults[positionMetrics] = res.name;
+                                if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                                 foreach (string param in snapshotConfiguration)
                                 {
                                     switch (param)
@@ -836,7 +802,7 @@ namespace CastReporting.Reporting.Helper
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(_snapshot);
                             string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
                             if (name == Constants.No_Value) continue;
-                            _posResults[positionMetrics] = name;
+                            if (positionMetrics != -1) _posResults[positionMetrics] = name;
                             foreach (Module _module in modules)
                             {
                                 _posResults[positionModules] = _module.Name;
@@ -885,7 +851,7 @@ namespace CastReporting.Reporting.Helper
                             if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(_snapshot);
                             string name = MetricsUtility.GetMetricName(reportData, _snapshot, _metricId);
                             if (name == Constants.No_Value) continue;
-                            _posResults[positionMetrics] = name;
+                            if (positionMetrics != -1) _posResults[positionMetrics] = name;
                             foreach (Module _module in modules)
                             {
                                 _posResults[positionModules] = _module.Name;
@@ -1080,6 +1046,66 @@ namespace CastReporting.Reporting.Helper
             };
             return resultTable;
 
+        }
+
+        public static void BuildMetricsList(ReportData reportData, List<string> metrics)
+        {
+            if (metrics.Contains("HEALTH_FACTOR"))
+            {
+                metrics.Remove("HEALTH_FACTOR");
+                metrics.AddRange(new[] {"60011", "60012", "60013", "60014", "60016"});
+            }
+            if (metrics.Contains("BUSINESS_CRITERIA"))
+            {
+                metrics.Remove("BUSINESS_CRITERIA");
+                metrics.AddRange(reportData.CurrentSnapshot.BusinessCriteriaResults.Select(_ => _.Reference.Key.ToString()));
+            }
+            if (metrics.Contains("TECHNICAL_CRITERIA"))
+            {
+                metrics.Remove("TECHNICAL_CRITERIA");
+                metrics.AddRange(reportData.CurrentSnapshot.TechnicalCriteriaResults.Select(_ => _.Reference.Key.ToString()));
+            }
+            if (metrics.Contains("CRITICAL_QUALITY_RULES"))
+            {
+                metrics.Remove("CRITICAL_QUALITY_RULES");
+                var bizRes = reportData.CurrentSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == 60017);
+                if (bizRes != null) metrics.AddRange(bizRes.CriticalRulesViolation.Select(_ => _.Reference.Key.ToString()));
+            }
+            if (metrics.Contains("QUALITY_RULES"))
+            {
+                metrics.Remove("QUALITY_RULES");
+                metrics.AddRange(reportData.CurrentSnapshot.QualityRulesResults.Select(_ => _.Reference.Key.ToString()));
+            }
+            if (metrics.Contains("TECHNICAL_SIZING"))
+            {
+                metrics.Remove("TECHNICAL_SIZING");
+                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "technical-size-measures").Select(_ => _.Reference.Key.ToString()));
+            }
+            if (metrics.Contains("FUNCTIONAL_WEIGHT"))
+            {
+                metrics.Remove("FUNCTIONAL_WEIGHT");
+                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "functional-weight-measures").Select(_ => _.Reference.Key.ToString()));
+            }
+            if (metrics.Contains("TECHNICAL_DEBT"))
+            {
+                metrics.Remove("TECHNICAL_DEBT");
+                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "technical-debt-statistics").Select(_ => _.Reference.Key.ToString()));
+            }
+            if (metrics.Contains("VIOLATION"))
+            {
+                metrics.Remove("VIOLATION");
+                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "violation-statistics").Select(_ => _.Reference.Key.ToString()));
+            }
+            if (metrics.Contains("CRITICAL_VIOLATION"))
+            {
+                metrics.Remove("CRITICAL_VIOLATION");
+                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "critical-violation-statistics").Select(_ => _.Reference.Key.ToString()));
+            }
+            if (metrics.Contains("RUN_TIME"))
+            {
+                metrics.Remove("RUN_TIME");
+                metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "run-time-statistics").Select(_ => _.Reference.Key.ToString()));
+            }
         }
     }
 }
