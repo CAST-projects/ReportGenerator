@@ -527,12 +527,12 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                             if ((endCol - startCol == 0 && endRow - startRow == 0) && (startCol == 1 || startRow == 1))
                             	continue;
                             // otherwise this is mapped to a range: update
-                            if (startCol == endCol && endRow != content.NbRows && endCol - startCol != 0)
+                            if (startCol == endCol && endRow != content.NbRows && startRow != endRow)
                             {
                                 endRow = content.NbRows; // -startRow;
                                 oneFormula.Value = WorksheetAccessorExt.SetFormula(sheetName, startRow, startCol, endRow, endCol);
                             }
-                            if (startRow == endRow && endCol != content.NbColumns && endRow - startRow != 0)
+                            if (startRow == endRow && endCol != content.NbColumns && startCol != endCol)
                             {
                                 endCol = content.NbColumns; // -startRow;
                                 oneFormula.Value = WorksheetAccessorExt.SetFormula(sheetName, startRow, startCol, endRow, endCol);
