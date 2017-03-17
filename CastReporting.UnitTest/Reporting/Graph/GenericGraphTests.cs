@@ -431,6 +431,107 @@ namespace CastReporting.UnitTest.Reporting.Graph
         }
 
         [TestMethod]
+        [DeploymentItem(@".\Data\ModulesDreamTeam.json", "Data")]
+        [DeploymentItem(@".\Data\DreamTeamSnap4Sample10.json", "Data")]
+        public void TestSample10ChosenMetric()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_GRAPH;COL1=MODULES,ROW1=CRITICAL_VIOLATIONS,
+             * METRICS=60016,CRITICAL_VIOLATIONS=ALL,MODULES=ALL
+             * ModulesDreamTeam.json : AED3/applications/7/modules
+             * DreamTeamSnap4Sample10.json : AED3/applications/7/snapshots/15/results?quality-indicators=(business-criteria)&select=(evolutionSummary)&modules=$all
+             */
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+             @".\Data\ModulesDreamTeam.json", @".\Data\DreamTeamSnap4Sample10.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+             null, null, null, null, null);
+
+            var component = new GenericGraph();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "MODULES"},
+                {"ROW1", "VIOLATIONS"},
+                {"METRICS", "60016" },
+                {"VIOLATIONS", "ALL" },
+                {"MODULES", "ALL"}
+            };
+            TestUtility.SetCulture("en-US");
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Violations", "Adg", "Central", "DssAdmin", "Pchit" });
+            expectedData.AddRange(new List<string> { "Total Violations", "1394", "129", "851", "78" });
+            expectedData.AddRange(new List<string> { "Added Violations", "144", "0", "2", "35" });
+            expectedData.AddRange(new List<string> { "Removed Violations", "104", "0", "19", "9" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 4);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\ModulesDreamTeam.json", "Data")]
+        [DeploymentItem(@".\Data\DreamTeamSnap4Sample10.json", "Data")]
+        public void TestSample10ImplicitMetric()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_GRAPH;COL1=MODULES,ROW1=CRITICAL_VIOLATIONS,
+             * CRITICAL_VIOLATIONS=ALL,MODULES=ALL
+             * ModulesDreamTeam.json : AED3/applications/7/modules
+             * DreamTeamSnap4Sample10.json : AED3/applications/7/snapshots/15/results?quality-indicators=(business-criteria)&select=(evolutionSummary)&modules=$all
+             */
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+             @".\Data\ModulesDreamTeam.json", @".\Data\DreamTeamSnap4Sample10.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+             null, null, null, null, null);
+
+            var component = new GenericGraph();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "MODULES"},
+                {"ROW1", "CRITICAL_VIOLATIONS"},
+                {"CRITICAL_VIOLATIONS", "ALL" },
+                {"MODULES", "ALL"}
+            };
+            TestUtility.SetCulture("en-US");
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Critical Violations", "Adg", "Central", "DssAdmin", "Pchit" });
+            expectedData.AddRange(new List<string> { "Total Critical Violations", "392", "105", "4", "19" });
+            expectedData.AddRange(new List<string> { "Added Critical Violations", "31", "0", "0", "6" });
+            expectedData.AddRange(new List<string> { "Removed Critical Violations", "0", "0", "0", "1" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 4);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\ModulesDreamTeam.json", "Data")]
+        [DeploymentItem(@".\Data\DreamTeamSnap4Sample10.json", "Data")]
+        public void TestSample10SeveralChosenMetric()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_GRAPH;COL1=MODULES,ROW1=CRITICAL_VIOLATIONS,
+             * CRITICAL_VIOLATIONS=ALL,MODULES=ALL
+             * ModulesDreamTeam.json : AED3/applications/7/modules
+             * DreamTeamSnap4Sample10.json : AED3/applications/7/snapshots/15/results?quality-indicators=(business-criteria)&select=(evolutionSummary)&modules=$all
+             */
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+             @".\Data\ModulesDreamTeam.json", @".\Data\DreamTeamSnap4Sample10.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+             null, null, null, null, null);
+
+            var component = new GenericGraph();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "MODULES"},
+                {"ROW1", "CRITICAL_VIOLATIONS"},
+                {"CRITICAL_VIOLATIONS", "ALL" },
+                {"MODULES", "ALL"},
+                {"METRICS", "60011|60012|60013" }
+            };
+            TestUtility.SetCulture("en-US");
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Critical Violations", "Adg", "Central", "DssAdmin", "Pchit" });
+            expectedData.AddRange(new List<string> { "Total Critical Violations", "22", "0", "0", "1" });
+            expectedData.AddRange(new List<string> { "Added Critical Violations", "0", "0", "0", "0" });
+            expectedData.AddRange(new List<string> { "Removed Critical Violations", "0", "0", "0", "0" });
+            TestUtility.AssertTableContent(table, expectedData, 5, 4);
+        }
+
+        [TestMethod]
         [DeploymentItem(@".\Data\DreamTeamSnap4Sample11.json", "Data")]
         public void TestSample11()
         {
