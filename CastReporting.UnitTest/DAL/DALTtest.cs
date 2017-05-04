@@ -57,6 +57,7 @@ namespace CastReporting.UnitTest.DAL
             Assert.IsTrue( result);           
         }
 
+        [IgnoreAttribute()]
         [TestMethod()]
         public void IsHttpsTlsv12ServiceValidTest()
         {
