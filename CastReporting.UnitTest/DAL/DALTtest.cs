@@ -37,7 +37,7 @@ namespace CastReporting.UnitTest.DAL
 
         readonly WSConnection _connection2 = new WSConnection()
         {
-            Url = "https://192.168.17.26:8400/CAST-RESTAPI/rest/",
+            Url = "https://dev-adg-ora112:8443/CAST-AAD-AED-822/rest/",
             Login = "cio",
             Password = "cast",
             IsActive = true,
@@ -57,7 +57,6 @@ namespace CastReporting.UnitTest.DAL
             Assert.IsTrue( result);           
         }
 
-        [IgnoreAttribute()]
         [TestMethod()]
         public void IsHttpsTlsv12ServiceValidTest()
         {
