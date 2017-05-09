@@ -106,13 +106,13 @@ namespace CastReporting.Reporting.ReportingModel
         /// <summary>
         /// 
         /// </summary>
-        public IRuleExplorer RuleExplorer;
+        public IRuleExplorer RuleExplorer { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public ISnapshotExplorer SnapshotExplorer;
- 
+        public ISnapshotExplorer SnapshotExplorer { get; set; }
+
 
         /// <summary>
         /// 

@@ -600,7 +600,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<Exception>(WorkerThreadException), ex);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), ex);
                 }
             }
             else
@@ -802,7 +802,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<Exception>(WorkerThreadException), ex);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), ex);
                 }
             }
         }

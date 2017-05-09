@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CastReportingException.cs" />
     <Compile Include="CryptoHelper.cs" />
     <Compile Include="DateUtil.cs" />
     <Compile Include="ExpressionEvaluator.cs" />

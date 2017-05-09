@@ -16,6 +16,7 @@
 using CastReporting.BLL;
 using CastReporting.Domain;
 using System;
+using Cast.Util;
 
 namespace CastReporting.UI.WPF.ViewModel
 {
@@ -49,7 +50,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// 
         /// </summary>
         /// <param name="ex"></param>
-        protected static void WorkerThreadException(Exception ex)
+        protected static void WorkerThreadException(CastReportingException ex)
         {
             throw ex;
         }

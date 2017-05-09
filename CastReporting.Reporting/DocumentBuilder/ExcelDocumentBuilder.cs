@@ -33,9 +33,9 @@ namespace CastReporting.Reporting.Builder
 {
     internal class ExcelDocumentBuilder : DocumentBuilderBase
     {
-        public string StrFinalTempFile;
+        public string StrFinalTempFile { get; set; }
         // ReSharper disable once InconsistentNaming
-        public ReportData reportData;
+        public ReportData reportData { get; set; }
 
         #region CONSTRUCTORS
 
@@ -154,8 +154,8 @@ namespace CastReporting.Reporting.Builder
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         private class TableInfo
         {
-            public Cell cell;
-            public TableDefinition table;
+            public Cell cell { get; set; }
+            public TableDefinition table { get; set; }
         }
 
         private void BuildReportTemplateEFPFlexi(string strTargetFile)
