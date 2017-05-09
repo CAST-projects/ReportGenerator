@@ -9,7 +9,7 @@ namespace CastReporting.UI.WPF.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Messages.ResourceManager.GetString(parameter.ToString());
+            return parameter != null ? Messages.ResourceManager.GetString(parameter.ToString()) : null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

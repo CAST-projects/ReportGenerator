@@ -24,7 +24,7 @@ namespace CastReporting.UI.WPF.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool isBold = (bool)value;
+            bool isBold = value != null && (bool)value;
             return isBold ? FontWeights.Bold : FontWeights.Normal;
       
 
@@ -32,8 +32,8 @@ namespace CastReporting.UI.WPF.Converter
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null) return null;
             Visibility visibility = (Visibility)value;
-
             return (visibility == Visibility.Visible);
         }
     }

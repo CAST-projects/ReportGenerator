@@ -64,6 +64,7 @@ namespace CastReporting.Reporting.Block.Table
             const string metricFormatPrecision = "N2";
 
             string numCritPerFileIfNegative;
+            // ReSharper disable once CompareOfFloatsByEqualityOperator -- special case
             if (numCritPerFile == -1)
                 numCritPerFileIfNegative = Constants.No_Value;
             else

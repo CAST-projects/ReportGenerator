@@ -23,7 +23,7 @@ namespace CastReporting.UI.WPF.Common
         private void OnButtonClick(object sender, System.Windows.RoutedEventArgs e)
         {
             var button = sender as Button;
-            if (button != null)
+            if (button?.ContextMenu != null)
             {
                 button.ContextMenu.IsEnabled = true;
                 button.ContextMenu.PlacementTarget = button;

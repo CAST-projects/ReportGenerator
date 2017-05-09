@@ -37,6 +37,7 @@ namespace CastReporting.Reporting.Block.Table
             double? criticalViolation = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesNumber);
             double? numCritPerFile = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerFileNumber);
             string numCritPerFileIfNegative;
+            // ReSharper disable once CompareOfFloatsByEqualityOperator -- special case
             if (numCritPerFile == -1)
                 numCritPerFileIfNegative = Constants.No_Value;
             else
@@ -69,6 +70,7 @@ namespace CastReporting.Reporting.Block.Table
             double? numCritPerFilePrev = MeasureUtility.GetSizingMeasure(reportData.PreviousSnapshot, 
                 Constants.SizingInformations.ViolationsToCriticalQualityRulesPerFileNumber);
             string numCritPerFilePrevIfNegative;
+            // ReSharper disable once CompareOfFloatsByEqualityOperator -- special case
             if (numCritPerFilePrev == -1)
                 numCritPerFilePrevIfNegative = Constants.No_Value;
             else
