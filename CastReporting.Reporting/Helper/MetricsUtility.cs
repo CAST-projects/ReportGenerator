@@ -31,36 +31,6 @@ namespace CastReporting.Reporting
         }
 
         /// <summary>
-        /// This method return the result (grade or value) of the metric from getting it in the results of the snapshot
-        /// The metric id can be a BC, TC, QR, sizing or background fact measure
-        /// </summary>
-        /// <param name="reportData"></param>
-        /// <param name="snapshot"></param>
-        /// <param name="metricId"></param>
-        /// <param name="format"></param> format is true for table component and false for graph component
-        /// <returns></returns>
-        public static string GetMetricResult(ReportData reportData, Snapshot snapshot, string metricId, bool format)
-        {
-            string result = ((snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.DetailResult.Grade).FirstOrDefault()?.ToString("N2") ??
-                       snapshot.TechnicalCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.DetailResult.Grade).FirstOrDefault()?.ToString("N2")) ?? 
-                      snapshot.QualityRulesResults?.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.DetailResult.Grade).FirstOrDefault()?.ToString("N2")) ??
-                     snapshot.SizingMeasuresResults?.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.DetailResult.Value).FirstOrDefault()?.ToString("N0"); 
-            if (result != null) return result;
-            Result bfResult = reportData.SnapshotExplorer.GetBackgroundFacts(snapshot.Href, metricId, true, true).FirstOrDefault();
-            if (bfResult == null || !bfResult.ApplicationResults.Any()) return null;
-            if (format)
-            {
-                result = bfResult.ApplicationResults[0].DetailResult.Value?.ToString("N0") ?? Constants.No_Value;
-            }
-            else
-            {
-                result = bfResult.ApplicationResults[0].DetailResult.Value?.ToString() ?? Constants.No_Value;
-            }
-            
-            return result;
-        }
-
-        /// <summary>
         /// This method return the name, type and result (grade or value) of the metric from getting it in the results of the snapshot
         /// The metric id can be a BC, TC, QR, sizing or background fact measure
         /// </summary>

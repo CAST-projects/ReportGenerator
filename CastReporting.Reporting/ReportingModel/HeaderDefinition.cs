@@ -32,27 +32,6 @@ namespace CastReporting.Reporting.ReportingModel
                 Append(header);
         }
 
-        public void Remove(string header) {
-            if (ReadOnly)
-                throw new InvalidOperationException("Cannot remove a header after data has been added");
-            Headers.Remove(header);
-        }
-
-        public void InsertBefore(string header, string newHeader)
-        {
-            var pos = IndexOf(header);
-            Insert(pos < 0 ? 0 : pos, newHeader);
-        }
-
-        public void InsertAfter(string header, string newHeader) {
-            var pos = IndexOf(header);
-            if (pos < 0) {
-                Append(newHeader);
-            } else {
-                Insert(pos, newHeader);
-            }
-        }
-
         public IEnumerable<string> Labels => Headers;
 
         public int Count => Headers.Count;

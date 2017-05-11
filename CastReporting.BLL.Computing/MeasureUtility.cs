@@ -39,12 +39,6 @@ namespace CastReporting.BLL.Computing
             return measure?.ModulesResult.FirstOrDefault(_=>_.Module.Id == moduleId)?.DetailResult?.Value;
         }
 
-        public static double? GetSizingMeasureTechnologie(Snapshot snapshot, string techno, int measureId)
-        {
-            var measure = (snapshot?.SizingMeasuresResults)?.FirstOrDefault(_ => _.Reference.Key == measureId);
-            return measure?.TechnologyResult.FirstOrDefault(_ => _.Technology == techno)?.DetailResult?.Value;
-        }
-
         public static double? GetAddedFunctionPoint(Snapshot snapshot)
         {
             return GetSizingMeasure(snapshot, Constants.SizingInformations.AddedFunctionPoints);
@@ -213,25 +207,6 @@ namespace CastReporting.BLL.Computing
         {          
             return (int?)GetSizingMeasure(snapshot, Constants.SizingInformations.CriticalQualityRulesWithViolationsNewModifiedCodeNumber);
         }
-        public static int? GetCriticalViolations(Snapshot snapshot)
-        {//CriticalQualityRulesWithViolationsNumber
-            return (int?)GetSizingMeasure(snapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesNumber);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="snapshot"></param>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public static double? GetSumMetric(Snapshot snapshot, int index)
-        {
-            var result = snapshot?.SizingMeasuresResults?.Where(_ => _.Reference.Key == index && _.DetailResult != null)
-                .Sum(_ => _.DetailResult.Value);
-
-            return result;
-        }
-
 
         /// <summary>
         /// 
@@ -348,24 +323,6 @@ namespace CastReporting.BLL.Computing
             return technologyInfos;
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="snapshot"></param>
-        /// <param name="moduleId"></param>
-        /// <param name="measureId"></param>
-        /// <returns></returns>
-        public static double? GetModuleMeasureGrade(Snapshot snapshot, int moduleId, Constants.SizingInformations measureId)
-        {
-            var res = snapshot.SizingMeasuresResults
-                           .Where(_ => _.Reference.Key == (int)measureId && _.ModulesResult != null)
-                           .SelectMany(_ => _.ModulesResult)
-                           .Where(_ => _.Module.Id == moduleId && _.DetailResult != null)
-                           .Select(_ => _.DetailResult.Grade)
-                           .FirstOrDefault();
-            return MathUtility.GetRound(res);
-        }
 
         /// <summary>
         /// 

@@ -65,32 +65,6 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             return Content(client, options);
         }
 
-        public void SetContentExcel(ReportData client, Dictionary<string, string> options, string cellReference, Cell cell)
-        {
-            LogHelper.Instance.LogDebugFormat("Start TextBlock generation : Type {0}", GetType().Name);
-            Stopwatch treatmentWatch = Stopwatch.StartNew();
-            string content = Content(client, options);
-
-            decimal dx;
-            if (decimal.TryParse(content, out dx))
-            {
-                cell.CellValue = new CellValue(dx.ToString("G", NumberFormatInfo.InvariantInfo));
-                cell.DataType = CellValues.Number;
-            }
-            else
-            {
-                cell.CellValue = new CellValue(content);
-                cell.DataType = CellValues.String;
-            }
-            cell.CellReference = cellReference;
-
-            treatmentWatch.Stop();
-            LogHelper.Instance.LogDebugFormat
-                ("End TextBlock generation ({0}) in {1} ms"
-                , GetType().Name
-                , treatmentWatch.ElapsedMilliseconds.ToString()
-                );
-        }
         public static void BuildContent(ReportData client, OpenXmlPartContainer container, BlockItem block, string blockName, Dictionary<string, string> options)
         {
             TextBlock instance = BlockHelper.GetAssociatedBlockInstance<TextBlock>(blockName);

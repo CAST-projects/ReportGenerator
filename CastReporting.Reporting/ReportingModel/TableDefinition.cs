@@ -27,7 +27,6 @@ namespace CastReporting.Reporting.ReportingModel
     {
         #region ATTRIBUTES
         public delegate void FormatCellEventHandler(int row, int col, XElement cell, TableDefinition table);
-        public FormatCellEventHandler FormatCellEvent { get; set; }
         #endregion ATTRIBUTES
 
 
@@ -67,12 +66,7 @@ namespace CastReporting.Reporting.ReportingModel
        
         #endregion PROPERTIES
 
-        #region METHODS
-        public void FormatCell(int row, int col, XElement cell, TableDefinition table)
-        {
-            FormatCellEvent?.Invoke(row, col, cell, table);
-        }
-        #endregion METHODS
+        
     }
 
 }

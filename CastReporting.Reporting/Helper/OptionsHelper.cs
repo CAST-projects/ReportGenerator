@@ -13,19 +13,12 @@
  * limitations under the License.
  *
  */
-using System;
 using System.Collections.Generic;
 
 namespace CastReporting.Reporting.Helper
 {
     public static class OptionsHelper
     {
-        public static bool HasOption(this Dictionary<string, string> options, string key) {
-            if (options == null)
-                return false;
-            return options.ContainsKey(key);
-        }
-
         public static string GetOption(this Dictionary<string, string> options, string key, string defaultValue = default(string)) {
             string value;
             if (options == null || !options.TryGetValue(key, out value)) {
@@ -76,17 +69,5 @@ namespace CastReporting.Reporting.Helper
             return value;
         }
 
-        public static List<int> GetIntListOption(this Dictionary<string, string> options, string key, char separator, bool distinct) {
-            var values = new List<int>();
-            var s = options.GetOption(key);
-            if (string.IsNullOrWhiteSpace(s)) return values;
-            foreach (var entry in s.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries)) {
-                int num;
-                if (int.TryParse(entry, out num) && (!distinct || !values.Contains(num))) {
-                    values.Add(num);
-                }
-            }
-            return values;
-        }
     }
 }
