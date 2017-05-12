@@ -24,14 +24,14 @@ namespace CastReporting.UI.WPF.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool visibility = (bool)value;
+            bool visibility = value != null && (bool)value;
             return visibility ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null) return null;
             Visibility visibility = (Visibility)value;
-
             return (visibility == Visibility.Visible);
         }
     }

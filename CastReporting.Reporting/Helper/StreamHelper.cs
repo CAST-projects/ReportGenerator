@@ -20,28 +20,6 @@ namespace CastReporting.Reporting.Helper
     public class StreamHelper
     {
         #region METHODS
-        public static decimal ByteArrayToDecimal(byte[] src)
-        {
-            decimal num3;
-            if (src.Length < 0x10)
-            {
-                byte[] buffer = new byte[0x10];
-                int num = 0;
-                foreach (byte num2 in src)
-                {
-                    buffer[num++] = num2;
-                }
-                src = buffer;
-            }
-            using (MemoryStream stream = new MemoryStream(src))
-            {
-                using (BinaryReader reader = new BinaryReader(stream))
-                {
-                    num3 = reader.ReadDecimal();
-                }
-            }
-            return num3;
-        }
         public static void CopyStream(Stream input, Stream output)
         {
             if ((input != null) && (output != null))
@@ -52,13 +30,6 @@ namespace CastReporting.Reporting.Helper
                 {
                     output.Write(buffer, 0, num);
                 }
-            }
-        }
-        public static string GetString(Stream input)
-        {
-            using (StreamReader reader = new StreamReader(input))
-            {
-                return reader.ReadToEnd();
             }
         }
         #endregion METHODS

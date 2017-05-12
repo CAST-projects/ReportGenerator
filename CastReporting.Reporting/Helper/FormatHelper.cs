@@ -48,29 +48,9 @@ namespace CastReporting.Reporting.Helper
         /// </summary>
         /// <param name="pValue">Numeric value to display</param>
         /// <returns>Displayed text</returns>
-        public static string FormatEvolution(this long? pValue) {
-            return pValue.HasValue ? pValue.Value.FormatEvolution() : string.Empty;
-        }
-
-        /// <summary>
-        /// Format the display of evolution value into 3 digits if we can
-        /// <para>Example : "3.65 %" or "10.4 %" or "243 %" or "10 052 %"</para>
-        /// </summary>
-        /// <param name="pValue">Numeric value to display</param>
-        /// <returns>Displayed text</returns>
         public static string FormatEvolution(this long pValue) {
             var sign = (pValue > 0) ? "+" : "";
             return sign + pValue.ToString("N0");
-        }
-
-        /// <summary>
-        /// Format the display of evolution value into 3 digits if we can
-        /// <para>Example : "3.65 %" or "10.4 %" or "243 %" or "10 052 %"</para>
-        /// </summary>
-        /// <param name="pValue">Numeric value to display</param>
-        /// <returns>Displayed text</returns>
-        public static string FormatEvolution(this decimal? pValue) {
-            return FormatEvolution((double?)pValue);
         }
 
         /// <summary>

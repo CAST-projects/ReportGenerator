@@ -13,8 +13,8 @@ namespace CastReporting.Reporting.Helper
     {
         public class ObjConfig
         {
-            public string Type;
-            public string[] Parameters;
+            public string Type { get; set; }
+            public string[] Parameters { get; set; }
         }
 
         public static string GetTypeName(string type)

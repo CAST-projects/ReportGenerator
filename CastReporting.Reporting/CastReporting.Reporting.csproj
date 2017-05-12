@@ -196,7 +196,6 @@
     <Compile Include="ProcessingBlock\BlockItem.cs" />
     <Compile Include="ProcessingBlock\GraphBlock.cs" />
     <Compile Include="ProcessingBlock\IBlock.cs" />
-    <Compile Include="ProcessingBlock\ImageBlock.cs" />
     <Compile Include="ProcessingBlock\TableBlock.cs" />
     <Compile Include="ProcessingBlock\TextBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

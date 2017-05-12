@@ -25,13 +25,13 @@ namespace CastReporting.UI.WPF.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {         
-            return (bool)value ? Cursors.Wait : null;
+            return value != null && (bool)value ? Cursors.Wait : null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null) return null;
             Visibility visibility = (Visibility)value;
-
             return (visibility == Visibility.Visible);
         }
     }

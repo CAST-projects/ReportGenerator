@@ -135,50 +135,6 @@ namespace CastReporting.BLL.Computing
             return res;
         }
 
-        public static double? GetQualityIndicatorModuleGrade(Snapshot snapshot, int moduleId, int id)
-        {
-            if (snapshot?.BusinessCriteriaResults == null) return null;
-            ResultDetail result = snapshot.BusinessCriteriaResults
-                .Where(_ => _.Reference.Key == id && _.ModulesResult != null)
-                .SelectMany(_ => _.ModulesResult)
-                .FirstOrDefault(_ => _.Module.Id == moduleId && _.DetailResult != null)?.DetailResult;
-            if (result != null) return result.Grade;
-          
-            result = snapshot.TechnicalCriteriaResults
-                    .Where(_ => _.Reference.Key == id && _.ModulesResult != null)
-                    .SelectMany(_ => _.ModulesResult)
-                    .FirstOrDefault(_ => _.Module.Id == moduleId && _.DetailResult != null)?.DetailResult;
-            if (result != null) return result.Grade;
-
-            result = snapshot.QualityRulesResults
-                    .Where(_ => _.Reference.Key == id && _.ModulesResult != null)
-                    .SelectMany(_ => _.ModulesResult)
-                    .FirstOrDefault(_ => _.Module.Id == moduleId && _.DetailResult != null)?.DetailResult;
-            return result?.Grade;
-        }
-
-        public static double? GetQualityIndicatorTechnologyGrade(Snapshot snapshot, string technology, int id)
-        {
-            if (snapshot?.BusinessCriteriaResults == null) return null;
-            ResultDetail result = snapshot.BusinessCriteriaResults
-                .Where(_ => _.Reference.Key == id && _.TechnologyResult != null)
-                .SelectMany(_ => _.TechnologyResult)
-                .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult;
-            if (result != null) return result.Grade;
-
-            result = snapshot.TechnicalCriteriaResults
-                    .Where(_ => _.Reference.Key == id && _.TechnologyResult != null)
-                    .SelectMany(_ => _.TechnologyResult)
-                    .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult;
-            if (result != null) return result.Grade;
-
-            result = snapshot.QualityRulesResults
-                    .Where(_ => _.Reference.Key == id && _.TechnologyResult != null)
-                    .SelectMany(_ => _.TechnologyResult)
-                    .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult;
-            return result?.Grade;
-        }
-
         /// <summary>
         /// Get TQI for snapshot
         /// </summary>
