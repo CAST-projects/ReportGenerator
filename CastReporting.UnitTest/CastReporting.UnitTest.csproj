@@ -94,6 +94,7 @@
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
     <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
     <Compile Include="Reporting\Tables\ComplianceObjectifTableTests.cs" />
+    <Compile Include="Reporting\Tables\CriticalViolationByModuleTests.cs" />
     <Compile Include="Reporting\Tables\GenericTableTests.cs" />
     <Compile Include="Reporting\Tables\CastComplexityTests.cs" />
     <Compile Include="Reporting\Tables\CastDistributionTests.cs" />
@@ -223,6 +224,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\critViolStats.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\CurrentBCTCmodules.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\ModulesCoCRA.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\PreviousBCTC.json">
