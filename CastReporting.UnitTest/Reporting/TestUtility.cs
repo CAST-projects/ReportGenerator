@@ -69,6 +69,7 @@ namespace CastReporting.UnitTest.Reporting
                 Annotation = new Annotation() { Name = currentName, Version = currentVersion }
             };
             if (moduleJson != null) currentSnap.Modules = GetSampleResult<Module>(moduleJson).ToList();
+
             var qualityIndicatorsResults = GetSampleResult<Result>(currentJson).ToList();
             var businessCriteriaResults = new List<ApplicationResult>();
             var technicalCriteriaResults = new List<ApplicationResult>();
