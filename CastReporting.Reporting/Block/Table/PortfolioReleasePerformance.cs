@@ -112,8 +112,8 @@ namespace CastReporting.Reporting.Block.Table
                         int previousYear = DateUtil.GetPreviousQuarterYear(_dateNow);
 
                         Snapshot _previous = _app.Snapshots.Where(_ => _.Annotation.Date.DateSnapShot != null && (_.Annotation.Date.DateSnapShot.Value.Year <= previousYear && DateUtil.GetQuarter(_.Annotation.Date.DateSnapShot.Value) <= previousQuarter))
-                            .OrderByDescending(_ => _.Annotation.Date.DateSnapShot)
-                            .First();
+                                .OrderByDescending(_ => _.Annotation.Date.DateSnapShot)
+                                .First();
 
                         if (_previous == null) continue;
                         nbPreviousSnapshots = nbPreviousSnapshots + 1;
@@ -152,18 +152,9 @@ namespace CastReporting.Reporting.Block.Table
                 strCurrentProgrammingAll = strCurrentProgrammingAll / nbCurrentSnapshots;
                 strCurrentDocumentAll = strCurrentDocumentAll / nbCurrentSnapshots;
                 strCurrentArchDesignAll = strCurrentArchDesignAll / nbCurrentSnapshots;
-                
-                if (_tagIds.Count == 8 && _slAs.Count == 2 && nbPreviousSnapshots != 0)
-                {
-                    strPreviousArchDesignAll = strPreviousArchDesignAll / nbPreviousSnapshots;
-                    strPreviousRobuAll = strPreviousRobuAll / nbPreviousSnapshots;
-                    strPreviousSecuAll = strPreviousSecuAll / nbPreviousSnapshots;
-                    strPreviousPerformanceAll = strPreviousPerformanceAll / nbPreviousSnapshots;
-                    strPreviousChangeAll = strPreviousChangeAll / nbPreviousSnapshots;
-                    strPreviousTransferAll = strPreviousTransferAll / nbPreviousSnapshots;
-                    strPreviousProgrammingAll = strPreviousProgrammingAll / nbPreviousSnapshots;
-                    strPreviousDocumentAll = strPreviousDocumentAll / nbPreviousSnapshots;
 
+                if (_tagIds.Count == 8 && _slAs.Count == 2)
+                {
                     double? lower = Math.Round(_slAs[0] / 100, 2);
                     double? upper = Math.Round(_slAs[1] / 100, 2);
 
@@ -175,27 +166,40 @@ namespace CastReporting.Reporting.Block.Table
                     string _documentationSlaViol = (_tagIds[5] - strCurrentDocumentAll) / _tagIds[5] > upper ? Labels.Bad : (_tagIds[5] - strCurrentDocumentAll) / _tagIds[5] > lower ? Labels.Acceptable : Labels.Good;
                     string _performanceSlaViol = (_tagIds[6] - strCurrentPerformanceAll) / _tagIds[6] > upper ? Labels.Bad : (_tagIds[6] - strCurrentPerformanceAll) / _tagIds[6] > lower ? Labels.Acceptable : Labels.Good;
                     string _architectureSlaViol = (_tagIds[7] - strCurrentArchDesignAll) / _tagIds[7] > upper ? Labels.Bad : (_tagIds[7] - strCurrentArchDesignAll) / _tagIds[7] > lower ? Labels.Acceptable : Labels.Good;
-                    
-                    rowData.AddRange(new[] { Labels.Robustness, strPreviousRobuAll.Value.ToString("N2"), _tagIds[0].ToString("N2"), strCurrentRobuAll.Value.ToString("N2"), _robustnessSlaViol });
-                    rowData.AddRange(new[] { Labels.Security, strPreviousSecuAll.Value.ToString("N2"), _tagIds[1].ToString("N2"), strCurrentSecuAll.Value.ToString("N2"), _securitySlaViol });
-                    rowData.AddRange(new[] { Labels.Efficiency, strPreviousPerformanceAll.Value.ToString("N2"), _tagIds[2].ToString("N2"), strCurrentPerformanceAll.Value.ToString("N2"), _performanceSlaViol });
-                    rowData.AddRange(new[] { Labels.Changeability, strPreviousChangeAll.Value.ToString("N2"), _tagIds[3].ToString("N2"), strCurrentChangeAll.Value.ToString("N2"), _changeabilitySlaViol });
-                    rowData.AddRange(new[] { Labels.Transferability, strPreviousTransferAll.Value.ToString("N2"), _tagIds[4].ToString("N2"), strCurrentTransferAll.Value.ToString("N2"), _transferabilitySlaViol });
-                    rowData.AddRange(new[] { Labels.ProgrammingPractices, strPreviousProgrammingAll.Value.ToString("N2"), _tagIds[5].ToString("N2"), strCurrentProgrammingAll.Value.ToString("N2"), _programmingPracticeSlaViol });
-                    rowData.AddRange(new[] { Labels.Documentation, strPreviousDocumentAll.Value.ToString("N2"), _tagIds[6].ToString("N2"), strCurrentDocumentAll.Value.ToString("N2"), _documentationSlaViol });
-                    rowData.AddRange(new[] { Labels.ArchitecturalDesign, strPreviousArchDesignAll.Value.ToString("N2"), _tagIds[7].ToString("N2"), strCurrentArchDesignAll.Value.ToString("N2"), _architectureSlaViol });
+
+                    if (nbPreviousSnapshots != 0)
+                    {
+                        strPreviousArchDesignAll = strPreviousArchDesignAll / nbPreviousSnapshots;
+                        strPreviousRobuAll = strPreviousRobuAll / nbPreviousSnapshots;
+                        strPreviousSecuAll = strPreviousSecuAll / nbPreviousSnapshots;
+                        strPreviousPerformanceAll = strPreviousPerformanceAll / nbPreviousSnapshots;
+                        strPreviousChangeAll = strPreviousChangeAll / nbPreviousSnapshots;
+                        strPreviousTransferAll = strPreviousTransferAll / nbPreviousSnapshots;
+                        strPreviousProgrammingAll = strPreviousProgrammingAll / nbPreviousSnapshots;
+                        strPreviousDocumentAll = strPreviousDocumentAll / nbPreviousSnapshots;
+
+                        rowData.AddRange(new[] { Labels.Robustness, strPreviousRobuAll.Value.ToString("N2"), _tagIds[0].ToString("N2"), strCurrentRobuAll.Value.ToString("N2"), _robustnessSlaViol });
+                        rowData.AddRange(new[] { Labels.Security, strPreviousSecuAll.Value.ToString("N2"), _tagIds[1].ToString("N2"), strCurrentSecuAll.Value.ToString("N2"), _securitySlaViol });
+                        rowData.AddRange(new[] { Labels.Efficiency, strPreviousPerformanceAll.Value.ToString("N2"), _tagIds[2].ToString("N2"), strCurrentPerformanceAll.Value.ToString("N2"), _performanceSlaViol });
+                        rowData.AddRange(new[] { Labels.Changeability, strPreviousChangeAll.Value.ToString("N2"), _tagIds[3].ToString("N2"), strCurrentChangeAll.Value.ToString("N2"), _changeabilitySlaViol });
+                        rowData.AddRange(new[] { Labels.Transferability, strPreviousTransferAll.Value.ToString("N2"), _tagIds[4].ToString("N2"), strCurrentTransferAll.Value.ToString("N2"), _transferabilitySlaViol });
+                        rowData.AddRange(new[] { Labels.ProgrammingPractices, strPreviousProgrammingAll.Value.ToString("N2"), _tagIds[5].ToString("N2"), strCurrentProgrammingAll.Value.ToString("N2"), _programmingPracticeSlaViol });
+                        rowData.AddRange(new[] { Labels.Documentation, strPreviousDocumentAll.Value.ToString("N2"), _tagIds[6].ToString("N2"), strCurrentDocumentAll.Value.ToString("N2"), _documentationSlaViol });
+                        rowData.AddRange(new[] { Labels.ArchitecturalDesign, strPreviousArchDesignAll.Value.ToString("N2"), _tagIds[7].ToString("N2"), strCurrentArchDesignAll.Value.ToString("N2"), _architectureSlaViol });
+                    }
+                    else
+                    {
+                        rowData.AddRange(new[] { Labels.Robustness, Constants.No_Data, _tagIds[0].ToString("N2"), strCurrentRobuAll.Value.ToString("N2"), _robustnessSlaViol });
+                        rowData.AddRange(new[] { Labels.Security, Constants.No_Data, _tagIds[1].ToString("N2"), strCurrentSecuAll.Value.ToString("N2"), _securitySlaViol });
+                        rowData.AddRange(new[] { Labels.Efficiency, Constants.No_Data, _tagIds[2].ToString("N2"), strCurrentPerformanceAll.Value.ToString("N2"), _performanceSlaViol });
+                        rowData.AddRange(new[] { Labels.Changeability, Constants.No_Data, _tagIds[3].ToString("N2"), strCurrentChangeAll.Value.ToString("N2"), _changeabilitySlaViol });
+                        rowData.AddRange(new[] { Labels.Transferability, Constants.No_Data, _tagIds[4].ToString("N2"), strCurrentTransferAll.Value.ToString("N2"), _transferabilitySlaViol });
+                        rowData.AddRange(new[] { Labels.ProgrammingPractices, Constants.No_Data, _tagIds[5].ToString("N2"), strCurrentProgrammingAll.Value.ToString("N2"), _programmingPracticeSlaViol });
+                        rowData.AddRange(new[] { Labels.Documentation, Constants.No_Data, _tagIds[6].ToString("N2"), strCurrentDocumentAll.Value.ToString("N2"), _documentationSlaViol });
+                        rowData.AddRange(new[] { Labels.ArchitecturalDesign, Constants.No_Data, _tagIds[7].ToString("N2"), strCurrentArchDesignAll.Value.ToString("N2"), _architectureSlaViol });
+                    }
                 }
-                else
-                {
-                    rowData.AddRange(new[] { Labels.Robustness, " ", " ", " ", strCurrentSecuAll.Value.ToString("N2") });
-                    rowData.AddRange(new[] { Labels.Security, " ", " ", " ", strCurrentSecuAll.Value.ToString("N2") });
-                    rowData.AddRange(new[] { Labels.Efficiency, " ", " ", " ", strCurrentPerformanceAll.Value.ToString("N2") });
-                    rowData.AddRange(new[] { Labels.Changeability, " ", " ", " ", strCurrentChangeAll.Value.ToString("N2") });
-                    rowData.AddRange(new[] { Labels.Transferability, " ", " ", " ", strCurrentTransferAll.Value.ToString("N2") });
-                    rowData.AddRange(new[] { Labels.ProgrammingPractices, " ", " ", " ", strCurrentProgrammingAll.Value.ToString("N2") });
-                    rowData.AddRange(new[] { Labels.Documentation, " ", " ", " ", strCurrentDocumentAll.Value.ToString("N2") });
-                    rowData.AddRange(new[] { Labels.ArchitecturalDesign, " ", " ", " ", strCurrentRobuAll.Value.ToString("N2") });
-                }
+
             }
 
             var resultTable = new TableDefinition
