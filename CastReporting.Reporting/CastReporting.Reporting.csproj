@@ -76,7 +76,6 @@
     <Compile Include="Block\Graph\TrendTechDebtPortfolio.cs" />
     <Compile Include="Block\Table\GenericTable.cs" />
     <Compile Include="Block\Table\ViolationSummary.cs" />
-    <Compile Include="Block\Table\EFP.cs" />
     <Compile Include="Block\Table\IfpugDataFunctions.cs" />
     <Compile Include="Block\Table\IfpugTransactionFunctions.cs" />
     <Compile Include="Block\Graph\Bubble.cs" />
