@@ -53,9 +53,11 @@ namespace CastReporting.UnitTest.Reporting
             throw new NotImplementedException();
         }
 
+        [DeploymentItem(@".\Data\IfpugFunction.json", "Data")]
         public IEnumerable<IfpugFunction> GetIfpugFunctions(string snapshotHref, int count)
         {
-            throw new NotImplementedException();
+            IEnumerable<IfpugFunction> res = TestUtility.GetSampleResult<IfpugFunction>(@".\Data\IfpugFunction.json").ToList();
+            return res;
         }
 
         public IEnumerable<IfpugFunction> GetIfpugFunctionsEvolutions(string snapshotHref, int count)

@@ -23,7 +23,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("FUNCTIONAL_WEIGHT")]
-    internal class FunctionalWeight : TableBlock
+    public class FunctionalWeight : TableBlock
     {
         #region METHODS
 
@@ -45,7 +45,7 @@ namespace CastReporting.Reporting.Block.Table
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
-                NbRows = 6,
+                NbRows = 4,
                 NbColumns = 2,
                 Data = rowData
             };

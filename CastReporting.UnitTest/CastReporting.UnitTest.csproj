@@ -94,6 +94,10 @@
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
     <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
     <Compile Include="Reporting\Tables\ComplianceObjectifTableTests.cs" />
+    <Compile Include="Reporting\Tables\HFByModuleTests.cs" />
+    <Compile Include="Reporting\Tables\HealthFactorTests.cs" />
+    <Compile Include="Reporting\Tables\FunctionalWeightEvolutionTests.cs" />
+    <Compile Include="Reporting\Tables\FunctionalWeightTests.cs" />
     <Compile Include="Reporting\Tables\CriticalViolationByModuleTests.cs" />
     <Compile Include="Reporting\Tables\GenericTableTests.cs" />
     <Compile Include="Reporting\Tables\CastComplexityTests.cs" />
@@ -214,6 +218,12 @@
     <None Include="Data\cc60017.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\cocraFuncWeightPrevious.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\cocraFuncWeight.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\ComplexitySnapPrevious.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -226,7 +236,13 @@
     <None Include="Data\critViolStats.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\PreviousBCTCmodules.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\CurrentBCTCmodules.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\IfpugFunctions.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\ModulesCoCRA.json">

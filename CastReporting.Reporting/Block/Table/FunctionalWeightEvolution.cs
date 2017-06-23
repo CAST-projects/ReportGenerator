@@ -13,6 +13,8 @@
  * limitations under the License.
  *
  */
+
+using System;
 using System.Collections.Generic;
 using CastReporting.Domain;
 using CastReporting.Reporting.Atrributes;
@@ -28,7 +30,7 @@ namespace CastReporting.Reporting.Block.Table
     /// TechnicalSizingEvolution Class
     /// </summary>
     [Block("FUNCTIONAL_WEIGHT_EVOLUTION")]
-    internal class FunctionalWeightEvolution : TableBlock
+    public class FunctionalWeightEvolution : TableBlock
     {
          #region METHODS
 
@@ -78,7 +80,7 @@ namespace CastReporting.Reporting.Block.Table
                 , Labels.BackfiredFP
                 , backFiredFPoints?.ToString(metricFormat) ?? noData
                 , (hasPrevious && backFiredFPointsPrev.HasValue)? backFiredFPointsPrev.Value.ToString(metricFormat) : noData
-                , (hasPrevious && backFiredFPointsEvol.HasValue)? FormatEvolution((int)backFiredFPointsEvol.Value) : noData
+                , (hasPrevious && backFiredFPointsEvol.HasValue)? FormatEvolution((int)Math.Round(backFiredFPointsEvol.Value,0)) : noData
                 , (backFiredFPointsPercent.HasValue)? FormatPercent(backFiredFPointsPercent.Value): noData
             };
 
@@ -86,7 +88,7 @@ namespace CastReporting.Reporting.Block.Table
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
-                NbRows = 6,
+                NbRows = 4,
                 NbColumns = 5,
                 Data = rowData
             };

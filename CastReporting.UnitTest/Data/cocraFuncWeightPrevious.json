@@ -1,0 +1,68 @@
+﻿[
+	{
+		"number": 4,
+		"date": {
+			"time": 1492984800000,
+			"isoDate": "2017-04-24"
+		},
+		"application": {
+			"href": "AED/applications/3",
+			"name": "CoCRestAPI",
+			"adgDatabase": "cocra_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED/applications/3/snapshots/4",
+			"name": "CoCRestAPI"
+		},
+		"applicationResults": [
+			{
+				"type": "functional-weight-measures",
+				"reference": {
+					"href": "AED/sizing-measures/10201/snapshots/4",
+					"name": "Backfired Function Points",
+					"shortName": "BFP",
+					"key": "10201",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 419.52222222222224
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "functional-weight-measures",
+				"reference": {
+					"href": "AED/sizing-measures/10202/snapshots/4",
+					"name": "OMG-Compliant Automated Function Points",
+					"shortName": "AFP",
+					"key": "10202",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 1991
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "functional-weight-measures",
+				"reference": {
+					"href": "AED/sizing-measures/10506/snapshots/4",
+					"name": "Number of Decision Points",
+					"shortName": "Total CC",
+					"key": "10506",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 6814
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	}
+]
