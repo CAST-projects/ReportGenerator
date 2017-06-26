@@ -8,6 +8,7 @@ using System.Text;
 using CastReporting.Domain;
 using CastReporting.Reporting.Languages;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CastReporting.UnitTest.Reporting
@@ -37,6 +38,22 @@ namespace CastReporting.UnitTest.Reporting
 
 
             return serializer.ReadObject(ms) as IEnumerable<T>;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sampleFile"></param>
+        /// <param name="count"></param>
+        /// <param name="propNames"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> GetCsvSampleResult<T>(string sampleFile, int count, params string[] propNames) where T : new()
+        {
+            var csvString = File.ReadAllText(sampleFile);
+
+            var serializer = new CsvSerializer<T>();
+            return serializer.ReadObjects(csvString, count, propNames);
+
         }
 
         /// <summary>

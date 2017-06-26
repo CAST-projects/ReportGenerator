@@ -9,7 +9,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("IFPUG_FUNCTIONS")]
-    internal class IfpugFunctions : TableBlock
+    public class IfpugFunctions : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {

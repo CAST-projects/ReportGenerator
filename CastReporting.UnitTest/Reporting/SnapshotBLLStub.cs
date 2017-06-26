@@ -53,10 +53,10 @@ namespace CastReporting.UnitTest.Reporting
             throw new NotImplementedException();
         }
 
-        [DeploymentItem(@".\Data\IfpugFunction.json", "Data")]
+        [DeploymentItem(@".\Data\IfpugFunctions.csv", "Data")]
         public IEnumerable<IfpugFunction> GetIfpugFunctions(string snapshotHref, int count)
         {
-            IEnumerable<IfpugFunction> res = TestUtility.GetSampleResult<IfpugFunction>(@".\Data\IfpugFunction.json").ToList();
+            IEnumerable<IfpugFunction> res = TestUtility.GetCsvSampleResult<IfpugFunction>(@".\Data\IfpugFunctions.csv",count,null).ToList();
             return res;
         }
 
@@ -65,9 +65,20 @@ namespace CastReporting.UnitTest.Reporting
             throw new NotImplementedException();
         }
 
+        [DeploymentItem(@".\Data\topArtefacts7212.csv", "Data")]
+        [DeploymentItem(@".\Data\topArtefacts3576.csv", "Data")]
         public IEnumerable<MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string ruleId, int count)
         {
-            throw new NotImplementedException();
+            IEnumerable<MetricTopArtifact> res = null;
+            if (ruleId == "7212")
+            {
+                res = TestUtility.GetCsvSampleResult<MetricTopArtifact>(@".\Data\topArtefacts7212.csv", count, null).ToList();
+            }
+            if (ruleId == "3576")
+            {
+                res = TestUtility.GetCsvSampleResult<MetricTopArtifact>(@".\Data\topArtefacts3576.csv", count, null).ToList();
+            }
+            return res;
         }
 
         [DeploymentItem(@".\Data\Snapshot_QIresults1.json", "Data")]
