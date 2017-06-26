@@ -74,6 +74,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <None Include="Data\AADcocraSnapshotsBCResults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AADcocraSnapshots.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AADcocraApplications.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\cc60017extract.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -103,6 +112,10 @@
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
     <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
+    <Compile Include="Reporting\Tables\PortfolioReleasePerformanceTests.cs" />
+    <Compile Include="Reporting\Tables\PF_IgnoredSnapshotsTests.cs" />
+    <Compile Include="Reporting\Tables\PF_IgnoredAppsTests.cs" />
+    <Compile Include="Reporting\Tables\ModuleListTests.cs" />
     <Compile Include="Reporting\Tables\MetricTopArtefactsTests.cs" />
     <Compile Include="Reporting\Tables\ComplianceObjectifTableTests.cs" />
     <Compile Include="Reporting\Tables\LocPerModuleTests.cs" />

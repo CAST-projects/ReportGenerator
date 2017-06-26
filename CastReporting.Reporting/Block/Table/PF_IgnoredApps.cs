@@ -23,7 +23,7 @@ namespace CastReporting.Reporting.Block.Table
 {
     [Block("PF_IGNORED_APPLICATIONS")]
     // ReSharper disable once InconsistentNaming
-    internal class PF_IgnoredApps : TableBlock
+    public class PF_IgnoredApps : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {

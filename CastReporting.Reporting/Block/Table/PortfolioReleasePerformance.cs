@@ -29,20 +29,20 @@ using CastReporting.Reporting.Helper;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("PF_BC_RELEASE_PERFORMANCE")]
-    internal class PortfolioReleasePerformance : TableBlock
+    public class PortfolioReleasePerformance : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            string strBackgroundFacts = options.GetOption("BF", string.Empty);
+            string strTargets = options.GetOption("BF", string.Empty);
             string _strSla = options.GetOption("SLA", string.Empty);
 
             List<string> rowData = new List<string>();
             List<double> _tagIds = new List<double>();
             List<double> _slAs = new List<double>(); 
 
-            if (strBackgroundFacts != string.Empty)
+            if (strTargets != string.Empty)
             {
-                string[] words = strBackgroundFacts.Split(' ');
+                string[] words = strTargets.Split(' ');
                 _tagIds.AddRange(words.Select(word => Convert.ToDouble(word, System.Globalization.CultureInfo.InvariantCulture)));
             }
 
@@ -111,7 +111,8 @@ namespace CastReporting.Reporting.Block.Table
                         int previousQuarter = DateUtil.GetPreviousQuarter(_dateNow);
                         int previousYear = DateUtil.GetPreviousQuarterYear(_dateNow);
 
-                        Snapshot _previous = _app.Snapshots.Where(_ => _.Annotation.Date.DateSnapShot != null && (_.Annotation.Date.DateSnapShot.Value.Year <= previousYear && DateUtil.GetQuarter(_.Annotation.Date.DateSnapShot.Value) <= previousQuarter))
+                        Snapshot _previous = _app.Snapshots.Where(_ => _.Annotation.Date.DateSnapShot != null 
+                            && ((_.Annotation.Date.DateSnapShot.Value.Year <= previousYear && DateUtil.GetQuarter(_.Annotation.Date.DateSnapShot.Value) <= previousQuarter) || (_.Annotation.Date.DateSnapShot.Value.Year < previousYear)))
                                 .OrderByDescending(_ => _.Annotation.Date.DateSnapShot)
                                 .First();
 
@@ -160,11 +161,11 @@ namespace CastReporting.Reporting.Block.Table
 
                     string _robustnessSlaViol = (_tagIds[0] - strCurrentRobuAll) / _tagIds[0] > upper ? Labels.Bad : (_tagIds[0] - strCurrentRobuAll) / _tagIds[0] > lower ? Labels.Acceptable : Labels.Good;
                     string _securitySlaViol = (_tagIds[1] - strCurrentSecuAll) / _tagIds[1] > upper ? Labels.Bad : (_tagIds[1] - strCurrentSecuAll) / _tagIds[1] > lower ? Labels.Acceptable : Labels.Good;
-                    string _changeabilitySlaViol = (_tagIds[2] - strCurrentChangeAll) / _tagIds[2] > upper ? Labels.Bad : (_tagIds[2] - strCurrentChangeAll) / _tagIds[2] > lower ? Labels.Acceptable : Labels.Good;
-                    string _transferabilitySlaViol = (_tagIds[3] - strCurrentTransferAll) / _tagIds[3] > upper ? Labels.Bad : (_tagIds[3] - strCurrentTransferAll) / _tagIds[3] > lower ? Labels.Acceptable : Labels.Good;
-                    string _programmingPracticeSlaViol = (_tagIds[4] - strCurrentProgrammingAll) / _tagIds[4] > upper ? Labels.Bad : (_tagIds[4] - strCurrentProgrammingAll) / _tagIds[4] > lower ? Labels.Acceptable : Labels.Good;
-                    string _documentationSlaViol = (_tagIds[5] - strCurrentDocumentAll) / _tagIds[5] > upper ? Labels.Bad : (_tagIds[5] - strCurrentDocumentAll) / _tagIds[5] > lower ? Labels.Acceptable : Labels.Good;
-                    string _performanceSlaViol = (_tagIds[6] - strCurrentPerformanceAll) / _tagIds[6] > upper ? Labels.Bad : (_tagIds[6] - strCurrentPerformanceAll) / _tagIds[6] > lower ? Labels.Acceptable : Labels.Good;
+                    string _performanceSlaViol = (_tagIds[2] - strCurrentPerformanceAll) / _tagIds[2] > upper ? Labels.Bad : (_tagIds[2] - strCurrentPerformanceAll) / _tagIds[2] > lower ? Labels.Acceptable : Labels.Good;
+                    string _changeabilitySlaViol = (_tagIds[3] - strCurrentChangeAll) / _tagIds[3] > upper ? Labels.Bad : (_tagIds[3] - strCurrentChangeAll) / _tagIds[3] > lower ? Labels.Acceptable : Labels.Good;
+                    string _transferabilitySlaViol = (_tagIds[4] - strCurrentTransferAll) / _tagIds[4] > upper ? Labels.Bad : (_tagIds[4] - strCurrentTransferAll) / _tagIds[4] > lower ? Labels.Acceptable : Labels.Good;
+                    string _programmingPracticeSlaViol = (_tagIds[5] - strCurrentProgrammingAll) / _tagIds[5] > upper ? Labels.Bad : (_tagIds[5] - strCurrentProgrammingAll) / _tagIds[5] > lower ? Labels.Acceptable : Labels.Good;
+                    string _documentationSlaViol = (_tagIds[6] - strCurrentDocumentAll) / _tagIds[6] > upper ? Labels.Bad : (_tagIds[6] - strCurrentDocumentAll) / _tagIds[6] > lower ? Labels.Acceptable : Labels.Good;
                     string _architectureSlaViol = (_tagIds[7] - strCurrentArchDesignAll) / _tagIds[7] > upper ? Labels.Bad : (_tagIds[7] - strCurrentArchDesignAll) / _tagIds[7] > lower ? Labels.Acceptable : Labels.Good;
 
                     if (nbPreviousSnapshots != 0)

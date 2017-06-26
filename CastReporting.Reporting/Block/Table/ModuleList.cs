@@ -24,7 +24,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("MODULE_LIST")]
-    internal class ModuleList : TableBlock
+    public class ModuleList : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
