@@ -1,0 +1,232 @@
+[
+  {
+    "href": "AAD/applications/3/snapshots/5",
+    "name": "CoCRestAPI",
+    "number": 5,
+    "technologies": [
+      ".NET",
+      "JEE",
+      "SQL Analyzer"
+    ],
+    "annotation": {
+      "version": "8.3.ra2",
+      "date": {
+        "time": 1496959200000,
+        "isoDate": "2017-06-09"
+      },
+      "description": null,
+      "name": "Snap5_CAIP-8.3ra2_RG-1.6a",
+      "enhancementMeasure": "AEP"
+    },
+    "configurationSnapshot": {
+      "href": "AAD/configuration/snapshots/5",
+      "name": "Configuration Snapshot #5"
+    },
+    "systems": null,
+    "application": {
+      "href": "AAD/applications/3",
+      "name": "CoCRestAPI",
+      "adgDatabase": "cocra_central"
+    },
+    "moduleSnapshots": {
+      "href": "AAD/applications/3/snapshots/5/modules",
+      "name": "Module Snapshots for CoCRestAPI #5"
+    },
+    "results": {
+      "href": "AAD/applications/3/snapshots/5/results",
+      "name": "Results breakdown by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED/applications/3/snapshots/5",
+      "name": "Origin of CoCRestAPI snapshot 5"
+    },
+    "actionPlan": null,
+    "components": null,
+    "transactions": null,
+    "treeNode": null
+  },
+  {
+    "href": "AAD/applications/3/snapshots/4",
+    "name": "CoCRestAPI",
+    "number": 4,
+    "technologies": [
+      ".NET",
+      "JEE",
+      "SQL Analyzer"
+    ],
+    "annotation": {
+      "version": "8.3.ra",
+      "date": {
+        "time": 1492984800000,
+        "isoDate": "2017-04-24"
+      },
+      "description": null,
+      "name": "Snap4_CAIP-8.3ra_RG-1.5.a",
+      "enhancementMeasure": "AEP"
+    },
+    "configurationSnapshot": {
+      "href": "AAD/configuration/snapshots/4",
+      "name": "Configuration Snapshot #4"
+    },
+    "systems": null,
+    "application": {
+      "href": "AAD/applications/3",
+      "name": "CoCRestAPI",
+      "adgDatabase": "cocra_central"
+    },
+    "moduleSnapshots": {
+      "href": "AAD/applications/3/snapshots/4/modules",
+      "name": "Module Snapshots for CoCRestAPI #4"
+    },
+    "results": {
+      "href": "AAD/applications/3/snapshots/4/results",
+      "name": "Results breakdown by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED/applications/3/snapshots/4",
+      "name": "Origin of CoCRestAPI snapshot 4"
+    },
+    "actionPlan": null,
+    "components": null,
+    "transactions": null,
+    "treeNode": null
+  },
+  {
+    "href": "AAD/applications/3/snapshots/3",
+    "name": "CoCRestAPI",
+    "number": 3,
+    "technologies": [
+      ".NET",
+      "JEE",
+      "SQL Analyzer"
+    ],
+    "annotation": {
+      "version": "8.2.4",
+      "date": {
+        "time": 1492380000000,
+        "isoDate": "2017-04-17"
+      },
+      "description": null,
+      "name": "Snap3_CAIP-8.2.4_RG-1.4.1",
+      "enhancementMeasure": "AEP"
+    },
+    "configurationSnapshot": {
+      "href": "AAD/configuration/snapshots/3",
+      "name": "Configuration Snapshot #3"
+    },
+    "systems": null,
+    "application": {
+      "href": "AAD/applications/3",
+      "name": "CoCRestAPI",
+      "adgDatabase": "cocra_central"
+    },
+    "moduleSnapshots": {
+      "href": "AAD/applications/3/snapshots/3/modules",
+      "name": "Module Snapshots for CoCRestAPI #3"
+    },
+    "results": {
+      "href": "AAD/applications/3/snapshots/3/results",
+      "name": "Results breakdown by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED/applications/3/snapshots/3",
+      "name": "Origin of CoCRestAPI snapshot 3"
+    },
+    "actionPlan": null,
+    "components": null,
+    "transactions": null,
+    "treeNode": null
+  },
+  {
+    "href": "AAD/applications/3/snapshots/2",
+    "name": "CoCRestAPI",
+    "number": 2,
+    "technologies": [
+      ".NET",
+      "JEE",
+      "SQL Analyzer"
+    ],
+    "annotation": {
+      "version": "8.1.4",
+      "date": {
+        "time": 1491775200000,
+        "isoDate": "2017-04-10"
+      },
+      "description": null,
+      "name": "Snap2_CAIP-8.1.4_RG-1.4.0",
+      "enhancementMeasure": "AEP"
+    },
+    "configurationSnapshot": {
+      "href": "AAD/configuration/snapshots/2",
+      "name": "Configuration Snapshot #2"
+    },
+    "systems": null,
+    "application": {
+      "href": "AAD/applications/3",
+      "name": "CoCRestAPI",
+      "adgDatabase": "cocra_central"
+    },
+    "moduleSnapshots": {
+      "href": "AAD/applications/3/snapshots/2/modules",
+      "name": "Module Snapshots for CoCRestAPI #2"
+    },
+    "results": {
+      "href": "AAD/applications/3/snapshots/2/results",
+      "name": "Results breakdown by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED/applications/3/snapshots/2",
+      "name": "Origin of CoCRestAPI snapshot 2"
+    },
+    "actionPlan": null,
+    "components": null,
+    "transactions": null,
+    "treeNode": null
+  },
+  {
+    "href": "AAD/applications/3/snapshots/1",
+    "name": "CoCRestAPI",
+    "number": 1,
+    "technologies": [
+      ".NET",
+      "JEE",
+      "SQL Analyzer"
+    ],
+    "annotation": {
+      "version": "8.0.6",
+      "date": {
+        "time": 1491170400000,
+        "isoDate": "2017-04-03"
+      },
+      "description": null,
+      "name": "Snap1_CAIP-8.0.6_RG-1.3.0",
+      "enhancementMeasure": "AEP"
+    },
+    "configurationSnapshot": {
+      "href": "AAD/configuration/snapshots/1",
+      "name": "Configuration Snapshot #1"
+    },
+    "systems": null,
+    "application": {
+      "href": "AAD/applications/3",
+      "name": "CoCRestAPI",
+      "adgDatabase": "cocra_central"
+    },
+    "moduleSnapshots": {
+      "href": "AAD/applications/3/snapshots/1/modules",
+      "name": "Module Snapshots for CoCRestAPI #1"
+    },
+    "results": {
+      "href": "AAD/applications/3/snapshots/1/results",
+      "name": "Results breakdown by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED/applications/3/snapshots/1",
+      "name": "Origin of CoCRestAPI snapshot 1"
+    },
+    "actionPlan": null,
+    "components": null,
+    "transactions": null,
+    "treeNode": null
+  }
+]

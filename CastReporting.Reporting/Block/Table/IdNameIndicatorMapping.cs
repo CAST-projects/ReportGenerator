@@ -24,7 +24,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("ID_NAME_INDICATOR_MAPPING")]
-    internal class IdNameIndicatorMapping : TableBlock
+    public class IdNameIndicatorMapping : TableBlock
     {
         
         #region METHODS

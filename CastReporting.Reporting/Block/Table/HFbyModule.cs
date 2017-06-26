@@ -27,7 +27,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("HF_BY_MODULE")]
-    internal class HFbyModule : TableBlock
+    public class HFbyModule : TableBlock
     {
         /// <summary>
         /// 

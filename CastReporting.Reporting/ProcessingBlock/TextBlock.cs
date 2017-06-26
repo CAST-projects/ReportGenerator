@@ -17,7 +17,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Linq;
 using Cast.Util.Log;
 using CastReporting.Reporting.Atrributes;
@@ -28,7 +27,6 @@ using DocumentFormat.OpenXml.Packaging;
 using OXD = DocumentFormat.OpenXml.Drawing;
 using OXP = DocumentFormat.OpenXml.Presentation;
 using OXW = DocumentFormat.OpenXml.Wordprocessing;
-using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace CastReporting.Reporting.Builder.BlockProcessing
 {

@@ -32,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -73,6 +74,24 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <None Include="Data\AADcocraSnapshotsBCResults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AADcocraSnapshots.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AADcocraApplications.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\cc60017extract.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\topArtefacts3576.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\topArtefacts7212.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Compile Include="Reporting\Graph\GenericGraphTests.cs" />
     <Compile Include="Reporting\Graph\PieTechnoLoCTests.cs" />
     <Compile Include="Reporting\Graph\PortfolioBarChartTests.cs" />
@@ -93,7 +112,20 @@
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
     <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
+    <Compile Include="Reporting\Tables\PortfolioReleasePerformanceTests.cs" />
+    <Compile Include="Reporting\Tables\PF_IgnoredSnapshotsTests.cs" />
+    <Compile Include="Reporting\Tables\PF_IgnoredAppsTests.cs" />
+    <Compile Include="Reporting\Tables\ModuleListTests.cs" />
+    <Compile Include="Reporting\Tables\MetricTopArtefactsTests.cs" />
     <Compile Include="Reporting\Tables\ComplianceObjectifTableTests.cs" />
+    <Compile Include="Reporting\Tables\LocPerModuleTests.cs" />
+    <Compile Include="Reporting\Tables\ListOfAllVersionsTests.cs" />
+    <Compile Include="Reporting\Tables\IfpugFunctionsTests.cs" />
+    <Compile Include="Reporting\Tables\IdNameIndicatorMappingTests.cs" />
+    <Compile Include="Reporting\Tables\HFByModuleTests.cs" />
+    <Compile Include="Reporting\Tables\HealthFactorTests.cs" />
+    <Compile Include="Reporting\Tables\FunctionalWeightEvolutionTests.cs" />
+    <Compile Include="Reporting\Tables\FunctionalWeightTests.cs" />
     <Compile Include="Reporting\Tables\CriticalViolationByModuleTests.cs" />
     <Compile Include="Reporting\Tables\GenericTableTests.cs" />
     <Compile Include="Reporting\Tables\CastComplexityTests.cs" />
@@ -214,6 +246,12 @@
     <None Include="Data\cc60017.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\cocraFuncWeightPrevious.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\cocraFuncWeight.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\ComplexitySnapPrevious.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -226,7 +264,16 @@
     <None Include="Data\critViolStats.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\CurrentTechSizeResultsModTechno.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\PreviousBCTCmodules.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\CurrentBCTCmodules.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\IfpugFunctions.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\ModulesCoCRA.json">

@@ -26,7 +26,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                null, null, null, null, null, null);
 
             var component = new CriticalViolationByModule();
-            Dictionary<string, string> config = new Dictionary<string, string>{};
+            Dictionary<string, string> config = new Dictionary<string, string>();
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();

@@ -8,6 +8,7 @@ using System.Text;
 using CastReporting.Domain;
 using CastReporting.Reporting.Languages;
 using CastReporting.Reporting.ReportingModel;
+using CastReporting.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CastReporting.UnitTest.Reporting
@@ -37,6 +38,22 @@ namespace CastReporting.UnitTest.Reporting
 
 
             return serializer.ReadObject(ms) as IEnumerable<T>;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sampleFile"></param>
+        /// <param name="count"></param>
+        /// <param name="propNames"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> GetCsvSampleResult<T>(string sampleFile, int count, params string[] propNames) where T : new()
+        {
+            var csvString = File.ReadAllText(sampleFile);
+
+            var serializer = new CsvSerializer<T>();
+            return serializer.ReadObjects(csvString, count, propNames);
+
         }
 
         /// <summary>
@@ -300,7 +317,9 @@ namespace CastReporting.UnitTest.Reporting
         {
             ReportData reportData = new ReportData
             {
-                Applications = GetSampleResult<Application>(applicationsJSON).ToArray()
+                Applications = GetSampleResult<Application>(applicationsJSON).ToArray(),
+                IgnoresApplications = new string[0],
+                IgnoresSnapshots = new string[0]
             };
             List<Snapshot> snapList = new List<Snapshot>();
             int i = 0;
@@ -346,6 +365,18 @@ namespace CastReporting.UnitTest.Reporting
                 i++;
             }
             reportData.snapshots = snapList.ToArray();
+            return reportData;
+        }
+
+        public static ReportData PrepaEmptyPortfolioReportData()
+        {
+            ReportData reportData = new ReportData
+            {
+                Applications = new Application[0],
+                IgnoresApplications = new[] {"Appli Ignor 1", "Appli 2 Ignore"},
+                IgnoresSnapshots = new[] {"Snap Ignor 1", "Snap 2 Ignore"}
+            };
+
             return reportData;
         }
 

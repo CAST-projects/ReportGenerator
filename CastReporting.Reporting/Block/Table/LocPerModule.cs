@@ -25,7 +25,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("LOC_BY_MODULE")]
-    internal class LocByModule : TableBlock
+    public class LocByModule : TableBlock
     {
         /// <summary>
         /// 

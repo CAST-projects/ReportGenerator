@@ -25,7 +25,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("METRIC_TOP_ARTEFACT")]
-    internal class MetricTopArtifact : TableBlock
+    public class MetricTopArtifact : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {

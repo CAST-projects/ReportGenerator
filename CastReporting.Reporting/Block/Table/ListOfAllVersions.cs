@@ -9,7 +9,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
 	[Block("LIST_OF_ALL_VERSIONS")]
-	internal class ListOfAllVersions : TableBlock
+	public class ListOfAllVersions : TableBlock
 	{
 	    public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
 		{

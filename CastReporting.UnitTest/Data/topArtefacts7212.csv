@@ -1,0 +1,9 @@
+﻿Quality rule name;Object name location;Object status;Snapshot Date;Diagnosis findings;Violation status;Action plan status;Action plan priority
+Avoid instantiations inside loops;CastReporting.BLL.Computing.RulesViolationUtility.GetNbViolationByRule;updated;2017-04-24;null;unchanged;not in action plan;
+Avoid instantiations inside loops;CastReporting.Reporting.Block.Graph.PieModuleArtifact.Content;updated;2017-04-24;null;unchanged;not in action plan;
+Avoid instantiations inside loops;CastReporting.Reporting.Block.Table.MetricTopArtifact.Content;updated;2017-04-24;null;unchanged;not in action plan;
+Avoid instantiations inside loops;CastReporting.Reporting.Builder.BlockProcessing.GraphBlock.ApplyContent;updated;2017-04-24;null;unchanged;not in action plan;
+Avoid instantiations inside loops;CastReporting.Reporting.Builder.ExcelDocumentBuilder.UpdateMergedCellReferences;updated;2017-04-24;null;unchanged;not in action plan;
+Avoid instantiations inside loops;CastReporting.Reporting.Helper.GenericContent.Content;added;2017-04-24;null;added;not in action plan;
+Avoid instantiations inside loops;CastReporting.Reporting.Helper.OptionsHelper.GetIntListOption;added;2017-04-24;null;added;not in action plan;
+Avoid instantiations inside loops;CastReporting.UnitTest.Reporting.TestUtility.PrepaPortfolioReportData;added;2017-04-24;null;added;not in action plan;
