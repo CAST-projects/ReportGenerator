@@ -14,13 +14,11 @@
  *
  */
 using System;
-using System.Data;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using DocumentFormat.OpenXml.Packaging;
-using OpenXmlPowerTools;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Linq;
 using DocumentFormat.OpenXml;

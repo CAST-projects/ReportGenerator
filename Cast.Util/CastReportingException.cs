@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Cast.Util
 {
+    [SerializableAttribute]
     public class CastReportingException : Exception
     {
         public CastReportingException(string message): base(message) { }

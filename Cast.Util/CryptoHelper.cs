@@ -32,29 +32,39 @@ namespace Cast.Util.Security
             if (plainText == null || plainText.Length <= 0)
                 throw new ArgumentNullException(nameof(plainText));
             byte[] encrypted;
-            // Create an TripleDESCryptoServiceProvider object 
-            // with the specified key and IV. 
-            using (TripleDESCryptoServiceProvider tdsAlg = new TripleDESCryptoServiceProvider())
+            TripleDESCryptoServiceProvider tdsAlg = null;
+            ICryptoTransform encryptor = null;
+            MemoryStream msEncrypt = null;
+            CryptoStream csEncrypt = null;
+            StreamWriter swEncrypt = null;
+            try
             {
-                tdsAlg.Key = DesKey;
-                tdsAlg.IV = DesIv;
+                // Create an TripleDESCryptoServiceProvider object 
+                // with the specified key and IV. 
+                tdsAlg = new TripleDESCryptoServiceProvider
+                {
+                    Key = DesKey,
+                    IV = DesIv
+                };
 
                 // Create a decrytor to perform the stream transform.
-                ICryptoTransform encryptor = tdsAlg.CreateEncryptor(tdsAlg.Key, tdsAlg.IV);
+                encryptor = tdsAlg.CreateEncryptor(tdsAlg.Key, tdsAlg.IV);
 
                 // Create the streams used for encryption. 
-                using (MemoryStream msEncrypt = new MemoryStream())
-                {
-                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                    {
-                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-                        {
-                            //Write all data to the stream.
-                            swEncrypt.Write(plainText);
-                        }
-                        encrypted = msEncrypt.ToArray();
-                    }
-                }
+                msEncrypt = new MemoryStream();
+                csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write);
+                swEncrypt = new StreamWriter(csEncrypt);
+                //Write all data to the stream.
+                swEncrypt.Write(plainText);
+                encrypted = msEncrypt.ToArray();
+            }
+            finally
+            {
+                swEncrypt?.Dispose();
+                csEncrypt?.Dispose();
+                msEncrypt?.Dispose();
+                encryptor?.Dispose();
+                tdsAlg?.Dispose();
             }
 
             // Return the encrypted bytes from the memory stream. 
