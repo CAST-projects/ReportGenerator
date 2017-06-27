@@ -25,7 +25,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
 	[Block("RULE_NAME_DESCRIPTION_TOPCRITVIOL"), Block("METRIC_NAME_DESCRIPTION")]
-	internal class RulesDescriptionsOfTopCriticalViolations : TableBlock
+	public class RulesDescriptionsOfTopCriticalViolations : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {

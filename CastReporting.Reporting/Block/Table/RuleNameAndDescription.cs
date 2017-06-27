@@ -27,7 +27,7 @@ namespace CastReporting.Reporting.Block.Table
     /// 
     /// </summary>
     [Block("RULE_NAME_DESCRIPTION")]
-    internal class RuleNameAndDescription : TableBlock
+    public class RuleNameAndDescription : TableBlock
     {
 
         /// <summary>

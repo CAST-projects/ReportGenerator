@@ -149,6 +149,29 @@
         "technologyResults": [],
         "moduleResults": [],
         "transactionResults": []
+      },
+      {
+        "type": "technical-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/61009/snapshots/5",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009",
+          "critical": false
+        },
+        "result": {
+          "grade": 3.5635420408081337,
+          "evolutionSummary": {
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 138,
+            "addedViolations": 77,
+            "removedViolations": 9
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
       }
     ]
   }

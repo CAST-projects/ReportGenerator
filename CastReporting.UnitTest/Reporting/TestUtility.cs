@@ -75,7 +75,10 @@ namespace CastReporting.UnitTest.Reporting
             string moduleJson, string currentJson, string currentHref, string currentName, string currentVersion,
             string modulePrevJson, string previousJson, string previousHref, string previousName, string previousVersion)
         {
-            ReportData reportData = new ReportData();
+            ReportData reportData = new ReportData
+            {
+                Parameter = new ReportingParameter()
+            };
 
             if (currentJson == null) return null;
             // Start Preparation of reportData
@@ -181,7 +184,8 @@ namespace CastReporting.UnitTest.Reporting
                 moduleJson, currentJson, currentHref, currentName, currentVersion,
                 modulePrevJson, previousJson, previousHref, previousName, previousVersion);
 
-            Application appli = new Application();
+            Application appli = new Application {Href = currentHref};
+
             reportData.CurrentSnapshot.Annotation.Date = currentDate;
             List<Snapshot> snapshotList = new List<Snapshot> {reportData.CurrentSnapshot};
             if (reportData.PreviousSnapshot != null)
@@ -348,6 +352,24 @@ namespace CastReporting.UnitTest.Reporting
             reportData.CurrentSnapshot.QIBusinessCriterias = _qiBizCrit;
             if (reportData.PreviousSnapshot != null) reportData.PreviousSnapshot.QIBusinessCriterias = _qiBizCrit;
             return reportData;
+        }
+
+        public static Snapshot AddSameTechCritRulesViolations(Snapshot snapshot, string jsonFile)
+        {
+            foreach (ApplicationResult techCritRes in snapshot.TechnicalCriteriaResults)
+            {
+                techCritRes.RulesViolation = GetSampleResult<Result>(jsonFile).SelectMany(x => x.ApplicationResults).ToList();
+            }
+            return snapshot;
+        }
+
+        public static Snapshot AddTechCritRulesViolations(Snapshot snapshot, string jsonFile, int tcid)
+        {
+            if (jsonFile == null) return snapshot;
+            var results = GetSampleResult<ApplicationResult>(jsonFile).ToList();
+            var _firstOrDefault = snapshot.TechnicalCriteriaResults.FirstOrDefault(_ => _.Reference.Key == tcid);
+            if (_firstOrDefault != null) _firstOrDefault.RulesViolation = results;
+            return snapshot;
         }
 
         public static ReportData PrepaPortfolioReportData(string applicationsJSON, List<string> snapshotsJSON, List<string> snapshotsResultsJSON)

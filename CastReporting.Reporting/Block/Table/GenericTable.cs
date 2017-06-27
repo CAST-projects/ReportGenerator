@@ -4,7 +4,6 @@ using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Helper;
 
-
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("GENERIC_TABLE")]
