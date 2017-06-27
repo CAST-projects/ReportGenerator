@@ -112,7 +112,6 @@
     <Compile Include="Block\Table\PF_IgnoredSnapshots.cs" />
     <Compile Include="Block\Table\PortfolioReleasePerformance.cs" />
     <Compile Include="Block\Table\PortfolioTopRiskiestApps.cs" />
-    <Compile Include="Block\Table\QuantityEvolution.cs" />
     <Compile Include="Block\Table\RuleImprovementOpportunity.cs" />
     <Compile Include="Block\Table\RuleNameAndDescription.cs" />
     <Compile Include="Block\Table\RulesDescriptionsOfTopCriticalViolations.cs" />

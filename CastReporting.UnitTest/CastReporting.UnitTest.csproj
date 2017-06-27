@@ -83,6 +83,18 @@
     <None Include="Data\AADcocraApplications.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\nc60011previous.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\nc60011.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\cc60011previous.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\cc60011.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\cc60017extract.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -112,6 +124,8 @@
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
     <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
+    <Compile Include="Reporting\Tables\RuleImprovementOpportunityTests.cs" />
+    <Compile Include="Reporting\Tables\PortfolioTopRiskiestAppsTests.cs" />
     <Compile Include="Reporting\Tables\PortfolioReleasePerformanceTests.cs" />
     <Compile Include="Reporting\Tables\PF_IgnoredSnapshotsTests.cs" />
     <Compile Include="Reporting\Tables\PF_IgnoredAppsTests.cs" />

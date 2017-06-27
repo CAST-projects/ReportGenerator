@@ -267,6 +267,43 @@ namespace CastReporting.UnitTest.Reporting
             return reportData;
         }
 
+        public static ReportData AddNonCriticalRuleViolations(ReportData reportData, int bcid, string currentJsonNonCriticalRuleViolations, string previousJsonNonCriticalRuleViolations)
+        {
+            if (currentJsonNonCriticalRuleViolations != null)
+            {
+                var currentNonCriticalRuleViolations = new List<ApplicationResult>();
+                var bcres = reportData.CurrentSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == bcid);
+                var results = GetSampleResult<Result>(currentJsonNonCriticalRuleViolations);
+                foreach (var _result in results)
+                {
+                    currentNonCriticalRuleViolations.AddRange(_result.ApplicationResults);
+                }
+                if (bcres != null) bcres.NonCriticalRulesViolation = currentNonCriticalRuleViolations;
+            }
+            if (previousJsonNonCriticalRuleViolations != null)
+            {
+                var previousNonCriticalRuleViolations = new List<ApplicationResult>();
+                var bcres = reportData.PreviousSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == bcid);
+                var results = GetSampleResult<Result>(previousJsonNonCriticalRuleViolations);
+                foreach (var _result in results)
+                {
+                    previousNonCriticalRuleViolations.AddRange(_result.ApplicationResults);
+                }
+                if (bcres != null) bcres.NonCriticalRulesViolation = previousNonCriticalRuleViolations;
+            }
+            return reportData;
+        }
+
+        public static ReportData AddSameNonCriticalRuleViolationsForAllBC(ReportData reportData, string currentJsonNonCriticalRuleViolations, string previousJsonNonCriticalRuleViolations)
+        {
+            int[] bizCrit = { 60011, 60012, 60013, 60014, 60015, 60016, 60017, 66031, 66032, 66033 };
+            foreach (int bizId in bizCrit)
+            {
+                reportData = AddNonCriticalRuleViolations(reportData, bizId, currentJsonNonCriticalRuleViolations, previousJsonNonCriticalRuleViolations);
+            }
+            return reportData;
+        }
+
         public static ReportData AddSizingResults(ReportData reportData, string currentJsonSizingResults, string previousJsonSizingResults)
         {
             if (currentJsonSizingResults != null)
@@ -319,8 +356,10 @@ namespace CastReporting.UnitTest.Reporting
             {
                 Applications = GetSampleResult<Application>(applicationsJSON).ToArray(),
                 IgnoresApplications = new string[0],
-                IgnoresSnapshots = new string[0]
+                IgnoresSnapshots = new string[0],
+                Parameter = new ReportingParameter()
             };
+
             List<Snapshot> snapList = new List<Snapshot>();
             int i = 0;
             foreach (Application _application in reportData.Applications)
