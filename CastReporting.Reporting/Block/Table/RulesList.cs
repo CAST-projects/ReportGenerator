@@ -25,7 +25,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("RULES_LIST")]
-    internal class RulesList : TableBlock
+    public class RulesList : TableBlock
     {
 
         /// <summary>

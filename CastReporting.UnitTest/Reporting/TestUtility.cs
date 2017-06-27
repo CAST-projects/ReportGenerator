@@ -75,7 +75,10 @@ namespace CastReporting.UnitTest.Reporting
             string moduleJson, string currentJson, string currentHref, string currentName, string currentVersion,
             string modulePrevJson, string previousJson, string previousHref, string previousName, string previousVersion)
         {
-            ReportData reportData = new ReportData();
+            ReportData reportData = new ReportData
+            {
+                Parameter = new ReportingParameter()
+            };
 
             if (currentJson == null) return null;
             // Start Preparation of reportData
@@ -181,7 +184,8 @@ namespace CastReporting.UnitTest.Reporting
                 moduleJson, currentJson, currentHref, currentName, currentVersion,
                 modulePrevJson, previousJson, previousHref, previousName, previousVersion);
 
-            Application appli = new Application();
+            Application appli = new Application {Href = currentHref};
+
             reportData.CurrentSnapshot.Annotation.Date = currentDate;
             List<Snapshot> snapshotList = new List<Snapshot> {reportData.CurrentSnapshot};
             if (reportData.PreviousSnapshot != null)
@@ -267,6 +271,43 @@ namespace CastReporting.UnitTest.Reporting
             return reportData;
         }
 
+        public static ReportData AddNonCriticalRuleViolations(ReportData reportData, int bcid, string currentJsonNonCriticalRuleViolations, string previousJsonNonCriticalRuleViolations)
+        {
+            if (currentJsonNonCriticalRuleViolations != null)
+            {
+                var currentNonCriticalRuleViolations = new List<ApplicationResult>();
+                var bcres = reportData.CurrentSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == bcid);
+                var results = GetSampleResult<Result>(currentJsonNonCriticalRuleViolations);
+                foreach (var _result in results)
+                {
+                    currentNonCriticalRuleViolations.AddRange(_result.ApplicationResults);
+                }
+                if (bcres != null) bcres.NonCriticalRulesViolation = currentNonCriticalRuleViolations;
+            }
+            if (previousJsonNonCriticalRuleViolations != null)
+            {
+                var previousNonCriticalRuleViolations = new List<ApplicationResult>();
+                var bcres = reportData.PreviousSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == bcid);
+                var results = GetSampleResult<Result>(previousJsonNonCriticalRuleViolations);
+                foreach (var _result in results)
+                {
+                    previousNonCriticalRuleViolations.AddRange(_result.ApplicationResults);
+                }
+                if (bcres != null) bcres.NonCriticalRulesViolation = previousNonCriticalRuleViolations;
+            }
+            return reportData;
+        }
+
+        public static ReportData AddSameNonCriticalRuleViolationsForAllBC(ReportData reportData, string currentJsonNonCriticalRuleViolations, string previousJsonNonCriticalRuleViolations)
+        {
+            int[] bizCrit = { 60011, 60012, 60013, 60014, 60015, 60016, 60017, 66031, 66032, 66033 };
+            foreach (int bizId in bizCrit)
+            {
+                reportData = AddNonCriticalRuleViolations(reportData, bizId, currentJsonNonCriticalRuleViolations, previousJsonNonCriticalRuleViolations);
+            }
+            return reportData;
+        }
+
         public static ReportData AddSizingResults(ReportData reportData, string currentJsonSizingResults, string previousJsonSizingResults)
         {
             if (currentJsonSizingResults != null)
@@ -313,14 +354,34 @@ namespace CastReporting.UnitTest.Reporting
             return reportData;
         }
 
+        public static Snapshot AddSameTechCritRulesViolations(Snapshot snapshot, string jsonFile)
+        {
+            foreach (ApplicationResult techCritRes in snapshot.TechnicalCriteriaResults)
+            {
+                techCritRes.RulesViolation = GetSampleResult<Result>(jsonFile).SelectMany(x => x.ApplicationResults).ToList();
+            }
+            return snapshot;
+        }
+
+        public static Snapshot AddTechCritRulesViolations(Snapshot snapshot, string jsonFile, int tcid)
+        {
+            if (jsonFile == null) return snapshot;
+            var results = GetSampleResult<ApplicationResult>(jsonFile).ToList();
+            var _firstOrDefault = snapshot.TechnicalCriteriaResults.FirstOrDefault(_ => _.Reference.Key == tcid);
+            if (_firstOrDefault != null) _firstOrDefault.RulesViolation = results;
+            return snapshot;
+        }
+
         public static ReportData PrepaPortfolioReportData(string applicationsJSON, List<string> snapshotsJSON, List<string> snapshotsResultsJSON)
         {
             ReportData reportData = new ReportData
             {
                 Applications = GetSampleResult<Application>(applicationsJSON).ToArray(),
                 IgnoresApplications = new string[0],
-                IgnoresSnapshots = new string[0]
+                IgnoresSnapshots = new string[0],
+                Parameter = new ReportingParameter()
             };
+
             List<Snapshot> snapList = new List<Snapshot>();
             int i = 0;
             foreach (Application _application in reportData.Applications)

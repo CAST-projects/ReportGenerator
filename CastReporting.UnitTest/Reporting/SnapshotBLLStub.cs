@@ -100,5 +100,6 @@ namespace CastReporting.UnitTest.Reporting
         {
             throw new NotImplementedException();
         }
-            }
-        }
+
+    }
+}

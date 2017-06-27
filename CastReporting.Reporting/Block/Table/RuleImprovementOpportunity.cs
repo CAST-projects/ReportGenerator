@@ -28,7 +28,7 @@ namespace CastReporting.Reporting.Block.Table
     /// Rule Improvement Opportunity Class
     /// </summary>
     [Block("RULE_IMPROVEMENT_OPPORTUNITY")]
-    internal class RuleImprovementOpportunity : TableBlock
+    public class RuleImprovementOpportunity : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
@@ -37,9 +37,6 @@ namespace CastReporting.Reporting.Block.Table
             int order;
             List<string> rowData = new List<string>();
             List<RuleVariationResultDTO> variationRules = new List<RuleVariationResultDTO>();
-            //List<RuleVariationResultDTO> improvmentRules = new List<RuleVariationResultDTO>();
-            //List<RuleVariationResultDTO> degradationRules = new List<RuleVariationResultDTO>();
-            //List<RuleVariationResultDTO> selected_elements = new List<RuleVariationResultDTO>();
 
             rowData.AddRange(new[] {
 				Labels.RuleName,

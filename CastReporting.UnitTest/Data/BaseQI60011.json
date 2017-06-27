@@ -1,0 +1,74 @@
+[
+  {
+    "href": "AED/quality-indicators/65601/snapshots/5",
+    "key": "65601",
+    "name": "4GL Complexity Distribution",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(9x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "9x1",
+        "technicalCriterion": {
+          "href": "AED/quality-indicators/61009/snapshots/5",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "AED/quality-indicators/7132/snapshots/5",
+    "key": "7132",
+    "name": "Action Mappings should have few forwards",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(9x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "9x1",
+        "technicalCriterion": {
+          "href": "AED/quality-indicators/61009/snapshots/5",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "AED/quality-indicators/7558/snapshots/5",
+    "key": "7558",
+    "name": "Avoid accessing data by using the position and length",
+    "compoundedWeight": 45,
+    "compoundedWeightFormula": "(9x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "9x5",
+        "technicalCriterion": {
+          "href": "AED/quality-indicators/61009/snapshots/5",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "AED/quality-indicators/7388/snapshots/5",
+    "key": "7388",
+    "name": "Avoid artifacts having recursive calls",
+    "compoundedWeight": 72,
+    "compoundedWeightFormula": "(9x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "9x8",
+        "technicalCriterion": {
+          "href": "AED/quality-indicators/61009/snapshots/5",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  }
+]

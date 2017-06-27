@@ -30,7 +30,7 @@ using CastReporting.Reporting.Helper;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("PF_TOP_RISKIEST_APPS")]
-    internal class PortfolioTopRiskiestApps : TableBlock
+    public class PortfolioTopRiskiestApps : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {

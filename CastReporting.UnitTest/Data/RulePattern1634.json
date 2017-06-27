@@ -1,0 +1,24 @@
+﻿[
+  {
+    "href": "AED/rule-patterns/1634",
+    "key": "1634",
+    "name": "Avoid unreferenced Tables",
+    "description": "List of schema tables that are not called",
+    "technologies": [
+      "DB2 Server",
+      "Microsoft T-SQL",
+      "PL/SQL",
+      "SQL Analyzer",
+      "SQL Server",
+      "Sybase T-SQL"
+    ],
+    "rationale": "All Tables should be referenced.\nUnreferenced tables may be the symptom of Dead Code. And dead Code must be avoided as it makes source code less readable and increases the cost of the software maintenance.\n\n\nWarning:\nUnreference code can also be the symptoms of missing code (code not included in the source code analysis) and / or can be the symptom of use of polymorphism.",
+    "reference": null,
+    "remediation": "Check if the table  is truly unnecessary.\nRemoveit if so",
+    "output": "This report lists all unreferenced Tables.\nIt provides the following information:\n\n- Table name, \n- Table full name.",
+    "associatedValueName": null,
+    "total": "total is number of schema tables",
+    "sample": null,
+    "remediationSample": null
+  }
+]

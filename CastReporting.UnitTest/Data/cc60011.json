@@ -1,0 +1,155 @@
+﻿[
+  {
+    "number": 5,
+    "date": {
+      "time": 1496959200000,
+      "isoDate": "2017-06-09"
+    },
+    "application": {
+      "href": "AED/applications/3",
+      "name": "CoCRestAPI",
+      "adgDatabase": "cocra_central"
+    },
+    "applicationSnapshot": {
+      "href": "AED/applications/3/snapshots/5",
+      "name": "CoCRestAPI"
+    },
+    "applicationResults": [
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/4592/snapshots/5",
+          "name": "Avoid hiding static Methods",
+          "key": "4592",
+          "critical": true
+        },
+        "result": {
+          "grade": 1.56,
+          "violationRatio": {
+            "totalChecks": 70,
+            "failedChecks": 63,
+            "successfulChecks": 67,
+            "ratio": 0.9571428571428572
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 1,
+            "removedCriticalViolations": 2,
+            "addedViolations": 64,
+            "removedViolations": 19
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/4614/snapshots/5",
+          "name": "Proper overriding of 'clone()'",
+          "key": "4614",
+          "critical": true
+        },
+        "result": {
+          "grade": 3.95,
+          "violationRatio": {
+            "totalChecks": 607,
+            "failedChecks": 0,
+            "successfulChecks": 607,
+            "ratio": 1
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/4616/snapshots/5",
+          "name": "Proper overriding of 'finalize()'",
+          "key": "4616",
+          "critical": true
+        },
+        "result": {
+          "grade": 4,
+          "violationRatio": {
+            "totalChecks": 607,
+            "failedChecks": 0,
+            "successfulChecks": 607,
+            "ratio": 1
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/7440/snapshots/5",
+          "name": "Suspicious similar method names or signatures in an inheritance tree",
+          "key": "7440",
+          "critical": true
+        },
+        "result": {
+          "grade": 4,
+          "violationRatio": {
+            "totalChecks": 31,
+            "failedChecks": 13,
+            "successfulChecks": 31,
+            "ratio": 1
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 5,
+            "removedViolations": 2
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/7460/snapshots/5",
+          "name": "Avoid using untyped DataSet",
+          "key": "7460",
+          "critical": true
+        },
+        "result": {
+          "grade": 1,
+          "violationRatio": {
+            "totalChecks": 4,
+            "failedChecks": 4,
+            "successfulChecks": 0,
+            "ratio": 0
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 2,
+            "addedViolations": 3,
+            "removedViolations": 2
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  }
+]

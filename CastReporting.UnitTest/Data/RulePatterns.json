@@ -1,0 +1,70 @@
+﻿[
+  {
+    "href": "AED/rule-patterns/7558",
+    "key": "7558",
+    "name": "Avoid accessing data by using the position and length",
+    "description": "This rule searches for Cobol programs accessing part of data by using a position and a length.",
+    "technologies": [
+      "Cobol"
+    ],
+    "rationale": "Parts of data can be accessed by using their position and their length in a data group. This mechanism is error prone for two points: the developer can introduce errors in defining the position of the part of data to access. \nIn addition, this position is dependent of any changes in the data before placed before it.\nThus, problems can easily occur in production and data may be corrupted.",
+    "reference": null,
+    "remediation": "Data which need to be accessed partially must have detailed fields. Then, look for accesses using position and length and replace them by fields accesses.",
+    "output": "Associated to each COBOL Program with violations, the Quality Rule provides:\n- The number of violation patterns\n- Bookmarks for violation patterns found in source code:\n  - Data accessed via a position and a length in the PROCEDURE division",
+    "associatedValueName": "Number of violation patterns",
+    "total": "Number of Cobol Programs",
+    "sample": "01 WSS-RUB     PIC X(10).\n01 WSS-VAL     PIC X(20).\n01 WSS-ENTITY PIC X(8).\n...\nIF WSS-RUB(1:3) = 'BAK' \n    MOVE WSS-VAL (1:8) TO WSS-ENTITE\nEND-IF",
+    "remediationSample": "01 WSS-RUB.\n    05 WSS-RUB-ID PIC X(3).\n    05 FILLER           PIC X(7).\n01 WSS-VAL.\n    05 WSS-VAL-ENTITY    PIC X(8).\n    05 WSS-OTHER-DATA PIC X(12).\n01 WSS-ENTITY PIC X(8).\n...\nIF WSS-RUB-ID = 'BAK' \n    MOVE WSS-VAL-ENTITY TO WSS-ENTITE\nEND-IF"
+  },
+  {
+    "href": "AED/rule-patterns/7132",
+    "key": "7132",
+    "name": "Action Mappings should have few forwards",
+    "description": "All Action Mappings with more than 5 forward will be listed.",
+    "technologies": [
+      "JEE"
+    ],
+    "rationale": "Action Mappings should have few forwards to avoid managing too complex behaviors in the Action class. A forward contains the request URI path to which control is passed when the mapping is invoked.",
+    "reference": null,
+    "remediation": null,
+    "output": "This report lists all action mapping that have more than X forward and the number of forwards.\nIt provides the following information:\n Action Class full name, Number of forward",
+    "associatedValueName": "Number of forward",
+    "total": "total of action mapping",
+    "sample": null,
+    "remediationSample": null
+  },
+  {
+    "href": "AED/rule-patterns/7766",
+    "key": "7766",
+    "name": "Avoid Artifacts with High Cyclomatic Complexity",
+    "description": "Retrieves all Artifacts having a Cyclomatic Complexity greater than the specified threshold . Cyclomatic Complexity is a measure of the complexity of the control structure of an Artifact. It is the number of linearly independent paths and therefore, the minimum number of independent paths when executing the software. \nThe threshold is a parameter and can be changed at will.",
+    "technologies": [
+      ".NET (Legacy Analyzer)",
+      "ABAP",
+      "ASP",
+      "C",
+      "C#",
+      "C++",
+      "Cobol",
+      "DB2 Server",
+      "Forms",
+      "JavaScript",
+      "JEE",
+      "Microsoft T-SQL",
+      "PL/SQL",
+      "PowerBuilder",
+      "SQL Server",
+      "Sybase T-SQL",
+      "VB.NET",
+      "Visual Basic"
+    ],
+    "rationale": "The effort and time for diagnosis of deficiencies or causes of failures, or for identification of parts to be modified is directly related to the number of execution paths, i.e. the complexity of the control flow. \nAnalyzability declines with increasing Cyclomatic Complexity. \nEach modification must be correct for all execution paths. Cyclomatic Complexity computes the number of the linearly independent paths, a lower bound of all execution paths ignoring multiple iterations. \nChangeability declines with increasing Cyclomatic Complexity. \nComplete testing requires coverage of all execution paths. Cyclomatic Complexity computes the number of the linearly independent paths, a lower bound of all execution paths ignoring multiple iterations. \nTestability declines with increasing Cyclomatic Complexity.",
+    "reference": "Carnegie Mellon's Software Engineering Institute on Cyclomatic Complexity\nhttp://www.sei.cmu.edu/reports/95cm028.pdf\n\nNIST (National Institute of Standards and Technology)\nStructured Testing: A Testing Methodology Using the Cyclomatic Complexity Metric\nhttp://hissa.nist.gov/HHRFdata/Artifacts/ITLdoc/235/sttoc.htm",
+    "remediation": "Review the design of the Artifact to reduce number of independent paths. E.g.: Reduce the number of conditional statements.",
+    "output": "This report lists all Artifacts with a Cyclomatic Complexity greater than X.It provides the following information:  Artifact full name, CC",
+    "associatedValueName": "Associated Value",
+    "total": "Number of Artifacts",
+    "sample": null,
+    "remediationSample": null
+  }
+]

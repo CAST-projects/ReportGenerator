@@ -25,7 +25,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TC_IMPROVEMENT_OPPORTUNITY")]
-    internal class TCImprovementOpportunity : TableBlock
+    public class TCImprovementOpportunity : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
@@ -44,7 +44,7 @@ namespace CastReporting.Reporting.Block.Table
             int bcCriteriaId;
             if (null == options || !options.ContainsKey("PAR") || !int.TryParse(options["PAR"], out bcCriteriaId))
             {
-                throw new ArgumentException("Impossible to build RC_IMPROVEMENT_OPPORTUNITY : Need business criterion id.");
+                throw new ArgumentException("Impossible to build TC_IMPROVEMENT_OPPORTUNITY : Need business criterion id.");
             }
             #endregion Options
 

@@ -83,7 +83,40 @@
     <None Include="Data\AADcocraApplications.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\BaseQI60011.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RuleListBCTC.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RulePatterns.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RulePattern4592.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RuleViolation1634.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RulePattern1634.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\nc60011previous.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\nc60011.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\cc60011previous.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\cc60011.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\cc60017extract.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TechCrit61009Violations.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\topArtefacts3576.csv">
@@ -109,9 +142,17 @@
     <Compile Include="Reporting\Graph\TrendComplianceTests.cs" />
     <Compile Include="Reporting\Graph\TrendTechDebtTests.cs" />
     <Compile Include="Reporting\Graph\TrendTechDebtPortfolioTests.cs" />
+    <Compile Include="Reporting\RuleBLLStub.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
     <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
+    <Compile Include="Reporting\Tables\TechnicalCriteriaRulesTests.cs" />
+    <Compile Include="Reporting\Tables\TCImprovementOpportunityTests.cs" />
+    <Compile Include="Reporting\Tables\RulesListTests.cs" />
+    <Compile Include="Reporting\Tables\RulesDescriptionsOfTopCriticalViolationsTests.cs" />
+    <Compile Include="Reporting\Tables\RuleNameAndDescriptionTests.cs" />
+    <Compile Include="Reporting\Tables\RuleImprovementOpportunityTests.cs" />
+    <Compile Include="Reporting\Tables\PortfolioTopRiskiestAppsTests.cs" />
     <Compile Include="Reporting\Tables\PortfolioReleasePerformanceTests.cs" />
     <Compile Include="Reporting\Tables\PF_IgnoredSnapshotsTests.cs" />
     <Compile Include="Reporting\Tables\PF_IgnoredAppsTests.cs" />

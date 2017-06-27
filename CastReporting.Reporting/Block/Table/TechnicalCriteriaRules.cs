@@ -25,7 +25,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TECHNICAL_CRITERIA_RULES")]
-    internal class TechnicalCriteriaRules : TableBlock
+    public class TechnicalCriteriaRules : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
