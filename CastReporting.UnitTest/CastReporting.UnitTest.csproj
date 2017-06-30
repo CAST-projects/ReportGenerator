@@ -149,6 +149,10 @@
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
     <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
+    <Compile Include="Reporting\Tables\TopNonCriticalViolationsEvolutionTests.cs" />
+    <Compile Include="Reporting\Tables\TopCriticalViolationsEvolutionTests.cs" />
+    <Compile Include="Reporting\Tables\TopNonCriticalViolationsTests.cs" />
+    <Compile Include="Reporting\Tables\TopCriticalViolationsTests.cs" />
     <Compile Include="Reporting\Tables\TechnoLoCEvolutionTests.cs" />
     <Compile Include="Reporting\Tables\TechnicalSizingEvolutionTests.cs" />
     <Compile Include="Reporting\Tables\TechnoLoCModuleTests.cs" />
