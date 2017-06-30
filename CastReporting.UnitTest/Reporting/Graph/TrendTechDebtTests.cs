@@ -28,7 +28,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "Debt Removed ()", "Debt Added ()", "Debt ()" });
+            expectedData.AddRange(new List<string> { " ", "Debt Removed ($)", "Debt Added ($)", "Debt ($)" });
             expectedData.AddRange(new List<string> { "42756", "-23599.5", "1946.25", "236647.5"});
             expectedData.AddRange(new List<string> { "42756", "-23599.5", "1946.25", "236647.5" });
             TestUtility.AssertTableContent(table, expectedData, 4, 3);
@@ -52,7 +52,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "Debt Removed ()", "Debt Added ()", "Debt ()" });
+            expectedData.AddRange(new List<string> { " ", "Debt Removed ($)", "Debt Added ($)", "Debt ($)" });
             expectedData.AddRange(new List<string> { "42755", "-685.12", "6394.5", "261025.12" });
             expectedData.AddRange(new List<string> { "42756", "-23599.5", "1946.25", "236647.5" });
             TestUtility.AssertTableContent(table, expectedData, 4, 3);

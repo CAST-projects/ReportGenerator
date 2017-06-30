@@ -86,6 +86,9 @@
     <None Include="Data\BaseQI60011.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\PreviousTechSizeResultsModTechno.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\RuleListBCTC.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -146,6 +149,9 @@
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
     <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
+    <Compile Include="Reporting\Tables\TechnicalSizingEvolutionTests.cs" />
+    <Compile Include="Reporting\Tables\TechnicalSizingTests.cs" />
+    <Compile Include="Reporting\Tables\TechnicalDebtTests.cs" />
     <Compile Include="Reporting\Tables\TechnicalCriteriaRulesTests.cs" />
     <Compile Include="Reporting\Tables\TCImprovementOpportunityTests.cs" />
     <Compile Include="Reporting\Tables\RulesListTests.cs" />

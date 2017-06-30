@@ -14,7 +14,7 @@ namespace CastReporting.UnitTest.Reporting
         [DeploymentItem(@".\Data\RulePatterns.json", "Data")]
         public RuleDescription GetSpecificRule(string domain, string ruleId)
         {
-            RuleDescription res = null;
+            RuleDescription res;
 
             switch (ruleId)
             {

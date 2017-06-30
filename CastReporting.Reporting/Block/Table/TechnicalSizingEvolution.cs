@@ -28,7 +28,7 @@ namespace CastReporting.Reporting.Block.Table
     /// TechnicalSizingEvolution Class
     /// </summary>
     [Block("TECHNICAL_SIZING_EVOLUTION")]
-    internal class TechnicalSizingEvolution : TableBlock
+    public class TechnicalSizingEvolution : TableBlock
     {
         #region METHODS
 

@@ -24,7 +24,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TECHNICAL_SIZING")]
-    internal class TechnicalSizing : TableBlock
+    public class TechnicalSizing : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
