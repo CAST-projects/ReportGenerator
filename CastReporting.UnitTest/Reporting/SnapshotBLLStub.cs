@@ -43,14 +43,29 @@ namespace CastReporting.UnitTest.Reporting
             throw new NotImplementedException();
         }
 
+        [DeploymentItem(@".\Data\Component60016Snap.json", "Data")]
         public IEnumerable<Component> GetComponents(string snapshotHref, string businessCriteria, int count)
         {
-            throw new NotImplementedException();
+            IEnumerable<Component> res = null;
+            if (businessCriteria == "60016")
+                res = TestUtility.GetSampleResult<Component>(@".\Data\Component60016Snap.json").ToList();
+
+            if (count != -1)
+                res = res?.Take(count);
+
+            return res;
         }
 
+        [DeploymentItem(@".\Data\Component60016ModSnap.json", "Data")]
         public IEnumerable<Component> GetComponentsByModule(string domainId, int moduleId, int snapshotId, string businessCriteria, int count)
         {
-            throw new NotImplementedException();
+            IEnumerable<Component> res = null;
+            if (businessCriteria == "60016")
+                res = TestUtility.GetSampleResult<Component>(@".\Data\Component60016ModSnap.json").ToList();
+            if (count != -1)
+                res = res?.Take(count);
+
+            return res;
         }
 
         [DeploymentItem(@".\Data\IfpugFunctions.csv", "Data")]
@@ -96,9 +111,16 @@ namespace CastReporting.UnitTest.Reporting
             return res;
         }
 
+        [DeploymentItem(@".\Data\Transactions60016Snap.json", "Data")]
         public IEnumerable<Transaction> GetTransactions(string snapshotHref, string businessCriteria, int count)
         {
-            throw new NotImplementedException();
+            IEnumerable<Transaction> res = null;
+            if (businessCriteria == "60016")
+                res = TestUtility.GetSampleResult<Transaction>(@".\Data\Transactions60016Snap.json").ToList();
+            if (count != -1)
+                res = res?.Take(count);
+
+            return res;
         }
 
     }
