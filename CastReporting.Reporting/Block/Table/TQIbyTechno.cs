@@ -24,7 +24,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("BC_BY_TECHNO")]
-    internal class TQIbyTechno : TableBlock
+    public class TQIbyTechno : TableBlock
     {
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace CastReporting.Reporting.Block.Table
                 foreach (var res in result.TechnologyResult) {
                     rowData.AddRange(new[] { res.Technology, res.DetailResult.Grade?.ToString(MetricFormat) ?? Domain.Constants.No_Value });
                 }
-                nbTot = result.ModulesResult.Length;
+                nbTot = result.TechnologyResult.Length;
             }
             var resultTable = new TableDefinition {
                 HasRowHeaders = false,

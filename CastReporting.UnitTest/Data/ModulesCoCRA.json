@@ -1,6 +1,6 @@
 ﻿[
   {
-    "href": "AED/modules/4",
+    "href": "AED/modules/4/snapshots/4",
     "name": "AAD-Admin",
     "technologies": [
       "JEE",
@@ -21,7 +21,7 @@
     }
   },
   {
-    "href": "AED/modules/5",
+    "href": "AED/modules/5/snapshots/4",
     "name": "AED-Admin",
     "technologies": [
       "JEE",
@@ -42,7 +42,7 @@
     }
   },
   {
-    "href": "AED/modules/6",
+    "href": "AED/modules/6/snapshots/4",
     "name": "ReportGenerator",
     "technologies": [
       ".NET"

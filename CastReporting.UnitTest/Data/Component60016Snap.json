@@ -1,0 +1,62 @@
+[
+  {
+    "href": "AED/components/11781/snapshots/4",
+    "name": "central.dss_metric_results",
+    "shortName": "dss_metric_results",
+    "propagationRiskIndex": 229656
+  },
+  {
+    "href": "AED/components/10764/snapshots/4",
+    "name": "central.dss_history",
+    "shortName": "dss_history",
+    "propagationRiskIndex": 180488
+  },
+  {
+    "href": "AED/components/13586/snapshots/4",
+    "name": "central.dss_snapshots",
+    "shortName": "dss_snapshots",
+    "propagationRiskIndex": 140952
+  },
+  {
+    "href": "AED/components/11301/snapshots/4",
+    "name": "measure.dss_history",
+    "shortName": "dss_history",
+    "propagationRiskIndex": 140504
+  },
+  {
+    "href": "AED/components/14381/snapshots/4",
+    "name": "com.castsoftware.aad.common.AadCommandLine.dumpStack",
+    "shortName": "dumpStack",
+    "propagationRiskIndex": 122280
+  },
+  {
+    "href": "AED/components/12407/snapshots/4",
+    "name": "central.dss_objects",
+    "shortName": "dss_objects",
+    "propagationRiskIndex": 97608
+  },
+  {
+    "href": "AED/components/13922/snapshots/4",
+    "name": "central.dss_link_info",
+    "shortName": "dss_link_info",
+    "propagationRiskIndex": 84840
+  },
+  {
+    "href": "AED/components/9555/snapshots/4",
+    "name": "com.castsoftware.aed.common.AedCommandLine.dumpStack",
+    "shortName": "dumpStack",
+    "propagationRiskIndex": 63240
+  },
+  {
+    "href": "AED/components/9836/snapshots/4",
+    "name": "measure.dss_snapshots",
+    "shortName": "dss_snapshots",
+    "propagationRiskIndex": 56224
+  },
+  {
+    "href": "AED/components/13668/snapshots/4",
+    "name": "com.castsoftware.aad.common.AadCommandLine.logInBase",
+    "shortName": "logInBase",
+    "propagationRiskIndex": 54120
+  }
+]

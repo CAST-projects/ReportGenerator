@@ -86,6 +86,18 @@
     <None Include="Data\BaseQI60011.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\CurrentBCtechno.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Transactions60016Snap.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Component60016Snap.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\PreviousTechSizeResultsModTechno.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\RuleListBCTC.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -119,6 +131,9 @@
     <None Include="Data\TechCrit61009Violations.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\Component60016ModSnap.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\topArtefacts3576.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -146,6 +161,21 @@
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
     <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
+    <Compile Include="Reporting\Tables\TQIbyTechnoTests.cs" />
+    <Compile Include="Reporting\Tables\TQIbyModuleTests.cs" />
+    <Compile Include="Reporting\Tables\TQITests.cs" />
+    <Compile Include="Reporting\Tables\TopNonCriticalViolationsEvolutionTests.cs" />
+    <Compile Include="Reporting\Tables\TopCriticalViolationsEvolutionTests.cs" />
+    <Compile Include="Reporting\Tables\TopRiskiestTransactionsTests.cs" />
+    <Compile Include="Reporting\Tables\TopRiskiestComponentsTests.cs" />
+    <Compile Include="Reporting\Tables\TopNonCriticalViolationsTests.cs" />
+    <Compile Include="Reporting\Tables\TopCriticalViolationsTests.cs" />
+    <Compile Include="Reporting\Tables\TechnoLoCEvolutionTests.cs" />
+    <Compile Include="Reporting\Tables\TechnicalSizingEvolutionTests.cs" />
+    <Compile Include="Reporting\Tables\TechnoLoCModuleTests.cs" />
+    <Compile Include="Reporting\Tables\TechnoLoCTests.cs" />
+    <Compile Include="Reporting\Tables\TechnicalSizingTests.cs" />
+    <Compile Include="Reporting\Tables\TechnicalDebtTests.cs" />
     <Compile Include="Reporting\Tables\TechnicalCriteriaRulesTests.cs" />
     <Compile Include="Reporting\Tables\TCImprovementOpportunityTests.cs" />
     <Compile Include="Reporting\Tables\RulesListTests.cs" />

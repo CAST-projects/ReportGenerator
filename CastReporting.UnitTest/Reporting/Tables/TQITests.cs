@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using CastReporting.Domain;
-using CastReporting.Reporting.Block.Graph;
-using CastReporting.Reporting.ReportingModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CastReporting.Reporting.Block.Table;
+using CastReporting.Reporting.ReportingModel;
 
-namespace CastReporting.UnitTest.Reporting.Graph
+namespace CastReporting.UnitTest.Reporting.Tables
 {
     [TestClass]
-    public class TrendTechDebtTests
+    public class TQITests
     {
         [TestInitialize()]
         public void Initialize()
@@ -23,17 +23,14 @@ namespace CastReporting.UnitTest.Reporting.Graph
             ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
                null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
                null, null, null, null, null, null);
-            var component = new TrendTechDebt();
+            var component = new TQI();
             Dictionary<string, string> config = new Dictionary<string, string>();
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "Debt Removed ($)", "Debt Added ($)", "Debt ($)" });
-            expectedData.AddRange(new List<string> { "42756", "-23599.5", "1946.25", "236647.5"});
-            expectedData.AddRange(new List<string> { "42756", "-23599.5", "1946.25", "236647.5" });
-            TestUtility.AssertTableContent(table, expectedData, 4, 3);
-
-            Assert.IsNull(table.GraphOptions);
+            expectedData.AddRange(new List<string> { "Statistics", "Current score", "Previous score" });
+            expectedData.AddRange(new List<string> { "TQI", "2.78", "n/a" });
+            TestUtility.AssertTableContent(table, expectedData, 3, 2);
         }
 
         [TestMethod]
@@ -47,19 +44,16 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
                 null, @".\Data\PreviousBCresults.json", "AED/applications/3/snapshots/3", "PreVersion 1.4.1 before release", "V-1.4.1", previousDate);
 
-            var component = new TrendTechDebt();
+            var component = new TQI();
             Dictionary<string, string> config = new Dictionary<string, string>();
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "Debt Removed ($)", "Debt Added ($)", "Debt ($)" });
-            expectedData.AddRange(new List<string> { "42755", "-685.12", "6394.5", "261025.12" });
-            expectedData.AddRange(new List<string> { "42756", "-23599.5", "1946.25", "236647.5" });
-            TestUtility.AssertTableContent(table, expectedData, 4, 3);
-
-            Assert.IsNull(table.GraphOptions);
-
+            expectedData.AddRange(new List<string> { "Statistics", "Current score", "Previous score" });
+            expectedData.AddRange(new List<string> { "TQI", "2.78", "2.73" });
+            TestUtility.AssertTableContent(table, expectedData, 3, 2);
         }
+
 
     }
 }

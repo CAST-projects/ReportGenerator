@@ -24,7 +24,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TQI")]
-    internal class TQI : TableBlock
+    public class TQI : TableBlock
     {
          /// <summary>
         /// 

@@ -25,7 +25,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TECHNO_LOC_BY_MODULE")]
-    internal class TechnoLoCModule : TableBlock
+    public class TechnoLoCModule : TableBlock
     {
         /// <summary>
         /// 

@@ -25,7 +25,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TOP_RISKIEST_COMPONENTS")]
-    internal class TopRiskiestComponents : TableBlock
+    public class TopRiskiestComponents : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {

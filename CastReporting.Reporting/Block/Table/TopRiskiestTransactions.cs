@@ -25,7 +25,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TOP_RISKIEST_TRANSACTIONS")]
-    internal class TopRiskiestTransactions : TableBlock
+    public class TopRiskiestTransactions : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {

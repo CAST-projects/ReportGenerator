@@ -30,7 +30,7 @@ namespace CastReporting.Reporting.Block.Table
     /// TechnoLoCEvolution Class
     /// </summary>
     [Block("TECHNO_LOC_EVOLUTION")]
-    internal class TechnoLoCEvolution : TableBlock
+    public class TechnoLoCEvolution : TableBlock
     {
           #region METHODS
 
