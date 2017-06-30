@@ -24,7 +24,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TECHNO_LOC")]
-    internal class TechnoLoC : TableBlock
+    public class TechnoLoC : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
