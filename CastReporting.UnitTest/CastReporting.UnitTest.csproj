@@ -86,6 +86,9 @@
     <None Include="Data\BaseQI60011.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\CurrentBCtechno.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Transactions60016Snap.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -158,6 +161,9 @@
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
     <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
+    <Compile Include="Reporting\Tables\TQIbyTechnoTests.cs" />
+    <Compile Include="Reporting\Tables\TQIbyModuleTests.cs" />
+    <Compile Include="Reporting\Tables\TQITests.cs" />
     <Compile Include="Reporting\Tables\TopNonCriticalViolationsEvolutionTests.cs" />
     <Compile Include="Reporting\Tables\TopCriticalViolationsEvolutionTests.cs" />
     <Compile Include="Reporting\Tables\TopRiskiestTransactionsTests.cs" />

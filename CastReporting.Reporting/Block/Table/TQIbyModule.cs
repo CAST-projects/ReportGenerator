@@ -26,7 +26,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("TQI_BY_MODULE")]
-    internal class TQIbyModule : TableBlock
+    public class TQIbyModule : TableBlock
     {
         /// <summary>
         /// 
