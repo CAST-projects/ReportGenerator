@@ -26,7 +26,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("VIOLATION_STATISTICS")]
-    internal class ViolationStatistics : TableBlock
+    public class ViolationStatistics : TableBlock
     {
         #region METHODS
 

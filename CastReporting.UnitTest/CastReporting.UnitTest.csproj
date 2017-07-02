@@ -86,6 +86,9 @@
     <None Include="Data\BaseQI60011.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\cocraCritViolStats.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\CurrentBCtechno.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -159,6 +162,7 @@
     <Compile Include="Reporting\Graph\TrendTechDebtPortfolioTests.cs" />
     <Compile Include="Reporting\RuleBLLStub.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
+    <Compile Include="Reporting\Tables\ViolationStatisticsTests.cs" />
     <Compile Include="Reporting\Tables\CastComplexityWithViolationTests.cs" />
     <Compile Include="Reporting\Tables\CastHighDistributionTests.cs" />
     <Compile Include="Reporting\Tables\TQIbyTechnoTests.cs" />
