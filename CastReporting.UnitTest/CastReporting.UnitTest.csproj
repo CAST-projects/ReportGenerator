@@ -221,6 +221,8 @@
     <Compile Include="Reporting\Tables\CriteriaAndGradeTests.cs" />
     <Compile Include="Reporting\Tables\CriticalViolationByApplicationTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
+    <Compile Include="Reporting\Text\CustomExpressionTests.cs" />
+    <Compile Include="Reporting\Text\CastVersionTests.cs" />
     <Compile Include="Reporting\Text\ApplicationSizeTypeTests.cs" />
     <Compile Include="Reporting\Text\ApplicationQualityTypeTests.cs" />
     <Compile Include="Reporting\Text\ApplicationNameTests.cs" />

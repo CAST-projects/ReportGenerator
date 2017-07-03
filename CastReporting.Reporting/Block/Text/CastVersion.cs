@@ -22,7 +22,7 @@ namespace CastReporting.Reporting.Block.Text
 {
 
     [Block("CAST_VERSION")]
-    internal class CastVersion : TextBlock
+    public class CastVersion : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)
