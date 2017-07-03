@@ -21,20 +21,12 @@ using System.Collections.Generic;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("PF_CATEGORY_NAME")]
-    internal class PortfolioCategoryName : TextBlock
+    public class PortfolioCategoryName : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (reportData?.Category != null)
-            {
-                return reportData.Category;
-            }
-            if (null != reportData && null == reportData.Category)
-            {
-                return "All";
-            }
-            return Domain.Constants.No_Value;
+            return (reportData != null) ? reportData.Category ?? "All" : Domain.Constants.No_Value;
         }
         #endregion METHODS
     }

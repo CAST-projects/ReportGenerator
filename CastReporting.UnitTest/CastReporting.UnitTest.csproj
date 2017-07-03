@@ -221,6 +221,14 @@
     <Compile Include="Reporting\Tables\CriteriaAndGradeTests.cs" />
     <Compile Include="Reporting\Tables\CriticalViolationByApplicationTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
+    <Compile Include="Reporting\Text\PortfolioTagNameTests.cs" />
+    <Compile Include="Reporting\Text\PortfolioNumberOfApplicationsTests.cs" />
+    <Compile Include="Reporting\Text\PortfolioCustomExpressionTests.cs" />
+    <Compile Include="Reporting\Text\PortfolioCriticalViolationsTests.cs" />
+    <Compile Include="Reporting\Text\PortfolioCategoryNameTests.cs" />
+    <Compile Include="Reporting\Text\LastSnapshotVersionNumberTests.cs" />
+    <Compile Include="Reporting\Text\LastSnapshotDateTests.cs" />
+    <Compile Include="Reporting\Text\FailedChecksOnTotalViolationsByRuleTests.cs" />
     <Compile Include="Reporting\Text\FailedChecksByRuleTests.cs" />
     <Compile Include="Reporting\Text\EFPModifiedTests.cs" />
     <Compile Include="Reporting\Text\EFPDeletedTests.cs" />

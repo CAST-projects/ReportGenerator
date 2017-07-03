@@ -21,20 +21,12 @@ using System.Collections.Generic;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("PF_TAG_NAME")]
-    internal class PortfolioTagName : TextBlock
+    public class PortfolioTagName : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            if (reportData?.Tag != null)
-            {
-                return reportData.Tag;
-            }
-            if (null != reportData && null == reportData.Tag)
-            {
-                return "All";
-            }
-            return Domain.Constants.No_Value;
+            return (reportData != null) ? reportData.Tag ?? "All" : Domain.Constants.No_Value;
         }
         #endregion METHODS
     }
