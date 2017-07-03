@@ -187,11 +187,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ProcessingBlock\Block.cs" />
     <Compile Include="ProcessingBlock\BlockConfiguration.cs" />
     <Compile Include="ProcessingBlock\BlockItem.cs" />
     <Compile Include="ProcessingBlock\GraphBlock.cs" />
-    <Compile Include="ProcessingBlock\IBlock.cs" />
     <Compile Include="ProcessingBlock\TableBlock.cs" />
     <Compile Include="ProcessingBlock\TextBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
