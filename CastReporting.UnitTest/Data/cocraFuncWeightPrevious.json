@@ -14,55 +14,85 @@
 			"href": "AED/applications/3/snapshots/4",
 			"name": "CoCRestAPI"
 		},
-		"applicationResults": [
-			{
-				"type": "functional-weight-measures",
-				"reference": {
-					"href": "AED/sizing-measures/10201/snapshots/4",
-					"name": "Backfired Function Points",
-					"shortName": "BFP",
-					"key": "10201",
-					"critical": "N/A"
-				},
-				"result": {
-					"value": 419.52222222222224
-				},
-				"technologyResults": [],
-				"moduleResults": [],
-				"transactionResults": []
-			},
-			{
-				"type": "functional-weight-measures",
-				"reference": {
-					"href": "AED/sizing-measures/10202/snapshots/4",
-					"name": "OMG-Compliant Automated Function Points",
-					"shortName": "AFP",
-					"key": "10202",
-					"critical": "N/A"
-				},
-				"result": {
-					"value": 1991
-				},
-				"technologyResults": [],
-				"moduleResults": [],
-				"transactionResults": []
-			},
-			{
-				"type": "functional-weight-measures",
-				"reference": {
-					"href": "AED/sizing-measures/10506/snapshots/4",
-					"name": "Number of Decision Points",
-					"shortName": "Total CC",
-					"key": "10506",
-					"critical": "N/A"
-				},
-				"result": {
-					"value": 6814
-				},
-				"technologyResults": [],
-				"moduleResults": [],
-				"transactionResults": []
-			}
-		]
+    "applicationResults": [
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10201/snapshots/4",
+          "name": "Backfired Function Points",
+          "shortName": "BFP",
+          "key": "10201",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 419.52222222222224
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10202/snapshots/4",
+          "name": "OMG-Compliant Automated Function Points",
+          "shortName": "AFP",
+          "key": "10202",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 1991
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10506/snapshots/4",
+          "name": "Number of Decision Points",
+          "shortName": "Total CC",
+          "key": "10506",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 6814
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10203/snapshots/4",
+          "name": "Unadjusted Data Functions",
+          "key": "10203",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 1991
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10204/snapshots/4",
+          "name": "Unadjusted Transactional Functions",
+          "key": "10204",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 2
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
 	}
 ]

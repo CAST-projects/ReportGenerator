@@ -21,12 +21,12 @@ using CastReporting.Reporting.ReportingModel;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("APPLICATION_NAME")]
-    internal class ApplicationName : TextBlock
+    public class ApplicationName : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            return reportData != null ? reportData.Application.Name : Domain.Constants.No_Value;
+            return reportData != null ? reportData.Application.Name ?? Domain.Constants.No_Value : Domain.Constants.No_Value;
         }
         #endregion METHODS
     }

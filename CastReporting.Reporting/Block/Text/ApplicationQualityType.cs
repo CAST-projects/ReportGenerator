@@ -24,7 +24,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("APPLICATION_QUALITY_TYPE")]
-    internal class ApplicationQualityType : TextBlock
+    public class ApplicationQualityType : TextBlock
     {
 
 

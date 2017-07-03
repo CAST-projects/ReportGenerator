@@ -185,7 +185,14 @@ namespace CastReporting.UnitTest.Reporting
                 moduleJson, currentJson, currentHref, currentName, currentVersion,
                 modulePrevJson, previousJson, previousHref, previousName, previousVersion);
 
-            Application appli = new Application {Href = currentHref};
+            Application appli = new Application
+            {
+                Name = appliName,
+                Href = currentHref,
+                AdgDatabase = "my_central",
+                AdgWebSite = "my_adg_website",
+                Version = "8.2.4"
+            };
 
             reportData.CurrentSnapshot.Annotation.Date = currentDate;
             List<Snapshot> snapshotList = new List<Snapshot> {reportData.CurrentSnapshot};

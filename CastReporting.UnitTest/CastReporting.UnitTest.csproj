@@ -221,6 +221,13 @@
     <Compile Include="Reporting\Tables\CriteriaAndGradeTests.cs" />
     <Compile Include="Reporting\Tables\CriticalViolationByApplicationTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
+    <Compile Include="Reporting\Text\ApplicationSizeTypeTests.cs" />
+    <Compile Include="Reporting\Text\ApplicationQualityTypeTests.cs" />
+    <Compile Include="Reporting\Text\ApplicationNameTests.cs" />
+    <Compile Include="Reporting\Text\AfpMetricTFTests.cs" />
+    <Compile Include="Reporting\Text\AfpMetricDFTests.cs" />
+    <Compile Include="Reporting\Text\ADGWebsiteTests.cs" />
+    <Compile Include="Reporting\Text\ADGDatabaseTest.cs" />
     <Compile Include="Reporting\Text\ApplicationRuleTest.cs" />
     <Compile Include="Reporting\Tables\ActionPlansTests.cs" />
     <Compile Include="Util\ExpressionEvaluatorTests.cs" />

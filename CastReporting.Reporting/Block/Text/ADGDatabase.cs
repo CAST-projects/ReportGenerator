@@ -21,13 +21,13 @@ using CastReporting.Reporting.ReportingModel;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("APPLICATION_SCHEMA")]
-    internal class ADGDatabase : TextBlock
+    public class ADGDatabase : TextBlock
     {
 
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            return reportData != null ? reportData.Application.AdgDatabase : Domain.Constants.No_Value;
+            return reportData?.Application?.AdgDatabase ?? Domain.Constants.No_Value;
         }
         #endregion METHODS
     }
