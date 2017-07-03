@@ -56,12 +56,10 @@ namespace CastReporting.Reporting.Block.Graph
                     double? _numCritPerKloc = MeasureUtility.GetSizingMeasure(_snapshot, Constants.SizingInformations.ViolationsToCriticalQualityRulesPerKLOCNumber);
                     double? result = MeasureUtility.GetAutomatedIFPUGFunction(_snapshot);
 
-                    rowData.AddRange(new[] {
-                        strCurrentTQI.GetValueOrDefault().ToString("N2"),
-                        _numCritPerKloc.GetValueOrDefault().ToString("N2"),
-                        result.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-                        _app.Name
-                    });
+                    rowData.Add(strCurrentTQI.GetValueOrDefault().ToString("N2"));
+                    rowData.Add(_numCritPerKloc.GetValueOrDefault().ToString("N2"));
+                    rowData.Add(result.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+                    rowData.Add(_app.Name);
 
                     count++;
                 }

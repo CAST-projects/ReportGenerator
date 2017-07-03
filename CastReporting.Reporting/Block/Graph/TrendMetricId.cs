@@ -43,8 +43,8 @@ namespace CastReporting.Reporting.Block.Graph
                 foreach (string id in qidList)
                 {
                     if (names.Keys.Contains(id)) continue;
-                    string name = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(id));
-                    if (!string.IsNullOrEmpty(name)) names[id] = name;
+                    if (string.IsNullOrEmpty(BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(id)))) continue;
+                    names[id] = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(id));
                 }
             }
             if (sidList != null)
@@ -52,8 +52,8 @@ namespace CastReporting.Reporting.Block.Graph
                 foreach (string id in sidList)
                 {
                     if (names.Keys.Contains(id)) continue;
-                    string name = MeasureUtility.GetSizingMeasureName(reportData.CurrentSnapshot, int.Parse(id));
-                    if (!string.IsNullOrEmpty(name)) names[id] = name;
+                    if (string.IsNullOrEmpty(MeasureUtility.GetSizingMeasureName(reportData.CurrentSnapshot, int.Parse(id)))) continue;
+                    names[id] = MeasureUtility.GetSizingMeasureName(reportData.CurrentSnapshot, int.Parse(id));
                 }
             }
 
@@ -65,8 +65,8 @@ namespace CastReporting.Reporting.Block.Graph
                     if (names.Keys.Contains(id)) continue;
                     Result bfResult = reportData.SnapshotExplorer.GetBackgroundFacts(reportData.CurrentSnapshot.Href, id, true, true).FirstOrDefault();
                     if (bfResult == null || !bfResult.ApplicationResults.Any()) continue;
-                    string name = bfResult.ApplicationResults[0].Reference.Name;
-                    if (!string.IsNullOrEmpty(name)) names[id] = name;
+                    if (string.IsNullOrEmpty(bfResult.ApplicationResults[0].Reference.Name)) continue;
+                    names[id] = bfResult.ApplicationResults[0].Reference.Name;
                 }
             }
 
@@ -83,8 +83,7 @@ namespace CastReporting.Reporting.Block.Graph
                 // ReSharper disable once AssignNullToNotNullAttribute
                 foreach (Snapshot snapshot in reportData.Application.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot))
                 {
-                    string snapshotDate = snapshot.Annotation.Date.DateSnapShot?.ToOADate().ToString(CultureInfo.CurrentCulture) ?? string.Empty;
-                    rowData.Add(snapshotDate);
+                    rowData.Add(snapshot.Annotation.Date.DateSnapShot?.ToOADate().ToString(CultureInfo.CurrentCulture) ?? string.Empty);
 
                     Dictionary<string, string> values = new Dictionary<string, string>();
                     // iterate in QID

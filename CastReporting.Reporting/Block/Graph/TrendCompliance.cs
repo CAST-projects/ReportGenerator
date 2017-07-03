@@ -65,20 +65,23 @@ namespace CastReporting.Reporting.Block.Graph
 			{
 			    var _snapshots = reportData?.Application?.Snapshots?.OrderBy(_ => _.Annotation.Date.DateSnapShot);
 			    if (_snapshots != null)
-			        foreach (Snapshot snapshot in _snapshots) {
+			        foreach (Snapshot snapshot in _snapshots)
+                    {
 			            BusinessCriteriaDTO bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(snapshot, true);
 			            double? locValue = MeasureUtility.GetCodeLineNumber(snapshot);
 			            string prevSnapshotDate = snapshot.Annotation.Date.DateSnapShot?.ToOADate().ToString(CultureInfo.CurrentCulture) ?? string.Empty;
-			            rowData.AddRange
-			            (new[] { prevSnapshotDate
-			                , bcGrade.ProgrammingPractices.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
-			                , bcGrade.ArchitecturalDesign.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
-			                , bcGrade.Documentation.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
-			                , locValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
-			            });
-			            List<double> values = new List<double>() { bcGrade.ProgrammingPractices.GetValueOrDefault(), 
+			            rowData.Add(prevSnapshotDate);
+			            rowData.Add(bcGrade.ProgrammingPractices.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+                        rowData.Add(bcGrade.ArchitecturalDesign.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+			            rowData.Add(bcGrade.Documentation.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+			            rowData.Add(locValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+
+			            List<double> values = new List<double>
+                        {
+                            bcGrade.ProgrammingPractices.GetValueOrDefault(), 
 			                bcGrade.ArchitecturalDesign.GetValueOrDefault(), 
-			                bcGrade.Documentation.GetValueOrDefault() };
+			                bcGrade.Documentation.GetValueOrDefault()
+                        };
 			            minValy = Math.Min( minValy, values.Min());
 			            maxValy = Math.Max( maxValy, values.Max());
 			        }

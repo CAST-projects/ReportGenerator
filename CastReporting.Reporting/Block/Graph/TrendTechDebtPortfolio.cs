@@ -107,12 +107,10 @@ namespace CastReporting.Reporting.Block.Graph
                 for (int i = 0; i < dtDates.Rows.Count; i++)
                 {
                     string strQuarter = dtDates.Rows[i]["Year"] + " Q" + dtDates.Rows[i]["Quarter"];
-                    rowData.AddRange(new[] {
-                                                    strQuarter,
-                                                    dtDates.Rows[i]["RemovedTechnicalDebt"].ToString(),
-                                                    dtDates.Rows[i]["AddedTechnicalDebt"].ToString(),
-                                                    dtDates.Rows[i]["TotalTechnicalDebt"].ToString(),
-                                                });
+                    rowData.Add(strQuarter);
+                    rowData.Add(dtDates.Rows[i]["RemovedTechnicalDebt"].ToString());
+                    rowData.Add(dtDates.Rows[i]["AddedTechnicalDebt"].ToString());
+                    rowData.Add(dtDates.Rows[i]["TotalTechnicalDebt"].ToString());
                 }
 
             }

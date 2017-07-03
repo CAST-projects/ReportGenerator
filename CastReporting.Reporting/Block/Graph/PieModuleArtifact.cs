@@ -52,7 +52,8 @@ namespace CastReporting.Reporting.Block.Graph
           
             foreach (var mod in moduleArtifacts)
             {
-                rowData.AddRange(new[] { mod.Name, Convert.ToInt32(mod.Value).ToString() });
+                rowData.Add(mod.Name);
+                rowData.Add(Convert.ToInt32(mod.Value).ToString());
             }
               
 

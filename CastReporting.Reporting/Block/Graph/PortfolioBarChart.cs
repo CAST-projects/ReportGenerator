@@ -34,11 +34,13 @@ namespace CastReporting.Reporting.Block.Graph
                     if (res == null) continue;
                     if (firstLoop)
                     {
-                        rowData.AddRange(new []{" ", res.name});
+                        rowData.Add(" ");
+                        rowData.Add(res.name);
                         firstLoop = false;
                     }
                     cntRow++;
-                    rowData.AddRange(new []{_app.Name, res.result?.ToString()});
+                    rowData.Add(_app.Name);
+                    rowData.Add(res.result?.ToString());
                 }
                 catch (Exception ex)
                 {

@@ -61,21 +61,23 @@ namespace CastReporting.Reporting.Block.Graph
 			{
 			    var _snapshots = reportData?.Application?.Snapshots?.OrderBy(_ => _.Annotation.Date);
 			    if (_snapshots != null)
-			        foreach (Snapshot snapshot in _snapshots) {
+			        foreach (Snapshot snapshot in _snapshots)
+                    {
 			            BusinessCriteriaDTO bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(snapshot, true);
 			            double? locValue = MeasureUtility.GetCodeLineNumber(snapshot);
 			            string snapshotDate = snapshot.Annotation.Date.DateSnapShot?.ToOADate().ToString(CultureInfo.CurrentCulture) ?? string.Empty;
-			            rowData.AddRange(new[] {
-			                snapshotDate,
-			                bcGrade.Transferability.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-			                bcGrade.Changeability.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-			                bcGrade.Robustness.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-			                bcGrade.Performance.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-			                bcGrade.Security.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-			                locValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-			            });
+
+                        rowData.Add(snapshotDate);
+                        rowData.Add(bcGrade.Transferability.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+                        rowData.Add(bcGrade.Changeability.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+                        rowData.Add(bcGrade.Robustness.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+                        rowData.Add(bcGrade.Performance.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+                        rowData.Add(bcGrade.Security.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+                        rowData.Add(locValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+
 			            List<double> values = new List<double>
-			            { bcGrade.Changeability.GetValueOrDefault(), 
+			            {
+                            bcGrade.Changeability.GetValueOrDefault(), 
 			                bcGrade.Performance.GetValueOrDefault(), 
 			                bcGrade.Robustness.GetValueOrDefault(), 
 			                bcGrade.Security.GetValueOrDefault(), 
@@ -91,27 +93,30 @@ namespace CastReporting.Reporting.Block.Graph
             #endregion
 
             #region just 1 snapshot
-			if (nbSnapshots == 1) {
+			if (nbSnapshots == 1)
+            {
 			    var bcGrade = BusinessCriteriaUtility.GetBusinessCriteriaGradesSnapshot(reportData?.CurrentSnapshot, true);
                 double? locValue = MeasureUtility.GetCodeLineNumber(reportData?.CurrentSnapshot);
                 string snapshotDate = reportData?.CurrentSnapshot.Annotation.Date.DateSnapShot?.ToOADate().ToString(CultureInfo.CurrentCulture) ?? string.Empty;
                 rowData.AddRange(new[] {
-                                                snapshotDate,
-                                                bcGrade.Transferability.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-                                                bcGrade.Changeability.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-                                                bcGrade.Robustness.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-                                                bcGrade.Performance.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-                                                bcGrade.Security.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-                                                locValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
+                    snapshotDate,
+                    bcGrade.Transferability.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
+                    bcGrade.Changeability.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
+                    bcGrade.Robustness.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
+                    bcGrade.Performance.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
+                    bcGrade.Security.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
+                    locValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
 
-                                                });
+                });
                 List<double> values = new List<double>
-                { bcGrade.Changeability.GetValueOrDefault(), 
-                                                            bcGrade.Performance.GetValueOrDefault(), 
-                                                            bcGrade.Robustness.GetValueOrDefault(), 
-                                                            bcGrade.Security.GetValueOrDefault(), 
-                                                            bcGrade.TQI.GetValueOrDefault(), 
-                                                            bcGrade.Transferability.GetValueOrDefault() };
+                {
+                    bcGrade.Changeability.GetValueOrDefault(), 
+                    bcGrade.Performance.GetValueOrDefault(), 
+                    bcGrade.Robustness.GetValueOrDefault(), 
+                    bcGrade.Security.GetValueOrDefault(), 
+                    bcGrade.TQI.GetValueOrDefault(), 
+                    bcGrade.Transferability.GetValueOrDefault()
+                };
                 minVVal = Math.Min(minVVal, values.Min());
                 maxVVal = Math.Max(maxVVal, values.Max());
                 count = count + 1;
