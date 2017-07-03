@@ -92,6 +92,51 @@
         "technologyResults": [],
         "moduleResults": [],
         "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AED6/sizing-measures/10300/snapshots/1",
+          "name": "Automated Function Points Added",
+          "key": "10300",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 649
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AED6/sizing-measures/10310/snapshots/1",
+          "name": "Automated Function Points Modified",
+          "key": "10310",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 125
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AED6/sizing-measures/10320/snapshots/1",
+          "name": "Automated Function Points Deleted",
+          "key": "10320",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 234
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
       }
     ]
 	}

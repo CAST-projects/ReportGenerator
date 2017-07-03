@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using CastReporting.Domain;
 using CastReporting.Reporting.Block.Text;
 using CastReporting.Reporting.ReportingModel;

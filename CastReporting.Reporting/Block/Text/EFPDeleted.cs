@@ -22,7 +22,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("METRIC_EFP_DELETED")]
-    internal class EFPDeleted : TextBlock
+    public class EFPDeleted : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)

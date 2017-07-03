@@ -45,15 +45,9 @@ namespace CastReporting.UnitTest.Reporting
         [DeploymentItem(@".\Data\BaseQI60017.json", "Data")]
         public IEnumerable<RuleDetails> GetRulesDetails(string domain, int businessCriteria, long snapshotId)
         {
-            IEnumerable<RuleDetails> res = null;
-            if (businessCriteria == 60011)
-            {
-                res = TestUtility.GetSampleResult<RuleDetails>(@".\Data\BaseQI60011.json").ToList();
-            }
-            else
-            {
-                res = TestUtility.GetSampleResult<RuleDetails>(@".\Data\BaseQI60017.json").ToList();
-            }
+            IEnumerable<RuleDetails> res;
+            res = businessCriteria == 60011 ? TestUtility.GetSampleResult<RuleDetails>(@".\Data\BaseQI60011.json").ToList() 
+                : TestUtility.GetSampleResult<RuleDetails>(@".\Data\BaseQI60017.json").ToList();
 
             return res;
         }

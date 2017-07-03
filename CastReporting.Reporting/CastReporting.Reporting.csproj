@@ -147,7 +147,6 @@
     <Compile Include="Block\Text\CastVersion.cs" />
     <Compile Include="Block\Text\PortfolioCustomExpression.cs" />
     <Compile Include="Block\Text\CustomExpression.cs" />
-    <Compile Include="Block\Text\DataFunctions.cs" />
     <Compile Include="Block\Text\EFPAdded.cs" />
     <Compile Include="Block\Text\EFPAggregate.cs" />
     <Compile Include="Block\Text\EFPDeleted.cs" />

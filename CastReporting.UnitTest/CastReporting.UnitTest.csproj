@@ -221,6 +221,11 @@
     <Compile Include="Reporting\Tables\CriteriaAndGradeTests.cs" />
     <Compile Include="Reporting\Tables\CriticalViolationByApplicationTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
+    <Compile Include="Reporting\Text\FailedChecksByRuleTests.cs" />
+    <Compile Include="Reporting\Text\EFPModifiedTests.cs" />
+    <Compile Include="Reporting\Text\EFPDeletedTests.cs" />
+    <Compile Include="Reporting\Text\EFPAggregateTests.cs" />
+    <Compile Include="Reporting\Text\EFPAddedTests.cs" />
     <Compile Include="Reporting\Text\CustomExpressionTests.cs" />
     <Compile Include="Reporting\Text\CastVersionTests.cs" />
     <Compile Include="Reporting\Text\ApplicationSizeTypeTests.cs" />

@@ -22,7 +22,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Text
 {
   
-    [Block("METRIC_AFP_DF")]
+    [Block("METRIC_AFP_DF"), Block("DATA_FUNCTIONS")]
     public class AfpMetricDF : TextBlock
     {
         #region METHODS
