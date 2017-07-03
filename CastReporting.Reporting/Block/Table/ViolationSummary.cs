@@ -26,7 +26,7 @@ using CastReporting.Reporting.Helper;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("VIOLATION_SUMMARY")]
-    internal class ViolationSummary : TableBlock
+    public class ViolationSummary : TableBlock
     {
         private static ResultDetail GetModuleResult(ApplicationResult ar, Module module)
         {
