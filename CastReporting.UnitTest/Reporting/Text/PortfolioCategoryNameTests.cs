@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using CastReporting.Domain;
 using CastReporting.Reporting.Block.Text;
 using CastReporting.Reporting.ReportingModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -42,11 +41,9 @@ namespace CastReporting.UnitTest.Reporting.Text
         [TestMethod]
         public void TestNoResult()
         {
-            ReportData reportData = null;
-
             var component = new PortfolioCategoryName();
             Dictionary<string, string> config = new Dictionary<string, string>();
-            var str = component.Content(reportData, config);
+            var str = component.Content(null, config);
             Assert.AreEqual("n/a", str);
         }
 

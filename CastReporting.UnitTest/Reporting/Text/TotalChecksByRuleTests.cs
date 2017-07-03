@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CastReporting.UnitTest.Reporting.Text
 {
     [TestClass]
-    public class FailedChecksByRuleTests
+    public class TotalChecksByRuleTests
     {
         [TestInitialize()]
         public void Initialize()
@@ -27,13 +27,13 @@ namespace CastReporting.UnitTest.Reporting.Text
                 null, null, null, null, null, null);
             reportData.RuleExplorer = new RuleBLLStub();
 
-            var component = new FailedChecksByRule();
+            var component = new TotalChecksByRule();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"RULID", "1634" }
             };
             var str = component.Content(reportData, config);
-            Assert.AreEqual("209", str);
+            Assert.AreEqual("931", str);
         }
         [TestMethod]
         [DeploymentItem(@".\Data\cocraFuncWeight.json", "Data")]
@@ -46,14 +46,14 @@ namespace CastReporting.UnitTest.Reporting.Text
                 null, null, null, null, null, null);
             reportData.RuleExplorer = new RuleBLLStub();
 
-            var component = new FailedChecksByRule();
+            var component = new TotalChecksByRule();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"RULID", "1634" },
                 {"SNAPSHOT", "CURRENT" }
             };
             var str = component.Content(reportData, config);
-            Assert.AreEqual("209", str);
+            Assert.AreEqual("931", str);
         }
 
         [TestMethod]
@@ -70,14 +70,14 @@ namespace CastReporting.UnitTest.Reporting.Text
                 null, @".\Data\cocraFuncWeightPrevious.json", "AED/applications/3/snapshots/4", "Snap4_CAIP-8.3ra_RG-1.5.a", "8.3.ra", previousDate);
             reportData.RuleExplorer = new RuleBLLStub();
 
-            var component = new FailedChecksByRule();
+            var component = new TotalChecksByRule();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"RULID", "1634" },
                 {"SNAPSHOT", "PREVIOUS" }
             };
             var str = component.Content(reportData, config);
-            Assert.AreEqual("26", str);
+            Assert.AreEqual("356", str);
         }
 
         [TestMethod]
@@ -92,7 +92,7 @@ namespace CastReporting.UnitTest.Reporting.Text
             Snapshot snap = reportData.Application.Snapshots.FirstOrDefault();
             if (snap != null) snap.SizingMeasuresResults = null;
 
-            var component = new FailedChecksByRule();
+            var component = new TotalChecksByRule();
             Dictionary<string, string> config = new Dictionary<string, string>();
             var str = component.Content(reportData, config);
             Assert.AreEqual("n/a", str);

@@ -27,7 +27,7 @@ using Cast.Util.Log;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("PF_TECHDEBT_VS_LOC")]
-    internal class TechDebtVslocPortfolio : TextBlock
+    public class TechDebtVslocPortfolio : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)

@@ -22,7 +22,7 @@ using System.Collections.Generic;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("METRIC_TECHNICAL_DEBT")]
-    internal class TechnicalDebtMetric : TextBlock
+    public class TechnicalDebtMetric : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)

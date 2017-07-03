@@ -24,7 +24,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("PREVIOUS_SNAPSHOT_DATE"), Block("FROM_SNAPSHOT_DATE")]
-    internal class PreviousSnapshotDate : TextBlock
+    public class PreviousSnapshotDate : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)

@@ -22,7 +22,7 @@ using CastReporting.Reporting.ReportingModel;
 namespace CastReporting.Reporting.Block.Text
 {
 	[Block("REPGEN_VERSION"), Block("EMP_VERSION")]
-	internal class RepGenVersion : TextBlock
+	public class RepGenVersion : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)

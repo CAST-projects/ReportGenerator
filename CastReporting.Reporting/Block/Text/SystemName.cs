@@ -21,7 +21,7 @@ using CastReporting.Reporting.ReportingModel;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("SYSTEM_NAME")]
-    internal class SystemName : TextBlock
+    public class SystemName : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)

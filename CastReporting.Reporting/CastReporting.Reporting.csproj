@@ -169,7 +169,6 @@
     <Compile Include="Block\Text\PreviousSnapshotVersionNumber.cs" />
     <Compile Include="Block\Text\TechnicalDebtMetric.cs" />
     <Compile Include="Block\Text\TodayDate.cs" />
-    <Compile Include="Block\Text\TransactionalFunctions.cs" />
     <Compile Include="DocumentBuilder\BuilderFactory.cs" />
     <Compile Include="Helper\BlockHelper.cs" />
     <Compile Include="DocumentBuilder\DocumentBuilder.cs" />

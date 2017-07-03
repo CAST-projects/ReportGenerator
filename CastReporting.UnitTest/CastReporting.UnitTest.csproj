@@ -101,6 +101,9 @@
     <None Include="Data\QRviolRatioModules.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\RuleViolation1634Previous.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Transactions60016Snap.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -221,6 +224,16 @@
     <Compile Include="Reporting\Tables\CriteriaAndGradeTests.cs" />
     <Compile Include="Reporting\Tables\CriticalViolationByApplicationTests.cs" />
     <Compile Include="Reporting\TestUtility.cs" />
+    <Compile Include="Reporting\Text\TotalChecksByRuleTests.cs" />
+    <Compile Include="Reporting\Text\TodayDateTests.cs" />
+    <Compile Include="Reporting\Text\TFPlusDFTests.cs" />
+    <Compile Include="Reporting\Text\TechDebtMetricTests.cs" />
+    <Compile Include="Reporting\Text\TechDebtVSLOCPortfolioTests.cs" />
+    <Compile Include="Reporting\Text\TechDebtVSAFPPortfolioTests.cs" />
+    <Compile Include="Reporting\Text\SystemNameTests.cs" />
+    <Compile Include="Reporting\Text\RepGenVersionTests.cs" />
+    <Compile Include="Reporting\Text\PreviousSnapshotVersionNumberTests.cs" />
+    <Compile Include="Reporting\Text\PreviousSnapshotDateTests.cs" />
     <Compile Include="Reporting\Text\PortfolioTagNameTests.cs" />
     <Compile Include="Reporting\Text\PortfolioNumberOfApplicationsTests.cs" />
     <Compile Include="Reporting\Text\PortfolioCustomExpressionTests.cs" />
