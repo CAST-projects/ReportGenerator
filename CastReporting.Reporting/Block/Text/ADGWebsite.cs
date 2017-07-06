@@ -21,7 +21,7 @@ using CastReporting.Reporting.ReportingModel;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("DASHBOARD_SERVICE_URL"), Block("MEASUREMENT_ADG_WEBSITE")]
-    internal class ADGWebsite : TextBlock
+    public class ADGWebsite : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)

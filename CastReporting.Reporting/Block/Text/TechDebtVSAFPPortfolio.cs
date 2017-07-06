@@ -27,7 +27,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("PF_TECHDEBT_VS_AFP")]
-    internal class TechDebtVsafpPortfolio : TextBlock
+    public class TechDebtVsafpPortfolio : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)

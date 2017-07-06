@@ -23,7 +23,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("APPLICATION_SIZE_TYPE")]
-    internal class ApplicationSizeType : TextBlock
+    public class ApplicationSizeType : TextBlock
     {
 
 

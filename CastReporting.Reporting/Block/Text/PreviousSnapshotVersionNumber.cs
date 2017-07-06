@@ -22,7 +22,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("PREVIOUS_SNAPSHOT_VERSION")]
-    internal class PreviousSnapshotVersionNumber : TextBlock
+    public class PreviousSnapshotVersionNumber : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)

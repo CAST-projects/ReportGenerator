@@ -51,25 +51,25 @@ namespace CastReporting.Reporting.Block.Graph
 			{
 			    var _snapshots = reportData.Application?.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot);
 			    if (_snapshots != null)
-			        foreach (Snapshot snapshot in _snapshots) {
+			        foreach (Snapshot snapshot in _snapshots)
+                    {
 			            double? prevDoubleSnapshotDate = snapshot.Annotation.Date.DateSnapShot?.ToOADate() ?? 0;
 			            double? prevRemovedTechDebtValue = MeasureUtility.GetRemovedTechDebtMetric(snapshot) * -1;
 			            double? prevAddedTechDebtValue = MeasureUtility.GetAddedTechDebtMetric(snapshot);
 			            double? prevTotalTechDebtValue = MeasureUtility.GetTechnicalDebtMetric(snapshot);
-			            rowData.AddRange(new[] {
-			                prevDoubleSnapshotDate.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-			                prevRemovedTechDebtValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-			                prevAddedTechDebtValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-			                prevTotalTechDebtValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-			            });
-                                 
+
+                        rowData.Add(prevDoubleSnapshotDate.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+                        rowData.Add(prevRemovedTechDebtValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+                        rowData.Add(prevAddedTechDebtValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
+                        rowData.Add(prevTotalTechDebtValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture));
 			        }
 			    count = nbSnapshots;
 			}
             #endregion Previous Snapshots
 
             #region just 1 snapshot
-            if (reportData.Application?.Snapshots != null && nbSnapshots == 1 && reportData.CurrentSnapshot != null) {
+            if (reportData.Application?.Snapshots != null && nbSnapshots == 1 && reportData.CurrentSnapshot != null)
+            {
                 double? prevDoubleSnapshotDate = reportData.CurrentSnapshot.Annotation.Date.DateSnapShot?.ToOADate() ?? 0;
                 double? prevRemovedTechDebtValue = MeasureUtility.GetRemovedTechDebtMetric(reportData.CurrentSnapshot) * -1;
                 double? prevAddedTechDebtValue = MeasureUtility.GetAddedTechDebtMetric(reportData.CurrentSnapshot);
@@ -83,9 +83,7 @@ namespace CastReporting.Reporting.Block.Graph
                 count = count + 1;
             }
             #endregion just 1 snapshot
-
-
-
+            
             TableDefinition resultTable = new TableDefinition {
                 HasRowHeaders = true,
                 HasColumnHeaders = false,

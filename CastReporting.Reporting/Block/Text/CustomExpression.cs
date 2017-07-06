@@ -12,7 +12,7 @@ using CastReporting.Reporting.Helper;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("CUSTOM_EXPRESSION")]
-    internal class CustomExpression : TextBlock
+    public class CustomExpression : TextBlock
     {
         #region METHODS
 
@@ -98,8 +98,10 @@ namespace CastReporting.Reporting.Block.Text
                         {
                             return Labels.NoData;
                         }
-                        j++; 
+                        j++;
                         break;
+                    default:
+                        return Labels.NoData;
                 }
             }
 

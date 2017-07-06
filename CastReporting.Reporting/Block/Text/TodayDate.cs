@@ -23,7 +23,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("TODAY_DATE")]
-    internal class TodayDate : TextBlock
+    public class TodayDate : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)

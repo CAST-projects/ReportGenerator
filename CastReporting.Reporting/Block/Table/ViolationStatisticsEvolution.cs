@@ -25,7 +25,7 @@ using CastReporting.Domain;
 namespace CastReporting.Reporting.Block.Table
 {
     [Block("VIOLATION_STATISTICS_EVOLUTION")]
-    internal class ViolationStatisticsEvolution : TableBlock
+    public class ViolationStatisticsEvolution : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {

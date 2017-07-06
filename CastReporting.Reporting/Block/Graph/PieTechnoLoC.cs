@@ -43,7 +43,8 @@ namespace CastReporting.Reporting.Block.Graph
 
             foreach (var elt in technologyInfos)
             {
-                rowData.AddRange(new[] { elt.Name, Convert.ToInt32(elt.Value).ToString() });
+                rowData.Add(elt.Name);
+                rowData.Add(Convert.ToInt32(elt.Value).ToString());
             }
 
 

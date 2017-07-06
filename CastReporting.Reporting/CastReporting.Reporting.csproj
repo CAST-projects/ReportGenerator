@@ -147,7 +147,6 @@
     <Compile Include="Block\Text\CastVersion.cs" />
     <Compile Include="Block\Text\PortfolioCustomExpression.cs" />
     <Compile Include="Block\Text\CustomExpression.cs" />
-    <Compile Include="Block\Text\DataFunctions.cs" />
     <Compile Include="Block\Text\EFPAdded.cs" />
     <Compile Include="Block\Text\EFPAggregate.cs" />
     <Compile Include="Block\Text\EFPDeleted.cs" />
@@ -170,7 +169,6 @@
     <Compile Include="Block\Text\PreviousSnapshotVersionNumber.cs" />
     <Compile Include="Block\Text\TechnicalDebtMetric.cs" />
     <Compile Include="Block\Text\TodayDate.cs" />
-    <Compile Include="Block\Text\TransactionalFunctions.cs" />
     <Compile Include="DocumentBuilder\BuilderFactory.cs" />
     <Compile Include="Helper\BlockHelper.cs" />
     <Compile Include="DocumentBuilder\DocumentBuilder.cs" />
@@ -189,11 +187,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ProcessingBlock\Block.cs" />
     <Compile Include="ProcessingBlock\BlockConfiguration.cs" />
     <Compile Include="ProcessingBlock\BlockItem.cs" />
     <Compile Include="ProcessingBlock\GraphBlock.cs" />
-    <Compile Include="ProcessingBlock\IBlock.cs" />
     <Compile Include="ProcessingBlock\TableBlock.cs" />
     <Compile Include="ProcessingBlock\TextBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

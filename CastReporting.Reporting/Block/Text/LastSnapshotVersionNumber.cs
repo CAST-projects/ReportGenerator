@@ -22,12 +22,12 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("LAST_SNAPSHOT_VERSION")]
-    internal class LastSnapshotVersionNumber : TextBlock
+    public class LastSnapshotVersionNumber : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            return reportData?.CurrentSnapshot != null ? SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot) : Domain.Constants.No_Value;
+            return reportData?.CurrentSnapshot != null ? SnapshotUtility.GetSnapshotVersionNumber(reportData.CurrentSnapshot) ?? Domain.Constants.No_Value : Domain.Constants.No_Value;
         }
         #endregion METHODS
     }

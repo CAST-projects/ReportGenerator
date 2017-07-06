@@ -26,7 +26,7 @@ using CastReporting.BLL.Computing;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("RULE_TOTAL_CHECKS")]
-    internal class TotalChecksByRule : TextBlock
+    public class TotalChecksByRule : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)

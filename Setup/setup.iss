@@ -6,6 +6,7 @@
 #define MyAppExeName "CastReporting.UI.WPF.exe"
 #define MyAppExe "../CastReporting.UI.WPF.V2/bin/Release/"+MyAppExeName
 #define MyAppCopyright GetFileCopyright(MyAppExe)
+#define App160Id "{{B3C47653-5B85-4218-AFC5-EB9F2AAD341B}"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -164,54 +165,72 @@ begin
   Result := S;
 end;
 
-
-
-function IsDotNetDetected(version: string; service: cardinal): boolean;
-// Indicates whether the specified version and service pack of the .NET Framework is installed.
-//
-// version -- Specify one of these strings for the required .NET Framework version:
-//    'v1.1.4322'     .NET Framework 1.1
-//    'v2.0.50727'    .NET Framework 2.0
-//    'v3.0'          .NET Framework 3.0
-//    'v3.5'          .NET Framework 3.5
-//    'v4\Client'     .NET Framework 4.0 Client Profile
-//    'v4\Full'       .NET Framework 4.0 Full Installation
-// Version 4.6 is needed for TLS 1.2 support
-//
-// service -- Specify any non-negative integer for the required service pack level:
-//    0               No service packs required
-//    1, 2, etc.      Service pack 1, 2, etc. required
+function GetUninstallString(versionid: string): string;
 var
-    key, fwkversion: string;
-    install, serviceCount : cardinal;
+  sUnInstPath: string;
+  sUnInstallString: String;
+begin
+  Result := '';
+  sUnInstPath := ExpandConstant('Software\Microsoft\Windows\CurrentVersion\Uninstall\' + versionid + '_is1'); //Your App GUID/ID
+  sUnInstallString := '';
+  if not RegQueryStringValue(HKLM, sUnInstPath, 'UninstallString', sUnInstallString) then
+    RegQueryStringValue(HKCU, sUnInstPath, 'UninstallString', sUnInstallString);
+  Result := sUnInstallString;
+end;
+ 
+function IsUpgrade(versionid: string): Boolean;
+begin
+  Result := (GetUninstallString(versionid) <> '');
+end;
+
+function UninstallOldVersion(versionid: string; version: string): Boolean;
+var
+  iResultCode: integer;
+  sUnInstallString: string;
+begin
+  result := true;
+  if not IsUpgrade(versionid) then begin
+    exit;
+  end;
+  
+  if not (MsgBox(ExpandConstant('CAST Report Generator ' + version + ' is detected. Do you want to uninstall it?'), mbConfirmation, MB_YESNO) = IDYES) then begin
+      exit;
+  end;
+  sUnInstallString := GetUninstallString(versionid);
+  sUnInstallString :=  RemoveQuotes(sUnInstallString);
+  Exec(ExpandConstant(sUnInstallString), '/VERYSILENT', '', SW_SHOW, ewWaitUntilTerminated, iResultCode);
+  result := true;
+end;
+
+function IsDotNetDetected(): boolean;
+// Version 4.6 is needed for TLS 1.2 support
+var
+    readVal: cardinal;
     success: boolean;
 begin
-    key := 'SOFTWARE\Microsoft\NET Framework Setup\NDP\' + version;
-    success := RegQueryDWordValue(HKLM, key, 'Install', install);
-    // .NET 4.0 uses value Servicing instead of SP
-    // NET 4.6 in version key in registry
-    if Pos('v4', version) = 1 then begin
-      success := success and RegQueryStringValue(HKLM, key, 'Version', fwkversion);
-    end else begin
-        success := success and RegQueryDWordValue(HKLM, key, 'SP', serviceCount);
-    end;
-    result := success and (install = 1) and (Pos('4.6', fwkversion) = 1);
+    success := RegQueryDWordValue(HKLM, 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full', 'Release', readVal);
+    // NET fwk version > 4.6
+    // https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed#net_d
+    success := success and (readVal >= 393295)
+    result := success ;
 end;
+
+{*** INITIALISATIONS ***}
 
 function InitializeSetup(): Boolean;
 begin
-    if not IsDotNetDetected('v4\Client', 0) then begin
+    result := false;
+    if not IsDotNetDetected() then begin
         MsgBox('{#MyAppName} requires Microsoft .NET Framework 4.6.'#13#13
             'Please use Windows Update to install this version,'#13
             'and then re-run the {#MyAppName} setup program.', mbInformation, MB_OK);
-        result := false;
-    end else
-        result := true;
+        exit;
+    end;
+    result := UninstallOldVersion('{#App160Id}', '1.6.0');
 end;
-{*** INITIALISATION ***}
+
 procedure InitializeWizard;
 begin
-  InitializeSetup;
   CreateTheWizardPages;
 end;
 

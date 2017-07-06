@@ -28,7 +28,7 @@ using CastReporting.Reporting.Languages;
 namespace CastReporting.Reporting.Block.Text
 {
     [Block("PF_CRITICAL_VIOLATIONS")]
-    internal class PortfolioCriticalViolations : TextBlock
+    public class PortfolioCriticalViolations : TextBlock
     {
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)

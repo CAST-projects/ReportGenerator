@@ -28,9 +28,7 @@ namespace CastReporting.BLL.Computing
             List<RuleDetails> rules = new List<RuleDetails>();
             foreach (var metricId in businessCriteriasIds)
             {
-                var bcRules = ruleExplorer.GetRulesDetails(snapshot.DomainId, metricId, snapshot.Id);
-
-                rules.AddRange(bcRules);
+                rules.AddRange(ruleExplorer.GetRulesDetails(snapshot.DomainId, metricId, snapshot.Id));
             }
 
             rules = rules.GroupBy(_ => new { _.Key, _.Href, _.Name })
