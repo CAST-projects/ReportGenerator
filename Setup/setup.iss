@@ -6,6 +6,7 @@
 #define MyAppExeName "CastReporting.UI.WPF.exe"
 #define MyAppExe "../CastReporting.UI.WPF.V2/bin/Release/"+MyAppExeName
 #define MyAppCopyright GetFileCopyright(MyAppExe)
+#define App160Id "{{B3C47653-5B85-4218-AFC5-EB9F2AAD341B}"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -164,7 +165,42 @@ begin
   Result := S;
 end;
 
+function GetUninstallString(versionid: string): string;
+var
+  sUnInstPath: string;
+  sUnInstallString: String;
+begin
+  Result := '';
+  sUnInstPath := ExpandConstant('Software\Microsoft\Windows\CurrentVersion\Uninstall\' + versionid + '_is1'); //Your App GUID/ID
+  sUnInstallString := '';
+  if not RegQueryStringValue(HKLM, sUnInstPath, 'UninstallString', sUnInstallString) then
+    RegQueryStringValue(HKCU, sUnInstPath, 'UninstallString', sUnInstallString);
+  Result := sUnInstallString;
+end;
+ 
+function IsUpgrade(versionid: string): Boolean;
+begin
+  Result := (GetUninstallString(versionid) <> '');
+end;
 
+function UninstallOldVersion(versionid: string; version: string): Boolean;
+var
+  iResultCode: integer;
+  sUnInstallString: string;
+begin
+  result := true;
+  if not IsUpgrade(versionid) then begin
+    exit;
+  end;
+  
+  if not (MsgBox(ExpandConstant('CAST Report Generator ' + version + ' is detected. Do you want to uninstall it?'), mbConfirmation, MB_YESNO) = IDYES) then begin
+      exit;
+  end;
+  sUnInstallString := GetUninstallString(versionid);
+  sUnInstallString :=  RemoveQuotes(sUnInstallString);
+  Exec(ExpandConstant(sUnInstallString), '/VERYSILENT', '', SW_SHOW, ewWaitUntilTerminated, iResultCode);
+  result := true;
+end;
 
 function IsDotNetDetected(version: string; service: cardinal): boolean;
 // Indicates whether the specified version and service pack of the .NET Framework is installed.
@@ -198,20 +234,22 @@ begin
     result := success and (install = 1) and (Pos('4.6', fwkversion) = 1);
 end;
 
+{*** INITIALISATIONS ***}
+
 function InitializeSetup(): Boolean;
 begin
+    result := false;
     if not IsDotNetDetected('v4\Client', 0) then begin
         MsgBox('{#MyAppName} requires Microsoft .NET Framework 4.6.'#13#13
             'Please use Windows Update to install this version,'#13
             'and then re-run the {#MyAppName} setup program.', mbInformation, MB_OK);
-        result := false;
-    end else
-        result := true;
+        exit;
+    end;
+    result := UninstallOldVersion('{#App160Id}', '1.6.0');
 end;
-{*** INITIALISATION ***}
+
 procedure InitializeWizard;
 begin
-  InitializeSetup;
   CreateTheWizardPages;
 end;
 
