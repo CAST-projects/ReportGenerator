@@ -29,6 +29,12 @@ namespace CastReporting.Domain
         [DataMember(Name = "name")]
         public string Name {get;set;}
 
+        [DataMember(Name = "shortName")]
+        public string ShortName { get; set; }
+
+        [DataMember(Name = "status")]
+        public string Status { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

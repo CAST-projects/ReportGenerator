@@ -83,6 +83,12 @@
     <None Include="Data\AADcocraApplications.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\Violations7424_60017.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Violations7846_60016.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\BaseQI60017.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -174,6 +180,7 @@
     <Compile Include="Reporting\Graph\TrendTechDebtPortfolioTests.cs" />
     <Compile Include="Reporting\RuleBLLStub.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
+    <Compile Include="Reporting\Tables\QualityRuleViolationsTests.cs" />
     <Compile Include="Reporting\Tables\ViolationSummaryTests.cs" />
     <Compile Include="Reporting\Tables\ViolationStatisticsEvolutionTests.cs" />
     <Compile Include="Reporting\Tables\ViolationStatisticsTests.cs" />
@@ -498,6 +505,11 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties Data_4Violations7846_360016_1json__JSONSchema="http://json.schemastore.org/feed" />
+    </VisualStudio>
+  </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

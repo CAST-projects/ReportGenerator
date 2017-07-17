@@ -1,0 +1,727 @@
+[
+  {
+    "component": {
+      "href": "AED/components/14381/snapshots/5",
+      "name": "com.castsoftware.aad.common.AadCommandLine.dumpStack",
+      "shortName": "dumpStack",
+      "propagationRiskIndex": 122280,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/14381/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/14381/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "added",
+      "findings": {
+        "href": "AED/components/14381/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/9555/snapshots/5",
+      "name": "com.castsoftware.aed.common.AedCommandLine.dumpStack",
+      "shortName": "dumpStack",
+      "propagationRiskIndex": 65880,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/9555/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/9555/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/9555/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/13668/snapshots/5",
+      "name": "com.castsoftware.aad.common.AadCommandLine.logInBase",
+      "shortName": "logInBase",
+      "propagationRiskIndex": 54120,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/13668/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/13668/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/13668/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/11395/snapshots/5",
+      "name": "com.castsoftware.aed.common.AedCommandLine.logInBase",
+      "shortName": "logInBase",
+      "propagationRiskIndex": 43880,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/11395/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/11395/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/11395/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/9898/snapshots/5",
+      "name": "com.castsoftware.aed.common.AedCommandLine.getFormattedMsg",
+      "shortName": "getFormattedMsg",
+      "propagationRiskIndex": 35750,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/9898/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/9898/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/9898/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/12002/snapshots/5",
+      "name": "com.castsoftware.aad.common.AadCommandLine.getFormattedMsg",
+      "shortName": "getFormattedMsg",
+      "propagationRiskIndex": 33825,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/12002/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/12002/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/12002/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/9694/snapshots/5",
+      "name": "com.castsoftware.aed.common.AedCommandLine.runProcedure",
+      "shortName": "runProcedure",
+      "propagationRiskIndex": 24780,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/9694/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/9694/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/9694/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/13549/snapshots/5",
+      "name": "com.castsoftware.aad.consolidation.AadConsolidation.manageNodeID",
+      "shortName": "manageNodeID",
+      "propagationRiskIndex": 7950,
+      "status": "updated",
+      "sourceCodes": {
+        "href": "AED/components/13549/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/13549/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "updated",
+      "findings": {
+        "href": "AED/components/13549/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/10770/snapshots/5",
+      "name": "com.castsoftware.aed.common.AedCommandLine.executeDeleteQuery",
+      "shortName": "executeDeleteQuery",
+      "propagationRiskIndex": 5940,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/10770/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/10770/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/10770/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/9316/snapshots/5",
+      "name": "com.castsoftware.aed.common.AedCommandLine.truncateTable",
+      "shortName": "truncateTable",
+      "propagationRiskIndex": 4360,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/9316/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/9316/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/9316/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/10474/snapshots/5",
+      "name": "com.castsoftware.aad.common.AadCommandLine.checkRemoteSnapshotComputeEndDate",
+      "shortName": "checkRemoteSnapshotComputeEndDate",
+      "propagationRiskIndex": 4200,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/10474/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/10474/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/10474/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/10886/snapshots/5",
+      "name": "com.castsoftware.aad.common.AadCommandLine.runProcedure",
+      "shortName": "runProcedure",
+      "propagationRiskIndex": 3900,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/10886/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/10886/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/10886/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/13298/snapshots/5",
+      "name": "com.castsoftware.aed.common.AedCommandLine.checkService",
+      "shortName": "checkService",
+      "propagationRiskIndex": 3420,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/13298/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/13298/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/13298/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/12321/snapshots/5",
+      "name": "com.castsoftware.aad.consolidation.AadConsolidation.updateNode",
+      "shortName": "updateNode",
+      "propagationRiskIndex": 3180,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/12321/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/12321/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/12321/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/15773/snapshots/5",
+      "name": "com.castsoftware.aed.common.AedCommandLine.runCSSfunctionRetInt",
+      "shortName": "runCSSfunctionRetInt",
+      "propagationRiskIndex": 3080,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/15773/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/15773/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/15773/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/15863/snapshots/5",
+      "name": "com.castsoftware.aad.consolidation.AadConsolidation.manageNodeSnapshotID",
+      "shortName": "manageNodeSnapshotID",
+      "propagationRiskIndex": 2550,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/15863/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/15863/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/15863/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/15778/snapshots/5",
+      "name": "com.castsoftware.aad.common.AadCommandLine.checkALGviolationRatio",
+      "shortName": "checkALGviolationRatio",
+      "propagationRiskIndex": 2430,
+      "status": "updated",
+      "sourceCodes": {
+        "href": "AED/components/15778/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/15778/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "updated",
+      "findings": {
+        "href": "AED/components/15778/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/11455/snapshots/5",
+      "name": "com.castsoftware.aad.consolidation.AadConsolidation.executeDeleteQuery",
+      "shortName": "executeDeleteQuery",
+      "propagationRiskIndex": 1980,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/11455/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/11455/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/11455/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/13076/snapshots/5",
+      "name": "com.castsoftware.aad.consolidation.AadConsolidation.manageObjectInfo",
+      "shortName": "manageObjectInfo",
+      "propagationRiskIndex": 1980,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/13076/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/13076/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/13076/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/11889/snapshots/5",
+      "name": "com.castsoftware.aad.common.AadCommandLine.postProcessing",
+      "shortName": "postProcessing",
+      "propagationRiskIndex": 1920,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/11889/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/11889/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/11889/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/17149/snapshots/5",
+      "name": "com.castsoftware.aed.common.AedCommandLine.executeCreateIndex",
+      "shortName": "executeCreateIndex",
+      "propagationRiskIndex": 1560,
+      "status": "updated",
+      "sourceCodes": {
+        "href": "AED/components/17149/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/17149/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/17149/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/16216/snapshots/5",
+      "name": "com.castsoftware.aed.common.AedCommandLine.executeDropIndex",
+      "shortName": "executeDropIndex",
+      "propagationRiskIndex": 1560,
+      "status": "updated",
+      "sourceCodes": {
+        "href": "AED/components/16216/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/16216/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/16216/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/13956/snapshots/5",
+      "name": "com.castsoftware.aad.consolidation.AadConsolidation.updateSnapshot",
+      "shortName": "updateSnapshot",
+      "propagationRiskIndex": 1530,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/13956/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/13956/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/13956/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/7926/snapshots/5",
+      "name": "com.castsoftware.aad.consolidation.AadConsolidation.manageLinkInfo",
+      "shortName": "manageLinkInfo",
+      "propagationRiskIndex": 1500,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/7926/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/7926/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/7926/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/16892/snapshots/5",
+      "name": "com.castsoftware.aed.common.AedCommandLine.insertArtifacts",
+      "shortName": "insertArtifacts",
+      "propagationRiskIndex": 1380,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/16892/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/16892/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/16892/snapshots/5/findings/7846",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7846",
+      "name": "Avoid Methods with a very low comment/code ratio"
+    },
+    "remedialAction": null
+  }
+]

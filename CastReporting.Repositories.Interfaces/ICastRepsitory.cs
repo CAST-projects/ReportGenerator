@@ -233,5 +233,15 @@ namespace CastReporting.Repositories.Interfaces
         /// <param name="count"></param>
         /// <returns></returns>
         IEnumerable<Component> GetComponentsByModule(string domainId, int moduleId, int snapshotId, string businessCriteria, int count);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="snapshotHref"></param>
+        /// <param name="ruleId"></param>
+        /// <param name="bcId"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count);
     }
 }

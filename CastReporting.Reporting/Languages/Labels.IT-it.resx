@@ -582,4 +582,7 @@
   <data name="Previous" xml:space="preserve">
     <value>Precedente</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>Stato</value>
+  </data>
 </root>

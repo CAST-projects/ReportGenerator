@@ -77,6 +77,7 @@
     <Compile Include="Block\Graph\TrendMetricId.cs" />
     <Compile Include="Block\Graph\TrendTechDebtPortfolio.cs" />
     <Compile Include="Block\Table\GenericTable.cs" />
+    <Compile Include="Block\Table\QualityRuleViolations.cs" />
     <Compile Include="Block\Table\ViolationSummary.cs" />
     <Compile Include="Block\Graph\Bubble.cs" />
     <Compile Include="Block\Graph\CastComplexity.cs" />
