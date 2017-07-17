@@ -96,6 +96,22 @@ namespace CastReporting.UnitTest.Reporting
             return res;
         }
 
+        [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
+        public IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count)
+        {
+            IEnumerable<Violation> res = null;
+            if (ruleId == "7424")
+            {
+                res = TestUtility.GetSampleResult<Violation>(@".\Data\Violations7424_60017.json").Take(count).ToList();
+            }
+            if (ruleId == "7846")
+            {
+                res = TestUtility.GetSampleResult<Violation>(@".\Data\Violations7846_60016.json").Take(count).ToList();
+            }
+            return res;
+        }
+
         [DeploymentItem(@".\Data\Snapshot_QIresults1.json", "Data")]
         public IEnumerable<Result> GetQualityIndicatorResults(string snapshotHref, string qualityIndicator)
         {

@@ -582,4 +582,7 @@
   <data name="PreviousScore" xml:space="preserve">
     <value>Score précédent</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>

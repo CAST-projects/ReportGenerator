@@ -55,11 +55,12 @@ namespace CastReporting.Repositories
         private const string _query_components_by_modules = "{0}/modules/{1}/snapshots/{2}/components/{3}?nbRows={4}";
         private const string _query_common_categories = "{0}/AAD/common-categories";
         private const string _query_tags = "{0}/AAD/tags";
-        
+        private const string _query_violations_list_by_rule_bcid = "{0}/violations?rule-pattern={1}&business-criterion={2}&startRow=1&nbRows={3}";
+
         #endregion CONSTANTS
 
         #region ATTRIBUTES
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -227,6 +228,13 @@ namespace CastReporting.Repositories
             var requestUrl = string.Format(_query_metric_top_artefact, snapshotHref, RuleId);
 
             return CallCsvWS<MetricTopArtifact>(requestUrl, RequestComplexity.Long, count);
+        }
+
+        IEnumerable<Violation> ICastRepsitory.GetViolationsListIDbyBC(string snapshotHref, string RuleId, string bcId, int count)
+        {
+            var requestUrl = string.Format(_query_violations_list_by_rule_bcid, snapshotHref, RuleId, bcId, count);
+
+            return CallWS<IEnumerable<Violation>>(requestUrl, RequestComplexity.Long);
         }
 
         /// <summary>

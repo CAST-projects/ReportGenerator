@@ -406,6 +406,31 @@ namespace CastReporting.BLL
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="snapshotHref"></param>
+        /// <param name="ruleId"></param>
+        /// <param name="bcId"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count)
+        {
+            try
+            {
+                using (var castRepsitory = GetRepository())
+                {
+                    return castRepsitory.GetViolationsListIDbyBC(snapshotHref, ruleId, bcId, count);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+
+        }
+
 
         /// <summary>
         /// 

@@ -50,6 +50,10 @@
     <Compile Include="DataObject\Categories.cs" />
     <Compile Include="DataObject\CommonCategories.cs" />
     <Compile Include="DataObject\Component.cs" />
+    <Compile Include="DataObject\Violation.cs" />
+    <Compile Include="DataObject\RemedialDates.cs" />
+    <Compile Include="DataObject\RemedialAction.cs" />
+    <Compile Include="DataObject\Diagnosis.cs" />
     <Compile Include="DataObject\IfpugFunction.cs" />
     <Compile Include="DataObject\Transaction.cs" />
     <Compile Include="DataObject\EvolutionSummary.cs" />
