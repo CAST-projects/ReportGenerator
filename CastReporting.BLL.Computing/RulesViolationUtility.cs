@@ -45,8 +45,8 @@ namespace CastReporting.BLL.Computing
             List<RuleViolationResultDTO> reslutByTechnicalCriterias = new List<RuleViolationResultDTO>();
             foreach (var rule in rules)
             {
+                // ruleViolationResult instanciation can not be out outside the loop, because the Add in reslutByTechnicalCriterias is by reference and list is corrupted
                 RuleViolationResultDTO ruleViolationResult = new RuleViolationResultDTO();
-
                 var technicalCriterias = snapshot.TechnicalCriteriaResults
                                                  .FirstOrDefault(_ => _.RulesViolation!=null && _.RulesViolation.Any(p => rule.Key.HasValue && p.Reference.Key == rule.Key.Value));
 

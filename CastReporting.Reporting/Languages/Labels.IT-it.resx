@@ -585,4 +585,7 @@
   <data name="Status" xml:space="preserve">
     <value>Stato</value>
   </data>
+  <data name="ObjectsInViolationForRule" xml:space="preserve">
+    <value>Oggetti in violazione alla regola</value>
+  </data>
 </root>

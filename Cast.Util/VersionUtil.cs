@@ -3,6 +3,10 @@ namespace Cast.Util.Version
 {
     public class VersionUtil
     {
+        private VersionUtil()
+        {
+            // Avoid instanciation of the class
+        }
         public static bool IsAdgVersion82Compliant(string version)
         {
             int majorVersion = ExtractVersionNumber(version, 0);

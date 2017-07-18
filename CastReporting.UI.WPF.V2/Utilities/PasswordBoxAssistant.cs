@@ -5,6 +5,10 @@ namespace CastReporting.UI.WPF.Utilities
 {
     internal class PasswordBoxAssistant
     {
+        private PasswordBoxAssistant()
+        {
+            // Avoid instanciation of the class
+        }
         public static readonly DependencyProperty BoundPassword =
                   DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordBoxAssistant), new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
 

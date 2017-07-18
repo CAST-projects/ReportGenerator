@@ -28,6 +28,10 @@ namespace CastReporting.BLL
     /// </summary>
     public class SettingsBLL
     {
+        private SettingsBLL()
+        {
+            // Avoid instanciation of the class
+        }
         /// <summary>
         /// 
         /// </summary>

@@ -36,7 +36,7 @@ namespace CastReporting.Reporting.Block.Text
             string strRuleId = options.GetOption("RULID", string.Empty);
             string _snapshot = options.GetOption("SNAPSHOT", "CURRENT");
 
-            if (reportData?.CurrentSnapshot == null || strRuleId == string.Empty) return Constants.No_Value;
+            if (reportData?.CurrentSnapshot == null || string.IsNullOrEmpty(strRuleId)) return Constants.No_Value;
             Result violations;
             int? totalChecks = null;
             int? failedChecks = null;

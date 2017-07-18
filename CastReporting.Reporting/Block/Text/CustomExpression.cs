@@ -28,7 +28,7 @@ namespace CastReporting.Reporting.Block.Text
             object[] objValues = new object[lstParams.Length / 2];
 
             if (reportData?.CurrentSnapshot == null) return Labels.NoData;
-            if (_params == string.Empty) return Labels.NoData;
+            if (string.IsNullOrEmpty(_params)) return Labels.NoData;
             int j = 0;
             for (int i=0; i < lstParams.Length; i+=2)
             {
@@ -79,8 +79,7 @@ namespace CastReporting.Reporting.Block.Text
 
                     case "BF":
                         string bfId = options.GetOption(lstParams[i + 1], string.Empty);
-                        if (bfId == string.Empty)
-                            return Labels.NoData;
+                        if (string.IsNullOrEmpty(bfId)) return Labels.NoData;
                         Result bfValue;
                         if (_snapshot.Equals("PREVIOUS") && null != reportData.PreviousSnapshot)
                         {

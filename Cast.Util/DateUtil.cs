@@ -4,6 +4,10 @@ namespace Cast.Util.Date
 {
     public class DateUtil
     {
+        private DateUtil()
+        {
+            // Avoid instanciation of the class
+        }
         public static int GetQuarter(DateTime dt)
         {
             switch (dt.Month)

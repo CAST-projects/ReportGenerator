@@ -25,10 +25,14 @@ namespace CastReporting.BLL.Computing
     /// </summary>
     public class BusinessCriteriaUtility 
     {
-        
-         #region METHODS
+        private BusinessCriteriaUtility()
+        {
+            // Avoid instanciation of the class
+        }
 
-         /// <summary>
+        #region METHODS
+
+        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>

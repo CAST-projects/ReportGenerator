@@ -498,7 +498,8 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                     // Series in Graph ------------------------------------------------------
                     List<XElement> cSerie = chartCached.Descendants(C.ser).ToList();
                     var formulaToCheck = new List<XElement>();
-                    for (int ctSer = 0; ctSer < cSerie.Count; ctSer += 1)
+                    int cSerieCount = cSerie.Count;
+                    for (int ctSer = 0; ctSer < cSerieCount; ctSer += 1)
                     {
                         #region Serie Treatment
                         var oneSerie = cSerie[ctSer];

@@ -28,7 +28,7 @@ namespace CastReporting.Reporting.Block.Text
             string strParameters = string.Empty;
             object[] objValues = new object[lstParams.Length / 2];
 
-            if (_params == string.Empty) return Labels.NoData;
+            if (string.IsNullOrEmpty(_params)) return Labels.NoData;
             if (reportData?.Applications == null) return Labels.NoData;
             Application[] _allApps = reportData.Applications;
             string[] strValues = new string[_allApps.Length];
@@ -85,7 +85,7 @@ namespace CastReporting.Reporting.Block.Text
 
                         case "BF":
                             string bfId = options.GetOption(lstParams[i + 1], string.Empty);
-                            if (bfId == string.Empty)
+                            if (string.IsNullOrEmpty(bfId))
                             {
                                 objValues[j] = Labels.NoData;
                                 break;

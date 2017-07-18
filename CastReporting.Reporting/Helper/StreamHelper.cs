@@ -19,6 +19,10 @@ namespace CastReporting.Reporting.Helper
 {
     public class StreamHelper
     {
+        private StreamHelper()
+        {
+            // Avoid instanciation of the class
+        }
         #region METHODS
         public static void CopyStream(Stream input, Stream output)
         {

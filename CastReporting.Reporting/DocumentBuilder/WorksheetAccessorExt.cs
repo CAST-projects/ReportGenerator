@@ -24,6 +24,10 @@ namespace CastReporting.Reporting.Builder
 {
     public class WorksheetAccessorExt
     {
+        private WorksheetAccessorExt()
+        {
+            // Avoid instanciation of the class
+        }
         public static string GetFormulaCoord(string formula, out int startRow, out int startColumn, out int endRow, out int endColumn)
         {
             string sheetName = null;
