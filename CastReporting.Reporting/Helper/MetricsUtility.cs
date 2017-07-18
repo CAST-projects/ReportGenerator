@@ -91,13 +91,13 @@ namespace CastReporting.Reporting
                             .SelectMany(_ => _.ModulesResult)
                             .FirstOrDefault(_ => _.Module.Id == module.Id && _.DetailResult != null)?.DetailResult.Grade;
                     }
-                    else if (module == null && technology != string.Empty)
+                    else if (module == null && !string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.TechnologyResult != null)
                             .SelectMany(_ => _.TechnologyResult)
                             .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Grade;
                     }
-                    else if (module != null && technology != string.Empty)
+                    else if (module != null && !string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
                             .SelectMany(_ => _.ModulesResult)
@@ -117,13 +117,13 @@ namespace CastReporting.Reporting
                             .SelectMany(_ => _.ModulesResult)
                             .FirstOrDefault(_ => _.Module.Id == module.Id && _.DetailResult != null)?.DetailResult.Grade;
                     }
-                    else if (module == null && technology != string.Empty)
+                    else if (module == null && !string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.TechnicalCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.TechnologyResult != null)
                             .SelectMany(_ => _.TechnologyResult)
                             .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Grade;
                     }
-                    else if (module != null && technology != string.Empty)
+                    else if (module != null && !string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.TechnicalCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
                             .SelectMany(_ => _.ModulesResult)
@@ -143,13 +143,13 @@ namespace CastReporting.Reporting
                             .SelectMany(_ => _.ModulesResult)
                             .FirstOrDefault(_ => _.Module.Id == module.Id && _.DetailResult != null)?.DetailResult.Grade;
                     }
-                    else if (module == null && technology != string.Empty)
+                    else if (module == null && !string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.QualityRulesResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.TechnologyResult != null)
                             .SelectMany(_ => _.TechnologyResult)
                             .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Grade;
                     }
-                    else if (module != null && technology != string.Empty)
+                    else if (module != null && !string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.QualityRulesResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
                             .SelectMany(_ => _.ModulesResult)
@@ -169,13 +169,13 @@ namespace CastReporting.Reporting
                             .SelectMany(_ => _.ModulesResult)
                             .FirstOrDefault(_ => _.Module.Id == module.Id && _.DetailResult != null)?.DetailResult.Value;
                     }
-                    else if (module == null && technology != string.Empty)
+                    else if (module == null && !string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.SizingMeasuresResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.TechnologyResult != null)
                             .SelectMany(_ => _.TechnologyResult)
                             .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Value;
                     }
-                    else if (module != null && technology != string.Empty)
+                    else if (module != null && !string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.SizingMeasuresResults?.Where(_ => _.Reference.Key == int.Parse(metricId) && _.ModulesResult != null)
                             .SelectMany(_ => _.ModulesResult)
@@ -193,12 +193,12 @@ namespace CastReporting.Reporting
                         result = bfResult?.ApplicationResults[0].ModulesResult.FirstOrDefault(_ => _.Module.Id == module.Id)?
                             .DetailResult.Value;
                     }
-                    else if (module == null && technology != string.Empty)
+                    else if (module == null && !string.IsNullOrEmpty(technology))
                     {
                         result = bfResult?.ApplicationResults[0].TechnologyResult.FirstOrDefault(_ => _.Technology == technology)?
                             .DetailResult.Value;
                     }
-                    else if (module != null && technology != string.Empty)
+                    else if (module != null && !string.IsNullOrEmpty(technology))
                     {
                         result = bfResult?.ApplicationResults[0].ModulesResult.FirstOrDefault(_ => _.Module.Id == module.Id)?
                             .TechnologyResults.FirstOrDefault(_ => _.Technology == technology)?

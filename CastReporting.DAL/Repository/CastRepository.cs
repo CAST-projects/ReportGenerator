@@ -389,16 +389,16 @@ namespace CastReporting.Repositories
         IEnumerable<Result> ICastRepsitory.GetResultsQualityIndicators(string hRef, string qiParam, string snapshotsParam, string modulesParam, string technologiesParam, string categoriesParam)
         {
             string query = _query_result_quality_indicators;
-            if (string.Empty != snapshotsParam)
+            if (!string.IsNullOrEmpty(snapshotsParam))
                 query = query + "&snapshots=({2})";
 
-            if (string.Empty != modulesParam)
+            if (!string.IsNullOrEmpty(modulesParam))
                 query = query + "&modules=({3})";
 
-            if (string.Empty != technologiesParam)
+            if (!string.IsNullOrEmpty(technologiesParam))
                 query = query + "&technologies=({4})";
 
-            if (string.Empty != categoriesParam)
+            if (!string.IsNullOrEmpty(categoriesParam))
                 query = query + "&categories=({5})";
 
             string relativeURL = string.Format(query, hRef, qiParam, snapshotsParam, modulesParam, technologiesParam, categoriesParam);
@@ -415,13 +415,13 @@ namespace CastReporting.Repositories
         {
             string query = _query_result_sizing_measures;
 
-            if (string.Empty != snapshotsParam)
+            if (!string.IsNullOrEmpty(snapshotsParam))
                 query = query + "&snapshots=({2})";
 
-            if (string.Empty != technologiesParam)
+            if (!string.IsNullOrEmpty(technologiesParam))
                 query = query + "&technologies=({3})";
 
-            if (string.Empty != moduleParam)
+            if (!string.IsNullOrEmpty(moduleParam))
                 query = query + "&modules=({4})";
 
             string relativeURL = string.Format(query, hRef, param, snapshotsParam, technologiesParam, moduleParam);
@@ -433,13 +433,13 @@ namespace CastReporting.Repositories
         {
             string query = _query_result_background_facts;
 
-            if (string.Empty != snapshotsParam)
+            if (!string.IsNullOrEmpty(snapshotsParam))
                 query = query + "&snapshots=({2})";
 
-            if (string.Empty != technologiesParam)
+            if (!string.IsNullOrEmpty(technologiesParam))
                 query = query + "&technologies=({3})";
 
-            if (string.Empty != moduleParam)
+            if (!string.IsNullOrEmpty(moduleParam))
                 query = query + "&modules=({4})";
 
             string relativeURL = string.Format(query, hRef, param, snapshotsParam, technologiesParam, moduleParam);

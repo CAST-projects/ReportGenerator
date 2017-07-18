@@ -10,6 +10,11 @@ namespace Cast.Util
 {
     public class ExpressionEvaluator
     {
+        private ExpressionEvaluator()
+        {
+            // Avoid instanciation of the class
+        }
+
         /// <summary>
         /// examples of parameters :
         /// parameters = "double a, double b, double c, double d, double e";
@@ -53,7 +58,7 @@ class MyType
             try
             {
                 double? result = (double)method.Invoke(null, values);
-                res = (format == string.Empty) ? result.Value.ToString(CultureInfo.CurrentCulture) : result.Value.ToString(format);
+                res = string.IsNullOrEmpty(format) ? result.Value.ToString(CultureInfo.CurrentCulture) : result.Value.ToString(format);
             }
             catch (ArgumentException ex)
             {

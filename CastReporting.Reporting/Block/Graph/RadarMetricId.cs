@@ -52,7 +52,7 @@ namespace CastReporting.Reporting.Block.Graph
                     {
                         case "CURRENT":
                             qidName = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, id, true);
-                            if (qidName == string.Empty) continue;
+                            if (string.IsNullOrEmpty(qidName)) continue;
                             rowData.Add(qidName);
                             curRes = BusinessCriteriaUtility.GetMetricValue(reportData.CurrentSnapshot, id);
                             rowData.Add(curRes?.ToString() ?? Constants.Zero);
@@ -62,7 +62,7 @@ namespace CastReporting.Reporting.Block.Graph
                             if (reportData.PreviousSnapshot != null)
                             {
                                 qidName = BusinessCriteriaUtility.GetMetricName(reportData.PreviousSnapshot, id, true);
-                                if (qidName == string.Empty) continue;
+                                if (string.IsNullOrEmpty(qidName)) continue;
                                 rowData.Add(qidName);
                                 prevRes = BusinessCriteriaUtility.GetMetricValue(reportData.PreviousSnapshot, id);
                                 rowData.Add(prevRes?.ToString() ?? Constants.Zero);
@@ -71,7 +71,7 @@ namespace CastReporting.Reporting.Block.Graph
                             break;
                         default:
                             qidName = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, id, true);
-                            if (qidName == string.Empty) continue;
+                            if (string.IsNullOrEmpty(qidName)) continue;
                             rowData.Add(qidName);
                             curRes = BusinessCriteriaUtility.GetMetricValue(reportData.CurrentSnapshot, id);
                             rowData.Add(curRes?.ToString() ?? Constants.Zero);

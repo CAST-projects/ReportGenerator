@@ -24,7 +24,7 @@ namespace CastReporting.Reporting.Block.Table
             bool hasPri = bcId.Equals("60013") || bcId.Equals("60014") || bcId.Equals("60016");
 
             bool hasPreviousSnapshot = reportData.PreviousSnapshot != null;
-            string ruleName = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(ruleId), false);
+            string ruleName = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(ruleId));
 
             int nbCol = 1;
             rowData.Add(Labels.ObjectsInViolationForRule + " " + ruleName);

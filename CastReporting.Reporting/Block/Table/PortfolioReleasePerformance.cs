@@ -40,13 +40,13 @@ namespace CastReporting.Reporting.Block.Table
             List<double> _tagIds = new List<double>();
             List<double> _slAs = new List<double>(); 
 
-            if (strTargets != string.Empty)
+            if (!string.IsNullOrEmpty(strTargets))
             {
                 string[] words = strTargets.Split(' ');
                 _tagIds.AddRange(words.Select(word => Convert.ToDouble(word, System.Globalization.CultureInfo.InvariantCulture)));
             }
 
-            if (_strSla != string.Empty)
+            if (!string.IsNullOrEmpty(_strSla))
             {
                 string[] words = _strSla.Split(' ');
                 _slAs.AddRange(words.Select(word => Convert.ToDouble(word, System.Globalization.CultureInfo.InvariantCulture)));

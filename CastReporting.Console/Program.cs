@@ -19,6 +19,10 @@ namespace CastReporting.Console
     /// </summary>
     class Program
     {
+        private Program()
+        {
+            // Avoid instanciation of the class
+        }
 
         /// <summary>
         /// 

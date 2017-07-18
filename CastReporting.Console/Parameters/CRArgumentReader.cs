@@ -165,7 +165,10 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
         /// Dispose Method
         /// </summary>
         public void Dispose()
-        { /*nop*/ }
+        {
+            // Here don't need SuppressFinalize because there is no Destructor
+            //GC.SuppressFinalize(this);
+        }
 
         #region Private
 

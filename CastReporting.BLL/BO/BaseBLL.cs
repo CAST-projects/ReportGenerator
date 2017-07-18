@@ -66,7 +66,7 @@ namespace CastReporting.BLL
         /// </summary>
         public void Dispose()
         {
-
+            GC.SuppressFinalize(this);
         }
     }
 }
