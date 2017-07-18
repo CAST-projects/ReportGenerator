@@ -763,6 +763,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Objects in violation for rule.
+        /// </summary>
+        public static string ObjectsInViolationForRule {
+            get {
+                return ResourceManager.GetString("ObjectsInViolationForRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à per File.
         /// </summary>
         public static string PerFile {

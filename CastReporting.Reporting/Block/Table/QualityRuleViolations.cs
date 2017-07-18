@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -23,13 +24,10 @@ namespace CastReporting.Reporting.Block.Table
             bool hasPri = bcId.Equals("60013") || bcId.Equals("60014") || bcId.Equals("60016");
 
             bool hasPreviousSnapshot = reportData.PreviousSnapshot != null;
-
-            IEnumerable<Violation> results = hasPreviousSnapshot && previous ?
-                reportData.SnapshotExplorer.GetViolationsListIDbyBC(reportData.PreviousSnapshot.Href, ruleId, bcId, nbLimitTop)
-                : reportData.SnapshotExplorer.GetViolationsListIDbyBC(reportData.CurrentSnapshot.Href, ruleId, bcId, nbLimitTop);
+            string ruleName = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(ruleId), false);
 
             int nbCol = 1;
-            rowData.Add(Labels.ObjectName);
+            rowData.Add(Labels.ObjectsInViolationForRule + " " + ruleName);
             if (hasPri)
             {
                 nbCol++;
@@ -41,11 +39,22 @@ namespace CastReporting.Reporting.Block.Table
                 rowData.Add(Labels.Status);
             }
 
-            foreach (Violation _violation in results)
+            if (previous && !hasPreviousSnapshot)
             {
-                rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name);
-                if (hasPri) rowData.Add(_violation.Component.PropagationRiskIndex.ToString("N0"));
-                if (hasPreviousSnapshot && !previous) rowData.Add(_violation.Diagnosis.Status);
+                rowData.Add(Constants.No_Data);
+            }
+            else
+            {
+                IEnumerable<Violation> results = hasPreviousSnapshot && previous ?
+                    reportData.SnapshotExplorer.GetViolationsListIDbyBC(reportData.PreviousSnapshot.Href, ruleId, bcId, nbLimitTop)
+                    : reportData.SnapshotExplorer.GetViolationsListIDbyBC(reportData.CurrentSnapshot.Href, ruleId, bcId, nbLimitTop);
+
+                foreach (Violation _violation in results)
+                {
+                    rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name);
+                    if (hasPri) rowData.Add(_violation.Component.PropagationRiskIndex.ToString("N0"));
+                    if (hasPreviousSnapshot && !previous) rowData.Add(_violation.Diagnosis.Status);
+                }
             }
 
             var table = new TableDefinition
