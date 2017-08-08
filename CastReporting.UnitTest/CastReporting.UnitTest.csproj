@@ -52,10 +52,7 @@
   </Choose>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -310,10 +307,6 @@
     <ProjectReference Include="..\CastReporting.Repositories.Interfaces\CastReporting.Repositories.Interfaces.csproj">
       <Project>{bf557781-bd7e-4ec2-bb64-ed7981b4d9d0}</Project>
       <Name>CastReporting.Repositories.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CastReporting.UI.WPF.V2\CastReporting.UI.WPF.V2.csproj">
-      <Project>{3fbe9345-25a4-49a3-b7a9-a8b51acb5309}</Project>
-      <Name>CastReporting.UI.WPF.V2</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

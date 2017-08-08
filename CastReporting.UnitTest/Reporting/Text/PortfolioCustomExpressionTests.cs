@@ -47,7 +47,7 @@ namespace CastReporting.UnitTest.Reporting.Text
             Snapshot[] _snapshots = new Snapshot[2];
             _snapshots[0] = _snap0;
             _snapshots[1] = _snap1;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
 
 
             var component = new PortfolioCustomExpression();
@@ -102,7 +102,7 @@ namespace CastReporting.UnitTest.Reporting.Text
             Snapshot[] _snapshots = new Snapshot[2];
             _snapshots[0] = _snap0;
             _snapshots[1] = _snap1;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
 
             var component = new PortfolioCustomExpression();
             Dictionary<string, string> config = new Dictionary<string, string>
@@ -147,7 +147,7 @@ namespace CastReporting.UnitTest.Reporting.Text
             Snapshot[] _snapshots = new Snapshot[2];
             _snapshots[0] = _snap0;
             _snapshots[1] = _snap1;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
 
 
             WSConnection connection = new WSConnection()
@@ -202,7 +202,7 @@ namespace CastReporting.UnitTest.Reporting.Text
             Snapshot[] _snapshots = new Snapshot[2];
             _snapshots[0] = _snap0;
             _snapshots[1] = _snap1;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
 
 
             var component = new PortfolioCustomExpression();

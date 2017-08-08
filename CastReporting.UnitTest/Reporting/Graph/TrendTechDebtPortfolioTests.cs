@@ -47,7 +47,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
             Snapshot[] _snapshots = new Snapshot[2];
             _snapshots[0] = _snap0;
             _snapshots[1] = _snap1;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
 
             var component = new TrendTechDebtPortfolio();
             var table = component.Content(reportData, null);
@@ -104,7 +104,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
             Snapshot[] _snapshots = new Snapshot[2];
             _snapshots[0] = _snap0;
             _snapshots[1] = _snap1;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
 
             var component = new TrendTechDebtPortfolio();
             var table = component.Content(reportData, null);
@@ -211,7 +211,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
             _snapshots[6] = _snap6;
             _snapshots[7] = _snap7;
 
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
 
             var component = new TrendTechDebtPortfolio();
             var table = component.Content(reportData, null);

@@ -37,7 +37,7 @@ namespace CastReporting.Reporting.Block.Text
             int metricId = options.GetIntOption("BCID", (int)Constants.BusinessCriteria.TechnicalQualityIndex);
             #endregion Item BCID
 
-            if (reportData?.Applications == null || null == reportData.snapshots) return Constants.No_Value;
+            if (reportData?.Applications == null || null == reportData.Snapshots) return Constants.No_Value;
             double? _cv = 0;
 
             Application[] _allApps = reportData.Applications;

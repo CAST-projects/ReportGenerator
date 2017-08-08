@@ -45,7 +45,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Snapshot[] _snapshots = new Snapshot[2];
             _snapshots[0] = _snap0;
             _snapshots[1] = _snap1;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
             reportData.Applications[0].Snapshots = _snapshots;
 
             var component = new PortfolioReleasePerformance();
@@ -96,7 +96,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Snapshot[] _snapshots = new Snapshot[2];
             _snapshots[0] = _snap0;
             _snapshots[1] = _snap1;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
             reportData.Applications[0].Snapshots = _snapshots;
 
             var component = new PortfolioReleasePerformance();
@@ -147,7 +147,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Snapshot[] _snapshots = new Snapshot[2];
             _snapshots[0] = _snap0;
             _snapshots[1] = _snap1;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
             reportData.Applications[0].Snapshots = _snapshots;
 
             var component = new PortfolioReleasePerformance();
@@ -191,7 +191,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             Snapshot[] _snapshots = new Snapshot[1];
             _snapshots[0] = _snap0;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
             reportData.Applications[0].Snapshots = _snapshots;
 
             var component = new PortfolioReleasePerformance();
@@ -235,7 +235,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             Snapshot[] _snapshots = new Snapshot[1];
             _snapshots[0] = _snap0;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
             reportData.Applications[0].Snapshots = _snapshots;
             
             var component = new PortfolioReleasePerformance();
@@ -279,7 +279,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             Snapshot[] _snapshots = new Snapshot[1];
             _snapshots[0] = _snap0;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
             reportData.Applications[0].Snapshots = _snapshots;
 
             var component = new PortfolioReleasePerformance();
@@ -330,7 +330,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Snapshot[] _snapshots = new Snapshot[2];
             _snapshots[0] = _snap0;
             _snapshots[1] = _snap1;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
             reportData.Applications[0].Snapshots = _snapshots;
 
             var component = new PortfolioReleasePerformance();
@@ -388,7 +388,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             _snapshots[0] = _snap0;
             _snapshots[1] = _snap1;
             _snapshots[2] = _snap2;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
             reportData.Applications[0].Snapshots = _snapshots;
 
             var component = new PortfolioReleasePerformance();

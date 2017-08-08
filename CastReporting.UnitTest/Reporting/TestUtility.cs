@@ -433,7 +433,7 @@ namespace CastReporting.UnitTest.Reporting
                 }
                 i++;
             }
-            reportData.snapshots = snapList.ToArray();
+            reportData.Snapshots = snapList.ToArray();
             return reportData;
         }
 

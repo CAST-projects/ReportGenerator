@@ -40,7 +40,7 @@ namespace CastReporting.Reporting.Block.Table
             List<string> rowData = new List<string>();
             int nbRows = 0;
 
-            if (reportData.Applications == null || reportData.snapshots == null) return null;
+            if (reportData.Applications == null || reportData.Snapshots == null) return null;
             switch (metricId)
             {
                 case 60012:

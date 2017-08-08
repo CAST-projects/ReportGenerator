@@ -47,7 +47,7 @@ namespace CastReporting.UnitTest.Reporting.Text
             Snapshot[] _snapshots = new Snapshot[2];
             _snapshots[0] = _snap0;
             _snapshots[1] = _snap1;
-            reportData.snapshots = _snapshots;
+            reportData.Snapshots = _snapshots;
 
             reportData.CurrencySymbol = "€";
 
