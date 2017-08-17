@@ -69,6 +69,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Block\Graph\PortfolioGenericGraph.cs" />
     <Compile Include="Block\Graph\GenericGraph.cs" />
     <Compile Include="Block\Graph\PortfolioBarChart.cs" />
     <Compile Include="Block\Graph\PortfolioCritViolPerformance.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Block\Graph\RadarMetricId.cs" />
     <Compile Include="Block\Graph\TrendMetricId.cs" />
     <Compile Include="Block\Graph\TrendTechDebtPortfolio.cs" />
+    <Compile Include="Block\Table\PortfolioGenericTable.cs" />
     <Compile Include="Block\Table\GenericTable.cs" />
     <Compile Include="Block\Table\QualityRuleViolations.cs" />
     <Compile Include="Block\Table\ViolationSummary.cs" />
@@ -179,6 +181,7 @@
     <Compile Include="DocumentBuilder\WordDocumentBuilder.cs" />
     <Compile Include="DocumentBuilder\WorksheetAccessorExt.cs" />
     <Compile Include="Helper\FormatHelper.cs" />
+    <Compile Include="Helper\PortfolioGenericContent.cs" />
     <Compile Include="Helper\GenericContent.cs" />
     <Compile Include="Helper\MetricsUtility.cs" />
     <Compile Include="Helper\OptionsHelper.cs" />

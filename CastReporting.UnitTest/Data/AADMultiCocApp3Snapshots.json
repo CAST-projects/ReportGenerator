@@ -1,0 +1,92 @@
+[
+  {
+    "href": "AAD/applications/3/snapshots/8",
+    "name": "ReportGenerator",
+    "number": 5,
+    "technologies": [
+      ".NET"
+    ],
+    "annotation": {
+      "version": "1.6.0",
+      "date": {
+        "time": 1501020000000,
+        "isoDate": "2017-07-26"
+      },
+      "description": null,
+      "name": "Computed on 201708111209",
+      "enhancementMeasure": "AEP"
+    },
+    "configurationSnapshot": {
+      "href": "AAD/configuration/snapshots/8",
+      "name": "Configuration Snapshot #5"
+    },
+    "systems": null,
+    "application": {
+      "href": "AAD/applications/3",
+      "name": "ReportGenerator",
+      "adgDatabase": "abd83coc_central"
+    },
+    "moduleSnapshots": {
+      "href": "AAD/applications/3/snapshots/8/modules",
+      "name": "Module Snapshots for ReportGenerator #5"
+    },
+    "results": {
+      "href": "AAD/applications/3/snapshots/8/results",
+      "name": "Results breakdown by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED/applications/3/snapshots/8",
+      "name": "Origin of ReportGenerator snapshot 5"
+    },
+    "adgLocalId": "8",
+    "actionPlan": null,
+    "components": null,
+    "transactions": null,
+    "treeNode": null
+  },
+  {
+    "href": "AAD/applications/3/snapshots/7",
+    "name": "ReportGenerator",
+    "number": 4,
+    "technologies": [
+      ".NET"
+    ],
+    "annotation": {
+      "version": "1.5.1",
+      "date": {
+        "time": 1497909600000,
+        "isoDate": "2017-06-20"
+      },
+      "description": null,
+      "name": "Computed on 201708111147",
+      "enhancementMeasure": "AEP"
+    },
+    "configurationSnapshot": {
+      "href": "AAD/configuration/snapshots/7",
+      "name": "Configuration Snapshot #4"
+    },
+    "systems": null,
+    "application": {
+      "href": "AAD/applications/3",
+      "name": "ReportGenerator",
+      "adgDatabase": "abd83coc_central"
+    },
+    "moduleSnapshots": {
+      "href": "AAD/applications/3/snapshots/7/modules",
+      "name": "Module Snapshots for ReportGenerator #4"
+    },
+    "results": {
+      "href": "AAD/applications/3/snapshots/7/results",
+      "name": "Results breakdown by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED/applications/3/snapshots/7",
+      "name": "Origin of ReportGenerator snapshot 4"
+    },
+    "adgLocalId": "7",
+    "actionPlan": null,
+    "components": null,
+    "transactions": null,
+    "treeNode": null
+  }
+]

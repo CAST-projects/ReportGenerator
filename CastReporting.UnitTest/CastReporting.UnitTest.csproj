@@ -71,6 +71,21 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <None Include="Data\AADMultiCocApp37SnapshotsResults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AADMultiCocApp3SnapshotsResults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AADMultiCocApp3Snapshots.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AADMultiCocApp37Snapshots.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AADMultiCocApplications.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\AADcocraSnapshotsBCResults.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -177,6 +192,7 @@
     <Compile Include="Reporting\Graph\TrendTechDebtPortfolioTests.cs" />
     <Compile Include="Reporting\RuleBLLStub.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
+    <Compile Include="Reporting\Tables\PortfolioGenericTableTests.cs" />
     <Compile Include="Reporting\Tables\QualityRuleViolationsTests.cs" />
     <Compile Include="Reporting\Tables\ViolationSummaryTests.cs" />
     <Compile Include="Reporting\Tables\ViolationStatisticsEvolutionTests.cs" />

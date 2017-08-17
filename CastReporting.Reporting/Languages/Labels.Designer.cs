@@ -133,6 +133,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Applications.
+        /// </summary>
+        public static string Applications {
+            get {
+                return ResourceManager.GetString("Applications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Arch..
         /// </summary>
         public static string Arch {
@@ -390,6 +399,15 @@ namespace CastReporting.Reporting.Languages {
         public static string Current {
             get {
                 return ResourceManager.GetString("Current", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Current Period.
+        /// </summary>
+        public static string CurrentPeriod {
+            get {
+                return ResourceManager.GetString("CurrentPeriod", resourceCulture);
             }
         }
         
@@ -781,6 +799,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Periods.
+        /// </summary>
+        public static string Periods {
+            get {
+                return ResourceManager.GetString("Periods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à per kLoC.
         /// </summary>
         public static string PerkLoC {
@@ -795,6 +822,15 @@ namespace CastReporting.Reporting.Languages {
         public static string Previous {
             get {
                 return ResourceManager.GetString("Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Previous Period.
+        /// </summary>
+        public static string PreviousPeriod {
+            get {
+                return ResourceManager.GetString("PreviousPeriod", resourceCulture);
             }
         }
         

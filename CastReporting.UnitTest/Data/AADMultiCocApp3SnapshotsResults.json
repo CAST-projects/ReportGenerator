@@ -1,0 +1,216 @@
+[
+  {
+    "number": 5,
+    "date": {
+      "time": 1501020000000,
+      "isoDate": "2017-07-26"
+    },
+    "application": {
+      "href": "AAD/applications/3",
+      "name": "ReportGenerator",
+      "adgDatabase": "abd83coc_central"
+    },
+    "applicationSnapshot": {
+      "href": "AAD/applications/3/snapshots/8",
+      "name": "ReportGenerator"
+    },
+    "applicationResults": [
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AAD/sizing-measures/10151/snapshots/8",
+          "name": "Number of Code Lines",
+          "shortName": "LOCs",
+          "key": "10151",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 29486
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AAD/sizing-measures/10202/snapshots/8",
+          "name": "OMG-Compliant Automated Function Points",
+          "shortName": "AFP",
+          "key": "10202",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 477
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60013/snapshots/8",
+          "name": "Robustness",
+          "shortName": "Rbst",
+          "key": "60013",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.324169202174385,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 8,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 6,
+            "violationsInNewAndModifiedCode": 817,
+            "totalViolations": 1939,
+            "addedViolations": 577,
+            "removedViolations": 78
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "critical-violation-statistics",
+        "reference": {
+          "href": "AAD/sizing-measures/67013/snapshots/8",
+          "name": "Number of violations to critical quality rules per KLOC (average)",
+          "key": "67013",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 1.3904904022247846
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-debt-statistics",
+        "reference": {
+          "href": "AAD/sizing-measures/68001/snapshots/8",
+          "name": "Technical Debt",
+          "shortName": "Debt",
+          "key": "68001",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 420178.125
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "date": {
+      "time": 1497909600000,
+      "isoDate": "2017-06-20"
+    },
+    "application": {
+      "href": "AAD/applications/3",
+      "name": "ReportGenerator",
+      "adgDatabase": "abd83coc_central"
+    },
+    "applicationSnapshot": {
+      "href": "AAD/applications/3/snapshots/7",
+      "name": "ReportGenerator"
+    },
+    "applicationResults": [
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AAD/sizing-measures/10151/snapshots/7",
+          "name": "Number of Code Lines",
+          "shortName": "LOCs",
+          "key": "10151",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 24447
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AAD/sizing-measures/10202/snapshots/7",
+          "name": "OMG-Compliant Automated Function Points",
+          "shortName": "AFP",
+          "key": "10202",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 499
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60013/snapshots/7",
+          "name": "Robustness",
+          "shortName": "Rbst",
+          "key": "60013",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.180307698268813,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 4,
+            "totalCriticalViolations": 14,
+            "addedCriticalViolations": 2,
+            "removedCriticalViolations": 1,
+            "violationsInNewAndModifiedCode": 1219,
+            "totalViolations": 1440,
+            "addedViolations": 728,
+            "removedViolations": 265
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "critical-violation-statistics",
+        "reference": {
+          "href": "AAD/sizing-measures/67013/snapshots/7",
+          "name": "Number of violations to critical quality rules per KLOC (average)",
+          "key": "67013",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 3.0269562727533033
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-debt-statistics",
+        "reference": {
+          "href": "AAD/sizing-measures/68001/snapshots/7",
+          "name": "Technical Debt",
+          "shortName": "Debt",
+          "key": "68001",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 311865.75
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  }
+]

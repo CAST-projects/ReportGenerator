@@ -63,5 +63,6 @@ namespace Cast.Util.Date
         {
             return (currentQuater == 1) ? currentYear - 1 : currentYear;
         }
+
     }
 }

@@ -588,4 +588,16 @@
   <data name="ObjectsInViolationForRule" xml:space="preserve">
     <value>Los objetos en violación a la regla</value>
   </data>
+  <data name="Periods" xml:space="preserve">
+    <value>Periodos</value>
+  </data>
+  <data name="Applications" xml:space="preserve">
+    <value>Aplicaciones</value>
+  </data>
+  <data name="CurrentPeriod" xml:space="preserve">
+    <value>Período actual</value>
+  </data>
+  <data name="PreviousPeriod" xml:space="preserve">
+    <value>Periodo anterior</value>
+  </data>
 </root>
