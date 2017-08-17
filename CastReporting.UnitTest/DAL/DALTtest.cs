@@ -28,7 +28,9 @@ namespace CastReporting.UnitTest.DAL
         /// </summary>
         readonly WSConnection _connection = new WSConnection()
         {
-            Url = "http://demo-eu-aed.castsoftware.com/AED/rest/",
+            // if using demo-eu-aed, use domain AED1
+            // Url = "http://demo-eu-aed.castsoftware.com/AED/rest/",
+            Url = "http://localhost:8585/CAST-AAD-AED/rest/",
             Login = "admin",
             Password = "cast",
             IsActive = true,
@@ -37,7 +39,7 @@ namespace CastReporting.UnitTest.DAL
 
         readonly WSConnection _connection2 = new WSConnection()
         {
-            Url = "https://dev-adg-ora112:8443/CAST-AAD-AED-822/rest/",
+            Url = "https://abdlap2:8443/CAST-AAD-AED/rest/",
             Login = "cio",
             Password = "cast",
             IsActive = true,
@@ -61,7 +63,7 @@ namespace CastReporting.UnitTest.DAL
         public void IsHttpsTlsv12ServiceValidTest()
         {
             // Ignored on jenkins machine, because the certificat tomcat.cer is not installed, and test failed
-            if (Environment.MachineName != "ABDLAP") return;
+            if (Environment.MachineName != "ABDLAP2") return;
             ICastRepsitory context2 = new CastRepository(_connection2);
             bool result = context2.IsServiceValid();
             Assert.IsTrue(result);
@@ -86,7 +88,7 @@ namespace CastReporting.UnitTest.DAL
         [TestMethod()]
         public void GetApplicationsByDomainTest()
         {
-            string domainHref = "AED1";
+            string domainHref = "AED";
 
             ICastRepsitory context = new CastRepository(_connection);
             IEnumerable<Application> result = context.GetApplicationsByDomain(domainHref);
@@ -100,7 +102,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            string appilcationId = "AED1/applications/3";
+            string appilcationId = "AED/applications/3";
             Application result = context.GetApplication(appilcationId);
             Assert.IsNotNull(result);
             
@@ -113,7 +115,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetSnapshotsByApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            string appilcationId = "AED1/applications/3";
+            string appilcationId = "AED/applications/3";
             var result = context.GetSnapshotsByApplication(appilcationId);
             Assert.IsNotNull(result);
             Assert.AreNotEqual(result.Count(), 0);
@@ -126,7 +128,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetSnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            string snapshotId = "AED1/applications/3/snapshots/3";
+            string snapshotId = "AED/applications/3/snapshots/3";
             Snapshot result = context.GetSnapshot(snapshotId);
             Assert.IsNotNull(result);
         }
@@ -138,7 +140,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetModulesByApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            string appilcationId = "AED1/applications/3";
+            string appilcationId = "AED/applications/3";
             var result = context.GetModules(appilcationId);
             Assert.IsNotNull(result);
             Assert.AreNotEqual(result.Count(), 0);
@@ -152,7 +154,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetModulesBySnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            string appilcationId = "AED1/applications/3/snapshots/3";
+            string appilcationId = "AED/applications/3/snapshots/3";
             var result = context.GetModules(appilcationId);
             Assert.IsNotNull(result);
             Assert.AreNotEqual(result.Count(), 0);
@@ -166,7 +168,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetModuleTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            string moduleId = "AED1/modules/4";
+            string moduleId = "AED/modules/4";
             Module result = context.GetModule(moduleId);
             Assert.IsNotNull(result);
         }
@@ -179,7 +181,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetQualityIndicatorsByApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            const string appilcationRef = "AED1/applications/3";
+            const string appilcationRef = "AED/applications/3";
 
             int[] businessCriterias = (int[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
@@ -200,7 +202,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetQualityIndicatorsBySnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            const string snapshotRef = "AED1/applications/3/snapshots/3";
+            const string snapshotRef = "AED/applications/3/snapshots/3";
 
             int[] businessCriterias = (int[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
@@ -222,7 +224,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetQualityIndicatorsByModuleTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            const string moduleRef = "AED1/modules/4";
+            const string moduleRef = "AED/modules/4";
 
             int[] businessCriterias = (int[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
@@ -245,7 +247,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetSizingMeasuresByApplicationTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            const string snapshotRef = "AED1/applications/3";
+            const string snapshotRef = "AED/applications/3";
 
             int[] sizingMeasures = (int[])Enum.GetValues(typeof(Constants.SizingInformations));
             string strSizingMeasures = string.Join(",", sizingMeasures);
@@ -266,7 +268,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetSizingMeasuresBySnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            const string snapshotRef = "AED1/applications/3/snapshots/3";
+            const string snapshotRef = "AED/applications/3/snapshots/3";
 
             int[] sizingMeasures = (int[])Enum.GetValues(typeof(Constants.SizingInformations));
             string strSizingMeasures = string.Join(",", sizingMeasures);
@@ -289,7 +291,7 @@ namespace CastReporting.UnitTest.DAL
         {
 
             ICastRepsitory context = new CastRepository(_connection);
-            const string domainHref = "AED1";
+            const string domainHref = "AED";
             const int snapshotId = 1;
 
             var result = context.GetConfBusinessCriteriaBySnapshot(domainHref, snapshotId);
@@ -306,7 +308,7 @@ namespace CastReporting.UnitTest.DAL
         {
 
             ICastRepsitory context = new CastRepository(_connection);
-            const string domainHref = "AED1/quality-indicators/61001/snapshots/3";
+            const string domainHref = "AED/quality-indicators/61001/snapshots/3";
 
             var result = context.GetConfBusinessCriteria(domainHref);
 
