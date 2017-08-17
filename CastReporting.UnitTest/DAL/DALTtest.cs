@@ -291,7 +291,7 @@ namespace CastReporting.UnitTest.DAL
         {
 
             ICastRepsitory context = new CastRepository(_connection);
-            const string domainHref = "AED";
+            const string domainHref = "AED1";
             const int snapshotId = 1;
 
             var result = context.GetConfBusinessCriteriaBySnapshot(domainHref, snapshotId);
