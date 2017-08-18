@@ -135,53 +135,11 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
         public void TestMetricsBCEvolTwoApp()
         {
-            // snap results : AAD/applications/37/results?snapshots=-2&metrics=60013,68001,10151,10202,67013&select=evolutionSummary
             List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
             List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
             ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            TestUtility.PreparePortfSnapshots(reportData);
 
-            DateTime date = new DateTime(1970, 01, 01, 0, 0, 0, DateTimeKind.Utc);
-            Snapshot _snap0 = reportData.Applications[0].Snapshots.FirstOrDefault();
-            TimeSpan time0 = DateTime.Now.AddMonths(-2) - date;
-            CastDate _date0 = new CastDate { Time = time0.TotalMilliseconds };
-            Debug.Assert(_snap0 != null, "_snap0 != null");
-            _snap0.Annotation.Date = _date0;
-
-            Snapshot _snap1 = reportData.Applications[0].Snapshots.ElementAt(1);
-            TimeSpan time1 = DateTime.Now.AddMonths(-15) - date;
-            CastDate _date1 = new CastDate { Time = time1.TotalMilliseconds };
-            Debug.Assert(_snap1 != null, "_snap1 != null");
-            _snap1.Annotation.Date = _date1;
-
-            Snapshot[] _snapshots1 = new Snapshot[2];
-            _snapshots1[0] = _snap0;
-            _snapshots1[1] = _snap1;
-            reportData.Applications[0].Snapshots = _snapshots1;
-
-            Snapshot _snap2 = reportData.Applications[1].Snapshots.FirstOrDefault();
-            TimeSpan time2 = DateTime.Now.AddMonths(-1) - date;
-            CastDate _date2 = new CastDate { Time = time2.TotalMilliseconds };
-            Debug.Assert(_snap2 != null, "_snap2 != null");
-            _snap2.Annotation.Date = _date2;
-
-            Snapshot _snap3 = reportData.Applications[1].Snapshots.ElementAt(1);
-            TimeSpan time3 = DateTime.Now.AddMonths(-6) - date;
-            CastDate _date3 = new CastDate { Time = time3.TotalMilliseconds };
-            Debug.Assert(_snap3 != null, "_snap3 != null");
-            _snap3.Annotation.Date = _date3;
-
-            Snapshot[] _snapshots2 = new Snapshot[2];
-            _snapshots2[0] = _snap2;
-            _snapshots2[1] = _snap3;
-            reportData.Applications[1].Snapshots = _snapshots2;
-
-            Snapshot[] _snapshots = new Snapshot[4];
-            _snapshots[0] = _snap0;
-            _snapshots[1] = _snap1;
-            _snapshots[2] = _snap2;
-            _snapshots[3] = _snap3;
-            reportData.Snapshots = _snapshots;
-            
             var component = new PortfolioGenericTable();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
@@ -200,6 +158,132 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "Previous Period", "3.35", "60,603" });
             expectedData.AddRange(new List<string> { "Evolution", "0.15", "6,986" });
             expectedData.AddRange(new List<string> { "% Evolution", "+4.48 %", "+11.5 %" });
+            TestUtility.AssertTableContent(table, expectedData, 3, 5);
+        }
+
+
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestMetricsHFCurPrev()
+        {
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            TestUtility.PreparePortfSnapshots(reportData);
+
+            var component = new PortfolioGenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "METRICS"},
+                {"ROW1", "PERIODS"},
+                {"METRICS", "HEALTH_FACTOR"},
+                {"PERIODS", "CURRENT|PREVIOUS"}
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Periods", "Transferability", "Changeability", "Robustness", "Efficiency", "Security" });
+            expectedData.AddRange(new List<string> { "Current Period", "3.02", "2.96", "3.50", "2.68", "3.52" });
+            expectedData.AddRange(new List<string> { "Previous Period", "2.94", "2.48", "3.35", "2.53", "3.26" });
+            TestUtility.AssertTableContent(table, expectedData, 6, 3);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestMetricsFuncWeightTechDebt()
+        {
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            TestUtility.PreparePortfSnapshots(reportData);
+
+            var component = new PortfolioGenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "METRICS"},
+                {"ROW1", "APPLICATIONS"},
+                {"METRICS", "FUNCTIONAL_WEIGHT|TECHNICAL_DEBT"}
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Applications", "OMG-Compliant Automated Function Points", "Technical Debt" });
+            expectedData.AddRange(new List<string> { "ReportGenerator", "477", "420,178" });
+            expectedData.AddRange(new List<string> { "AADAEDAdmin", "13,732", "175,144" });
+            TestUtility.AssertTableContent(table, expectedData, 3, 3);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestMetricsViolStats()
+        {
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            TestUtility.PreparePortfSnapshots(reportData);
+
+            var component = new PortfolioGenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "METRICS"},
+                {"ROW1", "PERIODS"},
+                {"METRICS", "VIOLATION|CRITICAL_VIOLATION"},
+                {"PERIODS", "CURRENT|PREVIOUS|EVOL_PERCENT" }
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Periods", "Number of violations to critical quality rules per KLOC (average)" });
+            expectedData.AddRange(new List<string> { "Current Period", "3" });
+            expectedData.AddRange(new List<string> { "Previous Period", "10" });
+            expectedData.AddRange(new List<string> { "% Evolution", "-70 %" });
+            TestUtility.AssertTableContent(table, expectedData, 2, 4);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestViolAppli()
+        {
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            TestUtility.PreparePortfSnapshots(reportData);
+
+            var component = new PortfolioGenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "PERIODS"},
+                {"ROW1", "VIOLATIONS"},
+                {"ROW11", "APPLICATIONS" },
+                {"APPLICATIONS", "ReportGenerator"},
+                {"VIOLATIONS", "ADDED|REMOVED" },
+                {"PERIODS", "CURRENT|PREVIOUS" }
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Violations", "Current Period", "Previous Period"});
+            expectedData.AddRange(new List<string> { "Added Violations", " ", " "});
+            expectedData.AddRange(new List<string> { "    ReportGenerator", "1,691", "1,783" });
+            expectedData.AddRange(new List<string> { "Removed Violations", " ", " " });
+            expectedData.AddRange(new List<string> { "    ReportGenerator", "241", "701" });
             TestUtility.AssertTableContent(table, expectedData, 3, 5);
         }
 

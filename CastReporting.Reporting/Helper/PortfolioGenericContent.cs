@@ -223,15 +223,21 @@ namespace CastReporting.Reporting.Helper
                     if (periodConfiguration.Contains("CURRENT"))
                     {
                         BuildPeriod(reportData, currentPeriod, periodDuration, false);
+                        if (periodConfiguration.Contains("PREVIOUS"))
+                        {
+                            periodConfiguration = new [] { "CURRENT"};
+                        }
                     }
-                    if (periodConfiguration.Contains("PREVIOUS"))
+                    else if (periodConfiguration.Contains("PREVIOUS"))
                     {
                         BuildPeriod(reportData, previousPeriod, periodDuration, true);
+                        periodConfiguration = new[] { "PREVIOUS" };
                     }
                 }
                 else
                 {
                     BuildPeriod(reportData, currentPeriod, periodDuration, false);
+                    periodConfiguration = new[] { "CURRENT" };
                 }
             }
             // implicit metrics
@@ -415,8 +421,8 @@ namespace CastReporting.Reporting.Helper
                         foreach (Application application in applications) // applications, no need to aggregate here, resuls by application
                         {
                             _posResults[positionApplications] = application.Name;
-                            Snapshot curPeriodAppSnap = currentPeriod[application];
-                            Snapshot prevPeriodAppSnap = previousPeriod[application];
+                            Snapshot curPeriodAppSnap = periodConfiguration.Contains("CURRENT") ? currentPeriod[application] : null;
+                            Snapshot prevPeriodAppSnap = periodConfiguration.Contains("PREVIOUS") ? previousPeriod[application] : null;
                             EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, curPeriodAppSnap, prevPeriodAppSnap, _metricId, true, null, string.Empty, format);
                             if (res.name == Constants.No_Value) continue;
                             if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
@@ -719,12 +725,13 @@ namespace CastReporting.Reporting.Helper
                 string agg;
                 try
                 {
-                    agg = aggregators[metrics.IndexOf("HEALTH_FACTOR")];
+                    agg = aggregators != null ? aggregators[metrics.IndexOf("HEALTH_FACTOR")] : "AVERAGE";
                 }
-                catch (KeyNotFoundException)
+                catch (KeyNotFoundException )
                 {
                     agg = "AVERAGE";
                 }
+                
                 foreach (string _m in metricList)
                 {
                     metricsAggregated.Add(_m, agg);
@@ -736,7 +743,7 @@ namespace CastReporting.Reporting.Helper
                 string agg;
                 try
                 {
-                    agg = aggregators[metrics.IndexOf("HEALTH_FACTOR")];
+                    agg = aggregators != null ? aggregators[metrics.IndexOf("BUSINESS_CRITERIA")] : "AVERAGE";
                 }
                 catch (KeyNotFoundException)
                 {
@@ -756,7 +763,7 @@ namespace CastReporting.Reporting.Helper
                 string agg;
                 try
                 {
-                    agg = aggregators[metrics.IndexOf("TECHNICAL_CRITERIA")];
+                    agg = aggregators != null ? aggregators[metrics.IndexOf("TECHNICAL_CRITERIA")] : "AVERAGE";
                 }
                 catch (KeyNotFoundException)
                 {
@@ -779,7 +786,7 @@ namespace CastReporting.Reporting.Helper
                 string agg;
                 try
                 {
-                    agg = aggregators[metrics.IndexOf("CRITICAL_QUALITY_RULES")];
+                    agg = aggregators != null ? aggregators[metrics.IndexOf("CRITICAL_QUALITY_RULES")] : "AVERAGE";
                 }
                 catch (KeyNotFoundException)
                 {
@@ -799,7 +806,7 @@ namespace CastReporting.Reporting.Helper
                 string agg;
                 try
                 {
-                    agg = aggregators[metrics.IndexOf("QUALITY_RULES")];
+                    agg = aggregators != null ? aggregators[metrics.IndexOf("QUALITY_RULES")] : "AVERAGE";
                 }
                 catch (KeyNotFoundException)
                 {
@@ -819,7 +826,7 @@ namespace CastReporting.Reporting.Helper
                 string agg;
                 try
                 {
-                    agg = aggregators[metrics.IndexOf("TECHNICAL_SIZING")];
+                    agg = aggregators != null ? aggregators[metrics.IndexOf("TECHNICAL_SIZING")] : "SUM";
                 }
                 catch (KeyNotFoundException)
                 {
@@ -839,7 +846,7 @@ namespace CastReporting.Reporting.Helper
                 string agg;
                 try
                 {
-                    agg = aggregators[metrics.IndexOf("FUNCTIONAL_WEIGHT")];
+                    agg = aggregators != null ? aggregators[metrics.IndexOf("FUNCTIONAL_WEIGHT")] : "SUM";
                 }
                 catch (KeyNotFoundException)
                 {
@@ -859,7 +866,7 @@ namespace CastReporting.Reporting.Helper
                 string agg;
                 try
                 {
-                    agg = aggregators[metrics.IndexOf("TECHNICAL_DEBT")];
+                    agg = aggregators != null ? aggregators[metrics.IndexOf("TECHNICAL_DEBT")] : "SUM";
                 }
                 catch (KeyNotFoundException)
                 {
@@ -879,7 +886,7 @@ namespace CastReporting.Reporting.Helper
                 string agg;
                 try
                 {
-                    agg = aggregators[metrics.IndexOf("VIOLATION")];
+                    agg = aggregators != null ? aggregators[metrics.IndexOf("VIOLATION")] : "SUM";
                 }
                 catch (KeyNotFoundException)
                 {
@@ -899,7 +906,7 @@ namespace CastReporting.Reporting.Helper
                 string agg;
                 try
                 {
-                    agg = aggregators[metrics.IndexOf("CRITICAL_VIOLATION")];
+                    agg = aggregators != null ? aggregators[metrics.IndexOf("CRITICAL_VIOLATION")] : "SUM";
                 }
                 catch (KeyNotFoundException)
                 {
@@ -919,7 +926,7 @@ namespace CastReporting.Reporting.Helper
                 string agg;
                 try
                 {
-                    agg = aggregators[metrics.IndexOf("RUN_TIME")];
+                    agg = aggregators != null ? aggregators[metrics.IndexOf("RUN_TIME")] : "SUM";
                 }
                 catch (KeyNotFoundException)
                 {
@@ -937,17 +944,29 @@ namespace CastReporting.Reporting.Helper
             if (metricsAggregated.Count == 0 && metrics.Count > 0)
             {
                 // case when configuration contains only id and no groups
-                foreach (string _metric in metrics)
+                if (aggregators != null)
                 {
-                    try
+                    // case when only one aggregator is defined for all ids
+                    foreach (string _metric in metrics)
                     {
-                        metricsAggregated.Add(_metric, aggregators[metrics.IndexOf(_metric)]);
+                        try
+                        {
+                            metricsAggregated.Add(_metric, aggregators[metrics.IndexOf(_metric)]);
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+                            metricsAggregated.Add(_metric, aggregators.Length > 0 ? aggregators.FirstOrDefault() : string.Empty);
+                        }
                     }
-                    catch (IndexOutOfRangeException)
+                }
+                else
+                {
+                    // case when violations and critical violations on a metric id
+                    foreach (string _metric in metrics)
                     {
-                        metricsAggregated.Add(_metric, aggregators.Length > 0 ? aggregators.FirstOrDefault() : string.Empty);
+                        metricsAggregated.Add(_metric, string.Empty);
                     }
-                 }
+                }
             }
 
         }
