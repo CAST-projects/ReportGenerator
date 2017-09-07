@@ -56,6 +56,7 @@ namespace CastReporting.Repositories
         private const string _query_common_categories = "{0}/AAD/common-categories";
         private const string _query_tags = "{0}/AAD/tags";
         private const string _query_violations_list_by_rule_bcid = "{0}/violations?rule-pattern={1}&business-criterion={2}&startRow=1&nbRows={3}";
+        private const string _query_action_plan_issues = "{0}/action-plan/issues?nbRows={1}";
 
         #endregion CONSTANTS
 
@@ -232,7 +233,16 @@ namespace CastReporting.Repositories
 
         IEnumerable<Violation> ICastRepsitory.GetViolationsListIDbyBC(string snapshotHref, string RuleId, string bcId, int count)
         {
-            var requestUrl = string.Format(_query_violations_list_by_rule_bcid, snapshotHref, RuleId, bcId, count);
+            var requestUrl = (count != -1) ? string.Format(_query_violations_list_by_rule_bcid, snapshotHref, RuleId, bcId, count)
+                : string.Format(_query_violations_list_by_rule_bcid, snapshotHref, RuleId, bcId, "$all");
+
+            return CallWS<IEnumerable<Violation>>(requestUrl, RequestComplexity.Long);
+        }
+
+        IEnumerable<Violation> ICastRepsitory.GetViolationsInActionPlan(string snapshotHref, int count)
+        {
+            var requestUrl = (count != -1) ? string.Format(_query_action_plan_issues, snapshotHref, count)
+                : string.Format(_query_action_plan_issues, snapshotHref, "$all") ;
 
             return CallWS<IEnumerable<Violation>>(requestUrl, RequestComplexity.Long);
         }

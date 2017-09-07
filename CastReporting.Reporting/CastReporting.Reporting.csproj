@@ -79,6 +79,7 @@
     <Compile Include="Block\Graph\TrendTechDebtPortfolio.cs" />
     <Compile Include="Block\Table\PortfolioGenericTable.cs" />
     <Compile Include="Block\Table\GenericTable.cs" />
+    <Compile Include="Block\Table\ActionPlanViolations.cs" />
     <Compile Include="Block\Table\QualityRuleViolations.cs" />
     <Compile Include="Block\Table\ViolationSummary.cs" />
     <Compile Include="Block\Graph\Bubble.cs" />

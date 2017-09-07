@@ -38,6 +38,8 @@ namespace CastReporting.Domain.Interfaces
 
         IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count);
 
+        IEnumerable<Violation> GetViolationsInActionPlan(string snapshotHref, int count);
+
         /// <summary>
         /// 
         /// </summary>

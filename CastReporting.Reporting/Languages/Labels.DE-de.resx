@@ -600,4 +600,13 @@
   <data name="PreviousPeriod" xml:space="preserve">
     <value>Vorheriger Periode</value>
   </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Kommentar</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Letzte Aktualisierung</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Priorität</value>
+  </data>
 </root>

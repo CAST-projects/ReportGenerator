@@ -43,6 +43,12 @@ namespace CastReporting.UnitTest.Reporting
             throw new NotImplementedException();
         }
 
+        [DeploymentItem(@".\Data\ActionPlanViolations1.json", "Data")]
+        public IEnumerable<Violation> GetViolationsInActionPlan(string snapshotHref, int count)
+        {
+            return count != -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\ActionPlanViolations1.json").Take(count).ToList() : TestUtility.GetSampleResult<Violation>(@".\Data\ActionPlanViolations1.json").ToList();
+        }
+
         [DeploymentItem(@".\Data\Component60016Snap.json", "Data")]
         public IEnumerable<Component> GetComponents(string snapshotHref, string businessCriteria, int count)
         {
