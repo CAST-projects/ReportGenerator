@@ -40,7 +40,7 @@ namespace CastReporting.Reporting.Helper
         {
             switch (type)
             {
-                case "PERIODS": // replace by PERIODS, need to retrieve PERIOD_DURATION
+                case "PERIODS":
                     switch (item)
                     {
                         case "CURRENT":
@@ -57,7 +57,7 @@ namespace CastReporting.Reporting.Helper
 
                 case "METRICS":
                     return MetricsUtility.GetMetricName(reportData, reportData.Applications.FirstOrDefault()?.Snapshots.FirstOrDefault(), item) ?? Constants.No_Value;
-                case "APPLICATIONS": // replace by APPLICATIONS
+                case "APPLICATIONS":
                     return item;
                 case "VIOLATIONS":
                     switch (item)
@@ -289,6 +289,7 @@ namespace CastReporting.Reporting.Helper
                         if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                         foreach (string param in periodConfiguration)
                         {
+                            // add a catch of ArgumentException for metrics with same name if needed by REPORTGEN-281 (do nothing in this case, but do not fail)
                             switch (param)
                             {
                                 case "CURRENT":
@@ -428,6 +429,7 @@ namespace CastReporting.Reporting.Helper
                             if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                             foreach (string param in periodConfiguration)
                             {
+                                // add a catch of ArgumentException for metrics with same name if needed by REPORTGEN-281 (do nothing in this case, but do not fail)
                                 switch (param)
                                 {
                                     case "CURRENT":

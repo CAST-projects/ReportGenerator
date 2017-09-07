@@ -344,6 +344,7 @@ namespace CastReporting.Reporting.Helper
                         if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                         foreach (string param in snapshotConfiguration)
                         {
+                            // add a catch of ArgumentException for metrics with same name if needed by REPORTGEN-281 (do nothing in this case, but do not fail)
                             switch (param)
                             {
                                 case "CURRENT":
@@ -474,6 +475,7 @@ namespace CastReporting.Reporting.Helper
                             if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                             foreach (string param in snapshotConfiguration)
                             {
+                                // add a catch of ArgumentException for metrics with same name if needed by REPORTGEN-281 (do nothing in this case, but do not fail)
                                 switch (param)
                                 {
                                     case "CURRENT":
@@ -617,6 +619,7 @@ namespace CastReporting.Reporting.Helper
                             if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                             foreach (string param in snapshotConfiguration)
                             {
+                                // add a catch of ArgumentException for metrics with same name if needed by REPORTGEN-281 (do nothing in this case, but do not fail)
                                 switch (param)
                                 {
                                     case "CURRENT":
@@ -763,6 +766,7 @@ namespace CastReporting.Reporting.Helper
                                 if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                                 foreach (string param in snapshotConfiguration)
                                 {
+                                    // add a catch of ArgumentException for metrics with same name if needed by REPORTGEN-281 (do nothing in this case, but do not fail)
                                     switch (param)
                                     {
                                         case "CURRENT":
