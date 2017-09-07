@@ -52,7 +52,7 @@ namespace CastReporting.Reporting.Block.Table
                 _slAs.AddRange(words.Select(word => Convert.ToDouble(word, System.Globalization.CultureInfo.InvariantCulture)));
             }
 
-            if (reportData.Applications != null && reportData.snapshots != null)
+            if (reportData.Applications != null && reportData.Snapshots != null)
             {
                 int nbCurrentSnapshots = 0;
                 int nbPreviousSnapshots = 0;

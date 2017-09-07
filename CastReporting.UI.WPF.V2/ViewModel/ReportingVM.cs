@@ -899,7 +899,7 @@ namespace CastReporting.UI.WPF.ViewModel
                     Applications = ApplicationsArray,
                     Category = SelectedCategory,
                     Tag = SelectedTag,
-                    snapshots = ApplicationsSnapshots,
+                    Snapshots = ApplicationsSnapshots,
                     IgnoresApplications = IgnoredApps,
                     IgnoresSnapshots = IgnoredSnapshots
                 };

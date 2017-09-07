@@ -28,7 +28,9 @@ namespace CastReporting.UnitTest.DAL
         /// </summary>
         readonly WSConnection _connection = new WSConnection()
         {
+            // if using demo-eu-aed, use domain AED1, if using localhost, domain is AED
             Url = "http://demo-eu-aed.castsoftware.com/AED/rest/",
+            // Url = "http://localhost:8585/CAST-AAD-AED/rest/",
             Login = "admin",
             Password = "cast",
             IsActive = true,
@@ -37,7 +39,7 @@ namespace CastReporting.UnitTest.DAL
 
         readonly WSConnection _connection2 = new WSConnection()
         {
-            Url = "https://dev-adg-ora112:8443/CAST-AAD-AED-822/rest/",
+            Url = "https://abdlap2:8443/CAST-AAD-AED/rest/",
             Login = "cio",
             Password = "cast",
             IsActive = true,
@@ -61,7 +63,7 @@ namespace CastReporting.UnitTest.DAL
         public void IsHttpsTlsv12ServiceValidTest()
         {
             // Ignored on jenkins machine, because the certificat tomcat.cer is not installed, and test failed
-            if (Environment.MachineName != "ABDLAP") return;
+            if (Environment.MachineName != "ABDLAP2") return;
             ICastRepsitory context2 = new CastRepository(_connection2);
             bool result = context2.IsServiceValid();
             Assert.IsTrue(result);

@@ -243,5 +243,6 @@ namespace CastReporting.Repositories.Interfaces
         /// <param name="count"></param>
         /// <returns></returns>
         IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count);
+        IEnumerable<Violation> GetViolationsInActionPlan(string snapshotHref, int count);
     }
 }

@@ -55,9 +55,6 @@ namespace CastReporting.Domain
             private set; 
         }
 
-
-
-
         public int CompareTo(object obj)
         {
             var dt = (obj as CastDate);

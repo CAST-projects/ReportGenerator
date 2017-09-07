@@ -245,7 +245,7 @@ namespace CastReporting.Console
                                     Applications = _n_selectedApps,
                                     Category = arguments.Category.Name,
                                     Tag = arguments.Tag.Name,
-                                    snapshots = _n_selectedApps_snapshots,
+                                    Snapshots = _n_selectedApps_snapshots,
                                     IgnoresApplications = _appsToIgnorePortfolioResult,
                                     IgnoresSnapshots = _snapsToIgnore
                                 };
@@ -263,7 +263,7 @@ namespace CastReporting.Console
                                     Applications = _n_selectedApps,
                                     Category = arguments.Category.Name,
                                     Tag = null,
-                                    snapshots = _n_selectedApps_snapshots,
+                                    Snapshots = _n_selectedApps_snapshots,
                                     IgnoresApplications = _appsToIgnorePortfolioResult,
                                     IgnoresSnapshots = _snapsToIgnore,
                                     Parameter = settings.ReportingParameter
@@ -282,7 +282,7 @@ namespace CastReporting.Console
                                     Applications = _n_selectedApps,
                                     Category = null,
                                     Tag = arguments.Tag.Name,
-                                    snapshots = _n_selectedApps_snapshots,
+                                    Snapshots = _n_selectedApps_snapshots,
                                     IgnoresApplications = _appsToIgnorePortfolioResult,
                                     IgnoresSnapshots = _snapsToIgnore,
                                     Parameter = settings.ReportingParameter
@@ -301,7 +301,7 @@ namespace CastReporting.Console
                                     Applications = _n_selectedApps,
                                     Category = null,
                                     Tag = null,
-                                    snapshots = _n_selectedApps_snapshots,
+                                    Snapshots = _n_selectedApps_snapshots,
                                     IgnoresApplications = _appsToIgnorePortfolioResult,
                                     IgnoresSnapshots = _snapsToIgnore,
                                     Parameter = settings.ReportingParameter

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -433,7 +434,7 @@ namespace CastReporting.UnitTest.Reporting
                 }
                 i++;
             }
-            reportData.snapshots = snapList.ToArray();
+            reportData.Snapshots = snapList.ToArray();
             return reportData;
         }
 
@@ -447,6 +448,51 @@ namespace CastReporting.UnitTest.Reporting
             };
 
             return reportData;
+        }
+
+        public static void PreparePortfSnapshots(ReportData reportData)
+        {
+            DateTime date = new DateTime(1970, 01, 01, 0, 0, 0, DateTimeKind.Utc);
+            Snapshot _snap0 = reportData.Applications[0].Snapshots.FirstOrDefault();
+            TimeSpan time0 = DateTime.Now.AddMonths(-2) - date;
+            CastDate _date0 = new CastDate { Time = time0.TotalMilliseconds };
+            Debug.Assert(_snap0 != null, "_snap0 != null");
+            _snap0.Annotation.Date = _date0;
+
+            Snapshot _snap1 = reportData.Applications[0].Snapshots.ElementAt(1);
+            TimeSpan time1 = DateTime.Now.AddMonths(-15) - date;
+            CastDate _date1 = new CastDate { Time = time1.TotalMilliseconds };
+            Debug.Assert(_snap1 != null, "_snap1 != null");
+            _snap1.Annotation.Date = _date1;
+
+            Snapshot[] _snapshots1 = new Snapshot[2];
+            _snapshots1[0] = _snap0;
+            _snapshots1[1] = _snap1;
+            reportData.Applications[0].Snapshots = _snapshots1;
+
+            Snapshot _snap2 = reportData.Applications[1].Snapshots.FirstOrDefault();
+            TimeSpan time2 = DateTime.Now.AddMonths(-1) - date;
+            CastDate _date2 = new CastDate { Time = time2.TotalMilliseconds };
+            Debug.Assert(_snap2 != null, "_snap2 != null");
+            _snap2.Annotation.Date = _date2;
+
+            Snapshot _snap3 = reportData.Applications[1].Snapshots.ElementAt(1);
+            TimeSpan time3 = DateTime.Now.AddMonths(-6) - date;
+            CastDate _date3 = new CastDate { Time = time3.TotalMilliseconds };
+            Debug.Assert(_snap3 != null, "_snap3 != null");
+            _snap3.Annotation.Date = _date3;
+
+            Snapshot[] _snapshots2 = new Snapshot[2];
+            _snapshots2[0] = _snap2;
+            _snapshots2[1] = _snap3;
+            reportData.Applications[1].Snapshots = _snapshots2;
+
+            Snapshot[] _snapshots = new Snapshot[4];
+            _snapshots[0] = _snap0;
+            _snapshots[1] = _snap1;
+            _snapshots[2] = _snap2;
+            _snapshots[3] = _snap3;
+            reportData.Snapshots = _snapshots;
         }
 
     }

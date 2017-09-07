@@ -431,6 +431,22 @@ namespace CastReporting.BLL
 
         }
 
+        public IEnumerable<Violation> GetViolationsInActionPlan(string snapshotHref, int count)
+        {
+            try
+            {
+                using (var castRepository = GetRepository())
+                {
+                    return castRepository.GetViolationsInActionPlan(snapshotHref, count);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+        }
+
 
         /// <summary>
         /// 

@@ -52,10 +52,7 @@
   </Choose>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -74,6 +71,21 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <None Include="Data\AADMultiCocApp37SnapshotsResults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AADMultiCocApp3SnapshotsResults.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AADMultiCocApp3Snapshots.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AADMultiCocApp37Snapshots.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\AADMultiCocApplications.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\AADcocraSnapshotsBCResults.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -81,6 +93,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\AADcocraApplications.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\ActionPlanViolations1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\Violations7424_60017.json">
@@ -180,6 +195,9 @@
     <Compile Include="Reporting\Graph\TrendTechDebtPortfolioTests.cs" />
     <Compile Include="Reporting\RuleBLLStub.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
+    <Compile Include="Reporting\Graph\PortfolioGenericGraphTests.cs" />
+    <Compile Include="Reporting\Tables\PortfolioGenericTableTests.cs" />
+    <Compile Include="Reporting\Tables\ActionPlanViolationsTests.cs" />
     <Compile Include="Reporting\Tables\QualityRuleViolationsTests.cs" />
     <Compile Include="Reporting\Tables\ViolationSummaryTests.cs" />
     <Compile Include="Reporting\Tables\ViolationStatisticsEvolutionTests.cs" />
@@ -310,10 +328,6 @@
     <ProjectReference Include="..\CastReporting.Repositories.Interfaces\CastReporting.Repositories.Interfaces.csproj">
       <Project>{bf557781-bd7e-4ec2-bb64-ed7981b4d9d0}</Project>
       <Name>CastReporting.Repositories.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CastReporting.UI.WPF.V2\CastReporting.UI.WPF.V2.csproj">
-      <Project>{3fbe9345-25a4-49a3-b7a9-a8b51acb5309}</Project>
-      <Name>CastReporting.UI.WPF.V2</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

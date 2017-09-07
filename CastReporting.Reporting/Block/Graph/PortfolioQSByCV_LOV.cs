@@ -44,7 +44,7 @@ namespace CastReporting.Reporting.Block.Graph
 
             #region Fetch SnapshotsPF
 
-            if (reportData?.Applications != null && reportData.snapshots != null)
+            if (reportData?.Applications != null && reportData.Snapshots != null)
             {
                 Application[] _allApps = reportData.Applications;
                 foreach (Application _app in _allApps)

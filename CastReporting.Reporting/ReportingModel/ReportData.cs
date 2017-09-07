@@ -13,6 +13,8 @@
  * limitations under the License.
  *
  */
+
+using System;
 using System.IO;
 using CastReporting.Domain;
 using CastReporting.Domain.Interfaces;
@@ -22,7 +24,7 @@ namespace CastReporting.Reporting.ReportingModel
     /// <summary>
     /// 
     /// </summary>
-    public class ReportData
+    public class ReportData : IDisposable
     {
 
        
@@ -130,7 +132,7 @@ namespace CastReporting.Reporting.ReportingModel
         }
 
         // ReSharper disable once InconsistentNaming
-        public Snapshot[] snapshots
+        public Snapshot[] Snapshots
         {
             get;
             set;
@@ -148,5 +150,10 @@ namespace CastReporting.Reporting.ReportingModel
             set;
         }
 
+        public void Dispose()
+        {
+            RuleExplorer?.Dispose();
+            SnapshotExplorer?.Dispose();
+        }
     }
 }
