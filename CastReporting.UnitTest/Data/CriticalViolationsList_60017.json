@@ -1,0 +1,294 @@
+[
+  {
+    "component": {
+      "href": "AED/components/910/snapshots/8",
+      "name": "CastReporting.BLL.Computing.RulesViolationUtility.GetNbViolationByRule",
+      "shortName": "GetNbViolationByRule",
+      "status": "updated",
+      "sourceCodes": {
+        "href": "AED/components/910/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/910/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "added",
+      "findings": {
+        "href": "AED/components/910/snapshots/8/findings/7212",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7212",
+      "name": "Avoid instantiations inside loops"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "to check",
+      "dates": {
+        "updated": {
+          "time": 1502445754000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/2917/snapshots/8",
+      "name": "CastReporting.Mediation.Interfaces",
+      "shortName": "Interfaces",
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/2917/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/2917/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/2917/snapshots/8/findings/7294",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7294",
+      "name": "Avoid cyclical calls and inheritances between namespaces content"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/806/snapshots/8",
+      "name": "CastReporting.Reporting",
+      "shortName": "Reporting",
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/806/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/806/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "added",
+      "findings": {
+        "href": "AED/components/806/snapshots/8/findings/7294",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7294",
+      "name": "Avoid cyclical calls and inheritances between namespaces content"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/1000/snapshots/8",
+      "name": "CastReporting.Reporting.Block.Graph.TrendCompliance.Content",
+      "shortName": "Content",
+      "status": "updated",
+      "sourceCodes": {
+        "href": "AED/components/1000/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/1000/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/1000/snapshots/8/findings/7212",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7212",
+      "name": "Avoid instantiations inside loops"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "to check",
+      "dates": {
+        "updated": {
+          "time": 1502445754000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/1450/snapshots/8",
+      "name": "CastReporting.Reporting.Block.Graph.TrendHealthFactor.Content",
+      "shortName": "Content",
+      "status": "updated",
+      "sourceCodes": {
+        "href": "AED/components/1450/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/1450/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/1450/snapshots/8/findings/7212",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7212",
+      "name": "Avoid instantiations inside loops"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "to check",
+      "dates": {
+        "updated": {
+          "time": 1502445754000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/11917/snapshots/8",
+      "name": "CastReporting.Reporting.Block.Graph.TrendMetricId.Content",
+      "shortName": "Content",
+      "status": "updated",
+      "sourceCodes": {
+        "href": "AED/components/11917/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/11917/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/11917/snapshots/8/findings/7212",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7212",
+      "name": "Avoid instantiations inside loops"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "to check",
+      "dates": {
+        "updated": {
+          "time": 1502445754000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/808/snapshots/8",
+      "name": "CastReporting.Reporting.Block.Table.ActionPlans.Content",
+      "shortName": "Content",
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/808/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/808/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/808/snapshots/8/findings/7212",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7212",
+      "name": "Avoid instantiations inside loops"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "to check",
+      "dates": {
+        "updated": {
+          "time": 1502445754000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/2898/snapshots/8",
+      "name": "CastReporting.Reporting.Block.Table.CriticalViolationByModule.Content",
+      "shortName": "Content",
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/2898/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/2898/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "added",
+      "findings": {
+        "href": "AED/components/2898/snapshots/8/findings/7212",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7212",
+      "name": "Avoid instantiations inside loops"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "to check",
+      "dates": {
+        "updated": {
+          "time": 1502445754000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  }
+]

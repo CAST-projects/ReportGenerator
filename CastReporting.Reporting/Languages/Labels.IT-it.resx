@@ -609,4 +609,16 @@
   <data name="Priority" xml:space="preserve">
     <value>Priorità</value>
   </data>
+  <data name="ActionStatus" xml:space="preserve">
+    <value>Stato dell'azione</value>
+  </data>
+  <data name="ExclusionStatus" xml:space="preserve">
+    <value>Stato di esclusione</value>
+  </data>
+  <data name="ObjectStatus" xml:space="preserve">
+    <value>Stato dell'oggetto</value>
+  </data>
+  <data name="ViolationStatus" xml:space="preserve">
+    <value>Stato di violazione</value>
+  </data>
 </root>

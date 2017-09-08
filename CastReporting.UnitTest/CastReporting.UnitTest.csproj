@@ -98,6 +98,21 @@
     <None Include="Data\ActionPlanViolations1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\CriticalViolationsList_60012.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\CriticalViolationsList_60013.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\CriticalViolationsList_60014.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\CriticalViolationsList_60017.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\CriticalViolationsList_60016.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Violations7424_60017.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -196,6 +211,7 @@
     <Compile Include="Reporting\RuleBLLStub.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Graph\PortfolioGenericGraphTests.cs" />
+    <Compile Include="Reporting\Tables\CriticalViolationsListByBCTests.cs" />
     <Compile Include="Reporting\Tables\PortfolioGenericTableTests.cs" />
     <Compile Include="Reporting\Tables\ActionPlanViolationsTests.cs" />
     <Compile Include="Reporting\Tables\QualityRuleViolationsTests.cs" />

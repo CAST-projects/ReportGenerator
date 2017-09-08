@@ -104,16 +104,48 @@ namespace CastReporting.UnitTest.Reporting
 
         [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
         [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60012.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60013.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60014.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60017.json", "Data")]
         public IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count)
         {
             IEnumerable<Violation> res = null;
-            if (ruleId == "7424")
+            switch (ruleId)
             {
-                res = TestUtility.GetSampleResult<Violation>(@".\Data\Violations7424_60017.json").Take(count).ToList();
-            }
-            if (ruleId == "7846")
-            {
-                res = TestUtility.GetSampleResult<Violation>(@".\Data\Violations7846_60016.json").Take(count).ToList();
+                case "7424":
+                    res = TestUtility.GetSampleResult<Violation>(@".\Data\Violations7424_60017.json").Take(count).ToList();
+                    break;
+                case "7846":
+                    res = TestUtility.GetSampleResult<Violation>(@".\Data\Violations7846_60016.json").Take(count).ToList();
+                    break;
+                case "(critical-rules)":
+                    switch (bcId)
+                    {
+                        case "60012":
+                            res = TestUtility.GetSampleResult<Violation>(@".\Data\CriticalViolationsList_60012.json").ToList();
+                            break;
+                        case "60013":
+                            res = TestUtility.GetSampleResult<Violation>(@".\Data\CriticalViolationsList_60013.json").ToList();
+                            break;
+                        case "60014":
+                            res = TestUtility.GetSampleResult<Violation>(@".\Data\CriticalViolationsList_60014.json").ToList();
+                            break;
+                        case "60016":
+                            res = TestUtility.GetSampleResult<Violation>(@".\Data\CriticalViolationsList_60016.json").ToList();
+                            break;
+                        case "60017":
+                            res = TestUtility.GetSampleResult<Violation>(@".\Data\CriticalViolationsList_60017.json").ToList();
+                            break;
+                        default:
+                            res = new List<Violation>();
+                            break;
+                    }
+                    break;
+                default:
+                    res = new List<Violation>();
+                    break;
             }
             return res;
         }

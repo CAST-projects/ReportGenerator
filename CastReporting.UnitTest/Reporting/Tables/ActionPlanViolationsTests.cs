@@ -14,15 +14,6 @@ namespace CastReporting.UnitTest.Reporting.Tables
             TestUtility.SetCulture("en-US");
         }
 
-        // TODO :
-        // - test with no bcid / bcid = 60016
-        // - test with no count / count = 6
-        // - test with shortname / fullname
-        // - test with TQI (60017) and "Avoid using SQL queries inside a loop" (7424) => no pri
-        // - test with Security (60016) and "Avoid Methods with a very low comment/code ratio" (7846) => pri
-        // - test with current / previous snapshot
-        // - test with only one snapshot (previous does not exists= => no status column
-
         [TestMethod]
         [DeploymentItem(@".\Data\ActionPlanViolations1.json", "Data")]
         [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
