@@ -106,6 +106,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Action Status.
+        /// </summary>
+        public static string ActionStatus {
+            get {
+                return ResourceManager.GetString("ActionStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Added Critical Violations.
         /// </summary>
         public static string AddedCriticalViolations {
@@ -565,6 +574,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Exclusion Status.
+        /// </summary>
+        public static string ExclusionStatus {
+            get {
+                return ResourceManager.GetString("ExclusionStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Files.
         /// </summary>
         public static string Files {
@@ -804,6 +822,15 @@ namespace CastReporting.Reporting.Languages {
         public static string ObjectsInViolationForRule {
             get {
                 return ResourceManager.GetString("ObjectsInViolationForRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Object Status.
+        /// </summary>
+        public static string ObjectStatus {
+            get {
+                return ResourceManager.GetString("ObjectStatus", resourceCulture);
             }
         }
         
@@ -1506,6 +1533,15 @@ namespace CastReporting.Reporting.Languages {
         public static string ViolationsStill {
             get {
                 return ResourceManager.GetString("ViolationsStill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Violation Status.
+        /// </summary>
+        public static string ViolationStatus {
+            get {
+                return ResourceManager.GetString("ViolationStatus", resourceCulture);
             }
         }
         

@@ -17,8 +17,10 @@ namespace CastReporting.Domain
         [DataMember(Name = "rulePattern")]
         public RulePattern RulePattern { get; set; }
 
+        [DataMember(Name = "exclusionRequest")]
+        public ExclusionRequest ExclusionRequest { get; set; }
+
         [DataMember(Name = "remedialAction")]
         public RemedialAction RemedialAction { get; set; }
-        
     }
 }

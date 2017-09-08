@@ -1,0 +1,242 @@
+[
+  {
+    "component": {
+      "href": "AED/components/11717/snapshots/8",
+      "name": "CastReporting.UnitTest.Reporting.TestUtility.PrepaPortfolioReportData",
+      "shortName": "PrepaPortfolioReportData",
+      "propagationRiskIndex": 2960,
+      "status": "updated",
+      "sourceCodes": {
+        "href": "AED/components/11717/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/11717/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "added",
+      "findings": {
+        "href": "AED/components/11717/snapshots/8/findings/7212",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7212",
+      "name": "Avoid instantiations inside loops"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "to check",
+      "dates": {
+        "updated": {
+          "time": 1502445754000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/2164/snapshots/8",
+      "name": "CastReporting.Reporting.Builder.BlockProcessing.GraphBlock.ApplyContent",
+      "shortName": "ApplyContent",
+      "propagationRiskIndex": 1600,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/2164/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/2164/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "added",
+      "findings": {
+        "href": "AED/components/2164/snapshots/8/findings/7212",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7212",
+      "name": "Avoid instantiations inside loops"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "to check",
+      "dates": {
+        "updated": {
+          "time": 1502445754000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/12348/snapshots/8",
+      "name": "CastReporting.Reporting.Builder.BlockProcessing.GraphBlock.UpdateCachedValues",
+      "shortName": "UpdateCachedValues",
+      "propagationRiskIndex": 1600,
+      "status": "updated",
+      "sourceCodes": {
+        "href": "AED/components/12348/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/12348/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "added",
+      "findings": {
+        "href": "AED/components/12348/snapshots/8/findings/7212",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7212",
+      "name": "Avoid instantiations inside loops"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "to check",
+      "dates": {
+        "updated": {
+          "time": 1502445754000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/1541/snapshots/8",
+      "name": "CastReporting.Reporting.Block.Table.TechnicalCriteriaRules.Content",
+      "shortName": "Content",
+      "propagationRiskIndex": 320,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/1541/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/1541/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/1541/snapshots/8/findings/7212",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7212",
+      "name": "Avoid instantiations inside loops"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "to check",
+      "dates": {
+        "updated": {
+          "time": 1502445754000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/1829/snapshots/8",
+      "name": "CastReporting.Reporting.Block.Table.TechnoLoC.Content",
+      "shortName": "Content",
+      "propagationRiskIndex": 320,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/1829/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/1829/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/1829/snapshots/8/findings/7212",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7212",
+      "name": "Avoid instantiations inside loops"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "to check",
+      "dates": {
+        "updated": {
+          "time": 1502445754000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/11917/snapshots/8",
+      "name": "CastReporting.Reporting.Block.Graph.TrendMetricId.Content",
+      "shortName": "Content",
+      "propagationRiskIndex": 160,
+      "status": "updated",
+      "sourceCodes": {
+        "href": "AED/components/11917/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/11917/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "added",
+      "findings": {
+        "href": "AED/components/11917/snapshots/8/findings/7212",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7212",
+      "name": "Avoid instantiations inside loops"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "to check",
+      "dates": {
+        "updated": {
+          "time": 1502445754000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  }
+]

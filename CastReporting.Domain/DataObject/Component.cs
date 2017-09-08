@@ -40,5 +40,8 @@ namespace CastReporting.Domain
         /// </summary>
         [DataMember(Name = "propagationRiskIndex")]
         public double PropagationRiskIndex { get; set; }
+
+        [DataMember(Name = "priBusinessCriterion")]
+        public string PriBusinessCriterion { get; set; }
     }
 }
