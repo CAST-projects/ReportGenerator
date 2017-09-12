@@ -46,7 +46,8 @@ namespace CastReporting.UnitTest.Reporting.Tables
             {
                 {"COL1", "METRICS"},
                 {"ROW1", "APPLICATIONS"},
-                {"METRICS", "BUSINESS_CRITERIA"}
+                {"METRICS", "BUSINESS_CRITERIA"},
+                {"APPLICATIONS", "EACH" }
             };
 
             var table = component.Content(reportData, config);
@@ -77,15 +78,14 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 {"COL1", "METRICS"},
                 {"ROW1", "APPLICATIONS"},
                 {"METRICS", "TECHNICAL_CRITERIA"},
-                {"PERIODS", "PREVIOUS" },
-                {"PERIOD_DURATION", "6" }
+                {"APPLICATIONS", "EACH" }
             };
 
             var table = component.Content(reportData, config);
             var expectedData = new List<string>();
             expectedData.AddRange(new List<string> { "Applications", "Architecture - Multi-Layers and Data Access", "Programming Practices - OO Inheritance and Polymorphism" });
             expectedData.AddRange(new List<string> { "ReportGenerator", "1.00", "4.00" });
-            expectedData.AddRange(new List<string> { "AADAEDAdmin", "n/a", "n/a" });
+            expectedData.AddRange(new List<string> { "AADAEDAdmin", "3.92", "4.00" });
             TestUtility.AssertTableContent(table, expectedData, 3, 3);
         }
 
@@ -109,8 +109,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 {"COL1", "METRICS"},
                 {"ROW1", "APPLICATIONS"},
                 {"METRICS", "TECHNICAL_SIZING"},
-                {"PERIODS", "CURRENT" },
-                {"PERIOD_DURATION", "4" }
+                {"APPLICATIONS", "EACH" }
             };
 
             var table = component.Content(reportData, config);
@@ -140,9 +139,9 @@ namespace CastReporting.UnitTest.Reporting.Tables
             {
                 {"COL1", "CRITICAL_VIOLATIONS"},
                 {"ROW1", "APPLICATIONS"},
-                {"APPLICATIONS", "ALL"},
+                {"APPLICATIONS", "EACH"},
                 {"CRITICAL_VIOLATIONS", "ALL"},
-                { "METRICS", "60017"}
+                {"METRICS", "60017"}
             };
 
             var table = component.Content(reportData, config);
@@ -151,6 +150,208 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "ReportGenerator", "41", "0", "33" });
             expectedData.AddRange(new List<string> { "AADAEDAdmin", "80", "9", "174" });
             TestUtility.AssertTableContent(table, expectedData, 4, 3);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestSample1()
+        {
+            // snap results : AAD/applications/37/results?snapshots=-2&metrics=60013,68001,10151,10202,67013&select=evolutionSummary
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            TestUtility.PreparePortfSnapshots(reportData);
+
+            var component = new PortfolioGenericGraph();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "METRICS"},
+                {"ROW1", "APPLICATIONS"},
+                {"METRICS", "60016"}
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Applications", "Security" });
+            expectedData.AddRange(new List<string> { "2 Applications", "3.51" });
+            TestUtility.AssertTableContent(table, expectedData, 2, 2);
+        }
+
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestSample2()
+        {
+            //COL1=METRICS,ROW1=TECHNOLOGIES,METRICS=10151|60017,AGGREGATORS=SUM|AVG,TECHNOLOGIES=EACH
+            // snap results : AAD/applications/37/results?snapshots=-2&metrics=60013,68001,10151,10202,67013&select=evolutionSummary
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            TestUtility.PreparePortfSnapshots(reportData);
+
+            reportData.Applications[0].Technologies = new[] { ".NET" };
+            reportData.Applications[1].Technologies = new[] { "JEE", "PL/SQL" };
+
+            var component = new PortfolioGenericGraph();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "METRICS"},
+                {"ROW1", "TECHNOLOGIES"},
+                {"METRICS", "10151|60017"},
+                {"AGGREGATORS", "SUM|AVG"},
+                {"TECHNOLOGIES", "EACH"}
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Technologies", "Number of Code Lines", "Total Quality Index" });
+            expectedData.AddRange(new List<string> { "JEE", "1,234", "3.51" });
+            expectedData.AddRange(new List<string> { "PL/SQL", "1,234", "3.51" });
+            expectedData.AddRange(new List<string> { ".NET", "1,234", "3.51" });
+            TestUtility.AssertTableContent(table, expectedData, 3, 4);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestSample3()
+        {
+            // COL1=CRITICAL_VIOLATIONS,ROW1=APPLICATIONS,APPLICATIONS=ALL,CRITICAL_VIOLATIONS=ALL,METRICS=60017
+            // snap results : AAD/applications/37/results?snapshots=-2&metrics=60013,68001,10151,10202,67013&select=evolutionSummary
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            TestUtility.PreparePortfSnapshots(reportData);
+
+            var component = new PortfolioGenericGraph();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "CRITICAL_VIOLATIONS"},
+                {"ROW1", "APPLICATIONS"},
+                {"APPLICATIONS", "ALL"},
+                {"CRITICAL_VIOLATIONS", "ALL"},
+                {"METRICS", "60017"}
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Applications", "Total Critical Violations", "Added Critical Violations", "Removed Critical Violations" });
+            expectedData.AddRange(new List<string> { "2 Applications", "121", "9", "207" });
+            TestUtility.AssertTableContent(table, expectedData, 4, 2);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestSample4()
+        {
+            // COL1=CRITICAL_VIOLATIONS,ROW1=METRICS,METRICS=HEALTH_FACTOR,CRITICAL_VIOLATIONS=ADDED|REMOVED
+            // snap results : AAD/applications/37/results?snapshots=-2&metrics=60013,68001,10151,10202,67013&select=evolutionSummary
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            TestUtility.PreparePortfSnapshots(reportData);
+
+            var component = new PortfolioGenericGraph();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "CRITICAL_VIOLATIONS"},
+                {"ROW1", "METRICS"},
+                {"CRITICAL_VIOLATIONS", "ADDED|REMOVED"},
+                {"METRICS", "HEALTH_FACTOR"}
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Metrics", "Added Critical Violations", "Removed Critical Violations" });
+            expectedData.AddRange(new List<string> { "Transferability", "0", "6" });
+            expectedData.AddRange(new List<string> { "Changeability", "0", "97" });
+            expectedData.AddRange(new List<string> { "Robustness", "0", "10" });
+            expectedData.AddRange(new List<string> { "Efficiency", "9", "106" });
+            expectedData.AddRange(new List<string> { "Security", "0", "91" });
+            TestUtility.AssertTableContent(table, expectedData, 3, 6);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestSample5()
+        {
+            // COL1=APPLICATIONS,ROW1=METRICS,METRICS=60013|60014|60016,AGGREGATORS=AVERAGE,APPLICATIONS=ALL
+            // snap results : AAD/applications/37/results?snapshots=-2&metrics=60013,68001,10151,10202,67013&select=evolutionSummary
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            TestUtility.PreparePortfSnapshots(reportData);
+
+            var component = new PortfolioGenericGraph();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "APPLICATIONS"},
+                {"ROW1", "METRICS"},
+                {"APPLICATIONS", "ALL"},
+                {"METRICS", "60013|60014|60016"},
+                {"AGGREGATORS", "AVERAGE"}
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Metrics", "2 Applications" });
+            expectedData.AddRange(new List<string> { "Robustness", "3.50" });
+            expectedData.AddRange(new List<string> { "Efficiency", "2.68" });
+            expectedData.AddRange(new List<string> { "Security", "3.51" });
+            TestUtility.AssertTableContent(table, expectedData, 2, 4);
+        }
+
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestSample6()
+        {
+            // ROW1=TECHNOLOGIES,COL1=METRICS,TECHNOLOGIES=EACH,METRICS=10151,AGGREGATORS=SUM
+            // snap results : AAD/applications/37/results?snapshots=-2&metrics=60013,68001,10151,10202,67013&select=evolutionSummary
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            TestUtility.PreparePortfSnapshots(reportData);
+
+            reportData.Applications[0].Technologies = new[] { ".NET" };
+            reportData.Applications[1].Technologies = new[] { "JEE", "PL/SQL" };
+
+            var component = new PortfolioGenericGraph();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "METRICS"},
+                {"ROW1", "TECHNOLOGIES"},
+                {"METRICS", "10151"},
+                {"AGGREGATORS", "SUM"},
+                {"TECHNOLOGIES", "EACH"}
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Technologies", "Number of Code Lines" });
+            expectedData.AddRange(new List<string> { "JEE", "1,234" });
+            expectedData.AddRange(new List<string> { "PL/SQL", "1,234" });
+            expectedData.AddRange(new List<string> { ".NET", "1,234" });
+            TestUtility.AssertTableContent(table, expectedData, 2, 4);
         }
 
     }

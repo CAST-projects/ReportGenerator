@@ -22,8 +22,6 @@ namespace CastReporting.Reporting.Helper
         {
             switch (type)
             {
-                case "PERIODS":
-                    return Labels.Periods;
                 case "METRICS":
                     return Labels.Metrics;
                 case "APPLICATIONS":
@@ -41,21 +39,6 @@ namespace CastReporting.Reporting.Helper
         {
             switch (type)
             {
-                case "PERIODS":
-                    switch (item)
-                    {
-                        case "CURRENT":
-                            return Labels.CurrentPeriod;
-                        case "PREVIOUS":
-                            return Labels.PreviousPeriod;
-                        case "EVOL":
-                            return Labels.Evolution;
-                        case "EVOL_PERCENT":
-                            return Labels.EvolutionPercent;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-
                 case "METRICS":
                     return MetricsUtility.GetMetricName(reportData, reportData.Applications.FirstOrDefault()?.Snapshots.FirstOrDefault(), item) ?? Constants.No_Value;
                 case "APPLICATIONS":
@@ -96,9 +79,7 @@ namespace CastReporting.Reporting.Helper
         {
             var rowData = new List<string>();
             ObjConfig[] _posConfig = new ObjConfig[4];
-            Dictionary<Application, Snapshot> currentPeriod = new Dictionary<Application, Snapshot>(); // Period contains snapshots
-            Dictionary<Application, Snapshot> previousPeriod = new Dictionary<Application, Snapshot>(); // Period contains snapshots
-            int positionPeriod = -1;
+            Dictionary<Application, Snapshot> lastApplicationSnapshots = new Dictionary<Application, Snapshot>();
             List<Application> applications = new List<Application>();
             int positionApplications = -1;
             Dictionary<string, string> metricsAggregated = new Dictionary<string, string>();
@@ -122,44 +103,14 @@ namespace CastReporting.Reporting.Helper
             string type3 = options.GetOption("ROW11");
             _posConfig[3] = type3 != null ? new ObjConfig {Type = type3, Parameters = options.GetOption(type3) != null ? options.GetOption(type3).Split('|') : new string[] { }} : null;
 
-            string[] periodConfiguration = options.GetOption("PERIODS")?.Split('|');
-            string periodDuration = options.GetOption("PERIOD_DURATION", "3"); // by default, period last 3 months
-
             string[] metricsAggregators = options.GetOption("AGGREGATORS")?.Split('|');
 
-            // get the data and calculate results : snapshots, metrics, modules, technologies, violations, critical_violations
+            // get the data and calculate results : snapshots, metrics, applications, technologies, violations, critical_violations
             for (int i = 0; i < _posConfig.Length; i++)
             {
                 if (_posConfig[i] == null) continue;
                 switch (_posConfig[i].Type)
                 {
-                    case "PERIODS":
-                        positionPeriod = i;
-                        if (_posConfig[i].Parameters.Length == 0)
-                        {
-                            periodConfiguration = new[] {"CURRENT"};
-                            _posConfig[i].Parameters = periodConfiguration;
-                            BuildPeriod(reportData, currentPeriod, periodDuration, false);
-                        }
-                        else if (_posConfig[i].Parameters.Contains("ALL"))
-                        {
-                            periodConfiguration = new[] {"CURRENT", "PREVIOUS", "EVOL", "EVOL_PERCENT"};
-                            _posConfig[i].Parameters = periodConfiguration;
-                            BuildPeriod(reportData, currentPeriod, periodDuration, false);
-                            BuildPeriod(reportData, previousPeriod, periodDuration, true);
-                        }
-                        else
-                        {
-                            if (_posConfig[i].Parameters.Contains("CURRENT"))
-                            {
-                                BuildPeriod(reportData, currentPeriod, periodDuration, false);
-                            }
-                            if (_posConfig[i].Parameters.Contains("PREVIOUS"))
-                            {
-                                BuildPeriod(reportData, previousPeriod, periodDuration, true);
-                            }
-                        }
-                        break;
                     case "METRICS":
                         positionMetrics = i;
                         if (_posConfig[i].Parameters.Length == 0)
@@ -178,15 +129,18 @@ namespace CastReporting.Reporting.Helper
                         break;
                     case "APPLICATIONS":
                         positionApplications = i;
-                        if (_posConfig[i].Parameters.Contains("ALL") || _posConfig[i].Parameters.Length == 0)
+                        if (_posConfig[i].Parameters.Length == 0 || _posConfig[positionApplications].Parameters.Contains("ALL"))
                         {
-                            applications.AddRange(reportData.Applications);
+                            _posConfig[i] = new ObjConfig { Type = "APPLICATIONS", Parameters = new[] { "ALL" } };
                         }
                         else
                         {
-                            applications.AddRange(reportData.Applications.Where(_ => _posConfig[i].Parameters.Contains(_.Name)));
+                            applications.AddRange(_posConfig[i].Parameters.Contains("EACH") ?
+                                reportData.Applications
+                                // ReSharper disable once AccessToModifiedClosure
+                                : reportData.Applications.Where(_ => _posConfig[i].Parameters.Contains(_.Name)));
+                            _posConfig[i].Parameters = applications.Select(_ => _.Name).ToArray();
                         }
-                        _posConfig[i].Parameters = applications.Select(_ => _.Name).ToArray();
                         break;
                     case "VIOLATIONS":
                         positionViolations = i;
@@ -216,31 +170,10 @@ namespace CastReporting.Reporting.Helper
                         throw new ArgumentOutOfRangeException();
                 }
             }
-            // implicit snapshots
-            if (currentPeriod.Count == 0) // to replace by implicit periods (3 months duration ?)
-            {
-                if (periodConfiguration != null)
-                {
-                    if (periodConfiguration.Contains("CURRENT"))
-                    {
-                        BuildPeriod(reportData, currentPeriod, periodDuration, false);
-                        if (periodConfiguration.Contains("PREVIOUS"))
-                        {
-                            periodConfiguration = new [] { "CURRENT"};
-                        }
-                    }
-                    else if (periodConfiguration.Contains("PREVIOUS"))
-                    {
-                        BuildPeriod(reportData, previousPeriod, periodDuration, true);
-                        periodConfiguration = new[] { "PREVIOUS" };
-                    }
-                }
-                else
-                {
-                    BuildPeriod(reportData, currentPeriod, periodDuration, false);
-                    periodConfiguration = new[] { "CURRENT" };
-                }
-            }
+
+            // build list of last snapshot by application
+            BuildApplicationSnapshots(lastApplicationSnapshots, reportData);
+
             // implicit metrics
             if (metricsAggregated.Count == 0) // use metricsAggregated to get the aggregator associated to a metric
             {
@@ -268,14 +201,16 @@ namespace CastReporting.Reporting.Helper
 
             #region Portfolio
 
-            // case portfolio : no applications
-            // get data for all periods in current and previous period lists
-            // if periodConfiguration contains EVOL get the difference between the aggregated value from currentPeriod and previousPeriod 
-            // if periodConfiguration contains EVOL_PERCENT get the differential ratio between the aggregated value from currentPeriod and previousPeriod 
-            if (applications.Count == 0)
+            // case portfolio : no applications (APPLICATIONS=ALL), no technologies
+            if (applications.Count == 0 )
             {
                 string[] _posResults = {string.Empty, string.Empty, string.Empty, string.Empty};
-
+                if (positionApplications != -1)
+                {
+                    _posConfig[positionApplications] = new ObjConfig { Type = "APPLICATIONS", Parameters = new[] { lastApplicationSnapshots.Count + " " + Labels.Applications } };
+                    _posResults[positionApplications] = lastApplicationSnapshots.Count + " " + Labels.Applications;
+                }
+                
                 // case grade (quality indicator) or value (sizing measure or background fact)
                 if (violations.Count == 0 && criticalViolations.Count == 0)
                 {
@@ -285,34 +220,129 @@ namespace CastReporting.Reporting.Helper
                         // metricsAggregated contains metrics and aggregator
                         // Need to define methods to get the aggregation of metrics for the different kind of metrics => to do when building the metric lists
                         string _aggregator = metricsAggregated[_metricId];
-                        EvolutionResult res = MetricsUtility.GetAggregatedMetricEvolution(reportData, currentPeriod, previousPeriod, _metricId, _aggregator, true, format);
+                        SimpleResult res = MetricsUtility.GetAggregatedMetric(reportData, lastApplicationSnapshots, _metricId, _aggregator, format);
                         if (res.name == Constants.No_Value) continue;
                         if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
-                        foreach (string param in periodConfiguration)
+                        try
                         {
+                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.resultStr);
+                        }
+                        catch (ArgumentException)
+                        {
+                            LogHelper.Instance.LogWarn("Several metrics have the same name. Results will be duplicated in table");
+                        }
+                    }
+                }
+
+                // case violations
+                if (violations.Count != 0 && criticalViolations.Count == 0)
+                {
+                    foreach (string _metricId in metricsAggregated.Keys)
+                    {
+                        // _metricId should be a quality indicator, if not, return null
+                        string name = string.Empty;
+                        foreach (Application app in lastApplicationSnapshots.Keys)
+                        {
+                            name = MetricsUtility.GetMetricName(reportData, lastApplicationSnapshots[app], _metricId);
+                            if (name != Constants.No_Value) break;
+                        }
+                        if (positionMetrics != -1) _posResults[positionMetrics] = name;
+
+                        ViolStatMetricIdDTO stat = RulesViolationUtility.GetAggregatedViolStat(lastApplicationSnapshots, int.Parse(_metricId));
+                        foreach (string _violation in violations)
+                        {
+                            string value;
+                            switch (_violation)
+                            {
+                                case "TOTAL":
+                                    _posResults[positionViolations] = Labels.TotalViolations;
+                                    value = format ? stat?.TotalViolations?.ToString("N0") ?? Constants.No_Value : stat?.TotalViolations?.ToString() ?? Constants.No_Value;
+                                    break;
+                                case "ADDED":
+                                    _posResults[positionViolations] = Labels.AddedViolations;
+                                    value = format ? stat?.AddedViolations?.ToString("N0") ?? Constants.No_Value : stat?.AddedViolations?.ToString() ?? Constants.No_Value;
+                                    break;
+                                case "REMOVED":
+                                    _posResults[positionViolations] = Labels.RemovedViolations;
+                                    value = format ? stat?.RemovedViolations?.ToString("N0") ?? Constants.No_Value : stat?.RemovedViolations?.ToString() ?? Constants.No_Value;
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
+                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                        }
+                    }
+                }
+
+                // case critical violations
+                if (violations.Count == 0 && criticalViolations.Count != 0)
+                {
+                    foreach (string _metricId in metricsAggregated.Keys)
+                    {
+                        // _metricId should be a quality indicator, if not, return null
+                        string name = string.Empty;
+                        foreach (Application app in lastApplicationSnapshots.Keys)
+                        {
+                            name = MetricsUtility.GetMetricName(reportData, lastApplicationSnapshots[app], _metricId);
+                            if (name != Constants.No_Value) break;
+                        }
+                        if (positionMetrics != -1) _posResults[positionMetrics] = name;
+
+                        ViolStatMetricIdDTO stat = RulesViolationUtility.GetAggregatedViolStat(lastApplicationSnapshots, int.Parse(_metricId));
+                        foreach (string _violation in criticalViolations)
+                        {
+                            string value;
+                            switch (_violation)
+                            {
+                                case "TOTAL":
+                                    _posResults[positionCriticalViolations] = Labels.TotalCriticalViolations;
+                                    value = format ? stat?.TotalCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.TotalCriticalViolations?.ToString() ?? Constants.No_Value;
+                                    break;
+                                case "ADDED":
+                                    _posResults[positionCriticalViolations] = Labels.AddedCriticalViolations;
+                                    value = format ? stat?.AddedCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.AddedCriticalViolations?.ToString() ?? Constants.No_Value;
+                                    break;
+                                case "REMOVED":
+                                    _posResults[positionCriticalViolations] = Labels.RemovedCriticalViolations;
+                                    value = format ? stat?.RemovedCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.RemovedCriticalViolations?.ToString() ?? Constants.No_Value;
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
+                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                        }
+                    }
+                }
+
+                // functionnaly impossible case
+                if (violations.Count != 0 && criticalViolations.Count != 0)
+                {
+                    return null;
+                }
+
+            }
+
+            #endregion
+
+            #region Applications
+
+            if (applications.Count != 0)
+            {
+                string[] _posResults = {string.Empty, string.Empty, string.Empty, string.Empty};
+                // case grade
+                if (violations.Count == 0 && criticalViolations.Count == 0)
+                {
+                    foreach (string _metricId in metricsAggregated.Keys)
+                    {
+                        foreach (Application application in applications) // applications, no need to aggregate here, resuls by application
+                        {
+                            _posResults[positionApplications] = application.Name;
+                            SimpleResult res = MetricsUtility.GetMetricNameAndResult(reportData, lastApplicationSnapshots[application], _metricId, null, string.Empty, format);
+                            if (res.name == Constants.No_Value) continue;
+                            if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                             try
                             {
-                                switch (param)
-                                {
-                                    case "CURRENT":
-                                        if (positionPeriod != -1) _posResults[positionPeriod] = Labels.CurrentPeriod;
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
-                                        break;
-                                    case "PREVIOUS":
-                                        if (positionPeriod != -1) _posResults[positionPeriod] = Labels.PreviousPeriod;
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
-                                        break;
-                                    case "EVOL":
-                                        if (positionPeriod != -1) _posResults[positionPeriod] = Labels.Evolution;
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
-                                        break;
-                                    case "EVOL_PERCENT":
-                                        if (positionPeriod != -1) _posResults[positionPeriod] = Labels.EvolutionPercent;
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
-                                        break;
-                                    default:
-                                        throw new ArgumentOutOfRangeException();
-                                }
+                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.resultStr);
 
                             }
                             catch (ArgumentException)
@@ -326,19 +356,20 @@ namespace CastReporting.Reporting.Helper
                 // case violations
                 if (violations.Count != 0 && criticalViolations.Count == 0)
                 {
+                    // _metricId should be a quality indicator, if not, return null
                     foreach (string _metricId in metricsAggregated.Keys)
                     {
-                        var periodList = new Dictionary<string, Dictionary<Application, Snapshot>> {{Labels.CurrentPeriod, currentPeriod}, {Labels.PreviousPeriod, previousPeriod}};
-                        foreach (string periodName in periodList.Keys)
+                        string name = string.Empty;
+                        foreach (Application _application in applications)
                         {
-                            Dictionary<Application, Snapshot> period = periodList[periodName];
-                            if (period.Count <= 0) continue;
-                            if (positionPeriod != -1) _posResults[positionPeriod] = periodName;
-                            // _metricId should be a quality indicator, if not, return null
-                            string name = MetricsUtility.GetMetricName(reportData, period.Values.FirstOrDefault(), _metricId);
-                            if (name == Constants.No_Value) continue;
-                            if (positionMetrics != -1) _posResults[positionMetrics] = name;
-                            ViolStatMetricIdDTO stat = RulesViolationUtility.GetAggregatedViolStat(period, int.Parse(_metricId));
+                            if (string.IsNullOrEmpty(name) || name != Constants.No_Value)
+                            {
+                                name = MetricsUtility.GetMetricName(reportData, lastApplicationSnapshots[_application], _metricId);
+                                if (positionMetrics != -1) _posResults[positionMetrics] = name;
+                            }
+
+                            _posResults[positionApplications] = _application.Name;
+                            ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(lastApplicationSnapshots[_application], int.Parse(_metricId));
                             foreach (string _violation in violations)
                             {
                                 string value;
@@ -361,26 +392,30 @@ namespace CastReporting.Reporting.Helper
                                 }
                                 results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
                             }
+
                         }
                     }
+
                 }
 
                 // case critical violations
                 if (violations.Count == 0 && criticalViolations.Count != 0)
                 {
+                    // _metricId should be a quality indicator, if not, return null
                     foreach (string _metricId in metricsAggregated.Keys)
                     {
-                        var periodList = new Dictionary<string, Dictionary<Application, Snapshot>> {{Labels.CurrentPeriod, currentPeriod}, {Labels.PreviousPeriod, previousPeriod}};
-                        foreach (string periodName in periodList.Keys)
+                        string name = string.Empty;
+                        
+                        foreach (Application _application in applications)
                         {
-                            Dictionary<Application, Snapshot> period = periodList[periodName];
-                            if (period.Count <= 0) continue;
-                            // _metricId should be a quality indicator, if not, return null
-                            if (positionPeriod != -1) _posResults[positionPeriod] = periodName;
-                            string name = MetricsUtility.GetMetricName(reportData, period.Values.FirstOrDefault(), _metricId);
-                            if (name == Constants.No_Value) continue;
-                            if (positionMetrics != -1) _posResults[positionMetrics] = name;
-                            ViolStatMetricIdDTO stat = RulesViolationUtility.GetAggregatedViolStat(period, int.Parse(_metricId));
+                            if (string.IsNullOrEmpty(name) || name != Constants.No_Value)
+                            {
+                                name = MetricsUtility.GetMetricName(reportData, lastApplicationSnapshots[_application], _metricId);
+                                if (positionMetrics != -1) _posResults[positionMetrics] = name;
+                            }
+                                
+                            _posResults[positionApplications] = _application.Name;
+                            ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(lastApplicationSnapshots[_application], int.Parse(_metricId));
                             foreach (string _violation in criticalViolations)
                             {
                                 string value;
@@ -417,195 +452,9 @@ namespace CastReporting.Reporting.Helper
 
             #endregion
 
-            #region Applications
-
-            if (applications.Count != 0)
-            {
-                string[] _posResults = {string.Empty, string.Empty, string.Empty, string.Empty};
-                // case grade
-                if (violations.Count == 0 && criticalViolations.Count == 0)
-                {
-                    foreach (string _metricId in metricsAggregated.Keys)
-                    {
-                        foreach (Application application in applications) // applications, no need to aggregate here, resuls by application
-                        {
-                            _posResults[positionApplications] = application.Name;
-                            Snapshot curPeriodAppSnap = periodConfiguration.Contains("CURRENT") ? currentPeriod[application] : null;
-                            Snapshot prevPeriodAppSnap = periodConfiguration.Contains("PREVIOUS") ? previousPeriod[application] : null;
-                            EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, curPeriodAppSnap, prevPeriodAppSnap, _metricId, true, null, string.Empty, format);
-                            if (res.name == Constants.No_Value) continue;
-                            if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
-                            foreach (string param in periodConfiguration)
-                            {
-                                try
-                                {
-                                    switch (param)
-                                    {
-                                        case "CURRENT":
-                                            if (positionPeriod != -1) _posResults[positionPeriod] = Labels.CurrentPeriod;
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
-                                            break;
-                                        case "PREVIOUS":
-                                            if (positionPeriod != -1) _posResults[positionPeriod] = Labels.PreviousPeriod;
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
-                                            break;
-                                        case "EVOL":
-                                            if (positionPeriod != -1) _posResults[positionPeriod] = Labels.Evolution;
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
-                                            break;
-                                        case "EVOL_PERCENT":
-                                            if (positionPeriod != -1) _posResults[positionPeriod] = Labels.EvolutionPercent;
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
-                                            break;
-                                        default:
-                                            throw new ArgumentOutOfRangeException();
-                                    }
-
-                                }
-                                catch (ArgumentException)
-                                {
-                                    LogHelper.Instance.LogWarn("Several metrics have the same name. Results will be duplicated in table");
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // case violations
-                if (violations.Count != 0 && criticalViolations.Count == 0)
-                {
-                    // _metricId should be a quality indicator, if not, return null
-                    foreach (string _metricId in metricsAggregated.Keys)
-                    {
-                        var periodList = new Dictionary<string, Dictionary<Application, Snapshot>> {{Labels.CurrentPeriod, currentPeriod}, {Labels.PreviousPeriod, previousPeriod}};
-                        foreach (string periodName in periodList.Keys)
-                        {
-                            Dictionary<Application, Snapshot> period = periodList[periodName];
-                            if (period.Count <= 0) continue;
-                            // _metricId should be a quality indicator, if not, return null
-                            if (positionPeriod != -1) _posResults[positionPeriod] = periodName;
-                            string name = MetricsUtility.GetMetricName(reportData, period.Values.FirstOrDefault(), _metricId);
-                            if (name == Constants.No_Value) continue;
-                            if (positionMetrics != -1) _posResults[positionMetrics] = name;
-                            foreach (Application _application in applications)
-                            {
-                                _posResults[positionApplications] = _application.Name;
-                                ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(period[_application], int.Parse(_metricId));
-                                foreach (string _violation in violations)
-                                {
-                                    string value;
-                                    switch (_violation)
-                                    {
-                                        case "TOTAL":
-                                            _posResults[positionViolations] = Labels.TotalViolations;
-                                            value = format ? stat?.TotalViolations?.ToString("N0") ?? Constants.No_Value : stat?.TotalViolations?.ToString() ?? Constants.No_Value;
-                                            break;
-                                        case "ADDED":
-                                            _posResults[positionViolations] = Labels.AddedViolations;
-                                            value = format ? stat?.AddedViolations?.ToString("N0") ?? Constants.No_Value : stat?.AddedViolations?.ToString() ?? Constants.No_Value;
-                                            break;
-                                        case "REMOVED":
-                                            _posResults[positionViolations] = Labels.RemovedViolations;
-                                            value = format ? stat?.RemovedViolations?.ToString("N0") ?? Constants.No_Value : stat?.RemovedViolations?.ToString() ?? Constants.No_Value;
-                                            break;
-                                        default:
-                                            throw new ArgumentOutOfRangeException();
-                                    }
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
-                                }
-
-                            }
-                        }
-                    }
-
-                }
-
-                // case critical violations
-                if (violations.Count == 0 && criticalViolations.Count != 0)
-                {
-                    // _metricId should be a quality indicator, if not, return null
-                    foreach (string _metricId in metricsAggregated.Keys)
-                    {
-                        var periodList = new Dictionary<string, Dictionary<Application, Snapshot>> {{Labels.CurrentPeriod, currentPeriod}, {Labels.PreviousPeriod, previousPeriod}};
-                        foreach (string periodName in periodList.Keys)
-                        {
-                            Dictionary<Application, Snapshot> period = periodList[periodName];
-                            if (period.Count <= 0) continue;
-                            // _metricId should be a quality indicator, if not, return null
-                            if (positionPeriod != -1) _posResults[positionPeriod] = periodName;
-                            string name = MetricsUtility.GetMetricName(reportData, period.Values.FirstOrDefault(), _metricId);
-                            if (name == Constants.No_Value) continue;
-                            if (positionMetrics != -1) _posResults[positionMetrics] = name;
-                            foreach (Application _application in applications)
-                            {
-                                _posResults[positionApplications] = _application.Name;
-                                ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(period[_application], int.Parse(_metricId));
-                                foreach (string _violation in criticalViolations)
-                                {
-                                    string value;
-                                    switch (_violation)
-                                    {
-                                        case "TOTAL":
-                                            _posResults[positionCriticalViolations] = Labels.TotalCriticalViolations;
-                                            value = format ? stat?.TotalCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.TotalCriticalViolations?.ToString() ?? Constants.No_Value;
-                                            break;
-                                        case "ADDED":
-                                            _posResults[positionCriticalViolations] = Labels.AddedCriticalViolations;
-                                            value = format ? stat?.AddedCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.AddedCriticalViolations?.ToString() ?? Constants.No_Value;
-                                            break;
-                                        case "REMOVED":
-                                            _posResults[positionCriticalViolations] = Labels.RemovedCriticalViolations;
-                                            value = format ? stat?.RemovedCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.RemovedCriticalViolations?.ToString() ?? Constants.No_Value;
-                                            break;
-                                        default:
-                                            throw new ArgumentOutOfRangeException();
-                                    }
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // functionnaly impossible case
-                if (violations.Count != 0 && criticalViolations.Count != 0)
-                {
-                    return null;
-                }
-
-            }
-
-            #endregion
-
             #endregion
 
             #region Get Display Data
-
-            // if this part works without modification, should be extract in a common method for GenericContent and PortfolioGenericContent
-
-            // define the table content in configuration order
-            /*
-             * Add in rowData :
-             * - row1.type.name (1)
-             * - foreach itemcol1 in col1
-             * ---- foreach itemcol11 in col11 (if col11 not null)
-             * -------- itemcol1.name - itemcol11.name (2)
-             * - foreach itemrow1 in row1
-             * ---- itemrow1.name (2)
-             * ---- if row11 not null
-             * -------- add as much spaces than number of column minus one
-             * -------- foreach itemrow11 in row11 (if row11 not null)
-             * ------------ '    ' + itemrow11.name (2)
-             * ------------ then or if row11 is null same process
-             * ------------ foreach itemcol1 in col1
-             * ---------------- foreach itemcol11 in col11 (if col11 not null)
-             * -------------------- results[Tuple.Create(itemcol1, itemcol11, itemrow1, itemrow11)] (3)
-             * if col11 is null replace itemcol11 by "", idem for itemrow11 if row11 is null
-             * 
-             * (1) create a function get type name, switching in the different possibilities : SNAPSHOTS, METRICS, MODULES, TECHNOLOGIES, VIOLATIONS, CRITICAL_VIOLATIONS, to get a proper name by language
-             * (2) here we have to reconstitute the name depending on the type and the value
-             * (3) be careful, the item should correspond to those that have been used to save the data, depending on the type, perhaps use the name and change the _metricId by the metric name lines 173, 184, 213
-             */
 
             rowData.Add(GetTypeName(type2));
             foreach (var itemcol1 in _posConfig[0].Parameters)
@@ -963,7 +812,6 @@ namespace CastReporting.Reporting.Helper
                 // case when configuration contains only id and no groups
                 if (aggregators != null)
                 {
-                    // case when only one aggregator is defined for all ids
                     foreach (string _metric in metrics)
                     {
                         try
@@ -972,6 +820,7 @@ namespace CastReporting.Reporting.Helper
                         }
                         catch (IndexOutOfRangeException)
                         {
+                            // case when only one aggregator is defined for all ids
                             metricsAggregated.Add(_metric, aggregators.Length > 0 ? aggregators.FirstOrDefault() : string.Empty);
                         }
                     }
@@ -989,24 +838,13 @@ namespace CastReporting.Reporting.Helper
         }
 
 
-        public static void BuildPeriod(ReportData reportData, Dictionary<Application, Snapshot> period, string periodDuration, bool previous)
+        public static void BuildApplicationSnapshots(Dictionary<Application, Snapshot> list, ReportData reportData)
         {
             foreach (Application _application in reportData.Applications)
             {
-                period.Add(_application, FindSnapshotInPeriod(_application, int.Parse(periodDuration), previous));
+                list.Add(_application, _application.Snapshots.OrderBy(_ => _.Annotation.Date.DateSnapShot).LastOrDefault());
             }
         }
 
-        public static Snapshot FindSnapshotInPeriod(Application application, int periodDuration, bool previous)
-        {
-            if (!application.Snapshots.Any()) return null; // if application has no snapshot, it is ignored
-
-            DateTime endDate = previous ? DateTime.Now.AddMonths(-periodDuration) : DateTime.Now;
-
-            return application.Snapshots
-                .Where(_ => _.Annotation.Date.DateSnapShot <= endDate)
-                .OrderBy(_ => _.Annotation.Date.DateSnapShot)
-                .LastOrDefault();
-        }
     }
 }

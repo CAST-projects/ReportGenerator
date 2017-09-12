@@ -356,7 +356,7 @@ namespace CastReporting.BLL.Computing
             return null;
         }
 
-        public static ViolStatMetricIdDTO GetAggregatedViolStat(Dictionary<Application, Snapshot> period, int metricId)
+        public static ViolStatMetricIdDTO GetAggregatedViolStat(Dictionary<Application, Snapshot> snapshotList, int metricId)
         {
             // Aggregator is SUM for count of violations and critical violations
             int? totalViol = 0;
@@ -366,9 +366,9 @@ namespace CastReporting.BLL.Computing
             int? addedCritViol = 0;
             int? removedCritViol = 0;
             
-            foreach (Application _application in period.Keys)
+            foreach (Application _application in snapshotList.Keys)
             {
-                ViolStatMetricIdDTO appRes = GetViolStat(period[_application], metricId);
+                ViolStatMetricIdDTO appRes = GetViolStat(snapshotList[_application], metricId);
                 totalViol += appRes.TotalViolations;
                 addedViol += appRes.AddedViolations;
                 removedViol += appRes.RemovedViolations;
