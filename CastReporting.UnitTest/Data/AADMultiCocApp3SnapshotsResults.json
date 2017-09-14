@@ -27,7 +27,14 @@
         "result": {
           "value": 29486
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 29486
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -69,7 +76,22 @@
             "removedViolations": 149
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.0675981635459384,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 6,
+                "totalViolations": 4271,
+                "addedViolations": 1373,
+                "removedViolations": 149
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -95,7 +117,22 @@
             "removedViolations": 193
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 2.5460690954629297,
+              "evolutionSummary": {
+                "totalCriticalViolations": 8,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 24,
+                "totalViolations": 4417,
+                "addedViolations": 1418,
+                "removedViolations": 193
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -121,7 +158,22 @@
             "removedViolations": 78
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.324169202174385,
+              "evolutionSummary": {
+                "totalCriticalViolations": 8,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 6,
+                "totalViolations": 1939,
+                "addedViolations": 577,
+                "removedViolations": 78
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -147,7 +199,22 @@
             "removedViolations": 30
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 2.654835102984507,
+              "evolutionSummary": {
+                "totalCriticalViolations": 33,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 9,
+                "totalViolations": 192,
+                "addedViolations": 82,
+                "removedViolations": 30
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -173,7 +240,22 @@
             "removedViolations": 0
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.313471129049412,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 0,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -199,7 +281,22 @@
             "removedViolations": 47
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.2956017703485663,
+              "evolutionSummary": {
+                "totalCriticalViolations": 8,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 189,
+                "addedViolations": 83,
+                "removedViolations": 47
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -225,7 +322,22 @@
             "removedViolations": 241
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.0255837805875934,
+              "evolutionSummary": {
+                "totalCriticalViolations": 41,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 33,
+                "totalViolations": 5278,
+                "addedViolations": 1691,
+                "removedViolations": 241
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },

@@ -181,6 +181,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             TestUtility.AssertTableContent(table, expectedData, 2, 2);
         }
 
+        [TestMethod]
         [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
         [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
         [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
@@ -196,7 +197,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             TestUtility.PreparePortfSnapshots(reportData);
 
             reportData.Applications[0].Technologies = new[] { ".NET" };
-            reportData.Applications[1].Technologies = new[] { "JEE", "PL/SQL" };
+            reportData.Applications[1].Technologies = new[] { "JEE", "SQL Analyzer" };
 
             var component = new PortfolioGenericGraph();
             Dictionary<string, string> config = new Dictionary<string, string>
@@ -204,16 +205,16 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 {"COL1", "METRICS"},
                 {"ROW1", "TECHNOLOGIES"},
                 {"METRICS", "10151|60017"},
-                {"AGGREGATORS", "SUM|AVG"},
+                {"AGGREGATORS", "SUM|AVERAGE"},
                 {"TECHNOLOGIES", "EACH"}
             };
 
             var table = component.Content(reportData, config);
             var expectedData = new List<string>();
             expectedData.AddRange(new List<string> { "Technologies", "Number of Code Lines", "Total Quality Index" });
-            expectedData.AddRange(new List<string> { "JEE", "1,234", "3.51" });
-            expectedData.AddRange(new List<string> { "PL/SQL", "1,234", "3.51" });
-            expectedData.AddRange(new List<string> { ".NET", "1,234", "3.51" });
+            expectedData.AddRange(new List<string> { ".NET", "29486", "3.03" });
+            expectedData.AddRange(new List<string> { "JEE", "12649", "3.30" });
+            expectedData.AddRange(new List<string> { "SQL Analyzer", "25454", "3.48" });
             TestUtility.AssertTableContent(table, expectedData, 3, 4);
         }
 
@@ -318,6 +319,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             TestUtility.AssertTableContent(table, expectedData, 2, 4);
         }
 
+        [TestMethod]
         [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
         [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
         [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
@@ -333,7 +335,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             TestUtility.PreparePortfSnapshots(reportData);
 
             reportData.Applications[0].Technologies = new[] { ".NET" };
-            reportData.Applications[1].Technologies = new[] { "JEE", "PL/SQL" };
+            reportData.Applications[1].Technologies = new[] { "JEE", "SQL Analyzer" };
 
             var component = new PortfolioGenericGraph();
             Dictionary<string, string> config = new Dictionary<string, string>
@@ -348,9 +350,9 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
             var expectedData = new List<string>();
             expectedData.AddRange(new List<string> { "Technologies", "Number of Code Lines" });
-            expectedData.AddRange(new List<string> { "JEE", "1,234" });
-            expectedData.AddRange(new List<string> { "PL/SQL", "1,234" });
-            expectedData.AddRange(new List<string> { ".NET", "1,234" });
+            expectedData.AddRange(new List<string> { ".NET", "29486" });
+            expectedData.AddRange(new List<string> { "JEE", "12649" });
+            expectedData.AddRange(new List<string> { "SQL Analyzer", "25454" });
             TestUtility.AssertTableContent(table, expectedData, 2, 4);
         }
 

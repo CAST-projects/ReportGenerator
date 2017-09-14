@@ -40,6 +40,7 @@ namespace CastReporting.Reporting
         /// <param name="metricId"></param>
         /// <param name="module"></param>
         /// <param name="technology"></param>
+        /// <param name="format"></param> should be false for graph component
         /// <returns></returns>
         public static SimpleResult GetMetricNameAndResult(ReportData reportData, Snapshot snapshot, string metricId, Module module, string technology, bool format)
         {
@@ -404,7 +405,7 @@ namespace CastReporting.Reporting
             };
         }
 
-        public static SimpleResult GetAggregatedMetric(ReportData reportData, Dictionary<Application, Snapshot> lastSnapshotList, string metricId, string aggregator, bool format)
+        public static SimpleResult GetAggregatedMetric(ReportData reportData, Dictionary<Application, Snapshot> lastSnapshotList, string metricId, string techno, string aggregator, bool format)
         {
 
             List<SimpleResult> results = new List<SimpleResult>();
@@ -419,8 +420,7 @@ namespace CastReporting.Reporting
                 {
                     appCurSnap = null;
                 }
-
-                SimpleResult appRes = GetMetricNameAndResult(reportData, appCurSnap, metricId, null, string.Empty, format);
+                SimpleResult appRes = GetMetricNameAndResult(reportData, appCurSnap, metricId, null, techno, format);
                 results.Add(appRes);
             }
 
@@ -452,13 +452,14 @@ namespace CastReporting.Reporting
                 case "SUM":
                     foreach (var _result in results)
                     {
-                        curResult = curResult + _result.result;
+                        curResult = _result.result != null ? curResult + _result.result : curResult;
                     }
                     break;
                 case "AVERAGE":
                     int nbCurRes = 0;
                     foreach (var _result in results)
                     {
+                        if (_result.result == null) continue;
                         curResult = curResult + _result.result;
                         nbCurRes++;
                     }
@@ -479,7 +480,7 @@ namespace CastReporting.Reporting
                     break;
                 case metricType.SizingMeasure:
                 case metricType.BackgroundFact:
-                    res = curResult?.ToString("N0") ?? (format ? Constants.No_Value : "0");
+                    res = format ? curResult?.ToString("N0") ?? Constants.No_Value  : curResult?.ToString() ?? "0";
                     break;
                 case metricType.NotKnown:
                     res = curResult?.ToString() ?? (format ? Constants.No_Value : "0");

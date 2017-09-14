@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CastReporting.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CastReporting.Reporting.Block.Table;
 using CastReporting.Reporting.ReportingModel;
@@ -113,9 +114,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "Number of Code Lines", "67,589" });
             TestUtility.AssertTableContent(table, expectedData, 2, 3);
         }
-
-
-
+        
         [TestMethod]
         [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
         [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
@@ -361,11 +360,13 @@ namespace CastReporting.UnitTest.Reporting.Tables
             TestUtility.AssertTableContent(table, expectedData, 2, 2);
         }
 
+        [TestMethod]
         [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
         [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
         [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
         [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
         [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\BusinessValue.json", "Data")]
         public void TestSample5()
         {
             // COL1=TECHNOLOGIES,ROW1=METRICS,METRICS=10151|10107|10152|10154|10161,AGGREGATORS=SUM,TECHNOLOGIES=EACH
@@ -374,25 +375,36 @@ namespace CastReporting.UnitTest.Reporting.Tables
             ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
             TestUtility.PreparePortfSnapshots(reportData);
             reportData.Applications[0].Technologies = new[] { ".NET" };
-            reportData.Applications[1].Technologies = new[] { "JEE", "PL/SQL" };
+            reportData.Applications[1].Technologies = new[] { "JEE", "SQL Analyzer" };
 
             var component = new PortfolioGenericTable();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"COL1", "TECHNOLOGIES" },
                 {"ROW1", "METRICS"},
-                {"METRICS", "10151|10107|10152|10154|10161"},
+                {"METRICS", "10151|10152|10154|10161"},
                 {"AGGREGATORS","SUM"  },
                 {"TECHNOLOGIES", "EACH" }
             };
 
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+
             var table = component.Content(reportData, config);
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { "Metrics", ".NET", "JEE", "PL/SQL" });
-            expectedData.AddRange(new List<string> { "Number of Code Lines", "67,589", "1,234", "1,234" });
+            expectedData.AddRange(new List<string> { "Metrics", ".NET", "JEE", "SQL Analyzer" });
+            expectedData.AddRange(new List<string> { "Number of Code Lines", "29,486", "12,649", "25,454" });
             TestUtility.AssertTableContent(table, expectedData, 4, 2);
         }
 
+        [TestMethod]
         [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
         [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
         [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
@@ -406,23 +418,23 @@ namespace CastReporting.UnitTest.Reporting.Tables
             ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
             TestUtility.PreparePortfSnapshots(reportData);
             reportData.Applications[0].Technologies = new[] { ".NET" };
-            reportData.Applications[1].Technologies = new[] { "JEE", "PL/SQL" };
+            reportData.Applications[1].Technologies = new[] { "JEE", "SQL Analyzer" };
 
             var component = new PortfolioGenericTable();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"COL1", "METRICS" },
                 {"ROW1", "TECHNOLOGIES"},
-                {"METRICS", "HEALTH_FACTORS"},
+                {"METRICS", "HEALTH_FACTOR"},
                 {"TECHNOLOGIES", "EACH" }
             };
-
+            // TODO : remplir les technologies results pour les HF dans les données des snapshots AADMultiCoc
             var table = component.Content(reportData, config);
             var expectedData = new List<string>();
             expectedData.AddRange(new List<string> { "Technologies", "Transferability", "Changeability", "Robustness", "Efficiency", "Security" });
-            expectedData.AddRange(new List<string> { ".NET", "2.33", "2.33", "2.33", "2.33", "2.33" });
-            expectedData.AddRange(new List<string> { "JEE", "2.33", "2.33", "2.33", "2.33", "2.33" });
-            expectedData.AddRange(new List<string> { "PL/SQL", "2.33", "2.33", "2.33", "2.33", "2.33" });
+            expectedData.AddRange(new List<string> { ".NET", "3.07", "2.55", "3.32", "2.65", "3.30" });
+            expectedData.AddRange(new List<string> { "JEE", "2.98", "3.32", "3.66", "2.76", "3.71" });
+            expectedData.AddRange(new List<string> { "SQL Analyzer", "3.74", "3.92", "3.86", "2.51", "4.00" });
             TestUtility.AssertTableContent(table, expectedData, 6, 4);
         }
 

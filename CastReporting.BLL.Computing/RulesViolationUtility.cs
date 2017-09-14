@@ -388,6 +388,38 @@ namespace CastReporting.BLL.Computing
             };
         }
 
+        public static ViolStatMetricIdDTO GetAggregatedViolStatTechno(Dictionary<Application, Snapshot> snapshotList, string techno, int metricId)
+        {
+            // Aggregator is SUM for count of violations and critical violations
+            int? totalViol = 0;
+            int? addedViol = 0;
+            int? removedViol = 0;
+            int? totalCritViol = 0;
+            int? addedCritViol = 0;
+            int? removedCritViol = 0;
+
+            foreach (Application _application in snapshotList.Keys)
+            {
+                ViolStatMetricIdDTO appRes = GetViolStatTechno(snapshotList[_application], techno, metricId);
+                totalViol += appRes.TotalViolations;
+                addedViol += appRes.AddedViolations;
+                removedViol += appRes.RemovedViolations;
+                totalCritViol += appRes.TotalCriticalViolations;
+                addedCritViol += appRes.AddedCriticalViolations;
+                removedCritViol += appRes.RemovedCriticalViolations;
+            }
+            return new ViolStatMetricIdDTO
+            {
+                Id = metricId,
+                TotalViolations = totalViol,
+                AddedViolations = addedViol,
+                RemovedViolations = removedViol,
+                TotalCriticalViolations = totalCritViol,
+                AddedCriticalViolations = addedCritViol,
+                RemovedCriticalViolations = removedCritViol
+            };
+        }
+
         public static ViolStatMetricIdDTO GetViolStatModule(Snapshot snapshot, int modId, int metricId)
         {
             ApplicationResult resbc = snapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == metricId);

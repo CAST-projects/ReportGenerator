@@ -27,7 +27,20 @@
         "result": {
           "value": 38103
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 12649
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 25454
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -69,7 +82,36 @@
             "removedViolations": 862
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 2.9751565393034407,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 2673,
+                "addedViolations": 1178,
+                "removedViolations": 862
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.743645647408596,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 14,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -95,7 +137,36 @@
             "removedViolations": 691
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.32177032252636,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 73,
+                "totalViolations": 1310,
+                "addedViolations": 565,
+                "removedViolations": 691
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.9174199274794748,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 14,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -121,7 +192,36 @@
             "removedViolations": 335
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.6560034184998447,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 4,
+                "totalViolations": 1020,
+                "addedViolations": 491,
+                "removedViolations": 335
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.8640541688125016,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 14,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -147,7 +247,36 @@
             "removedViolations": 180
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 2.7603901622116545,
+              "evolutionSummary": {
+                "totalCriticalViolations": 44,
+                "addedCriticalViolations": 8,
+                "removedCriticalViolations": 95,
+                "totalViolations": 133,
+                "addedViolations": 42,
+                "removedViolations": 175
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 2.5056851897493257,
+              "evolutionSummary": {
+                "totalCriticalViolations": 36,
+                "addedCriticalViolations": 1,
+                "removedCriticalViolations": 2,
+                "totalViolations": 87,
+                "addedViolations": 8,
+                "removedViolations": 5
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -173,7 +302,36 @@
             "removedViolations": 0
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.284368136366898,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 0,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.613121700835155,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 0,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -199,7 +357,36 @@
             "removedViolations": 560
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.712682638648749,
+              "evolutionSummary": {
+                "totalCriticalViolations": 4,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 91,
+                "totalViolations": 528,
+                "addedViolations": 271,
+                "removedViolations": 560
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 4,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 0,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },
@@ -225,7 +412,36 @@
             "removedViolations": 1508
           }
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.2955729575153208,
+              "evolutionSummary": {
+                "totalCriticalViolations": 44,
+                "addedCriticalViolations": 8,
+                "removedCriticalViolations": 172,
+                "totalViolations": 3615,
+                "addedViolations": 1690,
+                "removedViolations": 1503
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.4809105296932192,
+              "evolutionSummary": {
+                "totalCriticalViolations": 36,
+                "addedCriticalViolations": 1,
+                "removedCriticalViolations": 2,
+                "totalViolations": 101,
+                "addedViolations": 8,
+                "removedViolations": 5
+              }
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },

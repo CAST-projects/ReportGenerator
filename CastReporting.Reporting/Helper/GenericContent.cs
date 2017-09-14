@@ -239,6 +239,8 @@ namespace CastReporting.Reporting.Helper
                         }
                         else
                         {
+                            technologies.AddRange(_posConfig[i].Parameters);
+                            /*
                             if ((snapshotConfiguration == null || snapshotConfiguration.Contains("CURRENT")) && reportData.CurrentSnapshot != null)
                             {
                                 technologies.AddRange(reportData.CurrentSnapshot.Technologies.Where(_ => _posConfig[i].Parameters.Contains(_)));
@@ -246,7 +248,7 @@ namespace CastReporting.Reporting.Helper
                             else if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null)
                             {
                                 technologies.AddRange(reportData.PreviousSnapshot.Technologies.Where(_ => _posConfig[i].Parameters.Contains(_)));
-                            }
+                            }*/
                         }
                         _posConfig[i].Parameters = technologies.ToArray();
                         break;
