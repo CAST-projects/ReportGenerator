@@ -530,15 +530,15 @@ namespace CastReporting.Reporting.Helper
                                 switch (_violation)
                                 {
                                     case "TOTAL":
-                                        _posResults[positionViolations] = Labels.TotalViolations;
+                                        if (positionViolations != -1) _posResults[positionViolations] = Labels.TotalViolations;
                                         value = format ? stat?.TotalViolations?.ToString("N0") ?? Constants.No_Value : stat?.TotalViolations?.ToString() ?? Constants.No_Value;
                                         break;
                                     case "ADDED":
-                                        _posResults[positionViolations] = Labels.AddedViolations;
+                                        if (positionViolations != -1) _posResults[positionViolations] = Labels.AddedViolations;
                                         value = format ? stat?.AddedViolations?.ToString("N0") ?? Constants.No_Value : stat?.AddedViolations?.ToString() ?? Constants.No_Value;
                                         break;
                                     case "REMOVED":
-                                        _posResults[positionViolations] = Labels.RemovedViolations;
+                                        if (positionViolations != -1) _posResults[positionViolations] = Labels.RemovedViolations;
                                         value = format ? stat?.RemovedViolations?.ToString("N0") ?? Constants.No_Value : stat?.RemovedViolations?.ToString() ?? Constants.No_Value;
                                         break;
                                     default:
@@ -561,21 +561,21 @@ namespace CastReporting.Reporting.Helper
                         {
                             _posResults[positionTechnologies] = _techno;
                             ViolStatMetricIdDTO stat = RulesViolationUtility.GetAggregatedViolStatTechno(lastApplicationSnapshots, _techno, int.Parse(_metricId));
-                            foreach (string _violation in violations)
+                            foreach (string _criticalViolation in criticalViolations)
                             {
                                 string value;
-                                switch (_violation)
+                                switch (_criticalViolation)
                                 {
                                     case "TOTAL":
-                                        _posResults[positionViolations] = Labels.TotalViolations;
+                                        if (positionCriticalViolations != -1) _posResults[positionCriticalViolations] = Labels.TotalCriticalViolations;
                                         value = format ? stat?.TotalCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.TotalCriticalViolations?.ToString() ?? Constants.No_Value;
                                         break;
                                     case "ADDED":
-                                        _posResults[positionViolations] = Labels.AddedViolations;
+                                        if (positionCriticalViolations != -1)  _posResults[positionCriticalViolations] = Labels.AddedCriticalViolations;
                                         value = format ? stat?.AddedCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.AddedCriticalViolations?.ToString() ?? Constants.No_Value;
                                         break;
                                     case "REMOVED":
-                                        _posResults[positionViolations] = Labels.RemovedViolations;
+                                        if (positionCriticalViolations != -1)  _posResults[positionCriticalViolations] = Labels.RemovedCriticalViolations;
                                         value = format ? stat?.RemovedCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.RemovedCriticalViolations?.ToString() ?? Constants.No_Value;
                                         break;
                                     default:
@@ -591,7 +591,6 @@ namespace CastReporting.Reporting.Helper
                 {
                     return null;
                 }
-
             }
 
             #endregion
@@ -600,7 +599,122 @@ namespace CastReporting.Reporting.Helper
 
             if (technologies.Count != 0 && applications.Count != 0)
             {
+                string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
+                // case metrics
+                if (violations.Count == 0 && criticalViolations.Count == 0)
+                {
+                    foreach (string _metricId in metricsAggregated.Keys)
+                    {
+                        foreach (Application _app in applications)
+                        {
+                            if (positionApplications != -1) _posResults[positionApplications] = _app.Name;
+                            foreach (string techno in technologies)
+                            {
+                                if (positionTechnologies != -1) _posResults[positionTechnologies] = techno;
+                                SimpleResult res = MetricsUtility.GetMetricNameAndResult(reportData, lastApplicationSnapshots[_app], _metricId, null, techno, format);
+                                if (res == null) continue;
+                                if (res.name == Constants.No_Value) continue;
+                                if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
+                                try
+                                {
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.resultStr);
+                                }
+                                catch (ArgumentException)
+                                {
+                                    LogHelper.Instance.LogWarn("Several metrics have the same name. Results will be duplicated in table");
+                                }
+                            }
+                        }
+                    }
+                }
+                // case violations
+                if (violations.Count != 0 && criticalViolations.Count == 0)
+                {
+                    // _metricId should be a quality indicator, if not, return null
+                    foreach (string _metricId in metricsAggregated.Keys)
+                    {
+                        string name = GetItemName("METRICS", _metricId, reportData);
+                        if (positionMetrics != -1) _posResults[positionMetrics] = name;
 
+                        foreach (Application _app in applications)
+                        {
+                            if (positionApplications != -1) _posResults[positionApplications] = _app.Name;
+                            foreach (string _techno in technologies)
+                            {
+                                if (positionTechnologies != -1) _posResults[positionTechnologies] = _techno;
+                                ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStatTechno(lastApplicationSnapshots[_app], _techno, int.Parse(_metricId));
+                                foreach (string _violation in violations)
+                                {
+                                    string value;
+                                    switch (_violation)
+                                    {
+                                        case "TOTAL":
+                                            if (positionViolations != -1) _posResults[positionViolations] = Labels.TotalViolations;
+                                            value = format ? stat?.TotalViolations?.ToString("N0") ?? Constants.No_Value : stat?.TotalViolations?.ToString() ?? Constants.No_Value;
+                                            break;
+                                        case "ADDED":
+                                            if (positionViolations != -1) _posResults[positionViolations] = Labels.AddedViolations;
+                                            value = format ? stat?.AddedViolations?.ToString("N0") ?? Constants.No_Value : stat?.AddedViolations?.ToString() ?? Constants.No_Value;
+                                            break;
+                                        case "REMOVED":
+                                            if (positionViolations != -1) _posResults[positionViolations] = Labels.RemovedViolations;
+                                            value = format ? stat?.RemovedViolations?.ToString("N0") ?? Constants.No_Value : stat?.RemovedViolations?.ToString() ?? Constants.No_Value;
+                                            break;
+                                        default:
+                                            throw new ArgumentOutOfRangeException();
+                                    }
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                }
+                            }
+                        }
+                    }
+                }
+                // case critical violations
+                if (violations.Count == 0 && criticalViolations.Count != 0)
+                {
+                    // _metricId should be a quality indicator, if not, return null
+                    foreach (string _metricId in metricsAggregated.Keys)
+                    {
+                        string name = GetItemName("METRICS", _metricId, reportData);
+                        if (positionMetrics != -1) _posResults[positionMetrics] = name;
+                        foreach (Application _app in applications)
+                        {
+                            if (positionApplications != -1) _posResults[positionApplications] = _app.Name;
+                            foreach (string _techno in technologies)
+                            {
+                                if (positionTechnologies != -1) _posResults[positionTechnologies] = _techno;
+                                ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStatTechno(lastApplicationSnapshots[_app], _techno, int.Parse(_metricId));
+                                foreach (string _criticalViolation in criticalViolations)
+                                {
+                                    string value;
+                                    switch (_criticalViolation)
+                                    {
+                                        case "TOTAL":
+                                            if (positionCriticalViolations != -1) _posResults[positionCriticalViolations] = Labels.TotalCriticalViolations;
+                                            value = format ? stat?.TotalCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.TotalCriticalViolations?.ToString() ?? Constants.No_Value;
+                                            break;
+                                        case "ADDED":
+                                            if (positionCriticalViolations != -1) _posResults[positionCriticalViolations] = Labels.AddedCriticalViolations;
+                                            value = format ? stat?.AddedCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.AddedCriticalViolations?.ToString() ?? Constants.No_Value;
+                                            break;
+                                        case "REMOVED":
+                                            if (positionCriticalViolations != -1) _posResults[positionCriticalViolations] = Labels.RemovedCriticalViolations;
+                                            value = format ? stat?.RemovedCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.RemovedCriticalViolations?.ToString() ?? Constants.No_Value;
+                                            break;
+                                        default:
+                                            throw new ArgumentOutOfRangeException();
+                                    }
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                }
+                            }
+                        }
+                    }
+                }
+                // functionnaly impossible case
+                if (violations.Count != 0 && criticalViolations.Count != 0)
+                {
+                    return null;
+                }
             }
 
             #endregion

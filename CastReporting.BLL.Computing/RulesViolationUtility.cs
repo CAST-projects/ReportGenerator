@@ -401,12 +401,12 @@ namespace CastReporting.BLL.Computing
             foreach (Application _application in snapshotList.Keys)
             {
                 ViolStatMetricIdDTO appRes = GetViolStatTechno(snapshotList[_application], techno, metricId);
-                totalViol += appRes.TotalViolations;
-                addedViol += appRes.AddedViolations;
-                removedViol += appRes.RemovedViolations;
-                totalCritViol += appRes.TotalCriticalViolations;
-                addedCritViol += appRes.AddedCriticalViolations;
-                removedCritViol += appRes.RemovedCriticalViolations;
+                if (appRes.TotalViolations != null) totalViol += appRes.TotalViolations;
+                if (appRes.AddedViolations != null) addedViol += appRes.AddedViolations;
+                if (appRes.RemovedViolations != null) removedViol += appRes.RemovedViolations;
+                if (appRes.TotalCriticalViolations != null) totalCritViol += appRes.TotalCriticalViolations;
+                if (appRes.AddedCriticalViolations != null) addedCritViol += appRes.AddedCriticalViolations;
+                if (appRes.RemovedCriticalViolations != null) removedCritViol += appRes.RemovedCriticalViolations;
             }
             return new ViolStatMetricIdDTO
             {
