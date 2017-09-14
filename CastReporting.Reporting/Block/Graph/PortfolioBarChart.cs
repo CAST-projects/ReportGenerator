@@ -30,7 +30,7 @@ namespace CastReporting.Reporting.Block.Graph
                 {
                     Snapshot _snapshot = _app.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
                     if (_snapshot == null) continue;
-                    SimpleResult res = MetricsUtility.GetMetricNameAndResult(reportData, _snapshot, metricId,null,null);
+                    SimpleResult res = MetricsUtility.GetMetricNameAndResult(reportData, _snapshot, metricId,null,null,false);
                     if (res == null) continue;
                     if (firstLoop)
                     {

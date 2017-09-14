@@ -43,6 +43,7 @@ namespace CastReporting.BLL.Computing.DTO
         public string name { get; set; }
         public metricType type { get; set; }
         public double? result { get; set; }
+        public string resultStr { get; set; }
     }
 
     public class EvolutionResult

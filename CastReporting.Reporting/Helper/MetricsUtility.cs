@@ -40,12 +40,14 @@ namespace CastReporting.Reporting
         /// <param name="metricId"></param>
         /// <param name="module"></param>
         /// <param name="technology"></param>
+        /// <param name="format"></param> should be false for graph component
         /// <returns></returns>
-        public static SimpleResult GetMetricNameAndResult(ReportData reportData, Snapshot snapshot, string metricId, Module module, string technology)
+        public static SimpleResult GetMetricNameAndResult(ReportData reportData, Snapshot snapshot, string metricId, Module module, string technology, bool format)
         {
             metricType type = metricType.NotKnown;
             Result bfResult = null;
             double? result = null;
+            string resStr = string.Empty;
 
             string name = snapshot.BusinessCriteriaResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault();
             if (name != null) type = metricType.BusinessCriteria;
@@ -105,6 +107,7 @@ namespace CastReporting.Reporting
                             .FirstOrDefault(_ => _.Module.Id == module.Id && _.TechnologyResults != null)?.TechnologyResults
                             .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Grade;
                     }
+                    resStr = result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                     break;
                 case metricType.TechnicalCriteria:
                     if (module == null && string.IsNullOrEmpty(technology))
@@ -131,6 +134,7 @@ namespace CastReporting.Reporting
                             .FirstOrDefault(_ => _.Module.Id == module.Id && _.TechnologyResults != null)?.TechnologyResults
                             .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Grade;
                     }
+                    resStr = result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                     break;
                 case metricType.QualityRule:
                     if (module == null && string.IsNullOrEmpty(technology))
@@ -157,6 +161,7 @@ namespace CastReporting.Reporting
                             .FirstOrDefault(_ => _.Module.Id == module.Id && _.TechnologyResults != null)?.TechnologyResults
                             .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Grade;
                     }
+                    resStr = result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                     break;
                 case metricType.SizingMeasure:
                     if (module == null && string.IsNullOrEmpty(technology))
@@ -183,6 +188,7 @@ namespace CastReporting.Reporting
                             .FirstOrDefault(_ => _.Module.Id == module.Id && _.TechnologyResults != null)?.TechnologyResults
                             .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Value;
                     }
+                    resStr = format ? result?.ToString("N0") ?? Constants.No_Value : result?.ToString() ?? "0";
                     break;
                 case metricType.BackgroundFact:
                     if (module == null && string.IsNullOrEmpty(technology))
@@ -205,6 +211,7 @@ namespace CastReporting.Reporting
                             .TechnologyResults.FirstOrDefault(_ => _.Technology == technology)?
                             .DetailResult.Value;
                     }
+                    resStr = format ? result?.ToString("N0") ?? Constants.No_Value  : result?.ToString() ?? "0";
                     break;
                 case metricType.NotKnown:
                     break;
@@ -212,7 +219,7 @@ namespace CastReporting.Reporting
                     throw new ArgumentOutOfRangeException();
             }
 
-            SimpleResult res = new SimpleResult {name = name, type = type, result = result};
+            SimpleResult res = new SimpleResult {name = name, type = type, result = result, resultStr = resStr};
             return res;
         }
 
@@ -233,8 +240,8 @@ namespace CastReporting.Reporting
         {
             SimpleResult curResult = null;
             SimpleResult prevResult = null;
-            if (curSnapshot != null) curResult = GetMetricNameAndResult(reportData, curSnapshot, metricId, module, technology);
-            if (prevSnapshot != null) prevResult = GetMetricNameAndResult(reportData, prevSnapshot, metricId, module, technology);
+            if (curSnapshot != null) curResult = GetMetricNameAndResult(reportData, curSnapshot, metricId, module, technology, format);
+            if (prevSnapshot != null) prevResult = GetMetricNameAndResult(reportData, prevSnapshot, metricId, module, technology, format);
             if (!evol && (curResult?.result != null || prevResult?.result != null))
             {
                 string name = curResult?.name ?? prevResult?.name ?? Constants.No_Value;
@@ -398,35 +405,23 @@ namespace CastReporting.Reporting
             };
         }
 
-        public static EvolutionResult GetAggregatedMetricEvolution(ReportData reportData, Dictionary<Application, Snapshot> curPeriod, Dictionary<Application, Snapshot> prevPeriod, string metricId, string aggregator, bool evol, bool format)
+        public static SimpleResult GetAggregatedMetric(ReportData reportData, Dictionary<Application, Snapshot> lastSnapshotList, string metricId, string techno, string aggregator, bool format)
         {
 
-            // evol = false here because evolution is calculated after results by periods
-            List<EvolutionResult> results = new List<EvolutionResult>();
+            List<SimpleResult> results = new List<SimpleResult>();
             foreach (Application application in reportData.Applications)
             {
                 Snapshot appCurSnap;
-                Snapshot appPrevSnap;
                 try
                 {
-                    appCurSnap = curPeriod[application];
+                    appCurSnap = lastSnapshotList[application];
                 }
                 catch (KeyNotFoundException)
                 {
                     appCurSnap = null;
                 }
-                try
-                {
-                    appPrevSnap = prevPeriod[application];
-                }
-                catch (KeyNotFoundException)
-                {
-                    appPrevSnap = null;
-                }
-
-                EvolutionResult appRes = GetMetricEvolution(reportData, appCurSnap, appPrevSnap, metricId, false, null, string.Empty, format);
+                SimpleResult appRes = GetMetricNameAndResult(reportData, appCurSnap, metricId, null, techno, format);
                 results.Add(appRes);
-
             }
 
             string metName = results.FirstOrDefault()?.name;
@@ -435,102 +430,70 @@ namespace CastReporting.Reporting
             metricType metType = results.FirstOrDefault()?.type ?? metricType.NotKnown;
 
             double? curResult = 0;
-            double? prevResult = 0;
-            double? evolResult = 0;
-            double? evolPercentResult = 0;
 
+            if (string.IsNullOrEmpty(aggregator))
+            {
+                switch (metType)
+                {
+                        case metricType.QualityRule:
+                        case metricType.TechnicalCriteria:
+                        case metricType.BusinessCriteria:
+                            aggregator = "AVERAGE";
+                            break;
+                        case metricType.SizingMeasure:
+                        case metricType.BackgroundFact:
+                            aggregator = "SUM";
+                            break;
+                }
+            }
 
             switch (aggregator)
             {
                 case "SUM":
-                    foreach (EvolutionResult _evolutionResult in results)
+                    foreach (var _result in results)
                     {
-                        double curTest;
-                        if (double.TryParse(_evolutionResult.curResult, out curTest))
-                        {
-                            curResult += curTest;
-                        }
-                        double prevTest;
-                        if (double.TryParse(_evolutionResult.prevResult, out prevTest))
-                        {
-                            prevResult += prevTest;
-                        }
+                        curResult = _result.result != null ? curResult + _result.result : curResult;
                     }
-                    curResult = curResult ?? null;
-                    prevResult = prevResult ?? null;
                     break;
                 case "AVERAGE":
                     int nbCurRes = 0;
-                    int nbPrevRes = 0;
-                    foreach (EvolutionResult _evolutionResult in results)
+                    foreach (var _result in results)
                     {
-                        double curTest;
-                        if (double.TryParse(_evolutionResult.curResult, out curTest))
-                        {
-                            curResult += curTest;
-                            nbCurRes++;
-                        }
-                        double prevTest;
-                        if (double.TryParse(_evolutionResult.prevResult, out prevTest))
-                        {
-                            prevResult += prevTest;
-                            nbPrevRes++;
-                        }
+                        if (_result.result == null) continue;
+                        curResult = curResult + _result.result;
+                        nbCurRes++;
                     }
                     curResult = nbCurRes != 0 ? curResult / nbCurRes : null;
-                    prevResult = nbPrevRes != 0 ? prevResult / nbPrevRes : null;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (evol && prevResult != null)
-            {
-                evolResult = curResult - prevResult;
-                evolPercentResult = (Math.Abs(prevResult.Value) > 0.0) ? (double?)((curResult.Value - prevResult.Value) / prevResult.Value) : null;
-            }
-
-            string curRes;
-            string prevRes;
-            string evolRes;
-            string evolPercentRes;
-
             // format curResult and prevResult in case of metricType
+            string res;
             switch (metType)
             {
                 case metricType.BusinessCriteria:
                 case metricType.TechnicalCriteria:
                 case metricType.QualityRule:
-                    curRes = curResult?.ToString("N2") ?? (format ? Constants.No_Value : "0");
-                    prevRes = prevResult?.ToString("N2") ?? (format ? Constants.No_Value : "0");
-                    evolRes = evol ? evolResult.Value.ToString("N2") : format ? Constants.No_Value : "0";
-                    evolPercentRes = evol ? evolPercentResult.FormatPercent() : format ? Constants.No_Value : "0";
+                    res = curResult?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                     break;
                 case metricType.SizingMeasure:
                 case metricType.BackgroundFact:
-                    curRes = curResult?.ToString("N0") ?? (format ? Constants.No_Value : "0");
-                    prevRes = prevResult?.ToString("N0") ?? (format ? Constants.No_Value : "0");
-                    evolRes = evol ? evolResult.Value.ToString("N0") : format ? Constants.No_Value : "0";
-                    evolPercentRes = evol ? evolPercentResult.FormatPercent() : format ? Constants.No_Value : "0";
+                    res = format ? curResult?.ToString("N0") ?? Constants.No_Value  : curResult?.ToString() ?? "0";
                     break;
                 case metricType.NotKnown:
-                    curRes = curResult?.ToString() ?? (format ? Constants.No_Value : "0");
-                    prevRes = prevResult?.ToString() ?? (format ? Constants.No_Value : "0");
-                    evolRes = evol ? evolResult.ToString() : format ? Constants.No_Value : "0";
-                    evolPercentRes = evol ? evolPercentResult.FormatPercent() : format ? Constants.No_Value : "0";
+                    res = curResult?.ToString() ?? (format ? Constants.No_Value : "0");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            return new EvolutionResult
+            return new SimpleResult
             {
                 name = metName,
                 type = metType,
-                curResult = curRes,
-                prevResult = prevRes,
-                evolution = evolRes,
-                evolutionPercent = evolPercentRes
+                resultStr = res
             };
         }
 

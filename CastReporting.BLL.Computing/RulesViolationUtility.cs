@@ -356,7 +356,7 @@ namespace CastReporting.BLL.Computing
             return null;
         }
 
-        public static ViolStatMetricIdDTO GetAggregatedViolStat(Dictionary<Application, Snapshot> period, int metricId)
+        public static ViolStatMetricIdDTO GetAggregatedViolStat(Dictionary<Application, Snapshot> snapshotList, int metricId)
         {
             // Aggregator is SUM for count of violations and critical violations
             int? totalViol = 0;
@@ -366,15 +366,47 @@ namespace CastReporting.BLL.Computing
             int? addedCritViol = 0;
             int? removedCritViol = 0;
             
-            foreach (Application _application in period.Keys)
+            foreach (Application _application in snapshotList.Keys)
             {
-                ViolStatMetricIdDTO appRes = GetViolStat(period[_application], metricId);
+                ViolStatMetricIdDTO appRes = GetViolStat(snapshotList[_application], metricId);
                 totalViol += appRes.TotalViolations;
                 addedViol += appRes.AddedViolations;
                 removedViol += appRes.RemovedViolations;
                 totalCritViol += appRes.TotalCriticalViolations;
                 addedCritViol += appRes.AddedCriticalViolations;
                 removedCritViol += appRes.RemovedCriticalViolations;
+            }
+            return new ViolStatMetricIdDTO
+            {
+                Id = metricId,
+                TotalViolations = totalViol,
+                AddedViolations = addedViol,
+                RemovedViolations = removedViol,
+                TotalCriticalViolations = totalCritViol,
+                AddedCriticalViolations = addedCritViol,
+                RemovedCriticalViolations = removedCritViol
+            };
+        }
+
+        public static ViolStatMetricIdDTO GetAggregatedViolStatTechno(Dictionary<Application, Snapshot> snapshotList, string techno, int metricId)
+        {
+            // Aggregator is SUM for count of violations and critical violations
+            int? totalViol = 0;
+            int? addedViol = 0;
+            int? removedViol = 0;
+            int? totalCritViol = 0;
+            int? addedCritViol = 0;
+            int? removedCritViol = 0;
+
+            foreach (Application _application in snapshotList.Keys)
+            {
+                ViolStatMetricIdDTO appRes = GetViolStatTechno(snapshotList[_application], techno, metricId);
+                if (appRes.TotalViolations != null) totalViol += appRes.TotalViolations;
+                if (appRes.AddedViolations != null) addedViol += appRes.AddedViolations;
+                if (appRes.RemovedViolations != null) removedViol += appRes.RemovedViolations;
+                if (appRes.TotalCriticalViolations != null) totalCritViol += appRes.TotalCriticalViolations;
+                if (appRes.AddedCriticalViolations != null) addedCritViol += appRes.AddedCriticalViolations;
+                if (appRes.RemovedCriticalViolations != null) removedCritViol += appRes.RemovedCriticalViolations;
             }
             return new ViolStatMetricIdDTO
             {
