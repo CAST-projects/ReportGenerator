@@ -510,7 +510,7 @@ namespace CastReporting.BLL
                 {
                     var results = castRepsitory.GetRulesViolations(_Snapshot.Href, "cc", businessCriteria.Reference.Key.ToString());
 
-                    businessCriteria.CriticalRulesViolation = results.SelectMany(x => x.ApplicationResults).ToList();
+                    businessCriteria.CriticalRulesViolation = results?.SelectMany(x => x.ApplicationResults).ToList();
                 }
             }
         }
@@ -526,7 +526,7 @@ namespace CastReporting.BLL
                 {
                     var results = castRepsitory.GetRulesViolations(_Snapshot.Href, "nc", businessCriteria.Reference.Key.ToString());
 
-                    businessCriteria.NonCriticalRulesViolation = results.SelectMany(x => x.ApplicationResults).ToList();
+                    businessCriteria.NonCriticalRulesViolation = results?.SelectMany(x => x.ApplicationResults).ToList();
                 }
             }
         }
@@ -545,7 +545,7 @@ namespace CastReporting.BLL
                     var results = castRepsitory.GetRulesViolations(_Snapshot.Href, "c", technicalCriteria.Reference.Key.ToString());
 
 
-                    technicalCriteria.RulesViolation = results.SelectMany(x => x.ApplicationResults).ToList();
+                    technicalCriteria.RulesViolation = results?.SelectMany(x => x.ApplicationResults).ToList();
                 }
             }
         }

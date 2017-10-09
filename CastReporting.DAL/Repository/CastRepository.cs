@@ -514,12 +514,20 @@ namespace CastReporting.Repositories
             requestUrl += "/";
             requestUrl += relativeURL.StartsWith("/") ? relativeURL.Substring(1) : relativeURL;
 
-            var jsonString = _Client.DownloadString(requestUrl, pComplexity); 
-            
-            var serializer = new DataContractJsonSerializer(typeof(T));
-            MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
+            try
+            {
+                var jsonString = _Client.DownloadString(requestUrl, pComplexity);
 
-            return serializer.ReadObject(ms) as T;
+                var serializer = new DataContractJsonSerializer(typeof(T));
+                MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
+
+                return serializer.ReadObject(ms) as T;
+            }
+            catch (WebException e)
+            {
+                LogHelper.Instance.LogError(e.Message);
+                return null;
+            }
         }
 
         private string CallWSJsonOnly(string relativeURL, RequestComplexity pComplexity)
@@ -527,9 +535,16 @@ namespace CastReporting.Repositories
             var requestUrl = _CurrentConnection.EndsWith("/") ? _CurrentConnection.Substring(0, _CurrentConnection.Length - 1) : _CurrentConnection;
             requestUrl += "/";
             requestUrl += relativeURL.StartsWith("/") ? relativeURL.Substring(1) : relativeURL;
-
-            var jsonString = _Client.DownloadString(requestUrl, pComplexity);
-
+            var jsonString = string.Empty;
+            try
+            {
+                jsonString = _Client.DownloadString(requestUrl, pComplexity);
+            }
+            catch (WebException e)
+            {
+                LogHelper.Instance.LogError(e.Message);
+            }
+            
             return jsonString;
         }
 
@@ -548,10 +563,18 @@ namespace CastReporting.Repositories
             requestUrl += "/";
             requestUrl += relativeURL.StartsWith("/") ? relativeURL.Substring(1) : relativeURL;
 
-            var csvString = _Client.DownloadCsvString(requestUrl, pComplexity);
-       
-            var serializer = new CsvSerializer<T>();
-            return serializer.ReadObjects(csvString, count, PropNames);
+            try
+            {
+                var csvString = _Client.DownloadCsvString(requestUrl, pComplexity);
+                var serializer = new CsvSerializer<T>();
+                return serializer.ReadObjects(csvString, count, PropNames);
+            }
+            catch (WebException e)
+            {
+                LogHelper.Instance.LogError(e.Message);
+                return null;
+            }
+
         }
 
         /// <summary>
