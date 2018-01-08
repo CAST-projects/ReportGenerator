@@ -277,6 +277,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "unchanged", "112", "n/a", "n/a", "Avoid cyclical calls and inheritances between namespaces content", "Security", "CastReporting.Reporting", "unchanged" });
             TestUtility.AssertTableContent(table, expectedData, 8, 5);
         }
+
     }
 }
 

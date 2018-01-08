@@ -413,14 +413,15 @@ namespace CastReporting.BLL
         /// <param name="ruleId"></param>
         /// <param name="bcId"></param>
         /// <param name="count"></param>
+        /// <param name="technos"></param>
         /// <returns></returns>
-        public IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count)
+        public IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count, string technos)
         {
             try
             {
                 using (var castRepsitory = GetRepository())
                 {
-                    return castRepsitory.GetViolationsListIDbyBC(snapshotHref, ruleId, bcId, count);
+                    return castRepsitory.GetViolationsListIDbyBC(snapshotHref, ruleId, bcId, count, technos);
                 }
             }
             catch (Exception ex)

@@ -112,7 +112,7 @@ namespace CastReporting.UnitTest.Reporting
         [DeploymentItem(@".\Data\CriticalViolationsList_60016.json", "Data")]
         [DeploymentItem(@".\Data\CriticalViolationsList_60016_module.json", "Data")]
         [DeploymentItem(@".\Data\CriticalViolationsList_60017.json", "Data")]
-        public IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count)
+        public IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count, string technos)
         {
             IEnumerable<Violation> res = null;
             switch (ruleId)

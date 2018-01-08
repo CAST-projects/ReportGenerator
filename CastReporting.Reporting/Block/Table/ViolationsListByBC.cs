@@ -24,6 +24,7 @@ namespace CastReporting.Reporting.Block.Table
             string filter = options.GetOption("FILTER", "ALL");
             bool critical = options.GetOption("VIOLATIONS", "CRITICAL").Equals("CRITICAL");
             string module = options.GetOption("MODULE");
+            string[] technos = options.GetOption("TECHNOLOGIES") != null ? options.GetOption("TECHNOLOGIES").Trim().Split('|') : new[] { "$all" };
 
             rowData.Add(Labels.ViolationStatus);
             if (hasPri) rowData.Add(Labels.PRI);
@@ -40,12 +41,13 @@ namespace CastReporting.Reporting.Block.Table
             foreach (string _bcid in bcIds)
             {
                 Module mod = (module != null) ? reportData.CurrentSnapshot.Modules.FirstOrDefault(m => m.Name.Equals(module)) : null;
-                
                 string href = (mod == null) ? reportData.CurrentSnapshot.Href : mod.Href;
 
+                string technologies = technos.Aggregate(string.Empty, (current, techno) => (current.Equals(string.Empty)) ? techno : current + "," + techno);
+
                 IEnumerable <Violation> bcresults = critical ? 
-                    reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(critical-rules)", _bcid, -1)
-                    : reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(nc:" + _bcid + ",cc:" + _bcid + ")", _bcid, -1) ;
+                    reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(critical-rules)", _bcid, -1, "(" + technologies + ")")
+                    : reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(nc:" + _bcid + ",cc:" + _bcid + ")", _bcid, -1,"(" + technologies + ")") ;
 
                 switch (filter)
                 {
