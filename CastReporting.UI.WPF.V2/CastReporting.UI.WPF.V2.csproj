@@ -115,6 +115,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Utilities\CommandHandler.cs" />
     <Compile Include="Utilities\NotifyPropertyChangedHelper.cs" />
     <Compile Include="Utilities\PasswordBoxAssistant.cs" />

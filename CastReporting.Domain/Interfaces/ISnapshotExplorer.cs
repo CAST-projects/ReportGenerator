@@ -36,7 +36,7 @@ namespace CastReporting.Domain.Interfaces
 
         IEnumerable<MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string ruleId, int count);
 
-        IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count);
+        IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count, string technos);
 
         IEnumerable<Violation> GetViolationsInActionPlan(string snapshotHref, int count);
 

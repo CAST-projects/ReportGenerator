@@ -241,8 +241,9 @@ namespace CastReporting.Repositories.Interfaces
         /// <param name="ruleId"></param>
         /// <param name="bcId"></param>
         /// <param name="count"></param>
+        /// <param name="technos"></param>
         /// <returns></returns>
-        IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count);
+        IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count, string technos);
         IEnumerable<Violation> GetViolationsInActionPlan(string snapshotHref, int count);
     }
 }

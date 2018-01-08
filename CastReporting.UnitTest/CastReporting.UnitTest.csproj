@@ -211,7 +211,7 @@
     <Compile Include="Reporting\RuleBLLStub.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Graph\PortfolioGenericGraphTests.cs" />
-    <Compile Include="Reporting\Tables\CriticalViolationsListByBCTests.cs" />
+    <Compile Include="Reporting\Tables\ViolationsListByBCTests.cs" />
     <Compile Include="Reporting\Tables\PortfolioGenericTableTests.cs" />
     <Compile Include="Reporting\Tables\ActionPlanViolationsTests.cs" />
     <Compile Include="Reporting\Tables\QualityRuleViolationsTests.cs" />
