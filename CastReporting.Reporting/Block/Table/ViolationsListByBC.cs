@@ -10,8 +10,8 @@ using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Block.Table
 {
-    [Block("CRITICAL_VIOLATIONS_LIST")]
-    public class CriticalViolationsListByBC : TableBlock
+    [Block("VIOLATIONS_LIST")]
+    public class ViolationsListByBC : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
@@ -19,9 +19,11 @@ namespace CastReporting.Reporting.Block.Table
 
             string[] bcIds = options.GetOption("BCID") != null? options.GetOption("BCID").Trim().Split('|') : new[] { "60016" }; // by default, security
             int nbLimitTop = options.GetOption("COUNT") == "ALL" ? -1 : options.GetIntOption("COUNT", 10);
-            bool shortName = options.GetOption("NAME","FULL") == "SHORT";
+            bool shortName = options.GetOption("NAME","FULL").Equals("SHORT");
             bool hasPri = bcIds.Contains("60013") || bcIds.Contains("60014") || bcIds.Contains("60016");
             string filter = options.GetOption("FILTER", "ALL");
+            bool critical = options.GetOption("VIOLATIONS", "CRITICAL").Equals("CRITICAL");
+            string module = options.GetOption("MODULE");
 
             rowData.Add(Labels.ViolationStatus);
             if (hasPri) rowData.Add(Labels.PRI);
@@ -37,7 +39,14 @@ namespace CastReporting.Reporting.Block.Table
             
             foreach (string _bcid in bcIds)
             {
-                IEnumerable<Violation> bcresults = reportData.SnapshotExplorer.GetViolationsListIDbyBC(reportData.CurrentSnapshot.Href, "(critical-rules)", _bcid, -1);
+                Module mod = (module != null) ? reportData.CurrentSnapshot.Modules.FirstOrDefault(m => m.Name.Equals(module)) : null;
+                
+                string href = (mod == null) ? reportData.CurrentSnapshot.Href : mod.Href;
+
+                IEnumerable <Violation> bcresults = critical ? 
+                    reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(critical-rules)", _bcid, -1)
+                    : reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(nc:" + _bcid + ",cc:" + _bcid + ")", _bcid, -1) ;
+
                 switch (filter)
                 {
                     case "ADDED":
@@ -45,6 +54,9 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                     case "UNCHANGED":
                         bcresults = bcresults.Where(_ => _.Diagnosis.Status.Equals("unchanged"));
+                        break;
+                    case "UPDATED":
+                        bcresults = bcresults.Where(_ => _.Diagnosis.Status.Equals("updated"));
                         break;
                 }
                 var _violations = bcresults.ToList();

@@ -110,6 +110,7 @@ namespace CastReporting.UnitTest.Reporting
         [DeploymentItem(@".\Data\CriticalViolationsList_60013.json", "Data")]
         [DeploymentItem(@".\Data\CriticalViolationsList_60014.json", "Data")]
         [DeploymentItem(@".\Data\CriticalViolationsList_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60016_module.json", "Data")]
         [DeploymentItem(@".\Data\CriticalViolationsList_60017.json", "Data")]
         public IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count)
         {
@@ -144,6 +145,9 @@ namespace CastReporting.UnitTest.Reporting
                             res = new List<Violation>();
                             break;
                     }
+                    break;
+                case "(nc:60016,cc:60016)":
+                    res = TestUtility.GetSampleResult<Violation>(@".\Data\CriticalViolationsList_60016.json").ToList();
                     break;
                 default:
                     res = new List<Violation>();

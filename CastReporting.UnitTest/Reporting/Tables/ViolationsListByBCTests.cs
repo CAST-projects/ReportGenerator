@@ -6,7 +6,7 @@ using CastReporting.Reporting.ReportingModel;
 namespace CastReporting.UnitTest.Reporting.Tables
 {
     [TestClass]
-    public class CriticalViolationsListByBCTests
+    public class ViolationsListByBCTests
     {
         [TestInitialize()]
         public void Initialize()
@@ -37,7 +37,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             };
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
 
-            var component = new CastReporting.Reporting.Block.Table.CriticalViolationsListByBC();
+            var component = new CastReporting.Reporting.Block.Table.ViolationsListByBC();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"COUNT","4" },
@@ -77,7 +77,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             };
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
 
-            var component = new CastReporting.Reporting.Block.Table.CriticalViolationsListByBC();
+            var component = new CastReporting.Reporting.Block.Table.ViolationsListByBC();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"COUNT","ALL" },
@@ -118,7 +118,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             };
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
 
-            var component = new CastReporting.Reporting.Block.Table.CriticalViolationsListByBC();
+            var component = new CastReporting.Reporting.Block.Table.ViolationsListByBC();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"COUNT","ALL" },
@@ -165,7 +165,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             };
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
 
-            var component = new CastReporting.Reporting.Block.Table.CriticalViolationsListByBC();
+            var component = new CastReporting.Reporting.Block.Table.ViolationsListByBC();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"BCID","60017" },
@@ -187,6 +187,96 @@ namespace CastReporting.UnitTest.Reporting.Tables
             TestUtility.AssertTableContent(table, expectedData, 7, 9);
         }
 
+        [TestMethod]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60012.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60013.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60014.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60017.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
+        public void TestNonCriticalAdded()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+
+            var component = new CastReporting.Reporting.Block.Table.ViolationsListByBC();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COUNT","ALL" },
+                {"BCID","60016" },
+                {"FILTER","ADDED" },
+                {"VIOLATIONS", "ALL" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Violation Status", "PRI", "Exclusion Status", "Action Status", "Rule Name", "Business criterion name", "Object Name", "Object Status" });
+            expectedData.AddRange(new List<string> { "added", "336", "added", "n/a", "Avoid cyclical calls and inheritances between namespaces content", "Security", "CastReporting.UI.WPF.ViewModel", "unchanged" });
+            expectedData.AddRange(new List<string> { "added", "112", "added", "n/a", "Avoid cyclical calls and inheritances between namespaces content", "Security", "CastReporting.UI.WPF", "unchanged" });
+            TestUtility.AssertTableContent(table, expectedData, 8, 3);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60012.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60013.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60014.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CriticalViolationsList_60017.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
+        public void TestCriticalUnchangedModule()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+
+            var component = new CastReporting.Reporting.Block.Table.ViolationsListByBC();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COUNT","ALL" },
+                {"BCID","60016" },
+                {"FILTER", "UNCHANGED" },
+                {"VIOLATIONS", "CRITICAL" },
+                {"MODULE", "JSPBookDemo" }
+            };
+
+            Module mod = new Module()
+            {
+                Name = "JSPBookDemo",
+                Href = "AED/modules/6/snapshots/6"
+            };
+            reportData.CurrentSnapshot.Modules = new List<Module> {mod};
+
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Violation Status", "PRI", "Exclusion Status", "Action Status", "Rule Name", "Business criterion name", "Object Name", "Object Status" });
+            expectedData.AddRange(new List<string> { "unchanged", "1,288", "n/a", "n/a", "Avoid cyclical calls and inheritances between namespaces content", "Security", "CastReporting.Reporting.Helper", "unchanged" });
+            expectedData.AddRange(new List<string> { "unchanged", "168", "n/a", "n/a", "Avoid cyclical calls and inheritances between namespaces content", "Security", "CastReporting.Mediation.Interfaces", "unchanged" });
+            expectedData.AddRange(new List<string> { "unchanged", "168", "n/a", "n/a", "Avoid cyclical calls and inheritances between namespaces content", "Security", "CastReporting.Reporting.Builder", "unchanged" });
+            expectedData.AddRange(new List<string> { "unchanged", "112", "n/a", "n/a", "Avoid cyclical calls and inheritances between namespaces content", "Security", "CastReporting.Reporting", "unchanged" });
+            TestUtility.AssertTableContent(table, expectedData, 8, 5);
+        }
     }
 }
 
