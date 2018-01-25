@@ -214,7 +214,7 @@
     <value>Grössenbegrenzung klein</value>
   </data>
   <data name="lblTitleApplicationQuality" xml:space="preserve">
-    <value>Schwellwerte für die Applikationsqualität</value>
+    <value>Schwellwerte für die Applikationsqualität (TQI)</value>
   </data>
   <data name="lblTitleApplicationSize" xml:space="preserve">
     <value>Schwellwerte für die Applikationsgrösse</value>

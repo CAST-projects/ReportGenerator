@@ -34,6 +34,8 @@ namespace CastReporting.Reporting.Block.Table
             rowData.Add(Labels.BusinessCriterionName);
             rowData.Add(Labels.ObjectName);
             rowData.Add(Labels.ObjectStatus);
+            int nbCols = hasPri ? 8 : 7;
+            int nbRows;
 
             List<Violation> results = new List<Violation>();
 
@@ -49,24 +51,27 @@ namespace CastReporting.Reporting.Block.Table
                     reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(critical-rules)", _bcid, -1, "(" + technologies + ")")
                     : reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(nc:" + _bcid + ",cc:" + _bcid + ")", _bcid, -1,"(" + technologies + ")") ;
 
-                switch (filter)
+                if (bcresults != null)
                 {
-                    case "ADDED":
-                        bcresults = bcresults.Where(_ => _.Diagnosis.Status.Equals("added"));
-                        break;
-                    case "UNCHANGED":
-                        bcresults = bcresults.Where(_ => _.Diagnosis.Status.Equals("unchanged"));
-                        break;
-                    case "UPDATED":
-                        bcresults = bcresults.Where(_ => _.Diagnosis.Status.Equals("updated"));
-                        break;
+                    switch (filter)
+                    {
+                        case "ADDED":
+                            bcresults = bcresults.Where(_ => _.Diagnosis.Status.Equals("added"));
+                            break;
+                        case "UNCHANGED":
+                            bcresults = bcresults.Where(_ => _.Diagnosis.Status.Equals("unchanged"));
+                            break;
+                        case "UPDATED":
+                            bcresults = bcresults.Where(_ => _.Diagnosis.Status.Equals("updated"));
+                            break;
+                    }
+                    var _violations = bcresults.ToList();
+                    foreach (Violation _bcresult in _violations)
+                    {
+                        _bcresult.Component.PriBusinessCriterion = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(_bcid));
+                    }
+                    results.AddRange(_violations);
                 }
-                var _violations = bcresults.ToList();
-                foreach (Violation _bcresult in _violations)
-                {
-                    _bcresult.Component.PriBusinessCriterion = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(_bcid));
-                }
-                results.AddRange(_violations);
             }
 
             results = nbLimitTop != -1 ? results.Take(nbLimitTop).ToList() : results;
@@ -84,14 +89,24 @@ namespace CastReporting.Reporting.Block.Table
                     rowData.Add(shortName ? _violation.Component?.ShortName : _violation.Component?.Name ?? Constants.No_Value);
                     rowData.Add(_violation.Component?.Status ?? Constants.No_Value);
                 }
+                nbRows = results.Count + 1;
+            }
+            else
+            {
+                rowData.Add(Labels.NoItem);
+                for (int i = 1; i < nbCols; i++)
+                {
+                    rowData.Add(string.Empty);
+                }
+                nbRows = 2;
             }
 
             var table = new TableDefinition
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
-                NbRows = results.Count + 1,
-                NbColumns = hasPri ? 8 : 7,
+                NbRows = nbRows,
+                NbColumns = nbCols,
                 Data = rowData
             };
 

@@ -16,7 +16,7 @@ namespace CastReporting.Reporting.Block.Table
         {
             List<string> rowData = new List<string>();
 
-            string ruleId = options.GetOption("ID");
+            string ruleId = options.GetOption("ID", "7788");
             string bcId = options.GetOption("BCID", "60013");
             int nbLimitTop = options.GetIntOption("COUNT", 10);
             bool shortName = options.GetOption("NAME","FULL") == "SHORT";
@@ -48,12 +48,23 @@ namespace CastReporting.Reporting.Block.Table
                 IEnumerable<Violation> results = hasPreviousSnapshot && previous ?
                     reportData.SnapshotExplorer.GetViolationsListIDbyBC(reportData.PreviousSnapshot.Href, ruleId, bcId, nbLimitTop, "$all")
                     : reportData.SnapshotExplorer.GetViolationsListIDbyBC(reportData.CurrentSnapshot.Href, ruleId, bcId, nbLimitTop, "$all");
-
-                foreach (Violation _violation in results)
+                if (results != null)
                 {
-                    rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name);
-                    if (hasPri) rowData.Add(_violation.Component.PropagationRiskIndex.ToString("N0"));
-                    if (hasPreviousSnapshot && !previous) rowData.Add(_violation.Diagnosis.Status);
+                    foreach (Violation _violation in results)
+                    {
+                        rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name);
+                        if (hasPri) rowData.Add(_violation.Component.PropagationRiskIndex.ToString("N0"));
+                        if (hasPreviousSnapshot && !previous) rowData.Add(_violation.Diagnosis.Status);
+                    }
+                }
+                else
+                {
+                    rowData.Add(Labels.NoItem);
+                    for (int i = 1; i < nbCol; i++)
+                    {
+                        rowData.Add(string.Empty);
+                    }
+
                 }
             }
 

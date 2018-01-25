@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -20,6 +19,7 @@ namespace CastReporting.Reporting.Block.Table
             bool shortName = options.GetOption("NAME", "FULL") == "SHORT";
             int nbLimitTop = options.GetOption("COUNT") == "ALL" ? -1 : options.GetIntOption("COUNT", 10);
             string filter = options.GetOption("FILTER", "ALL");
+            int nbRows;
 
             rowData.Add(Labels.RuleName);
             rowData.Add(Labels.ObjectName);
@@ -29,36 +29,48 @@ namespace CastReporting.Reporting.Block.Table
             rowData.Add(Labels.LastUpdated);
 
             IEnumerable<Violation> results = reportData.SnapshotExplorer.GetViolationsInActionPlan(reportData.CurrentSnapshot.Href, nbLimitTop);
-
-            switch (filter)
+            if (results != null)
             {
-                case "ADDED":
-                    results = results.Where(_ => _.RemedialAction.Status.Equals("added"));
-                    break;
-                case "PENDING":
-                    results = results.Where(_ => _.RemedialAction.Status.Equals("pending"));
-                    break;
-                case "SOLVED":
-                    results = results.Where(_ => _.RemedialAction.Status.Equals("solved"));
-                    break;
+                switch (filter)
+                {
+                    case "ADDED":
+                        results = results.Where(_ => _.RemedialAction.Status.Equals("added"));
+                        break;
+                    case "PENDING":
+                        results = results.Where(_ => _.RemedialAction.Status.Equals("pending"));
+                        break;
+                    case "SOLVED":
+                        results = results.Where(_ => _.RemedialAction.Status.Equals("solved"));
+                        break;
+                }
+
+                var _violations = results as IList<Violation> ?? results.ToList();
+                foreach (Violation _violation in _violations)
+                {
+                    rowData.Add(_violation.RulePattern.Name ?? Constants.No_Value);
+                    rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name ?? Constants.No_Value);
+                    rowData.Add(_violation.RemedialAction.Comment ?? Constants.No_Value);
+                    rowData.Add(_violation.RemedialAction.Priority ?? Constants.No_Value);
+                    rowData.Add(_violation.RemedialAction.Status ?? Constants.No_Value);
+                    rowData.Add(_violation.RemedialAction.Dates.Updated.DateSnapShot?.ToString(Labels.FORMAT_LONG_DATE) ?? Constants.No_Value);
+                }
+                nbRows = _violations.Count() + 1;
             }
-
-            var _violations = results as IList<Violation> ?? results.ToList();
-            foreach (Violation _violation in _violations)
+            else
             {
-                rowData.Add(_violation.RulePattern.Name ?? Constants.No_Value);
-                rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name ?? Constants.No_Value);
-                rowData.Add(_violation.RemedialAction.Comment ?? Constants.No_Value);
-                rowData.Add(_violation.RemedialAction.Priority ?? Constants.No_Value);
-                rowData.Add(_violation.RemedialAction.Status ?? Constants.No_Value);
-                rowData.Add(_violation.RemedialAction.Dates.Updated.DateSnapShot?.ToString(Labels.FORMAT_LONG_DATE) ?? Constants.No_Value);
+                rowData.Add(Labels.NoItem);
+                for (int i = 1; i < 6; i++)
+                {
+                    rowData.Add(string.Empty);
+                }
+                nbRows = 2;
             }
 
             var table = new TableDefinition
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
-                NbRows = _violations.Count() + 1,
+                NbRows = nbRows,
                 NbColumns = 6,
                 Data = rowData
             };

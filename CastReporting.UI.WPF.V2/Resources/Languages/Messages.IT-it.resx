@@ -214,7 +214,7 @@
     <value>Limite di dimensione piccola</value>
   </data>
   <data name="lblTitleApplicationQuality" xml:space="preserve">
-    <value>Soglie di qualità dell'applicazione</value>
+    <value>Soglie di qualità dell'applicazione (TQI)</value>
   </data>
   <data name="lblTitleApplicationSize" xml:space="preserve">
     <value>Soglie di dimensione dell'applicazione</value>

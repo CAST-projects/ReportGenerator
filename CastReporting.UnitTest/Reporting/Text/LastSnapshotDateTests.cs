@@ -28,7 +28,7 @@ namespace CastReporting.UnitTest.Reporting.Text
             var component = new CurrentSnapshotDate();
             Dictionary<string, string> config = new Dictionary<string, string>();
             var str = component.Content(reportData, config);
-            Assert.AreEqual("01/21/2017", str);
+            Assert.AreEqual("Jan 21 2017", str);
         }
 
         [TestMethod]
