@@ -29,7 +29,7 @@ namespace CastReporting.UnitTest.DAL
         readonly WSConnection _connection = new WSConnection()
         {
             Url = "http://demo-eu-aed.castsoftware.com/AED/rest/",
-            Login = "admin",
+            Login = "cio",
             Password = "cast",
             IsActive = true,
             Name = "Default"
@@ -62,7 +62,6 @@ namespace CastReporting.UnitTest.DAL
         public void IsHttpsTlsv12ServiceValidTest()
         {
             // Ignored on jenkins machine, because the certificat tomcat.cer is not installed, and test failed
-            if (Environment.MachineName != "ABDLAP") return;
             ICastRepsitory context2 = new CastRepository(_connection2);
             bool result = context2.IsServiceValid();
             Assert.IsTrue(result);
@@ -127,7 +126,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetSnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            string snapshotId = "AED1/applications/3/snapshots/3";
+            string snapshotId = "AED1/applications/3/snapshots/2";
             Snapshot result = context.GetSnapshot(snapshotId);
             Assert.IsNotNull(result);
         }
@@ -153,7 +152,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetModulesBySnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            string appilcationId = "AED1/applications/3/snapshots/3";
+            string appilcationId = "AED1/applications/3/snapshots/2";
             var result = context.GetModules(appilcationId);
             Assert.IsNotNull(result);
             Assert.AreNotEqual(result.Count(), 0);
@@ -201,7 +200,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetQualityIndicatorsBySnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            const string snapshotRef = "AED1/applications/3/snapshots/3";
+            const string snapshotRef = "AED1/applications/3/snapshots/2";
 
             int[] businessCriterias = (int[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
@@ -267,7 +266,7 @@ namespace CastReporting.UnitTest.DAL
         public void GetSizingMeasuresBySnapshotTest()
         {
             ICastRepsitory context = new CastRepository(_connection);
-            const string snapshotRef = "AED1/applications/3/snapshots/3";
+            const string snapshotRef = "AED1/applications/3/snapshots/2";
 
             int[] sizingMeasures = (int[])Enum.GetValues(typeof(Constants.SizingInformations));
             string strSizingMeasures = string.Join(",", sizingMeasures);
@@ -307,7 +306,7 @@ namespace CastReporting.UnitTest.DAL
         {
 
             ICastRepsitory context = new CastRepository(_connection);
-            const string domainHref = "AED1/quality-indicators/61001/snapshots/3";
+            const string domainHref = "AED1/quality-indicators/61001/snapshots/2";
 
             var result = context.GetConfBusinessCriteria(domainHref);
 
