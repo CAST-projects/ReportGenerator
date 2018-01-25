@@ -214,7 +214,7 @@
     <value>Límite de tamaño menor</value>
   </data>
   <data name="lblTitleApplicationQuality" xml:space="preserve">
-    <value>Umbrales calidad aplicación</value>
+    <value>Umbrales calidad aplicación (TQI)</value>
   </data>
   <data name="lblTitleApplicationSize" xml:space="preserve">
     <value>Umbrales de Aplicación</value>

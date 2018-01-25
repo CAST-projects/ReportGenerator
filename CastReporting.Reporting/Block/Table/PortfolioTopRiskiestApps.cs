@@ -87,7 +87,7 @@ namespace CastReporting.Reporting.Block.Table
 
                     string strLastAnalysis = Convert.ToDateTime(_snapshot.Annotation.Date.DateSnapShot.Value).ToString("MMM dd yyyy");
 
-                    dt.Rows.Add(strAppName, _cv, strCurrentBCGrade, strLastAnalysis);
+                    dt.Rows.Add(strAppName, _cv.Value.ToString("N0"), strCurrentBCGrade, strLastAnalysis);
                     nbRows++;
                 }
                 catch (Exception ex)

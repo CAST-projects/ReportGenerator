@@ -56,7 +56,7 @@ namespace CastReporting.Reporting.Block.Table
             }
 
 			rowData.Add(Labels.VersionCurrent);
-		    rowData.AddRange(curVersion.Select(curValue => curValue.ToString()));
+		    rowData.AddRange(curVersion.Select(curValue => curValue.ToString("N0")));
 		    nbRows++;
 
 			rowData.Add("   " + Labels.ViolationsAdded);

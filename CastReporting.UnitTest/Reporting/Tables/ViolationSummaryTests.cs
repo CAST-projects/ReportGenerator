@@ -34,7 +34,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var expectedData = new List<string>();
             expectedData.AddRange(new List<string> { "Rule Name", "Grade", "Total Checks", "Added", "Removed", "Critical" });
             expectedData.AddRange(new List<string> { "Avoid declaring public Fields", "4.00", "113", "0","18", "X" });
-            expectedData.AddRange(new List<string> { "Close SQL connection ASAP", "4.00", "1110", "2", "7", "X" });
+            expectedData.AddRange(new List<string> { "Close SQL connection ASAP", "4.00", "1,110", "2", "7", "X" });
             expectedData.AddRange(new List<string> { "Avoid declaring Public Instance Variables", "3.08", "435", "0", "0", "X" });
             expectedData.AddRange(new List<string> { "Avoid hiding static Methods", "1.00", "70", "23", "7", "X" });
             expectedData.AddRange(new List<string> { "Avoid using Fields (non static final) from other Classes", "1.00", "642", "123", "456", "X" });
@@ -93,7 +93,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var expectedData = new List<string>();
             expectedData.AddRange(new List<string> { "Rule Name", "Grade", "Total Checks", "Added", "Removed", "Critical" });
             expectedData.AddRange(new List<string> { "Avoid declaring public Fields", "4.00", "113", "0", "18", "X" });
-            expectedData.AddRange(new List<string> { "Close SQL connection ASAP", "4.00", "1110", "2", "7", "X" });
+            expectedData.AddRange(new List<string> { "Close SQL connection ASAP", "4.00", "1,110", "2", "7", "X" });
             TestUtility.AssertTableContent(table, expectedData, 6, 3);
             Assert.IsTrue(table.HasColumnHeaders);
         }
@@ -155,7 +155,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var expectedData = new List<string>();
             expectedData.AddRange(new List<string> { "Rule Name", "Grade", "# Violations", "Successful Checks", "Critical" });
             expectedData.AddRange(new List<string> { "Avoid declaring public Fields", "4.00", "0", "113", "X" });
-            expectedData.AddRange(new List<string> { "Close SQL connection ASAP", "4.00", "0", "1110", "X" });
+            expectedData.AddRange(new List<string> { "Close SQL connection ASAP", "4.00", "0", "1,110", "X" });
             expectedData.AddRange(new List<string> { "Avoid declaring Public Instance Variables", "3.08", "2", "433", "X" });
             expectedData.AddRange(new List<string> { "Avoid hiding static Methods", "1.00", "3", "67", "X" });
             expectedData.AddRange(new List<string> { "Avoid using Fields (non static final) from other Classes", "1.00", "76", "566", "X" });

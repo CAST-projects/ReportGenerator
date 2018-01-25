@@ -178,7 +178,7 @@
     <value>Web service valide !</value>
   </data>
   <data name="msgReportGenerationSuccess" xml:space="preserve">
-    <value>Génération réalisé avec succès. Cliquer ci-dessous pour ouvrir le document généré</value>
+    <value>Génération réalisée avec succès. Cliquer ci-dessous pour ouvrir le document généré : </value>
   </data>
   <data name="msgGenericError" xml:space="preserve">
     <value>Une erreur est survenue pendant la génération</value>
@@ -199,10 +199,10 @@
     <value>Bonne qualité</value>
   </data>
   <data name="lblFieldQualityLow" xml:space="preserve">
-    <value>qualité faible</value>
+    <value>Qualité faible</value>
   </data>
   <data name="lblFieldQualityMedium" xml:space="preserve">
-    <value>qualité satisfaisante</value>
+    <value>Qualité satisfaisante</value>
   </data>
   <data name="lblFieldSizeLimitLarge" xml:space="preserve">
     <value>Limite grande</value>
@@ -214,7 +214,7 @@
     <value>Limite  petite</value>
   </data>
   <data name="lblTitleApplicationQuality" xml:space="preserve">
-    <value>Définition des seuils pour la qualité d'application</value>
+    <value>Définition des seuils pour la qualité de l'application (score du TQI)</value>
   </data>
   <data name="lblTitleApplicationSize" xml:space="preserve">
     <value>Définition des seuils pour la taille d'une application</value>
@@ -238,7 +238,7 @@
     <value>Activer</value>
   </data>
   <data name="lblFieldQualityVeryLow" xml:space="preserve">
-    <value>qualité très faible</value>
+    <value>Qualité très faible</value>
   </data>
   <data name="lblTitleSettings" xml:space="preserve">
     <value>Paramètres</value>
@@ -301,7 +301,7 @@
     <value>Sélection d'un Tag</value>
   </data>
   <data name="lblSelectPortfolioCategories" xml:space="preserve">
-    <value>Sélectionner Categorie</value>
+    <value>Sélectionner une catégorie</value>
   </data>
   <data name="lblSelectPortfolioTags" xml:space="preserve">
     <value>Sélectionner Tag</value>

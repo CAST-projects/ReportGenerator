@@ -99,15 +99,15 @@ namespace CastReporting.Reporting.Block.Table
                             }
                             if (showFailedChecks)
                             {
-                                dataRow.Set(Labels.ViolationsCount, detailResult.ViolationRatio?.FailedChecks.NAIfEmpty());
+                                dataRow.Set(Labels.ViolationsCount, (bool) detailResult.ViolationRatio?.FailedChecks.HasValue ? detailResult.ViolationRatio?.FailedChecks.Value.ToString("N0") : Constants.No_Value);
                             }
                             if (showSuccessfulChecks)
                             {
-                                dataRow.Set(Labels.TotalOk, detailResult.ViolationRatio?.SuccessfulChecks.NAIfEmpty());
+                                dataRow.Set(Labels.TotalOk, (bool) detailResult.ViolationRatio?.SuccessfulChecks.HasValue ? detailResult.ViolationRatio?.SuccessfulChecks.Value.ToString("N0") : Constants.No_Value);
                             }
                             if (showTotal)
                             {
-                                dataRow.Set(Labels.TotalChecks, detailResult.ViolationRatio?.TotalChecks.NAIfEmpty());
+                                dataRow.Set(Labels.TotalChecks, (bool) detailResult.ViolationRatio?.TotalChecks.HasValue ? detailResult.ViolationRatio?.TotalChecks.Value.ToString("N0") : Constants.No_Value);
                             }
                             if (showCompliance)
                             {
