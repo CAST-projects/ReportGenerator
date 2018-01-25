@@ -24,7 +24,7 @@
 					<exec executable="${EXT_TOOLS32}/signtool.exe" failonerror="true">
 						<arg value="sign"/>
 						<arg value="/f"/>
-						<arg value="\\productfs01\EngTools\certificates\certif_2018-01-13.pfx"/>
+						<arg value="\\productfs01\EngTools\certificates\certif_02_09_2021.pfx"/>
 						<arg value="/t"/>
 						<arg value="http://timestamp.verisign.com/scripts/timstamp.dll"/>
 						<arg value="/p"/>
