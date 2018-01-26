@@ -38,5 +38,31 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Assert.IsTrue(table.HasColumnHeaders);
         }
 
+        [TestMethod]
+        [DeploymentItem(@".\Data\ModulesCoCRA.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentTechSizeResultsModTechno.json", "Data")]
+        public void TestKLocs()
+        {
+            CastDate currentDate = new CastDate { Time = 1492984800000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("CoCRestAPI",
+                @".\Data\ModulesCoCRA.json", @".\Data\CurrentTechSizeResultsModTechno.json", "AED/applications/3/snapshots/4", "Snap4_CAIP-8.3ra_RG-1.5.a", "8.3.ra", currentDate,
+                null, null, null, null, null, null);
+
+            var component = new LocByModule();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"FORMAT","KLOC" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Module Name", "kLoC" });
+            expectedData.AddRange(new List<string> { "AAD-Admin", "10" });
+            expectedData.AddRange(new List<string> { "AED-Admin", "28" });
+            expectedData.AddRange(new List<string> { "ReportGenerator", "24" });
+            TestUtility.AssertTableContent(table, expectedData, 2, 4);
+            Assert.IsTrue(table.HasColumnHeaders);
+        }
+
     }
 }

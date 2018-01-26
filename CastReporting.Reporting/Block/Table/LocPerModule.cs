@@ -20,6 +20,7 @@ using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Languages;
 using CastReporting.Domain;
+using CastReporting.Reporting.Helper;
 
 
 namespace CastReporting.Reporting.Block.Table
@@ -43,7 +44,10 @@ namespace CastReporting.Reporting.Block.Table
         {
             int nbTot = 0;
             List<string> rowData = new List<string>();
-            rowData.AddRange(new[] { Labels.ModuleName, Labels.LoC });
+
+            bool kloc = options.GetOption("FORMAT", "LOC").Equals("KLOC");
+
+            rowData.AddRange(kloc ? new[] {Labels.ModuleName, Labels.kLoC} : new[] {Labels.ModuleName, Labels.LoC});
 
             if (reportData?.CurrentSnapshot?.Modules != null)
             {
@@ -53,7 +57,11 @@ namespace CastReporting.Reporting.Block.Table
                {
                    foreach (var res in result.ModulesResult)
                    {
-                       rowData.AddRange(new[] { res.Module.Name, res.DetailResult.Value?.ToString(MetricFormat) });
+                       double? codeLineNb = res.DetailResult.Value;
+                       rowData.AddRange(kloc ?
+                           new[] { res.Module.Name, (codeLineNb / 1000)?.ToString(MetricFormat) }
+                           : new[] { res.Module.Name, codeLineNb?.ToString(MetricFormat) }
+                       );
                    }
                    nbTot = result.ModulesResult.Length;
                }
