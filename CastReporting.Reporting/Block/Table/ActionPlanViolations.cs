@@ -45,16 +45,28 @@ namespace CastReporting.Reporting.Block.Table
                 }
 
                 var _violations = results as IList<Violation> ?? results.ToList();
-                foreach (Violation _violation in _violations)
+                if (_violations.Count() != 0)
                 {
-                    rowData.Add(_violation.RulePattern.Name ?? Constants.No_Value);
-                    rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name ?? Constants.No_Value);
-                    rowData.Add(_violation.RemedialAction.Comment ?? Constants.No_Value);
-                    rowData.Add(_violation.RemedialAction.Priority ?? Constants.No_Value);
-                    rowData.Add(_violation.RemedialAction.Status ?? Constants.No_Value);
-                    rowData.Add(_violation.RemedialAction.Dates.Updated.DateSnapShot?.ToString(Labels.FORMAT_LONG_DATE) ?? Constants.No_Value);
+                    foreach (Violation _violation in _violations)
+                    {
+                        rowData.Add(_violation.RulePattern.Name ?? Constants.No_Value);
+                        rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name ?? Constants.No_Value);
+                        rowData.Add(_violation.RemedialAction.Comment ?? Constants.No_Value);
+                        rowData.Add(_violation.RemedialAction.Priority ?? Constants.No_Value);
+                        rowData.Add(_violation.RemedialAction.Status ?? Constants.No_Value);
+                        rowData.Add(_violation.RemedialAction.Dates.Updated.DateSnapShot?.ToString(Labels.FORMAT_LONG_DATE) ?? Constants.No_Value);
+                    }
+                    nbRows = _violations.Count() + 1;
                 }
-                nbRows = _violations.Count() + 1;
+                else
+                {
+                    rowData.Add(Labels.NoItem);
+                    for (int i = 1; i < 6; i++)
+                    {
+                        rowData.Add(string.Empty);
+                    }
+                    nbRows = 2;
+                }
             }
             else
             {

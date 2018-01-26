@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
@@ -50,11 +51,22 @@ namespace CastReporting.Reporting.Block.Table
                     : reportData.SnapshotExplorer.GetViolationsListIDbyBC(reportData.CurrentSnapshot.Href, ruleId, bcId, nbLimitTop, "$all");
                 if (results != null)
                 {
-                    foreach (Violation _violation in results)
+                    if (results.Count() != 0)
                     {
-                        rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name);
-                        if (hasPri) rowData.Add(_violation.Component.PropagationRiskIndex.ToString("N0"));
-                        if (hasPreviousSnapshot && !previous) rowData.Add(_violation.Diagnosis.Status);
+                        foreach (Violation _violation in results)
+                        {
+                            rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name);
+                            if (hasPri) rowData.Add(_violation.Component.PropagationRiskIndex.ToString("N0"));
+                            if (hasPreviousSnapshot && !previous) rowData.Add(_violation.Diagnosis.Status);
+                        }
+                    }
+                    else
+                    {
+                        rowData.Add(Labels.NoItem);
+                        for (int i = 1; i < nbCol; i++)
+                        {
+                            rowData.Add(string.Empty);
+                        }
                     }
                 }
                 else
@@ -64,7 +76,6 @@ namespace CastReporting.Reporting.Block.Table
                     {
                         rowData.Add(string.Empty);
                     }
-
                 }
             }
 
