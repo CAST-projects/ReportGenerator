@@ -70,7 +70,7 @@ namespace CastReporting.BLL.Computing
                 reslutByTechnicalCriterias.Add(ruleViolationResult);
             }
 
-            return reslutByTechnicalCriterias.OrderBy(_ => _.Rule.Name).Take(count).ToList();
+            return (count == -1) ? reslutByTechnicalCriterias.OrderBy(_ => _.Rule.Name).ToList() : reslutByTechnicalCriterias.OrderBy(_ => _.Rule.Name).Take(count).ToList();
         }
 
 
