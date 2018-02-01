@@ -40,7 +40,7 @@ namespace CastReporting.Reporting.Block.Table
             int count;
             if (options == null || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out count))
             {
-                count = reportData.Parameter.NbResultDefault;
+                count = -1;
             }
 
             if (string.IsNullOrWhiteSpace(srBusinessCriterias)) return null;
