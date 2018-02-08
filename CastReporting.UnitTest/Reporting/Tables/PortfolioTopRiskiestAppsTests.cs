@@ -61,7 +61,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var expectedData = new List<string>();
             expectedData.AddRange(new List<string> { "Application", "Critical Violations", "TQI", "Snapshot Date" });
             expectedData.AddRange(new List<string> { "Big Ben", "616", "2.23", "Nov 15 2013" });
-            expectedData.AddRange(new List<string> { "AppliAEPtran", "1560", "2.52", "Jul 13 2016" });
+            expectedData.AddRange(new List<string> { "AppliAEPtran", "1,560", "2.52", "Jul 13 2016" });
             TestUtility.AssertTableContent(table, expectedData, 4, 3);
             Assert.IsTrue(table.HasColumnHeaders);
         }
