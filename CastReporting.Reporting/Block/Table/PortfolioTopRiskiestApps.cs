@@ -87,7 +87,7 @@ namespace CastReporting.Reporting.Block.Table
 
                     string strLastAnalysis = Convert.ToDateTime(_snapshot.Annotation.Date.DateSnapShot.Value).ToString("MMM dd yyyy");
 
-                    dt.Rows.Add(strAppName, _cv.Value.ToString("N0"), strCurrentBCGrade, strLastAnalysis);
+                    dt.Rows.Add(strAppName, _cv.Value, strCurrentBCGrade, strLastAnalysis);
                     nbRows++;
                 }
                 catch (Exception ex)
@@ -110,8 +110,8 @@ namespace CastReporting.Reporting.Block.Table
                 rowData.AddRange
                 (new[] {
                     dtSorted.Rows[i]["AppName"].ToString()
-                    , dtSorted.Rows[i]["CV"].ToString()
-                    , $"{Convert.ToDouble(dtSorted.Rows[i]["BizCritScore"]):0.00}"
+                    , $"{Convert.ToDouble(dtSorted.Rows[i]["CV"]):N0}"
+                    , $"{Convert.ToDouble(dtSorted.Rows[i]["BizCritScore"]):N2}"
                     , dtSorted.Rows[i]["LastAnalysis"].ToString()
                 });
             }
