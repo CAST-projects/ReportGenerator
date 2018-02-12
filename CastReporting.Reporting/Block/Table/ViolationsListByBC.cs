@@ -24,7 +24,7 @@ namespace CastReporting.Reporting.Block.Table
             string filter = options.GetOption("FILTER", "ALL");
             bool critical = options.GetOption("VIOLATIONS", "CRITICAL").Equals("CRITICAL");
             string module = options.GetOption("MODULE");
-            string[] technos = options.GetOption("TECHNOLOGIES") != null ? options.GetOption("TECHNOLOGIES").Trim().Split('|') : new[] { "$all" };
+            string[] technos = (options.GetOption("TECHNOLOGIES") != null && !options.GetOption("TECHNOLOGIES").Equals("ALL")) ? options.GetOption("TECHNOLOGIES").Trim().Split('|') : new[] { "$all" };
 
             rowData.Add(Labels.ViolationStatus);
             if (hasPri) rowData.Add(Labels.PRI);
