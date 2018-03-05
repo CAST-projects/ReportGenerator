@@ -396,7 +396,7 @@ namespace CastReporting.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Result> ICastRepsitory.GetResultsQualityIndicators(string hRef, string qiParam, string snapshotsParam, string modulesParam, string technologiesParam, string categoriesParam)
+        IEnumerable<Result> ICastRepsitory.GetResultsQualityIndicators(string hRef, string qiParam, string snapshotsParam, string modulesParam, string technologiesParam)
         {
             string query = _query_result_quality_indicators;
             if (!string.IsNullOrEmpty(snapshotsParam))
@@ -408,10 +408,7 @@ namespace CastReporting.Repositories
             if (!string.IsNullOrEmpty(technologiesParam))
                 query = query + "&technologies=({4})";
 
-            if (!string.IsNullOrEmpty(categoriesParam))
-                query = query + "&categories=({5})";
-
-            string relativeURL = string.Format(query, hRef, qiParam, snapshotsParam, modulesParam, technologiesParam, categoriesParam);
+            string relativeURL = string.Format(query, hRef, qiParam, snapshotsParam, modulesParam, technologiesParam);
 
             return CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
         }

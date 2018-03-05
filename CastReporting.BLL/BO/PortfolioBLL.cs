@@ -70,7 +70,7 @@ namespace CastReporting.BLL
                     {
                         try
                         {
-                            app.BusinessCriteriaResults = castRepsitory.GetResultsQualityIndicators(app.Href, strBusinessCriterias, "$all", string.Empty, string.Empty, string.Empty)?.ToList();
+                            app.BusinessCriteriaResults = castRepsitory.GetResultsQualityIndicators(app.Href, strBusinessCriterias, "$all", string.Empty, string.Empty)?.ToList();
                         }
                         catch (WebException ex)
                         {
