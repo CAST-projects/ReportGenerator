@@ -48,6 +48,12 @@
     <Compile Include="Enum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CastReporting.Domain\CastReporting.Domain.csproj">
+      <Project>{E696CC9D-E471-4360-8664-FBA3C5B3D375}</Project>
+      <Name>CastReporting.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -950,7 +950,16 @@ namespace CastReporting.UI.WPF.ViewModel
                     using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
                     {
                         Applications = castDomainBLL.GetApplications().Select(app => new ApplicationItem(app));
-                        Categories = castDomainBLL.GetCategories();
+                        List<CastDomain> domains = castDomainBLL.GetDomains().ToList();
+                        foreach (CastDomain domain in domains)
+                        {
+                            if (domain.DBType.Equals("AAD")) Categories = castDomainBLL.GetCategories();
+                        }
+                        if (Categories == null)
+                        {
+                            Categories = new List<string>();
+                        }
+
                         SelectedTab = 0;
                     }
                 }
