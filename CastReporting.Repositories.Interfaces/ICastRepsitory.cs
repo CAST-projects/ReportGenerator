@@ -73,7 +73,7 @@ namespace CastReporting.Repositories.Interfaces
         /// 
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Result> GetResultsQualityIndicators(string hRef, string qiParam, string snapshotsParam, string modulesParam, string technologiesParam, string categoriesParam);
+        IEnumerable<Result> GetResultsQualityIndicators(string hRef, string qiParam, string snapshotsParam, string modulesParam, string technologiesParam);
 
         /// <summary>
         /// 

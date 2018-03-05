@@ -75,7 +75,7 @@ namespace CastReporting.BLL
 
             using (var castRepsitory = GetRepository())
             {
-                _Application.BusinessCriteriaResults = castRepsitory.GetResultsQualityIndicators(_Application.Href, strBusinessCriteria, "$all", string.Empty, string.Empty, string.Empty)?.ToList();
+                _Application.BusinessCriteriaResults = castRepsitory.GetResultsQualityIndicators(_Application.Href, strBusinessCriteria, "$all", string.Empty, string.Empty)?.ToList();
             }
 
             if (_Application.BusinessCriteriaResults == null) return;

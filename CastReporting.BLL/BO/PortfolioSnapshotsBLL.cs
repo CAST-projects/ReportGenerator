@@ -60,7 +60,7 @@ namespace CastReporting.BLL
                     {
                         try
                         {
-                            var qualityIndicatorsResults = castRepsitory.GetResultsQualityIndicators(snap.Href, qualityIndicators, string.Empty, "$all", "$all", "$all")
+                            var qualityIndicatorsResults = castRepsitory.GetResultsQualityIndicators(snap.Href, qualityIndicators, string.Empty, "$all", "$all")
                                 .Where(_ => _.ApplicationResults != null)
                                 .SelectMany(_ => _.ApplicationResults)
                                 .ToList();

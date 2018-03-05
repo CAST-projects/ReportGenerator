@@ -61,7 +61,7 @@ namespace CastReporting.BLL
 
             using (var castRepsitory = GetRepository())
             {
-                var qualityIndicatorsResults = castRepsitory.GetResultsQualityIndicators(_Snapshot.Href, qualityIndicators, string.Empty, "$all", "$all", "$all")
+                var qualityIndicatorsResults = castRepsitory.GetResultsQualityIndicators(_Snapshot.Href, qualityIndicators, string.Empty, "$all", "$all")
                                                                       .Where(_ => _.ApplicationResults != null)
                                                                       .SelectMany(_ => _.ApplicationResults)
                                                                       .ToList();
@@ -291,7 +291,7 @@ namespace CastReporting.BLL
             {
                 using (var castRepsitory = GetRepository())
                 {
-                    return castRepsitory.GetResultsQualityIndicators(snapshotHref, qualityIndicator, string.Empty, string.Empty, string.Empty,string.Empty);
+                    return castRepsitory.GetResultsQualityIndicators(snapshotHref, qualityIndicator, string.Empty, string.Empty, string.Empty);
                 }
             }
             catch (Exception ex)
@@ -573,8 +573,6 @@ namespace CastReporting.BLL
                 Task taskQualityIndicators = new Task(() => snapshotBll.SetQualityIndicators());
                 taskQualityIndicators.Start();
 
-
-
                 //Build Sizing Measures
                 Task taskSizingMeasure = new Task(() => snapshotBll.SetSizingMeasure());
                 taskSizingMeasure.Start();
@@ -583,11 +581,9 @@ namespace CastReporting.BLL
                 Task taskConfigurationBusinessCriterias = new Task(() => snapshotBll.SetConfigurationBusinessCriterias());
                 taskConfigurationBusinessCriterias.Start();
 
-
                 //Build Configuration for Business Criteria
                 Task taskComplexity = new Task(() => snapshotBll.SetComplexity());
                 taskComplexity.Start();
-
 
                 //build action plan
                 // ReSharper disable once InconsistentNaming
@@ -597,7 +593,6 @@ namespace CastReporting.BLL
                     taskAP = new Task(() => snapshotBll.SetActionsPlan());
                     taskAP.Start();
                 }
-
 
                 taskModules.Wait();
                 taskQualityIndicators.Wait();

@@ -186,7 +186,7 @@ namespace CastReporting.UnitTest.DAL
             int[] businessCriterias = (int[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
 
-            var result = context.GetResultsQualityIndicators(appilcationRef, strBusinessCriterias, "$all", string.Empty, string.Empty, string.Empty);
+            var result = context.GetResultsQualityIndicators(appilcationRef, strBusinessCriterias, "$all", string.Empty, string.Empty);
             
             
             Assert.IsNotNull(result);
@@ -207,7 +207,7 @@ namespace CastReporting.UnitTest.DAL
             int[] businessCriterias = (int[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
 
-            var result = context.GetResultsQualityIndicators(snapshotRef, strBusinessCriterias, string.Empty, "$all", "$all", "$all");
+            var result = context.GetResultsQualityIndicators(snapshotRef, strBusinessCriterias, string.Empty, "$all", "$all");
 
 
             Assert.IsNotNull(result);
@@ -229,7 +229,7 @@ namespace CastReporting.UnitTest.DAL
             int[] businessCriterias = (int[])Enum.GetValues(typeof(Constants.BusinessCriteria));
             string strBusinessCriterias = string.Join(",", businessCriterias);
 
-            var result = context.GetResultsQualityIndicators(moduleRef, strBusinessCriterias, string.Empty, string.Empty, string.Empty, string.Empty);
+            var result = context.GetResultsQualityIndicators(moduleRef, strBusinessCriterias, string.Empty, string.Empty, string.Empty);
 
 
             Assert.IsNotNull(result);
