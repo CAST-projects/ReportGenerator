@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2016 CAST
+ *   Copyright (c) 2018 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Threading;
 using Cast.Util.Log;
 using CastReporting.Domain;
 using CastReporting.Mediation;
@@ -93,7 +94,8 @@ namespace CastReporting.Repositories
         /// <param name="connection"></param>
         public CastRepository(WSConnection connection)
         {
-            _Client = new CastProxy(connection.Login, connection.Password);
+            //_Client = new CastProxy(connection.Login, connection.Password);
+            _Client = new CastProxy(connection);
             _CurrentConnection = connection.Url;
         }
 
@@ -513,6 +515,7 @@ namespace CastReporting.Repositories
 
             try
             {
+                LogHelper.Instance.LogDebug(requestUrl);
                 var jsonString = _Client.DownloadString(requestUrl, pComplexity);
 
                 var serializer = new DataContractJsonSerializer(typeof(T));

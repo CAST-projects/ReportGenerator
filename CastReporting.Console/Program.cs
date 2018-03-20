@@ -11,6 +11,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using Cast.Util.Version;
 
 namespace CastReporting.Console
 {
@@ -101,6 +102,8 @@ namespace CastReporting.Console
         /// <returns></returns>
         private static string GenerateReport(XmlCastReport arguments, out string help)
         {
+            VersionUtil.Jsessionid = null;
+            VersionUtil.ckjSessionId = null;
             if (arguments.ReportType != null)
             {
 

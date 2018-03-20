@@ -1,4 +1,6 @@
 ﻿
+using System.Net;
+
 namespace Cast.Util.Version
 {
     public class VersionUtil
@@ -28,5 +30,8 @@ namespace Cast.Util.Version
             }
             return intdigits[idx];
         }
+
+        public static string Jsessionid;
+        public static Cookie ckjSessionId;
     }
 }

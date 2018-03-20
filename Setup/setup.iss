@@ -7,12 +7,13 @@
 #define MyAppExe "../CastReporting.UI.WPF.V2/bin/Release/"+MyAppExeName
 #define MyAppCopyright GetFileCopyright(MyAppExe)
 #define App160Id "{{B3C47653-5B85-4218-AFC5-EB9F2AAD341B}"
+#define App161Id "{{0A0C80CC-7615-4951-A198-F6BE1E8EE71D}"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{B3C47653-5B85-4218-AFC5-EB9F2AAD341B}
+AppId={{0A0C80CC-7615-4951-A198-F6BE1E8EE71D}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} {#MyAppVersion}
@@ -227,6 +228,7 @@ begin
         exit;
     end;
     result := UninstallOldVersion('{#App160Id}', '1.6.0');
+    result := UninstallOldVersion('{#App161Id}', '1.6.1');
 end;
 
 procedure InitializeWizard;
