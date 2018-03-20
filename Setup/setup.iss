@@ -1,6 +1,6 @@
 #define MyAppName "CAST Report Generator"
 #define MyAppShortName "ReportGenerator"
-#define MyAppVersion "1.5.1"
+#define MyAppVersion "1.5.2"
 #define MyAppPublisher "CAST"
 #define MyAppURL "http://www.castsoftware.com/"
 #define MyAppExeName "CastReporting.UI.WPF.exe"
