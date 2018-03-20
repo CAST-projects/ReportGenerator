@@ -1,6 +1,4 @@
 ﻿
-using System.Net;
-
 namespace Cast.Util.Version
 {
     public class VersionUtil
