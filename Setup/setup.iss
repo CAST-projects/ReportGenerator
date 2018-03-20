@@ -8,12 +8,13 @@
 #define MyAppCopyright GetFileCopyright(MyAppExe)
 #define App150Id "{{E448CBD2-0E77-49F3-9801-BC52CCC304C3}"
 #define App151Id "{{510FFA00-9204-44C2-8D85-90CDA2814841}"
+#define App152Id "{{BA0DB67B-97F2-4031-B028-27AC8D267719}"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{510FFA00-9204-44C2-8D85-90CDA2814841}
+AppId={{BA0DB67B-97F2-4031-B028-27AC8D267719}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} {#MyAppVersion}
@@ -229,6 +230,7 @@ begin
     end;
     result := UninstallOldVersion('{#App150Id}', '1.5.0');
     result := UninstallOldVersion('{#App151Id}', '1.5.1');
+    result := UninstallOldVersion('{#App152Id}', '1.5.2');
 end;
 
 procedure InitializeWizard;

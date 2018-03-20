@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2016 CAST
+ *   Copyright (c) 2018 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -541,6 +541,12 @@ namespace CastReporting.BLL
                 Task taskConfigurationBusinessCriterias = new Task(() => snapshotBll.SetConfigurationBusinessCriterias());
                 taskConfigurationBusinessCriterias.Start();
 
+                // REPORTGEN-321 : in some cases, the url of complexity get confused because there is less than 1ms between 2 urls, 
+                // so we have to wait the end of previous tasks before asking for complexity
+                taskModules.Wait();
+                taskQualityIndicators.Wait();
+                taskSizingMeasure.Wait();
+                taskConfigurationBusinessCriterias.Wait();
 
                 //Build Configuration for Business Criteria
                 Task taskComplexity = new Task(() => snapshotBll.SetComplexity());
@@ -556,11 +562,6 @@ namespace CastReporting.BLL
                     taskAP.Start();
                 }
 
-
-                taskModules.Wait();
-                taskQualityIndicators.Wait();
-                taskSizingMeasure.Wait();
-                taskConfigurationBusinessCriterias.Wait();
                 taskComplexity.Wait();
                 taskAP?.Wait();
             }
