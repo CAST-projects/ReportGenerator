@@ -573,8 +573,6 @@ namespace CastReporting.BLL
                 Task taskQualityIndicators = new Task(() => snapshotBll.SetQualityIndicators());
                 taskQualityIndicators.Start();
 
-
-
                 //Build Sizing Measures
                 Task taskSizingMeasure = new Task(() => snapshotBll.SetSizingMeasure());
                 taskSizingMeasure.Start();
@@ -583,6 +581,10 @@ namespace CastReporting.BLL
                 Task taskConfigurationBusinessCriterias = new Task(() => snapshotBll.SetConfigurationBusinessCriterias());
                 taskConfigurationBusinessCriterias.Start();
 
+                taskModules.Wait();
+                taskQualityIndicators.Wait();
+                taskSizingMeasure.Wait();
+                taskConfigurationBusinessCriterias.Wait();
 
                 //Build Configuration for Business Criteria
                 Task taskComplexity = new Task(() => snapshotBll.SetComplexity());
@@ -598,11 +600,6 @@ namespace CastReporting.BLL
                     taskAP.Start();
                 }
 
-
-                taskModules.Wait();
-                taskQualityIndicators.Wait();
-                taskSizingMeasure.Wait();
-                taskConfigurationBusinessCriterias.Wait();
                 taskComplexity.Wait();
                 taskAP?.Wait();
             }
