@@ -19,8 +19,6 @@ using System.Diagnostics;
 using System.Net;
 using System.Text;
 using Cast.Util.Log;
-using Cast.Util.Version;
-using CastReporting.Domain;
 using CastReporting.Mediation.Interfaces;
 using CastReporting.Mediation.Properties;
 
@@ -56,9 +54,6 @@ namespace CastReporting.Mediation
         /// </summary>
         public bool HeadOnly { get; set; }
 
-        public CookieContainer CookieContainer { get; private set; }
-        public CookieCollection ResponseCookies { get; set; }
-
         #endregion PROPERTIES
 
         #region CONSTRUCTORS
@@ -68,28 +63,9 @@ namespace CastReporting.Mediation
         /// </summary>
         public CastProxy(string login, string password)
         {
-            CookieContainer = new CookieContainer();
-            ResponseCookies = new CookieCollection();
             string credentials = CreateBasicAuthenticationCredentials(login, password);
             Headers.Add(HttpRequestHeader.Authorization, credentials);
         }
-
-        public CastProxy(WSConnection connection)
-        {
-            CookieContainer = new CookieContainer();
-            ResponseCookies = new CookieCollection();
-            if (VersionUtil.ckjSessionId == null)
-            {
-                string credentials = CreateBasicAuthenticationCredentials(connection.Login, connection.Password);
-                Headers.Add(HttpRequestHeader.Authorization, credentials);
-            }
-            else
-            {
-                CookieContainer.Add(VersionUtil.ckjSessionId);
-                Headers.Add(HttpRequestHeader.Cookie, "JSESSIONID=" + VersionUtil.ckjSessionId.Value);
-            }
-        }
-
 
         #endregion CONSTRUCTORS
 
@@ -200,27 +176,12 @@ namespace CastReporting.Mediation
             if (result == null) return null;
             result.Timeout = Timeout;
 
-            if (result is HttpWebRequest)
-            {
-                if (VersionUtil.ckjSessionId != null) CookieContainer.Add(VersionUtil.ckjSessionId);
-                (result as HttpWebRequest).CookieContainer = CookieContainer;
-            }
-
             if (HeadOnly && result.Method == "GET")
             {
                 result.Method = "HEAD";
             }
 
             return result;
-        }
-
-        protected override WebResponse GetWebResponse(WebRequest request)
-        {
-            var response = (HttpWebResponse)base.GetWebResponse(request);
-            ResponseCookies = response?.Cookies;
-            if (VersionUtil.ckjSessionId == null) VersionUtil.ckjSessionId = ResponseCookies["JSESSIONID"];
-            if (VersionUtil.ckjSessionId != null) VersionUtil.Jsessionid = VersionUtil.ckjSessionId.Value;
-            return response;
         }
 
         /// <summary>

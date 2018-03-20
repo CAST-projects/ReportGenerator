@@ -102,8 +102,6 @@ namespace CastReporting.Console
         /// <returns></returns>
         private static string GenerateReport(XmlCastReport arguments, out string help)
         {
-            VersionUtil.Jsessionid = null;
-            VersionUtil.ckjSessionId = null;
             if (arguments.ReportType != null)
             {
 

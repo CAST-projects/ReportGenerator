@@ -31,7 +31,6 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Input;
 using System.Windows.Threading;
-using Cast.Util.Version;
 
 // ReSharper disable InconsistentNaming
 
@@ -816,8 +815,6 @@ namespace CastReporting.UI.WPF.ViewModel
         {
             string tmpReportFile = string.Empty;
             string tmpReportFileFlexi = string.Empty;
-            VersionUtil.Jsessionid = null;
-            VersionUtil.ckjSessionId = null;
 
             try
             {

@@ -19,7 +19,6 @@ using System.IO;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Threading;
 using Cast.Util.Log;
 using CastReporting.Domain;
 using CastReporting.Mediation;
@@ -94,8 +93,7 @@ namespace CastReporting.Repositories
         /// <param name="connection"></param>
         public CastRepository(WSConnection connection)
         {
-            //_Client = new CastProxy(connection.Login, connection.Password);
-            _Client = new CastProxy(connection);
+            _Client = new CastProxy(connection.Login, connection.Password);
             _CurrentConnection = connection.Url;
         }
 
@@ -515,7 +513,6 @@ namespace CastReporting.Repositories
 
             try
             {
-                LogHelper.Instance.LogDebug(requestUrl);
                 var jsonString = _Client.DownloadString(requestUrl, pComplexity);
 
                 var serializer = new DataContractJsonSerializer(typeof(T));
