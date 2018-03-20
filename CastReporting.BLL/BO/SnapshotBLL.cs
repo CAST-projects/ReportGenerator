@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2016 CAST
+ *   Copyright (c) 2018 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -568,11 +568,12 @@ namespace CastReporting.BLL
             {
                 Task taskModules = new Task(() => snapshotBll.SetModules());
                 taskModules.Start();
+                
 
                 //Build Quality Indicators
                 Task taskQualityIndicators = new Task(() => snapshotBll.SetQualityIndicators());
                 taskQualityIndicators.Start();
-
+                
                 //Build Sizing Measures
                 Task taskSizingMeasure = new Task(() => snapshotBll.SetSizingMeasure());
                 taskSizingMeasure.Start();
@@ -580,6 +581,7 @@ namespace CastReporting.BLL
                 //Build Configuration for Business Criteria
                 Task taskConfigurationBusinessCriterias = new Task(() => snapshotBll.SetConfigurationBusinessCriterias());
                 taskConfigurationBusinessCriterias.Start();
+
 
                 //Build Configuration for Business Criteria
                 Task taskComplexity = new Task(() => snapshotBll.SetComplexity());

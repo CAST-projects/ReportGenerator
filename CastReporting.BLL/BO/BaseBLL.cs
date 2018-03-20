@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2016 CAST
+ *   Copyright (c) 2018 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,6 @@ namespace CastReporting.BLL
         /// </summary>
         protected BaseBLL()
         {
-          
         }
 
         /// <summary>
@@ -56,8 +55,6 @@ namespace CastReporting.BLL
         protected BaseBLL(WSConnection connection)
         {
             Connection = connection;
-
-          
         }
 
 

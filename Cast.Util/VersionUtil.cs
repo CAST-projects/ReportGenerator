@@ -28,5 +28,6 @@ namespace Cast.Util.Version
             }
             return intdigits[idx];
         }
+
     }
 }

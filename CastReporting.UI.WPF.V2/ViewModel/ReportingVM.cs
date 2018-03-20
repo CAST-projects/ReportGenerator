@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2016 CAST
+ *   Copyright (c) 2018 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Input;
 using System.Windows.Threading;
+
 // ReSharper disable InconsistentNaming
 
 namespace CastReporting.UI.WPF.ViewModel

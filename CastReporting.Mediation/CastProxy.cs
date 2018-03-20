@@ -1,5 +1,5 @@
 ﻿/*
- *   Copyright (c) 2016 CAST
+ *   Copyright (c) 2018 CAST
  *
  * Licensed under a custom license, Version 1.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ namespace CastReporting.Mediation
         /// HEAD method option
         /// </summary>
         public bool HeadOnly { get; set; }
-        
+
         #endregion PROPERTIES
 
         #region CONSTRUCTORS
@@ -66,7 +66,6 @@ namespace CastReporting.Mediation
             string credentials = CreateBasicAuthenticationCredentials(login, password);
             Headers.Add(HttpRequestHeader.Authorization, credentials);
         }
-            
 
         #endregion CONSTRUCTORS
 
@@ -184,7 +183,7 @@ namespace CastReporting.Mediation
 
             return result;
         }
-    
+
         /// <summary>
         /// 
         /// </summary>
