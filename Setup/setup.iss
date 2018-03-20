@@ -6,8 +6,7 @@
 #define MyAppExeName "CastReporting.UI.WPF.exe"
 #define MyAppExe "../CastReporting.UI.WPF.V2/bin/Release/"+MyAppExeName
 #define MyAppCopyright GetFileCopyright(MyAppExe)
-#define App160Id "{{B3C47653-5B85-4218-AFC5-EB9F2AAD341B}"
-#define App161Id "{{0A0C80CC-7615-4951-A198-F6BE1E8EE71D}"
+#define App170Id "{{0A0C80CC-7615-4951-A198-F6BE1E8EE71D}"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -227,8 +226,7 @@ begin
             'and then re-run the {#MyAppName} setup program.', mbInformation, MB_OK);
         exit;
     end;
-    result := UninstallOldVersion('{#App160Id}', '1.6.0');
-    result := UninstallOldVersion('{#App161Id}', '1.6.1');
+    result := UninstallOldVersion('{#App170Id}', '1.7.0');
 end;
 
 procedure InitializeWizard;
