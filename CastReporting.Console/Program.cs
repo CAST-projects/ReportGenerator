@@ -352,6 +352,7 @@ namespace CastReporting.Console
             {
 
                 string tmpReportFile = string.Empty;
+                string tmpReportFileFlexi = string.Empty;
 
                 try
                 {
@@ -364,7 +365,10 @@ namespace CastReporting.Console
                     //Initialize temporary directory
                     string workDirectory = SettingsBLL.GetApplicationPath();
                     tmpReportFile = PathUtil.CreateTempCopy(workDirectory, Path.Combine(settings.ReportingParameter.TemplatePath, arguments.Template.Name));
-                    
+                    if (tmpReportFile.Contains(".xlsx"))
+                    {
+                        tmpReportFileFlexi = PathUtil.CreateTempCopyFlexi(workDirectory, arguments.Template.Name);
+                    }
                     //Initialize Web services
 
                     var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty);
@@ -445,7 +449,7 @@ namespace CastReporting.Console
                         CurrencySymbol = "$"
                     };
 
-                    using (IDocumentBuilder docBuilder = BuilderFactory.CreateBuilder(reportData, ""))
+                    using (IDocumentBuilder docBuilder = BuilderFactory.CreateBuilder(reportData, tmpReportFileFlexi))
                     {
                         docBuilder.BuildDocument();
                     }
@@ -458,6 +462,10 @@ namespace CastReporting.Console
                         ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) 
                         : settings.ReportingParameter.GeneratedFilePath, arguments.File.Name);
 
+                    if (tmpReportFile.Contains(".xlsx"))
+                    {
+                        tmpReportFile = tmpReportFileFlexi;
+                    }
 
                     File.Copy(tmpReportFile, reportPath, true);
                     LogHelper.Instance.LogInfo("Report moved to generation directory successfully");
