@@ -29,7 +29,7 @@ namespace CastReporting.UnitTest.DAL
         readonly WSConnection _connection = new WSConnection()
         {
             // if using demo-eu-aed, use domain AED1, if using localhost, domain is AED
-            Url = "http://demo-eu-aed.castsoftware.com/AED/rest/",
+            Url = "https://demo-eu.castsoftware.com/Engineering/rest/",
             // Url = "http://localhost:8585/CAST-AAD-AED/rest/",
             Login = "cio",
             Password = "cast",
