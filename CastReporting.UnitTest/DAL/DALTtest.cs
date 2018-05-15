@@ -28,7 +28,7 @@ namespace CastReporting.UnitTest.DAL
         /// </summary>
         readonly WSConnection _connection = new WSConnection()
         {
-            Url = "http://demo-eu-aed.castsoftware.com/AED/rest/",
+            Url = "https://demo-eu.castsoftware.com/Engineering/rest/",
             Login = "cio",
             Password = "cast",
             IsActive = true,
