@@ -100,5 +100,35 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Assert.IsTrue(table.HasRowHeaders);
         }
 
+        [TestMethod]
+        [DeploymentItem(@".\Data\critViolStats.json", "Data")]
+        [DeploymentItem(@".\Data\critViolStatsPrevious.json", "Data")]
+        [DeploymentItem(@".\Data\ComplexitySnapCurrent.json", "Data")]
+        [DeploymentItem(@".\Data\ComplexitySnapPrevious.json", "Data")]
+        public void TestContentInChinese()
+        {
+            TestUtility.SetCulture("zh-CN");
+            CastDate currentDate = new CastDate { Time = 1496959200000 };
+            CastDate previousDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("CoCRestAPI",
+                null, @".\Data\critViolStats.json", "AED/applications/3/snapshots/5", "Snap5_CAIP-8.3ra2_RG-1.6a", "8.3.ra2", currentDate,
+                null, @".\Data\critViolStatsPrevious.json", "AED/applications/3/snapshots/4", "Snap5_CAIP-8.3ra_RG-1.5.0", "8.3.ra", previousDate);
+            reportData = TestUtility.AddApplicationComplexity(reportData, @".\Data\ComplexitySnapCurrent.json", @".\Data\ComplexitySnapPrevious.json");
+
+            var component = new ViolationStatisticsEvolution();
+            var table = component.Content(reportData, null);
+
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "名", "当前", "以前", "进化百分比" });
+            expectedData.AddRange(new List<string> { "严重违规行为", "75", "97", "-22.7%" });
+            expectedData.AddRange(new List<string> { "  每个文件", "0.22", "0.26", "-15.4%" });
+            expectedData.AddRange(new List<string> { "  每千行代码", "3.53", "4.34", "-18.7%" });
+            expectedData.AddRange(new List<string> { "复杂的对象", "243", "238", "+2.10%" });
+            expectedData.AddRange(new List<string> { "  不合格", "166", "161", "+3.11%" });
+            TestUtility.AssertTableContent(table, expectedData, 4, 6);
+            Assert.IsFalse(table.HasColumnHeaders);
+            Assert.IsTrue(table.HasRowHeaders);
+        }
+
     }
 }

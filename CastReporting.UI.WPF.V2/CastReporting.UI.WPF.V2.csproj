@@ -218,6 +218,9 @@
     <EmbeddedResource Include="Resources\Languages\Messages.DE-de.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Languages\Messages.zh-CN.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Languages\Messages.IT-it.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
