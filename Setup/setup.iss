@@ -67,8 +67,8 @@ source: "../CastReporting.Console/bin/Release/Parameters/*.xml";DestDir: "{app}"
 source: "../CastReporting.DAL/CastReportingSetting.xml"; DestDir: "{code:GetSettingsPath}"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates"; Flags: ignoreversion; AfterInstall:SaveSettings()
 Source: "../CastReporting.Reporting\PortfolioTemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio"; Flags: ignoreversion; AfterInstall:SavePortfolioSettings()
-Source: "../CastReporting.Reporting\TemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\zh-CN\Templates"; Flags: ignoreversion; AfterInstall:SaveSettings()
-Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\zh-CN\Templates\Portfolio"; Flags: ignoreversion; AfterInstall:SavePortfolioSettings()
+Source: "../CastReporting.Reporting\TemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN"; Flags: ignoreversion; AfterInstall:SaveSettings()
+Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN\Portfolio"; Flags: ignoreversion; AfterInstall:SavePortfolioSettings()
 ; NOTE:CastReporting.Reporting/bin/Release
 source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.dll";DestDir: "{app}"; Flags: ignoreversion
 source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.Interactivity.dll";DestDir: "{app}"; Flags: ignoreversion
