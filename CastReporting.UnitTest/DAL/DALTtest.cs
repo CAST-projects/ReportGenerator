@@ -4,6 +4,7 @@ using System.Linq;
 using CastReporting.Domain;
 using CastReporting.Repositories;
 using CastReporting.Repositories.Interfaces;
+using CastReporting.UnitTest.Reporting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CastReporting.UnitTest.DAL
@@ -314,5 +315,34 @@ namespace CastReporting.UnitTest.DAL
 
             Assert.IsNotNull(result);
         }
+
+
+        [TestMethod()]
+        public void GetConfBusinessCriteriaChinese()
+        {
+            if (Environment.MachineName != "ABDLAP2") return;
+
+            WSConnection _connection3 = new WSConnection()
+            {
+                Url = "http://ppadesk:8888/CAST-HealthChinese/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+
+            TestUtility.SetCulture("zh-CN");
+            ICastRepsitory ccontext = new CastRepository(_connection3);
+            const string cdomainHref = "AED/quality-indicators/66032/snapshots/1";
+            var result = ccontext.GetConfBusinessCriteria(cdomainHref);
+            Assert.AreEqual("ZZArchitectural Design", result.Name);
+
+            TestUtility.SetCulture("en-US");
+            ICastRepsitory ccontext2 = new CastRepository(_connection3);
+            const string cdomainHref2 = "AED/quality-indicators/66032/snapshots/1";
+            var result2 = ccontext2.GetConfBusinessCriteria(cdomainHref2);
+            Assert.AreEqual("Architectural Design", result2.Name);
+        }
+
     }
 }

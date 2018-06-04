@@ -18,10 +18,10 @@ using System;
 using System.Diagnostics;
 using System.Net;
 using System.Text;
+using System.Threading;
 using Cast.Util.Log;
 using CastReporting.Mediation.Interfaces;
 using CastReporting.Mediation.Properties;
-
 
 namespace CastReporting.Mediation
 {
@@ -77,6 +77,16 @@ namespace CastReporting.Mediation
             try
             {
                 Headers.Add(HttpRequestHeader.Accept, mimeType);
+                var culture = Thread.CurrentThread.CurrentCulture;
+                if (culture.Name.Equals("zh-CN"))
+                {
+                    Headers.Add(HttpRequestHeader.AcceptLanguage, "zh");
+                }
+                else
+                {
+                    Headers.Add(HttpRequestHeader.AcceptLanguage, "en");
+                }
+
                 Encoding = Encoding.UTF8;
 
                 RequestComplexity previousComplexity = _currentComplexity;
