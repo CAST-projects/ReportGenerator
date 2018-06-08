@@ -318,14 +318,14 @@ namespace CastReporting.UnitTest.DAL
 
 
         [TestMethod()]
-        public void GetConfBusinessCriteriaChinese()
+        public void GetConfQualityRuleChinese()
         {
-            if (Environment.MachineName != "ABDLAP2") return;
+            //if (Environment.MachineName != "ABDLAP2") return;
 
             WSConnection _connection3 = new WSConnection()
             {
-                Url = "http://ppadesk:8888/CAST-HealthChinese/rest/",
-                Login = "admin",
+                Url = "http://dash-aed-tomcat:8888/Dashboard-Noc-160/rest/",
+                Login = "cio",
                 Password = "cast",
                 IsActive = true,
                 Name = "Default"
@@ -333,15 +333,15 @@ namespace CastReporting.UnitTest.DAL
 
             TestUtility.SetCulture("zh-CN");
             ICastRepsitory ccontext = new CastRepository(_connection3);
-            const string cdomainHref = "AED/quality-indicators/66032/snapshots/1";
+            const string cdomainHref = "ADG83/quality-indicators/7126/snapshots/1";
             var result = ccontext.GetConfBusinessCriteria(cdomainHref);
-            Assert.AreEqual("ZZArchitectural Design", result.Name);
+            Assert.AreEqual("避免工件的已注释掉代码行/代码行的比率过高", result.Name);
 
             TestUtility.SetCulture("en-US");
             ICastRepsitory ccontext2 = new CastRepository(_connection3);
-            const string cdomainHref2 = "AED/quality-indicators/66032/snapshots/1";
+            const string cdomainHref2 = "ADG83/quality-indicators/7126/snapshots/1";
             var result2 = ccontext2.GetConfBusinessCriteria(cdomainHref2);
-            Assert.AreEqual("Architectural Design", result2.Name);
+            Assert.AreEqual("Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio", result2.Name);
         }
 
     }
