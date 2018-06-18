@@ -312,4 +312,40 @@
   <data name="lblHeaderPortfolio" xml:space="preserve">
     <value>Portfolio</value>
   </data>
+  <data name="msgBuildApplicationResult" xml:space="preserve">
+    <value>Build result for the application</value>
+  </data>
+  <data name="msgBuildPreviousSnapshotResult" xml:space="preserve">
+    <value>Build result for the previous snapshot</value>
+  </data>
+  <data name="msgBuildSnapshotResult" xml:space="preserve">
+    <value>Build result for the selected snapshot</value>
+  </data>
+  <data name="msgErrorGeneratingReport" xml:space="preserve">
+    <value>Error Generating Report</value>
+  </data>
+  <data name="msgIgnoredApplications" xml:space="preserve">
+    <value>Ignored Applications are:</value>
+  </data>
+  <data name="msgIgnoredAppSnaps" xml:space="preserve">
+    <value>Some Applications or Snapshots were ignored during processing REST API.</value>
+  </data>
+  <data name="msgIgnoredSnapshots" xml:space="preserve">
+    <value>Ignored Snapshots are:</value>
+  </data>
+  <data name="msgReportErrorNoAAD" xml:space="preserve">
+    <value>Typically happens when Portfolio report is generated based on a REST API not connected to measure schema.</value>
+  </data>
+  <data name="msgReportErrorNoRestAPI" xml:space="preserve">
+    <value>Typically happens when Report Generator does not find REST API</value>
+  </data>
+  <data name="msgReportGenerated" xml:space="preserve">
+    <value>Report generated</value>
+  </data>
+  <data name="msgBuildPortfolioResults" xml:space="preserve">
+    <value>Build result for the portfolio</value>
+  </data>
+  <data name="msgBuildPortfSnapshotsResults" xml:space="preserve">
+    <value>Build result for snapshots in portfolio</value>
+  </data>
 </root>

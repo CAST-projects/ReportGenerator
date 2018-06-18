@@ -131,7 +131,10 @@ namespace CastReporting.BLL
                 using (var castRepository = GetRepository())
                 {
                     string strCommonTagsJson = castRepository.GetCommonTagsJson();
-                    if (strCommonTagsJson == null) return _commonTaggedApplications;
+                    if (strCommonTagsJson == null || strCommonTagsJson.Equals(string.Empty))
+                    {
+                        return _commonTaggedApplications;
+                    }
                     var _commonTagsss3 = new DataContractJsonSerializer(typeof(CommonTags[]));
                     MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(strCommonTagsJson));
                     var _commonTags = _commonTagsss3.ReadObject(ms) as CommonTags[];

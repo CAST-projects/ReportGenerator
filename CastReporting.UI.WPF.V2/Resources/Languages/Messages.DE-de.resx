@@ -312,4 +312,40 @@
   <data name="lblHeaderPortfolio" xml:space="preserve">
     <value>Portfolio</value>
   </data>
+  <data name="msgBuildApplicationResult" xml:space="preserve">
+    <value>Erstellen Sie das Ergebnis für die Anwendung</value>
+  </data>
+  <data name="msgBuildPreviousSnapshotResult" xml:space="preserve">
+    <value>Erstellen Sie das Ergebnis für den vorherigen Snapshot</value>
+  </data>
+  <data name="msgBuildSnapshotResult" xml:space="preserve">
+    <value>Erstellen Sie das Ergebnis für den ausgewählten Snapshot</value>
+  </data>
+  <data name="msgErrorGeneratingReport" xml:space="preserve">
+    <value>Fehler beim Generieren des Berichts</value>
+  </data>
+  <data name="msgIgnoredApplications" xml:space="preserve">
+    <value>Ignorierte Anwendungen sind:</value>
+  </data>
+  <data name="msgIgnoredAppSnaps" xml:space="preserve">
+    <value>Einige Anwendungen oder Snapshots wurden während der Verarbeitung der REST-API ignoriert.</value>
+  </data>
+  <data name="msgIgnoredSnapshots" xml:space="preserve">
+    <value>Ignorierte Snapshots sind:</value>
+  </data>
+  <data name="msgReportErrorNoAAD" xml:space="preserve">
+    <value>Dies ist in der Regel der Fall, wenn der Portfolio-Bericht basierend auf einer REST-API generiert wird, die nicht mit dem Kennzahlenschema verbunden ist.</value>
+  </data>
+  <data name="msgReportErrorNoRestAPI" xml:space="preserve">
+    <value>In der Regel, wenn der Report Generator die REST-API nicht findet</value>
+  </data>
+  <data name="msgReportGenerated" xml:space="preserve">
+    <value>Bericht generiert</value>
+  </data>
+  <data name="msgBuildPortfolioResults" xml:space="preserve">
+    <value>Build Ergebnis für das Portfolio</value>
+  </data>
+  <data name="msgBuildPortfSnapshotsResults" xml:space="preserve">
+    <value>Erstellen Sie das Ergebnis für Snapshots im Portfolio</value>
+  </data>
 </root>
