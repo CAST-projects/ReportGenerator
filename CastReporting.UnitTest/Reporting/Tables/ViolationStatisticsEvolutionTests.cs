@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CastReporting.Domain;
 using CastReporting.Reporting.Block.Table;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -107,6 +108,8 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [DeploymentItem(@".\Data\ComplexitySnapPrevious.json", "Data")]
         public void TestContentInChinese()
         {
+            if (Environment.MachineName != "ABDLAP2") return;
+
             TestUtility.SetCulture("zh-CN");
             CastDate currentDate = new CastDate { Time = 1496959200000 };
             CastDate previousDate = new CastDate { Time = 1484953200000 };
