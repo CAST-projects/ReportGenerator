@@ -31,6 +31,8 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Input;
 using System.Windows.Threading;
+using CastReporting.UI.WPF.Resources.Languages;
+
 // ReSharper disable InconsistentNaming
 
 namespace CastReporting.UI.WPF.ViewModel
@@ -638,154 +640,165 @@ namespace CastReporting.UI.WPF.ViewModel
                     }
 
                     if (Apps == null) return;
-                    Application[] SelectedApps = Apps.ToArray<Application>();
 
-                    //Set culture for the new thread
-                    if (!string.IsNullOrEmpty(Setting?.ReportingParameter.CultureName))
+                    if (Apps.Count > 0)
                     {
-                        var culture = new CultureInfo(Setting.ReportingParameter.CultureName);
-                        Thread.CurrentThread.CurrentCulture = culture;
-                        Thread.CurrentThread.CurrentUICulture = culture;
-                    }
-                    string[] SnapsToIgnore = null;
-                    //Get result for the Portfolio               
-                    stopWatchStep.Restart();
-                    string[] AppsToIgnorePortfolioResult = PortfolioBLL.BuildPortfolioResult(ActiveConnection, SelectedApps);
-                    stopWatchStep.Stop();
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Build result for the portfolio", stopWatchStep.Elapsed);
+                        Application[] SelectedApps = Apps.ToArray<Application>();
 
-                    List<Application> N_Apps = new List<Application>();
-                    //Remove from Array the Ignored Apps
-                    foreach (Application app in SelectedApps)
-                    {
-                        int intAppYes = 0;
-                        foreach (string s in AppsToIgnorePortfolioResult)
+                        //Set culture for the new thread
+                        if (!string.IsNullOrEmpty(Setting?.ReportingParameter.CultureName))
                         {
-                            if (s == app.Name)
-                            {
-                                intAppYes = 1;
-                                break;
-                            }
-                            intAppYes = 0;
+                            var culture = new CultureInfo(Setting.ReportingParameter.CultureName);
+                            Thread.CurrentThread.CurrentCulture = culture;
+                            Thread.CurrentThread.CurrentUICulture = culture;
                         }
-
-                        if (intAppYes == 0)
-                        {
-                            N_Apps.Add(app);
-                        }
-                    }
-
-                    Application[] N_SelectedApps = N_Apps.ToArray();
-
-                    //GetActive Connection           
-                    ActiveConnection = Setting?.GetActiveConnection();
-
-                    //Get list of domains
-                    if (_ActiveConnection != null)
-                    {
-                        try
-                        {
-                            using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
-                            {
-                                Snapshots = castDomainBLL.GetAllSnapshots(N_SelectedApps);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageManager.OnErrorOccured(ex);
-                        }
-                    }
-                    List<Snapshot> N_Snaps = new List<Snapshot>();
-                    //Get result for each app's latest snapshot
-                    if (Snapshots != null)
-                    {
-                        Snapshot[] SelectedApps_Snapshots = Snapshots.ToArray<Snapshot>();
-
-                        //Get result for all snapshots in Portfolio               
+                        string[] SnapsToIgnore = null;
+                        //Get result for the Portfolio               
                         stopWatchStep.Restart();
-                        SnapsToIgnore = PortfolioSnapshotsBLL.BuildSnapshotResult(ActiveConnection, SelectedApps_Snapshots, true);
+                        string[] AppsToIgnorePortfolioResult = PortfolioBLL.BuildPortfolioResult(ActiveConnection, SelectedApps);
                         stopWatchStep.Stop();
-                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Build result for snapshots in portfolio", stopWatchStep.Elapsed);
+                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Build result for the portfolio", stopWatchStep.Elapsed);
 
-                        foreach (Snapshot snap in SelectedApps_Snapshots)
+                        List<Application> N_Apps = new List<Application>();
+                        //Remove from Array the Ignored Apps
+                        foreach (Application app in SelectedApps)
                         {
-                            int intRemoveYes = 0;
-                            foreach (string s in SnapsToIgnore)
+                            int intAppYes = 0;
+                            foreach (string s in AppsToIgnorePortfolioResult)
                             {
-                                if (s == snap.Href)
+                                if (s == app.Name)
                                 {
-                                    intRemoveYes = 1;
+                                    intAppYes = 1;
                                     break;
                                 }
-                                intRemoveYes = 0;
+                                intAppYes = 0;
                             }
-                            if (intRemoveYes == 0)
+
+                            if (intAppYes == 0)
                             {
-                                N_Snaps.Add(snap);
+                                N_Apps.Add(app);
                             }
                         }
 
-                        Snapshot[] N_SelectedApps_Snapshots = N_Snaps.ToArray();
+                        Application[] N_SelectedApps = N_Apps.ToArray();
+
+                        //GetActive Connection           
+                        ActiveConnection = Setting?.GetActiveConnection();
+
+                        //Get list of domains
+                        if (_ActiveConnection != null)
+                        {
+                            try
+                            {
+                                using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
+                                {
+                                    Snapshots = castDomainBLL.GetAllSnapshots(N_SelectedApps);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageManager.OnErrorOccured(ex);
+                            }
+                        }
+                        List<Snapshot> N_Snaps = new List<Snapshot>();
+                        //Get result for each app's latest snapshot
+                        if (Snapshots != null)
+                        {
+                            Snapshot[] SelectedApps_Snapshots = Snapshots.ToArray<Snapshot>();
+
+                            //Get result for all snapshots in Portfolio               
+                            stopWatchStep.Restart();
+                            SnapsToIgnore = PortfolioSnapshotsBLL.BuildSnapshotResult(ActiveConnection, SelectedApps_Snapshots, true);
+                            stopWatchStep.Stop();
+                            System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Build result for snapshots in portfolio", stopWatchStep.Elapsed);
+
+                            foreach (Snapshot snap in SelectedApps_Snapshots)
+                            {
+                                int intRemoveYes = 0;
+                                foreach (string s in SnapsToIgnore)
+                                {
+                                    if (s == snap.Href)
+                                    {
+                                        intRemoveYes = 1;
+                                        break;
+                                    }
+                                    intRemoveYes = 0;
+                                }
+                                if (intRemoveYes == 0)
+                                {
+                                    N_Snaps.Add(snap);
+                                }
+                            }
+
+                            Snapshot[] N_SelectedApps_Snapshots = N_Snaps.ToArray();
 
 
-                        //Launch generaion               
-                        stopWatchStep.Restart();
-                        GenerateReportPortfolio(N_SelectedApps, N_SelectedApps_Snapshots, AppsToIgnorePortfolioResult, SnapsToIgnore);
-                        stopWatchStep.Stop();
+                            //Launch generaion               
+                            stopWatchStep.Restart();
+                            GenerateReportPortfolio(N_SelectedApps, N_SelectedApps_Snapshots, AppsToIgnorePortfolioResult, SnapsToIgnore);
+                            stopWatchStep.Stop();
+                        }
+
+
+                        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+
+                        if ((AppsToIgnorePortfolioResult.Length > 0) || (SnapsToIgnore?.Length > 0))
+                        {
+                            sb.Append("Some Applications or Snapshots were ignored during processing REST API.");
+
+                            if (AppsToIgnorePortfolioResult.Length > 0)
+                            {
+                                AppsToIgnorePortfolioResult = AppsToIgnorePortfolioResult.Distinct().ToArray();
+                                sb.Append("Ignored Applications are: ");
+                                for (int i = 0; i < AppsToIgnorePortfolioResult.Length; i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        sb.Append(AppsToIgnorePortfolioResult[i]);
+                                    }
+                                    else
+                                    {
+                                        sb.Append("," + AppsToIgnorePortfolioResult[i]);
+                                    }
+                                }
+                            }
+
+                            if (SnapsToIgnore?.Length > 0)
+                            {
+                                SnapsToIgnore = SnapsToIgnore.Distinct().ToArray();
+                                sb.Append(" Ignored Snapshots are: ");
+                                for (int i = 0; i < SnapsToIgnore.Length; i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        sb.Append(_ActiveConnection?.Url + "/" + SnapsToIgnore[i]);
+                                    }
+                                    else
+                                    {
+                                        sb.Append("," + _ActiveConnection?.Url + "/" + SnapsToIgnore[i]);
+                                    }
+                                }
+                            }
+                            System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, sb + "", null);
+                        }
+
+
+                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
+
+                        //Show final message and unlock the screen   
+                        stopWatchGlobal.Stop();
+                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
                     }
-
-
-                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
-
-                    if ((AppsToIgnorePortfolioResult.Length > 0) || (SnapsToIgnore?.Length > 0))
+                    else
                     {
-                        sb.Append("Some Applications or Snapshots were ignored during processing REST API.");
-
-                        if (AppsToIgnorePortfolioResult.Length > 0)
-                        {
-                            AppsToIgnorePortfolioResult = AppsToIgnorePortfolioResult.Distinct().ToArray();
-                            sb.Append("Ignored Applications are: ");
-                            for (int i = 0; i < AppsToIgnorePortfolioResult.Length; i++)
-                            {
-                                if (i == 0)
-                                {
-                                    sb.Append(AppsToIgnorePortfolioResult[i]);
-                                }
-                                else
-                                {
-                                    sb.Append("," + AppsToIgnorePortfolioResult[i]);
-                                }
-                            }
-                        }
-
-                        if (SnapsToIgnore?.Length > 0)
-                        {
-                            SnapsToIgnore = SnapsToIgnore.Distinct().ToArray();
-                            sb.Append(" Ignored Snapshots are: ");
-                            for (int i = 0; i < SnapsToIgnore.Length; i++)
-                            {
-                                if (i == 0)
-                                {
-                                    sb.Append(_ActiveConnection?.Url + "/" + SnapsToIgnore[i]);
-                                }
-                                else
-                                {
-                                    sb.Append("," + _ActiveConnection?.Url + "/" + SnapsToIgnore[i]);
-                                }
-                            }
-                        }
-                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, sb + "", null);
+                        //Show final message and unlock the screen   
+                        stopWatchGlobal.Stop();
+                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgErrorGeneratingReport + " - " + Messages.msgReportErrorNoAAD, stopWatchGlobal.Elapsed);
                     }
 
-
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, "Report generated", stopWatchStep.Elapsed);
-
-
-                    //Show final message and unlock the screen   
-                    stopWatchGlobal.Stop();
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
                     System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), false);
+
                 }
                 catch (System.Net.WebException webEx)
                 {
@@ -796,7 +809,7 @@ namespace CastReporting.UI.WPF.ViewModel
                     );
 
                     System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep,
-                        "Error Generating Report - " + webEx.Message + " - Typically happens when Report Generator does not find REST API (in schema)", stopWatchStep.Elapsed);
+                        Messages.msgErrorGeneratingReport + " - " + webEx.Message + " - " + Messages.msgReportErrorNoRestAPI, stopWatchStep.Elapsed);
                     stopWatchGlobal.Stop();
                     System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), false);
                 }

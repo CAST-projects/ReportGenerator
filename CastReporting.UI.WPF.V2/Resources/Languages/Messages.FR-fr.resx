@@ -312,4 +312,13 @@
   <data name="lblHeaderPortfolio" xml:space="preserve">
     <value>Portefeuille</value>
   </data>
+  <data name="msgErrorGeneratingReport" xml:space="preserve">
+    <value>Erreur lors de la génération du rapport</value>
+  </data>
+  <data name="msgReportErrorNoAAD" xml:space="preserve">
+    <value>Cela se produit généralement lorsque le rapport Portfolio est généré sur la base d'une API REST non connectée au schéma de mesure.</value>
+  </data>
+  <data name="msgReportErrorNoRestAPI" xml:space="preserve">
+    <value>Se produit généralement lorsque Report Generator ne trouve pas l'API REST.</value>
+  </data>
 </root>

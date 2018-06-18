@@ -312,4 +312,13 @@
   <data name="lblHeaderPortfolio" xml:space="preserve">
     <value>Portfolio</value>
   </data>
+  <data name="msgErrorGeneratingReport" xml:space="preserve">
+    <value>Fehler beim Generieren des Berichts</value>
+  </data>
+  <data name="msgReportErrorNoAAD" xml:space="preserve">
+    <value>Dies ist in der Regel der Fall, wenn der Portfolio-Bericht basierend auf einer REST-API generiert wird, die nicht mit dem Kennzahlenschema verbunden ist.</value>
+  </data>
+  <data name="msgReportErrorNoRestAPI" xml:space="preserve">
+    <value>In der Regel, wenn der Report Generator die REST-API nicht findet</value>
+  </data>
 </root>

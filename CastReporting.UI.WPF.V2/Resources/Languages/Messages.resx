@@ -312,4 +312,13 @@
   <data name="lblHeaderPortfolio" xml:space="preserve">
     <value>Portfolio</value>
   </data>
+  <data name="msgErrorGeneratingReport" xml:space="preserve">
+    <value>Error Generating Report</value>
+  </data>
+  <data name="msgReportErrorNoAAD" xml:space="preserve">
+    <value>Typically happens when Portfolio report is generated based on a REST API not connected to measure schema.</value>
+  </data>
+  <data name="msgReportErrorNoRestAPI" xml:space="preserve">
+    <value>Typically happens when Report Generator does not find REST API</value>
+  </data>
 </root>
