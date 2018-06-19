@@ -214,10 +214,17 @@ namespace CastReporting.UI.WPF.ViewModel
         public void OnStepDone(double percentage, string message, TimeSpan timeSpan)
         {
             ProgressPercentage += percentage;
+#if DEBUG
             lock (MessagesList)
             {
                 MessagesList.Add(new MessageItem { Message = $"{message}({timeSpan})", FileName = string.Empty }); 
             }
+#else
+            lock (MessagesList)
+            {
+                MessagesList.Add(new MessageItem { Message = $"{message}", FileName = string.Empty });
+            }
+#endif
         }
         #endregion
     }
