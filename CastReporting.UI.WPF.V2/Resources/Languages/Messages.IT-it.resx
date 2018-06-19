@@ -312,4 +312,40 @@
   <data name="lblHeaderPortfolio" xml:space="preserve">
     <value>Portafoglio</value>
   </data>
+  <data name="msgBuildApplicationResult" xml:space="preserve">
+    <value>Costruisci il risultato per l'applicazione</value>
+  </data>
+  <data name="msgBuildPreviousSnapshotResult" xml:space="preserve">
+    <value>Crea risultato per la precedente istantanea</value>
+  </data>
+  <data name="msgBuildSnapshotResult" xml:space="preserve">
+    <value>Crea risultato per lo snapshot selezionato</value>
+  </data>
+  <data name="msgErrorGeneratingReport" xml:space="preserve">
+    <value>Errore durante la generazione del report</value>
+  </data>
+  <data name="msgIgnoredApplications" xml:space="preserve">
+    <value>Le applicazioni ignorate sono:</value>
+  </data>
+  <data name="msgIgnoredAppSnaps" xml:space="preserve">
+    <value>Alcune applicazioni o istantanee sono state ignorate durante l'elaborazione dell'API REST.</value>
+  </data>
+  <data name="msgIgnoredSnapshots" xml:space="preserve">
+    <value>Le istantanee ignorate sono:</value>
+  </data>
+  <data name="msgReportErrorNoAAD" xml:space="preserve">
+    <value>Generalmente accade quando il report Portfolio viene generato in base a un'API REST non connessa allo schema measure.</value>
+  </data>
+  <data name="msgReportErrorNoRestAPI" xml:space="preserve">
+    <value>Generalmente accade quando Generatore report non trova l'API REST</value>
+  </data>
+  <data name="msgReportGenerated" xml:space="preserve">
+    <value>Rapporto generato</value>
+  </data>
+  <data name="msgBuildPortfolioResults" xml:space="preserve">
+    <value>Costruisci il risultato per il portafoglio</value>
+  </data>
+  <data name="msgBuildPortfSnapshotsResults" xml:space="preserve">
+    <value>Crea risultati per istantanee in portfolio</value>
+  </data>
 </root>

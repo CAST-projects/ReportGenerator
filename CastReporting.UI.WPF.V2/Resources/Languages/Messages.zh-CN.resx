@@ -117,83 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblSelectApplication" xml:space="preserve">
-    <value>Select application</value>
-  </data>
-  <data name="lblSelectCurrentSnapshot" xml:space="preserve">
-    <value>Select snapshot</value>
-  </data>
-  <data name="btnGenerateReport" xml:space="preserve">
-    <value>Generate Report</value>
-  </data>
-  <data name="lblTitleMain" xml:space="preserve">
-    <value>Report Generator</value>
-  </data>
-  <data name="lblSelectPreviousSnapshot" xml:space="preserve">
-    <value>Select older snapshot</value>
-  </data>
-  <data name="lblTitleTemplateSelection" xml:space="preserve">
-    <value>Report template selection</value>
-  </data>
-  <data name="msgDocumentGenerationSuccess" xml:space="preserve">
-    <value>Report generated successfully !</value>
-  </data>
-  <data name="mnuReporting" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="mnuWSConfiguration" xml:space="preserve">
-    <value>WebService Configuration</value>
-  </data>
-  <data name="mnuSettings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="lblTitleManageWS" xml:space="preserve">
-    <value>Web Service Configuration</value>
-  </data>
-  <data name="lblFieldActiveWS" xml:space="preserve">
+  <data name="btnActiveWS" xml:space="preserve">
     <value>Active</value>
-  </data>
-  <data name="btnDeleteWS" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="lblFieldWSLogin" xml:space="preserve">
-    <value>User</value>
-  </data>
-  <data name="lblFieldWSPassword" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="lblFieldUrlWS" xml:space="preserve">
-    <value>Web Service</value>
   </data>
   <data name="btnAddWS" xml:space="preserve">
     <value>Validate</value>
   </data>
+  <data name="btnDeleteWS" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="btnGenerateReport" xml:space="preserve">
+    <value>Generate Report</value>
+  </data>
   <data name="btnPingWS" xml:space="preserve">
     <value>Test</value>
   </data>
-  <data name="msgPingServiceFailure" xml:space="preserve">
-    <value>Web service invalid !</value>
+  <data name="btnSaveSettings" xml:space="preserve">
+    <value>Save</value>
   </data>
-  <data name="msgPingServiceSuccess" xml:space="preserve">
-    <value>Web service valid !</value>
+  <data name="lblAboutCopyright" xml:space="preserve">
+    <value>Copyright © CAST</value>
   </data>
-  <data name="msgReportGenerationSuccess" xml:space="preserve">
-    <value>Generation proceeded successfully. Click below to see the report :</value>
+  <data name="lblAboutTitle" xml:space="preserve">
+    <value>CAST - Report Generator </value>
   </data>
-  <data name="msgGenericError" xml:space="preserve">
-    <value>An error occured during execution</value>
+  <data name="lblAboutVersion" xml:space="preserve">
+    <value>Version {0}</value>
   </data>
-  <data name="msgServiceActivated" xml:space="preserve">
-    <value>Web Service URL activated successfully !</value>
-  </data>
-  <data name="msgServiceAddedOK" xml:space="preserve">
-    <value>Web Service URL added successfully !</value>
-  </data>
-  <data name="msgServiceRemoved" xml:space="preserve">
-    <value>Web Service URL removed  successfully !</value>
-  </data>
-  <data name="msgWSError" xml:space="preserve">
-    <value>Error occurred during web service requesting</value>
+  <data name="lblFieldActiveWS" xml:space="preserve">
+    <value>Active</value>
   </data>
   <data name="lblFieldQualityGood" xml:space="preserve">
     <value>Good quality</value>
@@ -204,6 +156,9 @@
   <data name="lblFieldQualityMedium" xml:space="preserve">
     <value>Medium quality</value>
   </data>
+  <data name="lblFieldQualityVeryLow" xml:space="preserve">
+    <value>Very low quality</value>
+  </data>
   <data name="lblFieldSizeLimitLarge" xml:space="preserve">
     <value>Size limit large</value>
   </data>
@@ -213,20 +168,80 @@
   <data name="lblFieldSizeLimitSmall" xml:space="preserve">
     <value>Size limit small</value>
   </data>
+  <data name="lblFieldUrlWS" xml:space="preserve">
+    <value>Web Service</value>
+  </data>
+  <data name="lblFieldWSLogin" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="lblFieldWSPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="lblHeaderApplication" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="lblHeaderPortfolio" xml:space="preserve">
+    <value>Portfolio</value>
+  </data>
+  <data name="lblItemEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="lblItemFrench" xml:space="preserve">
+    <value>French</value>
+  </data>
+  <data name="lblItemSpanish" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
+  <data name="lblLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="lblPortfolioCategoriesSelection" xml:space="preserve">
+    <value>Tag Selection</value>
+  </data>
+  <data name="lblSelectApplication" xml:space="preserve">
+    <value>Select application</value>
+  </data>
+  <data name="lblSelectCurrentSnapshot" xml:space="preserve">
+    <value>Select snapshot</value>
+  </data>
+  <data name="lblSelectPortfolioCategories" xml:space="preserve">
+    <value>Select Category</value>
+  </data>
+  <data name="lblSelectPortfolioTags" xml:space="preserve">
+    <value>Select Tag</value>
+  </data>
+  <data name="lblSelectPreviousSnapshot" xml:space="preserve">
+    <value>Select older snapshot</value>
+  </data>
+  <data name="lblTemplatePath" xml:space="preserve">
+    <value>Path template</value>
+  </data>
   <data name="lblTitleApplicationQuality" xml:space="preserve">
     <value>Application qualities Thresholds (TQI score)</value>
+  </data>
+  <data name="lblTitleApplicationSettings" xml:space="preserve">
+    <value>Application settings</value>
   </data>
   <data name="lblTitleApplicationSize" xml:space="preserve">
     <value>Application sizes Thresholds (number of code lines)</value>
   </data>
-  <data name="btnSaveSettings" xml:space="preserve">
-    <value>Save</value>
+  <data name="lblTitleMain" xml:space="preserve">
+    <value>Report Generator</value>
   </data>
-  <data name="msgSettingsSaved" xml:space="preserve">
-    <value>Settings saved</value>
+  <data name="lblTitleManageWS" xml:space="preserve">
+    <value>Web Service Configuration</value>
   </data>
-  <data name="toolTipUrlWs" xml:space="preserve">
-    <value>Please enter a valid WebService url as http://&lt;server&gt;:&lt;port&gt;/&lt;war&gt;/rest</value>
+  <data name="lblTitleMessages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="lblTitleSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="lblTitleSnapshotSelection" xml:space="preserve">
+    <value>Snapshot selection</value>
+  </data>
+  <data name="lblTitleTemplateSelection" xml:space="preserve">
+    <value>Report template selection</value>
   </data>
   <data name="mnuAbout" xml:space="preserve">
     <value>About</value>
@@ -234,26 +249,62 @@
   <data name="mnuQuit" xml:space="preserve">
     <value>Quit</value>
   </data>
-  <data name="btnActiveWS" xml:space="preserve">
-    <value>Active</value>
+  <data name="mnuReporting" xml:space="preserve">
+    <value>Home</value>
   </data>
-  <data name="lblFieldQualityVeryLow" xml:space="preserve">
-    <value>Very low quality</value>
-  </data>
-  <data name="lblTitleSettings" xml:space="preserve">
+  <data name="mnuSettings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="lblTitleMessages" xml:space="preserve">
-    <value>Messages</value>
+  <data name="mnuWSConfiguration" xml:space="preserve">
+    <value>WebService Configuration</value>
   </data>
-  <data name="lblTitleSnapshotSelection" xml:space="preserve">
-    <value>Snapshot selection</value>
+  <data name="msgBuildApplicationResult" xml:space="preserve">
+    <value>Build result for the application</value>
   </data>
-  <data name="lblTemplatePath" xml:space="preserve">
-    <value>Path template</value>
+  <data name="msgBuildPreviousSnapshotResult" xml:space="preserve">
+    <value>Build result for the previous snapshot</value>
   </data>
-  <data name="lblTitleApplicationSettings" xml:space="preserve">
-    <value>Application settings</value>
+  <data name="msgBuildSnapshotResult" xml:space="preserve">
+    <value>Build result for the selected snapshot</value>
+  </data>
+  <data name="msgDocumentGenerationSuccess" xml:space="preserve">
+    <value>Report generated successfully !</value>
+  </data>
+  <data name="msgErrorGeneratingReport" xml:space="preserve">
+    <value>Error Generating Report</value>
+  </data>
+  <data name="msgGenericError" xml:space="preserve">
+    <value>An error occured during execution</value>
+  </data>
+  <data name="msgIgnoredApplications" xml:space="preserve">
+    <value>Ignored Applications are:</value>
+  </data>
+  <data name="msgIgnoredAppSnaps" xml:space="preserve">
+    <value>Some Applications or Snapshots were ignored during processing REST API.</value>
+  </data>
+  <data name="msgIgnoredSnapshots" xml:space="preserve">
+    <value>Ignored Snapshots are:</value>
+  </data>
+  <data name="msgPingServiceFailure" xml:space="preserve">
+    <value>Web service invalid !</value>
+  </data>
+  <data name="msgPingServiceSuccess" xml:space="preserve">
+    <value>Web service valid !</value>
+  </data>
+  <data name="msgReportErrorNoAAD" xml:space="preserve">
+    <value>Typically happens when Portfolio report is generated based on a REST API not connected to measure schema.</value>
+  </data>
+  <data name="msgReportErrorNoRestAPI" xml:space="preserve">
+    <value>Typically happens when Report Generator does not find REST API</value>
+  </data>
+  <data name="msgReportGenerated" xml:space="preserve">
+    <value>Report generated</value>
+  </data>
+  <data name="msgReportGenerationSuccess" xml:space="preserve">
+    <value>Generation proceeded successfully. Click below to see the report :</value>
+  </data>
+  <data name="msgServiceActivated" xml:space="preserve">
+    <value>Web Service URL activated successfully !</value>
   </data>
   <data name="msgServiceActivatedAddedOK" xml:space="preserve">
     <value>Web Service URL added and activated successfully !</value>
@@ -264,14 +315,17 @@
   <data name="msgServiceAddedFailed" xml:space="preserve">
     <value>Unable to add this Web Service URL. Please enter a valid url as http://&lt;server&gt;:&lt;port&gt;/&lt;war&gt;/rest and valid login/password</value>
   </data>
-  <data name="lblAboutCopyright" xml:space="preserve">
-    <value>Copyright © CAST</value>
+  <data name="msgServiceAddedOK" xml:space="preserve">
+    <value>Web Service URL added successfully !</value>
   </data>
-  <data name="lblAboutTitle" xml:space="preserve">
-    <value>CAST - Report Generator </value>
+  <data name="msgServiceRemoved" xml:space="preserve">
+    <value>Web Service URL removed  successfully !</value>
   </data>
-  <data name="lblAboutVersion" xml:space="preserve">
-    <value>Version {0}</value>
+  <data name="msgSettingsSaved" xml:space="preserve">
+    <value>Settings saved</value>
+  </data>
+  <data name="msgWSError" xml:space="preserve">
+    <value>Error occurred during web service requesting</value>
   </data>
   <data name="toolTipClearMsg" xml:space="preserve">
     <value>Clear messages.</value>
@@ -285,62 +339,8 @@
   <data name="toolTipTemplateLb" xml:space="preserve">
     <value>You can double click on any template to open the related file. Therefore, you will be able to edit the template.</value>
   </data>
-  <data name="lblLanguage" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="lblItemEnglish" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="lblItemFrench" xml:space="preserve">
-    <value>French</value>
-  </data>
-  <data name="lblItemSpanish" xml:space="preserve">
-    <value>Spanish</value>
-  </data>
-  <data name="lblPortfolioCategoriesSelection" xml:space="preserve">
-    <value>Tag Selection</value>
-  </data>
-  <data name="lblSelectPortfolioCategories" xml:space="preserve">
-    <value>Select Category</value>
-  </data>
-  <data name="lblSelectPortfolioTags" xml:space="preserve">
-    <value>Select Tag</value>
-  </data>
-  <data name="lblHeaderApplication" xml:space="preserve">
-    <value>Application</value>
-  </data>
-  <data name="lblHeaderPortfolio" xml:space="preserve">
-    <value>Portfolio</value>
-  </data>
-  <data name="msgBuildApplicationResult" xml:space="preserve">
-    <value>Build result for the application</value>
-  </data>
-  <data name="msgBuildPreviousSnapshotResult" xml:space="preserve">
-    <value>Build result for the previous snapshot</value>
-  </data>
-  <data name="msgBuildSnapshotResult" xml:space="preserve">
-    <value>Build result for the selected snapshot</value>
-  </data>
-  <data name="msgErrorGeneratingReport" xml:space="preserve">
-    <value>Error Generating Report</value>
-  </data>
-  <data name="msgIgnoredApplications" xml:space="preserve">
-    <value>Ignored Applications are:</value>
-  </data>
-  <data name="msgIgnoredAppSnaps" xml:space="preserve">
-    <value>Some Applications or Snapshots were ignored during processing REST API.</value>
-  </data>
-  <data name="msgIgnoredSnapshots" xml:space="preserve">
-    <value>Ignored Snapshots are:</value>
-  </data>
-  <data name="msgReportErrorNoAAD" xml:space="preserve">
-    <value>Typically happens when Portfolio report is generated based on a REST API not connected to measure schema.</value>
-  </data>
-  <data name="msgReportErrorNoRestAPI" xml:space="preserve">
-    <value>Typically happens when Report Generator does not find REST API</value>
-  </data>
-  <data name="msgReportGenerated" xml:space="preserve">
-    <value>Report generated</value>
+  <data name="toolTipUrlWs" xml:space="preserve">
+    <value>Please enter a valid WebService url as http://&lt;server&gt;:&lt;port&gt;/&lt;war&gt;/rest</value>
   </data>
   <data name="msgBuildPortfolioResults" xml:space="preserve">
     <value>Build result for the portfolio</value>

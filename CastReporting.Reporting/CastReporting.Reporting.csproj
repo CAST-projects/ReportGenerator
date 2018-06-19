@@ -234,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Languages\Labels.FR-fr.resx" />
+    <EmbeddedResource Include="Languages\Labels.zh-CN.resx" />
     <EmbeddedResource Include="Languages\Labels.DE-de.resx" />
     <EmbeddedResource Include="Languages\Labels.ES-es.resx" />
     <EmbeddedResource Include="Languages\Labels.IT-it.resx" />

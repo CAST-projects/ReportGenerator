@@ -312,4 +312,40 @@
   <data name="lblHeaderPortfolio" xml:space="preserve">
     <value>Porfolio</value>
   </data>
+  <data name="msgBuildApplicationResult" xml:space="preserve">
+    <value>Generar resultado para la aplicación</value>
+  </data>
+  <data name="msgBuildPreviousSnapshotResult" xml:space="preserve">
+    <value>Resultado de compilación para la instantánea anterior</value>
+  </data>
+  <data name="msgBuildSnapshotResult" xml:space="preserve">
+    <value>Resultado de compilación para la instantánea seleccionada</value>
+  </data>
+  <data name="msgErrorGeneratingReport" xml:space="preserve">
+    <value>Error al generar el informe</value>
+  </data>
+  <data name="msgIgnoredApplications" xml:space="preserve">
+    <value>Las aplicaciones ignoradas son:</value>
+  </data>
+  <data name="msgIgnoredAppSnaps" xml:space="preserve">
+    <value>Algunas aplicaciones o instantáneas se ignoraron durante el procesamiento de la API REST.</value>
+  </data>
+  <data name="msgIgnoredSnapshots" xml:space="preserve">
+    <value>Las instantáneas ignoradas son:</value>
+  </data>
+  <data name="msgReportErrorNoAAD" xml:space="preserve">
+    <value>Normalmente sucede cuando el informe de cartera se genera en función de una API REST no conectada para medir el esquema.</value>
+  </data>
+  <data name="msgReportErrorNoRestAPI" xml:space="preserve">
+    <value>Suele pasar cuando Report Generator no encuentra la API REST</value>
+  </data>
+  <data name="msgReportGenerated" xml:space="preserve">
+    <value>Informe generado</value>
+  </data>
+  <data name="msgBuildPortfolioResults" xml:space="preserve">
+    <value>Generar resultados para la cartera</value>
+  </data>
+  <data name="msgBuildPortfSnapshotsResults" xml:space="preserve">
+    <value>Generar resultados para instantáneas en cartera</value>
+  </data>
 </root>

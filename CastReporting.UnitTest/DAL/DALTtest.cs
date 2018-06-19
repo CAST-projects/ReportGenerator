@@ -4,6 +4,7 @@ using System.Linq;
 using CastReporting.Domain;
 using CastReporting.Repositories;
 using CastReporting.Repositories.Interfaces;
+using CastReporting.UnitTest.Reporting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CastReporting.UnitTest.DAL
@@ -314,5 +315,34 @@ namespace CastReporting.UnitTest.DAL
 
             Assert.IsNotNull(result);
         }
+
+
+        [TestMethod()]
+        public void GetConfQualityRuleChinese()
+        {
+            //if (Environment.MachineName != "ABDLAP2") return;
+
+            WSConnection _connection3 = new WSConnection()
+            {
+                Url = "http://dash-aed-tomcat:8888/Dashboard-Noc-160/rest/",
+                Login = "cio",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+
+            TestUtility.SetCulture("zh-CN");
+            ICastRepsitory ccontext = new CastRepository(_connection3);
+            const string cdomainHref = "ADG83/quality-indicators/7126/snapshots/1";
+            var result = ccontext.GetConfBusinessCriteria(cdomainHref);
+            Assert.AreEqual("避免工件的已注释掉代码行/代码行的比率过高", result.Name);
+
+            TestUtility.SetCulture("en-US");
+            ICastRepsitory ccontext2 = new CastRepository(_connection3);
+            const string cdomainHref2 = "ADG83/quality-indicators/7126/snapshots/1";
+            var result2 = ccontext2.GetConfBusinessCriteria(cdomainHref2);
+            Assert.AreEqual("Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio", result2.Name);
+        }
+
     }
 }
