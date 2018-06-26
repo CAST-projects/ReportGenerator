@@ -81,7 +81,7 @@ namespace CastReporting.UnitTest.Reporting
             throw new NotImplementedException();
         }
 
-        public string GetSourceCodeBookmark(string domainId, CodeBookmark bookmark)
+        public Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark)
         {
             throw new NotImplementedException();
         }
