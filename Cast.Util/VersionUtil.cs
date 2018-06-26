@@ -7,6 +7,23 @@ namespace Cast.Util.Version
         {
             // Avoid instanciation of the class
         }
+        public static bool IsAdgVersion833Compliant(string version)
+        {
+            int majorVersion = ExtractVersionNumber(version, 0);
+            if (majorVersion >= 9)
+            {
+                return true;
+            }
+            int minorVersion = ExtractVersionNumber(version, 1);
+            if ((8 == majorVersion) && (minorVersion >= 4))
+            {
+                return true;
+            }
+
+            int spversion = ExtractVersionNumber(version, 2);
+            return (8 == majorVersion) && (3 == minorVersion) && (spversion >= 3);
+        }
+
         public static bool IsAdgVersion82Compliant(string version)
         {
             int majorVersion = ExtractVersionNumber(version, 0);

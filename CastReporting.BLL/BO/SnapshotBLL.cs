@@ -305,6 +305,51 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
+        public IEnumerable<Result> GetQualityStandardsRulesResults(string snapshotHref, string standardTag)
+        {
+            using (var castRepsitory = GetRepository())
+            {
+                try
+                {
+                    return VersionUtil.IsAdgVersion833Compliant(_Snapshot.AdgVersion) ? castRepsitory.GetResultsQualityStandardsRules(snapshotHref, standardTag, string.Empty, string.Empty) : null;
+                }
+                catch (System.Net.WebException ex)
+                {
+                    LogHelper.Instance.LogInfo(ex.Message);
+                    return null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<string> GetQualityStandardsRulesList(string snapshotHref, string standardTag)
+        {
+            using (var castRepsitory = GetRepository())
+            {
+                try
+                {
+                    IEnumerable<Result> results = VersionUtil.IsAdgVersion833Compliant(_Snapshot.AdgVersion) ? castRepsitory.GetResultsQualityStandardsRules(snapshotHref, standardTag, string.Empty, string.Empty) : null;
+                    if (results == null) return null;
+                    List<string> metrics = new List<string>();
+                    foreach (Result _result in results)
+                    {
+                        metrics.AddRange(_result.ApplicationResults.Select(resultApplicationResult => resultApplicationResult.Reference.Key.ToString()));
+                    }
+                    return metrics;
+                }
+                catch (System.Net.WebException ex)
+                {
+                    LogHelper.Instance.LogInfo(ex.Message);
+                    return null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="connection"></param>
         /// <returns></returns>
         /// 
