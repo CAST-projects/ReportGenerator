@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -58,6 +59,10 @@ namespace CastReporting.Repositories
         private const string _query_violations_list_by_rule_bcid = "{0}/violations?rule-pattern={1}&business-criterion={2}&startRow=1&nbRows={3}&technologies={4}";
         private const string _query_action_plan_issues = "{0}/action-plan/issues?nbRows={1}";
         private const string _query_result_quality_standards_rules = "{0}/results?quality-indicators=(c:{1})";
+        private const string _query_findings = "{0}/components/{1}/snapshots/{2}/findings/{3}";
+        private const string _query_file_content = "{0}/local-sites/{1}/file-contents/{2}?start-line={3}&end-line={4}";
+
+
 
         #endregion CONSTANTS
 
@@ -164,10 +169,24 @@ namespace CastReporting.Repositories
             return Get<Application>(hRef);
         }
 
-           
+
         #endregion Applications
 
         #region Snapshots
+        List<string> ICastRepsitory.GetFileContent(string domainHRef, string siteId, string fileId, int startLine, int endLine)
+        {
+            var requestUrl = string.Format(_query_file_content, domainHRef, siteId, fileId, startLine, endLine);
+
+            return CallStringWS(requestUrl, RequestComplexity.Standard).Split('\n').ToList();
+        }
+
+        AssociatedValue ICastRepsitory.GetAssociatedValue(string domainHRef, string snapshotId, string objectId, string metricId)
+        {
+            var requestUrl = string.Format(_query_findings, domainHRef, objectId, snapshotId, metricId);
+
+            return CallWS<AssociatedValue>(requestUrl, RequestComplexity.Standard);
+        }
+
         IEnumerable<Component> ICastRepsitory.GetComponents(string snapshotHref, string businessCriteria, int count)
         {
             var requestUrl = string.Format(_query_components, snapshotHref, businessCriteria, count);
@@ -583,6 +602,24 @@ namespace CastReporting.Repositories
                 var csvString = _Client.DownloadCsvString(requestUrl, pComplexity);
                 var serializer = new CsvSerializer<T>();
                 return serializer.ReadObjects(csvString, count, PropNames);
+            }
+            catch (WebException e)
+            {
+                LogHelper.Instance.LogError(e.Message);
+                return null;
+            }
+
+        }
+
+        private string CallStringWS(string relativeURL, RequestComplexity pComplexity)
+        {
+            var requestUrl = _CurrentConnection.EndsWith("/") ? _CurrentConnection.Substring(0, _CurrentConnection.Length - 1) : _CurrentConnection;
+            requestUrl += "/";
+            requestUrl += relativeURL.StartsWith("/") ? relativeURL.Substring(1) : relativeURL;
+
+            try
+            {
+                return _Client.DownloadPlainText(requestUrl, pComplexity);
             }
             catch (WebException e)
             {

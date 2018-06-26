@@ -621,4 +621,19 @@
   <data name="ViolationStatus" xml:space="preserve">
     <value>Violation Status</value>
   </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>File path</value>
+  </data>
+  <data name="NoBookmark" xml:space="preserve">
+    <value>No bookmark available for this rule</value>
+  </data>
+  <data name="AdditionalInformation" xml:space="preserve">
+    <value>Additional information bookmark</value>
+  </data>
+  <data name="Defect" xml:space="preserve">
+    <value>Defect</value>
+  </data>
+  <data name="Violation" xml:space="preserve">
+    <value>Violation</value>
+  </data>
 </root>

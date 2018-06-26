@@ -76,6 +76,16 @@ namespace CastReporting.UnitTest.Reporting
             return res;
         }
 
+        public IEnumerable<IEnumerable<CodeBookmark>> GetBookmarks(string domainId, string componentId, string snapshotId, string metricId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetSourceCodeBookmark(string domainId, CodeBookmark bookmark)
+        {
+            throw new NotImplementedException();
+        }
+
         [DeploymentItem(@".\Data\IfpugFunctions.csv", "Data")]
         public IEnumerable<IfpugFunction> GetIfpugFunctions(string snapshotHref, int count)
         {
@@ -114,7 +124,7 @@ namespace CastReporting.UnitTest.Reporting
         [DeploymentItem(@".\Data\CriticalViolationsList_60017.json", "Data")]
         public IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count, string technos)
         {
-            IEnumerable<Violation> res = null;
+            IEnumerable<Violation> res;
             switch (ruleId)
             {
                 case "7424":

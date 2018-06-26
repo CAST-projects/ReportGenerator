@@ -133,6 +133,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Additional information bookmark.
+        /// </summary>
+        public static string AdditionalInformation {
+            get {
+                return ResourceManager.GetString("AdditionalInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Application.
         /// </summary>
         public static string Application {
@@ -475,6 +484,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Defect.
+        /// </summary>
+        public static string Defect {
+            get {
+                return ResourceManager.GetString("Defect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Last Delivery (new and modified).
         /// </summary>
         public static string DeliveryLast {
@@ -579,6 +597,15 @@ namespace CastReporting.Reporting.Languages {
         public static string ExclusionStatus {
             get {
                 return ResourceManager.GetString("ExclusionStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à File path.
+        /// </summary>
+        public static string FilePath {
+            get {
+                return ResourceManager.GetString("FilePath", resourceCulture);
             }
         }
         
@@ -759,6 +786,15 @@ namespace CastReporting.Reporting.Languages {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No bookmark available for this rule.
+        /// </summary>
+        public static string NoBookmark {
+            get {
+                return ResourceManager.GetString("NoBookmark", resourceCulture);
             }
         }
         
@@ -1452,6 +1488,15 @@ namespace CastReporting.Reporting.Languages {
         public static string VersionPrevious {
             get {
                 return ResourceManager.GetString("VersionPrevious", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Violation.
+        /// </summary>
+        public static string Violation {
+            get {
+                return ResourceManager.GetString("Violation", resourceCulture);
             }
         }
         
