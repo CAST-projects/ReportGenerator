@@ -57,6 +57,7 @@ namespace CastReporting.Repositories
         private const string _query_tags = "{0}/AAD/tags";
         private const string _query_violations_list_by_rule_bcid = "{0}/violations?rule-pattern={1}&business-criterion={2}&startRow=1&nbRows={3}&technologies={4}";
         private const string _query_action_plan_issues = "{0}/action-plan/issues?nbRows={1}";
+        private const string _query_result_quality_standards_rules = "{0}/results?quality-indicators=(c:{1})";
 
         #endregion CONSTANTS
 
@@ -413,7 +414,24 @@ namespace CastReporting.Repositories
             return CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Result> ICastRepsitory.GetResultsQualityStandardsRules(string hRef, string stgTagParam, string modulesParam, string technologiesParam)
+        {
+            string query = _query_result_quality_standards_rules;
 
+            if (!string.IsNullOrEmpty(modulesParam))
+                query = query + "&modules=({3})";
+
+            if (!string.IsNullOrEmpty(technologiesParam))
+                query = query + "&technologies=({4})";
+
+            string relativeURL = string.Format(query, hRef, stgTagParam, modulesParam, technologiesParam);
+
+            return CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
+        }
         /// <summary>
         /// 
         /// </summary>

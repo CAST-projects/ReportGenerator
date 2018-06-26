@@ -113,6 +113,9 @@
     <None Include="Data\CriticalViolationsList_60016.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\Snapshot_StdTagsOWASPresults1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Violations7424_60017.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

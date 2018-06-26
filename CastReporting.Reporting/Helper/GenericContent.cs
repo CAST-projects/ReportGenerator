@@ -1137,6 +1137,25 @@ namespace CastReporting.Reporting.Helper
                 metrics.Remove("RUN_TIME");
                 metrics.AddRange(reportData.CurrentSnapshot.SizingMeasuresResults.Where(_ => _.Type == "run-time-statistics").Select(_ => _.Reference.Key.ToString()));
             }
+
+            // If metric can not be parsed as integer, this is potentially a string containing a standard tag for quality rule selection
+            List<string> tags = new List<string>();
+            List<string> metricstags = new List<string>();
+            foreach (string _metric in metrics)
+            {
+                int idx = -1;
+                if (!int.TryParse(_metric, out idx))
+                {
+                    tags.Add(_metric);
+                    List<string> stdTagMetrics = reportData.SnapshotExplorer.GetQualityStandardsRulesList(reportData.CurrentSnapshot.Href, _metric);
+                    metricstags.AddRange(stdTagMetrics);
+                }
+            }
+            foreach (string tag in tags)
+            {
+                metrics.Remove(tag);
+            }
+            metrics.AddRange(metricstags);
         }
     }
 }

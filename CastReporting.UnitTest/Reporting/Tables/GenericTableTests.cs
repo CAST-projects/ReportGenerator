@@ -856,5 +856,57 @@ namespace CastReporting.UnitTest.Reporting.Tables
             TestUtility.AssertTableContent(table, expectedData, 2, 2);
         }
 
+        [TestMethod]
+        [DeploymentItem(@".\Data\Modules1.json", "Data")]
+        [DeploymentItem(@".\Data\Snapshot_QIresults1.json", "Data")]
+        [DeploymentItem(@".\Data\Snapshot_QIresults2.json", "Data")]
+        public void TestStandardTag()
+        {
+            /*
+             * Configuration : TABLE;GENERIC_TABLE;COL1=METRICS,ROW1=MODULES,ROW11=SNAPSHOTS,METRICS=HEALTH_FACTOR,SNAPSHOTS=CURRENT|PREVIOUS,MODULES=ALL
+             * @".\Data\Modules1.json" is the result of http://localhost:7070/CAST-AAD-AED/rest/AED2/applications/3/modules
+             * @".\Data\Snapshot_QIresults1.json" is the result of http://localhost:7070/CAST-AAD-AED/rest/AED2/applications/3/snapshots/4/results?quality-indicators=(60011,60012,60013,60014,60016,60017,61001,61003,61007,1576,1596,4656,7254)&modules=$all&technologies=$all&categories=$all
+             * @".\Data\Snapshot_QIresults2.json" is the result of http://localhost:7070/CAST-AAD-AED/rest/AED2/applications/3/snapshots/3/results?quality-indicators=(60011,60012,60013,60014,60016,60017,61001,61003,61007,1576,1596,4656,7254)&modules=$all&technologies=$all&categories=$all
+             */
+
+            ReportData reportData = TestUtility.PrepaReportData("AppliAEP",
+                @".\Data\Modules1.json", @".\Data\Snapshot_QIresults1.json", "AED3/applications/3/snapshots/4", "Snap_v1.1.4", "v1.1.4",
+                @".\Data\Modules1.json", @".\Data\Snapshot_QIresults2.json", "AED3/applications/3/snapshots/3", "Snap_v1.1.3", "v1.1.3");
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "METRICS"},
+                {"ROW1", "MODULES"},
+                {"ROW11", "SNAPSHOTS"},
+                {"METRICS", "OWASP"},
+                {"SNAPSHOTS", "CURRENT|PREVIOUS"},
+                {"MODULES", "ALL"}
+            };
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Modules", "Avoid using \"nullable\" Columns except in the last position in a Table", "Avoid declaring throwing an exception and not throwing it" });
+            expectedData.AddRange(new List<string> { "SHOPIZER/AppliAEPtran/Shopizer_sql content", " ", " " });
+            expectedData.AddRange(new List<string> { "    Snap_v1.1.4 - v1.1.4", "1.42", "n/a" });
+            expectedData.AddRange(new List<string> { "    Snap_v1.1.3 - v1.1.3", "1.42", "n/a" });
+            expectedData.AddRange(new List<string> { "sm-central/AppliAEPtran/Shopizer_src content", " ", " " });
+            expectedData.AddRange(new List<string> { "    Snap_v1.1.4 - v1.1.4", "n/a", "2.95" });
+            expectedData.AddRange(new List<string> { "    Snap_v1.1.3 - v1.1.3", "n/a", "2.93" });
+            expectedData.AddRange(new List<string> { "sm-core/AppliAEPtran/Shopizer_src content", " ", " " });
+            expectedData.AddRange(new List<string> { "    Snap_v1.1.4 - v1.1.4", "n/a", "2.98" });
+            expectedData.AddRange(new List<string> { "    Snap_v1.1.3 - v1.1.3", "n/a", "2.98" });
+            expectedData.AddRange(new List<string> { "sm-shop/AppliAEPtran/Shopizer_src content", " ", " " });
+            expectedData.AddRange(new List<string> { "    Snap_v1.1.4 - v1.1.4", "n/a", "3.87" });
+            expectedData.AddRange(new List<string> { "    Snap_v1.1.3 - v1.1.3", "n/a", "3.87" });
+            TestUtility.AssertTableContent(table, expectedData, 3, 13);
+        }
     }
 }

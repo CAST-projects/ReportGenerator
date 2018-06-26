@@ -164,6 +164,20 @@ namespace CastReporting.UnitTest.Reporting
 
         }
 
+        [DeploymentItem(@".\Data\Snapshot_StdTagsOWASPresults1.json", "Data")]
+        public IEnumerable<Result> GetQualityStandardsRulesResults(string snapshotHref, string qualityIndicator)
+        {
+            IEnumerable<Result> res = TestUtility.GetSampleResult<Result>(@".\Data\Snapshot_QIresults1.json").ToList();
+            return res;
+
+        }
+
+        public List<string> GetQualityStandardsRulesList(string snapshotHref, string qualityIndicator)
+        {
+            return qualityIndicator.Equals("OWASP") ? new List<string>{ "1596", "4656" } : null;
+        }
+
+
         [DeploymentItem(@".\Data\DreamTeamSnap4Sample12.json", "Data")]
         public IEnumerable<Result> GetSizingMeasureResults(string snapshotHref, string sizingMeasure)
         {
