@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Drawing;
 using Cast.Util.Log;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Helper;
@@ -27,6 +28,7 @@ using DocumentFormat.OpenXml.Packaging;
 using OXD = DocumentFormat.OpenXml.Drawing;
 using OXP = DocumentFormat.OpenXml.Presentation;
 using OXW = DocumentFormat.OpenXml.Wordprocessing;
+// ReSharper disable PossiblyMistakenUseOfParamsMethod
 
 namespace CastReporting.Reporting.Builder.BlockProcessing
 {
@@ -223,8 +225,9 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                     int contentCellsCount = headerCells.Count;
 
                     table.RemoveAllChildren<OXW.TableRow>();
-                    foreach (var item in content.Data)
+                    for (int i = 0; i < content.Data.Count(); i++)
                     {
+                        var item = content.Data.ToArray()[i];
                         if (null != item)
                         {
                             OXW.TableCell cell;
@@ -236,8 +239,31 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                             {
                                 cell = contentCells?[idx % contentCellsCount].CloneNode(true) as OXW.TableCell;
                             }
+
+                            if (content.HasCellsAttributes())
+                            {
+                                CellAttributes attributes = content.CellsAttributes.FirstOrDefault(a => a.Index == i);
+                                if (attributes != null)
+                                {
+                                    OXW.TableCellProperties tcp = new OXW.TableCellProperties(
+                                        new OXW.TableCellWidth { Type = OXW.TableWidthUnitValues.Auto, }
+                                    );
+                                    // Create the Shading object
+                                    OXW.Shading shading =
+                                        new OXW.Shading()
+                                        {
+                                            Color = "auto",
+                                            Fill = ColorTranslator.ToHtml(attributes.BackgroundColor),
+                                            Val = OXW.ShadingPatternValues.Clear
+                                        };
+                                    // Add the Shading object to the TableCellProperties object
+                                    tcp.Append(shading);
+                                    // Add the TableCellProperties object to the TableCell object
+                                    cell?.Append(tcp);
+                                }
+                            }
+
                             ModifyWordCellTextContent(cell, item);
-                            // ReSharper disable once PossiblyMistakenUseOfParamsMethod
                             row?.Append(cell);
                         }
 
@@ -245,7 +271,6 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                         if (0 != idx) continue;
                         if (null != row)
                         {
-                            // ReSharper disable once PossiblyMistakenUseOfParamsMethod
                             table.Append(row);
                             nbrow++;
                         }
@@ -289,7 +314,6 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             paragraph = paragraph.CloneNode(true) as OXW.Paragraph;
             ModifyWordParagraphTextContent(paragraph, txt);
             cell.RemoveAllChildren<OXW.Paragraph>();
-            // ReSharper disable once PossiblyMistakenUseOfParamsMethod
             if (paragraph != null) cell.Append(paragraph);
         }
         private static void ModifyWordParagraphTextContent(OpenXmlElement paragraph, string txt)
@@ -314,10 +338,8 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 if (!string.IsNullOrEmpty(txt) && (char.IsWhiteSpace(txt[0]) || char.IsWhiteSpace(txt[txt.Length-1]))) {
                     text.Space = SpaceProcessingModeValues.Preserve;
                 }
-                // ReSharper disable once PossiblyMistakenUseOfParamsMethod
                 run?.Append(text);
             }
-            // ReSharper disable once PossiblyMistakenUseOfParamsMethod
             paragraph.Append(run);
         }
 
@@ -378,8 +400,9 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                     OXD.TableRow row = headerRowTemplate;
 
                     table?.RemoveAllChildren<OXD.TableRow>();
-                    foreach (var item in content.Data)
+                    for (int i = 0; i < content.Data.Count(); i++)
                     {
+                        string item = content.Data.ToArray()[i];
                         OXD.TableCell cell;
                         if (content.HasColumnHeaders && 0 == nbrow)
                         {
@@ -391,8 +414,35 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                         }
                         ModifyPowerPointCellTextContent(cell, item);
                             
+                        if (content.HasCellsAttributes())
+                        {
+                            CellAttributes attributes = content.CellsAttributes.FirstOrDefault(a => a.Index == i);
+                            if (attributes?.BackgroundColor != null && attributes.Index == i)
+                            {
+                                Color myColor = attributes.BackgroundColor;
+                                OXD.RgbColorModelHex backColor = new OXD.RgbColorModelHex() { Val = $"{myColor.R:X2}{myColor.G:X2}{myColor.B:X2}" };
+                                OXD.SolidFill solidFill = new OXD.SolidFill();
+                                solidFill.Append(backColor);
+                                OXD.TableCellProperties props = cell?.Descendants<OXD.TableCellProperties>().FirstOrDefault();
+                                OXD.TableCellProperties new_props = (props != null) ? props.CloneNode(true) as OXD.TableCellProperties : new OXD.TableCellProperties();
+
+                                OXD.SolidFill oldFill = new_props?.Descendants<OXD.SolidFill>().FirstOrDefault();
+                                oldFill?.Remove();
+                                new_props?.InsertAfter(solidFill, new_props.LastChild);
+                                if (props != null)
+                                {
+                                    cell.ReplaceChild(new_props, props);
+                                }
+                                else
+                                {
+                                    cell?.AppendChild(new_props);
+                                }
+                            }
+                        }
+
                         //row.Append(cell); => in office 2016, element <extLst> should absolutely be in the latest position in a row
                         row?.InsertBefore(cell, row.Descendants<OXD.ExtensionList>().FirstOrDefault());
+
                         OXD.ExtensionList init_extlst = row?.Descendants<OXD.ExtensionList>().FirstOrDefault();
                         if (init_extlst != null)
                         {
@@ -413,7 +463,6 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                         // ReSharper disable once ConditionIsAlwaysTrueOrFalse
                         if (null != row)
                         {
-                            // ReSharper disable once PossiblyMistakenUseOfParamsMethod
                             table.Append(row);
                             nbrow++;
                         }
@@ -452,6 +501,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             {
                 col.Width = col.Width > 0 ? Convert.ToInt64(Math.Floor((tableWidth - newColWidth) / (tableWidth / col.Width))) : 0;
             }
+
             OXD.GridColumn newcol = new OXD.GridColumn() { Width = Convert.ToInt64(newColWidth) };
             OXD.ExtensionList init_extlst = newcol.Descendants<OXD.ExtensionList>().FirstOrDefault();
             if (init_extlst != null)
@@ -467,7 +517,8 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                     init_ext.ReplaceChild(new_colId, init_colId);
                 }
             }
-            tableGrid.InsertAfter(newcol, columns.Last()); headerRow.InsertAfter((OXD.TableCell)headerLastCell.CloneNode(true), headerLastCell);
+            tableGrid.InsertAfter(newcol, columns.Last());
+            headerRow.InsertAfter((OXD.TableCell)headerLastCell.CloneNode(true), headerLastCell);
             contentRow.InsertAfter((OXD.TableCell)contentLastCell.CloneNode(true), contentLastCell);
         }
 
@@ -506,7 +557,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             if (run == null) return;
             OXD.Run final_run = run.CloneNode(true) as OXD.Run;
             OXD.Text text = final_run?.Descendants<OXD.Text>().FirstOrDefault();
-            OXD.Text final_text = (null == text ? new OXD.Text() : text.CloneNode(true) as OXD.Text);
+            OXD.Text final_text = (null == text) ? new OXD.Text() : text.CloneNode(true) as OXD.Text;
             if (final_text != null)
             {
                 final_text.Text = txt;
@@ -514,6 +565,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             }
             ReplaceWordRun(paragraph, run, final_run);
         }
+
         #endregion Powerpoint methods
 
         #region Excel methods

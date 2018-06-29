@@ -71,6 +71,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Data\AADMultiCocApp37SnapshotsResults.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

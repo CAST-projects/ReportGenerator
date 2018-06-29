@@ -17,11 +17,8 @@
 using CastReporting.Domain;
 using CastReporting.Domain.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 using Cast.Util.Version;
 using Cast.Util.Log;
@@ -675,15 +672,14 @@ namespace CastReporting.BLL
             string fileId = bookmark.CodeFragment.CodeFile.GetFileId();
             int startLine = bookmark.CodeFragment.StartLine;
             int endLine = bookmark.CodeFragment.EndLine;
-            StringBuilder code = new StringBuilder();
             try
             {
                 using (var castRepository = GetRepository())
                 {
                     Dictionary<int, string> codeLines = new Dictionary<int, string>();
-                    int idx = startLine - 4;
+                    int idx = startLine - 3;
                     List<string> lines = castRepository.GetFileContent(domainId, siteId, fileId, idx, endLine + 3);
-                    for (int i = 0; i <= 7; i++)
+                    for (int i = 0; i < 7; i++)
                     {
                         codeLines.Add(idx, lines[i]);
                         idx++;

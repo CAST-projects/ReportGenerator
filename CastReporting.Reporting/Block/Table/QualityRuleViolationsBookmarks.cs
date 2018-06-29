@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
 using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
@@ -16,6 +17,8 @@ namespace CastReporting.Reporting.Block.Table
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             List<string> rowData = new List<string>();
+            List<CellAttributes> cellProps = new List<CellAttributes>();
+            int cellidx = 0;
 
             string ruleId = options.GetOption("ID", "7788");
             string bcId = options.GetOption("BCID", "60013");
@@ -29,6 +32,8 @@ namespace CastReporting.Reporting.Block.Table
             string ruleName = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(ruleId));
 
             rowData.Add(Labels.ObjectsInViolationForRule + " " + ruleName);
+            //cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.Blue });
+            cellidx++;
 
             if (previous && !hasPreviousSnapshot)
             {
@@ -51,9 +56,23 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             violation_counter++;
                             rowData.Add(Labels.Violation + " #" + violation_counter);
+                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.LightBlue });
+                            cellidx++;
                             rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name);
-                            if (hasPri) rowData.Add(Labels.PRI + ":" +_violation.Component.PropagationRiskIndex.ToString("N0"));
-                            if (hasPreviousSnapshot && !previous) rowData.Add(Labels.Status + ":" + _violation.Diagnosis.Status);
+                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.LightCyan });
+                            cellidx++;
+                            if (hasPri)
+                            {
+                                rowData.Add(Labels.PRI + ":" +_violation.Component.PropagationRiskIndex.ToString("N0"));
+                                cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.LightCyan });
+                                cellidx++;
+                            }
+                            if (hasPreviousSnapshot && !previous)
+                            {
+                                rowData.Add(Labels.Status + ":" + _violation.Diagnosis.Status);
+                                cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.LightCyan });
+                                cellidx++;
+                            }
                             // Add lines containing the file path and source code around the violation
                             IEnumerable<IEnumerable<CodeBookmark>> bookmarks = reportData.SnapshotExplorer.GetBookmarks(domainId,
                                 _violation.Component.GetComponentId(), snapshotId, ruleId);
@@ -67,6 +86,8 @@ namespace CastReporting.Reporting.Block.Table
                                 {
                                     primary_counter++;
                                     rowData.Add(Labels.Defect + " #" + primary_counter);
+                                    cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.DarkCyan });
+                                    cellidx++;
                                     foreach (IEnumerable<CodeBookmark> _codeBookmarks in _codeBookmarkses)
                                     {
                                         IEnumerable<CodeBookmark> _bookmarks = _codeBookmarks.ToList();
@@ -76,24 +97,36 @@ namespace CastReporting.Reporting.Block.Table
                                         {
                                             secondary_counter++;
                                             if (secondary_counter > nbBookmarks) continue;
-                                            if (secondary_counter > 1) rowData.Add(Labels.AdditionalInformation + " #" + secondary_counter + "/" + nb_bk);
+                                            if (secondary_counter > 1)
+                                            {
+                                                rowData.Add(Labels.AdditionalInformation + " #" + secondary_counter + "/" + nb_bk);
+                                                cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.Cyan });
+                                                cellidx++;
+                                            }
                                             rowData.Add(Labels.FilePath + " : " + _bookmark.CodeFragment.CodeFile.Name);
-                                            // TODO :
-                                            // GetSourceCodeBookmark doit retourner un tableau de int, string contenant le numéro de la ligne et la ligne (sinon pas de passage à la ligne, ni numéro et c'est tout moche
-                                            // ensuite on fait un addRange dessus dans le rowData
+                                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.LightCyan });
+                                            cellidx++;
                                             Dictionary<int, string> codeLines = reportData.SnapshotExplorer.GetSourceCodeBookmark(domainId, _bookmark);
-                                            rowData.AddRange(codeLines.Select(codeLine => codeLine.Key.ToString() + " : " + codeLine.Value));
+
+                                            foreach (KeyValuePair<int, string> codeLine in codeLines)
+                                            {
+                                                rowData.Add(codeLine.Key + " : " + codeLine.Value);
+                                                cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.White });
+                                                cellidx++;
+                                            }
                                         }
                                     }
                                 }
                                 else
                                 {
                                     rowData.Add(Labels.NoBookmark);
+                                    cellidx++;
                                 }
                             }
                             else
                             {
                                 rowData.Add(Labels.NoBookmark);
+                                cellidx++;
                             }
 
 
@@ -114,9 +147,10 @@ namespace CastReporting.Reporting.Block.Table
             {
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
-                NbRows = nbLimitTop + 1,
+                NbRows = rowData.Count,
                 NbColumns = 1,
-                Data = rowData
+                Data = rowData,
+                CellsAttributes = cellProps
             };
 
             return table;

@@ -63,10 +63,21 @@ namespace CastReporting.Reporting.ReportingModel
         /// Get/Set the graph options.
         /// </summary>
         public GraphOptions GraphOptions { get; set; }
-       
+
+        public List<CellAttributes> CellsAttributes
+        {
+            get;
+            set;
+        }
+
+        public bool HasCellsAttributes()
+        {
+            return CellsAttributes?.Count > 0;
+        }
+
         #endregion PROPERTIES
 
-        
+
     }
 
 }
