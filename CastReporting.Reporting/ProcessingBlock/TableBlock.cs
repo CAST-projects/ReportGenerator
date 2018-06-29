@@ -342,6 +342,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         {
             if (null != content && block is OXP.GraphicFrame)
             {
+                var randomValue = new Random();
                 OXD.Table initTable = block.Descendants<OXD.Table>().FirstOrDefault();
                 if (null == initTable) return;
                 try
@@ -391,7 +392,21 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                         ModifyPowerPointCellTextContent(cell, item);
                             
                         //row.Append(cell); => in office 2016, element <extLst> should absolutely be in the latest position in a row
-                        row?.InsertBefore(cell, row.Descendants<OXD.ExtensionList>().FirstOrDefault()); 
+                        row?.InsertBefore(cell, row.Descendants<OXD.ExtensionList>().FirstOrDefault());
+                        OXD.ExtensionList init_extlst = row?.Descendants<OXD.ExtensionList>().FirstOrDefault();
+                        if (init_extlst != null)
+                        {
+                            OXD.Extension init_ext = init_extlst.Descendants<OXD.Extension>().FirstOrDefault();
+                            OpenXmlUnknownElement init_rowId = init_ext?.GetFirstChild<OpenXmlUnknownElement>();
+                            OpenXmlUnknownElement new_rowId = init_rowId?.CloneNode(true) as OpenXmlUnknownElement;
+                            if (new_rowId != null)
+                            {
+                                OpenXmlAttribute val = new_rowId.GetAttributes().FirstOrDefault();
+                                val.Value = randomValue.Next().ToString();
+                                new_rowId.SetAttribute(val);
+                                init_ext.ReplaceChild(new_rowId, init_rowId);
+                            }
+                        }
 
                         idx = ++idx % content.NbColumns;
                         if (0 != idx) continue;
@@ -437,8 +452,22 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             {
                 col.Width = col.Width > 0 ? Convert.ToInt64(Math.Floor((tableWidth - newColWidth) / (tableWidth / col.Width))) : 0;
             }
-            tableGrid.InsertAfter(new OXD.GridColumn() { Width = Convert.ToInt64(newColWidth) }, columns.Last());
-            headerRow.InsertAfter((OXD.TableCell)headerLastCell.CloneNode(true), headerLastCell);
+            OXD.GridColumn newcol = new OXD.GridColumn() { Width = Convert.ToInt64(newColWidth) };
+            OXD.ExtensionList init_extlst = newcol.Descendants<OXD.ExtensionList>().FirstOrDefault();
+            if (init_extlst != null)
+            {
+                OXD.Extension init_ext = init_extlst.Descendants<OXD.Extension>().FirstOrDefault();
+                OpenXmlUnknownElement init_colId = init_ext?.GetFirstChild<OpenXmlUnknownElement>();
+                OpenXmlUnknownElement new_colId = init_colId?.CloneNode(true) as OpenXmlUnknownElement;
+                if (new_colId != null)
+                {
+                    OpenXmlAttribute val = new_colId.GetAttributes().FirstOrDefault();
+                    val.Value = new Random().Next().ToString();
+                    new_colId.SetAttribute(val);
+                    init_ext.ReplaceChild(new_colId, init_colId);
+                }
+            }
+            tableGrid.InsertAfter(newcol, columns.Last()); headerRow.InsertAfter((OXD.TableCell)headerLastCell.CloneNode(true), headerLastCell);
             contentRow.InsertAfter((OXD.TableCell)contentLastCell.CloneNode(true), contentLastCell);
         }
 
