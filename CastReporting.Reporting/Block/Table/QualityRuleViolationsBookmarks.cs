@@ -55,7 +55,7 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             violation_counter++;
                             rowData.Add(Labels.Violation + " #" + violation_counter);
-                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.LightBlue });
+                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.DarkCyan });
                             cellidx++;
                             rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name);
                             cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.LightCyan });
@@ -79,7 +79,7 @@ namespace CastReporting.Reporting.Block.Table
                                 {
                                     primary_counter++;
                                     rowData.Add(Labels.Defect + " #" + primary_counter);
-                                    cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.DarkCyan });
+                                    cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.SkyBlue });
                                     cellidx++;
                                     int defects_counter = 0;
                                     foreach (IEnumerable<CodeBookmark> _codeBookmarks in _codeBookmarkses)

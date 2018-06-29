@@ -83,7 +83,15 @@ namespace CastReporting.UnitTest.Reporting
 
         public Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark)
         {
-            throw new NotImplementedException();
+            Dictionary<int, string> sources = new Dictionary<int, string>();
+            sources.Add(547, "PreparedStatement statement = null;");
+            sources.Add(548,"        try");
+            sources.Add(549,"        {");
+            sources.Add(550,"            statement = consolidatedConn.prepareStatement(insertMessage); ");
+            sources.Add(551,"            statement.setString(1, message); ");
+            sources.Add(552,"            statement.executeUpdate(); ");
+            sources.Add(553,"        }");
+            return sources;
         }
 
         [DeploymentItem(@".\Data\IfpugFunctions.csv", "Data")]
