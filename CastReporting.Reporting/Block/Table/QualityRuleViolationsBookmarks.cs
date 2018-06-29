@@ -25,7 +25,6 @@ namespace CastReporting.Reporting.Block.Table
             int nbLimitTop = options.GetIntOption("COUNT", 5);
             bool shortName = options.GetOption("NAME","FULL") == "SHORT";
             bool previous = options.GetOption("SNAPSHOT", "CURRENT") == "PREVIOUS";
-            bool hasPri = bcId.Equals("60013") || bcId.Equals("60014") || bcId.Equals("60016");
             int nbBookmarks = options.GetIntOption("NB_BOOKMARKS", 5);
 
             bool hasPreviousSnapshot = reportData.PreviousSnapshot != null;
@@ -61,12 +60,6 @@ namespace CastReporting.Reporting.Block.Table
                             rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name);
                             cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.LightCyan });
                             cellidx++;
-                            if (hasPri)
-                            {
-                                rowData.Add(Labels.PRI + ":" +_violation.Component.PropagationRiskIndex.ToString("N0"));
-                                cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.LightCyan });
-                                cellidx++;
-                            }
                             if (hasPreviousSnapshot && !previous)
                             {
                                 rowData.Add(Labels.Status + ":" + _violation.Diagnosis.Status);
@@ -88,15 +81,19 @@ namespace CastReporting.Reporting.Block.Table
                                     rowData.Add(Labels.Defect + " #" + primary_counter);
                                     cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.DarkCyan });
                                     cellidx++;
+                                    int defects_counter = 0;
                                     foreach (IEnumerable<CodeBookmark> _codeBookmarks in _codeBookmarkses)
                                     {
+                                        defects_counter++;
+                                        if (defects_counter != -1 && defects_counter > nbBookmarks) continue;
+
                                         IEnumerable<CodeBookmark> _bookmarks = _codeBookmarks.ToList();
                                         int secondary_counter = 0;
                                         int nb_bk = _bookmarks.Count();
                                         foreach (CodeBookmark _bookmark in _bookmarks)
                                         {
                                             secondary_counter++;
-                                            if (secondary_counter > nbBookmarks) continue;
+                                            if (nbBookmarks != -1 && secondary_counter > nbBookmarks) continue;
                                             if (secondary_counter > 1)
                                             {
                                                 rowData.Add(Labels.AdditionalInformation + " #" + secondary_counter + "/" + nb_bk);
@@ -111,7 +108,9 @@ namespace CastReporting.Reporting.Block.Table
                                             foreach (KeyValuePair<int, string> codeLine in codeLines)
                                             {
                                                 rowData.Add(codeLine.Key + " : " + codeLine.Value);
-                                                cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.White });
+                                                cellProps.Add(codeLine.Key == _bookmark.CodeFragment.StartLine
+                                                    ? new CellAttributes() {Index = cellidx, BackgroundColor = Color.LightYellow}
+                                                    : new CellAttributes() {Index = cellidx, BackgroundColor = Color.White});
                                                 cellidx++;
                                             }
                                         }
