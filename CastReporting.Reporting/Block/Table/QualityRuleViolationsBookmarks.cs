@@ -55,15 +55,15 @@ namespace CastReporting.Reporting.Block.Table
                         {
                             violation_counter++;
                             rowData.Add(Labels.Violation + " #" + violation_counter);
-                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.DarkCyan });
+                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.Gainsboro });
                             cellidx++;
-                            rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name);
-                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.LightCyan });
+                            rowData.Add(Labels.ObjectName + ": " + (shortName ? _violation.Component.ShortName : _violation.Component.Name));
+                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.White });
                             cellidx++;
                             if (hasPreviousSnapshot && !previous)
                             {
-                                rowData.Add(Labels.Status + ":" + _violation.Diagnosis.Status);
-                                cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.LightCyan });
+                                rowData.Add(Labels.Status + ": " + _violation.Diagnosis.Status);
+                                cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.White });
                                 cellidx++;
                             }
                             // Add lines containing the file path and source code around the violation
@@ -72,15 +72,17 @@ namespace CastReporting.Reporting.Block.Table
 
                             if (bookmarks != null)
                             {
-                                int primary_counter = 0;
+                                //int primary_counter = 0;
                                 IEnumerable<CodeBookmark>[] _codeBookmarkses = bookmarks as IEnumerable<CodeBookmark>[] ?? bookmarks.ToArray();
                                 
                                 if (_codeBookmarkses.Any())
                                 {
+                                    /*
                                     primary_counter++;
                                     rowData.Add(Labels.Defect + " #" + primary_counter);
                                     cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.SkyBlue });
                                     cellidx++;
+                                    */
                                     int defects_counter = 0;
                                     foreach (IEnumerable<CodeBookmark> _codeBookmarks in _codeBookmarkses)
                                     {
@@ -89,19 +91,21 @@ namespace CastReporting.Reporting.Block.Table
 
                                         IEnumerable<CodeBookmark> _bookmarks = _codeBookmarks.ToList();
                                         int secondary_counter = 0;
-                                        int nb_bk = _bookmarks.Count();
+                                        // int nb_bk = _bookmarks.Count();
                                         foreach (CodeBookmark _bookmark in _bookmarks)
                                         {
                                             secondary_counter++;
                                             if (nbBookmarks != -1 && secondary_counter > nbBookmarks) continue;
+                                            /*
                                             if (secondary_counter > 1)
                                             {
                                                 rowData.Add(Labels.AdditionalInformation + " #" + secondary_counter + "/" + nb_bk);
                                                 cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.Cyan });
                                                 cellidx++;
                                             }
-                                            rowData.Add(Labels.FilePath + " : " + _bookmark.CodeFragment.CodeFile.Name);
-                                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.LightCyan });
+                                            */
+                                            rowData.Add(Labels.FilePath + ": " + _bookmark.CodeFragment.CodeFile.Name);
+                                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.Gainsboro });
                                             cellidx++;
                                             Dictionary<int, string> codeLines = reportData.SnapshotExplorer.GetSourceCodeBookmark(domainId, _bookmark);
 
