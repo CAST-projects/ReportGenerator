@@ -19,19 +19,20 @@ namespace CastReporting.Reporting.Block.Table
             List<string> rowData = new List<string>();
             List<CellAttributes> cellProps = new List<CellAttributes>();
             int cellidx = 0;
+            // cellProps will contains the properties of the cell (background color) linked to the data by position in the list stored with cellidx.
 
             string ruleId = options.GetOption("ID", "7788");
-            string bcId = options.GetOption("BCID", "60013");
+            // string bcId = options.GetOption("BCID", "60017");
+            const string bcId = "60017";
             int nbLimitTop = options.GetIntOption("COUNT", 5);
             bool shortName = options.GetOption("NAME","FULL") == "SHORT";
             bool previous = options.GetOption("SNAPSHOT", "CURRENT") == "PREVIOUS";
-            int nbBookmarks = options.GetIntOption("NB_BOOKMARKS", 5);
+            // int nbBookmarks = options.GetIntOption("NB_BOOKMARKS", 5);
 
             bool hasPreviousSnapshot = reportData.PreviousSnapshot != null;
             string ruleName = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(ruleId));
 
             rowData.Add(Labels.ObjectsInViolationForRule + " " + ruleName);
-            //cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.Blue });
             cellidx++;
 
             if (previous && !hasPreviousSnapshot)
@@ -72,6 +73,7 @@ namespace CastReporting.Reporting.Block.Table
 
                             if (bookmarks != null)
                             {
+                                // initially the primary counter was used to count defects (primary bookmarks) and to display label
                                 //int primary_counter = 0;
                                 IEnumerable<CodeBookmark>[] _codeBookmarkses = bookmarks as IEnumerable<CodeBookmark>[] ?? bookmarks.ToArray();
                                 
@@ -83,19 +85,21 @@ namespace CastReporting.Reporting.Block.Table
                                     cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.SkyBlue });
                                     cellidx++;
                                     */
-                                    int defects_counter = 0;
+                                    // initially the defects_counter was used to limit the number of primary bookmark to display with option NB_BOOKMARKS
+                                    // int defects_counter = 0;
                                     foreach (IEnumerable<CodeBookmark> _codeBookmarks in _codeBookmarkses)
                                     {
-                                        defects_counter++;
-                                        if (defects_counter != -1 && defects_counter > nbBookmarks) continue;
+                                        // defects_counter++;
+                                        // if (defects_counter != -1 && defects_counter > nbBookmarks) continue;
 
                                         IEnumerable<CodeBookmark> _bookmarks = _codeBookmarks.ToList();
-                                        int secondary_counter = 0;
+                                        // initially the secondary_counter was used to limit the number of secondary bookmark to display with option NB_BOOKMARKS, and to display a label
+                                        // int secondary_counter = 0;
                                         // int nb_bk = _bookmarks.Count();
                                         foreach (CodeBookmark _bookmark in _bookmarks)
                                         {
-                                            secondary_counter++;
-                                            if (nbBookmarks != -1 && secondary_counter > nbBookmarks) continue;
+                                            // secondary_counter++;
+                                            // if (nbBookmarks != -1 && secondary_counter > nbBookmarks) continue;
                                             /*
                                             if (secondary_counter > 1)
                                             {
@@ -105,7 +109,7 @@ namespace CastReporting.Reporting.Block.Table
                                             }
                                             */
                                             rowData.Add(Labels.FilePath + ": " + _bookmark.CodeFragment.CodeFile.Name);
-                                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.Gainsboro });
+                                            cellProps.Add(new CellAttributes() { Index = cellidx, BackgroundColor = Color.Lavender });
                                             cellidx++;
                                             Dictionary<int, string> codeLines = reportData.SnapshotExplorer.GetSourceCodeBookmark(domainId, _bookmark);
 

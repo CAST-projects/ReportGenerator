@@ -76,21 +76,24 @@ namespace CastReporting.UnitTest.Reporting
             return res;
         }
 
+        [DeploymentItem(@".\Data\findings7392.json", "Data")]
         public IEnumerable<IEnumerable<CodeBookmark>> GetBookmarks(string domainId, string componentId, string snapshotId, string metricId)
         {
-            throw new NotImplementedException();
+            return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings7392.json").ToArray()[0].Bookmarks;
         }
 
         public Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark)
         {
-            Dictionary<int, string> sources = new Dictionary<int, string>();
-            sources.Add(547, "PreparedStatement statement = null;");
-            sources.Add(548,"        try");
-            sources.Add(549,"        {");
-            sources.Add(550,"            statement = consolidatedConn.prepareStatement(insertMessage); ");
-            sources.Add(551,"            statement.setString(1, message); ");
-            sources.Add(552,"            statement.executeUpdate(); ");
-            sources.Add(553,"        }");
+            Dictionary<int, string> sources = new Dictionary<int, string>
+            {
+                {1197, "PreparedStatement statement = null;"},
+                {1198, "        try"},
+                {1199, "        {"},
+                {1200, "            statement = consolidatedConn.prepareStatement(insertMessage); "},
+                {1201, "            statement.setString(1, message); "},
+                {1202, "            statement.executeUpdate(); "},
+                {1203, "        }"}
+            };
             return sources;
         }
 
@@ -123,6 +126,7 @@ namespace CastReporting.UnitTest.Reporting
         }
 
         [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\Violations7426_60017.json", "Data")]
         [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
         [DeploymentItem(@".\Data\CriticalViolationsList_60012.json", "Data")]
         [DeploymentItem(@".\Data\CriticalViolationsList_60013.json", "Data")]
@@ -136,10 +140,16 @@ namespace CastReporting.UnitTest.Reporting
             switch (ruleId)
             {
                 case "7424":
-                    res = TestUtility.GetSampleResult<Violation>(@".\Data\Violations7424_60017.json").Take(count).ToList();
+                    res = count != -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\Violations7424_60017.json").Take(count).ToList()
+                        : TestUtility.GetSampleResult<Violation>(@".\Data\Violations7424_60017.json").ToList();
+                    break;
+                case "7426":
+                    res = count != -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\Violations7426_60017.json").Take(count).ToList()
+                        : TestUtility.GetSampleResult<Violation>(@".\Data\Violations7426_60017.json").ToList();
                     break;
                 case "7846":
-                    res = TestUtility.GetSampleResult<Violation>(@".\Data\Violations7846_60016.json").Take(count).ToList();
+                    res = count != -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\Violations7846_60016.json").Take(count).ToList()
+                        : TestUtility.GetSampleResult<Violation>(@".\Data\Violations7846_60016.json").ToList();
                     break;
                 case "(critical-rules)":
                     switch (bcId)

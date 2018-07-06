@@ -52,6 +52,7 @@
   </Choose>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.XML" />
     <Reference Include="WindowsBase" />
@@ -72,6 +73,9 @@
   </Choose>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Data\findings7392.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\AADMultiCocApp37SnapshotsResults.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -115,6 +119,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\Snapshot_StdTagsOWASPresults1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Violations7426_60017.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\Violations7424_60017.json">
@@ -215,6 +222,7 @@
     <Compile Include="Reporting\RuleBLLStub.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Graph\PortfolioGenericGraphTests.cs" />
+    <Compile Include="Reporting\Tables\QualityRuleViolationsBookmarksTests.cs" />
     <Compile Include="Reporting\Tables\ViolationsListByBCTests.cs" />
     <Compile Include="Reporting\Tables\PortfolioGenericTableTests.cs" />
     <Compile Include="Reporting\Tables\ActionPlanViolationsTests.cs" />
