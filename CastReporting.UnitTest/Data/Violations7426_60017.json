@@ -1,0 +1,58 @@
+[
+  {
+    "component": {
+      "href": "AED/components/27295/snapshots/5",
+      "name": "aedtst_exclusions_central.adg_central_grades_std",
+      "shortName": "adg_central_grades_std",
+      "status": "added",
+      "sourceCodes": {
+        "href": "AED/components/27295/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/27295/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "added",
+      "findings": {
+        "href": "AED/components/27295/snapshots/5/findings/7424",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7424",
+      "name": "Avoid using SQL queries inside a loop"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/21248/snapshots/5",
+      "name": "aedtst_exclusions_central.adg_central_startup_init",
+      "shortName": "adg_central_startup_init",
+      "status": "updated",
+      "sourceCodes": {
+        "href": "AED/components/21248/snapshots/5/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/21248/snapshots/5/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "added",
+      "findings": {
+        "href": "AED/components/21248/snapshots/5/findings/7424",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7424",
+      "name": "Avoid using SQL queries inside a loop"
+    },
+    "remedialAction": null
+  }
+]

@@ -29,6 +29,9 @@ namespace CastReporting.Domain
         [DataMember(Name = "name")]
         public string Name {get;set;}
 
+        [DataMember(Name = "href")]
+        public string Href { get; set; }
+
         [DataMember(Name = "shortName")]
         public string ShortName { get; set; }
 
@@ -43,5 +46,11 @@ namespace CastReporting.Domain
 
         [DataMember(Name = "priBusinessCriterion")]
         public string PriBusinessCriterion { get; set; }
+
+        public string GetComponentId()
+        {
+            return Href.Split('/')[2];
+        }
+
     }
 }

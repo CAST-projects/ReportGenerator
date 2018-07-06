@@ -48,9 +48,13 @@
     <Compile Include="DataObject\ActionPlan.cs" />
     <Compile Include="DataObject\CastDate.cs" />
     <Compile Include="DataObject\Categories.cs" />
+    <Compile Include="DataObject\CodeFile.cs" />
     <Compile Include="DataObject\CommonCategories.cs" />
     <Compile Include="DataObject\Component.cs" />
+    <Compile Include="DataObject\CodeFragment.cs" />
+    <Compile Include="DataObject\AssociatedValue.cs" />
     <Compile Include="DataObject\ExclusionRequest.cs" />
+    <Compile Include="DataObject\CodeBookmark.cs" />
     <Compile Include="DataObject\Violation.cs" />
     <Compile Include="DataObject\RemedialDates.cs" />
     <Compile Include="DataObject\RemedialAction.cs" />

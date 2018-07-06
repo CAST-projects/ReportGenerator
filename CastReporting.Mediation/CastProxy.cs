@@ -132,6 +132,12 @@ namespace CastReporting.Mediation
         	return DownloadContent(pUrl, "application/json", pComplexity);
         }
 
+        public string DownloadPlainText(string pUrl, RequestComplexity pComplexity)
+        {
+            return DownloadContent(pUrl, "text/plain", pComplexity);
+        }
+
+
         /// <summary>
         /// Download String by URI
         /// </summary>

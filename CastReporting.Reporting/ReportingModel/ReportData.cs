@@ -155,5 +155,6 @@ namespace CastReporting.Reporting.ReportingModel
             RuleExplorer?.Dispose();
             SnapshotExplorer?.Dispose();
         }
+
     }
 }

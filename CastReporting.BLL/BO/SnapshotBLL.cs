@@ -650,6 +650,48 @@ namespace CastReporting.BLL
             }
         }
 
-       
+        public IEnumerable<IEnumerable<CodeBookmark>> GetBookmarks(string domainId, string componentId, string snapshotId, string metricId)
+        {
+            try
+            {
+                using (var castRepository = GetRepository())
+                {
+                    return castRepository.GetAssociatedValue(domainId, snapshotId, componentId, metricId).Bookmarks;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+        }
+
+        public Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark )
+        {
+            string siteId = bookmark.CodeFragment.CodeFile.GetSiteId();
+            string fileId = bookmark.CodeFragment.CodeFile.GetFileId();
+            int startLine = bookmark.CodeFragment.StartLine;
+            int endLine = bookmark.CodeFragment.EndLine;
+            try
+            {
+                using (var castRepository = GetRepository())
+                {
+                    Dictionary<int, string> codeLines = new Dictionary<int, string>();
+                    int idx = startLine - 3;
+                    List<string> lines = castRepository.GetFileContent(domainId, siteId, fileId, idx, endLine + 3);
+                    for (int i = 0; i < 7; i++)
+                    {
+                        codeLines.Add(idx, lines[i]);
+                        idx++;
+                    }
+                    return codeLines;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+        }
     }
 }

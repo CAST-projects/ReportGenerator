@@ -320,7 +320,7 @@ namespace CastReporting.UnitTest.DAL
         [TestMethod()]
         public void GetConfQualityRuleChinese()
         {
-            //if (Environment.MachineName != "ABDLAP2") return;
+            if (Environment.MachineName != "ABDLAP2") return;
 
             WSConnection _connection3 = new WSConnection()
             {

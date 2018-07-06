@@ -54,5 +54,7 @@ namespace CastReporting.Mediation.Interfaces
         /// <param name="pComplexity"></param>
         /// <returns></returns>
         string DownloadCsvString(Uri pUri, RequestComplexity pComplexity);
+
+        string DownloadPlainText(string pUrl, RequestComplexity pComplexity);
     }
 }

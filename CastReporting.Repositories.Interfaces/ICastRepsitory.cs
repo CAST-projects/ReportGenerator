@@ -189,7 +189,7 @@ namespace CastReporting.Repositories.Interfaces
         /// </summary>
         /// <returns></returns>
         IEnumerable<CommonCategories> GetCommonCategories();
-
+        
         string GetCommonCategoriesJson();
 
 
@@ -251,5 +251,9 @@ namespace CastReporting.Repositories.Interfaces
         /// <returns></returns>
         IEnumerable<Violation> GetViolationsListIDbyBC(string snapshotHref, string ruleId, string bcId, int count, string technos);
         IEnumerable<Violation> GetViolationsInActionPlan(string snapshotHref, int count);
+
+        AssociatedValue GetAssociatedValue(string domainHRef, string snapshotId, string objectId, string metricId);
+
+        List<string> GetFileContent(string domainHRef, string siteId, string fileId, int startLine, int endLine);
     }
 }

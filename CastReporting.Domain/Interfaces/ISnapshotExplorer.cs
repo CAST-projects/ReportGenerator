@@ -63,5 +63,9 @@ namespace CastReporting.Domain.Interfaces
         /// <param name="count"></param>
         /// <returns></returns>
         IEnumerable<Component> GetComponentsByModule(string domainId, int moduleId, int snapshotId, string businessCriteria, int count);
+
+        IEnumerable<IEnumerable<CodeBookmark>> GetBookmarks(string domainId, string componentId, string snapshotId, string metricId);
+
+        Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark);
     }
 }
