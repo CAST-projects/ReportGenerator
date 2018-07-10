@@ -97,6 +97,11 @@ namespace CastReporting.UnitTest.Reporting
             return sources;
         }
 
+        public TypedComponent GetTypedComponent(string domainId, string componentId, string snapshotId)
+        {
+            throw new NotImplementedException();
+        }
+
         [DeploymentItem(@".\Data\IfpugFunctions.csv", "Data")]
         public IEnumerable<IfpugFunction> GetIfpugFunctions(string snapshotHref, int count)
         {

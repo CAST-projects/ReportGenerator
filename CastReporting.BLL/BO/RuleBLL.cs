@@ -1,6 +1,8 @@
 ﻿using CastReporting.Domain;
 using CastReporting.Domain.Interfaces;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Net.Sockets;
 
 namespace CastReporting.BLL
 {
@@ -52,6 +54,14 @@ namespace CastReporting.BLL
             using (var castRepsitory = GetRepository())
             {
                 return castRepsitory.GetRulesDetails(domain, businessCriteria, snapshotHRef);
+            }
+        }
+
+        public IEnumerable<Contributor> GetRulesInTechnicalCriteria(string domain, string technicalCriteria, long snapshotHRef)
+        {
+            using (var castRepsitory = GetRepository())
+            {
+                return castRepsitory.GetRulesForTechnicalCriteria(domain, technicalCriteria, snapshotHRef);
             }
         }
     }

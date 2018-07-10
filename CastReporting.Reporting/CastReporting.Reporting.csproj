@@ -81,6 +81,7 @@
     <Compile Include="Block\Graph\RadarMetricId.cs" />
     <Compile Include="Block\Graph\TrendMetricId.cs" />
     <Compile Include="Block\Graph\TrendTechDebtPortfolio.cs" />
+    <Compile Include="Block\Table\RulesListViolationsBookmarks.cs" />
     <Compile Include="Block\Table\QualityRuleViolationsBookmarks.cs" />
     <Compile Include="Block\Table\ViolationsListByBC.cs" />
     <Compile Include="Block\Table\PortfolioGenericTable.cs" />

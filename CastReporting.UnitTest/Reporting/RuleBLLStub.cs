@@ -52,5 +52,10 @@ namespace CastReporting.UnitTest.Reporting
 
             return res;
         }
+
+        public IEnumerable<Contributor> GetRulesInTechnicalCriteria(string domain, string technicalCriteria, long snapshotHRef)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

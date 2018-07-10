@@ -240,14 +240,12 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
         [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
         [DeploymentItem(@".\Data\findings7392.json", "Data")]
-        [DeploymentItem(@".\Data\PreviousBCresults.json", "Data")]
-        public void TestPreviousAllViolations()
+        public void TestAllViolations()
         {
             CastDate currentDate = new CastDate { Time = 1484953200000 };
-            CastDate previousDate = new CastDate { Time = 1484866800000 };
             ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
                 null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
-                null, @".\Data\PreviousBCresults.json", "AED/applications/3/snapshots/5", "Version 1.4.1", "V-1.4.1", previousDate);
+                null, null, null, null, null, null);
             WSConnection connection = new WSConnection()
             {
                 Url = "http://tests/CAST-RESTAPI/rest/",
@@ -263,8 +261,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             {
                 {"ID","7424" },
                 {"NAME","SHORT" },
-                {"COUNT","-1" },
-                {"SNAPSHOT","PREVIOUS" }
+                {"COUNT","-1" }
             };
             var table = component.Content(reportData, config);
 

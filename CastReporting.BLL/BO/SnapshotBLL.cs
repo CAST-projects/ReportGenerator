@@ -493,6 +493,23 @@ namespace CastReporting.BLL
             }
         }
 
+        public TypedComponent GetTypedComponent(string domainId, string componentId, string snapshotId)
+        {
+
+            try
+            {
+                using (var castRepsitory = GetRepository())
+                {
+                    return castRepsitory.GetTypedComponent(domainId, componentId, snapshotId);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+
+        }
 
         /// <summary>
         /// 

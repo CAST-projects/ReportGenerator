@@ -1143,7 +1143,7 @@ namespace CastReporting.Reporting.Helper
             List<string> metricstags = new List<string>();
             foreach (string _metric in metrics)
             {
-                int idx = -1;
+                int idx;
                 if (!int.TryParse(_metric, out idx))
                 {
                     tags.Add(_metric);

@@ -211,7 +211,7 @@ namespace CastReporting.Reporting
                             .TechnologyResults.FirstOrDefault(_ => _.Technology == technology)?
                             .DetailResult.Value;
                     }
-                    resStr = format ? result?.ToString("N0") ?? Constants.No_Value  : result?.ToString() ?? "0";
+                    resStr = format ? result?.ToString("N0") ?? Constants.No_Value : result?.ToString() ?? "0";
                     break;
                 case metricType.NotKnown:
                     break;
@@ -435,15 +435,15 @@ namespace CastReporting.Reporting
             {
                 switch (metType)
                 {
-                        case metricType.QualityRule:
-                        case metricType.TechnicalCriteria:
-                        case metricType.BusinessCriteria:
-                            aggregator = "AVERAGE";
-                            break;
-                        case metricType.SizingMeasure:
-                        case metricType.BackgroundFact:
-                            aggregator = "SUM";
-                            break;
+                    case metricType.QualityRule:
+                    case metricType.TechnicalCriteria:
+                    case metricType.BusinessCriteria:
+                        aggregator = "AVERAGE";
+                        break;
+                    case metricType.SizingMeasure:
+                    case metricType.BackgroundFact:
+                        aggregator = "SUM";
+                        break;
                 }
             }
 
@@ -480,7 +480,7 @@ namespace CastReporting.Reporting
                     break;
                 case metricType.SizingMeasure:
                 case metricType.BackgroundFact:
-                    res = format ? curResult?.ToString("N0") ?? Constants.No_Value  : curResult?.ToString() ?? "0";
+                    res = format ? curResult?.ToString("N0") ?? Constants.No_Value : curResult?.ToString() ?? "0";
                     break;
                 case metricType.NotKnown:
                     res = curResult?.ToString() ?? (format ? Constants.No_Value : "0");
@@ -497,6 +497,60 @@ namespace CastReporting.Reporting
             };
         }
 
-    }
+        public static List<string> BuildRulesList(ReportData reportData, List<string> metrics)
+        {
+            List<string> qualityRules = new List<string>();
 
+            foreach (string _metric in metrics)
+            {
+                int idx;
+                // If metric can not be parsed as integer, this is potentially a string containing a standard tag for quality rule selection
+                if (!int.TryParse(_metric, out idx))
+                {
+                    List<string> stdTagMetrics = reportData.SnapshotExplorer.GetQualityStandardsRulesList(reportData.CurrentSnapshot.Href, _metric);
+                    qualityRules.AddRange(stdTagMetrics);
+                }
+                else
+                {
+                    Snapshot snapshot = reportData.CurrentSnapshot;
+                    int metricId = int.Parse(_metric);
+                    string name = snapshot.BusinessCriteriaResults.Where(_ => _.Reference.Key == metricId).Select(_ => _.Reference.Name).FirstOrDefault();
+
+                    if (name != null)
+                    {
+                        // This is a Business criteria
+
+                        List<RuleDetails> rules =  reportData.RuleExplorer.GetRulesDetails(snapshot.DomainId, metricId, snapshot.Id).ToList();
+                        qualityRules.AddRange(rules.Select(_ => _.Key.ToString()).ToList());
+                    }
+                    else
+                    {
+                        // if metricId is not a Business Criteria
+                        name = snapshot.TechnicalCriteriaResults.Where(_ => _.Reference.Key == metricId).Select(_ => _.Reference.Name).FirstOrDefault();
+                        if (name != null)
+                        {
+                            // This is a Technical criteria
+                            List<Contributor> rules = reportData.RuleExplorer.GetRulesInTechnicalCriteria(snapshot.DomainId, _metric, snapshot.Id).ToList();
+                            qualityRules.AddRange(rules.Select(_ => _.Key.ToString()));
+                        }
+                        else
+                        {
+                            // if metricId is not a Technical Criteria
+                            name = snapshot.QualityRulesResults.Where(_ => _.Reference.Key == metricId).Select(_ => _.Reference.Name).FirstOrDefault();
+                            if (name != null)
+                            {
+                                qualityRules.Add(_metric);
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
+            return qualityRules;
+        }
+
+
+    }
 }
