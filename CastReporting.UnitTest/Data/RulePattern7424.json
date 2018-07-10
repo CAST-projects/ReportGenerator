@@ -1,0 +1,33 @@
+﻿[
+  {
+    "href": "AED/rule-patterns/7424",
+    "key": "7424",
+    "name": "Avoid using SQL queries inside a loop",
+    "description": "This metric retrieves all artifacts using at least one SQL query inside a loop statement.",
+    "technologies": [],
+    "rationale": "Having an SQL query inside a loop is usually the source of performance and scalability problems especially if the number of iterations become very high (for example if it is dependent on the data returned from the database).\nThis iterative pattern has proved to be very dangerous for application performance and scalability. Database servers perform much better in set-oriented patterns rather than pure iterative ones.",
+    "reference": null,
+    "remediation": "The remediation is often to replace the iterative approach based on a loop with a set-oriented one and thus modify the query.",
+    "output": "Associated to each client-server artifact with violations, the Quality Rule provides:\n- Number of violation patterns\n- Bookmarks for violation patterns found in the source code:\n  - SQL query\n  - loop starting line",
+    "associatedValueName": "Number of violation patterns",
+    "total": "Number of client-server artifacts using tables and views",
+    "sample": "Oracle:\nfor x in ( select * from t1 )\nloop\n  for y in ( select * from t2 where t2.col = x.COL )\n  loop \n    for z in (select * from t3 where t3.col = y.SOMETHING )\n    loop\n      update table_name set co1 = z.SOMETHING_ELSE where table_name.col2 = z.KeyName;\n    end loop;\n  end loop;\nend loop;\n\nMicrosoft SQL Server:\nWHILE @Counter <= @MaxOscars\nBEGIN\nSET @NumFilms =\n(\nSELECT COUNT(*)\nFROM tblFilm\nWHERE FilmOscarWins = @Counter\n)\nPRINT\nCAST(@NumFilms AS VARCHAR(3)) +\n' films have won ' +\nCAST(@Counter AS VARCHAR(2)) +\n' Oscars.'\nSET @Counter += 1\nEND\n\nPreparedStatement updateSales;\nString updateString = \"update COFFEES \" +\n                      \"set SALES = ? where COF_NAME like ?\";\nupdateSales = con.prepareStatement(updateString);\n\nint len = coffees.length;\nfor(int i = 0; i < len; i++) {\n                updateSales.setInt(1, salesForWeek[i]);\n                updateSales.setString(2, coffees[i]);\n                updateSales.executeUpdate();    // VIOLATION\n        }",
+    "remediationSample": "Oracle:\n update table_name\n set co1 = (select z.SOMETHING_ELSE\n              from t3 z\n                  join t2 y on z.col = y.SOMETHING\n                  join t1 x on y.col = x.COL\n              where table_name.col2 = z.KeyName)\nwhere exists(select 1\n              from t3 z\n                  join t2 y on z.col = y.SOMETHING\n                  join t1 x on y.col = x.COL\n              where table_name.col2 = z.KeyName);\n\nMicrosoft SQL Server:\nSELECT\nFilmOscarWins\n,COUNT(*) AS [NumberOfFilms]\nFROM\ntblFilm\nGROUP BY\nFilmOscarWins",
+    "qualityStandards": [
+      {
+        "standard": "CISQ",
+        "id": "ASCPEM-PRF-12",
+        "name": "Storable and Member Data Element Excessive Number of Aggregated Storable and Member Data Elements",
+        "reference": null,
+        "description": null
+      },
+      {
+        "standard": "CISQ",
+        "id": "ASCPEM-PRF-8",
+        "name": "Control Elements Requiring Significant Resource Element within Control Flow Loop Block",
+        "reference": null,
+        "description": null
+      }
+    ]
+  }
+]

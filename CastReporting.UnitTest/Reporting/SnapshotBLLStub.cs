@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using CastReporting.BLL;
 using CastReporting.Domain;
 using CastReporting.Domain.Interfaces;
@@ -99,7 +100,8 @@ namespace CastReporting.UnitTest.Reporting
 
         public TypedComponent GetTypedComponent(string domainId, string componentId, string snapshotId)
         {
-            throw new NotImplementedException();
+            ObjectType type = new ObjectType(){Label = "MyObjType", Name="toto"};
+            return new TypedComponent() {Type = type};
         }
 
         [DeploymentItem(@".\Data\IfpugFunctions.csv", "Data")]

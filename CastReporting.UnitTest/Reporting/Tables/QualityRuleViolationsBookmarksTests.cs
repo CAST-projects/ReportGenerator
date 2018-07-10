@@ -19,7 +19,6 @@ namespace CastReporting.UnitTest.Reporting.Tables
         // TODO :
         // - test with no count / count = 2
         // - test with shortname / fullname
-        // - test with current / previous snapshot
         // - test with only one snapshot (previous does not exists= => no status column)
 
         [TestMethod]

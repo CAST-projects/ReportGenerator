@@ -11,6 +11,8 @@ namespace CastReporting.UnitTest.Reporting
     {
         [DeploymentItem(@".\Data\RulePattern1634.json", "Data")]
         [DeploymentItem(@".\Data\RulePattern4592.json", "Data")]
+        [DeploymentItem(@".\Data\RulePattern7846.json", "Data")]
+        [DeploymentItem(@".\Data\RulePattern7424.json", "Data")]
         [DeploymentItem(@".\Data\RulePatterns.json", "Data")]
         public RuleDescription GetSpecificRule(string domain, string ruleId)
         {
@@ -23,6 +25,12 @@ namespace CastReporting.UnitTest.Reporting
                     break;
                 case "4592":
                     res = TestUtility.GetSampleResult<RuleDescription>(@".\Data\RulePattern4592.json").FirstOrDefault();
+                    break;
+                case "7424":
+                    res = TestUtility.GetSampleResult<RuleDescription>(@".\Data\RulePattern7424.json").FirstOrDefault();
+                    break;
+                case "7846":
+                    res = TestUtility.GetSampleResult<RuleDescription>(@".\Data\RulePattern7846.json").FirstOrDefault();
                     break;
                 default:
                     res = TestUtility.GetSampleResult<RuleDescription>(@".\Data\RulePatterns.json").FirstOrDefault(_ => _.Key == ruleId);
@@ -55,7 +63,13 @@ namespace CastReporting.UnitTest.Reporting
 
         public IEnumerable<Contributor> GetRulesInTechnicalCriteria(string domain, string technicalCriteria, long snapshotHRef)
         {
-            throw new System.NotImplementedException();
+
+            IEnumerable<Contributor> res = new List<Contributor>
+            {
+                new Contributor() {Key = 7424}, 
+                new Contributor() {Key = 7846}
+            };
+            return res;
         }
     }
 }
