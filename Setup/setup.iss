@@ -109,6 +109,34 @@ begin
 	
 end;
 
+// Functions added to be able to save the settings in UTF-8 without bom for chinese and japanese OS
+const
+  CP_UTF8 = 65001;
+
+function WideCharToMultiByte(CodePage: UINT; dwFlags: DWORD;
+  lpWideCharStr: string; cchWideChar: Integer; lpMultiByteStr: AnsiString;
+  cchMultiByte: Integer; lpDefaultCharFake: Integer;
+  lpUsedDefaultCharFake: Integer): Integer;
+  external 'WideCharToMultiByte@kernel32.dll stdcall';
+
+function GetStringAsUtf8(S: string): AnsiString;
+var
+  sizeres: Integer;
+  ress: AnsiString;
+begin
+  sizeres := WideCharToMultiByte(CP_UTF8, 0, S, Length(S), ress, 0, 0, 0);
+  SetLength(ress, sizeres);
+  WideCharToMultiByte(CP_UTF8, 0, S, Length(S), ress, sizeres, 0, 0);
+end;
+
+function SaveStringToUTF8FileWithoutBOM(FileName: string; S: string): Boolean;
+var
+  Utf8: AnsiString;
+begin
+  Utf8 := GetStringAsUtf8(S);
+  Result := SaveStringToFile(FileName, Utf8, True);
+end;
+
 //Replace substring in a string
 procedure FileReplace(SrcFile, sFrom, sTo: String);
 var
@@ -117,12 +145,13 @@ var
 begin
     //Load srcfile to a string
     LoadStringFromFile(SrcFile, FileContent);
-    FileContentW := FileContent;
+    FileContentW := String(FileContent);
     //Replace Fromstring by toString in file string content
-    StringChange (FileContentW, sFrom, sTo);
+    StringChangeEx (FileContentW, sFrom, sTo, True);
     //Replace old content srcfile by the new content
     DeleteFile(SrcFile);
-    SaveStringToFile(SrcFile,FileContentW, True);
+    SaveStringToFile(SrcFile,AnsiString(FileContentW),True);
+    //SaveStringToUTF8FileWithoutBOM(SrcFile,AnsiString(FileContentW));
 end;
 
 // Fonctions de retour
