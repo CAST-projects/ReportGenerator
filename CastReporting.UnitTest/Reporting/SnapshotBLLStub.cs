@@ -147,6 +147,9 @@ namespace CastReporting.UnitTest.Reporting
             switch (ruleId)
             {
                 case "7424":
+                case "7132":
+                case "7558":
+                case "7388":
                     res = count != -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\Violations7424_60017.json").Take(count).ToList()
                         : TestUtility.GetSampleResult<Violation>(@".\Data\Violations7424_60017.json").ToList();
                     break;
@@ -209,7 +212,16 @@ namespace CastReporting.UnitTest.Reporting
 
         public List<string> GetQualityStandardsRulesList(string snapshotHref, string qualityIndicator)
         {
-            return qualityIndicator.Equals("OWASP") ? new List<string>{ "1596", "4656" } : null;
+            switch (qualityIndicator)
+            {
+                case "OWASP":
+                    return new List<string> { "1596", "4656" };
+                case "CWE":
+                    return new List<string> { "7424" };
+                default:
+                    return null;
+            }
+            
         }
 
 

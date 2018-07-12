@@ -1127,6 +1127,96 @@
         "technologyResults": [],
         "moduleResults": [],
         "transactionResults": []
+      },
+
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/7846/snapshots/6",
+          "name": "Action Mappings should have few forwards",
+          "key": "7132",
+          "critical": true
+        },
+        "result": {
+          "grade": 1,
+          "evolutionSummary": {
+            "totalCriticalViolations": 16,
+            "addedCriticalViolations": 8,
+            "removedCriticalViolations": 2,
+            "totalViolations": 16,
+            "addedViolations": 8,
+            "removedViolations": 2
+          },
+          "violationRatio": {
+            "totalChecks": 350,
+            "failedChecks": 77,
+            "successfulChecks": 222,
+            "ratio": 0.6342857142857142
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/7846/snapshots/6",
+          "name": "Avoid accessing data by using the position and length",
+          "key": "7558",
+          "critical": true
+        },
+        "result": {
+          "grade": 1,
+          "evolutionSummary": {
+            "totalCriticalViolations": 16,
+            "addedCriticalViolations": 8,
+            "removedCriticalViolations": 2,
+            "totalViolations": 16,
+            "addedViolations": 8,
+            "removedViolations": 2
+          },
+          "violationRatio": {
+            "totalChecks": 350,
+            "failedChecks": 6,
+            "successfulChecks": 222,
+            "ratio": 0.6342857142857142
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/7846/snapshots/6",
+          "name": "Avoid artifacts having recursive calls",
+          "key": "7388",
+          "critical": true
+        },
+        "result": {
+          "grade": 1,
+          "evolutionSummary": {
+            "totalCriticalViolations": 16,
+            "addedCriticalViolations": 8,
+            "removedCriticalViolations": 2,
+            "totalViolations": 16,
+            "addedViolations": 8,
+            "removedViolations": 2
+          },
+          "violationRatio": {
+            "totalChecks": 350,
+            "failedChecks": 12,
+            "successfulChecks": 222,
+            "ratio": 0.6342857142857142
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
       }
     ]
 	}

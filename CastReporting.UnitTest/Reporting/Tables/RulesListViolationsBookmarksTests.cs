@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using CastReporting.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CastReporting.Reporting.ReportingModel;
@@ -16,7 +17,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         }
 
         // TODO :
-        // - test with no count / count = 2
+        // - test with no count / count = 1
         // - test for metrics by standard tag / bc / tc / metric ids
 
         [TestMethod]
@@ -157,6 +158,211 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Assert.AreEqual(Color.White, cellsProperties[18].BackgroundColor);
 
             Assert.AreEqual(Color.Gray, cellsProperties[35].BackgroundColor);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
+        [DeploymentItem(@".\Data\RulePattern7846.json", "Data")]
+        [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        public void TestNocountMetric()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCTC.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+
+            var component = new CastReporting.Reporting.Block.Table.RulesListViolationsBookmarks();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"METRICS","7846" }
+            };
+            var table = component.Content(reportData, config);
+
+            Assert.AreEqual(1, table.NbColumns);
+            Assert.AreEqual(150, table.NbRows);
+            Assert.AreEqual("Violations", table.Data.ElementAt(0));
+            Assert.AreEqual("Objects in violation for rule Avoid Methods with a very low comment/code ratio", table.Data.ElementAt(2));
+            Assert.AreEqual("# Violations: 128", table.Data.ElementAt(3));
+            Assert.AreEqual("Violation #5    Avoid Methods with a very low comment/code ratio", table.Data.ElementAt(123));
+            Assert.AreEqual("Object Name: com.castsoftware.aed.common.AedCommandLine.getFormattedMsg", table.Data.ElementAt(124));
+            Assert.AreEqual("Object Type: MyObjType", table.Data.ElementAt(125));
+            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql", table.Data.ElementAt(126));
+            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\Java\\AADAdmin\\AadSite\\sources\\com\\castsoftware\\aad\\site\\AadSite.java", table.Data.ElementAt(142));
+            Assert.AreEqual("1203 :         }", table.Data.ElementAt(149));
+
+            var cellsProperties = table.CellsAttributes;
+            Assert.AreEqual(143, cellsProperties.Count);
+            Assert.AreEqual(Color.Gray, cellsProperties[0].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[1].BackgroundColor);
+            Assert.AreEqual(Color.LightGray, cellsProperties[2].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[3].BackgroundColor);
+            Assert.AreEqual(Color.LightGray, cellsProperties[4].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[5].BackgroundColor);
+            Assert.AreEqual(Color.LightGray, cellsProperties[6].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[7].BackgroundColor);
+            Assert.AreEqual(Color.Gainsboro, cellsProperties[8].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[9].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[10].BackgroundColor);
+            Assert.AreEqual(Color.Lavender, cellsProperties[11].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[12].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[13].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[14].BackgroundColor);
+            Assert.AreEqual(Color.LightYellow, cellsProperties[15].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[16].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[17].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[18].BackgroundColor);
+
+            Assert.AreEqual(Color.Gainsboro, cellsProperties[35].BackgroundColor);
+            Assert.AreEqual(Color.Gainsboro, cellsProperties[116].BackgroundColor);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
+        [DeploymentItem(@".\Data\RulePattern7424.json", "Data")]
+        [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        public void TestMetricsStdTag()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCTC.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+
+            var component = new CastReporting.Reporting.Block.Table.RulesListViolationsBookmarks();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"METRICS","CWE" },
+                {"COUNT", "-1" }
+            };
+            var table = component.Content(reportData, config);
+
+            Assert.AreEqual(1, table.NbColumns);
+            Assert.AreEqual(206, table.NbRows);
+            Assert.AreEqual("Violations", table.Data.ElementAt(0));
+            Assert.AreEqual("Objects in violation for rule Avoid using SQL queries inside a loop", table.Data.ElementAt(2));
+            Assert.AreEqual("# Violations: 86", table.Data.ElementAt(3));
+            Assert.AreEqual("Violation #7    Avoid using SQL queries inside a loop", table.Data.ElementAt(179));
+            Assert.AreEqual("Object Name: aedtst_exclusions_central.adgc_delta_debt_removed", table.Data.ElementAt(180));
+            Assert.AreEqual("Object Type: MyObjType", table.Data.ElementAt(181));
+            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql", table.Data.ElementAt(182));
+            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\Java\\AADAdmin\\AadSite\\sources\\com\\castsoftware\\aad\\site\\AadSite.java", table.Data.ElementAt(198));
+            Assert.AreEqual("1203 :         }", table.Data.ElementAt(205));
+
+            var cellsProperties = table.CellsAttributes;
+            Assert.AreEqual(197, cellsProperties.Count);
+            Assert.AreEqual(Color.Gray, cellsProperties[0].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[1].BackgroundColor);
+            Assert.AreEqual(Color.LightGray, cellsProperties[2].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[3].BackgroundColor);
+            Assert.AreEqual(Color.LightGray, cellsProperties[4].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[5].BackgroundColor);
+            Assert.AreEqual(Color.LightGray, cellsProperties[6].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[7].BackgroundColor);
+            Assert.AreEqual(Color.Gainsboro, cellsProperties[8].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[9].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[10].BackgroundColor);
+            Assert.AreEqual(Color.Lavender, cellsProperties[11].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[12].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[13].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[14].BackgroundColor);
+            Assert.AreEqual(Color.LightYellow, cellsProperties[15].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[16].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[17].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[18].BackgroundColor);
+
+            Assert.AreEqual(Color.Gainsboro, cellsProperties[35].BackgroundColor);
+            Assert.AreEqual(Color.Gainsboro, cellsProperties[170].BackgroundColor);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\BaseQI60011.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
+        [DeploymentItem(@".\Data\RulePatterns.json", "Data")]
+        [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        public void TestBCmetrics()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCTC.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+
+            var component = new CastReporting.Reporting.Block.Table.RulesListViolationsBookmarks();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"METRICS","60011" },
+                {"COUNT", "2" }
+            };
+            var table = component.Content(reportData, config);
+
+            Assert.AreEqual(1, table.NbColumns);
+            Assert.AreEqual(194, table.NbRows);
+            Assert.AreEqual("Violations", table.Data.ElementAt(0));
+            Assert.AreEqual("Objects in violation for rule Action Mappings should have few forwards", table.Data.ElementAt(2));
+            Assert.AreEqual("# Violations: 77", table.Data.ElementAt(3));
+            Assert.AreEqual("Violation #1    Action Mappings should have few forwards", table.Data.ElementAt(9));
+            Assert.AreEqual("Violation #2    Action Mappings should have few forwards", table.Data.ElementAt(37));
+            Assert.AreEqual("Objects in violation for rule Avoid accessing data by using the position and length", table.Data.ElementAt(65));
+            Assert.AreEqual("# Violations: 6", table.Data.ElementAt(66));
+            Assert.AreEqual("Objects in violation for rule Avoid artifacts having recursive calls", table.Data.ElementAt(130));
+            Assert.AreEqual("# Violations: 12", table.Data.ElementAt(131));
+            Assert.AreEqual("1203 :         }", table.Data.ElementAt(193));
+
+
+            var cellsProperties = table.CellsAttributes;
+            Assert.AreEqual(184, cellsProperties.Count);
+            Assert.AreEqual(Color.Gray, cellsProperties[0].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[1].BackgroundColor);
+            Assert.AreEqual(Color.LightGray, cellsProperties[2].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[3].BackgroundColor);
+            Assert.AreEqual(Color.LightGray, cellsProperties[4].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[5].BackgroundColor);
+            Assert.AreEqual(Color.Gainsboro, cellsProperties[6].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[7].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[8].BackgroundColor);
+            Assert.AreEqual(Color.Lavender, cellsProperties[9].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[10].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[11].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[12].BackgroundColor);
+            Assert.AreEqual(Color.LightYellow, cellsProperties[13].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[14].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[15].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[16].BackgroundColor);
+
+            Assert.AreEqual(Color.Gray, cellsProperties[60].BackgroundColor);
+            Assert.AreEqual(Color.Gray, cellsProperties[122].BackgroundColor);
+
         }
 
     }

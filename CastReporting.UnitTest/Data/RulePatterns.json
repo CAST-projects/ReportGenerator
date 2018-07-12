@@ -66,5 +66,41 @@
     "total": "Number of Artifacts",
     "sample": null,
     "remediationSample": null
+  },
+  {
+    "href": "AED/rule-patterns/7388",
+    "key": "7388",
+    "name": "Avoid artifacts having recursive calls",
+    "description": "This metric retrieves all artifacts that are explicitly calling themselves (recursive call). Only executable artifacts are considered.",
+    "technologies": [],
+    "rationale": "Recursive calls can be unpredictable with regard to consumption of resources, especially memory.  Under certain condition, a function or procedure using a recursive call can keep calling itself and as each call consumes memory, the entire application runs out of memory. \nRecursive calls are known to be difficult to test for because the termination condition and thus the resource consumption might be dependent on the data used for the test.  For all these reasons, it is often forbidden and limited to academic usage rather than for mission-critical systems. Because the flip side is complexity, such a trade-off should be carefully chosen by architects or senior developers, balancing cost with reliability and in all cases the conditions under which it is used should be reviewed in details.",
+    "reference": null,
+    "remediation": "Review the Function / Procedure design",
+    "output": "This report lists all recursive artifacts.\nIt provides the following information:\n  artifact full name.",
+    "associatedValueName": null,
+    "total": "The total procedure counts the number of executable artifacts (all Artifacts excepts tables, views,  jsp, asp, vbScript, javascript, JScript and HTML files).",
+    "sample": null,
+    "remediationSample": null,
+    "qualityStandards": [
+      {
+        "standard": "CISQ",
+        "id": "ASCRM-CWE-674",
+        "name": "Uncontrolled Recursion",
+        "reference": null,
+        "description": null
+      }
+    ]
+  },
+  {
+    "href": "AED/distribution-patterns/65601",
+    "key": "65601",
+    "name": "4GL Complexity Distribution",
+    "description": "Distribution of Forms regarding their complexity",
+    "technologies": [],
+    "rationale": null,
+    "reference": null,
+    "remediation": null,
+    "output": null,
+    "associatedValueName": null
   }
 ]
