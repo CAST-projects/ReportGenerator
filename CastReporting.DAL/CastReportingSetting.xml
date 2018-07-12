@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <Setting xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ReportingParameter>
 		<ApplicationSizeLimitSupSmall>200000</ApplicationSizeLimitSupSmall>
