@@ -175,6 +175,8 @@ namespace CastReporting.Repositories.Interfaces
         /// <returns></returns>
         IEnumerable<RuleDetails> GetRulesDetails(string domain, int businessCriteria, long snapshotId);
 
+        IEnumerable<Contributor> GetRulesForTechnicalCriteria(string domain, string technicalCriteria, long snapshotId);
+
         /// <summary>
         /// 
         /// </summary>
@@ -219,6 +221,8 @@ namespace CastReporting.Repositories.Interfaces
         /// <param name="count"></param>
         /// <returns></returns>
         IEnumerable<MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string ruleId, int count);
+
+        TypedComponent GetTypedComponent(string domainHRef, string componentId, string snapshotId);
 
         /// <summary>
         /// 

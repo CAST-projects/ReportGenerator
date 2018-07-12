@@ -13,8 +13,6 @@
  * limitations under the License.
  *
  */
-
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace CastReporting.Domain
@@ -22,12 +20,23 @@ namespace CastReporting.Domain
     /// <summary>
     /// 
     /// </summary>
-   [DataContract(Name = "technicalCriteria")]
-    public class QITechnicalCriteria : QIBase  
+    [DataContract(Name = "typed-component")]
+    public class TypedComponent
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        [DataMember(Name = "name")]
+        public string Name {get;set;}
 
-        [DataMember(Name = "gradeContributors")]
-        public IEnumerable<Contributor> Contributors { get; set; }
+        [DataMember(Name = "href")]
+        public string Href { get; set; }
+
+        [DataMember(Name = "shortName")]
+        public string ShortName { get; set; }
+
+        [DataMember(Name = "type")]
+        public ObjectType Type { get; set; }
 
     }
 }

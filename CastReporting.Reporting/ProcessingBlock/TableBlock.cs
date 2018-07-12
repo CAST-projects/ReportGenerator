@@ -210,8 +210,8 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
 
                 #endregion Column number management
 
-                ModifyWordRowTextContent(headerRowTemplate, string.Empty);
-                ModifyWordRowTextContent(contentRowTemplate, string.Empty);
+                ModifyWordRowTextContent(headerRowTemplate, string.Empty, string.Empty, string.Empty);
+                ModifyWordRowTextContent(contentRowTemplate, string.Empty, string.Empty, string.Empty);
 
                 int idx = 0;
                 int nbrow = 0;
@@ -240,6 +240,8 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                 cell = contentCells?[idx % contentCellsCount].CloneNode(true) as OXW.TableCell;
                             }
 
+                            string txtColor = string.Empty;
+                            string effect = string.Empty;
                             if (content.HasCellsAttributes())
                             {
                                 CellAttributes attributes = content.CellsAttributes.FirstOrDefault(a => a.Index == i);
@@ -260,10 +262,13 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                     tcp.Append(shading);
                                     // Add the TableCellProperties object to the TableCell object
                                     cell?.Append(tcp);
+
+                                    txtColor = $"{attributes.FontColor.R:X2}{attributes.FontColor.G:X2}{attributes.FontColor.B:X2}";
+                                    effect = attributes.Effect;
                                 }
                             }
 
-                            ModifyWordCellTextContent(cell, item);
+                            ModifyWordCellTextContent(cell, item, txtColor, effect);
                             row?.Append(cell);
                         }
 
@@ -298,25 +303,25 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 LogHelper.Instance.LogErrorFormat("Impossible to load data in Table block with a block source of type \"{0}\"", block?.GetType().ToString() ?? "null");
             }
         }
-        private static void ModifyWordRowTextContent(OpenXmlElement headerRowTemplate, string txt)
+        private static void ModifyWordRowTextContent(OpenXmlElement headerRowTemplate, string txt, string txtColor, string effect)
         {
             var cells = headerRowTemplate?.Descendants<OXW.TableCell>();
             if (cells == null) return;
             foreach (var cell in cells)
             {
-                ModifyWordCellTextContent(cell, txt);
+                ModifyWordCellTextContent(cell, txt, txtColor, effect);
             }
         }
-        private static void ModifyWordCellTextContent(OpenXmlElement cell, string txt)
+        private static void ModifyWordCellTextContent(OpenXmlElement cell, string txt, string txtColor, string effect)
         {
             OXW.Paragraph paragraph = cell?.Descendants<OXW.Paragraph>().FirstOrDefault();
             if (paragraph == null) return;
             paragraph = paragraph.CloneNode(true) as OXW.Paragraph;
-            ModifyWordParagraphTextContent(paragraph, txt);
+            ModifyWordParagraphTextContent(paragraph, txt, txtColor, effect);
             cell.RemoveAllChildren<OXW.Paragraph>();
             if (paragraph != null) cell.Append(paragraph);
         }
-        private static void ModifyWordParagraphTextContent(OpenXmlElement paragraph, string txt)
+        private static void ModifyWordParagraphTextContent(OpenXmlElement paragraph, string txt, string txtColor, string effect)
         {
             if (null == paragraph) return;
             OXW.Run run = paragraph.Descendants<OXW.Run>().FirstOrDefault();
@@ -332,6 +337,41 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             OXW.Text text = run?.Descendants<OXW.Text>().FirstOrDefault();
             text = (null == text ? new OXW.Text() : text.CloneNode(true) as OXW.Text);
             run?.RemoveAllChildren<OXW.Text>();
+            if (txtColor != string.Empty && effect != string.Empty)
+            {
+                OXW.RunProperties runProperties1 = run?.Descendants<OXW.RunProperties>().FirstOrDefault();
+                if (runProperties1 != null)
+                {
+                    runProperties1 = runProperties1.CloneNode(true) as OXW.RunProperties;
+                    run.RemoveAllChildren<OXW.RunProperties>();
+                }
+                else
+                {
+                    runProperties1 = new OXW.RunProperties();
+                }
+
+                switch (effect)
+                {
+                    case "bold":
+                        OXW.Bold bold2 = new OXW.Bold();
+                        runProperties1?.Append(bold2);
+                        break;
+                    case "italic":
+                        OXW.Italic italic2 = new OXW.Italic();
+                        runProperties1?.Append(italic2);
+                        break;
+                    case "bold+italic":
+                        OXW.Bold bold3 = new OXW.Bold();
+                        runProperties1?.Append(bold3);
+                        OXW.Italic italic3 = new OXW.Italic();
+                        runProperties1?.Append(italic3);
+                        break;
+                }
+
+                OXW.Color color2 = new OXW.Color() { Val = txtColor };
+                runProperties1?.Append(color2);
+                run?.Append(runProperties1);
+            }
             if (text != null)
             {
                 text.Text = txt;
@@ -417,7 +457,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                         if (content.HasCellsAttributes())
                         {
                             CellAttributes attributes = content.CellsAttributes.FirstOrDefault(a => a.Index == i);
-                            if (attributes?.BackgroundColor != null && attributes.Index == i)
+                            if (attributes?.BackgroundColor != null)
                             {
                                 Color myColor = attributes.BackgroundColor;
                                 OXD.RgbColorModelHex backColor = new OXD.RgbColorModelHex() { Val = $"{myColor.R:X2}{myColor.G:X2}{myColor.B:X2}" };

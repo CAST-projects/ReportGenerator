@@ -67,5 +67,7 @@ namespace CastReporting.Domain.Interfaces
         IEnumerable<IEnumerable<CodeBookmark>> GetBookmarks(string domainId, string componentId, string snapshotId, string metricId);
 
         Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark);
+
+        TypedComponent GetTypedComponent(string domainId, string componentId, string snapshotId);
     }
 }

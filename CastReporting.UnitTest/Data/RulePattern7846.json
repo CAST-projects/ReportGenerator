@@ -1,0 +1,27 @@
+﻿[
+  {
+    "href": "AED/rule-patterns/7846",
+    "key": "7846",
+    "name": "Avoid Methods with a very low comment/code ratio",
+    "description": "Methods should have at least a ratio comment/code > X %\nThe threshold is a parameter and can be changed at will.",
+    "technologies": [
+      ".NET (Legacy Analyzer)",
+      "ABAP",
+      "C",
+      "C#",
+      "C++",
+      "JEE",
+      "PowerBuilder",
+      "VB.NET"
+    ],
+    "rationale": "Maintainability of the code is facilitated if there is documentation in the code. This rule will ensure there are comments within the Artifact",
+    "reference": null,
+    "remediation": "Enrich Artifact code with comments",
+    "output": "This report lists all Methods (excluding getters and setters) with comment/code ratio lower than X %\nIt provides the following information: Method full name, comment/code ratio\nFor .net, Getters and setters must not be considered as breaking the rule if the property/indexer itself is commented.",
+    "associatedValueName": "Associated Value",
+    "total": "Total number of methods",
+    "sample": null,
+    "remediationSample": null,
+    "qualityStandards": []
+  }
+]

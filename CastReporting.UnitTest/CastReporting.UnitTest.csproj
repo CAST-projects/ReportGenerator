@@ -118,6 +118,12 @@
     <None Include="Data\CriticalViolationsList_60016.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\RulePattern7846.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\RulePattern7424.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Snapshot_StdTagsOWASPresults1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -222,6 +228,7 @@
     <Compile Include="Reporting\RuleBLLStub.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Graph\PortfolioGenericGraphTests.cs" />
+    <Compile Include="Reporting\Tables\RulesListViolationsBookmarksTests.cs" />
     <Compile Include="Reporting\Tables\QualityRuleViolationsBookmarksTests.cs" />
     <Compile Include="Reporting\Tables\ViolationsListByBCTests.cs" />
     <Compile Include="Reporting\Tables\PortfolioGenericTableTests.cs" />

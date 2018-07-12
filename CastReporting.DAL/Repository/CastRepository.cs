@@ -48,6 +48,7 @@ namespace CastReporting.Repositories
         private const string _query_result_quality_distribution_complexity = "{0}/results?quality-indicators=({1})&select=(categories)";
         private const string _query_rule_patterns = "{0}/rule-patterns/{1}";
         private const string _query_rules_details = "{0}/quality-indicators/{1}/snapshots/{2}/base-quality-indicators";
+        private const string _query_grade_contributors = "{0}/quality-indicators/{1}/snapshots/{2}";
         private const string _query_transactions = "{0}/transactions/{1}?nbRows={2}";
         private const string _query_ifpug_functions = "{0}/ifpug-functions";
         private const string _query_ifpug_functions_evolutions = "{0}/ifpug-functions-evolution";
@@ -61,6 +62,7 @@ namespace CastReporting.Repositories
         private const string _query_result_quality_standards_rules = "{0}/results?quality-indicators=(c:{1})";
         private const string _query_findings = "{0}/components/{1}/snapshots/{2}/findings/{3}";
         private const string _query_file_content = "{0}/local-sites/{1}/file-contents/{2}?start-line={3}&end-line={4}";
+        private const string _query_component_type = "{0}/components/{1}/snapshots/{2}";
 
 
 
@@ -185,6 +187,13 @@ namespace CastReporting.Repositories
             var requestUrl = string.Format(_query_findings, domainHRef, objectId, snapshotId, metricId);
 
             return CallWS<AssociatedValue>(requestUrl, RequestComplexity.Standard);
+        }
+
+        TypedComponent ICastRepsitory.GetTypedComponent(string domainHRef, string componentId, string snapshotId)
+        {
+            var requestUrl = string.Format(_query_component_type, domainHRef, componentId, snapshotId);
+
+            return Get<TypedComponent>(requestUrl);
         }
 
         IEnumerable<Component> ICastRepsitory.GetComponents(string snapshotHref, string businessCriteria, int count)
@@ -345,6 +354,14 @@ namespace CastReporting.Repositories
 
             return CallWS<IEnumerable<RuleDetails>>(requestUrl, RequestComplexity.Standard);
         }
+
+        IEnumerable<Contributor> ICastRepsitory.GetRulesForTechnicalCriteria(string domain, string technicalCriteria, long snapshotId)
+        {
+            var requestUrl = string.Format(_query_grade_contributors, domain, technicalCriteria, snapshotId);
+
+            return Get<QITechnicalCriteria>(requestUrl).Contributors;
+        }
+
         #endregion
 
         #region ActionPlan

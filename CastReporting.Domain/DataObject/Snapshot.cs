@@ -16,6 +16,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Linq;
+using System.Resources;
 
 namespace CastReporting.Domain
 {
@@ -113,5 +114,10 @@ namespace CastReporting.Domain
 
         // ReSharper disable once AssignNullToNotNullAttribute
         public long Id => long.Parse(Href.Split('/').LastOrDefault());
+
+        public string GetId()
+        {
+            return Href.Split('/').LastOrDefault();
+        }
     }
 }

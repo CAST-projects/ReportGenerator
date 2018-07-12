@@ -35,7 +35,43 @@ namespace CastReporting.Reporting.ReportingModel
         /// </summary>
         public Color BackgroundColor { get; set; }
 
+        public Color FontColor { get; set; }
+
+        public string Effect { get; set; }
+
+
+        public CellAttributes(int idx, Color back, Color font, string effect)
+        {
+            Index = idx;
+            BackgroundColor = back;
+            FontColor = font;
+            Effect = effect;
+        }
+        public CellAttributes(int idx, Color back, Color font)
+        {
+            Index = idx;
+            BackgroundColor = back;
+            FontColor = font;
+            Effect = string.Empty;
+        }
+
+        public CellAttributes(int idx, Color back, string effect)
+        {
+            Index = idx;
+            BackgroundColor = back;
+            FontColor = Color.Black;
+            Effect = effect;
+        }
+
+        public CellAttributes(int idx, Color back)
+        {
+            Index = idx;
+            BackgroundColor = back;
+            FontColor = Color.Black;
+            Effect = string.Empty;
+        }
+
     }
 
-        #endregion PROPERTIES
+    #endregion PROPERTIES
 }
