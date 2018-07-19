@@ -118,181 +118,181 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Acceptable" xml:space="preserve">
-    <value>Acceptable</value>
+    <value>合格</value>
   </data>
   <data name="Achiev" xml:space="preserve">
-    <value>Achiev.</value>
+    <value>达到</value>
   </data>
   <data name="Achievement" xml:space="preserve">
-    <value>Achievement</value>
+    <value>成功</value>
   </data>
   <data name="AchievementRatio" xml:space="preserve">
-    <value>Achievement ratio</value>
+    <value>成功率</value>
   </data>
   <data name="AchievRatio" xml:space="preserve">
     <value>%</value>
   </data>
   <data name="ActionStatus" xml:space="preserve">
-    <value>Action Status</value>
+    <value>执行状态</value>
   </data>
   <data name="AddedCriticalViolations" xml:space="preserve">
-    <value>Added Critical Violations</value>
+    <value>新增关键违规</value>
   </data>
   <data name="AddedViolations" xml:space="preserve">
-    <value>Added Violations</value>
+    <value>新增违规</value>
   </data>
   <data name="Application" xml:space="preserve">
-    <value>Application</value>
+    <value>应用</value>
   </data>
   <data name="Applications" xml:space="preserve">
-    <value>Applications</value>
+    <value>应用</value>
   </data>
   <data name="Arch" xml:space="preserve">
-    <value>Arch.</value>
+    <value>架构</value>
   </data>
   <data name="ArchitecturalDesign" xml:space="preserve">
-    <value>Architectural Design</value>
+    <value>架构设计</value>
   </data>
   <data name="ArtifactName" xml:space="preserve">
-    <value>Artifact Name</value>
+    <value>工件名称</value>
   </data>
   <data name="Artifacts" xml:space="preserve">
-    <value>Artifacts</value>
+    <value>工件名称</value>
   </data>
   <data name="ArtifactsSQL" xml:space="preserve">
-    <value>SQL Art.</value>
+    <value>SQL工件</value>
   </data>
   <data name="AutomatedFP" xml:space="preserve">
-    <value>Automated Function Points</value>
+    <value>自动功能点</value>
   </data>
   <data name="BackfiredFP" xml:space="preserve">
-    <value>Backfired Function Points</value>
+    <value>Backfired功能点</value>
   </data>
   <data name="Bad" xml:space="preserve">
-    <value>Poor</value>
+    <value>低劣</value>
   </data>
   <data name="BusinessCriterionName" xml:space="preserve">
-    <value>Business criterion name</value>
+    <value>业务标准名称</value>
   </data>
   <data name="Chang" xml:space="preserve">
-    <value>Chang.</value>
+    <value>变更性</value>
   </data>
   <data name="Changeability" xml:space="preserve">
-    <value>Changeability</value>
+    <value>变更性</value>
   </data>
   <data name="Classes" xml:space="preserve">
-    <value>Classes</value>
+    <value>类</value>
   </data>
   <data name="Comment" xml:space="preserve">
-    <value>Comment</value>
+    <value>注释</value>
   </data>
   <data name="Complexity" xml:space="preserve">
-    <value>CAST Complexity</value>
+    <value>CAST 复杂度</value>
   </data>
   <data name="ComplexityAverage" xml:space="preserve">
-    <value>Average Complexity</value>
+    <value>平均复杂度</value>
   </data>
   <data name="ComplexityExtreme" xml:space="preserve">
-    <value>Extreme Complexity</value>
+    <value>极端复杂</value>
   </data>
   <data name="ComplexityHigh" xml:space="preserve">
-    <value>High Complexity</value>
+    <value>高复杂度</value>
   </data>
   <data name="ComplexityHighAndVeryHigh" xml:space="preserve">
-    <value>High and Very High Complexity</value>
+    <value>高和极高复杂度</value>
   </data>
   <data name="ComplexityLow" xml:space="preserve">
-    <value>Low Complexity</value>
+    <value>低复杂度</value>
   </data>
   <data name="ComplexityVeryHigh" xml:space="preserve">
-    <value>Very High Complexity</value>
+    <value>非常高复杂度</value>
   </data>
   <data name="ComplexObjects" xml:space="preserve">
-    <value>Complex Objects</value>
+    <value>复杂对象</value>
   </data>
   <data name="Compliance" xml:space="preserve">
-    <value>Compliance</value>
+    <value>遵从性</value>
   </data>
   <data name="CplxAverage" xml:space="preserve">
-    <value>Average</value>
+    <value>平均</value>
   </data>
   <data name="CplxExtreme" xml:space="preserve">
-    <value>Extreme</value>
+    <value>极端复杂</value>
   </data>
   <data name="CplxHigh" xml:space="preserve">
-    <value>High</value>
+    <value>高</value>
   </data>
   <data name="CplxLow" xml:space="preserve">
-    <value>Low</value>
+    <value>低</value>
   </data>
   <data name="CplxVeryHigh" xml:space="preserve">
-    <value>Very High</value>
+    <value>非常高</value>
   </data>
   <data name="Critical" xml:space="preserve">
-    <value>Critical</value>
+    <value>关键</value>
   </data>
   <data name="Criticality" xml:space="preserve">
-    <value>Criticality</value>
+    <value>关键性</value>
   </data>
   <data name="Current" xml:space="preserve">
-    <value>Current</value>
+    <value>当前</value>
   </data>
   <data name="CurrentPeriod" xml:space="preserve">
-    <value>Current Period</value>
+    <value>当前阶段</value>
   </data>
   <data name="CurrentScore" xml:space="preserve">
-    <value>Current score</value>
+    <value>当前范围</value>
   </data>
   <data name="Debt" xml:space="preserve">
-    <value>Debt</value>
+    <value>债务</value>
   </data>
   <data name="DebtAdded" xml:space="preserve">
-    <value>Debt Added</value>
+    <value>新增债务</value>
   </data>
   <data name="DebtRemoved" xml:space="preserve">
-    <value>Debt Removed</value>
+    <value>已减少债务</value>
   </data>
   <data name="DecisionP" xml:space="preserve">
-    <value>Decision Points (total CC)</value>
+    <value>判定点（条件覆盖）</value>
   </data>
   <data name="DeliveryLast" xml:space="preserve">
-    <value>Last Delivery (new and modified)</value>
+    <value>最新交付（新增和修改）</value>
   </data>
   <data name="DeliveryWhole" xml:space="preserve">
-    <value>Entire Application (whole code)</value>
+    <value>整体应用（全部代码）</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description</value>
+    <value>描述</value>
   </data>
   <data name="Doc" xml:space="preserve">
-    <value>Doc.</value>
+    <value>文档</value>
   </data>
   <data name="Documentation" xml:space="preserve">
-    <value>Documentation</value>
+    <value>文档</value>
   </data>
   <data name="Efcy" xml:space="preserve">
-    <value>Efcy</value>
+    <value>效率</value>
   </data>
   <data name="Efficiency" xml:space="preserve">
-    <value>Efficiency</value>
+    <value>效率性</value>
   </data>
   <data name="Evol" xml:space="preserve">
-    <value>Evol.</value>
+    <value>演变</value>
   </data>
   <data name="EvolPercent" xml:space="preserve">
-    <value>% Evol.</value>
+    <value>%演变</value>
   </data>
   <data name="Evolution" xml:space="preserve">
-    <value>Evolution</value>
+    <value>演变</value>
   </data>
   <data name="EvolutionPercent" xml:space="preserve">
-    <value>% Evolution</value>
+    <value>%演变</value>
   </data>
   <data name="ExclusionStatus" xml:space="preserve">
-    <value>Exclusion Status</value>
+    <value>排除状态</value>
   </data>
   <data name="Files" xml:space="preserve">
-    <value>Files</value>
+    <value>文件</value>
   </data>
   <data name="FORMAT_LONG_DATE" xml:space="preserve">
     <value>MMM dd yyyy</value>
@@ -301,339 +301,342 @@
     <value>MM/dd/yyyy</value>
   </data>
   <data name="Good" xml:space="preserve">
-    <value>Good</value>
+    <value>健康</value>
   </data>
   <data name="Grade" xml:space="preserve">
-    <value>Grade</value>
+    <value>分数</value>
   </data>
   <data name="GradeEvolution" xml:space="preserve">
-    <value>Grade Evolution</value>
+    <value>分数演变</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
   <data name="IFPUG_ElementType" xml:space="preserve">
-    <value>Element Type</value>
+    <value>元素类型</value>
   </data>
   <data name="IFPUG_FPDetails" xml:space="preserve">
-    <value>FP Details</value>
+    <value>FP详情</value>
   </data>
   <data name="IFPUG_NoOfFPs" xml:space="preserve">
-    <value># of FPs</value>
+    <value># FP</value>
   </data>
   <data name="IFPUG_ObjectType" xml:space="preserve">
-    <value>Object Type</value>
+    <value>对象类型</value>
   </data>
   <data name="kLoC" xml:space="preserve">
-    <value>kLoC</value>
+    <value>千行代码</value>
   </data>
   <data name="LastUpdated" xml:space="preserve">
-    <value>Last Updated</value>
+    <value>最新更新</value>
   </data>
   <data name="LoC" xml:space="preserve">
-    <value>LoC</value>
+    <value>代码行</value>
   </data>
   <data name="LoCCurrent" xml:space="preserve">
-    <value>Current LoC</value>
+    <value>当前代码行</value>
   </data>
   <data name="LoCPrevious" xml:space="preserve">
-    <value>Previous LoC</value>
+    <value>上一代码行</value>
   </data>
   <data name="Metrics" xml:space="preserve">
-    <value>Metrics</value>
+    <value>度量</value>
   </data>
   <data name="ModuleName" xml:space="preserve">
-    <value>Module Name</value>
+    <value>模块名称</value>
   </data>
   <data name="Modules" xml:space="preserve">
-    <value>Modules</value>
+    <value>模块名称</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>名称</value>
   </data>
   <data name="NoData" xml:space="preserve">
-    <value>No data found</value>
+    <value>没有找到数据</value>
   </data>
   <data name="NoItem" xml:space="preserve">
-    <value>No enabled item</value>
+    <value>没有启用的条目</value>
   </data>
   <data name="NoSnapshot" xml:space="preserve">
-    <value>No snapshot found for this application</value>
+    <value>没有找到该应用的快照</value>
   </data>
   <data name="Obj" xml:space="preserve">
-    <value>Obj.</value>
+    <value>对象</value>
   </data>
   <data name="Objectives" xml:space="preserve">
-    <value>Objectives</value>
+    <value>对象</value>
   </data>
   <data name="ObjectName" xml:space="preserve">
-    <value>Object Name</value>
+    <value>对象名称</value>
   </data>
   <data name="ObjectsInViolationForRule" xml:space="preserve">
-    <value>Objects in violation for rule</value>
+    <value>违规对象</value>
   </data>
   <data name="ObjectStatus" xml:space="preserve">
-    <value>Object Status</value>
+    <value>对象状态</value>
   </data>
   <data name="PerFile" xml:space="preserve">
-    <value>per File</value>
+    <value>每文件</value>
   </data>
   <data name="Periods" xml:space="preserve">
-    <value>Periods</value>
+    <value>期间</value>
   </data>
   <data name="PerkLoC" xml:space="preserve">
-    <value>per kLoC</value>
+    <value>每千行代码</value>
   </data>
   <data name="Previous" xml:space="preserve">
-    <value>Previous</value>
+    <value>上一个</value>
   </data>
   <data name="PreviousPeriod" xml:space="preserve">
-    <value>Previous Period</value>
+    <value>上一期间</value>
   </data>
   <data name="PreviousScore" xml:space="preserve">
-    <value>Previous score</value>
+    <value>之前分数</value>
   </data>
   <data name="PRI" xml:space="preserve">
     <value>PRI</value>
   </data>
   <data name="Priority" xml:space="preserve">
-    <value>Priority</value>
+    <value>优先级</value>
   </data>
   <data name="Prog" xml:space="preserve">
-    <value>Prog.</value>
+    <value>编程</value>
   </data>
   <data name="ProgrammingPractices" xml:space="preserve">
-    <value>Programming Practices</value>
+    <value>编程实践</value>
   </data>
   <data name="QualityGood" xml:space="preserve">
-    <value>good</value>
+    <value>好</value>
   </data>
   <data name="QualityLow" xml:space="preserve">
-    <value>low</value>
+    <value>低</value>
   </data>
   <data name="QualityMedium" xml:space="preserve">
-    <value>medium</value>
+    <value>中等</value>
   </data>
   <data name="QualityVeryGood" xml:space="preserve">
-    <value>very good</value>
+    <value>非常好</value>
   </data>
   <data name="QualityVeryLow" xml:space="preserve">
-    <value>very low</value>
+    <value>非常低</value>
   </data>
   <data name="Rationale" xml:space="preserve">
-    <value>Rationale</value>
+    <value>依据</value>
   </data>
   <data name="Remediation" xml:space="preserve">
-    <value>Remediation</value>
+    <value>修复</value>
   </data>
   <data name="RemovedCriticalViolations" xml:space="preserve">
-    <value>Removed Critical Violations</value>
+    <value>已减少关键违规</value>
   </data>
   <data name="RemovedViolations" xml:space="preserve">
-    <value>Removed Violations</value>
+    <value>已减少违规</value>
   </data>
   <data name="Robu" xml:space="preserve">
-    <value>Robu.</value>
+    <value>健壮性</value>
   </data>
   <data name="Robustness" xml:space="preserve">
-    <value>Robustness</value>
+    <value>健壮性</value>
   </data>
   <data name="Rule" xml:space="preserve">
-    <value>Rule</value>
+    <value>规则</value>
   </data>
   <data name="RuleName" xml:space="preserve">
-    <value>Rule Name</value>
+    <value>规则名称</value>
   </data>
   <data name="Secu" xml:space="preserve">
-    <value>Secu.</value>
+    <value>安全性</value>
   </data>
   <data name="Security" xml:space="preserve">
-    <value>Security</value>
+    <value>安全性</value>
   </data>
   <data name="SEIMaintainability" xml:space="preserve">
-    <value>SEI Maintainability</value>
+    <value>SEI维护度</value>
   </data>
   <data name="Size" xml:space="preserve">
-    <value>Size (kLoC)</value>
+    <value>规模（kLoC）</value>
   </data>
   <data name="SizeL" xml:space="preserve">
-    <value>large</value>
+    <value>大型</value>
   </data>
   <data name="SizeM" xml:space="preserve">
-    <value>medium</value>
+    <value>中等</value>
   </data>
   <data name="SizeS" xml:space="preserve">
-    <value>small</value>
+    <value>小型</value>
   </data>
   <data name="SizeXL" xml:space="preserve">
-    <value>extra large</value>
+    <value>特大型</value>
   </data>
   <data name="SLAViolations" xml:space="preserve">
-    <value>SLA Violations</value>
+    <value>SLA违规</value>
   </data>
   <data name="Snapshot" xml:space="preserve">
-    <value>Snapshot</value>
+    <value>快照</value>
   </data>
   <data name="SnapshotDate" xml:space="preserve">
-    <value>Snapshot Date</value>
+    <value>快照日期</value>
   </data>
   <data name="SnapshotLabel" xml:space="preserve">
-    <value>Snapshot Label</value>
+    <value>快照标签</value>
   </data>
   <data name="Snapshots" xml:space="preserve">
-    <value>Snapshots</value>
+    <value>快照</value>
   </data>
   <data name="Statistics" xml:space="preserve">
-    <value>Statistics</value>
+    <value>统计</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Status</value>
+    <value>状态</value>
   </data>
   <data name="Tables" xml:space="preserve">
-    <value>Tables</value>
+    <value>表格</value>
   </data>
   <data name="Target" xml:space="preserve">
-    <value>Target score</value>
+    <value>目标分数</value>
   </data>
   <data name="TechnicalCriterion" xml:space="preserve">
-    <value>Technical Criterion</value>
+    <value>技术标准</value>
   </data>
   <data name="TechnicalCriterionName" xml:space="preserve">
-    <value>Technical criterion name</value>
+    <value>技术标准名称</value>
   </data>
   <data name="TechnicalDebt" xml:space="preserve">
-    <value>Technical Debt</value>
+    <value>技术债务</value>
   </data>
   <data name="TechnicalDebtAdded" xml:space="preserve">
-    <value>Technical Debt Added</value>
+    <value>新增技术债务</value>
   </data>
   <data name="TechnicalDebtRemoved" xml:space="preserve">
-    <value>Technical Debt Removed</value>
+    <value>已减少技术债务</value>
   </data>
   <data name="Techno" xml:space="preserve">
-    <value>Techno</value>
+    <value>技术</value>
   </data>
   <data name="Technologies" xml:space="preserve">
-    <value>Technologies</value>
+    <value>技术</value>
   </data>
   <data name="Technology" xml:space="preserve">
-    <value>Technology</value>
+    <value>技术</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>Total</value>
+    <value>总量</value>
   </data>
   <data name="TotalChecks" xml:space="preserve">
-    <value>Total Checks</value>
+    <value>全部检查总量</value>
   </data>
   <data name="TotalCriticalViolations" xml:space="preserve">
-    <value>Total Critical Violations</value>
+    <value>全部关键违规数</value>
   </data>
   <data name="TotalFailed" xml:space="preserve">
-    <value>Total Failed</value>
+    <value>全部失败数</value>
   </data>
   <data name="TotalOk" xml:space="preserve">
-    <value>Successful Checks</value>
+    <value>成功检查数</value>
   </data>
   <data name="TotalPercent" xml:space="preserve">
-    <value>% Total</value>
+    <value>%全部</value>
   </data>
   <data name="TotalViolations" xml:space="preserve">
-    <value>Total Violations</value>
+    <value>全部违规</value>
   </data>
   <data name="TQI" xml:space="preserve">
-    <value>TQI</value>
+    <value>整体健康质量指数</value>
   </data>
   <data name="TQICur" xml:space="preserve">
-    <value>Cur. TQI</value>
+    <value>当前整体健康质量指数</value>
   </data>
   <data name="TQICurrent" xml:space="preserve">
-    <value>Current TQI</value>
+    <value>当前整体健康质量指数</value>
   </data>
   <data name="TQIPrev" xml:space="preserve">
-    <value>Prev. TQI</value>
+    <value>上一整体健康质量指数</value>
   </data>
   <data name="TQIPrevious" xml:space="preserve">
-    <value>Previous TQI</value>
+    <value>上一整体健康质量指数</value>
   </data>
   <data name="Trans" xml:space="preserve">
-    <value>Trans.</value>
+    <value>迁移性</value>
   </data>
   <data name="TransactionEP" xml:space="preserve">
-    <value>Transaction Entry Point</value>
+    <value>交易入口点</value>
   </data>
   <data name="Transferability" xml:space="preserve">
-    <value>Transferability</value>
+    <value>迁移性</value>
   </data>
   <data name="TRI" xml:space="preserve">
     <value>TRI</value>
   </data>
   <data name="Value" xml:space="preserve">
-    <value>Value</value>
+    <value>值</value>
   </data>
   <data name="Var" xml:space="preserve">
-    <value>Var</value>
+    <value>差异</value>
   </data>
   <data name="Variation" xml:space="preserve">
-    <value>Variation</value>
+    <value>差异</value>
   </data>
   <data name="VersionCurrent" xml:space="preserve">
-    <value>Current Version</value>
+    <value>当前版本</value>
   </data>
   <data name="VersionPrevious" xml:space="preserve">
-    <value>Previous Version</value>
+    <value>上一版本</value>
   </data>
   <data name="Violations" xml:space="preserve">
-    <value>Violations</value>
+    <value>违规</value>
   </data>
   <data name="ViolationsAdded" xml:space="preserve">
-    <value>Added</value>
+    <value>新增</value>
   </data>
   <data name="ViolationsCount" xml:space="preserve">
-    <value># Violations</value>
+    <value>#违规</value>
   </data>
   <data name="ViolationsCritical" xml:space="preserve">
-    <value>Critical Violations</value>
+    <value>关键违规数</value>
   </data>
   <data name="ViolationsCurrent" xml:space="preserve">
-    <value>Current Violations</value>
+    <value>当前违规数</value>
   </data>
   <data name="ViolationsNew" xml:space="preserve">
-    <value>New Violations (#)</value>
+    <value>新增违规(#)</value>
   </data>
   <data name="ViolationsPrevious" xml:space="preserve">
-    <value>Previous Violations</value>
+    <value>上一违规数</value>
   </data>
   <data name="ViolationsRemoved" xml:space="preserve">
-    <value>Removed</value>
+    <value>已减少</value>
   </data>
   <data name="ViolationsStill" xml:space="preserve">
-    <value>Still Violations (#)</value>
+    <value>剩余违规(#)</value>
   </data>
   <data name="ViolationStatus" xml:space="preserve">
-    <value>Violation Status</value>
+    <value>违规状态</value>
   </data>
   <data name="ViolCount" xml:space="preserve">
-    <value># Viol.</value>
+    <value># 违规</value>
   </data>
   <data name="Weight" xml:space="preserve">
-    <value>Weight</value>
+    <value>权重</value>
   </data>
   <data name="WithViolations" xml:space="preserve">
-    <value>With Violations</value>
+    <value>含违规</value>
   </data>
   <data name="FilePath" xml:space="preserve">
-    <value>File path</value>
+    <value>文件路径</value>
   </data>
   <data name="NoBookmark" xml:space="preserve">
-    <value>No bookmark available for this rule</value>
+    <value>此规则没有被标注书签</value>
   </data>
   <data name="AdditionalInformation" xml:space="preserve">
-    <value>Additional information bookmark</value>
+    <value>附加信息书签</value>
   </data>
   <data name="Defect" xml:space="preserve">
-    <value>Defect</value>
+    <value>缺陷</value>
   </data>
   <data name="Violation" xml:space="preserve">
-    <value>Violation</value>
+    <value>违规</value>
+  </data>
+  <data name="ViolationPath" xml:space="preserve">
+    <value>错误路径</value>
   </data>
 </root>

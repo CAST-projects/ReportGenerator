@@ -636,4 +636,7 @@
   <data name="Violation" xml:space="preserve">
     <value>Violazione</value>
   </data>
+  <data name="ViolationPath" xml:space="preserve">
+    <value>Percorso di violazione</value>
+  </data>
 </root>

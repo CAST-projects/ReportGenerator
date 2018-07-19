@@ -1501,6 +1501,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Violation Path.
+        /// </summary>
+        public static string ViolationPath {
+            get {
+                return ResourceManager.GetString("ViolationPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Violations.
         /// </summary>
         public static string Violations {

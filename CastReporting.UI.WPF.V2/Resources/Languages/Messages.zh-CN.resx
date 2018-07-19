@@ -118,234 +118,234 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnActiveWS" xml:space="preserve">
-    <value>Active</value>
+    <value>激活</value>
   </data>
   <data name="btnAddWS" xml:space="preserve">
-    <value>Validate</value>
+    <value>验证</value>
   </data>
   <data name="btnDeleteWS" xml:space="preserve">
-    <value>Delete</value>
+    <value>删除</value>
   </data>
   <data name="btnGenerateReport" xml:space="preserve">
-    <value>Generate Report</value>
+    <value>生成报告</value>
   </data>
   <data name="btnPingWS" xml:space="preserve">
-    <value>Test</value>
+    <value>测试</value>
   </data>
   <data name="btnSaveSettings" xml:space="preserve">
-    <value>Save</value>
+    <value>保存</value>
   </data>
   <data name="lblAboutCopyright" xml:space="preserve">
-    <value>Copyright © CAST</value>
+    <value>版权 © CAST</value>
   </data>
   <data name="lblAboutTitle" xml:space="preserve">
-    <value>CAST - Report Generator </value>
+    <value>CAST - 报告生成器</value>
   </data>
   <data name="lblAboutVersion" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>版本 {0}</value>
   </data>
   <data name="lblFieldActiveWS" xml:space="preserve">
-    <value>Active</value>
+    <value>激活</value>
   </data>
   <data name="lblFieldQualityGood" xml:space="preserve">
-    <value>Good quality</value>
+    <value>高质量</value>
   </data>
   <data name="lblFieldQualityLow" xml:space="preserve">
-    <value>Low quality</value>
+    <value>低质量</value>
   </data>
   <data name="lblFieldQualityMedium" xml:space="preserve">
-    <value>Medium quality</value>
+    <value>中等质量</value>
   </data>
   <data name="lblFieldQualityVeryLow" xml:space="preserve">
-    <value>Very low quality</value>
+    <value>非常低质量</value>
   </data>
   <data name="lblFieldSizeLimitLarge" xml:space="preserve">
-    <value>Size limit large</value>
+    <value>规模限定大型</value>
   </data>
   <data name="lblFieldSizeLimitMedium" xml:space="preserve">
-    <value>Size limit medium</value>
+    <value>规模限定中等</value>
   </data>
   <data name="lblFieldSizeLimitSmall" xml:space="preserve">
-    <value>Size limit small</value>
+    <value>规模限定小型</value>
   </data>
   <data name="lblFieldUrlWS" xml:space="preserve">
-    <value>Web Service</value>
+    <value>Web 服务</value>
   </data>
   <data name="lblFieldWSLogin" xml:space="preserve">
-    <value>User</value>
+    <value>用户</value>
   </data>
   <data name="lblFieldWSPassword" xml:space="preserve">
-    <value>Password</value>
+    <value>密码</value>
   </data>
   <data name="lblHeaderApplication" xml:space="preserve">
-    <value>Application</value>
+    <value>应用</value>
   </data>
   <data name="lblHeaderPortfolio" xml:space="preserve">
-    <value>Portfolio</value>
+    <value>应用组合</value>
   </data>
   <data name="lblItemEnglish" xml:space="preserve">
-    <value>English</value>
+    <value>英语</value>
   </data>
   <data name="lblItemFrench" xml:space="preserve">
-    <value>French</value>
+    <value>法语</value>
   </data>
   <data name="lblItemSpanish" xml:space="preserve">
-    <value>Spanish</value>
+    <value>西班牙语</value>
   </data>
   <data name="lblLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>语言</value>
   </data>
   <data name="lblPortfolioCategoriesSelection" xml:space="preserve">
-    <value>Tag Selection</value>
+    <value>标签选择</value>
   </data>
   <data name="lblSelectApplication" xml:space="preserve">
-    <value>Select application</value>
+    <value>选择应用</value>
   </data>
   <data name="lblSelectCurrentSnapshot" xml:space="preserve">
-    <value>Select snapshot</value>
+    <value>选择快照</value>
   </data>
   <data name="lblSelectPortfolioCategories" xml:space="preserve">
-    <value>Select Category</value>
+    <value>选择类别</value>
   </data>
   <data name="lblSelectPortfolioTags" xml:space="preserve">
-    <value>Select Tag</value>
+    <value>选择标签</value>
   </data>
   <data name="lblSelectPreviousSnapshot" xml:space="preserve">
-    <value>Select older snapshot</value>
+    <value>选择旧快照</value>
   </data>
   <data name="lblTemplatePath" xml:space="preserve">
-    <value>Path template</value>
+    <value>模板路径</value>
   </data>
   <data name="lblTitleApplicationQuality" xml:space="preserve">
-    <value>Application qualities Thresholds (TQI score)</value>
+    <value>应用质量阈值(TQI分数)</value>
   </data>
   <data name="lblTitleApplicationSettings" xml:space="preserve">
-    <value>Application settings</value>
+    <value>应用设置</value>
   </data>
   <data name="lblTitleApplicationSize" xml:space="preserve">
-    <value>Application sizes Thresholds (number of code lines)</value>
+    <value>应用规模阈值(代码行数)</value>
   </data>
   <data name="lblTitleMain" xml:space="preserve">
-    <value>Report Generator</value>
+    <value>报告生成器</value>
   </data>
   <data name="lblTitleManageWS" xml:space="preserve">
-    <value>Web Service Configuration</value>
+    <value>Web 服务配置</value>
   </data>
   <data name="lblTitleMessages" xml:space="preserve">
-    <value>Messages</value>
+    <value>消息</value>
   </data>
   <data name="lblTitleSettings" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
   </data>
   <data name="lblTitleSnapshotSelection" xml:space="preserve">
-    <value>Snapshot selection</value>
+    <value>快照选择</value>
   </data>
   <data name="lblTitleTemplateSelection" xml:space="preserve">
-    <value>Report template selection</value>
+    <value>报告模板选择</value>
   </data>
   <data name="mnuAbout" xml:space="preserve">
-    <value>About</value>
+    <value>关于</value>
   </data>
   <data name="mnuQuit" xml:space="preserve">
-    <value>Quit</value>
+    <value>退出</value>
   </data>
   <data name="mnuReporting" xml:space="preserve">
-    <value>Home</value>
+    <value>主页</value>
   </data>
   <data name="mnuSettings" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
   </data>
   <data name="mnuWSConfiguration" xml:space="preserve">
-    <value>WebService Configuration</value>
+    <value>Web 服务配置</value>
   </data>
   <data name="msgBuildApplicationResult" xml:space="preserve">
-    <value>Build result for the application</value>
+    <value>应用构建结果</value>
   </data>
   <data name="msgBuildPreviousSnapshotResult" xml:space="preserve">
-    <value>Build result for the previous snapshot</value>
+    <value>上一快照构建结果</value>
   </data>
   <data name="msgBuildSnapshotResult" xml:space="preserve">
-    <value>Build result for the selected snapshot</value>
+    <value>已选快照构建结果</value>
   </data>
   <data name="msgDocumentGenerationSuccess" xml:space="preserve">
-    <value>Report generated successfully !</value>
+    <value>报告生成成功！</value>
   </data>
   <data name="msgErrorGeneratingReport" xml:space="preserve">
-    <value>Error Generating Report</value>
+    <value>报告生成报错</value>
   </data>
   <data name="msgGenericError" xml:space="preserve">
-    <value>An error occured during execution</value>
+    <value>执行过程中出错</value>
   </data>
   <data name="msgIgnoredApplications" xml:space="preserve">
-    <value>Ignored Applications are:</value>
+    <value>忽略的应用：</value>
   </data>
   <data name="msgIgnoredAppSnaps" xml:space="preserve">
-    <value>Some Applications or Snapshots were ignored during processing REST API.</value>
+    <value>在REST API处理过程中一些应用或快照被忽略。</value>
   </data>
   <data name="msgIgnoredSnapshots" xml:space="preserve">
-    <value>Ignored Snapshots are:</value>
+    <value>已忽略快照：</value>
   </data>
   <data name="msgPingServiceFailure" xml:space="preserve">
-    <value>Web service invalid !</value>
+    <value>Web 服务无效！</value>
   </data>
   <data name="msgPingServiceSuccess" xml:space="preserve">
-    <value>Web service valid !</value>
+    <value>Web 服务生效！</value>
   </data>
   <data name="msgReportErrorNoAAD" xml:space="preserve">
-    <value>Typically happens when Portfolio report is generated based on a REST API not connected to measure schema.</value>
+    <value>组合应用的报告未生成可能发生的原因是未连接到Measure数据库。</value>
   </data>
   <data name="msgReportErrorNoRestAPI" xml:space="preserve">
-    <value>Typically happens when Report Generator does not find REST API</value>
+    <value>可能发生原因是报告生成器没有找到REST API</value>
   </data>
   <data name="msgReportGenerated" xml:space="preserve">
-    <value>Report generated</value>
+    <value>已生成报告</value>
   </data>
   <data name="msgReportGenerationSuccess" xml:space="preserve">
-    <value>Generation proceeded successfully. Click below to see the report :</value>
+    <value>生成处理成功执行。点击下面查看具体报告：</value>
   </data>
   <data name="msgServiceActivated" xml:space="preserve">
-    <value>Web Service URL activated successfully !</value>
+    <value>Web 服务 URL激活成功！</value>
   </data>
   <data name="msgServiceActivatedAddedOK" xml:space="preserve">
-    <value>Web Service URL added and activated successfully !</value>
+    <value>已添加Web 服务 URL并激活成功！</value>
   </data>
   <data name="msgServiceAddedAlreadyExist" xml:space="preserve">
-    <value>This Web Service URL already exist.</value>
+    <value>Web 服务URL已存在。</value>
   </data>
   <data name="msgServiceAddedFailed" xml:space="preserve">
-    <value>Unable to add this Web Service URL. Please enter a valid url as http://&lt;server&gt;:&lt;port&gt;/&lt;war&gt;/rest and valid login/password</value>
+    <value>无法添加Web服务URL。请输入有效的URL地址，如 http://&lt;server&gt;:&lt;port&gt;/&lt;war&gt;/rest 和 用户名/密码</value>
   </data>
   <data name="msgServiceAddedOK" xml:space="preserve">
-    <value>Web Service URL added successfully !</value>
+    <value>成功添加Web服务URL！</value>
   </data>
   <data name="msgServiceRemoved" xml:space="preserve">
-    <value>Web Service URL removed  successfully !</value>
+    <value>成功删除Web服务URL！</value>
   </data>
   <data name="msgSettingsSaved" xml:space="preserve">
-    <value>Settings saved</value>
+    <value>设置已保存</value>
   </data>
   <data name="msgWSError" xml:space="preserve">
-    <value>Error occurred during web service requesting</value>
+    <value>web服务请求出错</value>
   </data>
   <data name="toolTipClearMsg" xml:space="preserve">
-    <value>Clear messages.</value>
+    <value>清除消息。</value>
   </data>
   <data name="toolTipOpenDirectory" xml:space="preserve">
-    <value>Open Directory.</value>
+    <value>打开目录。</value>
   </data>
   <data name="toolTipRefreshTemplate" xml:space="preserve">
-    <value>Refresh the template list.</value>
+    <value>刷新模板列表。</value>
   </data>
   <data name="toolTipTemplateLb" xml:space="preserve">
-    <value>You can double click on any template to open the related file. Therefore, you will be able to edit the template.</value>
+    <value>可以双击任何模板打开相关文件。然后，就可以编辑修改模板。</value>
   </data>
   <data name="toolTipUrlWs" xml:space="preserve">
-    <value>Please enter a valid WebService url as http://&lt;server&gt;:&lt;port&gt;/&lt;war&gt;/rest</value>
+    <value>请输入有效的Web服务 URL地址，如 http://&lt;server&gt;:&lt;port&gt;/&lt;war&gt;/rest</value>
   </data>
   <data name="msgBuildPortfolioResults" xml:space="preserve">
-    <value>Build result for the portfolio</value>
+    <value>应用组合构建结果</value>
   </data>
   <data name="msgBuildPortfSnapshotsResults" xml:space="preserve">
-    <value>Build result for snapshots in portfolio</value>
+    <value>应用组合快照构建结果</value>
   </data>
 </root>
