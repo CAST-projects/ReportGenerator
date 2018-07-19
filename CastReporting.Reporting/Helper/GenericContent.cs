@@ -173,7 +173,7 @@ namespace CastReporting.Reporting.Helper
                         else
                         {
                             metrics.AddRange(_posConfig[i].Parameters);
-                            BuildMetricsList(reportData, metrics);
+                            metrics = BuildMetricsList(reportData, metrics);
                         }
                         _posConfig[i].Parameters = metrics.ToArray();
                         break;
@@ -310,7 +310,7 @@ namespace CastReporting.Reporting.Helper
                 if (metricConfiguration != null)
                 {
                     metrics.AddRange(metricConfiguration);
-                    BuildMetricsList(reportData, metrics);
+                    metrics = BuildMetricsList(reportData, metrics);
                     if (metrics.Count > 1)
                     {
                         var metric = metrics.FirstOrDefault();
@@ -1079,7 +1079,7 @@ namespace CastReporting.Reporting.Helper
 
         }
 
-        public static void BuildMetricsList(ReportData reportData, List<string> metrics)
+        public static List<string> BuildMetricsList(ReportData reportData, List<string> metrics)
         {
             if (metrics.Contains("HEALTH_FACTOR"))
             {
@@ -1155,7 +1155,10 @@ namespace CastReporting.Reporting.Helper
             {
                 metrics.Remove(tag);
             }
-            metrics.AddRange(metricstags);
+
+            if (metricstags.Count > 0) metrics.AddRange(metricstags);
+
+            return metrics.Distinct().ToList();
         }
     }
 }
