@@ -153,7 +153,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Assert.AreEqual(Color.White, cellsProperties[13].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[14].BackgroundColor);
             Assert.AreEqual(Color.LightYellow, cellsProperties[15].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[16].BackgroundColor);
+            Assert.AreEqual(Color.LightYellow, cellsProperties[16].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[17].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[18].BackgroundColor);
 
@@ -219,7 +219,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Assert.AreEqual(Color.White, cellsProperties[13].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[14].BackgroundColor);
             Assert.AreEqual(Color.LightYellow, cellsProperties[15].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[16].BackgroundColor);
+            Assert.AreEqual(Color.LightYellow, cellsProperties[16].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[17].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[18].BackgroundColor);
 
@@ -287,7 +287,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Assert.AreEqual(Color.White, cellsProperties[13].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[14].BackgroundColor);
             Assert.AreEqual(Color.LightYellow, cellsProperties[15].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[16].BackgroundColor);
+            Assert.AreEqual(Color.LightYellow, cellsProperties[16].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[17].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[18].BackgroundColor);
 
@@ -356,7 +356,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Assert.AreEqual(Color.White, cellsProperties[11].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[12].BackgroundColor);
             Assert.AreEqual(Color.LightYellow, cellsProperties[13].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[14].BackgroundColor);
+            Assert.AreEqual(Color.LightYellow, cellsProperties[14].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[15].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[16].BackgroundColor);
 

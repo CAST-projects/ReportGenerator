@@ -6,13 +6,16 @@ namespace CastReporting.Domain
     /// 
     /// </summary>
     [DataContract(Name = "associatedValue")]
-    public class AssociatedValue
+    public class AssociatedValueExtended
     {
         [DataMember(Name = "bookmarks")]
         public CodeBookmark[][] Bookmarks { get; set; }
 
         [DataMember(Name = "type")]
         public string Type { get; set; }
+
+        [DataMember(Name = "values")]
+        public CodeBookmark[][] Values { get; set; }
 
     }
 }

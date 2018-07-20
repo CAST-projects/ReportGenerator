@@ -77,82 +77,13 @@ namespace CastReporting.Reporting.Block.Table
                     }
 
                     IEnumerable<Violation> results = reportData.SnapshotExplorer.GetViolationsListIDbyBC(reportData.CurrentSnapshot.Href, _metric, bcId, nbLimitTop, "$all");
-                    if (results != null)
-                    {
-                        var _violations = results as Violation[] ?? results.ToArray();
-                        if (_violations.Length != 0)
-                        {
-                            int violation_counter = 0;
-                            string domainId = reportData.CurrentSnapshot.DomainId;
-                            string snapshotId = reportData.CurrentSnapshot.Id.ToString();
-                            foreach (Violation _violation in _violations)
-                            {
-                                violation_counter++;
-                                rowData.Add("");
-                                cellidx++;
-                                rowData.Add(Labels.Violation + " #" + violation_counter + "    " + ruleName);
-                                cellProps.Add(new CellAttributes(cellidx, Color.Gainsboro));
-                                cellidx++;
-                                rowData.Add(Labels.ObjectName + ": " + _violation.Component.Name);
-                                cellProps.Add(new CellAttributes(cellidx, Color.White));
-                                cellidx++;
-
-                                TypedComponent objectComponent = reportData.SnapshotExplorer.GetTypedComponent(reportData.CurrentSnapshot.DomainId, _violation.Component.GetComponentId(), reportData.CurrentSnapshot.GetId());
-                                rowData.Add(Labels.IFPUG_ObjectType + ": " + objectComponent.Type.Label);
-                                cellProps.Add(new CellAttributes(cellidx, Color.White));
-                                cellidx++;
-
-                                if (hasPreviousSnapshot)
-                                {
-                                    rowData.Add(Labels.Status + ": " + _violation.Diagnosis.Status);
-                                    cellProps.Add(new CellAttributes(cellidx, Color.White));
-                                    cellidx++;
-                                }
-                                // Add lines containing the file path and source code around the violation
-                                IEnumerable<IEnumerable<CodeBookmark>> bookmarks = reportData.SnapshotExplorer.GetBookmarks(domainId,
-                                    _violation.Component.GetComponentId(), snapshotId, _metric);
-
-                                if (bookmarks != null)
-                                {
-                                    IEnumerable<CodeBookmark>[] _codeBookmarkses = bookmarks as IEnumerable<CodeBookmark>[] ?? bookmarks.ToArray();
-
-                                    if (_codeBookmarkses.Any())
-                                    {
-                                        foreach (IEnumerable<CodeBookmark> _codeBookmarks in _codeBookmarkses)
-                                        {
-                                            IEnumerable<CodeBookmark> _bookmarks = _codeBookmarks.ToList();
-                                            foreach (CodeBookmark _bookmark in _bookmarks)
-                                            {
-                                                rowData.Add(Labels.FilePath + ": " + _bookmark.CodeFragment.CodeFile.Name);
-                                                cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
-                                                cellidx++;
-                                                Dictionary<int, string> codeLines = reportData.SnapshotExplorer.GetSourceCodeBookmark(domainId, _bookmark);
-
-                                                foreach (KeyValuePair<int, string> codeLine in codeLines)
-                                                {
-                                                    rowData.Add(codeLine.Key + " : " + codeLine.Value);
-                                                    cellProps.Add(codeLine.Key == _bookmark.CodeFragment.StartLine
-                                                        ? new CellAttributes(cellidx, Color.LightYellow)
-                                                        : new CellAttributes(cellidx, Color.White));
-                                                    cellidx++;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        rowData.Add(Labels.NoBookmark);
-                                        cellidx++;
-                                    }
-                                }
-                                else
-                                {
-                                    rowData.Add(Labels.NoBookmark);
-                                    cellidx++;
-                                }
-                            }
-                        }
-                    }
+                    if (results == null) continue;
+                    var _violations = results as Violation[] ?? results.ToArray();
+                    if (_violations.Length == 0) continue;
+                    int violation_counter = 0;
+                    string domainId = reportData.CurrentSnapshot.DomainId;
+                    string snapshotId = reportData.CurrentSnapshot.Id.ToString();
+                    cellidx = MetricsUtility.PopulateViolationsBookmarks(reportData, _violations, violation_counter, rowData, cellidx, ruleName, cellProps, hasPreviousSnapshot, domainId, snapshotId, _metric);
                 }
             }
             else
@@ -174,5 +105,6 @@ namespace CastReporting.Reporting.Block.Table
             return table;
 
         }
+
     }
 }

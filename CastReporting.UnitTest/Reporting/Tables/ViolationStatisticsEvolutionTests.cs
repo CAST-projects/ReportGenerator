@@ -108,8 +108,6 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [DeploymentItem(@".\Data\ComplexitySnapPrevious.json", "Data")]
         public void TestContentInChinese()
         {
-            if (Environment.MachineName != "ABDLAP2") return;
-
             TestUtility.SetCulture("zh-CN");
             CastDate currentDate = new CastDate { Time = 1496959200000 };
             CastDate previousDate = new CastDate { Time = 1484953200000 };
@@ -122,12 +120,12 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, null);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { "名", "当前", "以前", "进化百分比" });
-            expectedData.AddRange(new List<string> { "严重违规行为", "75", "97", "-22.7%" });
-            expectedData.AddRange(new List<string> { "  每个文件", "0.22", "0.26", "-15.4%" });
+            expectedData.AddRange(new List<string> { "名称", "当前", "上一个", "%演变" });
+            expectedData.AddRange(new List<string> { "关键违规数", "75", "97", "-22.7%" });
+            expectedData.AddRange(new List<string> { "  每文件", "0.22", "0.26", "-15.4%" });
             expectedData.AddRange(new List<string> { "  每千行代码", "3.53", "4.34", "-18.7%" });
-            expectedData.AddRange(new List<string> { "复杂的对象", "243", "238", "+2.10%" });
-            expectedData.AddRange(new List<string> { "  不合格", "166", "161", "+3.11%" });
+            expectedData.AddRange(new List<string> { "复杂对象", "243", "238", "+2.10%" });
+            expectedData.AddRange(new List<string> { "  含违规", "166", "161", "+3.11%" });
             TestUtility.AssertTableContent(table, expectedData, 4, 6);
             Assert.IsFalse(table.HasColumnHeaders);
             Assert.IsTrue(table.HasRowHeaders);

@@ -12,13 +12,13 @@ namespace CastReporting.Domain
         public CodeFile CodeFile { get; set; }
 
         [DataMember(Name = "endColumn")]
-        public int EndColumn { get; set; }
+        public int? EndColumn { get; set; }
 
         [DataMember(Name = "endLine")]
         public int EndLine { get; set; }
 
         [DataMember(Name = "startColumn")]
-        public int StartColumn { get; set; }
+        public int? StartColumn { get; set; }
 
         [DataMember(Name = "startLine")]
         public int StartLine { get; set; }
