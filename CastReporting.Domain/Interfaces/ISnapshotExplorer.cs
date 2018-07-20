@@ -64,9 +64,12 @@ namespace CastReporting.Domain.Interfaces
         /// <returns></returns>
         IEnumerable<Component> GetComponentsByModule(string domainId, int moduleId, int snapshotId, string businessCriteria, int count);
 
-        IEnumerable<IEnumerable<CodeBookmark>> GetBookmarks(string domainId, string componentId, string snapshotId, string metricId);
+        AssociatedValue GetAssociatedValue(string domainId, string componentId, string snapshotId, string metricId);
+        AssociatedValueExtended GetAssociatedValueExtended(string domainId, string componentId, string snapshotId, string metricId);
 
-        Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark);
+        List<Tuple<string, Dictionary<int, string>>> GetSourceCode(string domainId, string componentId, string snapshotId, int offset);
+
+        Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark, int offset);
 
         TypedComponent GetTypedComponent(string domainId, string componentId, string snapshotId);
     }

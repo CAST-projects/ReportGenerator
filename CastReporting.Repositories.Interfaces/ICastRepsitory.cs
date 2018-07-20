@@ -257,7 +257,8 @@ namespace CastReporting.Repositories.Interfaces
         IEnumerable<Violation> GetViolationsInActionPlan(string snapshotHref, int count);
 
         AssociatedValue GetAssociatedValue(string domainHRef, string snapshotId, string objectId, string metricId);
-
+        AssociatedValueExtended GetAssociatedValueExtended(string domainHRef, string snapshotId, string objectId, string metricId);
+        IEnumerable<CodeFragment> GetSourceCode(string domainHRef, string snapshotId, string objectId);
         List<string> GetFileContent(string domainHRef, string siteId, string fileId, int startLine, int endLine);
     }
 }

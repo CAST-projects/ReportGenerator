@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using CastReporting.BLL;
 using CastReporting.Domain;
 using CastReporting.Domain.Interfaces;
@@ -78,12 +77,22 @@ namespace CastReporting.UnitTest.Reporting
         }
 
         [DeploymentItem(@".\Data\findings7392.json", "Data")]
-        public IEnumerable<IEnumerable<CodeBookmark>> GetBookmarks(string domainId, string componentId, string snapshotId, string metricId)
+        public AssociatedValue GetAssociatedValue(string domainId, string componentId, string snapshotId, string metricId)
         {
-            return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings7392.json").ToArray()[0].Bookmarks;
+            return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings7392.json").ToArray()[0];
         }
 
-        public Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark)
+        public AssociatedValueExtended GetAssociatedValueExtended(string domainId, string componentId, string snapshotId, string metricId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Tuple<string, Dictionary<int, string>>> GetSourceCode(string domainId, string componentId, string snapshotId, int offset)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark, int offset)
         {
             Dictionary<int, string> sources = new Dictionary<int, string>
             {
@@ -98,6 +107,7 @@ namespace CastReporting.UnitTest.Reporting
             return sources;
         }
 
+        
         public TypedComponent GetTypedComponent(string domainId, string componentId, string snapshotId)
         {
             ObjectType type = new ObjectType(){Label = "MyObjType", Name="toto"};

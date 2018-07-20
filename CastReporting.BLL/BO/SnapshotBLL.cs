@@ -667,13 +667,13 @@ namespace CastReporting.BLL
             }
         }
 
-        public IEnumerable<IEnumerable<CodeBookmark>> GetBookmarks(string domainId, string componentId, string snapshotId, string metricId)
+        public AssociatedValue GetAssociatedValue(string domainId, string componentId, string snapshotId, string metricId)
         {
             try
             {
                 using (var castRepository = GetRepository())
                 {
-                    return castRepository.GetAssociatedValue(domainId, snapshotId, componentId, metricId).Bookmarks;
+                    return castRepository.GetAssociatedValue(domainId, snapshotId, componentId, metricId);
                 }
             }
             catch (Exception ex)
@@ -683,7 +683,23 @@ namespace CastReporting.BLL
             }
         }
 
-        public Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark )
+        public AssociatedValueExtended GetAssociatedValueExtended(string domainId, string componentId, string snapshotId, string metricId)
+        {
+            try
+            {
+                using (var castRepository = GetRepository())
+                {
+                    return castRepository.GetAssociatedValueExtended(domainId, snapshotId, componentId, metricId);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+        }
+
+        public Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark, int offset )
         {
             string siteId = bookmark.CodeFragment.CodeFile.GetSiteId();
             string fileId = bookmark.CodeFragment.CodeFile.GetFileId();
@@ -694,9 +710,14 @@ namespace CastReporting.BLL
                 using (var castRepository = GetRepository())
                 {
                     Dictionary<int, string> codeLines = new Dictionary<int, string>();
-                    int idx = startLine - 3;
-                    List<string> lines = castRepository.GetFileContent(domainId, siteId, fileId, idx, endLine + 3);
-                    for (int i = 0; i < 7; i++)
+                    int idx = startLine - offset;
+                    if (idx < 0)
+                    {
+                        idx = startLine;
+                    }
+
+                    List<string> lines = castRepository.GetFileContent(domainId, siteId, fileId, idx, endLine + offset);
+                    for (int i = 0; i <= 2*offset; i++)
                     {
                         codeLines.Add(idx, lines[i]);
                         idx++;
@@ -710,5 +731,48 @@ namespace CastReporting.BLL
                 return null;
             }
         }
+
+        public List<Tuple<string, Dictionary<int, string>>> GetSourceCode(string domainId,string snapshotId, string componentId, int offset)
+        {
+            List<Tuple<string, Dictionary<int,string>>> codesAndPath = new List<Tuple<string, Dictionary<int, string>>>();
+            try
+            {
+                using (var castRepository = GetRepository())
+                {
+                    List<CodeFragment> fragments = castRepository.GetSourceCode(domainId, snapshotId, componentId).ToList();
+
+                    if (!fragments.Any()) return null;
+
+                    foreach (CodeFragment _fragment in fragments)
+                    {
+                        string siteId = _fragment.CodeFile.GetSiteId();
+                        string fileId = _fragment.CodeFile.GetFileId();
+                        int startLine = _fragment.StartLine;
+                        int endLine = _fragment.EndLine;
+                        Dictionary<int, string> codeLines = new Dictionary<int, string>();
+                        int idx = startLine - offset;
+                        if (idx < 0)
+                        {
+                            idx = startLine;
+                        }
+                        List<string> lines = castRepository.GetFileContent(domainId, siteId, fileId, idx, startLine + offset + 1);
+                        int ctr = startLine + offset - idx;
+                        for (int i = 0; i < ctr; i++)
+                        {
+                            codeLines.Add(idx, lines[i]);
+                            idx++;
+                        }
+                        codesAndPath.Add(new Tuple<string, Dictionary<int, string>>(_fragment.CodeFile.Name, codeLines));
+                    }
+                    return codesAndPath;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+        }
+
     }
 }

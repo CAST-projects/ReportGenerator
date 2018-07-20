@@ -61,10 +61,9 @@ namespace CastReporting.Repositories
         private const string _query_action_plan_issues = "{0}/action-plan/issues?nbRows={1}";
         private const string _query_result_quality_standards_rules = "{0}/results?quality-indicators=(c:{1})";
         private const string _query_findings = "{0}/components/{1}/snapshots/{2}/findings/{3}";
+        private const string _query_component_source_code = "{0}/components/{1}/snapshots/{2}/source-codes";
         private const string _query_file_content = "{0}/local-sites/{1}/file-contents/{2}?start-line={3}&end-line={4}";
         private const string _query_component_type = "{0}/components/{1}/snapshots/{2}";
-
-
 
         #endregion CONSTANTS
 
@@ -187,6 +186,23 @@ namespace CastReporting.Repositories
             var requestUrl = string.Format(_query_findings, domainHRef, objectId, snapshotId, metricId);
 
             return CallWS<AssociatedValue>(requestUrl, RequestComplexity.Standard);
+
+        }
+
+        AssociatedValueExtended ICastRepsitory.GetAssociatedValueExtended(string domainHRef, string snapshotId, string objectId, string metricId)
+        {
+            var requestUrl = string.Format(_query_findings, domainHRef, objectId, snapshotId, metricId);
+
+            var result = CallWS<AssociatedValue>(requestUrl, RequestComplexity.Standard);
+
+            return result.Type.Equals("path") ? CallWS<AssociatedValueExtended>(requestUrl, RequestComplexity.Standard) : null;
+        }
+
+        IEnumerable<CodeFragment> ICastRepsitory.GetSourceCode(string domainHRef, string snapshotId, string objectId)
+        {
+            var requestUrl = string.Format(_query_component_source_code, domainHRef, objectId, snapshotId);
+
+            return CallWS<IEnumerable<CodeFragment>>(requestUrl, RequestComplexity.Standard);
         }
 
         TypedComponent ICastRepsitory.GetTypedComponent(string domainHRef, string componentId, string snapshotId)

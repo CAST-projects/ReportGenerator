@@ -320,11 +320,9 @@ namespace CastReporting.UnitTest.DAL
         [TestMethod()]
         public void GetConfQualityRuleChinese()
         {
-            if (Environment.MachineName != "ABDLAP2") return;
-
             WSConnection _connection3 = new WSConnection()
             {
-                Url = "http://dash-aed-tomcat:8888/Dashboard-Noc-160/rest/",
+                Url = "http://dash-aed-tomcat:8888/Dashboard-Noc-170/rest/",
                 Login = "cio",
                 Password = "cast",
                 IsActive = true,
@@ -333,6 +331,7 @@ namespace CastReporting.UnitTest.DAL
 
             TestUtility.SetCulture("zh-CN");
             ICastRepsitory ccontext = new CastRepository(_connection3);
+            if (!ccontext.IsServiceValid()) return;
             const string cdomainHref = "ADG83/quality-indicators/7126/snapshots/1";
             var result = ccontext.GetConfBusinessCriteria(cdomainHref);
             Assert.AreEqual("避免工件的已注释掉代码行/代码行的比率过高", result.Name);
