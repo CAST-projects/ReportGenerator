@@ -582,12 +582,14 @@ namespace CastReporting.Reporting
                 AssociatedValue associatedValue = reportData.SnapshotExplorer.GetAssociatedValue(domainId, _violation.Component.GetComponentId(), snapshotId, metric);
                 if (associatedValue == null) continue;
 
-                IEnumerable<IEnumerable<CodeBookmark>> bookmarks = associatedValue.Bookmarks;
-
-                // Add lines containing the file path and source code around the violation
-                if (bookmarks != null)
+                if (associatedValue.Type == null || associatedValue.Type.Equals("integer"))
                 {
-                    if (bookmarks.Any())
+                    IEnumerable<IEnumerable<CodeBookmark>> bookmarks = associatedValue.Bookmarks;
+                    if (bookmarks == null || !bookmarks.Any())
+                    {
+                        cellidx = AddSourceCode(reportData, rowData, cellidx, cellProps, domainId, snapshotId, _violation);
+                    }
+                    else
                     {
                         foreach (IEnumerable<CodeBookmark> _codeBookmarks in bookmarks)
                         {
@@ -611,60 +613,95 @@ namespace CastReporting.Reporting
                         }
                     }
                 }
+
                 if (associatedValue.Type != null && associatedValue.Type.Equals("path"))
                 {
                     // manage case when type="path" and values contains the different path
-                    AssociatedValueExtended associatedValueEx = associatedValue.Type.Equals("path") ? reportData.SnapshotExplorer.GetAssociatedValueExtended(domainId, _violation.Component.GetComponentId(), snapshotId, metric) : null;
+                    AssociatedValuePath associatedValueEx = reportData.SnapshotExplorer.GetAssociatedValuePath(domainId, _violation.Component.GetComponentId(), snapshotId, metric);
                     IEnumerable<IEnumerable<CodeBookmark>> values = associatedValueEx?.Values;
-                    if (values == null) continue;
-                    IEnumerable<CodeBookmark>[] _codeValues = (IEnumerable<CodeBookmark>[])values;
-                    if (!_codeValues.Any()) continue;
-                    foreach (IEnumerable<CodeBookmark> _value in _codeValues)
+                    if (values == null || !values.Any())
                     {
-                        IEnumerable<CodeBookmark> _bookmarksValue = _value.ToList();
-                        rowData.Add(Labels.ViolationPath + ": " + _bookmarksValue.FirstOrDefault()?.CodeFragment.CodeFile.Name);
-                        cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
-                        cellidx++;
-                        foreach (CodeBookmark _bookval in _bookmarksValue)
+                        cellidx = AddSourceCode(reportData, rowData, cellidx, cellProps, domainId, snapshotId, _violation);
+                    }
+                    else
+                    {
+                        foreach (IEnumerable<CodeBookmark> _value in values)
                         {
-                            Dictionary<int, string> codeLines = reportData.SnapshotExplorer.GetSourceCodeBookmark(domainId, _bookval, 0);
-
-                            foreach (KeyValuePair<int, string> codeLine in codeLines)
+                            IEnumerable<CodeBookmark> _bookmarksValue = _value.ToList();
+                            rowData.Add(Labels.ViolationPath + ": " + _bookmarksValue.FirstOrDefault()?.CodeFragment.CodeFile.Name);
+                            cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
+                            cellidx++;
+                            foreach (CodeBookmark _bookval in _bookmarksValue)
                             {
-                                rowData.Add(codeLine.Key + " : " + codeLine.Value);
-                                cellProps.Add(codeLine.Key == _bookval.CodeFragment.StartLine
-                                    ? new CellAttributes(cellidx, Color.LightYellow)
-                                    : new CellAttributes(cellidx, Color.White));
+                                Dictionary<int, string> codeLines = reportData.SnapshotExplorer.GetSourceCodeBookmark(domainId, _bookval, 0);
+
+                                foreach (KeyValuePair<int, string> codeLine in codeLines)
+                                {
+                                    rowData.Add(codeLine.Key + " : " + codeLine.Value);
+                                    cellProps.Add(codeLine.Key == _bookval.CodeFragment.StartLine
+                                        ? new CellAttributes(cellidx, Color.LightYellow)
+                                        : new CellAttributes(cellidx, Color.White));
+                                    cellidx++;
+                                }
+                            }
+                            rowData.Add("");
+                            cellidx++;
+                        }
+                    }
+                }
+                if (associatedValue.Type != null && associatedValue.Type.Equals("group"))
+                {
+                    // manage case when type="group" and values contains an array of array of components
+                    AssociatedValueGroup associatedValueEx = reportData.SnapshotExplorer.GetAssociatedValueGroup(domainId, _violation.Component.GetComponentId(), snapshotId, metric);
+                    IEnumerable<IEnumerable<ComponentLite>> values = associatedValueEx?.Values;
+                    if (values == null || !values.Any())
+                    {
+                        cellidx = AddSourceCode(reportData, rowData, cellidx, cellProps, domainId, snapshotId, _violation);
+                    }
+                    else
+                    {
+                        foreach (IEnumerable<ComponentLite> components in values)
+                        {
+                            foreach (ComponentLite _component in components)
+                            {
+                                rowData.Add(_component.Name);
+                                cellProps.Add(new CellAttributes(cellidx, Color.White));
                                 cellidx++;
                             }
+                            rowData.Add("");
+                            cellidx++;
                         }
-                        rowData.Add("");
-                        cellidx++;
                     }
                 }
-                else
+                if (associatedValue.Type != null && (associatedValue.Type.Equals("object") || associatedValue.Type.Equals("text") || associatedValue.Type.Equals("percentage")))
                 {
-                    if (bookmarks != null && bookmarks.Count() != 0) continue;
-                    // manage case when no bookmark
-
-                    Tuple<string, Dictionary<int, string>> codeAndPath = reportData.SnapshotExplorer.GetSourceCode(domainId, snapshotId, _violation.Component.GetComponentId(), 3)[0];
-
-                    rowData.Add(Labels.FilePath + ": " + codeAndPath.Item1);
-                    cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
-                    cellidx++;
-
-                    Dictionary<int, string> codeLines = codeAndPath.Item2;
-                    if (codeLines == null) continue;
-                    foreach (KeyValuePair<int, string> codeLine in codeLines)
-                    {
-                        rowData.Add(codeLine.Key + " : " + codeLine.Value);
-                        cellProps.Add(new CellAttributes(cellidx, Color.White));
-                        cellidx++;
-                    }
+                    // manage case when type="object", "text" or "percentage"
+                    cellidx = AddSourceCode(reportData, rowData, cellidx, cellProps, domainId, snapshotId, _violation);
                 }
+
             }
             return cellidx;
         }
 
+        private static int AddSourceCode(ReportData reportData, List<string> rowData, int cellidx, List<CellAttributes> cellProps, string domainId, string snapshotId, Violation violation)
+        {
+            List<Tuple<string, Dictionary<int, string>>> codes = reportData.SnapshotExplorer.GetSourceCode(domainId, snapshotId, violation.Component.GetComponentId(), 3);
+            if (codes == null) return cellidx;
+            Tuple<string, Dictionary<int, string>> codeAndPath = codes[0];
+
+            rowData.Add(Labels.FilePath + ": " + codeAndPath.Item1);
+            cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
+            cellidx++;
+
+            Dictionary<int, string> codeLines = codeAndPath.Item2;
+            if (codeLines == null) return cellidx;
+            foreach (KeyValuePair<int, string> codeLine in codeLines)
+            {
+                rowData.Add(codeLine.Key + " : " + codeLine.Value);
+                cellProps.Add(new CellAttributes(cellidx, Color.White));
+                cellidx++;
+            }
+            return cellidx;
+        }
     }
 }

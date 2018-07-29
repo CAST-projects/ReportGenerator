@@ -189,13 +189,25 @@ namespace CastReporting.Repositories
 
         }
 
-        AssociatedValueExtended ICastRepsitory.GetAssociatedValueExtended(string domainHRef, string snapshotId, string objectId, string metricId)
+        AssociatedValuePath ICastRepsitory.GetAssociatedValuePath(string domainHRef, string snapshotId, string objectId, string metricId)
         {
             var requestUrl = string.Format(_query_findings, domainHRef, objectId, snapshotId, metricId);
 
-            var result = CallWS<AssociatedValue>(requestUrl, RequestComplexity.Standard);
+            return CallWS<AssociatedValuePath>(requestUrl, RequestComplexity.Standard);
+        }
 
-            return result.Type.Equals("path") ? CallWS<AssociatedValueExtended>(requestUrl, RequestComplexity.Standard) : null;
+        AssociatedValueGroup ICastRepsitory.GetAssociatedValueGroup(string domainHRef, string snapshotId, string objectId, string metricId)
+        {
+            var requestUrl = string.Format(_query_findings, domainHRef, objectId, snapshotId, metricId);
+
+            return CallWS<AssociatedValueGroup>(requestUrl, RequestComplexity.Standard);
+        }
+
+        AssociatedValueObject ICastRepsitory.GetAssociatedValueObject(string domainHRef, string snapshotId, string objectId, string metricId)
+        {
+            var requestUrl = string.Format(_query_findings, domainHRef, objectId, snapshotId, metricId);
+
+            return CallWS<AssociatedValueObject>(requestUrl, RequestComplexity.Standard);
         }
 
         IEnumerable<CodeFragment> ICastRepsitory.GetSourceCode(string domainHRef, string snapshotId, string objectId)

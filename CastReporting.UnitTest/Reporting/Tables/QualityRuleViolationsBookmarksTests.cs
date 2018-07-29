@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using CastReporting.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,6 +18,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         // TODO :
         // - test with no count / count = 2
         // - test with only one snapshot (previous does not exists= => no status column)
+        // - test with each type of metric type : integer, text, percentage, null, group, path, bookmarks
 
 
         [TestMethod]
@@ -116,8 +116,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
-                {"ID","7424" },
-                {"NAME","SHORT" }
+                {"ID","7424" }
             };
             var table = component.Content(reportData, config);
 
@@ -161,7 +160,6 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"ID","7424" },
-                {"NAME","SHORT" },
                 {"COUNT","-1" }
             };
             var table = component.Content(reportData, config);
@@ -180,6 +178,77 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var cellsProperties = table.CellsAttributes;
             Assert.AreEqual(189, cellsProperties.Count);
         }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
+        [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        [DeploymentItem(@".\Data\findings_bookmarks.json", "Data")]
+        public void TestBookmark()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+
+            var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"ID","7424" },
+                {"COUNT","1" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>
+            {
+                "Objects in violation for rule Avoid using SQL queries inside a loop",
+                "",
+                "Violation #1    Avoid using SQL queries inside a loop",
+                "Object Name: aedtst_exclusions_central.adg_central_grades_std",
+                "Object Type: MyObjType",
+                "File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql",
+                "1197 : PreparedStatement statement = null;",
+                "1198 :         try",
+                "1199 :         {",
+                "1200 :             statement = consolidatedConn.prepareStatement(insertMessage); ",
+                "1201 :             statement.setString(1, message); ",
+                "1202 :             statement.executeUpdate(); ",
+                "1203 :         }",
+                "File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\Java\\AADAdmin\\AadSite\\sources\\com\\castsoftware\\aad\\site\\AadSite.java",
+                "1197 : PreparedStatement statement = null;",
+                "1198 :         try",
+                "1199 :         {",
+                "1200 :             statement = consolidatedConn.prepareStatement(insertMessage); ",
+                "1201 :             statement.setString(1, message); ",
+                "1202 :             statement.executeUpdate(); ",
+                "1203 :         }",
+                "File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\Java\\AADAdmin\\AadSite\\sources\\com\\castsoftware\\aad\\site\\AadSite.java",
+                "1197 : PreparedStatement statement = null;",
+                "1198 :         try",
+                "1199 :         {",
+                "1200 :             statement = consolidatedConn.prepareStatement(insertMessage); ",
+                "1201 :             statement.setString(1, message); ",
+                "1202 :             statement.executeUpdate(); ",
+                "1203 :         }",
+            };
+
+            TestUtility.AssertTableContent(table, expectedData, 1, 29);
+
+            var cellsProperties = table.CellsAttributes;
+            Assert.AreEqual(27, cellsProperties.Count);
+
+        }
+
     }
 }
 

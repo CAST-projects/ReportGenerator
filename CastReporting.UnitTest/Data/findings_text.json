@@ -1,0 +1,12 @@
+﻿[
+  {
+    "name": "Column name",
+    "type": "text",
+    "values": [
+      "METRIC_CHAR_VALUE",
+      "METRIC_NUM_VALUE",
+      "METRIC_OBJECT_ID"
+    ],
+    "bookmarks": []
+  }
+]

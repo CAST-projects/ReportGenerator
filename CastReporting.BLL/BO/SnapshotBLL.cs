@@ -683,13 +683,45 @@ namespace CastReporting.BLL
             }
         }
 
-        public AssociatedValueExtended GetAssociatedValueExtended(string domainId, string componentId, string snapshotId, string metricId)
+        public AssociatedValuePath GetAssociatedValuePath(string domainId, string componentId, string snapshotId, string metricId)
         {
             try
             {
                 using (var castRepository = GetRepository())
                 {
-                    return castRepository.GetAssociatedValueExtended(domainId, snapshotId, componentId, metricId);
+                    return castRepository.GetAssociatedValuePath(domainId, snapshotId, componentId, metricId);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+        }
+
+        public AssociatedValueGroup GetAssociatedValueGroup(string domainId, string componentId, string snapshotId, string metricId)
+        {
+            try
+            {
+                using (var castRepository = GetRepository())
+                {
+                    return castRepository.GetAssociatedValueGroup(domainId, snapshotId, componentId, metricId);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+        }
+
+        public AssociatedValueObject GetAssociatedValueObject(string domainId, string componentId, string snapshotId, string metricId)
+        {
+            try
+            {
+                using (var castRepository = GetRepository())
+                {
+                    return castRepository.GetAssociatedValueObject(domainId, snapshotId, componentId, metricId);
                 }
             }
             catch (Exception ex)
@@ -748,7 +780,6 @@ namespace CastReporting.BLL
                         string siteId = _fragment.CodeFile.GetSiteId();
                         string fileId = _fragment.CodeFile.GetFileId();
                         int startLine = _fragment.StartLine;
-                        int endLine = _fragment.EndLine;
                         Dictionary<int, string> codeLines = new Dictionary<int, string>();
                         int idx = startLine - offset;
                         if (idx < 0)

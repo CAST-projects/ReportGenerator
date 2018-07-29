@@ -1,0 +1,1647 @@
+*****************************************************************************************************************************************************************
+Endtoend_833_central
+*****************************************************************************************************************************************************************
+
+*****************************************************************************************************************************************************************
+AED833/components/34194/snapshots/16/findings/7390 -- Jurassic Park
+http://localhost:8585/CAST-HE-160/engineering/index.html#AED833/applications/18/snapshots/16/business/60017/qualityInvestigation/0/60012/61001/7390/34194
+*****************************************************************************************************************************************************************
+{
+	"name": "Number of potential ways to insert the SQL Table",
+	"type": "integer",
+	"values": [
+		2
+	],
+	"bookmarks": []
+}
+
+*****************************************************************************************************************************************************************
+AED833/components/38880/snapshots/15/findings/8108 -- Dream Team
+http://localhost:8585/CAST-HE-160/engineering/index.html#AED833/applications/7/snapshots/15/business/60017/qualityInvestigation/0/60014/61018/8108/38880
+*****************************************************************************************************************************************************************
+
+{
+	"name": "Associated Value",
+	"type": "integer",
+	"values": [
+		1
+	],
+	"bookmarks": [
+		[
+			{
+				"component": {
+					"href": "AED833/components/38880/snapshots/15",
+					"name": "com.castsoftware.viewer.servlet.CASTServlet.generateErrorPages",
+					"shortName": "generateErrorPages",
+					"sourceCodes": {
+						"href": "AED833/components/38880/snapshots/15/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/3986",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Dream Team\\Adg\\adg-viewer\\src\\main\\java\\com\\castsoftware\\viewer\\servlet\\CASTServlet.java",
+						"size": 30938
+					},
+					"startLine": 172,
+					"startColumn": 28,
+					"endLine": 172,
+					"endColumn": 110
+				}
+			}
+		]
+	]
+}
+*****************************************************************************************************************************************************************
+AED833/components/43574/snapshots/15/findings/8032 -- Dream Team
+http://localhost:8585/CAST-HE-160/engineering/index.html#AED833/applications/7/snapshots/15/business/60017/qualityInvestigation/0/60011/61024/8032/43574
+*****************************************************************************************************************************************************************
+
+{
+	"name": "Number of violation patterns",
+	"type": "integer",
+	"values": [
+		1
+	],
+	"bookmarks": [
+		[
+			{
+				"component": {
+					"href": "AED833/components/43574/snapshots/15",
+					"name": "Pchit.Builder.removeAnchor",
+					"shortName": "removeAnchor",
+					"sourceCodes": {
+						"href": "AED833/components/43574/snapshots/15/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/2152",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Dream Team\\Pchit\\Pchit\\Builder.cs",
+						"size": 31456
+					},
+					"startLine": 164,
+					"startColumn": 25,
+					"endLine": 164,
+					"endColumn": 31
+				}
+			}
+		]
+	]
+}
+*****************************************************************************************************************************************************************
+AED833/components/31519/snapshots/16/findings/7156 -- Jurassic Park
+http://localhost:8585/CAST-HE-160/engineering/index.html#AED833/applications/18/snapshots/16/business/60017/qualityInvestigation/0/60012/66009/7156/31519
+*****************************************************************************************************************************************************************
+{
+	"name": "Associated Value",
+	"type": "group",
+	"values": [
+		[
+			{
+				"component": {
+					"href": "AED833/components/33469/snapshots/16",
+					"name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_APPLICATIONPROPERTIES/CLASS/CX_IOS_APPLICATIONPROPERTIES/METHOD/CONSTRUCTOR",
+					"shortName": "CX_IOS_APPLICATIONPROPERTIES",
+					"sourceCodes": {
+						"href": "AED833/components/33469/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/32154/snapshots/16",
+					"name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_COMMUNICATIONWRAPPER/CLASS/CX_IOS_COMMUNICATIONWRAPPER/METHOD/CONSTRUCTOR",
+					"shortName": "CX_IOS_COMMUNICATIONWRAPPER",
+					"sourceCodes": {
+						"href": "AED833/components/32154/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/33480/snapshots/16",
+					"name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_DOCUMENT/CLASS/CX_IOS_DOCUMENT/METHOD/CONSTRUCTOR",
+					"shortName": "CX_IOS_DOCUMENT",
+					"sourceCodes": {
+						"href": "AED833/components/33480/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/32336/snapshots/16",
+					"name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_ENVIRONMENT/CLASS/CX_IOS_ENVIRONMENT/METHOD/CONSTRUCTOR",
+					"shortName": "CX_IOS_ENVIRONMENT",
+					"sourceCodes": {
+						"href": "AED833/components/32336/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/32335/snapshots/16",
+					"name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_ENVIRONMENT_NOCHECK/CLASS/CX_IOS_ENVIRONMENT_NOCHECK/METHOD/CONSTRUCTOR",
+					"shortName": "CX_IOS_ENVIRONMENT_NOCHECK",
+					"sourceCodes": {
+						"href": "AED833/components/32335/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/31519/snapshots/16",
+					"name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_EXCEPTION/CLASS/CX_IOS_EXCEPTION/METHOD/CONSTRUCTOR",
+					"shortName": "CX_IOS_EXCEPTION",
+					"sourceCodes": {
+						"href": "AED833/components/31519/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/33987/snapshots/16",
+					"name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_EXCEPTION_NOCHECK/CLASS/CX_IOS_EXCEPTION_NOCHECK/METHOD/CONSTRUCTOR",
+					"shortName": "CX_IOS_EXCEPTION_NOCHECK",
+					"sourceCodes": {
+						"href": "AED833/components/33987/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/31713/snapshots/16",
+					"name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_FACTORY/CLASS/CX_IOS_FACTORY/METHOD/CONSTRUCTOR",
+					"shortName": "CX_IOS_FACTORY",
+					"sourceCodes": {
+						"href": "AED833/components/31713/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/33242/snapshots/16",
+					"name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_FACTORY_NOCHECK/CLASS/CX_IOS_FACTORY_NOCHECK/METHOD/CONSTRUCTOR",
+					"shortName": "CX_IOS_FACTORY_NOCHECK",
+					"sourceCodes": {
+						"href": "AED833/components/33242/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/33590/snapshots/16",
+					"name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_RESULT/CLASS/CX_IOS_RESULT/METHOD/CONSTRUCTOR",
+					"shortName": "CX_IOS_RESULT",
+					"sourceCodes": {
+						"href": "AED833/components/33590/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/32351/snapshots/16",
+					"name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_WORDPROCESSING/CLASS/CX_IOS_WORDPROCESSING/METHOD/CONSTRUCTOR",
+					"shortName": "CX_IOS_WORDPROCESSING",
+					"sourceCodes": {
+						"href": "AED833/components/32351/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				}
+			}
+		]
+	],
+	"bookmarks": null
+}
+
+
+*****************************************************************************************************************************************************************
+AED833/components/28846/snapshots/15/findings/4722 -- Dream Team
+http://localhost:8585/CAST-HE-160/engineering/index.html#AED833/applications/7/snapshots/15/business/60017/qualityInvestigation/0/60012/61001/4722/28846
+*****************************************************************************************************************************************************************
+{
+	"name": "Database object used",
+	"type": "object",
+	"values": [
+		{
+			"component": {
+				"href": "AED833/components/17413/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_ACTIONS",
+				"shortName": "VIEWER_ACTIONS",
+				"sourceCodes": {
+					"href": "AED833/components/17413/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/15006/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_DATA_PERSISTERS",
+				"shortName": "VIEWER_DATA_PERSISTERS",
+				"sourceCodes": {
+					"href": "AED833/components/15006/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/16481/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_DATA_RENDERERS",
+				"shortName": "VIEWER_DATA_RENDERERS",
+				"sourceCodes": {
+					"href": "AED833/components/16481/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/16756/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_DATA_RETRIEVERS",
+				"shortName": "VIEWER_DATA_RETRIEVERS",
+				"sourceCodes": {
+					"href": "AED833/components/16756/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/16227/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_FILTER_VALUES",
+				"shortName": "VIEWER_FILTER_VALUES",
+				"sourceCodes": {
+					"href": "AED833/components/16227/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/16421/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_FILTERS",
+				"shortName": "VIEWER_FILTERS",
+				"sourceCodes": {
+					"href": "AED833/components/16421/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/17438/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_FRAMES",
+				"shortName": "VIEWER_FRAMES",
+				"sourceCodes": {
+					"href": "AED833/components/17438/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/17622/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_LANGUAGES",
+				"shortName": "VIEWER_LANGUAGES",
+				"sourceCodes": {
+					"href": "AED833/components/17622/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/15167/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_MACROS",
+				"shortName": "VIEWER_MACROS",
+				"sourceCodes": {
+					"href": "AED833/components/15167/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/15468/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_PARAMETERS",
+				"shortName": "VIEWER_PARAMETERS",
+				"sourceCodes": {
+					"href": "AED833/components/15468/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/16283/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_REPORT_PARAMETERS",
+				"shortName": "VIEWER_REPORT_PARAMETERS",
+				"sourceCodes": {
+					"href": "AED833/components/16283/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/16584/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_REPORT_SECTIONS",
+				"shortName": "VIEWER_REPORT_SECTIONS",
+				"sourceCodes": {
+					"href": "AED833/components/16584/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/15613/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_REPORTS",
+				"shortName": "VIEWER_REPORTS",
+				"sourceCodes": {
+					"href": "AED833/components/15613/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/15853/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_ROLES",
+				"shortName": "VIEWER_ROLES",
+				"sourceCodes": {
+					"href": "AED833/components/15853/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/16063/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_SECTIONS",
+				"shortName": "VIEWER_SECTIONS",
+				"sourceCodes": {
+					"href": "AED833/components/16063/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/15631/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_SERVICES",
+				"shortName": "VIEWER_SERVICES",
+				"sourceCodes": {
+					"href": "AED833/components/15631/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/14850/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_SITES",
+				"shortName": "VIEWER_SITES",
+				"sourceCodes": {
+					"href": "AED833/components/14850/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/15231/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_USER_VIEWS",
+				"shortName": "VIEWER_USER_VIEWS",
+				"sourceCodes": {
+					"href": "AED833/components/15231/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		},
+		{
+			"component": {
+				"href": "AED833/components/15582/snapshots/15",
+				"name": "O11JNK.LINDBERGH_CENTRAL.VIEWER_USERS",
+				"shortName": "VIEWER_USERS",
+				"sourceCodes": {
+					"href": "AED833/components/15582/snapshots/15/source-codes",
+					"name": "Source Codes"
+				}
+			}
+		}
+	],
+	"bookmarks": []
+}
+
+*****************************************************************************************************************************************************************
+AED833/components/36200/snapshots/16/findings/7740 -- Jurassic Park
+http://localhost:8585/CAST-HE-160/engineering/index.html#AED833/applications/18/snapshots/16/business/60017/qualityInvestigation/0/60016/66062/7740/36200
+*****************************************************************************************************************************************************************
+
+{
+	"name": "Call stack from user input source down to the target HTML user output method",
+	"type": "path",
+	"values": [
+		[
+			{
+				"component": {
+					"href": "AED833/components/36200/snapshots/16",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\JSPBookDemo\\pages\\NewSales.jsp]",
+					"shortName": "NewSales.jsp"
+				},
+				"level": 0,
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/3295",
+						"name": "c:\\jenkins6_slave\\workspace\\caip_8.3.3_teste2e_css_adg\\work\\cast\\deploy\\jurassic park\\jspbookdemo\\pages\\newsales.jsp",
+						"size": 3551
+					},
+					"startLine": 51,
+					"startColumn": null,
+					"endLine": 51,
+					"endColumn": null
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/36265/snapshots/16",
+					"name": "WASecurityForm._Default.GetRawInputGet",
+					"shortName": "GetRawInputGet"
+				},
+				"level": 0,
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/2905",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\WASecu\\WASecurityForm\\Default.aspx.cs",
+						"size": 11849
+					},
+					"startLine": 38,
+					"startColumn": null,
+					"endLine": 38,
+					"endColumn": null
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/36322/snapshots/16",
+					"name": "WASecurityForm._Default.MethodFAILURE",
+					"shortName": "MethodFAILURE"
+				},
+				"level": 0,
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/2905",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\WASecu\\WASecurityForm\\Default.aspx.cs",
+						"size": 11849
+					},
+					"startLine": 155,
+					"startColumn": null,
+					"endLine": 155,
+					"endColumn": null
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/36322/snapshots/16",
+					"name": "WASecurityForm._Default.MethodFAILURE",
+					"shortName": "MethodFAILURE"
+				},
+				"level": 0,
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/2905",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\WASecu\\WASecurityForm\\Default.aspx.cs",
+						"size": 11849
+					},
+					"startLine": 159,
+					"startColumn": null,
+					"endLine": 159,
+					"endColumn": null
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/36283/snapshots/16",
+					"name": "WASecurityForm._Default.CSSMethod2",
+					"shortName": "CSSMethod2"
+				},
+				"level": 0,
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/2905",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\WASecu\\WASecurityForm\\Default.aspx.cs",
+						"size": 11849
+					},
+					"startLine": 74,
+					"startColumn": null,
+					"endLine": 74,
+					"endColumn": null
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/36200/snapshots/16",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\JSPBookDemo\\pages\\NewSales.jsp]",
+					"shortName": "NewSales.jsp"
+				},
+				"level": 0,
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/3295",
+						"name": "c:\\jenkins6_slave\\workspace\\caip_8.3.3_teste2e_css_adg\\work\\cast\\deploy\\jurassic park\\jspbookdemo\\pages\\newsales.jsp",
+						"size": 3551
+					},
+					"startLine": 41,
+					"startColumn": null,
+					"endLine": 41,
+					"endColumn": null
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/36265/snapshots/16",
+					"name": "WASecurityForm._Default.GetRawInputGet",
+					"shortName": "GetRawInputGet"
+				},
+				"level": 0,
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/2905",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\WASecu\\WASecurityForm\\Default.aspx.cs",
+						"size": 11849
+					},
+					"startLine": 38,
+					"startColumn": null,
+					"endLine": 38,
+					"endColumn": null
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/36322/snapshots/16",
+					"name": "WASecurityForm._Default.MethodFAILURE",
+					"shortName": "MethodFAILURE"
+				},
+				"level": 0,
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/2905",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\WASecu\\WASecurityForm\\Default.aspx.cs",
+						"size": 11849
+					},
+					"startLine": 155,
+					"startColumn": null,
+					"endLine": 155,
+					"endColumn": null
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/36322/snapshots/16",
+					"name": "WASecurityForm._Default.MethodFAILURE",
+					"shortName": "MethodFAILURE"
+				},
+				"level": 0,
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/2905",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\WASecu\\WASecurityForm\\Default.aspx.cs",
+						"size": 11849
+					},
+					"startLine": 158,
+					"startColumn": null,
+					"endLine": 158,
+					"endColumn": null
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/36282/snapshots/16",
+					"name": "WASecurityForm._Default.CSSMethod1",
+					"shortName": "CSSMethod1"
+				},
+				"level": 0,
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/2905",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\WASecu\\WASecurityForm\\Default.aspx.cs",
+						"size": 11849
+					},
+					"startLine": 73,
+					"startColumn": null,
+					"endLine": 73,
+					"endColumn": null
+				}
+			}
+		]
+	],
+	"bookmarks": null
+}
+
+*****************************************************************************************************************************************************************
+AED833/components/16111/snapshots/15/findings/1596 -- Dream Team
+http://localhost:8585/CAST-HE-160/engineering/index.html#AED833/applications/7/snapshots/15/business/60017/qualityInvestigation/0/60014/61019/1596/16111
+*****************************************************************************************************************************************************************
+{
+	"name": "Column name",
+	"type": "text",
+	"values": [
+		"METRIC_CHAR_VALUE",
+		"METRIC_NUM_VALUE",
+		"METRIC_OBJECT_ID"
+	],
+	"bookmarks": []
+}
+
+*****************************************************************************************************************************************************************
+AED833/components/38431/snapshots/15/findings/7846 -- Dream Team
+http://localhost:8585/CAST-HE-160/engineering/index.html#AED833/applications/7/snapshots/15/business/60017/qualityInvestigation/0/60011/61028/7846/38431
+*****************************************************************************************************************************************************************
+{
+	"name": "Associated Value",
+	"type": "percentage",
+	"values": [
+		2.9850746268656714
+	],
+	"bookmarks": []
+}
+
+
+*****************************************************************************************************************************************************************
+AED833/components/34380/snapshots/16/findings/7210 -- Jurassic Park
+http://localhost:8585/CAST-HE-160/engineering/index.html#AED833/applications/18/snapshots/16/business/60017/componentsInvestigation/10-11465-11466/0/7210/34380
+*****************************************************************************************************************************************************************
+{
+	"name": null,
+	"type": null,
+	"values": [],
+	"bookmarks": [
+		[
+			{
+				"component": {
+					"href": "AED833/components/34380/snapshots/16",
+					"name": "com.castsoftware.FrameworkOld.util.db.DBUtils.resultSetToVectors",
+					"shortName": "resultSetToVectors",
+					"sourceCodes": {
+						"href": "AED833/components/34380/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/3080",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\JSPBookDemo\\WEB-INF\\classes\\com\\castsoftware\\FrameworkOld\\util\\db\\DBUtils.java",
+						"size": 3332
+					},
+					"startLine": 74,
+					"startColumn": 5,
+					"endLine": 94,
+					"endColumn": 6
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/34380/snapshots/16",
+					"name": "com.castsoftware.FrameworkOld.util.db.DBUtils.resultSetToVectors",
+					"shortName": "resultSetToVectors",
+					"sourceCodes": {
+						"href": "AED833/components/34380/snapshots/16/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/3080",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\JSPBookDemo\\WEB-INF\\classes\\com\\castsoftware\\FrameworkOld\\util\\db\\DBUtils.java",
+						"size": 3332
+					},
+					"startLine": 81,
+					"startColumn": 26,
+					"endLine": 81,
+					"endColumn": 38
+				}
+			}
+		]
+	]
+}
+
+*****************************************************************************************************************************************************************
+AED833/components/8054/snapshots/14/findings/7688 -- Big Ben
+http://localhost:8585/CAST-HE-160/engineering/index.html#AED833/applications/14/snapshots/14/business/60017/qualityInvestigation/0/60013/66069/7688/8054
+*****************************************************************************************************************************************************************
+
+{
+	"name": "Number of violation patterns",
+	"type": "integer",
+	"values": [
+		15
+	],
+	"bookmarks": [
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 485,
+					"startColumn": 22,
+					"endLine": 486,
+					"endColumn": 64
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/647",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\WMOD01.CPY",
+						"size": 9349
+					},
+					"startLine": 28,
+					"startColumn": 14,
+					"endLine": 30,
+					"endColumn": 60
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 482,
+					"startColumn": 22,
+					"endLine": 482,
+					"endColumn": 65
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 110,
+					"startColumn": 12,
+					"endLine": 110,
+					"endColumn": 61
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/647",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\WMOD01.CPY",
+						"size": 9349
+					},
+					"startLine": 109,
+					"startColumn": 14,
+					"endLine": 110,
+					"endColumn": 67
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 480,
+					"startColumn": 22,
+					"endLine": 480,
+					"endColumn": 63
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 110,
+					"startColumn": 12,
+					"endLine": 110,
+					"endColumn": 61
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/647",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\WMOD01.CPY",
+						"size": 9349
+					},
+					"startLine": 107,
+					"startColumn": 14,
+					"endLine": 107,
+					"endColumn": 60
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 471,
+					"startColumn": 12,
+					"endLine": 471,
+					"endColumn": 58
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 162,
+					"startColumn": 12,
+					"endLine": 162,
+					"endColumn": 52
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 116,
+					"startColumn": 12,
+					"endLine": 116,
+					"endColumn": 61
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 452,
+					"startColumn": 24,
+					"endLine": 452,
+					"endColumn": 65
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 110,
+					"startColumn": 12,
+					"endLine": 110,
+					"endColumn": 61
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/647",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\WMOD01.CPY",
+						"size": 9349
+					},
+					"startLine": 109,
+					"startColumn": 14,
+					"endLine": 110,
+					"endColumn": 67
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 450,
+					"startColumn": 24,
+					"endLine": 450,
+					"endColumn": 63
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 110,
+					"startColumn": 12,
+					"endLine": 110,
+					"endColumn": 61
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/647",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\WMOD01.CPY",
+						"size": 9349
+					},
+					"startLine": 107,
+					"startColumn": 14,
+					"endLine": 107,
+					"endColumn": 60
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 324,
+					"startColumn": 12,
+					"endLine": 324,
+					"endColumn": 66
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 118,
+					"startColumn": 12,
+					"endLine": 118,
+					"endColumn": 61
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/647",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\WMOD01.CPY",
+						"size": 9349
+					},
+					"startLine": 104,
+					"startColumn": 14,
+					"endLine": 104,
+					"endColumn": 60
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 273,
+					"startColumn": 12,
+					"endLine": 273,
+					"endColumn": 58
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 116,
+					"startColumn": 12,
+					"endLine": 116,
+					"endColumn": 61
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 251,
+					"startColumn": 18,
+					"endLine": 251,
+					"endColumn": 66
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 155,
+					"startColumn": 7,
+					"endLine": 158,
+					"endColumn": 52
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 191,
+					"startColumn": 12,
+					"endLine": 191,
+					"endColumn": 52
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 123,
+					"startColumn": 18,
+					"endLine": 123,
+					"endColumn": 63
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 120,
+					"startColumn": 12,
+					"endLine": 120,
+					"endColumn": 61
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 122,
+					"startColumn": 18,
+					"endLine": 122,
+					"endColumn": 64
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 124,
+					"startColumn": 12,
+					"endLine": 124,
+					"endColumn": 61
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 118,
+					"startColumn": 18,
+					"endLine": 118,
+					"endColumn": 63
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 120,
+					"startColumn": 12,
+					"endLine": 120,
+					"endColumn": 61
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/845",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\OSDUC001.cpy",
+						"size": 58907
+					},
+					"startLine": 117,
+					"startColumn": 18,
+					"endLine": 117,
+					"endColumn": 64
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 124,
+					"startColumn": 12,
+					"endLine": 124,
+					"endColumn": 61
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 269,
+					"startColumn": 20,
+					"endLine": 269,
+					"endColumn": 61
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/647",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\WMOD01.CPY",
+						"size": 9349
+					},
+					"startLine": 59,
+					"startColumn": 14,
+					"endLine": 60,
+					"endColumn": 65
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 128,
+					"startColumn": 12,
+					"endLine": 128,
+					"endColumn": 61
+				}
+			}
+		],
+		[
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 255,
+					"startColumn": 20,
+					"endLine": 255,
+					"endColumn": 61
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/647",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\COPY\\WMOD01.CPY",
+						"size": 9349
+					},
+					"startLine": 59,
+					"startColumn": 14,
+					"endLine": 60,
+					"endColumn": 65
+				}
+			},
+			{
+				"component": {
+					"href": "AED833/components/8054/snapshots/14",
+					"name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].ZRDUB02",
+					"shortName": "ZRDUB02",
+					"sourceCodes": {
+						"href": "AED833/components/8054/snapshots/14/source-codes",
+						"name": "Source Codes"
+					}
+				},
+				"codeFragment": {
+					"file": {
+						"href": "AED833/local-sites/85579248/file-contents/723",
+						"name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH\\ZRDUB02.cob",
+						"size": 23683
+					},
+					"startLine": 128,
+					"startColumn": 12,
+					"endLine": 128,
+					"endColumn": 61
+				}
+			}
+		]
+	]
+}
+
