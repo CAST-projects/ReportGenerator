@@ -49,7 +49,6 @@
     <Compile Include="DataObject\AssociatedValueObject.cs" />
     <Compile Include="DataObject\AssociatedValueGroup.cs" />
     <Compile Include="DataObject\AssociatedValuePath.cs" />
-    <Compile Include="DataObject\ComponentLite.cs" />
     <Compile Include="DataObject\ObjectType.cs" />
     <Compile Include="DataObject\CastDate.cs" />
     <Compile Include="DataObject\Categories.cs" />

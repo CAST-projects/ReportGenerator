@@ -12,7 +12,7 @@ namespace CastReporting.Domain
         public string Type { get; set; }
 
         [DataMember(Name = "values")]
-        public ComponentLite[][] Values { get; set; }
+        public CodeBookmark[][] Values { get; set; }
 
     }
 }

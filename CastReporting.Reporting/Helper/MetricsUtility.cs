@@ -653,18 +653,18 @@ namespace CastReporting.Reporting
                 {
                     // manage case when type="group" and values contains an array of array of components
                     AssociatedValueGroup associatedValueEx = reportData.SnapshotExplorer.GetAssociatedValueGroup(domainId, _violation.Component.GetComponentId(), snapshotId, metric);
-                    IEnumerable<IEnumerable<ComponentLite>> values = associatedValueEx?.Values;
+                    IEnumerable<IEnumerable<CodeBookmark>> values = associatedValueEx?.Values;
                     if (values == null || !values.Any())
                     {
                         cellidx = AddSourceCode(reportData, rowData, cellidx, cellProps, domainId, snapshotId, _violation);
                     }
                     else
                     {
-                        foreach (IEnumerable<ComponentLite> components in values)
+                        foreach (IEnumerable<CodeBookmark> components in values)
                         {
-                            foreach (ComponentLite _component in components)
+                            foreach (CodeBookmark _component in components)
                             {
-                                rowData.Add(_component.Name);
+                                rowData.Add(_component.Component.Name);
                                 cellProps.Add(new CellAttributes(cellidx, Color.White));
                                 cellidx++;
                             }
