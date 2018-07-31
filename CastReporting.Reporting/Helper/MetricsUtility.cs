@@ -600,7 +600,7 @@ namespace CastReporting.Reporting
                                 cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
                                 cellidx++;
                                 Dictionary<int, string> codeLines = reportData.SnapshotExplorer.GetSourceCodeBookmark(domainId, _bookmark, 3);
-
+                                if (codeLines == null) continue;
                                 foreach (KeyValuePair<int, string> codeLine in codeLines)
                                 {
                                     rowData.Add(codeLine.Key + " : " + codeLine.Value);
