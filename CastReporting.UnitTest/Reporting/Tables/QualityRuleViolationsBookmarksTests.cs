@@ -26,6 +26,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
         [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
         [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        [DeploymentItem(@".\Data\RulePattern7424.json", "Data")]
         public void TestOneSnapshot()
         {
             CastDate currentDate = new CastDate { Time = 1484953200000 };
@@ -41,7 +42,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 Name = "Default"
             };
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
-
+            reportData.RuleExplorer = new RuleBLLStub();
             var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
@@ -96,6 +97,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
         [DeploymentItem(@".\Data\findings7392.json", "Data")]
         [DeploymentItem(@".\Data\PreviousBCresults.json", "Data")]
+        [DeploymentItem(@".\Data\RulePattern7424.json", "Data")]
         public void TestTwoSnapshotNoCount()
         {
             CastDate currentDate = new CastDate { Time = 1484953200000 };
@@ -112,7 +114,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 Name = "Default"
             };
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
-
+            reportData.RuleExplorer = new RuleBLLStub();
             var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
@@ -140,6 +142,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
         [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
         [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        [DeploymentItem(@".\Data\RulePattern7424.json", "Data")]
         public void TestAllViolations()
         {
             CastDate currentDate = new CastDate { Time = 1484953200000 };
@@ -155,7 +158,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 Name = "Default"
             };
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
-
+            reportData.RuleExplorer = new RuleBLLStub();
             var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
@@ -185,6 +188,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
         [DeploymentItem(@".\Data\findings7392.json", "Data")]
         [DeploymentItem(@".\Data\findings_bookmarks.json", "Data")]
+        [DeploymentItem(@".\Data\RulePattern7424.json", "Data")]
         public void TestBookmark()
         {
             CastDate currentDate = new CastDate { Time = 1484953200000 };
@@ -200,7 +204,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 Name = "Default"
             };
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
-
+            reportData.RuleExplorer = new RuleBLLStub();
             var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
