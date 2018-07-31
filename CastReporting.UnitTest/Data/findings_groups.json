@@ -1,0 +1,132 @@
+﻿[
+  {
+    "name": "Associated Value",
+    "type": "group",
+    "values": [
+      [
+        {
+          "component": {
+            "href": "AED833/components/33469/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_APPLICATIONPROPERTIES/CLASS/CX_IOS_APPLICATIONPROPERTIES/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_APPLICATIONPROPERTIES",
+            "sourceCodes": {
+              "href": "AED833/components/33469/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/32154/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_COMMUNICATIONWRAPPER/CLASS/CX_IOS_COMMUNICATIONWRAPPER/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_COMMUNICATIONWRAPPER",
+            "sourceCodes": {
+              "href": "AED833/components/32154/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/33480/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_DOCUMENT/CLASS/CX_IOS_DOCUMENT/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_DOCUMENT",
+            "sourceCodes": {
+              "href": "AED833/components/33480/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/32336/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_ENVIRONMENT/CLASS/CX_IOS_ENVIRONMENT/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_ENVIRONMENT",
+            "sourceCodes": {
+              "href": "AED833/components/32336/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/32335/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_ENVIRONMENT_NOCHECK/CLASS/CX_IOS_ENVIRONMENT_NOCHECK/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_ENVIRONMENT_NOCHECK",
+            "sourceCodes": {
+              "href": "AED833/components/32335/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/31519/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_EXCEPTION/CLASS/CX_IOS_EXCEPTION/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_EXCEPTION",
+            "sourceCodes": {
+              "href": "AED833/components/31519/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/33987/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_EXCEPTION_NOCHECK/CLASS/CX_IOS_EXCEPTION_NOCHECK/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_EXCEPTION_NOCHECK",
+            "sourceCodes": {
+              "href": "AED833/components/33987/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/31713/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_FACTORY/CLASS/CX_IOS_FACTORY/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_FACTORY",
+            "sourceCodes": {
+              "href": "AED833/components/31713/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/33242/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_FACTORY_NOCHECK/CLASS/CX_IOS_FACTORY_NOCHECK/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_FACTORY_NOCHECK",
+            "sourceCodes": {
+              "href": "AED833/components/33242/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/33590/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_RESULT/CLASS/CX_IOS_RESULT/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_RESULT",
+            "sourceCodes": {
+              "href": "AED833/components/33590/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/32351/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_WORDPROCESSING/CLASS/CX_IOS_WORDPROCESSING/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_WORDPROCESSING",
+            "sourceCodes": {
+              "href": "AED833/components/32351/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        }
+      ]
+    ],
+    "bookmarks": null
+  }
+]

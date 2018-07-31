@@ -77,12 +77,64 @@ namespace CastReporting.UnitTest.Reporting
         }
 
         [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        [DeploymentItem(@".\Data\findings_bookmarks.json", "Data")]
         public AssociatedValue GetAssociatedValue(string domainId, string componentId, string snapshotId, string metricId)
         {
-            return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings7392.json").ToArray()[0];
+            switch (metricId)
+            {
+                case "8108":
+                    return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings_bookmarks.json").ToArray()[0];
+                case "8032":
+                    return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings_bookmarks.json").ToArray()[1];
+                case "7688":
+                    return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings_bookmarks.json").ToArray()[2];
+                default:
+                    return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings7392.json").ToArray()[0];
+            }
+            
         }
 
-        public AssociatedValueExtended GetAssociatedValueExtended(string domainId, string componentId, string snapshotId, string metricId)
+        [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        [DeploymentItem(@".\Data\findings_path.json", "Data")]
+        public AssociatedValuePath GetAssociatedValuePath(string domainId, string componentId, string snapshotId, string metricId)
+        {
+            switch (metricId)
+            {
+                case "7390":
+                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[1];
+                case "8108":
+                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[2];
+                case "8032":
+                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[3];
+                case "7156":
+                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[4];
+                case "4722":
+                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[5];
+                case "7740":
+                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[6];
+                case "1596":
+                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[7];
+                case "7846":
+                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[8];
+                case "7210":
+                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[9];
+                case "7688":
+                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[10];
+                default:
+                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[0];
+            }
+        }
+
+        [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        [DeploymentItem(@".\Data\findings_group.json", "Data")]
+        public AssociatedValueGroup GetAssociatedValueGroup(string domainId, string componentId, string snapshotId, string metricId)
+        {
+            throw new NotImplementedException();
+        }
+
+        [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        [DeploymentItem(@".\Data\findings_object.json", "Data")]
+        public AssociatedValueObject GetAssociatedValueObject(string domainId, string componentId, string snapshotId, string metricId)
         {
             throw new NotImplementedException();
         }

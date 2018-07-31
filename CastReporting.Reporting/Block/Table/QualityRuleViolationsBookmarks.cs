@@ -27,7 +27,8 @@ namespace CastReporting.Reporting.Block.Table
             bool shortName = options.GetOption("NAME","FULL") == "SHORT";
 
             bool hasPreviousSnapshot = reportData.PreviousSnapshot != null;
-            string ruleName = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(ruleId));
+            RuleDescription rule = reportData.RuleExplorer.GetSpecificRule(reportData.Application.DomainId, ruleId);
+            string ruleName = rule.Name;
 
             rowData.Add(Labels.ObjectsInViolationForRule + " " + ruleName);
             cellidx++;

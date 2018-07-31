@@ -1,0 +1,55 @@
+﻿[
+  {
+    "name": null,
+    "type": null,
+    "values": [],
+    "bookmarks": [
+      [
+        {
+          "component": {
+            "href": "AED833/components/34380/snapshots/16",
+            "name": "com.castsoftware.FrameworkOld.util.db.DBUtils.resultSetToVectors",
+            "shortName": "resultSetToVectors",
+            "sourceCodes": {
+              "href": "AED833/components/34380/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          },
+          "codeFragment": {
+            "file": {
+              "href": "AED833/local-sites/85579248/file-contents/3080",
+              "name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\JSPBookDemo\\WEB-INF\\classes\\com\\castsoftware\\FrameworkOld\\util\\db\\DBUtils.java",
+              "size": 3332
+            },
+            "startLine": 74,
+            "startColumn": 5,
+            "endLine": 94,
+            "endColumn": 6
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/34380/snapshots/16",
+            "name": "com.castsoftware.FrameworkOld.util.db.DBUtils.resultSetToVectors",
+            "shortName": "resultSetToVectors",
+            "sourceCodes": {
+              "href": "AED833/components/34380/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          },
+          "codeFragment": {
+            "file": {
+              "href": "AED833/local-sites/85579248/file-contents/3080",
+              "name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\JSPBookDemo\\WEB-INF\\classes\\com\\castsoftware\\FrameworkOld\\util\\db\\DBUtils.java",
+              "size": 3332
+            },
+            "startLine": 81,
+            "startColumn": 26,
+            "endLine": 81,
+            "endColumn": 38
+          }
+        }
+      ]
+    ]
+  }
+]
