@@ -253,6 +253,391 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
         }
 
+        [TestMethod]
+        [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
+        [DeploymentItem(@".\Data\findings_integer.json", "Data")]
+        [DeploymentItem(@".\Data\RulePatterns.json", "Data")]
+        public void TestTypeIntegerNull()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+            var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"ID","7390" },
+                {"COUNT","1" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>
+            {
+                "Objects in violation for rule Avoid having multiple Artifacts inserting data on the same SQL Table",
+                "",
+                "Violation #1    Avoid having multiple Artifacts inserting data on the same SQL Table",
+                "Object Name: aedtst_exclusions_central.adg_central_grades_std",
+                "Object Type: MyObjType",
+                "File path: C:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Dream Team\\DssAdmin\\DssAdmin\\MetricTree.cpp",
+                "4904 :      m_bGridModified = FALSE;",
+                "4905 :  }",
+                "4906 : ",
+                "4907 :  void CMetricTreePageDet::Validate()",
+                "4908 :  {",
+                "4909 :      int i, index, nAggregate, nAggregateCentral, nType, nLastLine;"
+            };
+
+            TestUtility.AssertTableContent(table, expectedData, 1, 12);
+
+            var cellsProperties = table.CellsAttributes;
+            Assert.AreEqual(10, cellsProperties.Count);
+
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
+        [DeploymentItem(@".\Data\findings_groups.json", "Data")]
+        [DeploymentItem(@".\Data\RulePatterns.json", "Data")]
+        public void TestTypeGroup()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+            var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"ID","7156" },
+                {"COUNT","1" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>
+            {
+                "Objects in violation for rule Avoid Too Many Copy Pasted Artifacts",
+                "",
+                "Violation #1    Avoid Too Many Copy Pasted Artifacts",
+                "Object Name: aedtst_exclusions_central.adg_central_grades_std",
+                "Object Type: MyObjType",
+                "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_APPLICATIONPROPERTIES/CLASS/CX_IOS_APPLICATIONPROPERTIES/METHOD/CONSTRUCTOR",
+                "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_WORDPROCESSING/CLASS/CX_IOS_WORDPROCESSING/METHOD/CONSTRUCTOR",
+                ""
+            };
+
+            TestUtility.AssertTableContent(table, expectedData, 1, 8);
+
+            var cellsProperties = table.CellsAttributes;
+            Assert.AreEqual(5, cellsProperties.Count);
+
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
+        [DeploymentItem(@".\Data\findings_null.json", "Data")]
+        [DeploymentItem(@".\Data\RulePatterns.json", "Data")]
+        public void TestTypeNull()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+            var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"ID","7210" },
+                {"COUNT","1" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>
+            {
+                "Objects in violation for rule Avoid instantiations inside loops",
+                "",
+                "Violation #1    Avoid instantiations inside loops",
+                "Object Name: aedtst_exclusions_central.adg_central_grades_std",
+                "Object Type: MyObjType",
+                "File path: c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\JSPBookDemo\\WEB-INF\\classes\\com\\castsoftware\\FrameworkOld\\util\\db\\DBUtils.java",
+                "1197 : PreparedStatement statement = null;",
+                "1198 :         try",
+                "1199 :         {",
+                "1200 :             statement = consolidatedConn.prepareStatement(insertMessage); ",
+                "1201 :             statement.setString(1, message); ",
+                "1202 :             statement.executeUpdate(); ",
+                "1203 :         }",
+                "File path: c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\JSPBookDemo\\WEB-INF\\classes\\com\\castsoftware\\FrameworkOld\\util\\db\\DBUtils.java",
+                "1197 : PreparedStatement statement = null;",
+                "1198 :         try",
+                "1199 :         {",
+                "1200 :             statement = consolidatedConn.prepareStatement(insertMessage); ",
+                "1201 :             statement.setString(1, message); ",
+                "1202 :             statement.executeUpdate(); ",
+                "1203 :         }",
+            };
+
+            TestUtility.AssertTableContent(table, expectedData, 1, 21);
+
+            var cellsProperties = table.CellsAttributes;
+            Assert.AreEqual(19, cellsProperties.Count);
+
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
+        [DeploymentItem(@".\Data\findings_objects.json", "Data")]
+        [DeploymentItem(@".\Data\RulePatterns.json", "Data")]
+        public void TestTypeObject()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+            var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"ID","4722" },
+                {"COUNT","1" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>
+            {
+                "Objects in violation for rule Track Classes referencing Database objects",
+                "",
+                "Violation #1    Track Classes referencing Database objects",
+                "Object Name: aedtst_exclusions_central.adg_central_grades_std",
+                "Object Type: MyObjType",
+                "File path: C:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Dream Team\\DssAdmin\\DssAdmin\\MetricTree.cpp",
+                "4904 :      m_bGridModified = FALSE;",
+                "4905 :  }",
+                "4906 : ",
+                "4907 :  void CMetricTreePageDet::Validate()",
+                "4908 :  {",
+                "4909 :      int i, index, nAggregate, nAggregateCentral, nType, nLastLine;"
+            };
+
+            TestUtility.AssertTableContent(table, expectedData, 1, 12);
+
+            var cellsProperties = table.CellsAttributes;
+            Assert.AreEqual(10, cellsProperties.Count);
+
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
+        [DeploymentItem(@".\Data\findings_path.json", "Data")]
+        [DeploymentItem(@".\Data\RulePatterns.json", "Data")]
+        public void TestTypePath()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+            var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"ID","7740" },
+                {"COUNT","1" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>
+            {
+                "Objects in violation for rule CWE-79: Avoid cross-site scripting DOM vulnerabilities",
+                "",
+                "Violation #1    CWE-79: Avoid cross-site scripting DOM vulnerabilities",
+                "Object Name: aedtst_exclusions_central.adg_central_grades_std",
+                "Object Type: MyObjType",
+                "Violation Path: c:\\jenkins6_slave\\workspace\\caip_8.3.3_teste2e_css_adg\\work\\cast\\deploy\\jurassic park\\jspbookdemo\\pages\\newsales.jsp",
+                "1197 : PreparedStatement statement = null;",
+                "1198 :         try",
+                "1199 :         {",
+                "1200 :             statement = consolidatedConn.prepareStatement(insertMessage); ",
+                "1201 :             statement.setString(1, message); ",
+                "1202 :             statement.executeUpdate(); ",
+                "1203 :         }",
+                "1197 : PreparedStatement statement = null;",
+                "1198 :         try",
+                "1199 :         {",
+                "1200 :             statement = consolidatedConn.prepareStatement(insertMessage); ",
+                "1201 :             statement.setString(1, message); ",
+                "1202 :             statement.executeUpdate(); ",
+                "1203 :         }",
+                ""
+            };
+
+            TestUtility.AssertTableContent(table, expectedData, 1, 21);
+
+            var cellsProperties = table.CellsAttributes;
+            Assert.AreEqual(18, cellsProperties.Count);
+
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
+        [DeploymentItem(@".\Data\findings_text.json", "Data")]
+        [DeploymentItem(@".\Data\RulePatterns.json", "Data")]
+        public void TestTypeText()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+            var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"ID","1596" },
+                {"COUNT","1" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>
+            {
+                "Objects in violation for rule Avoid using \"nullable\" Columns except in the last position in a Table",
+                "",
+                "Violation #1    Avoid using \"nullable\" Columns except in the last position in a Table",
+                "Object Name: aedtst_exclusions_central.adg_central_grades_std",
+                "Object Type: MyObjType",
+                "File path: C:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Dream Team\\DssAdmin\\DssAdmin\\MetricTree.cpp",
+                "4904 :      m_bGridModified = FALSE;",
+                "4905 :  }",
+                "4906 : ",
+                "4907 :  void CMetricTreePageDet::Validate()",
+                "4908 :  {",
+                "4909 :      int i, index, nAggregate, nAggregateCentral, nType, nLastLine;"
+            };
+
+            TestUtility.AssertTableContent(table, expectedData, 1, 12);
+
+            var cellsProperties = table.CellsAttributes;
+            Assert.AreEqual(10, cellsProperties.Count);
+
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
+        [DeploymentItem(@".\Data\findings_percentage.json", "Data")]
+        [DeploymentItem(@".\Data\RulePattern7846.json", "Data")]
+        public void TestTypePercentage()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+            var component = new CastReporting.Reporting.Block.Table.QualityRuleViolationsBookmarks();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"ID","7846" },
+                {"COUNT","1" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>
+            {
+                "Objects in violation for rule Avoid Methods with a very low comment/code ratio",
+                "",
+                "Violation #1    Avoid Methods with a very low comment/code ratio",
+                "Object Name: com.castsoftware.aad.common.AadCommandLine.dumpStack",
+                "Object Type: MyObjType",
+                "File path: C:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Dream Team\\DssAdmin\\DssAdmin\\MetricTree.cpp",
+                "4904 :      m_bGridModified = FALSE;",
+                "4905 :  }",
+                "4906 : ",
+                "4907 :  void CMetricTreePageDet::Validate()",
+                "4908 :  {",
+                "4909 :      int i, index, nAggregate, nAggregateCentral, nType, nLastLine;"
+            };
+
+            TestUtility.AssertTableContent(table, expectedData, 1, 12);
+
+            var cellsProperties = table.CellsAttributes;
+            Assert.AreEqual(10, cellsProperties.Count);
+
+        }
+
     }
 }
 
