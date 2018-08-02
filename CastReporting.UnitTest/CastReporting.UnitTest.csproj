@@ -73,6 +73,9 @@
   </Choose>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Data\findings_objects.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\findings_integer.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

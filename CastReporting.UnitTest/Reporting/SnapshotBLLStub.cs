@@ -78,6 +78,13 @@ namespace CastReporting.UnitTest.Reporting
 
         [DeploymentItem(@".\Data\findings7392.json", "Data")]
         [DeploymentItem(@".\Data\findings_bookmarks.json", "Data")]
+        [DeploymentItem(@".\Data\findings_integer.json", "Data")]
+        [DeploymentItem(@".\Data\findings_groups.json", "Data")]
+        [DeploymentItem(@".\Data\findings_null.json", "Data")]
+        [DeploymentItem(@".\Data\findings_objects.json", "Data")]
+        [DeploymentItem(@".\Data\findings_path.json", "Data")]
+        [DeploymentItem(@".\Data\findings_text.json", "Data")]
+        [DeploymentItem(@".\Data\findings_percentage.json", "Data")]
         public AssociatedValue GetAssociatedValue(string domainId, string componentId, string snapshotId, string metricId)
         {
             switch (metricId)
@@ -88,60 +95,60 @@ namespace CastReporting.UnitTest.Reporting
                     return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings_bookmarks.json").ToArray()[1];
                 case "7688":
                     return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings_bookmarks.json").ToArray()[2];
+                case "7390":
+                    return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings_integer.json").ToArray()[0];
+                case "7156":
+                    return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings_groups.json").ToArray()[0];
+                case "7210":
+                    return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings_null.json").ToArray()[0];
+                case "4722":
+                    return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings_objects.json").ToArray()[0];
+                case "7740":
+                    return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings_path.json").ToArray()[0];
+                case "1596":
+                    return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings_text.json").ToArray()[0];
+                case "7846":
+                    return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings_percentage.json").ToArray()[0];
                 default:
                     return TestUtility.GetSampleResult<AssociatedValue>(@".\Data\findings7392.json").ToArray()[0];
             }
             
         }
 
-        [DeploymentItem(@".\Data\findings7392.json", "Data")]
         [DeploymentItem(@".\Data\findings_path.json", "Data")]
         public AssociatedValuePath GetAssociatedValuePath(string domainId, string componentId, string snapshotId, string metricId)
         {
-            switch (metricId)
-            {
-                case "7390":
-                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[1];
-                case "8108":
-                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[2];
-                case "8032":
-                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[3];
-                case "7156":
-                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[4];
-                case "4722":
-                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[5];
-                case "7740":
-                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[6];
-                case "1596":
-                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[7];
-                case "7846":
-                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[8];
-                case "7210":
-                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[9];
-                case "7688":
-                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[10];
-                default:
-                    return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings7392.json").ToArray()[0];
-            }
+            return TestUtility.GetSampleResult<AssociatedValuePath>(@".\Data\findings_path.json").ToArray()[0];
         }
 
-        [DeploymentItem(@".\Data\findings7392.json", "Data")]
-        [DeploymentItem(@".\Data\findings_group.json", "Data")]
+        [DeploymentItem(@".\Data\findings_groups.json", "Data")]
         public AssociatedValueGroup GetAssociatedValueGroup(string domainId, string componentId, string snapshotId, string metricId)
         {
-            throw new NotImplementedException();
+            return TestUtility.GetSampleResult<AssociatedValueGroup>(@".\Data\findings_groups.json").ToArray()[0];
         }
 
-        [DeploymentItem(@".\Data\findings7392.json", "Data")]
-        [DeploymentItem(@".\Data\findings_object.json", "Data")]
+        [DeploymentItem(@".\Data\findings_objects.json", "Data")]
         public AssociatedValueObject GetAssociatedValueObject(string domainId, string componentId, string snapshotId, string metricId)
         {
-            throw new NotImplementedException();
+            return TestUtility.GetSampleResult<AssociatedValueObject>(@".\Data\findings_objects.json").ToArray()[0];
         }
 
         public List<Tuple<string, Dictionary<int, string>>> GetSourceCode(string domainId, string componentId, string snapshotId, int offset)
         {
-            throw new NotImplementedException();
+            List<Tuple<string, Dictionary<int, string>>> res = new List<Tuple<string, Dictionary<int, string>>>();
+            Dictionary<int, string> sources = new Dictionary<int, string>
+            {
+                {4904, "     m_bGridModified = FALSE;"},
+                {4905, " }"},
+                {4906, ""},
+                {4907, " void CMetricTreePageDet::Validate()"},
+                {4908, " {"},
+                {4909, "     int i, index, nAggregate, nAggregateCentral, nType, nLastLine;"}
+            };
+
+            res.Add(new Tuple<string, Dictionary<int, string>>("C:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Dream Team\\DssAdmin\\DssAdmin\\MetricTree.cpp", sources));
+
+            return res;
         }
 
         public Dictionary<int, string> GetSourceCodeBookmark(string domainId, CodeBookmark bookmark, int offset)
@@ -212,6 +219,12 @@ namespace CastReporting.UnitTest.Reporting
                 case "7132":
                 case "7558":
                 case "7388":
+                case "7390":
+                case "7156":
+                case "7210":
+                case "4722":
+                case "7740":
+                case "1596":
                     res = count != -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\Violations7424_60017.json").Take(count).ToList()
                         : TestUtility.GetSampleResult<Violation>(@".\Data\Violations7424_60017.json").ToList();
                     break;

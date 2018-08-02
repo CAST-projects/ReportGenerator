@@ -27,6 +27,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [DeploymentItem(@".\Data\RulePattern7846.json", "Data")]
         [DeploymentItem(@".\Data\RulePattern7424.json", "Data")]
         [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        [DeploymentItem(@".\Data\findings_percentage.json", "Data")]
         public void TestTCmetrics()
         {
             CastDate currentDate = new CastDate { Time = 1484953200000 };
@@ -105,38 +106,19 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "Violation #1    Avoid Methods with a very low comment/code ratio",
                 "Object Name: com.castsoftware.aad.common.AadCommandLine.dumpStack",
                 "Object Type: MyObjType",
-                "File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql",
-                "1197 : PreparedStatement statement = null;",
-                "1198 :         try",
-                "1199 :         {",
-                "1200 :             statement = consolidatedConn.prepareStatement(insertMessage); ",
-                "1201 :             statement.setString(1, message); ",
-                "1202 :             statement.executeUpdate(); ",
-                "1203 :         }",
-                "File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\Java\\AADAdmin\\AadSite\\sources\\com\\castsoftware\\aad\\site\\AadSite.java",
-                "1197 : PreparedStatement statement = null;",
-                "1198 :         try",
-                "1199 :         {",
-                "1200 :             statement = consolidatedConn.prepareStatement(insertMessage); ",
-                "1201 :             statement.setString(1, message); ",
-                "1202 :             statement.executeUpdate(); ",
-                "1203 :         }",
-                "File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\Java\\AADAdmin\\AadSite\\sources\\com\\castsoftware\\aad\\site\\AadSite.java",
-                "1197 : PreparedStatement statement = null;",
-                "1198 :         try",
-                "1199 :         {",
-                "1200 :             statement = consolidatedConn.prepareStatement(insertMessage); ",
-                "1201 :             statement.setString(1, message); ",
-                "1202 :             statement.executeUpdate(); ",
-                "1203 :         }",
-
-
+                "File path: C:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Dream Team\\DssAdmin\\DssAdmin\\MetricTree.cpp",
+                "4904 :      m_bGridModified = FALSE;",
+                "4905 :  }",
+                "4906 : ",
+                "4907 :  void CMetricTreePageDet::Validate()",
+                "4908 :  {",
+                "4909 :      int i, index, nAggregate, nAggregateCentral, nType, nLastLine;"
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 1, 75);
+            TestUtility.AssertTableContent(table, expectedData, 1, 58);
 
             var cellsProperties = table.CellsAttributes;
-            Assert.AreEqual(70, cellsProperties.Count);
+            Assert.AreEqual(53, cellsProperties.Count);
             Assert.AreEqual(Color.Gray, cellsProperties[0].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[1].BackgroundColor);
             Assert.AreEqual(Color.LightGray, cellsProperties[2].BackgroundColor);
@@ -157,14 +139,14 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Assert.AreEqual(Color.White, cellsProperties[17].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[18].BackgroundColor);
 
-            Assert.AreEqual(Color.Gray, cellsProperties[35].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[52].BackgroundColor);
         }
 
         [TestMethod]
         [DeploymentItem(@".\Data\Violations7846_60016.json", "Data")]
         [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
         [DeploymentItem(@".\Data\RulePattern7846.json", "Data")]
-        [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        [DeploymentItem(@".\Data\findings_percentage.json", "Data")]
         public void TestNocountMetric()
         {
             CastDate currentDate = new CastDate { Time = 1484953200000 };
@@ -190,19 +172,17 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             Assert.AreEqual(1, table.NbColumns);
-            Assert.AreEqual(150, table.NbRows);
+            Assert.AreEqual(65, table.NbRows);
             Assert.AreEqual("Violations", table.Data.ElementAt(0));
             Assert.AreEqual("Objects in violation for rule Avoid Methods with a very low comment/code ratio", table.Data.ElementAt(2));
             Assert.AreEqual("# Violations: 128", table.Data.ElementAt(3));
-            Assert.AreEqual("Violation #5    Avoid Methods with a very low comment/code ratio", table.Data.ElementAt(123));
-            Assert.AreEqual("Object Name: com.castsoftware.aed.common.AedCommandLine.getFormattedMsg", table.Data.ElementAt(124));
-            Assert.AreEqual("Object Type: MyObjType", table.Data.ElementAt(125));
-            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql", table.Data.ElementAt(126));
-            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\Java\\AADAdmin\\AadSite\\sources\\com\\castsoftware\\aad\\site\\AadSite.java", table.Data.ElementAt(142));
-            Assert.AreEqual("1203 :         }", table.Data.ElementAt(149));
+            Assert.AreEqual("Violation #5    Avoid Methods with a very low comment/code ratio", table.Data.ElementAt(55));
+            Assert.AreEqual("Object Name: com.castsoftware.aed.common.AedCommandLine.getFormattedMsg", table.Data.ElementAt(56));
+            Assert.AreEqual("Object Type: MyObjType", table.Data.ElementAt(57));
+            Assert.AreEqual("File path: C:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Dream Team\\DssAdmin\\DssAdmin\\MetricTree.cpp", table.Data.ElementAt(58));
 
             var cellsProperties = table.CellsAttributes;
-            Assert.AreEqual(143, cellsProperties.Count);
+            Assert.AreEqual(58, cellsProperties.Count);
             Assert.AreEqual(Color.Gray, cellsProperties[0].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[1].BackgroundColor);
             Assert.AreEqual(Color.LightGray, cellsProperties[2].BackgroundColor);
@@ -218,13 +198,12 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Assert.AreEqual(Color.White, cellsProperties[12].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[13].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[14].BackgroundColor);
-            Assert.AreEqual(Color.LightYellow, cellsProperties[15].BackgroundColor);
-            Assert.AreEqual(Color.LightYellow, cellsProperties[16].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[15].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[16].BackgroundColor);
             Assert.AreEqual(Color.White, cellsProperties[17].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[18].BackgroundColor);
+            Assert.AreEqual(Color.Gainsboro, cellsProperties[18].BackgroundColor);
 
-            Assert.AreEqual(Color.Gainsboro, cellsProperties[35].BackgroundColor);
-            Assert.AreEqual(Color.Gainsboro, cellsProperties[116].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[57].BackgroundColor);
         }
 
         [TestMethod]

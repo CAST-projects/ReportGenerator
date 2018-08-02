@@ -284,7 +284,97 @@
         "technologyResults": [],
         "moduleResults": [],
         "transactionResults": []
-      }
+      },
+	  {
+		"type": "quality-rules",
+		"reference": {
+			"href": "ADG83/quality-indicators/7390/snapshots/16",
+			"name": "Avoid having multiple Artifacts inserting data on the same SQL Table",
+			"key": "7390",
+			"critical": false
+		},
+		"result": {
+			"grade": 1.8088235294117645
+		},
+		"technologyResults": [],
+		"moduleResults": [],
+		"transactionResults": []
+	  },
+	  {
+	    "type": "quality-rules",
+		"reference": {
+			"href": "ADG83/quality-indicators/7156/snapshots/15",
+			"name": "Avoid Too Many Copy Pasted Artifacts",
+			"key": "7156",
+			"critical": false
+		},
+		"result": {
+			"grade": 1.8392255892255893
+		},
+		"technologyResults": [],
+		"moduleResults": [],
+		"transactionResults": []
+	  },
+	  {
+		"type": "quality-rules",
+		"reference": {
+			"href": "AED833/quality-indicators/7210/snapshots/16",
+			"name": "Avoid instantiations inside loops",
+			"key": "7210",
+			"critical": true
+		},
+		"result": {
+			"grade": 2.3935742971887635
+		},
+		"technologyResults": [],
+		"moduleResults": [],
+		"transactionResults": []
+	  },
+	  {
+		"type": "quality-rules",
+		"reference": {
+			"href": "AED833/quality-indicators/4722/snapshots/15",
+			"name": "Track Classes referencing Database objects",
+			"key": "4722",
+			"critical": false
+		},
+		"result": {
+			"grade": 2.25
+		},
+		"technologyResults": [],
+		"moduleResults": [],
+		"transactionResults": []
+	  },
+	  {
+		"type": "quality-rules",
+		"reference": {
+			"href": "AED833/quality-indicators/7740/snapshots/16",
+			"name": "CWE-79: Avoid cross-site scripting DOM vulnerabilities",
+			"key": "7740",
+			"critical": true
+		},
+		"result": {
+			"grade": 1.6111111111111143
+		},
+		"technologyResults": [],
+		"moduleResults": [],
+		"transactionResults": []
+	  },
+	  {
+		"type": "quality-rules",
+		"reference": {
+			"href": "AED833/quality-indicators/1596/snapshots/15",
+			"name": "Avoid using \"nullable\" Columns except in the last position in a Table",
+			"key": "1596",
+			"critical": false
+		},
+		"result": {
+			"grade": 1.75
+		},
+		"technologyResults": [],
+		"moduleResults": [],
+		"transactionResults": []
+	  }
     ]
-	}
+  }
 ]
