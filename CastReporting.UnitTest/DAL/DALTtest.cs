@@ -322,7 +322,7 @@ namespace CastReporting.UnitTest.DAL
         {
             WSConnection _connection3 = new WSConnection()
             {
-                Url = "http://dash-aed-tomcat:8888/Dashboard-Noc-170/rest/",
+                Url = "http://dash-aed-tomcat:8585/CAST-Health-Engineering/rest/",
                 Login = "cio",
                 Password = "cast",
                 IsActive = true,
