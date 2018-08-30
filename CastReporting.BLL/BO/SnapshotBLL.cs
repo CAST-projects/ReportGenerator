@@ -751,7 +751,8 @@ namespace CastReporting.BLL
                     List<string> lines = castRepository.GetFileContent(domainId, siteId, fileId, idx, endLine + offset);
                     for (int i = 0; i <= 2*offset; i++)
                     {
-                        codeLines.Add(idx, lines[i]);
+                        string line = lines[i].Replace("\u001a", "");
+                        codeLines.Add(idx, line);
                         idx++;
                     }
                     return codeLines;
@@ -790,7 +791,8 @@ namespace CastReporting.BLL
                         int ctr = startLine + offset - idx;
                         for (int i = 0; i < ctr; i++)
                         {
-                            codeLines.Add(idx, lines[i]);
+                            string line = lines[i].Replace("\u001a", "");
+                            codeLines.Add(idx, line);
                             idx++;
                         }
                         codesAndPath.Add(new Tuple<string, Dictionary<int, string>>(_fragment.CodeFile.Name, codeLines));
