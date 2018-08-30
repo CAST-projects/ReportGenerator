@@ -687,20 +687,23 @@ namespace CastReporting.Reporting
         {
             List<Tuple<string, Dictionary<int, string>>> codes = reportData.SnapshotExplorer.GetSourceCode(domainId, snapshotId, violation.Component.GetComponentId(), 3);
             if (codes == null) return cellidx;
-            Tuple<string, Dictionary<int, string>> codeAndPath = codes[0];
 
-            rowData.Add(Labels.FilePath + ": " + codeAndPath.Item1);
-            cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
-            cellidx++;
-
-            Dictionary<int, string> codeLines = codeAndPath.Item2;
-            if (codeLines == null) return cellidx;
-            foreach (KeyValuePair<int, string> codeLine in codeLines)
+            foreach (Tuple<string, Dictionary<int, string>> _code in codes)
             {
-                rowData.Add(codeLine.Key + " : " + codeLine.Value);
-                cellProps.Add(new CellAttributes(cellidx, Color.White));
+                rowData.Add(Labels.FilePath + ": " + _code.Item1);
+                cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
                 cellidx++;
+
+                Dictionary<int, string> codeLines = _code.Item2;
+                if (codeLines == null) return cellidx;
+                foreach (KeyValuePair<int, string> codeLine in codeLines)
+                {
+                    rowData.Add(codeLine.Key + " : " + codeLine.Value);
+                    cellProps.Add(new CellAttributes(cellidx, Color.White));
+                    cellidx++;
+                }
             }
+            
             return cellidx;
         }
     }
