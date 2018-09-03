@@ -69,7 +69,9 @@ namespace CastReporting.UI.WPF.View
 
             SaveFileDialog dialog = new SaveFileDialog
             {
-                Filter = string.Format("*{0}|*{0}", _reportingVm?.SelectedTemplateFile.Extension),
+                Filter = (_reportingVm?.SelectedTemplateFile.Extension != ".xlsx") ?
+                    string.Format("*{0}, *.pdf|*{0};*.pdf", _reportingVm?.SelectedTemplateFile.Extension)
+                    : string.Format("*{0}|*{0}", _reportingVm?.SelectedTemplateFile.Extension),
                 DefaultExt = _reportingVm?.SelectedTemplateFile.Extension
             };
 

@@ -32,6 +32,9 @@ using System.Threading;
 using System.Windows.Input;
 using System.Windows.Threading;
 using CastReporting.UI.WPF.Resources.Languages;
+using Microsoft.Office.Interop.Word;
+using Microsoft.Office.Interop.PowerPoint;
+//using Microsoft.Office.Interop.Excel;
 
 // ReSharper disable InconsistentNaming
 
@@ -46,7 +49,6 @@ namespace CastReporting.UI.WPF.ViewModel
         /// 
         /// </summary>
         public ICommand GenerateCommand { get; set; }
-
         /// <summary>
         /// 
         /// </summary>
@@ -364,7 +366,6 @@ namespace CastReporting.UI.WPF.ViewModel
             }
         }
 
-    
         /// <summary>
         /// 
         /// </summary>
@@ -518,14 +519,11 @@ namespace CastReporting.UI.WPF.ViewModel
         private void ExecuteGenerateCommand(object prameter)
         {
             if (string.IsNullOrEmpty(ReportFileName)) return;
+
             BackgroundWorker BackgroundWorker = new BackgroundWorker();
-
             BackgroundWorker.DoWork += BackgroundWorkerDoWork;
-
-               
             BackgroundWorker.RunWorkerAsync();
         }
-
 
         /// <summary>
         /// 
@@ -602,7 +600,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), ex);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(ex.Message));
                 }
             }
             else
@@ -611,7 +609,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 Stopwatch stopWatchStep = new Stopwatch();
                 Stopwatch stopWatchGlobal = new Stopwatch();
 
-                List<Application> Apps = new List<Application>();
+                List<Domain.Application> Apps = new List<Domain.Application>();
                 List<Snapshot> Snapshots = new List<Snapshot>();
 
                 try
@@ -644,7 +642,7 @@ namespace CastReporting.UI.WPF.ViewModel
 
                     if (Apps.Count > 0)
                     {
-                        Application[] SelectedApps = Apps.ToArray<Application>();
+                        Domain.Application[] SelectedApps = Apps.ToArray<Domain.Application>();
 
                         //Set culture for the new thread
                         if (!string.IsNullOrEmpty(Setting?.ReportingParameter.CultureName))
@@ -660,9 +658,9 @@ namespace CastReporting.UI.WPF.ViewModel
                         stopWatchStep.Stop();
                         System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgBuildPortfolioResults, stopWatchStep.Elapsed);
 
-                        List<Application> N_Apps = new List<Application>();
+                        List<Domain.Application> N_Apps = new List<Domain.Application>();
                         //Remove from Array the Ignored Apps
-                        foreach (Application app in SelectedApps)
+                        foreach (Domain.Application app in SelectedApps)
                         {
                             int intAppYes = 0;
                             foreach (string s in AppsToIgnorePortfolioResult)
@@ -681,7 +679,7 @@ namespace CastReporting.UI.WPF.ViewModel
                             }
                         }
 
-                        Application[] N_SelectedApps = N_Apps.ToArray();
+                        Domain.Application[] N_SelectedApps = N_Apps.ToArray();
 
                         //GetActive Connection           
                         ActiveConnection = Setting?.GetActiveConnection();
@@ -817,7 +815,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), ex);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(ex.Message));
                 }
             }
         }
@@ -866,8 +864,48 @@ namespace CastReporting.UI.WPF.ViewModel
                     tmpReportFile = tmpReportFileFlexi;
                 }
 
-                //Copy report file to the selected destination
-                File.Copy(tmpReportFile, ReportFileName, true);
+                // convert docx or pptx to pdf
+                if (ReportFileName.Contains(".pdf"))
+                {
+                    if (tmpReportFile.Contains(".docx"))
+                    {
+                        Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
+                        Document wordDocument = appWord.Documents.Open(tmpReportFile);
+                        wordDocument.ExportAsFixedFormat(ReportFileName, WdExportFormat.wdExportFormatPDF);
+                        wordDocument.Close();
+                        appWord.Quit();
+                    }
+                    else if (tmpReportFile.Contains(".pptx"))
+                    {
+                        Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
+                        Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
+                        appPres.ExportAsFixedFormat(ReportFileName, PpFixedFormatType.ppFixedFormatTypePDF);
+                        appPres.Close();
+                        appPowerpoint.Quit();
+                    }
+                    /* Reports too ugly and unusable when converted from excel to pdf
+                     * else if (tmpReportFile.Contains(".xlsx"))
+                    {
+                        Microsoft.Office.Interop.Excel.Application appExcel = new Microsoft.Office.Interop.Excel.Application();
+                        Workbook excelDoc = appExcel.Workbooks.Open(tmpReportFile);
+                        excelDoc.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, ReportFileName);
+                        excelDoc.Close();
+                        appExcel.Quit();
+                    }
+                    */
+                    else
+                    {
+                        string report = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
+                        //Copy report file to the selected destination
+                        File.Copy(tmpReportFile, report, true);
+                    }
+                }
+                else
+                {
+                    //Copy report file to the selected destination
+                    File.Copy(tmpReportFile, ReportFileName, true);
+                }
+
             }
             catch (Exception)
             {
@@ -885,7 +923,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private void GenerateReportPortfolio(Application[] ApplicationsArray, Snapshot[] ApplicationsSnapshots, string[] IgnoredApps, string[] IgnoredSnapshots )
+        private void GenerateReportPortfolio(Domain.Application[] ApplicationsArray, Snapshot[] ApplicationsSnapshots, string[] IgnoredApps, string[] IgnoredSnapshots )
         {
             string tmpReportFile = string.Empty;
             string tmpReportFileFlexi = string.Empty;
@@ -932,8 +970,47 @@ namespace CastReporting.UI.WPF.ViewModel
                     tmpReportFile = tmpReportFileFlexi;
                 }
 
-                //Copy report file to the selected destination
-                File.Copy(tmpReportFile, ReportFileName, true);
+                // convert docx or pptx to pdf
+                if (ReportFileName.Contains(".pdf"))
+                {
+                    if (tmpReportFile.Contains(".docx"))
+                    {
+                        Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
+                        Document wordDocument = appWord.Documents.Open(tmpReportFile);
+                        wordDocument.ExportAsFixedFormat(ReportFileName, WdExportFormat.wdExportFormatPDF);
+                        wordDocument.Close();
+                        appWord.Quit();
+                    }
+                    else if (tmpReportFile.Contains(".pptx"))
+                    {
+                        Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
+                        Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
+                        appPres.ExportAsFixedFormat(ReportFileName, PpFixedFormatType.ppFixedFormatTypePDF);
+                        appPres.Close();
+                        appPowerpoint.Quit();
+                    }
+                    /* Reports too ugly and unusable when converted from excel to pdf
+                     * else if (tmpReportFile.Contains(".xlsx"))
+                    {
+                        Microsoft.Office.Interop.Excel.Application appExcel = new Microsoft.Office.Interop.Excel.Application();
+                        Workbook excelDoc = appExcel.Workbooks.Open(tmpReportFile);
+                        excelDoc.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, ReportFileName);
+                        excelDoc.Close();
+                        appExcel.Quit();
+                    }
+                    */
+                    else
+                    {
+                        string report = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
+                        //Copy report file to the selected destination
+                        File.Copy(tmpReportFile, report, true);
+                    }
+                }
+                else
+                {
+                    //Copy report file to the selected destination
+                    File.Copy(tmpReportFile, ReportFileName, true);
+                }
             }
             catch (Exception)
             {
