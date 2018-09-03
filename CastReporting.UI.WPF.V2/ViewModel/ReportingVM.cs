@@ -869,19 +869,37 @@ namespace CastReporting.UI.WPF.ViewModel
                 {
                     if (tmpReportFile.Contains(".docx"))
                     {
-                        Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
-                        Document wordDocument = appWord.Documents.Open(tmpReportFile);
-                        wordDocument.ExportAsFixedFormat(ReportFileName, WdExportFormat.wdExportFormatPDF);
-                        wordDocument.Close();
-                        appWord.Quit();
+                        try
+                        {
+                            Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
+                            Document wordDocument = appWord.Documents.Open(tmpReportFile);
+                            wordDocument.ExportAsFixedFormat(ReportFileName, WdExportFormat.wdExportFormatPDF);
+                            wordDocument.Close();
+                            appWord.Quit();
+                        }
+                        catch (Exception e)
+                        {
+                            // Error if office not installed, then do not save as pdf
+                            string report = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
+                            File.Copy(tmpReportFile, report, true);
+                        }
                     }
                     else if (tmpReportFile.Contains(".pptx"))
                     {
-                        Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
-                        Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
-                        appPres.ExportAsFixedFormat(ReportFileName, PpFixedFormatType.ppFixedFormatTypePDF);
-                        appPres.Close();
-                        appPowerpoint.Quit();
+                        try
+                        {
+                            Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
+                            Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
+                            appPres.ExportAsFixedFormat(ReportFileName, PpFixedFormatType.ppFixedFormatTypePDF);
+                            appPres.Close();
+                            appPowerpoint.Quit();
+                        }
+                        catch (Exception e)
+                        {
+                            // Error if office not installed, then do not save as pdf
+                            string report = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
+                            File.Copy(tmpReportFile, report, true);
+                        }
                     }
                     /* Reports too ugly and unusable when converted from excel to pdf
                      * else if (tmpReportFile.Contains(".xlsx"))
@@ -896,7 +914,6 @@ namespace CastReporting.UI.WPF.ViewModel
                     else
                     {
                         string report = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
-                        //Copy report file to the selected destination
                         File.Copy(tmpReportFile, report, true);
                     }
                 }
