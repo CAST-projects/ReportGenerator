@@ -877,11 +877,11 @@ namespace CastReporting.UI.WPF.ViewModel
                             wordDocument.Close();
                             appWord.Quit();
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             // Error if office not installed, then do not save as pdf
-                            string report = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
-                            File.Copy(tmpReportFile, report, true);
+                            ReportFileName = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
+                            File.Copy(tmpReportFile, ReportFileName, true);
                         }
                     }
                     else if (tmpReportFile.Contains(".pptx"))
@@ -894,11 +894,11 @@ namespace CastReporting.UI.WPF.ViewModel
                             appPres.Close();
                             appPowerpoint.Quit();
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             // Error if office not installed, then do not save as pdf
-                            string report = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
-                            File.Copy(tmpReportFile, report, true);
+                            ReportFileName = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
+                            File.Copy(tmpReportFile, ReportFileName, true);
                         }
                     }
                     /* Reports too ugly and unusable when converted from excel to pdf
