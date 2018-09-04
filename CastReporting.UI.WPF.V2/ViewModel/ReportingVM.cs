@@ -1006,16 +1006,6 @@ namespace CastReporting.UI.WPF.ViewModel
                         appPres.Close();
                         appPowerpoint.Quit();
                     }
-                    /* Reports too ugly and unusable when converted from excel to pdf
-                     * else if (tmpReportFile.Contains(".xlsx"))
-                    {
-                        Microsoft.Office.Interop.Excel.Application appExcel = new Microsoft.Office.Interop.Excel.Application();
-                        Workbook excelDoc = appExcel.Workbooks.Open(tmpReportFile);
-                        excelDoc.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, ReportFileName);
-                        excelDoc.Close();
-                        appExcel.Quit();
-                    }
-                    */
                     else
                     {
                         string report = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
