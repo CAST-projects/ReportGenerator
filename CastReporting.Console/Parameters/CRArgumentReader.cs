@@ -213,6 +213,7 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
                 case "template": pCastReport.Template = new XmlTagName() { Name = pValue }; break;
                 case "file": pCastReport.File = new XmlTagName() { Name = pValue }; break;
                 case "database": pCastReport.Database = new XmlTagName() { Name = pValue }; break;
+                case "domain": pCastReport.Domain = new XmlTagName() { Name = pValue }; break;
                 case "snapshot_cur": pCastReport.Snapshot.Current = new XmlTagName() { Name = pValue }; break;
                 case "snapshot_prev": pCastReport.Snapshot.Previous = new XmlTagName() { Name = pValue }; break;
                 case "username": pCastReport.Username = new XmlTagName() { Name = pValue }; break;

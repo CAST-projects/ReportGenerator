@@ -57,6 +57,12 @@ namespace CastReporting.Console.Argument
         public XmlTagName Database { get; set; }
 
         /// <summary>
+        /// Database
+        /// </summary>
+        [XmlElement("domain")]
+        public XmlTagName Domain { get; set; }
+
+        /// <summary>
         /// Snapshots
         /// </summary>
         [XmlElement("snapshot")]
