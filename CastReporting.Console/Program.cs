@@ -432,10 +432,10 @@ namespace CastReporting.Console
 
 
                     //Initialize Application
-                    Domain.Application application = GetApplication(arguments.Application.Name, connection);
+                    Domain.Application application = GetApplication(arguments, connection);
                     if (application == null)
                     {
-                        help = $"Application {arguments.Application.Name} can't be found.";
+                        help = arguments.Application != null ? $"Application {arguments.Application.Name} can't be found." : "Application not set in arguments.";
                         return string.Empty;
                     }
                     LogHelper.Instance.LogInfo($"Application {arguments.Application.Name} Initialized successfully");
@@ -630,10 +630,10 @@ namespace CastReporting.Console
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="application"></param>
+        /// <param name="arguments"></param>
         /// <param name="connection"></param>
         /// <returns></returns>
-        private static Domain.Application GetApplication(string application, WSConnection connection)
+        private static Domain.Application GetApplication(XmlCastReport arguments, WSConnection connection)
         {
             List<Domain.Application> applications;
 
@@ -642,7 +642,18 @@ namespace CastReporting.Console
                 applications = castDomainBLL.GetApplications();
             }
 
-            return applications.FirstOrDefault(_ => _.Name == application);
+            if (arguments.Database != null && arguments.Domain == null)
+                return applications.FirstOrDefault(_ => _.Name == arguments.Application.Name && _.AdgDatabase == arguments.Database.Name);
+
+            if (arguments.Database == null && arguments.Domain != null)
+                return applications.FirstOrDefault(_ => _.Name == arguments.Application.Name && _.DomainId == arguments.Domain.Name);
+
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            // For code readability I keep this redundancy
+            if (arguments.Database != null && arguments.Domain != null)
+                return applications.FirstOrDefault(_ => _.Name == arguments.Application.Name && _.AdgDatabase == arguments.Database.Name && _.DomainId == arguments.Domain.Name);
+
+            return applications.FirstOrDefault(_ => _.Name == arguments.Application.Name);
         }
 
 

@@ -78,14 +78,8 @@ namespace CastReporting.Mediation
             {
                 Headers.Add(HttpRequestHeader.Accept, mimeType);
                 var culture = Thread.CurrentThread.CurrentCulture;
-                if (culture.Name.Equals("zh-CN"))
-                {
-                    Headers.Add(HttpRequestHeader.AcceptLanguage, "zh");
-                }
-                else
-                {
-                    Headers.Add(HttpRequestHeader.AcceptLanguage, "en");
-                }
+                Headers.Remove(HttpRequestHeader.AcceptLanguage);
+                Headers.Add(HttpRequestHeader.AcceptLanguage, culture.Name.Equals("zh-CN") ? "zh" : "en");
 
                 Encoding = Encoding.UTF8;
 
