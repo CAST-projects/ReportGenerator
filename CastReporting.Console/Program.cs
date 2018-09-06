@@ -387,7 +387,7 @@ namespace CastReporting.Console
                     Application application = GetApplication(arguments, connection);
                     if (application == null)
                     {
-                        help = $"Application {arguments.Application.Name} can't be found.";
+                        help = arguments.Application != null ? $"Application {arguments.Application.Name} can't be found." : "Application not set in arguments.";
                         return string.Empty;
                     }
                     LogHelper.Instance.LogInfo($"Application {arguments.Application.Name} Initialized successfully");
@@ -538,6 +538,8 @@ namespace CastReporting.Console
         /// <returns></returns>
         private static Application GetApplication(XmlCastReport arguments, WSConnection connection)
         {
+            if (arguments.Application == null) return null;
+
             List<Application> applications;
 
             using (CastDomainBLL castDomainBLL = new CastDomainBLL(connection))
