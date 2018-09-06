@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>-webservice http://demo-eu-aed.castsoftware.com/AED/rest -username architect -password cast -application eCommerce -template "3- Excel-components-library.xlsx" -file "D:\temp\output_eCommerce1.xlsx"</StartArguments>
+    <StartArguments>-reporttype portfolio -username cio -password cast -webservice http://dash-aed-tomcat:8585/CAST-Health-Engineering/rest/ -template "C:\Users\abd\AppData\Local\CAST\ReportGenerator\1.8.0\Templates\Portfolio\1- Portfolio-Powerpoint-components-library.pptx" -file "D:\temp\CLIPortfolioReport.pptx"</StartArguments>
     <StartWorkingDirectory>
     </StartWorkingDirectory>
   </PropertyGroup>
