@@ -9,10 +9,12 @@
   <xs:element name='castReport'>
     <xs:complexType>
       <xs:sequence>
+        <xs:element name='reporttype'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
         <xs:element name='webservice'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
-        <xs:element name='application' type='refTagName' minOccurs='1'  maxOccurs='1'/>
+        <xs:element name='application' type='refTagName' minOccurs='0'  maxOccurs='1'/>
         <xs:element name='template' type='refTagName' minOccurs='1'  maxOccurs='1'/>
         <xs:element name='database'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
+        <xs:element name='domain'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
         <xs:element name='file'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
         <xs:element name='snapshot' type='refSnapshot' minOccurs='0'  maxOccurs='1'/>
       </xs:sequence>

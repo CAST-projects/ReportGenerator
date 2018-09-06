@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>-webservice http://demo-eu-aed.castsoftware.com/AED/rest -username architect -password cast -application eCommerce -template "3- Excel-components-library.xlsx" -file "D:\temp\output_eCommerce1.xlsx"</StartArguments>
+    <StartArguments>D:\GitHub\1.7\ParamKO.xml</StartArguments>
     <StartWorkingDirectory>
     </StartWorkingDirectory>
   </PropertyGroup>

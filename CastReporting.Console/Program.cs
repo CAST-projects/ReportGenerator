@@ -384,10 +384,10 @@ namespace CastReporting.Console
 
 
                     //Initialize Application
-                    Application application = GetApplication(arguments.Application.Name, connection);
+                    Application application = GetApplication(arguments, connection);
                     if (application == null)
                     {
-                        help = $"Application {arguments.Application.Name} can't be found.";
+                        help = arguments.Application != null ? $"Application {arguments.Application.Name} can't be found." : "Application not set in arguments.";
                         return string.Empty;
                     }
                     LogHelper.Instance.LogInfo($"Application {arguments.Application.Name} Initialized successfully");
@@ -533,11 +533,13 @@ namespace CastReporting.Console
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="application"></param>
+        /// <param name="arguments"></param>
         /// <param name="connection"></param>
         /// <returns></returns>
-        private static Application GetApplication(string application, WSConnection connection)
+        private static Application GetApplication(XmlCastReport arguments, WSConnection connection)
         {
+            if (arguments.Application == null) return null;
+
             List<Application> applications;
 
             using (CastDomainBLL castDomainBLL = new CastDomainBLL(connection))
@@ -545,7 +547,18 @@ namespace CastReporting.Console
                 applications = castDomainBLL.GetApplications();
             }
 
-            return applications.FirstOrDefault(_ => _.Name == application);
+            if (arguments.Database != null && arguments.Domain == null)
+                return applications.FirstOrDefault(_ => _.Name == arguments.Application.Name && _.AdgDatabase == arguments.Database.Name);
+
+            if (arguments.Database == null && arguments.Domain != null)
+                return applications.FirstOrDefault(_ => _.Name == arguments.Application.Name && _.DomainId == arguments.Domain.Name);
+
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            // For code readability I keep this redundancy
+            if (arguments.Database != null && arguments.Domain != null)
+                return applications.FirstOrDefault(_ => _.Name == arguments.Application.Name && _.AdgDatabase == arguments.Database.Name && _.DomainId == arguments.Domain.Name);
+
+            return applications.FirstOrDefault(_ => _.Name == arguments.Application.Name);
         }
 
 
