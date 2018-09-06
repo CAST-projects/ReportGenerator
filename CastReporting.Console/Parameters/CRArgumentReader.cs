@@ -63,95 +63,27 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
         /// <returns>Arguments</returns>
         public XmlCastReport Load(string[] pArgs, out bool pShowHelp)
         { 
-            if (pArgs.Length > 0 && pArgs[1].ToLower() == "-reporttype")
-            {
-                if (pArgs.Length >= 13)
-                {
-                    // Do not show help by default
-                    pShowHelp = false;
-                    XmlCastReport castReport = new XmlCastReport() { Snapshot = new XmlSnapshot() };
+            // Do not show help by default
+            pShowHelp = false;
 
-                    for (int i = 2; i < pArgs.Length; i += 2)
-                    {
-                        var type = LoadType(pArgs[i - 1]);
-                        var value = pArgs[i];
-                        if (string.IsNullOrEmpty(type))
-                        {
-                            // unrecognized type -> show help
-                            pShowHelp = true;
-                            // return nothing
-                            return null;
-                        }
-                        // Set Current Argument
-                        SetArgument(type, value, castReport);
-                    }
-                    return castReport;
-                }
-                else
-                {
-                    pShowHelp = true;
-                    return null;
-                }
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            if (pArgs == null || pArgs.Length == 0)
+            {
+                // No Arguments
+                // unrecognized type -> show help
+                pShowHelp = true;
+                // return nothing
+                return null;
             }
-            else
+
+            if (pArgs.Length == 1)
             {
-                // Do not show help by default
-                pShowHelp = false;
-
-                // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-                if (pArgs == null || pArgs.Length == 0)
+                try
                 {
-                    // No Arguments
-                    // unrecognized type -> show help
-                    pShowHelp = true;
-                    // return nothing
-                    return null;
+                    // Load from XML file
+                    return XmlCastReport.LoadXML(pArgs[0]);
                 }
-
-                if (pArgs.Length == 1)
-                {
-                    try
-                    {
-                        // Load from XML file
-                        return XmlCastReport.LoadXML(pArgs[0]);
-                    }
-                    catch
-                    {
-                        // not enough arguments -> show help
-                        pShowHelp = true;
-                        // return nothing
-                        return null;
-                    }
-                }
-                else if (pArgs.Length % 2 == 0)
-                {
-                    XmlCastReport castReport = new XmlCastReport() { Snapshot = new XmlSnapshot() };
-
-                    for (int i = 1; i < pArgs.Length; i += 2)
-                    {
-                        var type = LoadType(pArgs[i - 1]);
-                        var value = pArgs[i];
-                        if (string.IsNullOrEmpty(type))
-                        {
-                            // unrecognized type -> show help
-                            pShowHelp = true;
-                            // return nothing
-                            return null;
-                        }
-                        // Set Current Argument
-                        SetArgument(type, value, castReport);
-                    }
-                    // all right
-                    if (!castReport.Check())
-                    {
-                        // XSD do not check -> show help
-                        pShowHelp = true;
-                        // return nothing
-                        return null;
-                    }
-                    return castReport;
-                }
-                else
+                catch
                 {
                     // not enough arguments -> show help
                     pShowHelp = true;
@@ -159,6 +91,40 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
                     return null;
                 }
             }
+            if (pArgs.Length % 2 == 0)
+            {
+                XmlCastReport castReport = new XmlCastReport() { Snapshot = new XmlSnapshot() };
+
+                for (int i = 1; i < pArgs.Length; i += 2)
+                {
+                    var type = LoadType(pArgs[i - 1]);
+                    var value = pArgs[i];
+                    if (string.IsNullOrEmpty(type))
+                    {
+                        // unrecognized type -> show help
+                        pShowHelp = true;
+                        // return nothing
+                        return null;
+                    }
+                    // Set Current Argument
+                    SetArgument(type, value, castReport);
+                }
+                // all right
+                if (!castReport.Check())
+                {
+                    // XSD do not check -> show help
+                    pShowHelp = true;
+                    // return nothing
+                    return null;
+                }
+                return castReport;
+            }
+
+            // not enough arguments -> show help
+            pShowHelp = true;
+            // return nothing
+            return null;
+
         }
 
         /// <summary>
