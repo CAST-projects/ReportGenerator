@@ -499,7 +499,7 @@ namespace CastReporting.Reporting
             };
         }
 
-        public static List<string> BuildRulesList(ReportData reportData, List<string> metrics)
+        public static List<string> BuildRulesList(ReportData reportData, List<string> metrics, bool critical)
         {
             List<string> qualityRules = new List<string>();
 
@@ -523,7 +523,7 @@ namespace CastReporting.Reporting
                         // This is a Business criteria
 
                         List<RuleDetails> rules =  reportData.RuleExplorer.GetRulesDetails(snapshot.DomainId, metricId, snapshot.Id).ToList();
-                        qualityRules.AddRange(rules.Select(_ => _.Key.ToString()).ToList());
+                        qualityRules.AddRange(critical ? rules.Where(_ => _.Critical).Select(_ => _.Key.ToString()).ToList() : rules.Select(_ => _.Key.ToString()).ToList());
                     }
                     else
                     {
@@ -533,7 +533,7 @@ namespace CastReporting.Reporting
                         {
                             // This is a Technical criteria
                             List<Contributor> rules = reportData.RuleExplorer.GetRulesInTechnicalCriteria(snapshot.DomainId, _metric, snapshot.Id).ToList();
-                            qualityRules.AddRange(rules.Select(_ => _.Key.ToString()));
+                            qualityRules.AddRange(critical ? rules.Where(_ => _.Critical).Select(_ => _.Key.ToString()).ToList() : rules.Select(_ => _.Key.ToString()));
                         }
                         else
                         {
