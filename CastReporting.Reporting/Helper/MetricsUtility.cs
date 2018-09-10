@@ -625,14 +625,19 @@ namespace CastReporting.Reporting
                     }
                     else
                     {
+                        int pathCounter = 0;
                         foreach (IEnumerable<CodeBookmark> _value in values)
                         {
+                            pathCounter++;
                             IEnumerable<CodeBookmark> _bookmarksValue = _value.ToList();
-                            rowData.Add(Labels.ViolationPath + ": " + _bookmarksValue.FirstOrDefault()?.CodeFragment.CodeFile.Name);
+                            rowData.Add(Labels.ViolationPath + " #" + pathCounter);
                             cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
                             cellidx++;
                             foreach (CodeBookmark _bookval in _bookmarksValue)
                             {
+                                rowData.Add(Labels.FilePath + ": " + _bookval.CodeFragment.CodeFile.Name);
+                                cellProps.Add(new CellAttributes(cellidx, Color.White));
+                                cellidx++;
                                 Dictionary<int, string> codeLines = reportData.SnapshotExplorer.GetSourceCodeBookmark(domainId, _bookval, 0);
 
                                 foreach (KeyValuePair<int, string> codeLine in codeLines)
