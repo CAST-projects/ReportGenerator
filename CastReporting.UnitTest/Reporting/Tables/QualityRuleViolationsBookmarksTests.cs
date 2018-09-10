@@ -507,7 +507,8 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "Violation #1    CWE-79: Avoid cross-site scripting DOM vulnerabilities",
                 "Object Name: aedtst_exclusions_central.adg_central_grades_std",
                 "Object Type: MyObjType",
-                "Violation Path: c:\\jenkins6_slave\\workspace\\caip_8.3.3_teste2e_css_adg\\work\\cast\\deploy\\jurassic park\\jspbookdemo\\pages\\newsales.jsp",
+                "Violation Path #1",
+                "File path: c:\\jenkins6_slave\\workspace\\caip_8.3.3_teste2e_css_adg\\work\\cast\\deploy\\jurassic park\\jspbookdemo\\pages\\newsales.jsp",
                 "1197 : PreparedStatement statement = null;",
                 "1198 :         try",
                 "1199 :         {",
@@ -515,6 +516,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "1201 :             statement.setString(1, message); ",
                 "1202 :             statement.executeUpdate(); ",
                 "1203 :         }",
+                "File path: c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\WASecu\\WASecurityForm\\Default.aspx.cs",
                 "1197 : PreparedStatement statement = null;",
                 "1198 :         try",
                 "1199 :         {",
@@ -525,10 +527,10 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 ""
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 1, 21);
+            TestUtility.AssertTableContent(table, expectedData, 1, 23);
 
             var cellsProperties = table.CellsAttributes;
-            Assert.AreEqual(18, cellsProperties.Count);
+            Assert.AreEqual(20, cellsProperties.Count);
 
         }
 
