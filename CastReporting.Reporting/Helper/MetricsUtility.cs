@@ -685,7 +685,7 @@ namespace CastReporting.Reporting
 
         private static int AddSourceCode(ReportData reportData, List<string> rowData, int cellidx, List<CellAttributes> cellProps, string domainId, string snapshotId, Violation violation)
         {
-            List<Tuple<string, Dictionary<int, string>>> codes = reportData.SnapshotExplorer.GetSourceCode(domainId, snapshotId, violation.Component.GetComponentId(), 3);
+            List<Tuple<string, Dictionary<int, string>>> codes = reportData.SnapshotExplorer.GetSourceCode(domainId, snapshotId, violation.Component.GetComponentId(), 6);
             if (codes == null) return cellidx;
 
             foreach (Tuple<string, Dictionary<int, string>> _code in codes)
