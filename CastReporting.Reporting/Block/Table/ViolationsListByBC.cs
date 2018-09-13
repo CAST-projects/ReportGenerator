@@ -21,7 +21,7 @@ namespace CastReporting.Reporting.Block.Table
             int nbLimitTop = options.GetOption("COUNT") == "ALL" ? -1 : options.GetIntOption("COUNT", 10);
             bool shortName = options.GetOption("NAME","FULL").Equals("SHORT");
             bool hasPri = bcIds.Contains("60013") || bcIds.Contains("60014") || bcIds.Contains("60016");
-            string filter = options.GetOption("FILTER", "ALL");
+            string[] filter = options.GetOption("FILTER", "ALL").Trim().Split('|');
             bool critical = options.GetOption("VIOLATIONS", "CRITICAL").Equals("CRITICAL");
             string module = options.GetOption("MODULE");
             string[] technos = (options.GetOption("TECHNOLOGIES") != null && !options.GetOption("TECHNOLOGIES").Equals("ALL")) ? options.GetOption("TECHNOLOGIES").Trim().Split('|') : new[] { "$all" };
@@ -48,30 +48,35 @@ namespace CastReporting.Reporting.Block.Table
                 string technologies = technos.Aggregate(string.Empty, (current, techno) => (current.Equals(string.Empty)) ? techno : current + "," + techno);
 
                 IEnumerable <Violation> bcresults = critical ? 
-                    reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(critical-rules)", _bcid, -1, "(" + technologies + ")")
-                    : reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(nc:" + _bcid + ",cc:" + _bcid + ")", _bcid, -1,"(" + technologies + ")") ;
+                    reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(critical-rules)", _bcid, -1, "(" + technologies + ")").ToList()
+                    : reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(nc:" + _bcid + ",cc:" + _bcid + ")", _bcid, -1,"(" + technologies + ")").ToList() ;
 
-                if (bcresults != null)
+                List<Violation> filterResults = new List<Violation>();
+                if (!bcresults.Any()) continue;
+                foreach (string _filter in filter)
                 {
-                    switch (filter)
+                    switch (_filter)
                     {
                         case "ADDED":
-                            bcresults = bcresults.Where(_ => _.Diagnosis.Status.Equals("added"));
+                            filterResults.AddRange(bcresults.Where(_ => _.Diagnosis.Status.Equals("added")));
                             break;
                         case "UNCHANGED":
-                            bcresults = bcresults.Where(_ => _.Diagnosis.Status.Equals("unchanged"));
+                            filterResults.AddRange(bcresults.Where(_ => _.Diagnosis.Status.Equals("unchanged")));
                             break;
                         case "UPDATED":
-                            bcresults = bcresults.Where(_ => _.Diagnosis.Status.Equals("updated"));
+                            filterResults.AddRange(bcresults.Where(_ => _.Diagnosis.Status.Equals("updated")));
+                            break;
+                        default:
+                            filterResults.AddRange(bcresults);
                             break;
                     }
-                    var _violations = bcresults.ToList();
-                    foreach (Violation _bcresult in _violations)
-                    {
-                        _bcresult.Component.PriBusinessCriterion = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(_bcid));
-                    }
-                    results.AddRange(_violations);
                 }
+                var _violations = filterResults.ToList();
+                foreach (Violation _bcresult in _violations)
+                {
+                    _bcresult.Component.PriBusinessCriterion = BusinessCriteriaUtility.GetMetricName(reportData.CurrentSnapshot, int.Parse(_bcid));
+                }
+                results.AddRange(_violations);
             }
 
             results = nbLimitTop != -1 ? results.Take(nbLimitTop).ToList() : results;
