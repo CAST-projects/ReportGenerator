@@ -782,12 +782,8 @@ namespace CastReporting.BLL
                         string fileId = _fragment.CodeFile.GetFileId();
                         int startLine = _fragment.StartLine;
                         Dictionary<int, string> codeLines = new Dictionary<int, string>();
-                        int idx = startLine - offset;
-                        if (idx < 0)
-                        {
-                            idx = startLine;
-                        }
-                        List<string> lines = castRepository.GetFileContent(domainId, siteId, fileId, idx, startLine + offset + 1);
+                        int idx = startLine;
+                        List<string> lines = castRepository.GetFileContent(domainId, siteId, fileId, idx, startLine + offset);
                         int ctr = startLine + offset - idx;
                         for (int i = 0; i < ctr; i++)
                         {

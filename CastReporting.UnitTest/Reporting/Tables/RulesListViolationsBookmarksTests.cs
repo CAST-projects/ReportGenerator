@@ -344,6 +344,69 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
         }
 
+        [TestMethod]
+        [DeploymentItem(@".\Data\Violations7424_60017.json", "Data")]
+        [DeploymentItem(@".\Data\BaseQI60011.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
+        [DeploymentItem(@".\Data\RulePatterns.json", "Data")]
+        [DeploymentItem(@".\Data\findings7392.json", "Data")]
+        public void TestBCmetricsCritical()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCTC.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+
+            var component = new CastReporting.Reporting.Block.Table.RulesListViolationsBookmarks();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"METRICS","60011" },
+                {"CRITICAL","true" },
+                {"COUNT", "2" }
+            };
+            var table = component.Content(reportData, config);
+
+            Assert.AreEqual(1, table.NbColumns);
+            Assert.AreEqual(64, table.NbRows);
+            Assert.AreEqual("Violations", table.Data.ElementAt(0));
+            Assert.AreEqual("Objects in violation for rule Action Mappings should have few forwards", table.Data.ElementAt(2));
+            Assert.AreEqual("# Violations: 77", table.Data.ElementAt(3));
+            Assert.AreEqual("Violation #1    Action Mappings should have few forwards", table.Data.ElementAt(9));
+            Assert.AreEqual("Violation #2    Action Mappings should have few forwards", table.Data.ElementAt(37));
+
+
+            var cellsProperties = table.CellsAttributes;
+            Assert.AreEqual(60, cellsProperties.Count);
+            Assert.AreEqual(Color.Gray, cellsProperties[0].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[1].BackgroundColor);
+            Assert.AreEqual(Color.LightGray, cellsProperties[2].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[3].BackgroundColor);
+            Assert.AreEqual(Color.LightGray, cellsProperties[4].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[5].BackgroundColor);
+            Assert.AreEqual(Color.Gainsboro, cellsProperties[6].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[7].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[8].BackgroundColor);
+            Assert.AreEqual(Color.Lavender, cellsProperties[9].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[10].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[11].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[12].BackgroundColor);
+            Assert.AreEqual(Color.LightYellow, cellsProperties[13].BackgroundColor);
+            Assert.AreEqual(Color.LightYellow, cellsProperties[14].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[15].BackgroundColor);
+            Assert.AreEqual(Color.White, cellsProperties[16].BackgroundColor);
+
+        }
+
     }
 }
 

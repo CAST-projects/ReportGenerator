@@ -116,7 +116,7 @@
       }
     },
     "diagnosis": {
-      "status": "unchanged",
+      "status": "updated",
       "findings": {
         "href": "AED/components/1094/snapshots/8/findings/7294",
         "name": "Diagnosis Findings"
@@ -146,7 +146,7 @@
       }
     },
     "diagnosis": {
-      "status": "unchanged",
+      "status": "updated",
       "findings": {
         "href": "AED/components/806/snapshots/8/findings/7294",
         "name": "Diagnosis Findings"
