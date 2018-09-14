@@ -499,7 +499,7 @@ namespace CastReporting.Reporting
             };
         }
 
-        public static List<string> BuildRulesList(ReportData reportData, List<string> metrics)
+        public static List<string> BuildRulesList(ReportData reportData, List<string> metrics, bool critical)
         {
             List<string> qualityRules = new List<string>();
 
@@ -523,7 +523,7 @@ namespace CastReporting.Reporting
                         // This is a Business criteria
 
                         List<RuleDetails> rules =  reportData.RuleExplorer.GetRulesDetails(snapshot.DomainId, metricId, snapshot.Id).ToList();
-                        qualityRules.AddRange(rules.Select(_ => _.Key.ToString()).ToList());
+                        qualityRules.AddRange(critical ? rules.Where(_ => _.Critical).Select(_ => _.Key.ToString()).ToList() : rules.Select(_ => _.Key.ToString()).ToList());
                     }
                     else
                     {
@@ -533,7 +533,7 @@ namespace CastReporting.Reporting
                         {
                             // This is a Technical criteria
                             List<Contributor> rules = reportData.RuleExplorer.GetRulesInTechnicalCriteria(snapshot.DomainId, _metric, snapshot.Id).ToList();
-                            qualityRules.AddRange(rules.Select(_ => _.Key.ToString()));
+                            qualityRules.AddRange(critical ? rules.Where(_ => _.Critical).Select(_ => _.Key.ToString()).ToList() : rules.Select(_ => _.Key.ToString()));
                         }
                         else
                         {
@@ -625,14 +625,19 @@ namespace CastReporting.Reporting
                     }
                     else
                     {
+                        int pathCounter = 0;
                         foreach (IEnumerable<CodeBookmark> _value in values)
                         {
+                            pathCounter++;
                             IEnumerable<CodeBookmark> _bookmarksValue = _value.ToList();
-                            rowData.Add(Labels.ViolationPath + ": " + _bookmarksValue.FirstOrDefault()?.CodeFragment.CodeFile.Name);
+                            rowData.Add(Labels.ViolationPath + " #" + pathCounter);
                             cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
                             cellidx++;
                             foreach (CodeBookmark _bookval in _bookmarksValue)
                             {
+                                rowData.Add(Labels.FilePath + ": " + _bookval.CodeFragment.CodeFile.Name);
+                                cellProps.Add(new CellAttributes(cellidx, Color.White));
+                                cellidx++;
                                 Dictionary<int, string> codeLines = reportData.SnapshotExplorer.GetSourceCodeBookmark(domainId, _bookval, 0);
 
                                 foreach (KeyValuePair<int, string> codeLine in codeLines)
@@ -685,7 +690,7 @@ namespace CastReporting.Reporting
 
         private static int AddSourceCode(ReportData reportData, List<string> rowData, int cellidx, List<CellAttributes> cellProps, string domainId, string snapshotId, Violation violation)
         {
-            List<Tuple<string, Dictionary<int, string>>> codes = reportData.SnapshotExplorer.GetSourceCode(domainId, snapshotId, violation.Component.GetComponentId(), 3);
+            List<Tuple<string, Dictionary<int, string>>> codes = reportData.SnapshotExplorer.GetSourceCode(domainId, snapshotId, violation.Component.GetComponentId(), 6);
             if (codes == null) return cellidx;
 
             foreach (Tuple<string, Dictionary<int, string>> _code in codes)

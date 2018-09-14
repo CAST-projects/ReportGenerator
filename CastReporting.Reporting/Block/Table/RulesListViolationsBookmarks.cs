@@ -22,7 +22,17 @@ namespace CastReporting.Reporting.Block.Table
             // cellProps will contains the properties of the cell (background color) linked to the data by position in the list stored with cellidx.
 
             List<string> metrics = options.GetOption("METRICS").Trim().Split('|').ToList();
-            List<string> qualityRules = MetricsUtility.BuildRulesList(reportData, metrics);
+            bool critical;
+            if (options == null || !options.ContainsKey("CRITICAL") )
+            {
+                critical = false;
+            }
+            else
+            {
+                critical = options.GetOption("CRITICAL").Equals("true");
+            }
+            
+            List<string> qualityRules = MetricsUtility.BuildRulesList(reportData, metrics,critical);
 
             rowData.Add(Labels.Violations);
             cellidx++;
