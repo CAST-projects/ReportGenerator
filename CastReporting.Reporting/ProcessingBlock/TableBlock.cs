@@ -337,7 +337,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             OXW.Text text = run?.Descendants<OXW.Text>().FirstOrDefault();
             text = (null == text ? new OXW.Text() : text.CloneNode(true) as OXW.Text);
             run?.RemoveAllChildren<OXW.Text>();
-            if (txtColor != string.Empty && effect != string.Empty)
+            if (!string.IsNullOrEmpty(txtColor) && !string.IsNullOrEmpty(effect))
             {
                 OXW.RunProperties runProperties1 = run?.Descendants<OXW.RunProperties>().FirstOrDefault();
                 if (runProperties1 != null)
