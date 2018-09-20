@@ -52,9 +52,13 @@ namespace CastReporting.Reporting.Block.Table
                     if (!int.TryParse(_metric, out metricId)) continue;
                     ViolStatMetricIdDTO violStats = RulesViolationUtility.GetViolStat(reportData.CurrentSnapshot, metricId);
                     if (violStats == null) continue;
+                    
+                    // if no violations, do not display anything for this rule
+                    if (violStats.TotalViolations < 1) continue;
 
                     rowData.Add("");
                     cellidx++;
+
                     rowData.Add(Labels.ObjectsInViolationForRule + " " + ruleName);
                     cellProps.Add(new CellAttributes(cellidx, Color.Gray, Color.White, "bold"));
                     cellidx++;
@@ -94,6 +98,14 @@ namespace CastReporting.Reporting.Block.Table
                     string domainId = reportData.CurrentSnapshot.DomainId;
                     string snapshotId = reportData.CurrentSnapshot.Id.ToString();
                     cellidx = MetricsUtility.PopulateViolationsBookmarks(reportData, _violations, violation_counter, rowData, cellidx, ruleName, cellProps, hasPreviousSnapshot, domainId, snapshotId, _metric);
+
+                    // Add empty lines for readability
+                    for (int i = 1; i < 5; i++)
+                    {
+                        rowData.Add("");
+                        cellidx++;
+                    }
+
                 }
             }
             else
