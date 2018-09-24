@@ -94,6 +94,10 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "1202 :             statement.executeUpdate(); ",
                 "1203 :         }",
                 "",
+                "",
+                "",
+                "",
+                "",
                 "Objects in violation for rule Avoid Methods with a very low comment/code ratio",
                 "# Violations: 128",
                 "Rationale: ",
@@ -112,10 +116,14 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "4906 : ",
                 "4907 :  void CMetricTreePageDet::Validate()",
                 "4908 :  {",
-                "4909 :      int i, index, nAggregate, nAggregateCentral, nType, nLastLine;"
+                "4909 :      int i, index, nAggregate, nAggregateCentral, nType, nLastLine;",
+                "",
+                "",
+                "",
+                ""
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 1, 58);
+            TestUtility.AssertTableContent(table, expectedData, 1, 66);
 
             var cellsProperties = table.CellsAttributes;
             Assert.AreEqual(53, cellsProperties.Count);
@@ -172,7 +180,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             Assert.AreEqual(1, table.NbColumns);
-            Assert.AreEqual(65, table.NbRows);
+            Assert.AreEqual(69, table.NbRows);
             Assert.AreEqual("Violations", table.Data.ElementAt(0));
             Assert.AreEqual("Objects in violation for rule Avoid Methods with a very low comment/code ratio", table.Data.ElementAt(2));
             Assert.AreEqual("# Violations: 128", table.Data.ElementAt(3));
@@ -237,7 +245,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             Assert.AreEqual(1, table.NbColumns);
-            Assert.AreEqual(206, table.NbRows);
+            Assert.AreEqual(210, table.NbRows);
             Assert.AreEqual("Violations", table.Data.ElementAt(0));
             Assert.AreEqual("Objects in violation for rule Avoid using SQL queries inside a loop", table.Data.ElementAt(2));
             Assert.AreEqual("# Violations: 86", table.Data.ElementAt(3));
@@ -306,17 +314,17 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             Assert.AreEqual(1, table.NbColumns);
-            Assert.AreEqual(194, table.NbRows);
+            Assert.AreEqual(206, table.NbRows);
             Assert.AreEqual("Violations", table.Data.ElementAt(0));
             Assert.AreEqual("Objects in violation for rule Action Mappings should have few forwards", table.Data.ElementAt(2));
             Assert.AreEqual("# Violations: 77", table.Data.ElementAt(3));
             Assert.AreEqual("Violation #1    Action Mappings should have few forwards", table.Data.ElementAt(9));
             Assert.AreEqual("Violation #2    Action Mappings should have few forwards", table.Data.ElementAt(37));
-            Assert.AreEqual("Objects in violation for rule Avoid accessing data by using the position and length", table.Data.ElementAt(65));
-            Assert.AreEqual("# Violations: 6", table.Data.ElementAt(66));
-            Assert.AreEqual("Objects in violation for rule Avoid artifacts having recursive calls", table.Data.ElementAt(130));
-            Assert.AreEqual("# Violations: 12", table.Data.ElementAt(131));
-            Assert.AreEqual("1203 :         }", table.Data.ElementAt(193));
+            Assert.AreEqual("Objects in violation for rule Avoid accessing data by using the position and length", table.Data.ElementAt(69));
+            Assert.AreEqual("# Violations: 6", table.Data.ElementAt(70));
+            Assert.AreEqual("Objects in violation for rule Avoid artifacts having recursive calls", table.Data.ElementAt(138));
+            Assert.AreEqual("# Violations: 12", table.Data.ElementAt(139));
+            Assert.AreEqual("1203 :         }", table.Data.ElementAt(201));
 
 
             var cellsProperties = table.CellsAttributes;
@@ -377,7 +385,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             Assert.AreEqual(1, table.NbColumns);
-            Assert.AreEqual(64, table.NbRows);
+            Assert.AreEqual(68, table.NbRows);
             Assert.AreEqual("Violations", table.Data.ElementAt(0));
             Assert.AreEqual("Objects in violation for rule Action Mappings should have few forwards", table.Data.ElementAt(2));
             Assert.AreEqual("# Violations: 77", table.Data.ElementAt(3));

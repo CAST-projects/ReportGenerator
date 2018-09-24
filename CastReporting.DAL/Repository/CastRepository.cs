@@ -599,8 +599,16 @@ namespace CastReporting.Repositories
 
                 var serializer = new DataContractJsonSerializer(typeof(T));
                 MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
-
-                return serializer.ReadObject(ms) as T;
+                try
+                {
+                    T res = serializer.ReadObject(ms) as T;
+                    return res;
+                }
+                finally
+                {
+                    ms.Close();
+                }
+                
             }
             catch (WebException e)
             {

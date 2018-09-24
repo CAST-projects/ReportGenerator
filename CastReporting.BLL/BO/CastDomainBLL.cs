@@ -13,6 +13,8 @@
  * limitations under the License.
  *
  */
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -137,10 +139,18 @@ namespace CastReporting.BLL
                     }
                     var _commonTagsss3 = new DataContractJsonSerializer(typeof(CommonTags[]));
                     MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(strCommonTagsJson));
-                    var _commonTags = _commonTagsss3.ReadObject(ms) as CommonTags[];
+                    try
+                    {
+                        
+                        var _commonTags = _commonTagsss3.ReadObject(ms) as CommonTags[];
 
-                    if (_commonTags == null || !_commonTags.Any()) return _commonTaggedApplications;
-                    _commonTaggedApplications.AddRange(_commonTags.Select(ct => GetApplications().First(_ => _.Href == ct.application.Href)));
+                        if (_commonTags == null || !_commonTags.Any()) return _commonTaggedApplications;
+                        _commonTaggedApplications.AddRange(_commonTags.Select(ct => GetApplications().First(_ => _.Href == ct.application.Href)));
+                    }
+                    finally 
+                    {
+                        ms.Close();
+                    }
                 }
             }
             else
@@ -152,14 +162,21 @@ namespace CastReporting.BLL
 
                     var _commonTagsss3 = new DataContractJsonSerializer(typeof(CommonTags[]));
                     MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(strCommonTagsJson));
-                    var _commonTags = _commonTagsss3.ReadObject(ms) as CommonTags[];
-
-                    if (_commonTags == null || !_commonTags.Any()) return _commonTaggedApplications;
-                    foreach (var ct in _commonTags)
+                    try
                     {
-                        Application app = GetApplications().First(_ => _.Href == ct.application.Href);
-                        Tagg[] tags = ct.commonTags;
-                        _commonTaggedApplications.AddRange(from tag in tags select string.IsNullOrEmpty(tag.label) ? " " : tag.label into strTagLabel where strTagLabel == strSelectedTag select app);
+                        var _commonTags = _commonTagsss3.ReadObject(ms) as CommonTags[];
+
+                        if (_commonTags == null || !_commonTags.Any()) return _commonTaggedApplications;
+                        foreach (var ct in _commonTags)
+                        {
+                            Application app = GetApplications().First(_ => _.Href == ct.application.Href);
+                            Tagg[] tags = ct.commonTags;
+                            _commonTaggedApplications.AddRange(from tag in tags select string.IsNullOrEmpty(tag.label) ? " " : tag.label into strTagLabel where strTagLabel == strSelectedTag select app);
+                        }
+                    }
+                    finally
+                    {
+                        ms.Close();
                     }
                 }
             }
@@ -176,19 +193,27 @@ namespace CastReporting.BLL
                 if (_commonCategoriesJson == "") return _tags;
                 var _commonTagsss3 = new DataContractJsonSerializer(typeof(CommonCategoriess[]));
                 MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(_commonCategoriesJson));
-                var _commonCategorys = _commonTagsss3.ReadObject(ms) as CommonCategoriess[];
-
-                if (_commonCategorys == null || !_commonCategorys.Any()) return _tags;
-                foreach (var _category in _commonCategorys)
+                try
                 {
-                    string strLabelled = string.IsNullOrEmpty(_category.label) ? " " : _category.label;
-                    if (strCategory != strLabelled) continue;
-                    Tagg[] tags = _category.tags;
-                    if (tags.Length > 0)
+                    var _commonCategorys = _commonTagsss3.ReadObject(ms) as CommonCategoriess[];
+
+                    if (_commonCategorys == null || !_commonCategorys.Any()) return _tags;
+                    foreach (var _category in _commonCategorys)
                     {
-                        _tags.AddRange(tags.Select(tag => string.IsNullOrEmpty(tag.label) ? " " : tag.label));
+                        string strLabelled = string.IsNullOrEmpty(_category.label) ? " " : _category.label;
+                        if (strCategory != strLabelled) continue;
+                        Tagg[] tags = _category.tags;
+                        if (tags.Length > 0)
+                        {
+                            _tags.AddRange(tags.Select(tag => string.IsNullOrEmpty(tag.label) ? " " : tag.label));
+                        }
                     }
                 }
+                finally
+                {
+                    ms.Close();
+                }
+                
             }
 
             return _tags;
