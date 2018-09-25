@@ -1067,6 +1067,16 @@ namespace CastReporting.Reporting.Helper
 
             #endregion
 
+            if (format && rowData.Count == cntCol + 1)
+            {
+                // No data returns
+                rowData.Add(Labels.NoItem);
+                for (int i = 0; i < cntCol; i++)
+                {
+                    rowData.Add("");
+                }
+            }
+
             var resultTable = new TableDefinition
             {
                 HasRowHeaders = false,
