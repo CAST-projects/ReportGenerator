@@ -35,7 +35,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "  per File", "0.22"});
             expectedData.AddRange(new List<string> { "  per kLoC", "3.53" });
             expectedData.AddRange(new List<string> { "Complex Objects", "243"});
-            expectedData.AddRange(new List<string> { "  With Violations", "166" });
+            expectedData.AddRange(new List<string> { "  With Violations", "103" });
             TestUtility.AssertTableContent(table, expectedData, 2, 6);
             Assert.IsFalse(table.HasColumnHeaders);
             Assert.IsTrue(table.HasRowHeaders);
@@ -62,7 +62,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "  per File", "n/a" });
             expectedData.AddRange(new List<string> { "  per kLoC", "0.91" });
             expectedData.AddRange(new List<string> { "Complex Objects", "243" });
-            expectedData.AddRange(new List<string> { "  With Violations", "166" });
+            expectedData.AddRange(new List<string> { "  With Violations", "103" });
             TestUtility.AssertTableContent(table, expectedData, 2, 6);
             Assert.IsFalse(table.HasColumnHeaders);
             Assert.IsTrue(table.HasRowHeaders);

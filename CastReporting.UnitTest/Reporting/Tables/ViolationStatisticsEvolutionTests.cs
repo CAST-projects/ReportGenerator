@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CastReporting.Domain;
 using CastReporting.Reporting.Block.Table;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -39,7 +38,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "  per File", "0.22", "0.26", "-15.4 %"});
             expectedData.AddRange(new List<string> { "  per kLoC", "3.53", "4.34", "-18.7 %" });
             expectedData.AddRange(new List<string> { "Complex Objects", "243", "238", "+2.10 %"});
-            expectedData.AddRange(new List<string> { "  With Violations", "166", "161", "+3.11 %" });
+            expectedData.AddRange(new List<string> { "  With Violations", "103", "99", "+4.04 %" });
             TestUtility.AssertTableContent(table, expectedData, 4, 6);
             Assert.IsFalse(table.HasColumnHeaders);
             Assert.IsTrue(table.HasRowHeaders);
@@ -69,7 +68,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "  per File", "n/a", "n/a", "n/a" });
             expectedData.AddRange(new List<string> { "  per kLoC", "0.91", "10.89", "-91.6 %" });
             expectedData.AddRange(new List<string> { "Complex Objects", "243", "238", "+2.10 %" });
-            expectedData.AddRange(new List<string> { "  With Violations", "166", "161", "+3.11 %" });
+            expectedData.AddRange(new List<string> { "  With Violations", "103", "99", "+4.04 %" });
             TestUtility.AssertTableContent(table, expectedData, 4, 6);
             Assert.IsFalse(table.HasColumnHeaders);
             Assert.IsTrue(table.HasRowHeaders);
@@ -95,7 +94,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "  per File", "0.22", "n/a", "n/a" });
             expectedData.AddRange(new List<string> { "  per kLoC", "3.53", "n/a", "n/a" });
             expectedData.AddRange(new List<string> { "Complex Objects", "243", "n/a", "n/a" });
-            expectedData.AddRange(new List<string> { "  With Violations", "166", "n/a", "n/a" });
+            expectedData.AddRange(new List<string> { "  With Violations", "103", "n/a", "n/a" });
             TestUtility.AssertTableContent(table, expectedData, 4, 6);
             Assert.IsFalse(table.HasColumnHeaders);
             Assert.IsTrue(table.HasRowHeaders);
@@ -125,7 +124,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "  每文件", "0.22", "0.26", "-15.4%" });
             expectedData.AddRange(new List<string> { "  每千行代码", "3.53", "4.34", "-18.7%" });
             expectedData.AddRange(new List<string> { "复杂对象", "243", "238", "+2.10%" });
-            expectedData.AddRange(new List<string> { "  含违规", "166", "161", "+3.11%" });
+            expectedData.AddRange(new List<string> { "  含违规", "103", "99", "+4.04%" });
             TestUtility.AssertTableContent(table, expectedData, 4, 6);
             Assert.IsFalse(table.HasColumnHeaders);
             Assert.IsTrue(table.HasRowHeaders);
