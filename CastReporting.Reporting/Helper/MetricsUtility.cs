@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Helper;
 using CastReporting.Reporting.Languages;
@@ -633,11 +634,17 @@ namespace CastReporting.Reporting
                             rowData.Add(Labels.ViolationPath + " #" + pathCounter);
                             cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
                             cellidx++;
+                            string previousFile = string.Empty;
                             foreach (CodeBookmark _bookval in _bookmarksValue)
                             {
-                                rowData.Add(Labels.FilePath + ": " + _bookval.CodeFragment.CodeFile.Name);
-                                cellProps.Add(new CellAttributes(cellidx, Color.White));
-                                cellidx++;
+                                if (string.IsNullOrEmpty(previousFile) || !previousFile.Equals(_bookval.CodeFragment.CodeFile.Name))
+                                {
+                                    previousFile = _bookval.CodeFragment.CodeFile.Name;
+                                    rowData.Add(Labels.FilePath + ": " + _bookval.CodeFragment.CodeFile.Name);
+                                    cellProps.Add(new CellAttributes(cellidx, Color.White));
+                                    cellidx++;
+                                }
+
                                 Dictionary<int, string> codeLines = reportData.SnapshotExplorer.GetSourceCodeBookmark(domainId, _bookval, 0);
 
                                 foreach (KeyValuePair<int, string> codeLine in codeLines)
