@@ -191,9 +191,16 @@ namespace CastReporting.UI.WPF.ViewModel
         public void OnErrorOccured(Exception exception)
         {
             if (exception is WebException)
-                MessagesList.Add(new MessageItem { Message = Messages.msgWSError, FileName = string.Empty }); 
+                MessagesList.Add(new MessageItem {Message = Messages.msgWSError, FileName = string.Empty});
             else
+            {
                 MessagesList.Add(new MessageItem { Message = Messages.msgGenericError, FileName = string.Empty });
+                if (exception.InnerException != null)
+                {
+                    MessagesList.Add(new MessageItem { Message = exception.InnerException.Message, FileName = string.Empty });
+                }
+            }
+                
             
         }
       

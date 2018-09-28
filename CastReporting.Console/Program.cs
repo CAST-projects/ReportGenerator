@@ -11,6 +11,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using Microsoft.Office.Interop.Word;
+using Microsoft.Office.Interop.PowerPoint;
 
 namespace CastReporting.Console
 {
@@ -132,7 +134,7 @@ namespace CastReporting.Console
                     }
                     LogHelper.Instance.LogInfo("Web services Initialized successfully");
 
-                    List<Application> _apps = new List<Application>();
+                    List<Domain.Application> _apps = new List<Domain.Application>();
                     
                     try
                     {
@@ -146,13 +148,13 @@ namespace CastReporting.Console
                         LogHelper.Instance.LogInfo("Error occured while trying get applications for the portfolio : " + ex.Message);
                     }
 
-                    Application[] _selectedApps = _apps.ToArray<Application>();
-                    LogHelper.Instance.LogInfo("Applications is the portfolio found successfully");
+                    Domain.Application[] _selectedApps = _apps.ToArray<Domain.Application>();
+                    LogHelper.Instance.LogInfo("Applications in the portfolio found successfully");
                     string[] _appsToIgnorePortfolioResult = PortfolioBLL.BuildPortfolioResult(connection, _selectedApps);
                     LogHelper.Instance.LogInfo("Build result for the portfolio");
-                    List<Application> _n_apps = new List<Application>();
+                    List<Domain.Application> _n_apps = new List<Domain.Application>();
                     //Remove from Array the Ignored Apps
-                    foreach (Application app in _selectedApps)
+                    foreach (Domain.Application app in _selectedApps)
                     {
                         int intAppYes = 0;
                         foreach (string s in _appsToIgnorePortfolioResult)
@@ -173,7 +175,7 @@ namespace CastReporting.Console
                             _n_apps.Add(app);
                         }
                     }
-                    Application[] _n_selectedApps = _n_apps.ToArray();
+                    Domain.Application[] _n_selectedApps = _n_apps.ToArray();
 
                     List<Snapshot> _snapshots = new List<Snapshot>();
 
@@ -188,7 +190,7 @@ namespace CastReporting.Console
                     {
                         LogHelper.Instance.LogInfo("Error occured while trying get snapshots of applications for the portfolio : " + ex.Message);
                     }
-                    LogHelper.Instance.LogInfo("Snapshots is the portfolio found successfully");
+                    LogHelper.Instance.LogInfo("Snapshots in the portfolio found successfully");
                     List<Snapshot> _n_snaps = new List<Snapshot>();
                     if (_snapshots != null)
                     {
@@ -326,8 +328,7 @@ namespace CastReporting.Console
                                 tmpReportFile = tmpReportFileFlexi;
                             }
 
-                            //Copy report file to the selected destination
-                            File.Copy(tmpReportFile, reportPath, true);
+                            ConvertToPdfIfNeeded(arguments, ref reportPath, tmpReportFile);
                         }
                         finally
                         {
@@ -384,7 +385,7 @@ namespace CastReporting.Console
 
 
                     //Initialize Application
-                    Application application = GetApplication(arguments, connection);
+                    Domain.Application application = GetApplication(arguments, connection);
                     if (application == null)
                     {
                         help = arguments.Application != null ? $"Application {arguments.Application.Name} can't be found." : "Application not set in arguments.";
@@ -466,7 +467,9 @@ namespace CastReporting.Console
                     {
                         tmpReportFile = tmpReportFileFlexi;
                     }
-                    File.Copy(tmpReportFile, reportPath, true);
+
+                    ConvertToPdfIfNeeded(arguments, ref reportPath, tmpReportFile);
+
                     LogHelper.Instance.LogInfo("Report moved to generation directory successfully");
 
                     return reportPath;
@@ -480,6 +483,58 @@ namespace CastReporting.Console
                 {
                     if (!string.IsNullOrEmpty(tmpReportFile)) File.Delete(tmpReportFile);
                 }
+            }
+        }
+
+        private static void ConvertToPdfIfNeeded(XmlCastReport arguments, ref string reportPath, string tmpReportFile)
+        {
+            // convert docx or pptx to pdf
+            if (reportPath.Contains(".pdf"))
+            {
+                if (tmpReportFile.Contains(".docx"))
+                {
+                    try
+                    {
+                        Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
+                        Document wordDocument = appWord.Documents.Open(tmpReportFile);
+                        wordDocument.ExportAsFixedFormat(reportPath, WdExportFormat.wdExportFormatPDF);
+                        wordDocument.Close();
+                        appWord.Quit();
+                    }
+                    catch (Exception)
+                    {
+                        // Error if office not installed, then do not save as pdf
+                        reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
+                        File.Copy(tmpReportFile, reportPath, true);
+                    }
+                }
+                else if (tmpReportFile.Contains(".pptx"))
+                {
+                    try
+                    {
+                        Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
+                        Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
+                        appPres.ExportAsFixedFormat(reportPath, PpFixedFormatType.ppFixedFormatTypePDF);
+                        appPres.Close();
+                        appPowerpoint.Quit();
+                    }
+                    catch (Exception)
+                    {
+                        // Error if office not installed, then do not save as pdf
+                        reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
+                        File.Copy(tmpReportFile, reportPath, true);
+                    }
+                }
+                else
+                {
+                    string report = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
+                    File.Copy(tmpReportFile, report, true);
+                }
+            }
+            else
+            {
+                //Copy report file to the selected destination
+                File.Copy(tmpReportFile, reportPath, true);
             }
         }
 
@@ -522,7 +577,7 @@ namespace CastReporting.Console
         /// <param name="connection"></param>
         /// <param name="application"></param>
         /// <returns></returns>
-        private static void SetSnapshots(WSConnection connection, Application application)
+        private static void SetSnapshots(WSConnection connection, Domain.Application application)
         {          
             using (ApplicationBLL applicationBLL = new ApplicationBLL(connection, application))
             {
@@ -536,11 +591,9 @@ namespace CastReporting.Console
         /// <param name="arguments"></param>
         /// <param name="connection"></param>
         /// <returns></returns>
-        private static Application GetApplication(XmlCastReport arguments, WSConnection connection)
+        private static Domain.Application GetApplication(XmlCastReport arguments, WSConnection connection)
         {
-            if (arguments.Application == null) return null;
-
-            List<Application> applications;
+            List<Domain.Application> applications;
 
             using (CastDomainBLL castDomainBLL = new CastDomainBLL(connection))
             {
