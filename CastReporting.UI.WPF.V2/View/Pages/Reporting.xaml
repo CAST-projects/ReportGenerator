@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:label="clr-namespace:CastReporting.UI.WPF.Resources.Languages"
-             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"             
              xmlns:converter="clr-namespace:CastReporting.UI.WPF.Converter"       
              xmlns:commonCtrl="clr-namespace:CastReporting.UI.WPF.Common" 
              xmlns:commands="clr-namespace:CastReporting.UI.WPF.Commands"
