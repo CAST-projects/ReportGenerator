@@ -864,65 +864,7 @@ namespace CastReporting.UI.WPF.ViewModel
                     tmpReportFile = tmpReportFileFlexi;
                 }
 
-                // convert docx or pptx to pdf
-                if (ReportFileName.Contains(".pdf"))
-                {
-                    if (tmpReportFile.Contains(".docx"))
-                    {
-                        try
-                        {
-                            Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
-                            Document wordDocument = appWord.Documents.Open(tmpReportFile);
-                            wordDocument.ExportAsFixedFormat(ReportFileName, WdExportFormat.wdExportFormatPDF);
-                            wordDocument.Close();
-                            appWord.Quit();
-                        }
-                        catch (Exception)
-                        {
-                            // Error if office not installed, then do not save as pdf
-                            ReportFileName = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
-                            File.Copy(tmpReportFile, ReportFileName, true);
-                        }
-                    }
-                    else if (tmpReportFile.Contains(".pptx"))
-                    {
-                        try
-                        {
-                            Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
-                            Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
-                            appPres.ExportAsFixedFormat(ReportFileName, PpFixedFormatType.ppFixedFormatTypePDF);
-                            appPres.Close();
-                            appPowerpoint.Quit();
-                        }
-                        catch (Exception)
-                        {
-                            // Error if office not installed, then do not save as pdf
-                            ReportFileName = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
-                            File.Copy(tmpReportFile, ReportFileName, true);
-                        }
-                    }
-                    /* Reports too ugly and unusable when converted from excel to pdf
-                     * else if (tmpReportFile.Contains(".xlsx"))
-                    {
-                        Microsoft.Office.Interop.Excel.Application appExcel = new Microsoft.Office.Interop.Excel.Application();
-                        Workbook excelDoc = appExcel.Workbooks.Open(tmpReportFile);
-                        excelDoc.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, ReportFileName);
-                        excelDoc.Close();
-                        appExcel.Quit();
-                    }
-                    */
-                    else
-                    {
-                        string report = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
-                        File.Copy(tmpReportFile, report, true);
-                    }
-                }
-                else
-                {
-                    //Copy report file to the selected destination
-                    File.Copy(tmpReportFile, ReportFileName, true);
-                }
-
+                ConvertToPdfIfNeeded(tmpReportFile);
             }
             catch (Exception)
             {
@@ -933,6 +875,68 @@ namespace CastReporting.UI.WPF.ViewModel
             finally
             {
                 if (!string.IsNullOrEmpty(tmpReportFile)) File.Delete(tmpReportFile);
+            }
+        }
+
+        private void ConvertToPdfIfNeeded(string tmpReportFile)
+        {
+            // convert docx or pptx to pdf
+            if (ReportFileName.Contains(".pdf"))
+            {
+                if (tmpReportFile.Contains(".docx"))
+                {
+                    try
+                    {
+                        Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
+                        Document wordDocument = appWord.Documents.Open(tmpReportFile);
+                        wordDocument.ExportAsFixedFormat(ReportFileName, WdExportFormat.wdExportFormatPDF);
+                        wordDocument.Close();
+                        appWord.Quit();
+                    }
+                    catch (Exception)
+                    {
+                        // Error if office not installed, then do not save as pdf
+                        ReportFileName = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
+                        File.Copy(tmpReportFile, ReportFileName, true);
+                    }
+                }
+                else if (tmpReportFile.Contains(".pptx"))
+                {
+                    try
+                    {
+                        Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
+                        Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
+                        appPres.ExportAsFixedFormat(ReportFileName, PpFixedFormatType.ppFixedFormatTypePDF);
+                        appPres.Close();
+                        appPowerpoint.Quit();
+                    }
+                    catch (Exception)
+                    {
+                        // Error if office not installed, then do not save as pdf
+                        ReportFileName = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
+                        File.Copy(tmpReportFile, ReportFileName, true);
+                    }
+                }
+                /* Reports too ugly and unusable when converted from excel to pdf
+                     * else if (tmpReportFile.Contains(".xlsx"))
+                    {
+                        Microsoft.Office.Interop.Excel.Application appExcel = new Microsoft.Office.Interop.Excel.Application();
+                        Workbook excelDoc = appExcel.Workbooks.Open(tmpReportFile);
+                        excelDoc.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, ReportFileName);
+                        excelDoc.Close();
+                        appExcel.Quit();
+                    }
+                    */
+                else
+                {
+                    string report = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
+                    File.Copy(tmpReportFile, report, true);
+                }
+            }
+            else
+            {
+                //Copy report file to the selected destination
+                File.Copy(tmpReportFile, ReportFileName, true);
             }
         }
 
@@ -987,37 +991,7 @@ namespace CastReporting.UI.WPF.ViewModel
                     tmpReportFile = tmpReportFileFlexi;
                 }
 
-                // convert docx or pptx to pdf
-                if (ReportFileName.Contains(".pdf"))
-                {
-                    if (tmpReportFile.Contains(".docx"))
-                    {
-                        Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
-                        Document wordDocument = appWord.Documents.Open(tmpReportFile);
-                        wordDocument.ExportAsFixedFormat(ReportFileName, WdExportFormat.wdExportFormatPDF);
-                        wordDocument.Close();
-                        appWord.Quit();
-                    }
-                    else if (tmpReportFile.Contains(".pptx"))
-                    {
-                        Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
-                        Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
-                        appPres.ExportAsFixedFormat(ReportFileName, PpFixedFormatType.ppFixedFormatTypePDF);
-                        appPres.Close();
-                        appPowerpoint.Quit();
-                    }
-                    else
-                    {
-                        string report = ReportFileName.Replace(".pdf", SelectedTemplateFile.Extension);
-                        //Copy report file to the selected destination
-                        File.Copy(tmpReportFile, report, true);
-                    }
-                }
-                else
-                {
-                    //Copy report file to the selected destination
-                    File.Copy(tmpReportFile, ReportFileName, true);
-                }
+                ConvertToPdfIfNeeded(tmpReportFile);
             }
             catch (Exception)
             {

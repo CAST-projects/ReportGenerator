@@ -149,7 +149,7 @@ namespace CastReporting.Console
                     }
 
                     Domain.Application[] _selectedApps = _apps.ToArray<Domain.Application>();
-                    LogHelper.Instance.LogInfo("Applications is the portfolio found successfully");
+                    LogHelper.Instance.LogInfo("Applications in the portfolio found successfully");
                     string[] _appsToIgnorePortfolioResult = PortfolioBLL.BuildPortfolioResult(connection, _selectedApps);
                     LogHelper.Instance.LogInfo("Build result for the portfolio");
                     List<Domain.Application> _n_apps = new List<Domain.Application>();
@@ -190,7 +190,7 @@ namespace CastReporting.Console
                     {
                         LogHelper.Instance.LogInfo("Error occured while trying get snapshots of applications for the portfolio : " + ex.Message);
                     }
-                    LogHelper.Instance.LogInfo("Snapshots is the portfolio found successfully");
+                    LogHelper.Instance.LogInfo("Snapshots in the portfolio found successfully");
                     List<Snapshot> _n_snaps = new List<Snapshot>();
                     if (_snapshots != null)
                     {
@@ -328,54 +328,7 @@ namespace CastReporting.Console
                                 tmpReportFile = tmpReportFileFlexi;
                             }
 
-                            // convert docx or pptx to pdf
-                            if (reportPath.Contains(".pdf"))
-                            {
-                                if (tmpReportFile.Contains(".docx"))
-                                {
-                                    try
-                                    {
-                                        Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
-                                        Document wordDocument = appWord.Documents.Open(tmpReportFile);
-                                        wordDocument.ExportAsFixedFormat(reportPath, WdExportFormat.wdExportFormatPDF);
-                                        wordDocument.Close();
-                                        appWord.Quit();
-                                    }
-                                    catch (Exception)
-                                    {
-                                        // Error if office not installed, then do not save as pdf
-                                        reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
-                                        File.Copy(tmpReportFile, reportPath, true);
-                                    }
-                                }
-                                else if (tmpReportFile.Contains(".pptx"))
-                                {
-                                    try
-                                    {
-                                        Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
-                                        Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
-                                        appPres.ExportAsFixedFormat(reportPath, PpFixedFormatType.ppFixedFormatTypePDF);
-                                        appPres.Close();
-                                        appPowerpoint.Quit();
-                                    }
-                                    catch (Exception)
-                                    {
-                                        // Error if office not installed, then do not save as pdf
-                                        reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
-                                        File.Copy(tmpReportFile, reportPath, true);
-                                    }
-                                }
-                                else
-                                {
-                                    string report = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
-                                    File.Copy(tmpReportFile, report, true);
-                                }
-                            }
-                            else
-                            {
-                                //Copy report file to the selected destination
-                                File.Copy(tmpReportFile, reportPath, true);
-                            }
+                            ConvertToPdfIfNeeded(arguments, ref reportPath, tmpReportFile);
                         }
                         finally
                         {
@@ -515,54 +468,7 @@ namespace CastReporting.Console
                         tmpReportFile = tmpReportFileFlexi;
                     }
 
-                    // convert docx or pptx to pdf
-                    if (reportPath.Contains(".pdf"))
-                    {
-                        if (tmpReportFile.Contains(".docx"))
-                        {
-                            try
-                            {
-                                Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
-                                Document wordDocument = appWord.Documents.Open(tmpReportFile);
-                                wordDocument.ExportAsFixedFormat(reportPath, WdExportFormat.wdExportFormatPDF);
-                                wordDocument.Close();
-                                appWord.Quit();
-                            }
-                            catch (Exception)
-                            {
-                                // Error if office not installed, then do not save as pdf
-                                reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
-                                File.Copy(tmpReportFile, reportPath, true);
-                            }
-                        }
-                        else if (tmpReportFile.Contains(".pptx"))
-                        {
-                            try
-                            {
-                                Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
-                                Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
-                                appPres.ExportAsFixedFormat(reportPath, PpFixedFormatType.ppFixedFormatTypePDF);
-                                appPres.Close();
-                                appPowerpoint.Quit();
-                            }
-                            catch (Exception)
-                            {
-                                // Error if office not installed, then do not save as pdf
-                                reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
-                                File.Copy(tmpReportFile, reportPath, true);
-                            }
-                        }
-                        else
-                        {
-                            string report = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
-                            File.Copy(tmpReportFile, report, true);
-                        }
-                    }
-                    else
-                    {
-                        //Copy report file to the selected destination
-                        File.Copy(tmpReportFile, reportPath, true);
-                    }
+                    ConvertToPdfIfNeeded(arguments, ref reportPath, tmpReportFile);
 
                     LogHelper.Instance.LogInfo("Report moved to generation directory successfully");
 
@@ -577,6 +483,58 @@ namespace CastReporting.Console
                 {
                     if (!string.IsNullOrEmpty(tmpReportFile)) File.Delete(tmpReportFile);
                 }
+            }
+        }
+
+        private static void ConvertToPdfIfNeeded(XmlCastReport arguments, ref string reportPath, string tmpReportFile)
+        {
+            // convert docx or pptx to pdf
+            if (reportPath.Contains(".pdf"))
+            {
+                if (tmpReportFile.Contains(".docx"))
+                {
+                    try
+                    {
+                        Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
+                        Document wordDocument = appWord.Documents.Open(tmpReportFile);
+                        wordDocument.ExportAsFixedFormat(reportPath, WdExportFormat.wdExportFormatPDF);
+                        wordDocument.Close();
+                        appWord.Quit();
+                    }
+                    catch (Exception)
+                    {
+                        // Error if office not installed, then do not save as pdf
+                        reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
+                        File.Copy(tmpReportFile, reportPath, true);
+                    }
+                }
+                else if (tmpReportFile.Contains(".pptx"))
+                {
+                    try
+                    {
+                        Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
+                        Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
+                        appPres.ExportAsFixedFormat(reportPath, PpFixedFormatType.ppFixedFormatTypePDF);
+                        appPres.Close();
+                        appPowerpoint.Quit();
+                    }
+                    catch (Exception)
+                    {
+                        // Error if office not installed, then do not save as pdf
+                        reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
+                        File.Copy(tmpReportFile, reportPath, true);
+                    }
+                }
+                else
+                {
+                    string report = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
+                    File.Copy(tmpReportFile, report, true);
+                }
+            }
+            else
+            {
+                //Copy report file to the selected destination
+                File.Copy(tmpReportFile, reportPath, true);
             }
         }
 
