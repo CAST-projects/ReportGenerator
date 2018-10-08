@@ -333,7 +333,6 @@ namespace CastReporting.UnitTest.DAL
             ICastRepsitory ccontext = new CastRepository(_connection3);
             if (Environment.UserName != "abd")
             {
-                if (ccontext == null) return;
                 if (!ccontext.IsServiceValid()) return;
             }
             const string cdomainHref = "AAD/quality-indicators/7126/snapshots/1";

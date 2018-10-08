@@ -28,7 +28,7 @@ namespace CastReporting.BLL.Computing
 			}
 			public int GetHashCode(RuleViolationResultDTO obj)
 			{
-				return obj?.Rule?.Key ?? 0;
+				return obj.Rule?.Key ?? 0;
 			}
 			#endregion
         }

@@ -52,11 +52,13 @@ class MyType
             Type type = results.CompiledAssembly.GetType("MyType");
             MethodInfo method = type.GetMethod("Evaluate");
 
+
             // The first parameter is the instance to invoke the method on. Because our Evaluate method is static, we pass null.
             string res;
 
             try
             {
+                // ReSharper disable once PossibleNullReferenceException because method is defined in the code above.
                 double? result = (double)method.Invoke(null, values);
                 res = string.IsNullOrEmpty(format) ? result.Value.ToString(CultureInfo.CurrentCulture) : result.Value.ToString(format);
             }

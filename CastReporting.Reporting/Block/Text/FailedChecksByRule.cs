@@ -53,7 +53,7 @@ namespace CastReporting.Reporting.Block.Text
                 failedChecks = RulesViolationUtility.GetFailedChecks(violations);
             }
 
-            return (failedChecks != null) ? failedChecks.Value.ToString("N0") : Constants.No_Value;
+            return failedChecks?.ToString("N0") ?? Constants.No_Value;
         }
         #endregion METHODS
     }

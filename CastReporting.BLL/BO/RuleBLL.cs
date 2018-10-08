@@ -1,8 +1,6 @@
 ﻿using CastReporting.Domain;
 using CastReporting.Domain.Interfaces;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Net.Sockets;
 
 namespace CastReporting.BLL
 {

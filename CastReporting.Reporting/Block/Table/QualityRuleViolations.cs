@@ -51,9 +51,10 @@ namespace CastReporting.Reporting.Block.Table
                     : reportData.SnapshotExplorer.GetViolationsListIDbyBC(reportData.CurrentSnapshot.Href, ruleId, bcId, nbLimitTop, "$all");
                 if (results != null)
                 {
-                    if (results.Count() != 0)
+                    var _results = results as IList<Violation> ?? results.ToList();
+                    if (_results.Count() != 0)
                     {
-                        foreach (Violation _violation in results)
+                        foreach (Violation _violation in _results)
                         {
                             rowData.Add(shortName ? _violation.Component.ShortName : _violation.Component.Name);
                             if (hasPri) rowData.Add(_violation.Component.PropagationRiskIndex.ToString("N0"));

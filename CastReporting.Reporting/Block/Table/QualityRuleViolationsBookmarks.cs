@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Drawing;
-using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -24,7 +22,6 @@ namespace CastReporting.Reporting.Block.Table
             string ruleId = options.GetOption("ID", "7788");
             const string bcId = "60017";
             int nbLimitTop = options.GetIntOption("COUNT", 5);
-            bool shortName = options.GetOption("NAME","FULL") == "SHORT";
 
             bool hasPreviousSnapshot = reportData.PreviousSnapshot != null;
             RuleDescription rule = reportData.RuleExplorer.GetSpecificRule(reportData.Application.DomainId, ruleId);
