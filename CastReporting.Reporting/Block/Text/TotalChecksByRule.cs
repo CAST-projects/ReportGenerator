@@ -52,7 +52,7 @@ namespace CastReporting.Reporting.Block.Text
                 _totalChecks = RulesViolationUtility.GetTotalChecks(violations);
             }
 
-            return (_totalChecks != null) ? _totalChecks.Value.ToString("N0") : Constants.No_Value;
+            return _totalChecks?.ToString("N0") ?? Constants.No_Value;
         }
         #endregion METHODS
     }

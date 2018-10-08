@@ -45,7 +45,7 @@ namespace CastReporting.BLL.Computing.DTO
         public double? result { get; set; }
         public string resultStr { get; set; }
     }
-
+    
     public class EvolutionResult
     {
         public string name { get; set; }
@@ -55,6 +55,5 @@ namespace CastReporting.BLL.Computing.DTO
         public string prevResult { get; set; }
         public string evolution { get; set; }
         public string evolutionPercent { get; set; }
-
     }
 }

@@ -6,7 +6,6 @@ using CastReporting.Reporting.ReportingModel;
 using System.Collections.Generic;
 using CastReporting.BLL.Computing.DTO;
 using System.Linq;
-using Cast.Util.Log;
 
 namespace CastReporting.Reporting.Helper
 {
@@ -347,33 +346,26 @@ namespace CastReporting.Reporting.Helper
                         if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                         foreach (string param in snapshotConfiguration)
                         {
-                            try
+                            switch (param)
                             {
-                                switch (param)
-                                {
-                                    case "CURRENT":
-                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
-                                        break;
-                                    case "PREVIOUS":
-                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
-                                        break;
-                                    case "EVOL":
-                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
-                                        break;
-                                    case "EVOL_PERCENT":
-                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
-                                        break;
-                                    default:
-                                        throw new ArgumentOutOfRangeException();
-                                }
-                            }
-                            catch (ArgumentException)
-                            {
-                                LogHelper.Instance.LogWarn("Several metrics have the same name. Results will be duplicated in table");
+                                case "CURRENT":
+                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
+                                    break;
+                                case "PREVIOUS":
+                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
+                                    break;
+                                case "EVOL":
+                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
+                                    break;
+                                case "EVOL_PERCENT":
+                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
                             }
                         }
                     }
@@ -484,33 +476,26 @@ namespace CastReporting.Reporting.Helper
                             if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                             foreach (string param in snapshotConfiguration)
                             {
-                                try
+                                switch (param)
                                 {
-                                    switch (param)
-                                    {
-                                        case "CURRENT":
-                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
-                                            break;
-                                        case "PREVIOUS":
-                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
-                                            break;
-                                        case "EVOL":
-                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
-                                            break;
-                                        case "EVOL_PERCENT":
-                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
-                                            break;
-                                        default:
-                                            throw new ArgumentOutOfRangeException();
-                                    }
-                                }
-                                catch (ArgumentException)
-                                {
-                                    LogHelper.Instance.LogWarn("Several metrics have the same name. Results will be duplicated in table");
+                                    case "CURRENT":
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
+                                        break;
+                                    case "PREVIOUS":
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
+                                        break;
+                                    case "EVOL":
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
+                                        break;
+                                    case "EVOL_PERCENT":
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
+                                        break;
+                                    default:
+                                        throw new ArgumentOutOfRangeException();
                                 }
                             }
                         }
@@ -634,33 +619,26 @@ namespace CastReporting.Reporting.Helper
                             if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                             foreach (string param in snapshotConfiguration)
                             {
-                                try
+                                switch (param)
                                 {
-                                    switch (param)
-                                    {
-                                        case "CURRENT":
-                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
-                                            break;
-                                        case "PREVIOUS":
-                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
-                                            break;
-                                        case "EVOL":
-                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
-                                            break;
-                                        case "EVOL_PERCENT":
-                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
-                                            break;
-                                        default:
-                                            throw new ArgumentOutOfRangeException();
-                                    }
-                                }
-                                catch (ArgumentException)
-                                {
-                                    LogHelper.Instance.LogWarn("Several metrics have the same name. Results will be duplicated in table");
+                                    case "CURRENT":
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
+                                        break;
+                                    case "PREVIOUS":
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
+                                        break;
+                                    case "EVOL":
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
+                                        break;
+                                    case "EVOL_PERCENT":
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
+                                        break;
+                                    default:
+                                        throw new ArgumentOutOfRangeException();
                                 }
                             }
                         }
@@ -787,33 +765,26 @@ namespace CastReporting.Reporting.Helper
                                 if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                                 foreach (string param in snapshotConfiguration)
                                 {
-                                    try
+                                    switch (param)
                                     {
-                                        switch (param)
-                                        {
-                                            case "CURRENT":
-                                                if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
-                                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
-                                                break;
-                                            case "PREVIOUS":
-                                                if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
-                                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
-                                                break;
-                                            case "EVOL":
-                                                if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
-                                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
-                                                break;
-                                            case "EVOL_PERCENT":
-                                                if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
-                                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
-                                                break;
-                                            default:
-                                                throw new ArgumentOutOfRangeException();
-                                        }
-                                    }
-                                    catch (ArgumentException)
-                                    {
-                                        LogHelper.Instance.LogWarn("Several metrics have the same name. Results will be duplicated in table");
+                                        case "CURRENT":
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
+                                            break;
+                                        case "PREVIOUS":
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
+                                            break;
+                                        case "EVOL":
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
+                                            break;
+                                        case "EVOL_PERCENT":
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
+                                            break;
+                                        default:
+                                            throw new ArgumentOutOfRangeException();
                                     }
                                 }
                             }

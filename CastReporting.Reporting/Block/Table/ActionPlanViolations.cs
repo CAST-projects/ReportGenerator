@@ -45,7 +45,7 @@ namespace CastReporting.Reporting.Block.Table
                 }
 
                 var _violations = results as IList<Violation> ?? results.ToList();
-                if (_violations.Count() != 0)
+                if (_violations.Count != 0)
                 {
                     foreach (Violation _violation in _violations)
                     {
@@ -56,7 +56,7 @@ namespace CastReporting.Reporting.Block.Table
                         rowData.Add(_violation.RemedialAction.Status ?? Constants.No_Value);
                         rowData.Add(_violation.RemedialAction.Dates.Updated.DateSnapShot?.ToString(Labels.FORMAT_LONG_DATE) ?? Constants.No_Value);
                     }
-                    nbRows = _violations.Count() + 1;
+                    nbRows = _violations.Count + 1;
                 }
                 else
                 {

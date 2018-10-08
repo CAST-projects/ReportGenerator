@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Security;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Helper;
 using CastReporting.Reporting.Languages;
@@ -27,11 +26,23 @@ namespace CastReporting.Reporting
                             snapshot.TechnicalCriteriaResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault()) ??
                            snapshot.QualityRulesResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault()) ??
                           snapshot.SizingMeasuresResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault();
+            if (snapshot.QualityRulesResults?.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault() != null)
+            {
+                string technos = GetQualityRuleResultTechnologies(reportData, snapshot, metricId);
+                name = (technos != string.Empty) ? name + " (" + technos + ")" : name;
+            }
             if (name != null) return name;
             var bfResult = reportData.SnapshotExplorer.GetBackgroundFacts(snapshot.Href, metricId, true, true).FirstOrDefault();
             if (bfResult == null || !bfResult.ApplicationResults.Any()) return Constants.No_Value;
             name = bfResult.ApplicationResults[0].Reference.Name ?? Constants.No_Value;
             return name;
+        }
+
+        public static string GetQualityRuleResultTechnologies(ReportData reportData, Snapshot snapshot, string metricId)
+        {
+            IEnumerable<TechnologyResult> technologies = snapshot.QualityRulesResults.Where(_ => _.Reference.Key == int.Parse(metricId)).SelectMany(_ => _.TechnologyResult);
+            var technos = technologies.Select(_ => _.Technology).ToList();
+            return string.Join(",",technos);
         }
 
         /// <summary>
@@ -165,6 +176,7 @@ namespace CastReporting.Reporting
                             .FirstOrDefault(_ => _.Technology == technology && _.DetailResult != null)?.DetailResult.Grade;
                     }
                     resStr = result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
+                    
                     break;
                 case metricType.SizingMeasure:
                     if (module == null && string.IsNullOrEmpty(technology))
@@ -220,6 +232,11 @@ namespace CastReporting.Reporting
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
+            }
+            if (metricType.QualityRule == type)
+            {
+                string technos = GetQualityRuleResultTechnologies(reportData, snapshot, metricId);
+                name = (technos != string.Empty) ? name + " (" + technos + ")" : name;
             }
 
             SimpleResult res = new SimpleResult {name = name, type = type, result = result, resultStr = resStr};

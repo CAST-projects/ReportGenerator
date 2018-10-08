@@ -893,7 +893,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
             var table = component.Content(reportData, config);
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { "Modules", "Avoid using \"nullable\" Columns except in the last position in a Table", "Avoid declaring throwing an exception and not throwing it" });
+            expectedData.AddRange(new List<string> { "Modules", "Avoid using \"nullable\" Columns except in the last position in a Table (JEE,PL/SQL)", "Avoid declaring throwing an exception and not throwing it (JEE,PL/SQL)" });
             expectedData.AddRange(new List<string> { "SHOPIZER/AppliAEPtran/Shopizer_sql content", " ", " " });
             expectedData.AddRange(new List<string> { "    Snap_v1.1.4 - v1.1.4", "1.42", "n/a" });
             expectedData.AddRange(new List<string> { "    Snap_v1.1.3 - v1.1.3", "1.42", "n/a" });
