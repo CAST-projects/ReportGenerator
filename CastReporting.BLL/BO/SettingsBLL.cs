@@ -118,8 +118,17 @@ namespace CastReporting.BLL
                 }
                 else
                 {
-                    // ReSharper disable once RedundantAssignment
-                    state = StatesEnum.ConnectionAlreadyExist;
+                    WSConnection existing = setting.WSConnections?.Where(x => x.Equals(connection)).FirstOrDefault();
+                    if (existing != null && (existing.Login == connection.Login && existing.Password == connection.Password))
+                    {
+                        // ReSharper disable once RedundantAssignment
+                        state = StatesEnum.ConnectionAlreadyExist;
+                    }
+                    else
+                    {
+                        setting.WSConnections.Remove(existing);
+                        setting.WSConnections.Add(connection);
+                    }
                 }
 
 
