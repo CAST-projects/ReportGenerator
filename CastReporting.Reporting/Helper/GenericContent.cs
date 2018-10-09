@@ -6,6 +6,7 @@ using CastReporting.Reporting.ReportingModel;
 using System.Collections.Generic;
 using CastReporting.BLL.Computing.DTO;
 using System.Linq;
+using Cast.Util.Log;
 
 namespace CastReporting.Reporting.Helper
 {
@@ -111,6 +112,8 @@ namespace CastReporting.Reporting.Helper
             int positionViolations = -1;
             List<string> criticalViolations = new List<string>();
             int positionCriticalViolations = -1;
+
+            List<string> metricsToRemove = new List<string>();
 
             Dictionary<Tuple<string, string, string, string>, string> results = new Dictionary<Tuple<string, string, string, string>, string>();
 
@@ -341,31 +344,40 @@ namespace CastReporting.Reporting.Helper
                 {
                     foreach (string _metricId in metrics)
                     {
-                        EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, null, string.Empty,format);
+                        EvolutionResult res = MetricsUtility.GetMetricEvolution(reportData, reportData.CurrentSnapshot, reportData.PreviousSnapshot, _metricId, true, null, string.Empty, format);
                         if (res.name == Constants.No_Value) continue;
                         if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                         foreach (string param in snapshotConfiguration)
                         {
-                            switch (param)
+                            try
                             {
-                                case "CURRENT":
-                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
-                                    break;
-                                case "PREVIOUS":
-                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
-                                    break;
-                                case "EVOL":
-                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
-                                    break;
-                                case "EVOL_PERCENT":
-                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
-                                    break;
-                                default:
-                                    throw new ArgumentOutOfRangeException();
+                                switch (param)
+                                {
+                                    case "CURRENT":
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
+                                        break;
+                                    case "PREVIOUS":
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
+                                        break;
+                                    case "EVOL":
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
+                                        break;
+                                    case "EVOL_PERCENT":
+                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
+                                        break;
+                                    default:
+                                        throw new ArgumentOutOfRangeException();
+                                }
+                            }
+                            catch (ArgumentException e)
+                            {
+                                // When this exception occurs, this is because a metric with same name already exists.
+                                LogHelper.Instance.LogDebug(e.Message);
+                                metricsToRemove.Add(_metricId);
                             }
                         }
                     }
@@ -404,7 +416,16 @@ namespace CastReporting.Reporting.Helper
                                     default:
                                         throw new ArgumentOutOfRangeException();
                                 }
-                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                try
+                                {
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                }
+                                catch (ArgumentException e)
+                                {
+                                    // When this exception occurs, this is because a metric with same name already exists.
+                                    LogHelper.Instance.LogDebug(e.Message);
+                                    metricsToRemove.Add(_metricId);
+                                }
                             }
                         }
                     }
@@ -443,7 +464,16 @@ namespace CastReporting.Reporting.Helper
                                     default:
                                         throw new ArgumentOutOfRangeException();
                                 }
-                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                try
+                                {
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                }
+                                catch (ArgumentException e)
+                                {
+                                    // When this exception occurs, this is because a metric with same name already exists.
+                                    LogHelper.Instance.LogDebug(e.Message);
+                                    metricsToRemove.Add(_metricId);
+                                }
                             }
                         }
                     }
@@ -476,26 +506,39 @@ namespace CastReporting.Reporting.Helper
                             if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                             foreach (string param in snapshotConfiguration)
                             {
-                                switch (param)
+                                try
                                 {
-                                    case "CURRENT":
-                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
-                                        break;
-                                    case "PREVIOUS":
-                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
-                                        break;
-                                    case "EVOL":
-                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
-                                        break;
-                                    case "EVOL_PERCENT":
-                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
-                                        break;
-                                    default:
-                                        throw new ArgumentOutOfRangeException();
+                                    switch (param)
+                                    {
+                                        case "CURRENT":
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
+                                            break;
+
+                                        case "PREVIOUS":
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
+                                            break;
+
+                                        case "EVOL":
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
+                                            break;
+
+                                        case "EVOL_PERCENT":
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
+                                            break;
+
+                                        default:
+                                            throw new ArgumentOutOfRangeException();
+                                    }
+                                }
+                                catch (ArgumentException e)
+                                {
+                                    // When this exception occurs, this is because a metric with same name already exists.
+                                    LogHelper.Instance.LogDebug(e.Message);
+                                    metricsToRemove.Add(_metricId);
                                 }
                             }
                         }
@@ -539,9 +582,17 @@ namespace CastReporting.Reporting.Helper
                                         default:
                                             throw new ArgumentOutOfRangeException();
                                     }
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                    try
+                                    {
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                    }
+                                    catch (ArgumentException e)
+                                    {
+                                        // When this exception occurs, this is because a metric with same name already exists.
+                                        LogHelper.Instance.LogDebug(e.Message);
+                                        metricsToRemove.Add(_metricId);
+                                    }
                                 }
-
                             }
                         }
                     }
@@ -585,7 +636,16 @@ namespace CastReporting.Reporting.Helper
                                         default:
                                             throw new ArgumentOutOfRangeException();
                                     }
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                    try
+                                    {
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                    }
+                                    catch (ArgumentException e)
+                                    {
+                                        // When this exception occurs, this is because a metric with same name already exists.
+                                        LogHelper.Instance.LogDebug(e.Message);
+                                        metricsToRemove.Add(_metricId);
+                                    }
                                 }
                             }
                         }
@@ -619,26 +679,39 @@ namespace CastReporting.Reporting.Helper
                             if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                             foreach (string param in snapshotConfiguration)
                             {
-                                switch (param)
+                                try
                                 {
-                                    case "CURRENT":
-                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
-                                        break;
-                                    case "PREVIOUS":
-                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
-                                        break;
-                                    case "EVOL":
-                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
-                                        break;
-                                    case "EVOL_PERCENT":
-                                        if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
-                                        break;
-                                    default:
-                                        throw new ArgumentOutOfRangeException();
+                                    switch (param)
+                                    {
+                                        case "CURRENT":
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
+                                            break;
+
+                                        case "PREVIOUS":
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
+                                            break;
+
+                                        case "EVOL":
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
+                                            break;
+
+                                        case "EVOL_PERCENT":
+                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
+                                            break;
+
+                                        default:
+                                            throw new ArgumentOutOfRangeException();
+                                    }
+                                }
+                                catch (ArgumentException e)
+                                {
+                                    // When this exception occurs, this is because a metric with same name already exists.
+                                    LogHelper.Instance.LogDebug(e.Message);
+                                    metricsToRemove.Add(_metricId);
                                 }
                             }
                         }
@@ -682,7 +755,16 @@ namespace CastReporting.Reporting.Helper
                                         default:
                                             throw new ArgumentOutOfRangeException();
                                     }
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                    try
+                                    {
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                    }
+                                    catch (ArgumentException e)
+                                    {
+                                        // When this exception occurs, this is because a metric with same name already exists.
+                                        LogHelper.Instance.LogDebug(e.Message);
+                                        metricsToRemove.Add(_metricId);
+                                    }
                                 }
 
                             }
@@ -728,7 +810,16 @@ namespace CastReporting.Reporting.Helper
                                         default:
                                             throw new ArgumentOutOfRangeException();
                                     }
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                    try
+                                    {
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                    }
+                                    catch (ArgumentException e)
+                                    {
+                                        // When this exception occurs, this is because a metric with same name already exists.
+                                        LogHelper.Instance.LogDebug(e.Message);
+                                        metricsToRemove.Add(_metricId);
+                                    }
                                 }
                             }
                         }
@@ -765,26 +856,39 @@ namespace CastReporting.Reporting.Helper
                                 if (positionMetrics != -1) _posResults[positionMetrics] = res.name;
                                 foreach (string param in snapshotConfiguration)
                                 {
-                                    switch (param)
+                                    try
                                     {
-                                        case "CURRENT":
-                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
-                                            break;
-                                        case "PREVIOUS":
-                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
-                                            break;
-                                        case "EVOL":
-                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
-                                            break;
-                                        case "EVOL_PERCENT":
-                                            if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
-                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
-                                            break;
-                                        default:
-                                            throw new ArgumentOutOfRangeException();
+                                        switch (param)
+                                        {
+                                            case "CURRENT":
+                                                if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
+                                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.curResult);
+                                                break;
+
+                                            case "PREVIOUS":
+                                                if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
+                                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.prevResult);
+                                                break;
+
+                                            case "EVOL":
+                                                if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
+                                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolution);
+                                                break;
+
+                                            case "EVOL_PERCENT":
+                                                if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.evolutionPercent);
+                                                break;
+
+                                            default:
+                                                throw new ArgumentOutOfRangeException();
+                                        }
+                                    }
+                                    catch (ArgumentException e)
+                                    {
+                                        // When this exception occurs, this is because a metric with same name already exists.
+                                        LogHelper.Instance.LogDebug(e.Message);
+                                        metricsToRemove.Add(_metricId);
                                     }
                                 }
                             }
@@ -832,7 +936,16 @@ namespace CastReporting.Reporting.Helper
                                             default:
                                                 throw new ArgumentOutOfRangeException();
                                         }
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                        try
+                                        {
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                        }
+                                        catch (ArgumentException e)
+                                        {
+                                            // When this exception occurs, this is because a metric with same name already exists.
+                                            LogHelper.Instance.LogDebug(e.Message);
+                                            metricsToRemove.Add(_metricId);
+                                        }
                                     }
                                 }
                             }
@@ -881,7 +994,16 @@ namespace CastReporting.Reporting.Helper
                                             default:
                                                 throw new ArgumentOutOfRangeException();
                                         }
-                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                        try
+                                        {
+                                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                        }
+                                        catch (ArgumentException e)
+                                        {
+                                            // When this exception occurs, this is because a metric with same name already exists.
+                                            LogHelper.Instance.LogDebug(e.Message);
+                                            metricsToRemove.Add(_metricId);
+                                        }
                                     }
                                 }
                             }
@@ -895,7 +1017,19 @@ namespace CastReporting.Reporting.Helper
                     return null;
                 }
             }
+
             #endregion
+
+            foreach (ObjConfig _t in _posConfig)
+            {
+                if (_t == null) continue;
+                if (_t.Type != "METRICS") continue;
+                foreach (string _metric in metricsToRemove)
+                {
+                    metrics.Remove(_metric);
+                }
+                _t.Parameters = metrics.ToArray();
+            }
 
             #endregion
 
@@ -1065,7 +1199,7 @@ namespace CastReporting.Reporting.Helper
             if (metrics.Contains("HEALTH_FACTOR"))
             {
                 metrics.Remove("HEALTH_FACTOR");
-                metrics.AddRange(new[] {"60011", "60012", "60013", "60014", "60016"});
+                metrics.AddRange(new[] { "60011", "60012", "60013", "60014", "60016" });
             }
             if (metrics.Contains("BUSINESS_CRITERIA"))
             {

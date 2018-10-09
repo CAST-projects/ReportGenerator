@@ -101,19 +101,20 @@ namespace CastReporting.Reporting.Helper
             List<string> technologies = new List<string>();
             int positionTechnologies = -1;
 
+            List<string> metricsToRemove = new List<string>();
             Dictionary<Tuple<string, string, string, string>, string> results = new Dictionary<Tuple<string, string, string, string>, string>();
 
             #region Get Configuration
 
             // get the configuration
             string type0 = options.GetOption("COL1");
-            _posConfig[0] = type0 != null ? new ObjConfig {Type = type0, Parameters = options.GetOption(type0) != null ? options.GetOption(type0).Trim().Split('|') : new string[] { }} : null;
+            _posConfig[0] = type0 != null ? new ObjConfig { Type = type0, Parameters = options.GetOption(type0) != null ? options.GetOption(type0).Trim().Split('|') : new string[] { } } : null;
             string type1 = options.GetOption("COL11");
-            _posConfig[1] = type1 != null ? new ObjConfig {Type = type1, Parameters = options.GetOption(type1) != null ? options.GetOption(type1).Split('|') : new string[] { }} : null;
+            _posConfig[1] = type1 != null ? new ObjConfig { Type = type1, Parameters = options.GetOption(type1) != null ? options.GetOption(type1).Split('|') : new string[] { } } : null;
             string type2 = options.GetOption("ROW1");
-            _posConfig[2] = type2 != null ? new ObjConfig {Type = type2, Parameters = options.GetOption(type2) != null ? options.GetOption(type2).Split('|') : new string[] { }} : null;
+            _posConfig[2] = type2 != null ? new ObjConfig { Type = type2, Parameters = options.GetOption(type2) != null ? options.GetOption(type2).Split('|') : new string[] { } } : null;
             string type3 = options.GetOption("ROW11");
-            _posConfig[3] = type3 != null ? new ObjConfig {Type = type3, Parameters = options.GetOption(type3) != null ? options.GetOption(type3).Split('|') : new string[] { }} : null;
+            _posConfig[3] = type3 != null ? new ObjConfig { Type = type3, Parameters = options.GetOption(type3) != null ? options.GetOption(type3).Split('|') : new string[] { } } : null;
 
             string[] metricsAggregators = options.GetOption("AGGREGATORS")?.Split('|');
 
@@ -161,7 +162,7 @@ namespace CastReporting.Reporting.Helper
                         positionViolations = i;
                         if (_posConfig[i].Parameters.Length == 0 || _posConfig[i].Parameters.Contains("ALL"))
                         {
-                            violations.AddRange(new[] {"TOTAL", "ADDED", "REMOVED"});
+                            violations.AddRange(new[] { "TOTAL", "ADDED", "REMOVED" });
                             _posConfig[i].Parameters = violations.ToArray();
                         }
                         else
@@ -173,7 +174,7 @@ namespace CastReporting.Reporting.Helper
                         positionCriticalViolations = i;
                         if (_posConfig[i].Parameters.Length == 0 || _posConfig[i].Parameters.Contains("ALL"))
                         {
-                            criticalViolations.AddRange(new[] {"TOTAL", "ADDED", "REMOVED"});
+                            criticalViolations.AddRange(new[] { "TOTAL", "ADDED", "REMOVED" });
                             _posConfig[i].Parameters = criticalViolations.ToArray();
                         }
                         else
@@ -217,7 +218,7 @@ namespace CastReporting.Reporting.Helper
                         var metric = metricsAggregated.Keys.FirstOrDefault();
                         var agg = metricsAggregated[metric] ?? string.Empty;
                         metricsAggregated.Clear();
-                        metricsAggregated.Add(metric,agg);
+                        metricsAggregated.Add(metric, agg);
                     }
                 }
                 else
@@ -235,13 +236,13 @@ namespace CastReporting.Reporting.Helper
             // case portfolio : no applications (APPLICATIONS=ALL), no technologies
             if (applications.Count == 0 && technologies.Count == 0)
             {
-                string[] _posResults = {string.Empty, string.Empty, string.Empty, string.Empty};
+                string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
                 if (positionApplications != -1)
                 {
                     _posConfig[positionApplications] = new ObjConfig { Type = "APPLICATIONS", Parameters = new[] { lastApplicationSnapshots.Count + " " + Labels.Applications } };
                     _posResults[positionApplications] = lastApplicationSnapshots.Count + " " + Labels.Applications;
                 }
-                
+
                 // case grade (quality indicator) or value (sizing measure or background fact)
                 if (violations.Count == 0 && criticalViolations.Count == 0)
                 {
@@ -258,9 +259,11 @@ namespace CastReporting.Reporting.Helper
                         {
                             results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.resultStr);
                         }
-                        catch (ArgumentException)
+                        catch (ArgumentException e)
                         {
-                            LogHelper.Instance.LogWarn("Several metrics have the same name. Results will be duplicated in table");
+                            // When this exception occurs, this is because a metric with same name already exists.
+                            LogHelper.Instance.LogDebug(e.Message);
+                            metricsToRemove.Add(_metricId);
                         }
                     }
                 }
@@ -300,7 +303,16 @@ namespace CastReporting.Reporting.Helper
                                 default:
                                     throw new ArgumentOutOfRangeException();
                             }
-                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                            try
+                            {
+                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                            }
+                            catch (ArgumentException e)
+                            {
+                                // When this exception occurs, this is because a metric with same name already exists.
+                                LogHelper.Instance.LogDebug(e.Message);
+                                metricsToRemove.Add(_metricId);
+                            }
                         }
                     }
                 }
@@ -340,7 +352,16 @@ namespace CastReporting.Reporting.Helper
                                 default:
                                     throw new ArgumentOutOfRangeException();
                             }
-                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                            try
+                            {
+                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                            }
+                            catch (ArgumentException e)
+                            {
+                                // When this exception occurs, this is because a metric with same name already exists.
+                                LogHelper.Instance.LogDebug(e.Message);
+                                metricsToRemove.Add(_metricId);
+                            }
                         }
                     }
                 }
@@ -359,7 +380,7 @@ namespace CastReporting.Reporting.Helper
 
             if (applications.Count != 0 && technologies.Count == 0)
             {
-                string[] _posResults = {string.Empty, string.Empty, string.Empty, string.Empty};
+                string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
                 // case grade
                 if (violations.Count == 0 && criticalViolations.Count == 0)
                 {
@@ -376,9 +397,11 @@ namespace CastReporting.Reporting.Helper
                                 results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.resultStr);
 
                             }
-                            catch (ArgumentException)
+                            catch (ArgumentException e)
                             {
-                                LogHelper.Instance.LogWarn("Several metrics have the same name. Results will be duplicated in table");
+                                // When this exception occurs, this is because a metric with same name already exists.
+                                LogHelper.Instance.LogDebug(e.Message);
+                                metricsToRemove.Add(_metricId);
                             }
                         }
                     }
@@ -421,7 +444,16 @@ namespace CastReporting.Reporting.Helper
                                     default:
                                         throw new ArgumentOutOfRangeException();
                                 }
-                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                try
+                                {
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                }
+                                catch (ArgumentException e)
+                                {
+                                    // When this exception occurs, this is because a metric with same name already exists.
+                                    LogHelper.Instance.LogDebug(e.Message);
+                                    metricsToRemove.Add(_metricId);
+                                }
                             }
 
                         }
@@ -436,7 +468,7 @@ namespace CastReporting.Reporting.Helper
                     foreach (string _metricId in metricsAggregated.Keys)
                     {
                         string name = string.Empty;
-                        
+
                         foreach (Application _application in applications)
                         {
                             if (string.IsNullOrEmpty(name) || name != Constants.No_Value)
@@ -444,7 +476,7 @@ namespace CastReporting.Reporting.Helper
                                 name = MetricsUtility.GetMetricName(reportData, lastApplicationSnapshots[_application], _metricId);
                                 if (positionMetrics != -1) _posResults[positionMetrics] = name;
                             }
-                                
+
                             _posResults[positionApplications] = _application.Name;
                             ViolStatMetricIdDTO stat = RulesViolationUtility.GetViolStat(lastApplicationSnapshots[_application], int.Parse(_metricId));
                             foreach (string _violation in criticalViolations)
@@ -467,7 +499,16 @@ namespace CastReporting.Reporting.Helper
                                     default:
                                         throw new ArgumentOutOfRangeException();
                                 }
-                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                try
+                                {
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                }
+                                catch (ArgumentException e)
+                                {
+                                    // When this exception occurs, this is because a metric with same name already exists.
+                                    LogHelper.Instance.LogDebug(e.Message);
+                                    metricsToRemove.Add(_metricId);
+                                }
                             }
                         }
                     }
@@ -505,9 +546,11 @@ namespace CastReporting.Reporting.Helper
                             {
                                 results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.resultStr);
                             }
-                            catch (ArgumentException)
+                            catch (ArgumentException e)
                             {
-                                LogHelper.Instance.LogWarn("Several metrics have the same name. Results will be duplicated in table");
+                                // When this exception occurs, this is because a metric with same name already exists.
+                                LogHelper.Instance.LogDebug(e.Message);
+                                metricsToRemove.Add(_metricId);
                             }
                         }
                     }
@@ -544,7 +587,16 @@ namespace CastReporting.Reporting.Helper
                                     default:
                                         throw new ArgumentOutOfRangeException();
                                 }
-                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                try
+                                {
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                }
+                                catch (ArgumentException e)
+                                {
+                                    // When this exception occurs, this is because a metric with same name already exists.
+                                    LogHelper.Instance.LogDebug(e.Message);
+                                    metricsToRemove.Add(_metricId);
+                                }
                             }
                         }
                     }
@@ -571,17 +623,26 @@ namespace CastReporting.Reporting.Helper
                                         value = format ? stat?.TotalCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.TotalCriticalViolations?.ToString() ?? Constants.No_Value;
                                         break;
                                     case "ADDED":
-                                        if (positionCriticalViolations != -1)  _posResults[positionCriticalViolations] = Labels.AddedCriticalViolations;
+                                        if (positionCriticalViolations != -1) _posResults[positionCriticalViolations] = Labels.AddedCriticalViolations;
                                         value = format ? stat?.AddedCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.AddedCriticalViolations?.ToString() ?? Constants.No_Value;
                                         break;
                                     case "REMOVED":
-                                        if (positionCriticalViolations != -1)  _posResults[positionCriticalViolations] = Labels.RemovedCriticalViolations;
+                                        if (positionCriticalViolations != -1) _posResults[positionCriticalViolations] = Labels.RemovedCriticalViolations;
                                         value = format ? stat?.RemovedCriticalViolations?.ToString("N0") ?? Constants.No_Value : stat?.RemovedCriticalViolations?.ToString() ?? Constants.No_Value;
                                         break;
                                     default:
                                         throw new ArgumentOutOfRangeException();
                                 }
-                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                try
+                                {
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                }
+                                catch (ArgumentException e)
+                                {
+                                    // When this exception occurs, this is because a metric with same name already exists.
+                                    LogHelper.Instance.LogDebug(e.Message);
+                                    metricsToRemove.Add(_metricId);
+                                }
                             }
                         }
                     }
@@ -619,9 +680,11 @@ namespace CastReporting.Reporting.Helper
                                 {
                                     results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), res.resultStr);
                                 }
-                                catch (ArgumentException)
+                                catch (ArgumentException e)
                                 {
-                                    LogHelper.Instance.LogWarn("Several metrics have the same name. Results will be duplicated in table");
+                                    // When this exception occurs, this is because a metric with same name already exists.
+                                    LogHelper.Instance.LogDebug(e.Message);
+                                    metricsToRemove.Add(_metricId);
                                 }
                             }
                         }
@@ -663,7 +726,16 @@ namespace CastReporting.Reporting.Helper
                                         default:
                                             throw new ArgumentOutOfRangeException();
                                     }
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                    try
+                                    {
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                    }
+                                    catch (ArgumentException e)
+                                    {
+                                        // When this exception occurs, this is because a metric with same name already exists.
+                                        LogHelper.Instance.LogDebug(e.Message);
+                                        metricsToRemove.Add(_metricId);
+                                    }
                                 }
                             }
                         }
@@ -704,7 +776,16 @@ namespace CastReporting.Reporting.Helper
                                         default:
                                             throw new ArgumentOutOfRangeException();
                                     }
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                    try
+                                    {
+                                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                                    }
+                                    catch (ArgumentException e)
+                                    {
+                                        // When this exception occurs, this is because a metric with same name already exists.
+                                        LogHelper.Instance.LogDebug(e.Message);
+                                        metricsToRemove.Add(_metricId);
+                                    }
                                 }
                             }
                         }
@@ -718,6 +799,17 @@ namespace CastReporting.Reporting.Helper
             }
 
             #endregion
+
+            foreach (ObjConfig _t in _posConfig)
+            {
+                if (_t == null) continue;
+                if (_t.Type != "METRICS") continue;
+                foreach (string _metric in metricsToRemove)
+                {
+                    metricsAggregated.Remove(_metric);
+                }
+                _t.Parameters = metricsAggregated.Keys.ToArray();
+            }
 
             #endregion
 
@@ -854,17 +946,17 @@ namespace CastReporting.Reporting.Helper
 
             if (metrics.Contains("HEALTH_FACTOR"))
             {
-                string[] metricList = {"60011", "60012", "60013", "60014", "60016"};
+                string[] metricList = { "60011", "60012", "60013", "60014", "60016" };
                 string agg;
                 try
                 {
                     agg = aggregators != null ? aggregators[metrics.IndexOf("HEALTH_FACTOR")] : "AVERAGE";
                 }
-                catch (KeyNotFoundException )
+                catch (KeyNotFoundException)
                 {
                     agg = "AVERAGE";
                 }
-                
+
                 foreach (string _m in metricList)
                 {
                     metricsAggregated.Add(_m, agg);
@@ -915,7 +1007,7 @@ namespace CastReporting.Reporting.Helper
                 string[] metricList = null;
                 var bizRes = reportData.Applications.FirstOrDefault()?.Snapshots.FirstOrDefault()?.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == 60017);
                 if (bizRes != null)
-                     metricList = bizRes.CriticalRulesViolation.Select(_ => _.Reference.Key.ToString()).ToArray();
+                    metricList = bizRes.CriticalRulesViolation.Select(_ => _.Reference.Key.ToString()).ToArray();
                 string agg;
                 try
                 {
