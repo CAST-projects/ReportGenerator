@@ -293,6 +293,8 @@ namespace CastReporting.UnitTest.Reporting
                     return new List<string> { "1596", "4656" };
                 case "CWE":
                     return new List<string> { "7424" };
+                case "CISQ":
+                    return new List<string> {"7388", "7558" };
                 default:
                     return null;
             }
