@@ -639,4 +639,7 @@
   <data name="ViolationPath" xml:space="preserve">
     <value>Chemin de violation</value>
   </data>
+  <data name="ComplianceScorePercent" xml:space="preserve">
+    <value>Score de conformité (%)</value>
+  </data>
 </root>

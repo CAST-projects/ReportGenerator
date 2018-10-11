@@ -55,21 +55,34 @@ namespace CastReporting.UnitTest.Reporting
         [DeploymentItem(@".\Data\BaseQI60017.json", "Data")]
         public IEnumerable<RuleDetails> GetRulesDetails(string domain, int businessCriteria, long snapshotId)
         {
-            IEnumerable<RuleDetails> res = businessCriteria == 60011 ? TestUtility.GetSampleResult<RuleDetails>(@".\Data\BaseQI60011.json").ToList() 
-                : TestUtility.GetSampleResult<RuleDetails>(@".\Data\BaseQI60017.json").ToList();
+            switch (businessCriteria)
+            {
+                case 60011:
+                    return TestUtility.GetSampleResult<RuleDetails>(@".\Data\BaseQI60011.json").ToList();
 
-            return res;
+                default:
+                    return TestUtility.GetSampleResult<RuleDetails>(@".\Data\BaseQI60017.json").ToList();
+            }
         }
 
         public IEnumerable<Contributor> GetRulesInTechnicalCriteria(string domain, string technicalCriteria, long snapshotHRef)
         {
-
-            IEnumerable<Contributor> res = new List<Contributor>
+            switch (technicalCriteria)
             {
-                new Contributor() {Key = 7424}, 
-                new Contributor() {Key = 7846}
-            };
-            return res;
+                case "66070":
+                    return new List<Contributor>
+                    {
+                        new Contributor() {Key = 7132, Critical = true},
+                        new Contributor() {Key = 7846, Critical = false}
+                    };
+                default:
+                    return new List<Contributor>
+                    {
+                        new Contributor() {Key = 7424},
+                        new Contributor() {Key = 7846}
+                    };
+
+            }
         }
     }
 }
