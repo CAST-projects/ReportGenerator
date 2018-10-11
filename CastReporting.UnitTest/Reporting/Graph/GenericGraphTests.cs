@@ -753,7 +753,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
 
             var data = table.Data.ToList();
             Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
-            Assert.IsFalse(data.Contains("Class naming convention - case control"));
+            Assert.IsFalse(data.Contains("Class naming convention - case control (550)"));
             Assert.IsFalse(data.Contains("Number of Code Lines"));
             Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
             Assert.IsFalse(data.Contains("Efficiency"));
@@ -791,7 +791,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
 
             var data = table.Data.ToList();
             Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
-            Assert.IsFalse(data.Contains("Class naming convention - case control"));
+            Assert.IsFalse(data.Contains("Class naming convention - case control (550)"));
             Assert.IsFalse(data.Contains("Number of Code Lines"));
             Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
             Assert.IsFalse(data.Contains("Efficiency"));
@@ -829,7 +829,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
 
             var data = table.Data.ToList();
             Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
-            Assert.IsFalse(data.Contains("Class naming convention - case control"));
+            Assert.IsFalse(data.Contains("Class naming convention - case control (550)"));
             Assert.IsFalse(data.Contains("Number of Code Lines"));
             Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
             Assert.IsTrue(data.Contains("Efficiency"));
@@ -867,7 +867,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
 
             var data = table.Data.ToList();
             Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
-            Assert.IsFalse(data.Contains("Class naming convention - case control"));
+            Assert.IsFalse(data.Contains("Class naming convention - case control (550)"));
             Assert.IsFalse(data.Contains("Number of Code Lines"));
             Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
             Assert.IsFalse(data.Contains("Efficiency"));
@@ -905,8 +905,8 @@ namespace CastReporting.UnitTest.Reporting.Graph
 
             var data = table.Data.ToList();
             Assert.IsTrue(data.Contains("ADGAutoSnap_Dream Team_4 - 4"));
-            Assert.IsTrue(data.Contains("Class naming convention - case control"));
-            Assert.IsTrue(data.Contains("My Critical quality rule"));
+            Assert.IsTrue(data.Contains("Class naming convention - case control (550)"));
+            Assert.IsTrue(data.Contains("My Critical quality rule (556)"));
             Assert.IsFalse(data.Contains("Number of Code Lines"));
             Assert.IsFalse(data.Contains("OMG-Compliant Automated Function Points"));
             Assert.IsFalse(data.Contains("Efficiency"));

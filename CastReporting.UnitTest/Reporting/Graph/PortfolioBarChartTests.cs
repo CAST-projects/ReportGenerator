@@ -111,7 +111,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { " ", "Avoid Tables with more than 20 columns on an OLTP system" });
+            expectedData.AddRange(new List<string> { " ", "Avoid Tables with more than 20 columns on an OLTP system (7856)" });
             expectedData.AddRange(new List<string> { "AppliAEPtran", "2.88888888888889" });
             TestUtility.AssertTableContent(table, expectedData, 2, 2);
         }
