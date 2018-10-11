@@ -45,9 +45,9 @@ namespace CastReporting.Reporting.Block.Table
 
             var headers = new HeaderDefinition();
             headers.Append(Labels.RuleName);
-            headers.Append(Labels.ViolationsCount);
-            headers.Append(Labels.ViolationsAdded);
-            headers.Append(Labels.ViolationsRemoved);
+            headers.Append(Labels.TotalViolations);
+            headers.Append(Labels.AddedViolations);
+            headers.Append(Labels.RemovedViolations);
             headers.Append(Labels.ComplianceScorePercent, displayCompliance);
 
             var dataRow = headers.CreateDataRow();
@@ -66,9 +66,9 @@ namespace CastReporting.Reporting.Block.Table
                     var detailResult = result.DetailResult;
                     if (detailResult == null) continue;
                     dataRow.Set(Labels.RuleName, (result.Reference?.Name + " (" + result.Reference?.Key + ")" ).NAIfEmpty());
-                    dataRow.Set(Labels.ViolationsCount, detailResult.ViolationRatio.FailedChecks.HasValue ? detailResult.ViolationRatio?.FailedChecks.Value.ToString("N0") : Constants.No_Value);
-                    dataRow.Set(Labels.ViolationsAdded, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
-                    dataRow.Set(Labels.ViolationsRemoved, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
+                    dataRow.Set(Labels.TotalViolations, detailResult.ViolationRatio.FailedChecks.HasValue ? detailResult.ViolationRatio?.FailedChecks.Value.ToString("N0") : Constants.No_Value);
+                    dataRow.Set(Labels.AddedViolations, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
+                    dataRow.Set(Labels.RemovedViolations, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
                     if (displayCompliance)
                     {
                         dataRow.Set(Labels.ComplianceScorePercent, detailResult.ViolationRatio?.Ratio.FormatPercent(false));
