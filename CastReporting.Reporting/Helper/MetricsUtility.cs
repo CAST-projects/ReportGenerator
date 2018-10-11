@@ -26,6 +26,10 @@ namespace CastReporting.Reporting
                             snapshot.TechnicalCriteriaResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault()) ??
                            snapshot.QualityRulesResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault()) ??
                           snapshot.SizingMeasuresResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault();
+            if (snapshot.QualityRulesResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault() != null)
+            {
+                name = name + " (" + metricId + ")";
+            }
             if (name != null) return name;
             var bfResult = reportData.SnapshotExplorer.GetBackgroundFacts(snapshot.Href, metricId, true, true).FirstOrDefault();
             if (bfResult == null || !bfResult.ApplicationResults.Any()) return Constants.No_Value;
@@ -222,6 +226,10 @@ namespace CastReporting.Reporting
                     throw new ArgumentOutOfRangeException();
             }
 
+            if (metricType.QualityRule == type)
+            {
+                name = name + " (" + metricId + ")";
+            }
             SimpleResult res = new SimpleResult {name = name, type = type, result = result, resultStr = resStr};
             return res;
         }
