@@ -40,14 +40,15 @@ namespace CastReporting.Reporting.Block.Table
             {
                 critical = options.GetOption("CRITICAL").Equals("true");
             }
-            bool sortedByCompliance = options.GetOption("SORTED", "TOTAL").Equals("RATIO");
+            bool displayCompliance = options.GetBoolOption("COMPLIANCE");
+            bool sortedByCompliance = displayCompliance && options.GetOption("SORTED", "TOTAL").Equals("COMPLIANCE");
 
             var headers = new HeaderDefinition();
             headers.Append(Labels.RuleName);
             headers.Append(Labels.ViolationsCount);
             headers.Append(Labels.ViolationsAdded);
             headers.Append(Labels.ViolationsRemoved);
-            headers.Append(Labels.Compliance);
+            headers.Append(Labels.ComplianceScorePercent, displayCompliance);
 
             var dataRow = headers.CreateDataRow();
             var data = new List<string>();
@@ -64,11 +65,14 @@ namespace CastReporting.Reporting.Block.Table
                 {
                     var detailResult = result.DetailResult;
                     if (detailResult == null) continue;
-                    dataRow.Set(Labels.RuleName, result.Reference?.Name.NAIfEmpty());
+                    dataRow.Set(Labels.RuleName, (result.Reference?.Name + " (" + result.Reference?.Key + ")" ).NAIfEmpty());
                     dataRow.Set(Labels.ViolationsCount, detailResult.ViolationRatio.FailedChecks.HasValue ? detailResult.ViolationRatio?.FailedChecks.Value.ToString("N0") : Constants.No_Value);
                     dataRow.Set(Labels.ViolationsAdded, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
                     dataRow.Set(Labels.ViolationsRemoved, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
-                    dataRow.Set(Labels.Compliance, detailResult.ViolationRatio?.Ratio.FormatPercent(false));
+                    if (displayCompliance)
+                    {
+                        dataRow.Set(Labels.ComplianceScorePercent, detailResult.ViolationRatio?.Ratio.FormatPercent(false));
+                    }
                     data.AddRange(dataRow);
                 }
             }

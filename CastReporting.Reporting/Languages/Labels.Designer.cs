@@ -358,6 +358,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Compliance Score (%).
+        /// </summary>
+        public static string ComplianceScorePercent {
+            get {
+                return ResourceManager.GetString("ComplianceScorePercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Average.
         /// </summary>
         public static string CplxAverage {

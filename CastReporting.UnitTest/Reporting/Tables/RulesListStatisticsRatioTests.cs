@@ -14,11 +14,6 @@ namespace CastReporting.UnitTest.Reporting.Tables
             TestUtility.SetCulture("en-US");
         }
 
-        // TODO :
-        // - test with sorted by ratio / sorted by compliance / not sorted
-        // - test for metrics by standard tag / bc / tc / metric ids
-        // - test with critical / nor critical
-
         [TestMethod]
         [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
         public void TestCriticalTCMetrics()
@@ -48,11 +43,11 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var expectedData = new List<string>
             {
-                "Rule Name","# Violations","Added","Removed","Compliance",
-                "Action Mappings should have few forwards","77","8","2","63.4 %"
+                "Rule Name","# Violations","Added","Removed",
+                "Action Mappings should have few forwards (7132)","77","8","2"
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            TestUtility.AssertTableContent(table, expectedData, 4, 2);
 
         }
 
@@ -85,11 +80,12 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var expectedData = new List<string>
             {
-                "Rule Name","# Violations","Added","Removed","Compliance",
-                "Avoid Methods with a very low comment/code ratio","128","8","2","63.4 %",
-                "Action Mappings should have few forwards","77","8","2","63.4 %"            };
+                "Rule Name","# Violations","Added","Removed",
+                "Avoid Methods with a very low comment/code ratio (7846)","128","8","2",
+                "Action Mappings should have few forwards (7132)","77","8","2"
+            };
 
-            TestUtility.AssertTableContent(table, expectedData, 5, 3);
+            TestUtility.AssertTableContent(table, expectedData, 4, 3);
 
         }
 
@@ -116,16 +112,17 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"METRICS","7846|7132|7424" },
-                {"SORTED","RATIO" }
+                {"COMPLIANCE", "true" },
+                {"SORTED","COMPLIANCE" }
             };
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>
             {
-                "Rule Name","# Violations","Added","Removed","Compliance",
-                "Avoid using SQL queries inside a loop","86","2","3","32.6 %",
-                "Avoid Methods with a very low comment/code ratio","128","8","2","63.4 %",
-                "Action Mappings should have few forwards","77","8","2","63.4 %"
+                "Rule Name","# Violations","Added","Removed","Compliance Score (%)",
+                "Avoid using SQL queries inside a loop (7424)","86","2","3","32.6 %",
+                "Avoid Methods with a very low comment/code ratio (7846)","128","8","2","63.4 %",
+                "Action Mappings should have few forwards (7132)","77","8","2","63.4 %"
             };
 
             TestUtility.AssertTableContent(table, expectedData, 5, 4);
@@ -155,15 +152,16 @@ namespace CastReporting.UnitTest.Reporting.Tables
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"METRICS","CISQ" },
+                {"COMPLIANCE", "true" },
                 {"SORTED","TOTAL" }
             };
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>
             {
-                "Rule Name","# Violations","Added","Removed","Compliance",
-                "Avoid artifacts having recursive calls","12","8","2","63.4 %",
-                "Avoid accessing data by using the position and length","6","8","2","63.4 %"
+                "Rule Name","# Violations","Added","Removed","Compliance Score (%)",
+                "Avoid artifacts having recursive calls (7388)","12","8","2","63.4 %",
+                "Avoid accessing data by using the position and length (7558)","6","8","2","63.4 %"
             };
 
             TestUtility.AssertTableContent(table, expectedData, 5, 3);
@@ -200,11 +198,11 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var expectedData = new List<string>
             {
-                "Rule Name","# Violations","Added","Removed","Compliance",
-                "Action Mappings should have few forwards","77","8","2","63.4 %"
+                "Rule Name","# Violations","Added","Removed",
+                "Action Mappings should have few forwards (7132)","77","8","2"
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 5, 2);
+            TestUtility.AssertTableContent(table, expectedData, 4, 2);
 
         }
 

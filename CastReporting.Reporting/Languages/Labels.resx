@@ -639,4 +639,7 @@
   <data name="ViolationPath" xml:space="preserve">
     <value>Violation Path</value>
   </data>
+  <data name="ComplianceScorePercent" xml:space="preserve">
+    <value>Compliance Score (%)</value>
+  </data>
 </root>
