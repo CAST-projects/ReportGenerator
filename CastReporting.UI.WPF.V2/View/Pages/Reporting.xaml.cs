@@ -67,12 +67,13 @@ namespace CastReporting.UI.WPF.View
         {
             ReportingVM _reportingVm = (DataContext as ReportingVM);
 
+            if (_reportingVm == null) return;
             SaveFileDialog dialog = new SaveFileDialog
             {
-                Filter = (_reportingVm?.SelectedTemplateFile.Extension != ".xlsx") ?
-                    string.Format("*{0}, *.pdf|*{0};*.pdf", _reportingVm?.SelectedTemplateFile.Extension)
-                    : string.Format("*{0}|*{0}", _reportingVm?.SelectedTemplateFile.Extension),
-                DefaultExt = _reportingVm?.SelectedTemplateFile.Extension
+                Filter = (_reportingVm.SelectedTemplateFile.Extension != ".xlsx") ?
+                    string.Format("*{0}, *.pdf|*{0};*.pdf", _reportingVm.SelectedTemplateFile.Extension)
+                    : string.Format("*{0}|*{0}", _reportingVm.SelectedTemplateFile.Extension),
+                DefaultExt = _reportingVm.SelectedTemplateFile.Extension
             };
 
 
@@ -88,7 +89,7 @@ namespace CastReporting.UI.WPF.View
             }
 
             var result = dialog.ShowDialog();
-            var _vm = DataContext as ReportingVM;
+            var _vm = (ReportingVM) DataContext;
             if (result != null && result.Value)
             {
                 settings.ReportingParameter.GeneratedFilePath = Path.GetDirectoryName(dialog.FileName);
