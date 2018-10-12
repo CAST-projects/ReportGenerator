@@ -835,6 +835,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à No violation.
+        /// </summary>
+        public static string NoViolation {
+            get {
+                return ResourceManager.GetString("NoViolation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Obj..
         /// </summary>
         public static string Obj {

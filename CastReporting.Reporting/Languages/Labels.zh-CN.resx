@@ -642,4 +642,7 @@
   <data name="ComplianceScorePercent" xml:space="preserve">
     <value>合规分数（％）</value>
   </data>
+  <data name="NoViolation" xml:space="preserve">
+    <value>没有违规</value>
+  </data>
 </root>

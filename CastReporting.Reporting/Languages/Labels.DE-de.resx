@@ -642,4 +642,7 @@
   <data name="ComplianceScorePercent" xml:space="preserve">
     <value>Übereinstimmungswert (%)</value>
   </data>
+  <data name="NoViolation" xml:space="preserve">
+    <value>Keine Verletzung</value>
+  </data>
 </root>
