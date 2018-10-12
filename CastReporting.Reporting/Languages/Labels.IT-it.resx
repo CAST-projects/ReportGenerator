@@ -642,4 +642,7 @@
   <data name="ComplianceScorePercent" xml:space="preserve">
     <value>Punteggio di conformità (%)</value>
   </data>
+  <data name="NoViolation" xml:space="preserve">
+    <value>Nessuna violazione</value>
+  </data>
 </root>

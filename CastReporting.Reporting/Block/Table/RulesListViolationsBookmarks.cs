@@ -107,6 +107,11 @@ namespace CastReporting.Reporting.Block.Table
                     }
 
                 }
+
+                if (rowData.Count <= 1)
+                {
+                    rowData.Add(Labels.NoViolation);
+                }
             }
             else
             {
