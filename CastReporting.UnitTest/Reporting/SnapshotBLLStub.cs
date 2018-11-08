@@ -301,6 +301,12 @@ namespace CastReporting.UnitTest.Reporting
             
         }
 
+        [DeploymentItem(@".\Data\Snapshot_StdTagResultsCWE.json", "Data")]
+        public IEnumerable<Result> GetQualityStandardsTagsResults(string snapshotHref, string standardTag)
+        {
+            IEnumerable<Result> res = TestUtility.GetSampleResult<Result>(@".\Data\Snapshot_StdTagResultsCWE.json").ToList();
+            return res;
+        }
 
         [DeploymentItem(@".\Data\DreamTeamSnap4Sample12.json", "Data")]
         public IEnumerable<Result> GetSizingMeasureResults(string snapshotHref, string sizingMeasure)

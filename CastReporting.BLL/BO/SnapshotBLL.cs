@@ -321,6 +321,22 @@ namespace CastReporting.BLL
             }
         }
 
+        public IEnumerable<Result> GetQualityStandardsTagsResults(string snapshotHref, string standardTag)
+        {
+            using (var castRepsitory = GetRepository())
+            {
+                try
+                {
+                    return VersionUtil.IsAdgVersion833Compliant(_Snapshot.AdgVersion) ? castRepsitory.GetResultsQualityStandardsTags(snapshotHref, standardTag) : null;
+                }
+                catch (System.Net.WebException ex)
+                {
+                    LogHelper.Instance.LogInfo(ex.Message);
+                    return null;
+                }
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>

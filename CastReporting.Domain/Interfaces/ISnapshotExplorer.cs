@@ -36,6 +36,8 @@ namespace CastReporting.Domain.Interfaces
 
         IEnumerable<Result> GetQualityStandardsRulesResults(string snapshotHref, string standardTag);
 
+        IEnumerable<Result> GetQualityStandardsTagsResults(string snapshotHref, string standardTag);
+
         List<string> GetQualityStandardsRulesList(string snapshotHref, string standardTag);
 
         IEnumerable<MetricTopArtifact> GetMetricTopArtefact(string snapshotHref, string ruleId, int count);

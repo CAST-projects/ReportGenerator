@@ -81,6 +81,8 @@ namespace CastReporting.Repositories.Interfaces
         /// <returns></returns>
         IEnumerable<Result> GetResultsQualityStandardsRules(string hRef, string stgTagParam, string modulesParam, string technologiesParam);
 
+        IEnumerable<Result> GetResultsQualityStandardsTags(string hRef, string stgTagParam);
+
         /// <summary>
         /// 
         /// </summary>
