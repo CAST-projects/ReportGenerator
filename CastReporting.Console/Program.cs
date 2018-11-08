@@ -128,7 +128,7 @@ namespace CastReporting.Console
 
                         if (!commonBLL.CheckService())
                         {
-                            help = $"Webservice can't be access or is bad formatted. Url:{arguments.Webservice.Name} Username:{arguments.Username.Name} Password:{arguments.Password.Name}";
+                            help = $"Webservice can't be access or is bad formatted. Url:{arguments.Webservice.Name}";
                             return string.Empty;
                         }
                     }
@@ -377,7 +377,7 @@ namespace CastReporting.Console
                     {
                         if (!commonBLL.CheckService())
                         {
-                            help = $"Webservice can't be access or is bad formatted. Url:{arguments.Webservice.Name} Username:{arguments.Username.Name} Password:{arguments.Password.Name}";
+                            help = $"Webservice can't be access or is bad formatted. Url:{arguments.Webservice.Name}";
                             return string.Empty;
                         }
                     }
