@@ -64,6 +64,7 @@ namespace CastReporting.Repositories
         private const string _query_component_source_code = "{0}/components/{1}/snapshots/{2}/source-codes";
         private const string _query_file_content = "{0}/local-sites/{1}/file-contents/{2}?start-line={3}&end-line={4}";
         private const string _query_component_type = "{0}/components/{1}/snapshots/{2}";
+        private const string _query_quality_standards_evolution = "{0}/results?quality-standards=(c:{1})&select=(evolutionSummary)";
 
         #endregion CONSTANTS
 
@@ -496,6 +497,20 @@ namespace CastReporting.Repositories
 
             return CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Result> ICastRepsitory.GetResultsQualityStandardsTags(string hRef, string stgTagParam)
+        {
+            string query = _query_quality_standards_evolution;
+
+            string relativeURL = string.Format(query, hRef, stgTagParam);
+
+            return CallWS<IEnumerable<Result>>(relativeURL, RequestComplexity.Standard);
+        }
+
         /// <summary>
         /// 
         /// </summary>
