@@ -14,6 +14,7 @@
  *
  */
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
@@ -43,12 +44,21 @@ namespace CastReporting.Reporting.Block.Table
             bool displayCompliance = options.GetBoolOption("COMPLIANCE");
             bool sortedByCompliance = displayCompliance && options.GetOption("SORTED", "TOTAL").Equals("COMPLIANCE");
 
+            // cellProps will contains the properties of the cell (background color) linked to the data by position in the list stored with cellidx.
+            List<CellAttributes> cellProps = new List<CellAttributes>();
+            int cellidx = 0;
+
             var headers = new HeaderDefinition();
             headers.Append(Labels.RuleName);
+            cellidx++;
             headers.Append(Labels.TotalVulnerabilities);
+            cellidx++;
             headers.Append(Labels.AddedVulnerabilities);
+            cellidx++;
             headers.Append(Labels.RemovedVulnerabilities);
+            cellidx++;
             headers.Append(Labels.ComplianceScorePercent, displayCompliance);
+            if (displayCompliance) cellidx++;
 
             var dataRow = headers.CreateDataRow();
             var data = new List<string>();
@@ -65,13 +75,40 @@ namespace CastReporting.Reporting.Block.Table
                 {
                     var detailResult = result.DetailResult;
                     if (detailResult == null) continue;
+                    int nbViolations = detailResult.ViolationRatio.FailedChecks ?? 0;
+
                     dataRow.Set(Labels.RuleName, (result.Reference?.Name + " (" + result.Reference?.Key + ")" ).NAIfEmpty());
+                    if (nbViolations > 0)
+                    {
+                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                    }
+                    cellidx++;
                     dataRow.Set(Labels.TotalVulnerabilities, detailResult.ViolationRatio.FailedChecks.HasValue ? detailResult.ViolationRatio?.FailedChecks.Value.ToString("N0") : Constants.No_Value);
+                    if (nbViolations > 0)
+                    {
+                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                    }
+                    cellidx++;
                     dataRow.Set(Labels.AddedVulnerabilities, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
+                    if (nbViolations > 0)
+                    {
+                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                    }
+                    cellidx++;
                     dataRow.Set(Labels.RemovedVulnerabilities, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
+                    if (nbViolations > 0)
+                    {
+                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                    }
+                    cellidx++;
                     if (displayCompliance)
                     {
                         dataRow.Set(Labels.ComplianceScorePercent, detailResult.ViolationRatio?.Ratio.FormatPercent(false));
+                        if (nbViolations > 0)
+                        {
+                            cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                        }
+                        cellidx++;
                     }
                     data.AddRange(dataRow);
                 }
@@ -92,7 +129,8 @@ namespace CastReporting.Reporting.Block.Table
                 HasColumnHeaders = true,
                 HasRowHeaders = false,
                 NbColumns = headers.Count,
-                NbRows = data.Count / headers.Count
+                NbRows = data.Count / headers.Count,
+                CellsAttributes = cellProps
             };
         }
     }
