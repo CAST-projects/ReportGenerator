@@ -1,0 +1,562 @@
+﻿[
+  {
+    "standard": "OWASP",
+    "id": "A1-2013",
+    "name": "Injection",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A1-2017",
+    "name": "Injection",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A2-2017",
+    "name": "Broken Authentication",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A3-2013",
+    "name": "Cross-Site Scripting (XSS)",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A3-2017",
+    "name": "Sensitive Data Exposure",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A6-2013",
+    "name": "Sensitive Data Exposure",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A6-2017",
+    "name": "Security Misconfiguration",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A7-2017",
+    "name": "Cross-Site Scripting (XSS)",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A9-2013",
+    "name": "Using Components with Known Vulnerabilities",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A9-2017",
+    "name": "Using Components with Known Vulnerabilities",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-GDPR",
+    "name": "General Data Protection Regulation",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-1",
+    "name": "Control transferred outside of switch statement",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-4",
+    "name": "Excessive coupling",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-6",
+    "name": "Excessive commented-out code",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-7",
+    "name": "Circular dependencies among modules",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-8",
+    "name": "Excessively large file",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-11",
+    "name": "Excessive cyclomatic complexity",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-13",
+    "name": "Excessive parameterization",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-15",
+    "name": "Public data element",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-16",
+    "name": "Cross element data access",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-17",
+    "name": "Excessive inheritance levels",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-18",
+    "name": "Excessive child classes",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-19",
+    "name": "Element redundancy",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-20",
+    "name": "Dead code",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCPEM-PRF-4",
+    "name": "Complex read/write access",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCPEM-PRF-8",
+    "name": "Resource-consuming operation in loop",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCPEM-PRF-9",
+    "name": "Excessive data queries in non-stored procedure",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCPEM-PRF-10",
+    "name": "Excessive data queries in client-side code",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCPEM-PRF-12",
+    "name": "Excessively large data element",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-CWE-252-data",
+    "name": "Unchecked return parameter from data handling operations",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-CWE-396",
+    "name": "Catch of overly broad exception types",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-CWE-397",
+    "name": "Throw of overly broad exception types",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-CWE-674",
+    "name": "Recursion",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-CWE-772",
+    "name": "Unreleased resource",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-RLB-1",
+    "name": "Empty exception block",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-RLB-2",
+    "name": "Missing serialization control element",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-RLB-4",
+    "name": "Persistent data without proper comparison controls",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-RLB-5",
+    "name": "Improper runtime resource management",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-RLB-14",
+    "name": "Parent class referencing child class",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-RLB-18",
+    "name": "Hard-coded network resource information",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-RLB-19",
+    "name": "Synchronous call missing timeout",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCSM-CWE-22",
+    "name": "Improper path traversal",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCSM-CWE-78",
+    "name": "OS command injection",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCSM-CWE-79",
+    "name": "Cross-site scripting",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCSM-CWE-89",
+    "name": "SQL injection",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCSM-CWE-99",
+    "name": "Unsanitized user input used to access a named resource",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCSM-CWE-134",
+    "name": "Improper format string neutralization",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCSM-CWE-397",
+    "name": "Throw of overly broad exception types",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCSM-CWE-681",
+    "name": "Incompatible numeric type conversion",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "COMMAND-INJECTION",
+    "name": "Command Injection",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "CROSS-SITE-VULNERABILITY",
+    "name": "Cross Site Vulnerability",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-22",
+    "name": "Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-23",
+    "name": "Relative Path Traversal",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-73",
+    "name": "External Control of File Name or Path",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-78",
+    "name": "Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-79",
+    "name": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-88",
+    "name": "Argument Injection or Modification",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-89",
+    "name": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-90",
+    "name": "Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-91",
+    "name": "XML Injection (aka Blind XPath Injection)",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-111",
+    "name": "Direct Use of Unsafe JNI",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-117",
+    "name": "Improper Output Neutralization for Logs",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-134",
+    "name": "Use of Externally-Controlled Format String",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-259",
+    "name": "Use of Hard-coded Password",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-327",
+    "name": "Use of a Broken or Risky Cryptographic Algorithm",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-330",
+    "name": "Use of Insufficiently Random Values",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-382",
+    "name": "J2EE Bad Practices: Use of System.exit()",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-391",
+    "name": "Unchecked Error Condition",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-396",
+    "name": "Declaration of Catch for Generic Exception",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-404",
+    "name": "Improper Resource Shutdown or Release",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-501",
+    "name": "Trust Boundary Violation",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-580",
+    "name": "clone() Method Without super.clone()",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-586",
+    "name": "Explicit Call to Finalize()",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-600",
+    "name": "Uncaught Exception in Servlet ",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-614",
+    "name": "Sensitive Cookie in HTTPS Session Without 'Secure' Attribute",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-681",
+    "name": "Incorrect Conversion between Numeric Types",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-780",
+    "name": "Use of RSA Algorithm without OAEP",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-798",
+    "name": "Use of Hard-coded Credentials",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "DATA-SAFETY",
+    "name": "Data Safety",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "SQL-INJECTION",
+    "name": "SQL Injection",
+    "reference": null,
+    "description": null
+  }
+]

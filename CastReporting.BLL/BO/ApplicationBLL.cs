@@ -128,6 +128,29 @@ namespace CastReporting.BLL
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetStandardTags()
+        {
+
+            using (var castRepsitory = GetRepository())
+            {
+                try
+                {
+                    if (VersionUtil.IsAdgVersion833Compliant(_Application.Version))
+                    {
+                        _Application.StandardTags = castRepsitory.GetQualityStandardsTagsDoc(_Application.Href);
+                    }
+                }
+                catch (System.Net.WebException ex)
+                {
+                    LogHelper.Instance.LogInfo(ex.Message);
+                }
+
+            }
+        }
+
 
         /// <summary>
         /// 
@@ -147,9 +170,14 @@ namespace CastReporting.BLL
                 Task taskSizingMeasure = new Task(() => applicationBLL.SetSizingMeasure());
                 taskSizingMeasure.Start();
 
+                //Build Standard Tags doc
+                Task taskStandardTags = new Task(() => applicationBLL.SetStandardTags());
+                taskStandardTags.Start();
+
 
                 taskQualityIndicators.Wait();
                 taskSizingMeasure.Wait();
+                taskStandardTags.Wait();
             }
 
         }
