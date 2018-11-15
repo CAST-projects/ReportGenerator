@@ -42,7 +42,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var expectedData = new List<string>
             {
-                "CWE-2011-Top25","Total Violations","Added Violations","Removed Violations",
+                "CWE-2011-Top25","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities",
                 "CWE-22","0","0","0",
                 "CWE-78","7","7","5",
                 "CWE-79","7","7","2"

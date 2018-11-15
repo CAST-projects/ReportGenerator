@@ -34,9 +34,9 @@ namespace CastReporting.Reporting.Block.Table
 
             var headers = new HeaderDefinition();
             headers.Append(standard);
-            headers.Append(Labels.TotalViolations);
-            headers.Append(Labels.AddedViolations);
-            headers.Append(Labels.RemovedViolations);
+            headers.Append(Labels.TotalVulnerabilities);
+            headers.Append(Labels.AddedVulnerabilities);
+            headers.Append(Labels.RemovedVulnerabilities);
 
             var dataRow = headers.CreateDataRow();
             var data = new List<string>();
@@ -50,9 +50,9 @@ namespace CastReporting.Reporting.Block.Table
                     var detailResult = result.DetailResult;
                     if (detailResult == null) continue;
                     dataRow.Set(standard, result.Reference?.Name.NAIfEmpty());
-                    dataRow.Set(Labels.TotalViolations, detailResult.EvolutionSummary?.TotalViolations.NAIfEmpty());
-                    dataRow.Set(Labels.AddedViolations, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
-                    dataRow.Set(Labels.RemovedViolations, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
+                    dataRow.Set(Labels.TotalVulnerabilities, detailResult.EvolutionSummary?.TotalViolations.NAIfEmpty());
+                    dataRow.Set(Labels.AddedVulnerabilities, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
+                    dataRow.Set(Labels.RemovedVulnerabilities, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
                     data.AddRange(dataRow);
                 }
             }
