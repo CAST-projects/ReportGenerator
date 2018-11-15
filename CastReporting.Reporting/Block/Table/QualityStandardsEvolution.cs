@@ -59,7 +59,8 @@ namespace CastReporting.Reporting.Block.Table
                     var detailResult = result.DetailResult;
                     if (detailResult == null) continue;
                     int? nbViolations = detailResult.EvolutionSummary?.TotalViolations;
-                    dataRow.Set(standard, result.Reference?.Name.NAIfEmpty());
+                    string stdTagName = result.Reference?.Name + " " + reportData.Application.StandardTags?.Where(_ => _.Key == result.Reference?.Name).FirstOrDefault()?.Name;
+                    dataRow.Set(standard, stdTagName ?? Constants.No_Value);
                     if (nbViolations > 0)
                     {
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));

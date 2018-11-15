@@ -387,6 +387,13 @@ namespace CastReporting.UnitTest.Reporting
             return snapshot;
         }
 
+        public static ReportData AddStandardTags(ReportData reportData, string stdTagsJsonFile)
+        {
+            reportData.Application.StandardTags = GetSampleResult<StandardTag>(stdTagsJsonFile).ToList();
+            return reportData;
+        }
+
+
         public static ReportData PrepaPortfolioReportData(string applicationsJSON, List<string> snapshotsJSON, List<string> snapshotsResultsJSON)
         {
             ReportData reportData = new ReportData

@@ -40,6 +40,8 @@ namespace CastReporting.Domain
         /// </summary>
         public IEnumerable<Snapshot> Snapshots { get; set; }
 
+        public IEnumerable<StandardTag> StandardTags { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

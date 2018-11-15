@@ -55,6 +55,7 @@
     <Compile Include="DataObject\CodeFile.cs" />
     <Compile Include="DataObject\CommonCategories.cs" />
     <Compile Include="DataObject\Contributor.cs" />
+    <Compile Include="DataObject\StandardTag.cs" />
     <Compile Include="DataObject\TypedComponent.cs" />
     <Compile Include="DataObject\Component.cs" />
     <Compile Include="DataObject\CodeFragment.cs" />
