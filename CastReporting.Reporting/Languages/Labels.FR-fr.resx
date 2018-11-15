@@ -645,4 +645,13 @@
   <data name="NoViolation" xml:space="preserve">
     <value>Aucune violation</value>
   </data>
+  <data name="AddedVulnerabilities" xml:space="preserve">
+    <value>Vulnerabilités ajoutées</value>
+  </data>
+  <data name="RemovedVulnerabilities" xml:space="preserve">
+    <value>Vulnerabilités supprimées</value>
+  </data>
+  <data name="TotalVulnerabilities" xml:space="preserve">
+    <value>Vulnerabilités</value>
+  </data>
 </root>

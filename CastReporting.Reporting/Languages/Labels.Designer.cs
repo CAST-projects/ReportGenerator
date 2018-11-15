@@ -133,6 +133,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Added Vulnerabilities.
+        /// </summary>
+        public static string AddedVulnerabilities {
+            get {
+                return ResourceManager.GetString("AddedVulnerabilities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Additional information bookmark.
         /// </summary>
         public static string AdditionalInformation {
@@ -1060,6 +1069,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Removed Vulnerabilities.
+        /// </summary>
+        public static string RemovedVulnerabilities {
+            get {
+                return ResourceManager.GetString("RemovedVulnerabilities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Robu..
         /// </summary>
         public static string Robu {
@@ -1380,6 +1398,15 @@ namespace CastReporting.Reporting.Languages {
         public static string TotalViolations {
             get {
                 return ResourceManager.GetString("TotalViolations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total Vulnerabilities.
+        /// </summary>
+        public static string TotalVulnerabilities {
+            get {
+                return ResourceManager.GetString("TotalVulnerabilities", resourceCulture);
             }
         }
         
