@@ -654,4 +654,7 @@
   <data name="TotalVulnerabilities" xml:space="preserve">
     <value>Schwachstellen insgesamt</value>
   </data>
+  <data name="CASTRules" xml:space="preserve">
+    <value>CAST Regeln</value>
+  </data>
 </root>

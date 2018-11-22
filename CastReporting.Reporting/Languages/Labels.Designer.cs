@@ -250,6 +250,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à CAST Rules.
+        /// </summary>
+        public static string CASTRules {
+            get {
+                return ResourceManager.GetString("CASTRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Chang..
         /// </summary>
         public static string Chang {

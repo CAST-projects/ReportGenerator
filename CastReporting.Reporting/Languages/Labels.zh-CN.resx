@@ -654,4 +654,7 @@
   <data name="TotalVulnerabilities" xml:space="preserve">
     <value>总漏洞</value>
   </data>
+  <data name="CASTRules" xml:space="preserve">
+    <value>规则 CAST</value>
+  </data>
 </root>
