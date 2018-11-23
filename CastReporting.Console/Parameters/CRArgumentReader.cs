@@ -81,7 +81,15 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
                 try
                 {
                     // Load from XML file
-                    return XmlCastReport.LoadXML(pArgs[0]);
+                    XmlCastReport cstRep = XmlCastReport.LoadXML(pArgs[0]);
+                    if (!cstRep.Check())
+                    {
+                        // XSD do not check -> show help
+                        pShowHelp = true;
+                        // return nothing
+                        return null;
+                    }
+                    return cstRep;
                 }
                 catch
                 {

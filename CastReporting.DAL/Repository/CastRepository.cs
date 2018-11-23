@@ -125,10 +125,24 @@ namespace CastReporting.Repositories
         /// <returns>True if OK</returns>
         bool ICastRepsitory.IsServiceValid()
         {
+            var requestUrl = _CurrentConnection.EndsWith("/") ? _CurrentConnection.Substring(0, _CurrentConnection.Length - 1) : _CurrentConnection;
+            requestUrl += "/ping";
+
             try
             {
-                CallWS<string>("/ping", RequestComplexity.Standard);
-                              
+                var jsonString = _Client.DownloadString(requestUrl, RequestComplexity.Standard);
+
+                var serializer = new DataContractJsonSerializer(typeof(string));
+                MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
+                try
+                {
+                    serializer.ReadObject(ms);
+                }
+                finally
+                {
+                    ms.Close();
+                }
+
             }
             catch
             {

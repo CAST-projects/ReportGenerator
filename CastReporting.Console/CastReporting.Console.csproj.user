@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>D:\GitHub\test_parameters.xml</StartArguments>
+    <StartArguments>-webservice http://dash-aed-tomcat:8585/CAST-Health-Engineering/rest/ -username cio -password cast -application "U-692 - Mobile Apps HH" -template "C:\Users\abd\AppData\Local\CAST\ReportGenerator\1.8.0\Templates\Executive-summary.docx" -file "D:\temp\CLIReport.docx"</StartArguments>
     <StartWorkingDirectory>
     </StartWorkingDirectory>
   </PropertyGroup>
