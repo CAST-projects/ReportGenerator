@@ -86,6 +86,12 @@ namespace CastReporting.Console.Argument
         [XmlElement("tag")]
         public XmlTagName Tag { get; set; }
 
+        /// <summary>
+        /// Tag
+        /// </summary>
+        [XmlElement("culture")]
+        public XmlTagName Culture { get; set; }
+
         #endregion
 
         #region Methods
