@@ -38,15 +38,6 @@ namespace CastReporting.UnitTest.DAL
             Name = "Default"
         };
 
-        readonly WSConnection _connection2 = new WSConnection()
-        {
-            Url = "https://abdlap2:8443/CAST-RESTAPI/rest/",
-            Login = "cio",
-            Password = "cast",
-            IsActive = true,
-            Name = "Default"
-        };
-
         /// <summary>
         ///
         ///</summary>
@@ -58,16 +49,6 @@ namespace CastReporting.UnitTest.DAL
             bool result = context.IsServiceValid();
            
             Assert.IsTrue( result);           
-        }
-
-        [TestMethod()]
-        public void IsHttpsTlsv12ServiceValidTest()
-        {
-            // Ignored on jenkins machine, because the certificat tomcat.cer is not installed, and test failed
-            if (Environment.MachineName != "ABDLAP2") return;
-            ICastRepsitory context2 = new CastRepository(_connection2);
-            bool result = context2.IsServiceValid();
-            Assert.IsTrue(result);
         }
 
         /// <summary>

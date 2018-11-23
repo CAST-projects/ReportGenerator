@@ -86,7 +86,11 @@ namespace CastReporting.Console
             if (!string.IsNullOrEmpty(help))
             {
                 LogHelper.Instance.LogError(help);
-                return -1;
+                if (help.Contains("Webservice can't be access or is bad formatted."))
+                {
+                    return -2;
+                }
+                return -3;
             }
             else
             {
