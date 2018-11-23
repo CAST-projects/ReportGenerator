@@ -43,7 +43,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var expectedData = new List<string>
             {
-                "Rule Name","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities",
+                "CAST Rules","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities",
                 "Action Mappings should have few forwards (7132)","77","8","2"
             };
 
@@ -80,7 +80,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var expectedData = new List<string>
             {
-                "Rule Name","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities",
+                "CAST Rules","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities",
                 "Avoid Methods with a very low comment/code ratio (7846)","128","8","2",
                 "Action Mappings should have few forwards (7132)","77","8","2"
             };
@@ -119,7 +119,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var expectedData = new List<string>
             {
-                "Rule Name","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities","Compliance Score (%)",
+                "CAST Rules","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities","Compliance Score (%)",
                 "Avoid using SQL queries inside a loop (7424)","86","2","3","32.6 %",
                 "Avoid Methods with a very low comment/code ratio (7846)","128","8","2","63.4 %",
                 "Action Mappings should have few forwards (7132)","77","8","2","63.4 %"
@@ -159,7 +159,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var expectedData = new List<string>
             {
-                "Rule Name","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities","Compliance Score (%)",
+                "CAST Rules","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities","Compliance Score (%)",
                 "Avoid artifacts having recursive calls (7388)","12","8","2","63.4 %",
                 "Avoid accessing data by using the position and length (7558)","6","8","2","63.4 %"
             };
@@ -198,7 +198,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var expectedData = new List<string>
             {
-                "Rule Name","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities",
+                "CAST Rules","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities",
                 "Action Mappings should have few forwards (7132)","77","8","2"
             };
 

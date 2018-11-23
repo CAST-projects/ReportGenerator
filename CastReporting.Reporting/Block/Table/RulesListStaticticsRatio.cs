@@ -49,7 +49,7 @@ namespace CastReporting.Reporting.Block.Table
             int cellidx = 0;
 
             var headers = new HeaderDefinition();
-            headers.Append(Labels.RuleName);
+            headers.Append(Labels.CASTRules);
             cellidx++;
             headers.Append(Labels.TotalVulnerabilities);
             cellidx++;
@@ -77,7 +77,7 @@ namespace CastReporting.Reporting.Block.Table
                     if (detailResult == null) continue;
                     int nbViolations = detailResult.ViolationRatio.FailedChecks ?? 0;
 
-                    dataRow.Set(Labels.RuleName, (result.Reference?.Name + " (" + result.Reference?.Key + ")" ).NAIfEmpty());
+                    dataRow.Set(Labels.CASTRules, (result.Reference?.Name + " (" + result.Reference?.Key + ")" ).NAIfEmpty());
                     if (nbViolations > 0)
                     {
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));

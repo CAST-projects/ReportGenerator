@@ -654,4 +654,7 @@
   <data name="TotalVulnerabilities" xml:space="preserve">
     <value>Total Vulnerabilities</value>
   </data>
+  <data name="CASTRules" xml:space="preserve">
+    <value>CAST Rules</value>
+  </data>
 </root>
