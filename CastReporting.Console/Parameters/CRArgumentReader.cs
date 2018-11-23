@@ -192,6 +192,8 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
                 case "snapshot_prev": pCastReport.Snapshot.Previous = new XmlTagName() { Name = pValue }; break;
                 case "username": pCastReport.Username = new XmlTagName() { Name = pValue }; break;
                 case "password": pCastReport.Password = new XmlTagName() { Name = pValue }; break;
+                case "culture": pCastReport.Culture = new XmlTagName() {Name = pValue };
+                    break;
 
                 case "reporttype": pCastReport.ReportType = new XmlTagName() { Name = pValue }; break;
                 case "category": pCastReport.Category = new XmlTagName() { Name = pValue }; break;

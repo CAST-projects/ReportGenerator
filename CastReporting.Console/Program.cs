@@ -64,6 +64,15 @@ namespace CastReporting.Console
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
         }
 
+        private static void SetCulture(string cultureName)
+        {
+            if (string.IsNullOrEmpty(cultureName)) return;
+            CultureInfo cultureInfo = CultureInfo.GetCultureInfo(cultureName);
+
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+        }
+
 
         /// <summary>
         /// 
@@ -74,13 +83,18 @@ namespace CastReporting.Console
         private static int DoWork(string[] args, out string help)
         {
             LogHelper.Instance.LogInfo("Read arguments.");
-            var arguments = ReadArguments(args, out help); 
+            XmlCastReport arguments = ReadArguments(args, out help); 
 
             if (!string.IsNullOrEmpty(help))
             {             
                 return -1;
-            } 
+            }
 
+            if (arguments.Culture != null)
+            {
+                SetCulture(arguments.Culture.Name);
+            }
+            
             string pathFile = GenerateReport(arguments, out help);
 
             if (!string.IsNullOrEmpty(help))
