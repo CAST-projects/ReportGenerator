@@ -67,6 +67,32 @@ namespace CastReporting.Console
         private static void SetCulture(string cultureName)
         {
             if (string.IsNullOrEmpty(cultureName)) return;
+
+            // Dashboard send only first 2 characters
+            string language = cultureName.ToLower().Substring(0, 2);
+            switch (language)
+            {
+                case "zh":
+                    cultureName = "zh-CN";
+                    break;
+                case "de":
+                    cultureName = "DE-de";
+                    break;
+                case "es":
+                    cultureName = "ES-es";
+                    break;
+                case "fr":
+                    cultureName = "FR-fr";
+                    break;
+                case "it":
+                    cultureName = "IT-it";
+                    break;
+                default:
+                    cultureName = "en-US";
+                    break;
+
+            }
+
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo(cultureName);
 
             Thread.CurrentThread.CurrentCulture = cultureInfo;
