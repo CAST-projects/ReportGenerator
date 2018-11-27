@@ -267,5 +267,6 @@ namespace CastReporting.Repositories.Interfaces
 
         IEnumerable<CodeFragment> GetSourceCode(string domainHRef, string snapshotId, string objectId);
         List<string> GetFileContent(string domainHRef, string siteId, string fileId, int startLine, int endLine);
+        IEnumerable<ComponentWithProperties> GetComponentsWithProperties(string snapshothref, int bcId, string prop1, string prop2, string order1, string order2, int count);
     }
 }

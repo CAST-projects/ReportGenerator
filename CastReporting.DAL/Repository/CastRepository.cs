@@ -54,6 +54,7 @@ namespace CastReporting.Repositories
         private const string _query_ifpug_functions_evolutions = "{0}/ifpug-functions-evolution";
         private const string _query_metric_top_artefact = "{0}/violations?rule-pattern={1}";
         private const string _query_components = "{0}/components/{1}?nbRows={2}";
+        private const string _query_components_with_properties = "{0}/components/{1}?properties=({2},{3})&order=({4})&startRow=1&nbRows={5}";
         private const string _query_components_by_modules = "{0}/modules/{1}/snapshots/{2}/components/{3}?nbRows={4}";
         private const string _query_common_categories = "{0}/AAD/common-categories";
         private const string _query_tags = "{0}/AAD/tags";
@@ -245,6 +246,16 @@ namespace CastReporting.Repositories
             var requestUrl = string.Format(_query_components, snapshotHref, businessCriteria, count);
 
             return CallWS<IEnumerable<Component>>(requestUrl, RequestComplexity.Standard);
+        }
+
+        IEnumerable<ComponentWithProperties> ICastRepsitory.GetComponentsWithProperties(string snapshothref, int bcId, string prop1 , string prop2, string order1, string order2, int count)
+        {
+            // rest api url : D/applications/A/snapshots/S/components/60017?properties=(cyclomaticComplexity,fanOut)&order=(desc(cyclomaticComplexity),desc(fanOut))&startRow=1&nbRows=50
+            // _query_components_with_properties = {0}/components/{1}?properties=({2},{3})&order=({4})&startRow=1&nbRows={5}
+            string order = order1.ToLower() + "(" + prop1 + ")," + order2.ToLower() + "(" + prop2 + ")"; 
+            var requestUrl = string.Format(_query_components_with_properties, snapshothref, bcId, prop1, prop2, order, count);
+
+            return CallWS<IEnumerable<ComponentWithProperties>>(requestUrl, RequestComplexity.Standard);
         }
 
         IEnumerable<Component> ICastRepsitory.GetComponentsByModule(string domainId, int moduleId, int snapshotId, string businessCriteria, int count)
