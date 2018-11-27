@@ -657,4 +657,7 @@
   <data name="CASTRules" xml:space="preserve">
     <value>Règles CAST</value>
   </data>
+  <data name="PropertiesNotAvailable" xml:space="preserve">
+    <value>Les propriétés ne sont pas disponibles. Seules les propriétés suivantes sont disponibles:</value>
+  </data>
 </root>

@@ -286,11 +286,38 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Code Lines.
+        /// </summary>
+        public static string codeLines {
+            get {
+                return ResourceManager.GetString("codeLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Comment.
         /// </summary>
         public static string Comment {
             get {
                 return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Commented Code Lines.
+        /// </summary>
+        public static string commentedCodeLines {
+            get {
+                return ResourceManager.GetString("commentedCodeLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Comment Lines.
+        /// </summary>
+        public static string commentLines {
+            get {
+                return ResourceManager.GetString("commentLines", resourceCulture);
             }
         }
         
@@ -385,6 +412,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Coupling.
+        /// </summary>
+        public static string coupling {
+            get {
+                return ResourceManager.GetString("coupling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Average.
         /// </summary>
         public static string CplxAverage {
@@ -475,6 +511,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cyclomatic Complexity.
+        /// </summary>
+        public static string cyclomaticComplexity {
+            get {
+                return ResourceManager.GetString("cyclomaticComplexity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Debt.
         /// </summary>
         public static string Debt {
@@ -547,6 +592,24 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Distinct Operands.
+        /// </summary>
+        public static string distinctOperands {
+            get {
+                return ResourceManager.GetString("distinctOperands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Distinct Operators.
+        /// </summary>
+        public static string distinctOperators {
+            get {
+                return ResourceManager.GetString("distinctOperators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Doc..
         /// </summary>
         public static string Doc {
@@ -579,6 +642,15 @@ namespace CastReporting.Reporting.Languages {
         public static string Efficiency {
             get {
                 return ResourceManager.GetString("Efficiency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Essential Complexity.
+        /// </summary>
+        public static string essentialComplexity {
+            get {
+                return ResourceManager.GetString("essentialComplexity", resourceCulture);
             }
         }
         
@@ -624,6 +696,24 @@ namespace CastReporting.Reporting.Languages {
         public static string ExclusionStatus {
             get {
                 return ResourceManager.GetString("ExclusionStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fan-In.
+        /// </summary>
+        public static string fanIn {
+            get {
+                return ResourceManager.GetString("fanIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fan-Out.
+        /// </summary>
+        public static string fanOut {
+            get {
+                return ResourceManager.GetString("fanOut", resourceCulture);
             }
         }
         
@@ -691,6 +781,33 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Halstead Program Length.
+        /// </summary>
+        public static string halsteadProgramLength {
+            get {
+                return ResourceManager.GetString("halsteadProgramLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Halstead Program Vocabulary.
+        /// </summary>
+        public static string halsteadProgramVocabulary {
+            get {
+                return ResourceManager.GetString("halsteadProgramVocabulary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Halstead Volume.
+        /// </summary>
+        public static string halsteadVolume {
+            get {
+                return ResourceManager.GetString("halsteadVolume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Id.
         /// </summary>
         public static string Id {
@@ -732,6 +849,15 @@ namespace CastReporting.Reporting.Languages {
         public static string IFPUG_ObjectType {
             get {
                 return ResourceManager.GetString("IFPUG_ObjectType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Integration Complexity.
+        /// </summary>
+        public static string integrationComplexity {
+            get {
+                return ResourceManager.GetString("integrationComplexity", resourceCulture);
             }
         }
         
@@ -997,6 +1123,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Properties are not available. Only following properties are available : .
+        /// </summary>
+        public static string PropertiesNotAvailable {
+            get {
+                return ResourceManager.GetString("PropertiesNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à good.
         /// </summary>
         public static string QualityGood {
@@ -1038,6 +1173,15 @@ namespace CastReporting.Reporting.Languages {
         public static string QualityVeryLow {
             get {
                 return ResourceManager.GetString("QualityVeryLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Documentation Ratio.
+        /// </summary>
+        public static string ratioCommentLinesCodeLines {
+            get {
+                return ResourceManager.GetString("ratioCommentLinesCodeLines", resourceCulture);
             }
         }
         

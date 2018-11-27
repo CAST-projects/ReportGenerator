@@ -19,6 +19,7 @@ using CastReporting.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Threading.Tasks;
 using Cast.Util.Version;
 using Cast.Util.Log;
@@ -555,6 +556,33 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="snapshotHref"></param>
+        /// <param name="businessCriteria"></param>
+        /// <param name="prop1"></param>
+        /// <param name="prop2"></param>
+        /// <param name="order1"></param>
+        /// <param name="order2"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public IEnumerable<ComponentWithProperties> GetComponentsByProperties(string snapshotHref, int businessCriteria, string prop1, string prop2, string order1, string order2, int count)
+        {           
+            try
+            {
+                using (var castRepsitory = GetRepository())
+                {
+                    return castRepsitory.GetComponentsWithProperties(snapshotHref, businessCriteria, prop1, prop2, order1, order2, count);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }                      
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="domainId"></param>
         /// <param name="moduleId"></param>
         /// <param name="snapshotId"></param>
@@ -562,7 +590,7 @@ namespace CastReporting.BLL
         /// <param name="count"></param>
         /// <returns></returns>
         public IEnumerable<Component> GetComponentsByModule(string domainId, int moduleId, int snapshotId, string businessCriteria, int count)
-        {           
+        {
             try
             {
                 using (var castRepsitory = GetRepository())
@@ -574,10 +602,9 @@ namespace CastReporting.BLL
             {
                 LogHelper.Instance.LogInfo(ex.Message);
                 return null;
-            }                      
+            }
         }
 
-        
         /// <summary>
         /// 
         /// </summary>

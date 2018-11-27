@@ -66,6 +66,8 @@ namespace CastReporting.Domain.Interfaces
         /// <returns></returns>
         IEnumerable<Component> GetComponentsByModule(string domainId, int moduleId, int snapshotId, string businessCriteria, int count);
 
+        IEnumerable<ComponentWithProperties> GetComponentsByProperties(string snapshotHref, int businessCriteria, string prop1, string prop2, string order1, string order2, int count);
+
         AssociatedValue GetAssociatedValue(string domainId, string componentId, string snapshotId, string metricId);
         AssociatedValuePath GetAssociatedValuePath(string domainId, string componentId, string snapshotId, string metricId);
         AssociatedValueGroup GetAssociatedValueGroup(string domainId, string componentId, string snapshotId, string metricId);

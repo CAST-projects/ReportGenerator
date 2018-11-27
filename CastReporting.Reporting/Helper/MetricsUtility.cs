@@ -726,5 +726,44 @@ namespace CastReporting.Reporting
             
             return cellidx;
         }
+
+        public static string GetPropertyName(string prop)
+        {
+            switch (prop)
+            {
+                case "codeLines":
+                    return Labels.codeLines;
+                case "commentedCodeLines":
+                    return Labels.commentedCodeLines;
+                case "commentLines":
+                    return Labels.commentLines;
+                case "coupling":
+                    return Labels.coupling;
+                case "fanIn":
+                    return Labels.fanIn;
+                case "fanOut":
+                    return Labels.fanOut;
+                case "cyclomaticComplexity":
+                    return Labels.cyclomaticComplexity;
+                case "ratioCommentLinesCodeLines":
+                    return Labels.ratioCommentLinesCodeLines;
+                case "halsteadProgramLength":
+                    return Labels.halsteadProgramLength;
+                case "halsteadProgramVocabulary":
+                    return Labels.halsteadProgramVocabulary;
+                case "halsteadVolume":
+                    return Labels.halsteadVolume;
+                case "distinctOperators":
+                    return Labels.distinctOperators;
+                case "distinctOperands":
+                    return Labels.distinctOperands;
+                case "integrationComplexity":
+                    return Labels.integrationComplexity;
+                case "essentialComplexity":
+                    return Labels.essentialComplexity;
+                default:
+                    return string.Empty;
+            }
+        }
     }
 }

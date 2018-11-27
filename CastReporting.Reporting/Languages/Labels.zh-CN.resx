@@ -657,4 +657,7 @@
   <data name="CASTRules" xml:space="preserve">
     <value>规则 CAST</value>
   </data>
+  <data name="PropertiesNotAvailable" xml:space="preserve">
+    <value>属性不可用。 只有以下属性可用：</value>
+  </data>
 </root>

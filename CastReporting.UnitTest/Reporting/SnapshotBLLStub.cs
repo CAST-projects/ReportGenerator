@@ -76,6 +76,12 @@ namespace CastReporting.UnitTest.Reporting
             return res;
         }
 
+        [DeploymentItem(@".\Data\ComponentsWithProperties.json", "Data")]
+        public IEnumerable<ComponentWithProperties> GetComponentsByProperties(string snapshotHref, int businessCriteria, string prop1, string prop2, string order1, string order2, int count)
+        {
+            return TestUtility.GetSampleResult<ComponentWithProperties>(@".\Data\ComponentsWithProperties.json").ToList().Take(count);
+        }
+
         [DeploymentItem(@".\Data\findings7392.json", "Data")]
         [DeploymentItem(@".\Data\findings_bookmarks.json", "Data")]
         [DeploymentItem(@".\Data\findings_integer.json", "Data")]
