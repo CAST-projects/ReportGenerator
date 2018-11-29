@@ -1,0 +1,258 @@
+﻿[
+  {
+    "number": 13,
+    "date": {
+      "time": 1503484125000,
+      "isoDate": "2017-08-23"
+    },
+    "application": {
+      "href": "TRAX/applications/3",
+      "name": "WEBTRAX 18209",
+      "adgDatabase": "web_trax_central"
+    },
+    "applicationSnapshot": {
+      "href": "TRAX/applications/3/snapshots/29",
+      "name": "WEBTRAX 18209"
+    },
+    "applicationResults": [
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "TRAX/quality-indicators/2230/snapshots/29",
+          "name": "Use of style sheets",
+          "key": "2230",
+          "critical": false
+        },
+        "result": {
+          "grade": 1,
+          "violationRatio": {
+            "totalChecks": 3107,
+            "failedChecks": 3086,
+            "successfulChecks": 21,
+            "ratio": 0.0067589314451239136
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 8,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "TRAX/quality-indicators/2242/snapshots/29",
+          "name": "Avoid direct definition of JavaScript Functions in a Web page",
+          "key": "2242",
+          "critical": false
+        },
+        "result": {
+          "grade": 1,
+          "violationRatio": {
+            "totalChecks": 8019,
+            "failedChecks": 6801,
+            "successfulChecks": 1218,
+            "ratio": 0.15188926300037411
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 24,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "TRAX/quality-indicators/4722/snapshots/29",
+          "name": "Track Classes referencing Database objects",
+          "key": "4722",
+          "critical": false
+        },
+        "result": {
+          "grade": 1.6604876419505679,
+          "violationRatio": {
+            "totalChecks": 1497,
+            "failedChecks": 353,
+            "successfulChecks": 1144,
+            "ratio": 0.7641950567802271
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 3,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "TRAX/quality-indicators/7256/snapshots/29",
+          "name": "Provide a private default Constructor for utility Classes",
+          "key": "7256",
+          "critical": false
+        },
+        "result": {
+          "grade": 1,
+          "violationRatio": {
+            "totalChecks": 29,
+            "failedChecks": 29,
+            "successfulChecks": 0,
+            "ratio": 0
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "TRAX/quality-indicators/7824/snapshots/29",
+          "name": "The exception Exception should never been thrown. Always Subclass Exception and throw the subclassed Classes.",
+          "key": "7824",
+          "critical": true
+        },
+        "result": {
+          "grade": 1,
+          "violationRatio": {
+            "totalChecks": 62867,
+            "failedChecks": 3116,
+            "successfulChecks": 59751,
+            "ratio": 0.9504350454133329
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 17,
+            "removedCriticalViolations": 0,
+            "addedViolations": 17,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "TRAX/quality-indicators/7862/snapshots/29",
+          "name": "Avoid catching an exception of type Exception, RuntimeException, or Throwable",
+          "key": "7862",
+          "critical": false
+        },
+        "result": {
+          "grade": 1.917254038179148,
+          "violationRatio": {
+            "totalChecks": 34050,
+            "failedChecks": 4532,
+            "successfulChecks": 29518,
+            "ratio": 0.8669016152716593
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 23,
+            "removedViolations": 1
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "TRAX/quality-indicators/8104/snapshots/29",
+          "name": "Close database resources ASAP",
+          "key": "8104",
+          "critical": true
+        },
+        "result": {
+          "grade": 1,
+          "violationRatio": {
+            "totalChecks": 5034,
+            "failedChecks": 3596,
+            "successfulChecks": 1438,
+            "ratio": 0.2856575288041319
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 17,
+            "removedCriticalViolations": 0,
+            "addedViolations": 17,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "TRAX/quality-indicators/60016/snapshots/29",
+          "name": "Security",
+          "shortName": "Secu",
+          "key": "60016",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 1.896201946241038,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 63,
+            "totalCriticalViolations": 6974,
+            "addedCriticalViolations": 39,
+            "removedCriticalViolations": 1,
+            "violationsInNewAndModifiedCode": 233,
+            "totalViolations": 28629,
+            "addedViolations": 337,
+            "removedViolations": 10
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-criteria",
+        "reference": {
+          "href": "TRAX/quality-indicators/61018/snapshots/29",
+          "name": "Efficiency - Memory, Network and Disk Space Management",
+          "key": "61018",
+          "critical": false
+        },
+        "result": {
+          "grade": 1,
+          "evolutionSummary": {
+            "totalCriticalViolations": 3629,
+            "addedCriticalViolations": 18,
+            "removedCriticalViolations": 1,
+            "totalViolations": 16800,
+            "addedViolations": 274,
+            "removedViolations": 6
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  }
+]
