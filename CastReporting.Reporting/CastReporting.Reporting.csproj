@@ -82,6 +82,7 @@
     <Compile Include="Block\Graph\TrendMetricId.cs" />
     <Compile Include="Block\Graph\TrendTechDebtPortfolio.cs" />
     <Compile Include="Block\Table\QualityStandardsEvolution.cs" />
+    <Compile Include="Block\Table\RulesListLargestVariation.cs" />
     <Compile Include="Block\Table\RulesListViolationsBookmarks.cs" />
     <Compile Include="Block\Table\QualityRuleViolationsBookmarks.cs" />
     <Compile Include="Block\Table\TopComponentsByProperties.cs" />
