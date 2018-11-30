@@ -81,7 +81,7 @@ namespace CastReporting.Reporting.Block.Table
                                     variation = percent
                                         ? item.TotalFailed / (double)item.TotalChecks - previousitem.TotalFailed / (double)previousitem.TotalChecks
                                         : item.TotalFailed - previousitem.TotalFailed;
-                                    if (variation < 0) continue;
+                                    if (variation <= 0) continue;
                                 }
                                 else
                                 {
@@ -95,7 +95,7 @@ namespace CastReporting.Reporting.Block.Table
                                     variation = percent
                                         ? item.TotalFailed / (double)item.TotalChecks
                                         : item.TotalFailed;
-                                    if (variation < 0) continue;
+                                    if (variation <= 0) continue;
                                 }
                                 else
                                 {
@@ -128,7 +128,7 @@ namespace CastReporting.Reporting.Block.Table
                                     variation = percent
                                         ? previousitem.TotalFailed / (double)previousitem.TotalChecks - item.TotalFailed / (double)item.TotalChecks
                                         : previousitem.TotalFailed - item.TotalFailed;
-                                    if (variation < 0) continue;
+                                    if (variation <= 0) continue;
                                 }
                                 else
                                 {
@@ -142,7 +142,7 @@ namespace CastReporting.Reporting.Block.Table
                                     variation = percent
                                         ? previousitem.TotalFailed / (double) previousitem.TotalChecks
                                         : previousitem.TotalFailed;
-                                    if (variation < 0) continue;
+                                    if (variation <= 0) continue;
                                 }
                                 else
                                 {
