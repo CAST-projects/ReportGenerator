@@ -65,6 +65,12 @@ namespace CastReporting.Mediation
         {
             string credentials = CreateBasicAuthenticationCredentials(login, password);
             Headers.Add(HttpRequestHeader.Authorization, credentials);
+
+            // to debug on https with self signed certificat, uncomment the following to disabled certificate validation
+            #if DEBUG
+            // ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+            #endif
+
         }
 
         #endregion CONSTRUCTORS
