@@ -15,6 +15,8 @@
  */
 using System;
 using CastReporting.Domain;
+using CastReporting.Mediation;
+using CastReporting.Mediation.Interfaces;
 using CastReporting.Repositories;
 using CastReporting.Repositories.Interfaces;
 
@@ -27,17 +29,23 @@ namespace CastReporting.BLL
         // </summary>
         protected WSConnection Connection { get; set; }
 
+        protected static ICastProxy Client;
+
         /// <summary>
         /// 
         /// </summary>
         protected ICastRepsitory GetRepository()
         {
-            return new CastRepository(Connection);
+            CastRepository repo = new CastRepository(Connection, Client);
+            Client = repo.GetClient();
+            return repo;
         }
 
-        protected ICastRepsitory GetRepository(WSConnection connection)
+        protected static ICastRepsitory GetRepository(WSConnection connection)
         {
-            return new CastRepository(connection);
+            CastRepository repo = new CastRepository(connection, Client);
+            Client = repo.GetClient();
+            return repo;
         }
 
 

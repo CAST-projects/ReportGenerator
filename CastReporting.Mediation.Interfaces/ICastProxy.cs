@@ -14,6 +14,7 @@
  *
  */
 using System;
+using System.Net;
 
 namespace CastReporting.Mediation.Interfaces
 {
@@ -23,6 +24,7 @@ namespace CastReporting.Mediation.Interfaces
     /// </summary>
     public interface ICastProxy: IDisposable
     {
+        CookieContainer GetCookieContainer();
         /// <summary>
         /// 
         /// </summary>

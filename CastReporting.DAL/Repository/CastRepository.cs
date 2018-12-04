@@ -96,15 +96,22 @@ namespace CastReporting.Repositories
         #endregion PROPERTIES
 
         #region CONSTRUCTORS
-       
+
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="connection"></param>
-        public CastRepository(WSConnection connection)
+        /// <param name="client"></param>
+        public CastRepository(WSConnection connection, ICastProxy client)
         {
-            _Client = new CastProxy(connection.Login, connection.Password);
+            _Client = new CastProxy(connection.Login, connection.Password, client?.GetCookieContainer());
+            
             _CurrentConnection = connection.Url;
+        }
+
+        public ICastProxy GetClient()
+        {
+            return _Client;
         }
 
         #endregion CONSTRUCTORS

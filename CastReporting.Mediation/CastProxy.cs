@@ -38,12 +38,14 @@ namespace CastReporting.Mediation
         /// <summary>
         /// 
         /// </summary>
-        private RequestComplexity _currentComplexity = RequestComplexity.Standard;      
-        
+        private RequestComplexity _currentComplexity = RequestComplexity.Standard;
+
+        private WebRequest _request = null;
+
         #endregion ATTRIBUTES
 
         #region PROPERTIES
-        
+
         /// <summary>
         /// Time in milliseconds
         /// </summary>
@@ -60,12 +62,116 @@ namespace CastReporting.Mediation
 
         /// <summary>
         /// Default Constructor
+        /// <param name="cookies">The cookies. If set to <c>null</c> a container will be created.</param>
+        /// <param name="autoRedirect">if set to <c>true</c> the client should handle the redirect automatically. Default value is <c>true</c></param>
         /// </summary>
-        public CastProxy(string login, string password)
+        public CastProxy(string login, string password, CookieContainer cookies = null, bool autoRedirect = true)
         {
+            CookieContainer = cookies ?? new CookieContainer();
+            AutoRedirect = autoRedirect;
+
             string credentials = CreateBasicAuthenticationCredentials(login, password);
             Headers.Add(HttpRequestHeader.Authorization, credentials);
+
+            // to debug on https with self signed certificat, uncomment the following to disabled certificate validation
+            #if DEBUG
+            // ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+            #endif
+
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to automatically redirect when a 301 or 302 is returned by the request.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the client should handle the redirect automatically; otherwise, <c>false</c>.
+        /// </value>
+        public bool AutoRedirect { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cookie container. This contains all the cookies for all the requests.
+        /// </summary>
+        /// <value>
+        /// The cookie container.
+        /// </value>
+        public CookieContainer CookieContainer { get; set; }
+
+        public CookieContainer GetCookieContainer()
+        {
+            return CookieContainer;
+        }
+
+        /// <summary>
+        /// Gets the cookies header (Set-Cookie) of the last request.
+        /// </summary>
+        /// <value>
+        /// The cookies or <c>null</c>.
+        /// </value>
+        public string Cookies
+        {
+            get { return GetHeaderValue("Set-Cookie"); }
+        }
+
+        /// <summary>
+        /// Gets the location header for the last request.
+        /// </summary>
+        /// <value>
+        /// The location or <c>null</c>.
+        /// </value>
+        public string Location
+        {
+            get { return GetHeaderValue("Location"); }
+        }
+
+        /// <summary>
+        /// Gets the status code. When no request is present, <see cref="HttpStatusCode.Gone"/> will be returned.
+        /// </summary>
+        /// <value>
+        /// The status code or <see cref="HttpStatusCode.Gone"/>.
+        /// </value>
+        public HttpStatusCode StatusCode
+        {
+            get
+            {
+                var result = HttpStatusCode.Gone;
+
+                if (_request != null)
+                {
+                    var response = base.GetWebResponse(_request) as HttpWebResponse;
+
+                    if (response != null)
+                    {
+                        result = response.StatusCode;
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the setup that is called before the request is done.
+        /// </summary>
+        /// <value>
+        /// The setup.
+        /// </value>
+        public Action<HttpWebRequest> Setup { get; set; }
+
+        /// <summary>
+        /// Gets the header value.
+        /// </summary>
+        /// <param name="headerName">Name of the header.</param>
+        /// <returns>The value.</returns>
+        public string GetHeaderValue(string headerName)
+        {
+            if (_request != null)
+            {
+                return base.GetWebResponse(_request)?.Headers?[headerName];
+            }
+
+            return null;
+        }
+
 
         #endregion CONSTRUCTORS
 
@@ -181,17 +287,23 @@ namespace CastReporting.Mediation
         /// <returns></returns>
         protected override WebRequest GetWebRequest(Uri pAddress)
         {
-            var result = base.GetWebRequest(pAddress);
+            _request = base.GetWebRequest(pAddress);
 
-            if (result == null) return null;
-            result.Timeout = Timeout;
+            var httpRequest = _request as HttpWebRequest;
 
-            if (HeadOnly && result.Method == "GET")
+            if (httpRequest == null) return _request;
+
+            httpRequest.AllowAutoRedirect = AutoRedirect;
+            httpRequest.CookieContainer = CookieContainer;
+            httpRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            httpRequest.Timeout = Timeout;
+            if (HeadOnly && httpRequest.Method == "GET")
             {
-                result.Method = "HEAD";
+                httpRequest.Method = "HEAD";
             }
 
-            return result;
+            Setup?.Invoke(httpRequest);
+            return httpRequest;
         }
 
         /// <summary>
