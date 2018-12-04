@@ -399,6 +399,10 @@
       <Project>{e696cc9d-e471-4360-8664-fba3c5b3d375}</Project>
       <Name>CastReporting.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CastReporting.Mediation.Interfaces\CastReporting.Mediation.Interfaces.csproj">
+      <Project>{5D974A06-C1F5-442D-902F-77DCF5D1C16E}</Project>
+      <Name>CastReporting.Mediation.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CastReporting.Reporting\CastReporting.Reporting.csproj">
       <Project>{A00B1634-960E-44E0-94C3-BBFEB0E98E23}</Project>
       <Name>CastReporting.Reporting</Name>

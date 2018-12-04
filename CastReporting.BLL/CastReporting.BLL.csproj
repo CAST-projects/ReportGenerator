@@ -75,6 +75,14 @@
       <Project>{e696cc9d-e471-4360-8664-fba3c5b3d375}</Project>
       <Name>CastReporting.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CastReporting.Mediation.Interfaces\CastReporting.Mediation.Interfaces.csproj">
+      <Project>{5D974A06-C1F5-442D-902F-77DCF5D1C16E}</Project>
+      <Name>CastReporting.Mediation.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CastReporting.Mediation\CastReporting.Mediation.csproj">
+      <Project>{A2DF17B9-5643-4F29-9A4C-561E5EB15406}</Project>
+      <Name>CastReporting.Mediation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CastReporting.Repositories.Interfaces\CastReporting.Repositories.Interfaces.csproj">
       <Project>{bf557781-bd7e-4ec2-bb64-ed7981b4d9d0}</Project>
       <Name>CastReporting.Repositories.Interfaces</Name>
