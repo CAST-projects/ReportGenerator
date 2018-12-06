@@ -33,6 +33,12 @@ namespace CastReporting.Reporting.Block.Table
         {
             string standard = options.GetOption("STD");
 
+            bool vulnerability = options.GetOption("LBL", "vulnerabilities").ToLower().Equals("vulnerabilities");
+            string lbltotal = vulnerability ? Labels.TotalVulnerabilities : Labels.TotalViolations;
+            string lbladded = vulnerability ? Labels.AddedVulnerabilities : Labels.AddedViolations;
+            string lblremoved = vulnerability ? Labels.RemovedVulnerabilities : Labels.RemovedViolations;
+
+
             // cellProps will contains the properties of the cell (background color) linked to the data by position in the list stored with cellidx.
             List<CellAttributes> cellProps = new List<CellAttributes>();
             int cellidx = 0;
@@ -40,11 +46,11 @@ namespace CastReporting.Reporting.Block.Table
             var headers = new HeaderDefinition();
             headers.Append(standard);
             cellidx++;
-            headers.Append(Labels.TotalVulnerabilities);
+            headers.Append(lbltotal);
             cellidx++;
-            headers.Append(Labels.AddedVulnerabilities);
+            headers.Append(lbladded);
             cellidx++;
-            headers.Append(Labels.RemovedVulnerabilities);
+            headers.Append(lblremoved);
             cellidx++;
 
             var dataRow = headers.CreateDataRow();
@@ -67,21 +73,21 @@ namespace CastReporting.Reporting.Block.Table
 
                     }
                     cellidx++;
-                    dataRow.Set(Labels.TotalVulnerabilities, detailResult.EvolutionSummary?.TotalViolations.NAIfEmpty());
+                    dataRow.Set(lbltotal, detailResult.EvolutionSummary?.TotalViolations.NAIfEmpty());
                     if (nbViolations > 0)
                     {
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));
 
                     }
                     cellidx++;
-                    dataRow.Set(Labels.AddedVulnerabilities, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
+                    dataRow.Set(lbladded, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
                     if (nbViolations > 0)
                     {
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));
 
                     }
                     cellidx++;
-                    dataRow.Set(Labels.RemovedVulnerabilities, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
+                    dataRow.Set(lblremoved, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
                     if (nbViolations > 0)
                     {
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));
