@@ -44,6 +44,11 @@ namespace CastReporting.Reporting.Block.Table
             bool displayCompliance = options.GetBoolOption("COMPLIANCE");
             bool sortedByCompliance = displayCompliance && options.GetOption("SORTED", "TOTAL").Equals("COMPLIANCE");
 
+            bool vulnerability = options.GetOption("LBL", "vulnerabilities").ToLower().Equals("vulnerabilities");
+            string lbltotal = vulnerability ? Labels.TotalVulnerabilities : Labels.TotalViolations;
+            string lbladded = vulnerability ? Labels.AddedVulnerabilities : Labels.AddedViolations;
+            string lblremoved = vulnerability ? Labels.RemovedVulnerabilities : Labels.RemovedViolations;
+
             // cellProps will contains the properties of the cell (background color) linked to the data by position in the list stored with cellidx.
             List<CellAttributes> cellProps = new List<CellAttributes>();
             int cellidx = 0;
@@ -51,11 +56,11 @@ namespace CastReporting.Reporting.Block.Table
             var headers = new HeaderDefinition();
             headers.Append(Labels.CASTRules);
             cellidx++;
-            headers.Append(Labels.TotalVulnerabilities);
+            headers.Append(lbltotal);
             cellidx++;
-            headers.Append(Labels.AddedVulnerabilities);
+            headers.Append(lbladded);
             cellidx++;
-            headers.Append(Labels.RemovedVulnerabilities);
+            headers.Append(lblremoved);
             cellidx++;
             headers.Append(Labels.ComplianceScorePercent, displayCompliance);
             if (displayCompliance) cellidx++;
@@ -83,19 +88,19 @@ namespace CastReporting.Reporting.Block.Table
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));
                     }
                     cellidx++;
-                    dataRow.Set(Labels.TotalVulnerabilities, detailResult.ViolationRatio.FailedChecks.HasValue ? detailResult.ViolationRatio?.FailedChecks.Value.ToString("N0") : Constants.No_Value);
+                    dataRow.Set(lbltotal, detailResult.ViolationRatio.FailedChecks.HasValue ? detailResult.ViolationRatio?.FailedChecks.Value.ToString("N0") : Constants.No_Value);
                     if (nbViolations > 0)
                     {
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));
                     }
                     cellidx++;
-                    dataRow.Set(Labels.AddedVulnerabilities, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
+                    dataRow.Set(lbladded, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
                     if (nbViolations > 0)
                     {
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));
                     }
                     cellidx++;
-                    dataRow.Set(Labels.RemovedVulnerabilities, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
+                    dataRow.Set(lblremoved, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
                     if (nbViolations > 0)
                     {
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));
