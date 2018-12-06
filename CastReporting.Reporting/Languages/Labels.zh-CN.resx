@@ -660,4 +660,7 @@
   <data name="PropertiesNotAvailable" xml:space="preserve">
     <value>属性不可用。 只有以下属性可用：</value>
   </data>
+  <data name="NoRules" xml:space="preserve">
+    <value>所选应用程序没有适用的规则</value>
+  </data>
 </root>
