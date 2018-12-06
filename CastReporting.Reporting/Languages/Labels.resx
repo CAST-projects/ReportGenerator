@@ -705,4 +705,7 @@
   <data name="ratioCommentLinesCodeLines" xml:space="preserve">
     <value>Documentation Ratio</value>
   </data>
+  <data name="NoRules" xml:space="preserve">
+    <value>No applicable rules for given application</value>
+  </data>
 </root>

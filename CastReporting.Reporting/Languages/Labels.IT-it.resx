@@ -660,4 +660,7 @@
   <data name="PropertiesNotAvailable" xml:space="preserve">
     <value>Le proprietà non sono disponibili. Sono disponibili solo le seguenti proprietà:</value>
   </data>
+  <data name="NoRules" xml:space="preserve">
+    <value>Nessuna regola applicabile per l'applicazione selezionata</value>
+  </data>
 </root>

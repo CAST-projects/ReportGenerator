@@ -117,7 +117,7 @@ namespace CastReporting.Reporting.Block.Table
             if (data.Count == 0)
             {
                 dataRow.Reset();
-                dataRow.Set(0, Labels.NoItem);
+                dataRow.Set(0, Labels.NoRules);
                 data.AddRange(dataRow);
             }
 

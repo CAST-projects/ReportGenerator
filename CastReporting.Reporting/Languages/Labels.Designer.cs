@@ -970,6 +970,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à No applicable rules for given application.
+        /// </summary>
+        public static string NoRules {
+            get {
+                return ResourceManager.GetString("NoRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à No snapshot found for this application.
         /// </summary>
         public static string NoSnapshot {
