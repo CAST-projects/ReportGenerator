@@ -66,7 +66,7 @@ namespace CastReporting.Reporting.Block.Table
                     if (detailResult == null) continue;
                     int? nbViolations = detailResult.EvolutionSummary?.TotalViolations;
                     string stdTagName = result.Reference?.Name + " " + reportData.Application.StandardTags?.Where(_ => _.Key == result.Reference?.Name).FirstOrDefault()?.Name;
-                    dataRow.Set(standard, stdTagName ?? Constants.No_Value);
+                    dataRow.Set(standard, stdTagName);
                     if (nbViolations > 0)
                     {
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));

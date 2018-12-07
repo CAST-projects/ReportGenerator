@@ -40,7 +40,7 @@ namespace CastReporting.Mediation
         /// </summary>
         private RequestComplexity _currentComplexity = RequestComplexity.Standard;
 
-        private WebRequest _request = null;
+        private WebRequest _request;
 
         #endregion ATTRIBUTES
 
@@ -107,10 +107,7 @@ namespace CastReporting.Mediation
         /// <value>
         /// The cookies or <c>null</c>.
         /// </value>
-        public string Cookies
-        {
-            get { return GetHeaderValue("Set-Cookie"); }
-        }
+        public string Cookies => GetHeaderValue("Set-Cookie");
 
         /// <summary>
         /// Gets the location header for the last request.
@@ -118,10 +115,7 @@ namespace CastReporting.Mediation
         /// <value>
         /// The location or <c>null</c>.
         /// </value>
-        public string Location
-        {
-            get { return GetHeaderValue("Location"); }
-        }
+        public string Location => GetHeaderValue("Location");
 
         /// <summary>
         /// Gets the status code. When no request is present, <see cref="HttpStatusCode.Gone"/> will be returned.
@@ -137,7 +131,7 @@ namespace CastReporting.Mediation
 
                 if (_request != null)
                 {
-                    var response = base.GetWebResponse(_request) as HttpWebResponse;
+                    var response = GetWebResponse(_request) as HttpWebResponse;
 
                     if (response != null)
                     {
@@ -166,7 +160,7 @@ namespace CastReporting.Mediation
         {
             if (_request != null)
             {
-                return base.GetWebResponse(_request)?.Headers?[headerName];
+                return GetWebResponse(_request)?.Headers?[headerName];
             }
 
             return null;

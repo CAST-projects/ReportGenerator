@@ -42,9 +42,8 @@ namespace CastReporting.Reporting.Block.Table
 
             if (nbLimitTop == -1) nbLimitTop = 50;
 
-            List<string> rowData = new List<string>();
+            List<string> rowData = new List<string> {Labels.ObjectName};
 
-            rowData.Add(Labels.ObjectName);
             string _prop1Name = MetricsUtility.GetPropertyName(prop1);
             rowData.Add(_prop1Name);
             string _prop2Name = MetricsUtility.GetPropertyName(prop2);

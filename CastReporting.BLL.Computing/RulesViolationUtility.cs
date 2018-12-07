@@ -52,7 +52,7 @@ namespace CastReporting.BLL.Computing
 
                 if (technicalCriterias == null) continue;
 
-                ruleViolationResult.Rule = new RuleDetailsDTO { Key = (int) ((rule.Key != null) ? rule.Key : 0), Name = rule.Name, Critical = rule.Critical, CompoundedWeight = rule.CompoundedWeight ?? 0 };
+                ruleViolationResult.Rule = new RuleDetailsDTO { Key = rule.Key ?? 0, Name = rule.Name, Critical = rule.Critical, CompoundedWeight = rule.CompoundedWeight ?? 0 };
                 ruleViolationResult.Grade = technicalCriterias.DetailResult.Grade;
                 ruleViolationResult.TechnicalCriteraiName = technicalCriterias.Reference.Name;
 

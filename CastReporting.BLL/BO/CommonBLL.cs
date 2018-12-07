@@ -14,8 +14,6 @@
  *
  */
 using CastReporting.Domain;
-using CastReporting.Repositories;
-using CastReporting.Repositories.Interfaces;
 
 namespace CastReporting.BLL
 {

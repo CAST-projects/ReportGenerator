@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using CastReporting.Domain;
-using CastReporting.Mediation.Interfaces;
 
 
 namespace CastReporting.Repositories.Interfaces

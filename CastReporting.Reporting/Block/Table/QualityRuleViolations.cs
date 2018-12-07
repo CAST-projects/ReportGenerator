@@ -52,7 +52,7 @@ namespace CastReporting.Reporting.Block.Table
                 if (results != null)
                 {
                     var _results = results as IList<Violation> ?? results.ToList();
-                    if (_results.Count() != 0)
+                    if (_results.Count != 0)
                     {
                         foreach (Violation _violation in _results)
                         {

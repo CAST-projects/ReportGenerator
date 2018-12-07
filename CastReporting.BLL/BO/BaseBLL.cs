@@ -15,7 +15,6 @@
  */
 using System;
 using CastReporting.Domain;
-using CastReporting.Mediation;
 using CastReporting.Mediation.Interfaces;
 using CastReporting.Repositories;
 using CastReporting.Repositories.Interfaces;
