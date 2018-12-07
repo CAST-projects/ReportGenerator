@@ -56,7 +56,7 @@ namespace CastReporting.Reporting.Block.Table
 					Labels.Rationale, string.IsNullOrWhiteSpace(rule.Rationale) ? Constants.No_Value : rule.Rationale,
 					Labels.Description, rule.Description,
 					Labels.Remediation, string.IsNullOrWhiteSpace(rule.Remediation) ? Constants.No_Value : rule.Remediation,
-					Labels.ViolationsCount, (failedChecks != null) ? failedChecks.Value.ToString("N0") : Constants.No_Value,
+					Labels.ViolationsCount, failedChecks?.ToString("N0") ?? Constants.No_Value,
                             });
             }
                 

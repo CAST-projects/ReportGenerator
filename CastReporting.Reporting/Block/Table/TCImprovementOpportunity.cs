@@ -59,8 +59,8 @@ namespace CastReporting.Reporting.Block.Table
                     rowData.AddRange(new[] 
                                     { 
                                           item.Name
-                                        , item.TotalFailed.HasValue ? item.TotalFailed.Value.ToString("N0") : Constants.No_Value
-                                        , item.TotalChecks.HasValue ? item.TotalChecks.Value.ToString("N0") : Constants.No_Value                                        
+                                        , item.TotalFailed?.ToString("N0") ?? Constants.No_Value
+                                        , item.TotalChecks?.ToString("N0") ?? Constants.No_Value                                        
                                         , item.Grade?.ToString("N2") ?? Constants.No_Value
                                    }
                                    );

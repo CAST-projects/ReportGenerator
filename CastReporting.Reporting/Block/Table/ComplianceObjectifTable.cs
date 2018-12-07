@@ -68,8 +68,8 @@ namespace CastReporting.Reporting.Block.Table
                 //BuildContent "Entire Application" row
                 rowData.AddRange(new[] {
                     Labels.DeliveryWhole,
-                    (nbObjectives.HasValue)?nbObjectives.Value.ToString(MetricFormat):string.Empty,
-                    (nbAchievement.HasValue)?nbAchievement.Value.ToString(MetricFormat):string.Empty,
+                    nbObjectives?.ToString(MetricFormat) ?? string.Empty,
+                    nbAchievement?.ToString(MetricFormat) ?? string.Empty,
                     FormatPercent(MathUtility.GetRound(achievementRatio), false)
                 });
 
@@ -77,8 +77,8 @@ namespace CastReporting.Reporting.Block.Table
                 //BuildContent "Last Delivery" row          
                 rowData.AddRange(new[] {
                      Labels.DeliveryLast,
-                     (nbObjectives.HasValue)?nbObjectives.Value.ToString(MetricFormat):string.Empty,
-                     (nbAchievementAdded.HasValue)?nbAchievementAdded.Value.ToString(MetricFormat):string.Empty,
+                     nbObjectives?.ToString(MetricFormat) ?? string.Empty,
+                     nbAchievementAdded?.ToString(MetricFormat) ?? string.Empty,
                      FormatPercent(MathUtility.GetRound(achievementAddedRatio), false)
                 });
 

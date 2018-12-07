@@ -71,8 +71,8 @@ namespace CastReporting.Reporting.Block.Table
                 rowData.Add(item.TechnicalCriteraiName);
                 rowData.Add(item.Rule.Name);
 
-                rowData.Add(item.TotalFailed.HasValue ? item.TotalFailed.Value.ToString("N0") : Constants.No_Value);
-                rowData.Add(item.TotalChecks.HasValue ? item.TotalChecks.Value.ToString("N0") : Constants.No_Value);                       
+                rowData.Add(item.TotalFailed?.ToString("N0") ?? Constants.No_Value);
+                rowData.Add(item.TotalChecks?.ToString("N0") ?? Constants.No_Value);                       
                    
                 nbRows++;
             }

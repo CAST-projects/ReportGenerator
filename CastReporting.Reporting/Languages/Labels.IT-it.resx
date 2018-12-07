@@ -663,4 +663,49 @@
   <data name="NoRules" xml:space="preserve">
     <value>Nessuna regola applicabile per l'applicazione selezionata</value>
   </data>
+  <data name="codeLines" xml:space="preserve">
+    <value>Code Lines</value>
+  </data>
+  <data name="commentedCodeLines" xml:space="preserve">
+    <value>Commented Code Lines</value>
+  </data>
+  <data name="commentLines" xml:space="preserve">
+    <value>Comment Lines</value>
+  </data>
+  <data name="coupling" xml:space="preserve">
+    <value>Coupling</value>
+  </data>
+  <data name="cyclomaticComplexity" xml:space="preserve">
+    <value>Cyclomatic Complexity</value>
+  </data>
+  <data name="distinctOperands" xml:space="preserve">
+    <value>Distinct Operands</value>
+  </data>
+  <data name="distinctOperators" xml:space="preserve">
+    <value>Distinct Operators</value>
+  </data>
+  <data name="essentialComplexity" xml:space="preserve">
+    <value>Essential Complexity</value>
+  </data>
+  <data name="fanIn" xml:space="preserve">
+    <value>Fan-In</value>
+  </data>
+  <data name="fanOut" xml:space="preserve">
+    <value>Fan-Out</value>
+  </data>
+  <data name="halsteadProgramLength" xml:space="preserve">
+    <value>Halstead Program Length</value>
+  </data>
+  <data name="halsteadProgramVocabulary" xml:space="preserve">
+    <value>Halstead Program Vocabulary</value>
+  </data>
+  <data name="halsteadVolume" xml:space="preserve">
+    <value>Halstead Volume</value>
+  </data>
+  <data name="integrationComplexity" xml:space="preserve">
+    <value>Integration Complexity</value>
+  </data>
+  <data name="ratioCommentLinesCodeLines" xml:space="preserve">
+    <value>Documentation Ratio</value>
+  </data>
 </root>
