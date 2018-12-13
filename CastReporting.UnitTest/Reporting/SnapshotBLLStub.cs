@@ -45,6 +45,23 @@ namespace CastReporting.UnitTest.Reporting
             throw new NotImplementedException();
         }
 
+        [DeploymentItem(@".\Data\RemovedViolations.json", "Data")]
+        [DeploymentItem(@".\Data\RemovedViolations-60012.json", "Data")]
+        public IEnumerable<Violation> GetRemovedViolationsbyBC(string snapshotHref, string bcId, int count)
+        {
+            IEnumerable<Violation> res;
+            switch (bcId)
+            {
+                case "60012":
+                    res = count == -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations-60011.json").ToList() : TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations-60012.json").ToList().Take(count);
+                    break;
+                default:
+                    res = count == -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations.json").ToList() : TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations.json").ToList().Take(count);
+                    break;
+            }
+            return res;
+        }
+
         [DeploymentItem(@".\Data\ActionPlanViolations1.json", "Data")]
         public IEnumerable<Violation> GetViolationsInActionPlan(string snapshotHref, int count)
         {
