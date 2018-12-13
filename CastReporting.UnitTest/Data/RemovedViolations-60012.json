@@ -1,0 +1,182 @@
+[
+  {
+    "component": {
+      "href": "ETE4/components/23798/snapshots/15",
+      "name": "com.castsoftware.util.string.StringHelper.encodeString",
+      "shortName": "encodeString",
+      "status": "deleted"
+    },
+    "diagnosis": {
+      "status": "disappeared",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7766",
+      "name": "Avoid Artifacts with High Cyclomatic Complexity"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/32433/snapshots/15",
+      "name": "com.castsoftware.viewer.data.renderer.TreeNodeRenderer.emitHTML",
+      "shortName": "emitHTML",
+      "status": "deleted"
+    },
+    "diagnosis": {
+      "status": "disappeared",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7766",
+      "name": "Avoid Artifacts with High Cyclomatic Complexity"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/32968/snapshots/15",
+      "name": "com.castsoftware.viewer.macro.FieldValueWrapMacro.eval",
+      "shortName": "eval",
+      "status": "deleted"
+    },
+    "diagnosis": {
+      "status": "disappeared",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7768",
+      "name": "Avoid Artifacts with High Depth of Code"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/23798/snapshots/15",
+      "name": "com.castsoftware.util.string.StringHelper.encodeString",
+      "shortName": "encodeString",
+      "status": "deleted"
+    },
+    "diagnosis": {
+      "status": "disappeared",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7772",
+      "name": "Avoid Artifacts with High Essential Complexity"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/32968/snapshots/15",
+      "name": "com.castsoftware.viewer.macro.FieldValueWrapMacro.eval",
+      "shortName": "eval",
+      "status": "deleted"
+    },
+    "diagnosis": {
+      "status": "disappeared",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7772",
+      "name": "Avoid Artifacts with High Essential Complexity"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/33526/snapshots/15",
+      "name": "Pchit.WebClientRunner.DownloadPage",
+      "shortName": "DownloadPage",
+      "status": "deleted"
+    },
+    "diagnosis": {
+      "status": "disappeared",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7772",
+      "name": "Avoid Artifacts with High Essential Complexity"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/17144/snapshots/15",
+      "name": "com.castsoftware.util.data.IDataManager.getDataList",
+      "shortName": "getDataList",
+      "status": "unchanged"
+    },
+    "diagnosis": {
+      "status": "corrected",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7776",
+      "name": "Avoid Artifacts with High Fan-In"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/32977/snapshots/15",
+      "name": "com.castsoftware.util.row.HashmapRowReader.getRow",
+      "shortName": "getRow",
+      "status": "deleted"
+    },
+    "diagnosis": {
+      "status": "disappeared",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7776",
+      "name": "Avoid Artifacts with High Fan-In"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/32783/snapshots/15",
+      "name": "com.castsoftware.util.row.HashmapRowReader.next",
+      "shortName": "next",
+      "status": "unchanged"
+    },
+    "diagnosis": {
+      "status": "corrected",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7776",
+      "name": "Avoid Artifacts with High Fan-In"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/32299/snapshots/15",
+      "name": "com.castsoftware.util.row.HashmapRowReader.read",
+      "shortName": "read",
+      "status": "unchanged"
+    },
+    "diagnosis": {
+      "status": "corrected",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7776",
+      "name": "Avoid Artifacts with High Fan-In"
+    },
+    "remedialAction": null
+  }
+]

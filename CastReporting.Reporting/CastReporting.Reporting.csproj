@@ -86,6 +86,7 @@
     <Compile Include="Block\Table\RulesListViolationsBookmarks.cs" />
     <Compile Include="Block\Table\QualityRuleViolationsBookmarks.cs" />
     <Compile Include="Block\Table\TopComponentsByProperties.cs" />
+    <Compile Include="Block\Table\RemovedViolationsListByBC.cs" />
     <Compile Include="Block\Table\ViolationsListByBC.cs" />
     <Compile Include="Block\Table\PortfolioGenericTable.cs" />
     <Compile Include="Block\Table\GenericTable.cs" />

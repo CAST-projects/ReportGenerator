@@ -67,6 +67,7 @@ namespace CastReporting.Repositories
         private const string _query_component_type = "{0}/components/{1}/snapshots/{2}";
         private const string _query_quality_standards_evolution = "{0}/results?quality-standards=(c:{1})&select=(evolutionSummary)";
         private const string _query_quality_standards_information = "{0}/quality-standards";
+        private const string _query_removed_violations_by_bcid = "{0}/removed-violations?rule-pattern=(cc:{1},nc:{1})&nbRows={2}";
 
         #endregion CONSTANTS
 
@@ -401,6 +402,14 @@ namespace CastReporting.Repositories
             var requestUrl = string.Format(_query_result_rules_violations, snapshotHRef, criticity, businessCriteria);
             
             return CallWS<IEnumerable<Result>>(requestUrl, RequestComplexity.Standard);
+        }
+
+        public IEnumerable<Violation> GetRemovedViolations(string snapshotHRef, string businessCriteria, int count)
+        {
+            var requestUrl = (count != -1) ? string.Format(_query_removed_violations_by_bcid, snapshotHRef, businessCriteria, count)
+                : string.Format(_query_removed_violations_by_bcid, snapshotHRef, businessCriteria, "$all");
+
+            return CallWS<IEnumerable<Violation>>(requestUrl, RequestComplexity.Long);
         }
 
         /// <summary>

@@ -154,6 +154,9 @@ namespace CastReporting.Repositories.Interfaces
         /// <returns></returns>
         IEnumerable<Result> GetRulesViolations(string snapshotHRef, string criticity, string businessCriteria);
 
+
+        IEnumerable<Violation> GetRemovedViolations(string snapshotHRef, string businessCriteria, int count);
+
         /// <summary>
         /// 
         /// </summary>

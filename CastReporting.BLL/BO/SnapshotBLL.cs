@@ -493,6 +493,22 @@ namespace CastReporting.BLL
 
         }
 
+        public IEnumerable<Violation> GetRemovedViolationsbyBC(string snapshotHref, string bcId, int count)
+        {
+            try
+            {
+                using (var castRepository = GetRepository())
+                {
+                    return castRepository.GetRemovedViolations(snapshotHref, bcId, count);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+        }
+
         public IEnumerable<Violation> GetViolationsInActionPlan(string snapshotHref, int count)
         {
             try
