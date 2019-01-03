@@ -55,7 +55,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [TestMethod]
         [DeploymentItem(@".\Data\ModulesCoCRA.json", "Data")]
         [DeploymentItem(@".\Data\CurrentBCTCmodules.json", "Data")]
-        [DeploymentItem(@".\Data\IfpugFunctions.csv", "Data")]
+        [DeploymentItem(@".\Data\IfpugFunctionsNew.csv", "Data")]
         public void TestIfpugDataFunctions()
         {
             CastDate currentDate = new CastDate { Time = 1492984800000 };
@@ -91,7 +91,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [TestMethod]
         [DeploymentItem(@".\Data\ModulesCoCRA.json", "Data")]
         [DeploymentItem(@".\Data\CurrentBCTCmodules.json", "Data")]
-        [DeploymentItem(@".\Data\IfpugFunctions.csv", "Data")]
+        [DeploymentItem(@".\Data\IfpugFunctionsNew.csv", "Data")]
         public void TestIfpugTransactionsFunctions()
         {
             CastDate currentDate = new CastDate { Time = 1492984800000 };
@@ -128,7 +128,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [TestMethod]
         [DeploymentItem(@".\Data\ModulesCoCRA.json", "Data")]
         [DeploymentItem(@".\Data\CurrentBCTCmodules.json", "Data")]
-        [DeploymentItem(@".\Data\IfpugFunctions.csv", "Data")]
+        [DeploymentItem(@".\Data\IfpugFunctionsNew.csv", "Data")]
         public void TestCountIfpugFunctions()
         {
             CastDate currentDate = new CastDate { Time = 1492984800000 };
