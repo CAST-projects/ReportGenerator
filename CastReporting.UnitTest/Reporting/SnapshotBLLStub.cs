@@ -197,6 +197,7 @@ namespace CastReporting.UnitTest.Reporting
         }
 
         [DeploymentItem(@".\Data\IfpugFunctions.csv", "Data")]
+        [DeploymentItem(@".\Data\IfpugFunctionsNew.csv", "Data")]
         public IEnumerable<IfpugFunction> GetIfpugFunctions(string snapshotHref, int count)
         {
             IEnumerable<IfpugFunction> res = TestUtility.GetCsvSampleResult<IfpugFunction>(@".\Data\IfpugFunctions.csv",count,null).ToList();

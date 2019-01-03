@@ -13,6 +13,9 @@ namespace CastReporting.Domain
         public string ObjectName { get; set; }
 
         [DataMember(Name = "Nb of FPs")]
+        public string NbOfFPs { get; set; }
+
+        [DataMember(Name = "No. FPs")]
         public string NoOfFPs { get; set; }
 
         [DataMember(Name = "FP Details")]

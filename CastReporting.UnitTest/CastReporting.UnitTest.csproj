@@ -79,6 +79,9 @@
     <None Include="Data\ComponentsWithProperties.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\IfpugFunctionsNew.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\previous.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
