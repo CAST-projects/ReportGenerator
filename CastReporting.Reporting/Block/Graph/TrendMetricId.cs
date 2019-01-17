@@ -1,6 +1,6 @@
 ﻿
 /*
- *   Copyright (c) 2018 CAST
+ *   Copyright (c) 2019 CAST
  *
  */
 
