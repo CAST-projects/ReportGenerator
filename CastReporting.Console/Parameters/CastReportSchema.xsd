@@ -17,6 +17,7 @@
         <xs:element name='domain'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
         <xs:element name='file'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
         <xs:element name='snapshot' type='refSnapshot' minOccurs='0'  maxOccurs='1'/>
+        <xs:element name='culture' type='refTagName' minOccurs='0'  maxOccurs='1'/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -32,6 +33,8 @@
     <xs:sequence>
       <xs:element name='current'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
       <xs:element name='previous'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
+      <xs:element name='currentId'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
+      <xs:element name='previousId'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

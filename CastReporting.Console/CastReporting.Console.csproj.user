@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>D:\GitHub\test_parameters.xml</StartArguments>
+    <StartArguments>-webservice http://dash-aed-tomcat:8585/CAST-Health-Engineering/rest/ -username cio -password cast -culture en -template "CISQ - Top 22 - Summary.docx" -file "d:\temp\CISQ - Top 22 - Summary.docx.pdf" -domain AED -application "Jurassic Park" -snapshot_cur_id "10"</StartArguments>
     <StartWorkingDirectory>
     </StartWorkingDirectory>
   </PropertyGroup>

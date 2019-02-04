@@ -452,7 +452,7 @@ namespace CastReporting.Console
 
 
                     //Set current snapshot
-                    Snapshot currentSnapshot = GetSnapshotOrDefault(arguments.Snapshot.Current, application.Snapshots, 0);
+                    Snapshot currentSnapshot = GetSnapshotOrDefault(arguments.Snapshot.Current, arguments.Snapshot.CurrentId, application.Snapshots, 0);
                     if (currentSnapshot == null)
                     {
                         help = $"Current snapshot {arguments.Snapshot.Current.Name} can't be found";
@@ -465,8 +465,8 @@ namespace CastReporting.Console
                     LogHelper.Instance.LogInfo($"Result of current snapshot {currentSnapshot.Name} built successfully");
 
                     //Set previous snapshot
-                    Snapshot prevSnapshot = GetSnapshotOrDefault(arguments.Snapshot.Previous, application.Snapshots, 1);
-                    if (!string.IsNullOrEmpty(arguments.Snapshot.Previous?.Name) && prevSnapshot == null)
+                    Snapshot prevSnapshot = GetSnapshotOrDefault(arguments.Snapshot.Previous, arguments.Snapshot.PreviousId, application.Snapshots, 1);
+                    if (prevSnapshot == null)
                     {
                         help = $"Previous snapshot {arguments.Snapshot.Previous.Name} can't be found";
                         return string.Empty;
@@ -603,16 +603,22 @@ namespace CastReporting.Console
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="currentSnapshotName"></param>
-        /// <param name="snapshosts"></param>
+        /// <param name="snapshotName"></param>
+        /// <param name="snapshotId"></param>
+        /// <param name="snapshots"></param>
         /// <param name="indexDefault"></param>
         /// <returns></returns>
-        private static Snapshot GetSnapshotOrDefault(XmlTagName currentSnapshotName, IEnumerable<Snapshot> snapshosts, int indexDefault)
+        private static Snapshot GetSnapshotOrDefault(XmlTagName snapshotName, XmlTagName snapshotId, IEnumerable<Snapshot> snapshots, int indexDefault)
         {
-            var currentSnapshot = !string.IsNullOrEmpty(currentSnapshotName?.Name)
-                ? snapshosts.FirstOrDefault(_ => $"{_.Name} - {_.Annotation.Version}" == currentSnapshotName.Name) 
-                : snapshosts.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).ElementAtOrDefault(indexDefault);
-            return currentSnapshot;
+            if (!string.IsNullOrEmpty(snapshotName?.Name))
+            {
+                return snapshots.FirstOrDefault(_ => $"{_.Name} - {_.Annotation.Version}" == snapshotName.Name);
+            }
+            if (!string.IsNullOrEmpty(snapshotId?.Name))
+            {
+                return snapshots.FirstOrDefault(_ => $"{_.Id}" == snapshotId.Name);
+            }
+            return snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).ElementAtOrDefault(indexDefault);
         }
 
         /// <summary>

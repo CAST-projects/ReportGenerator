@@ -25,6 +25,10 @@ CAST REPORT GENERATOR HELP - APPLICATION LEVEL
 -file <output_file> : Output generated file name.
 -snapshot_cur <current_snapshot> (optional) : Current snapshot name.
 -snapshot_prev <prev_snapshot> (optional) : Previous snapshot name.
+-snapshot_cur_id <current_snapshot_id> (optional) : Current snapshot id.
+-snapshot_prev_id <prev_snapshot_id> (optional) : Previous snapshot id.
+-domain <domain> : the name of the rest api domain to select the application
+-culture <> : the culture when you do not want the one in the settings
 <full_xml_path> (optional) : XML file path checked by CastReportSchema.xsd 
      and containing required arguments for document generation by batch.
      Replace console arguments « -webservice », « -application », 
@@ -190,10 +194,11 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
                 case "domain": pCastReport.Domain = new XmlTagName() { Name = pValue }; break;
                 case "snapshot_cur": pCastReport.Snapshot.Current = new XmlTagName() { Name = pValue }; break;
                 case "snapshot_prev": pCastReport.Snapshot.Previous = new XmlTagName() { Name = pValue }; break;
+                case "snapshot_cur_id": pCastReport.Snapshot.CurrentId = new XmlTagName() { Name = pValue }; break;
+                case "snapshot_prev_id": pCastReport.Snapshot.PreviousId = new XmlTagName() { Name = pValue }; break;
                 case "username": pCastReport.Username = new XmlTagName() { Name = pValue }; break;
                 case "password": pCastReport.Password = new XmlTagName() { Name = pValue }; break;
-                case "culture": pCastReport.Culture = new XmlTagName() {Name = pValue };
-                    break;
+                case "culture": pCastReport.Culture = new XmlTagName() {Name = pValue }; break;
 
                 case "reporttype": pCastReport.ReportType = new XmlTagName() { Name = pValue }; break;
                 case "category": pCastReport.Category = new XmlTagName() { Name = pValue }; break;
