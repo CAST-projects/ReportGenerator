@@ -20,9 +20,21 @@ namespace CastReporting.Console.Argument
         /// <summary>
         /// Previous Snapshot
         /// </summary>
-        [XmlElement(Namespace="previous", IsNullable=true)]
+        [XmlElement("previous")]
         public XmlTagName Previous { get; set; }
 
+        /// <summary>
+        /// Current Snapshot Id
+        /// </summary>
+        [XmlElement("currentId")]
+        public XmlTagName CurrentId { get; set; }
+
+        /// <summary>
+        /// Previous Snapshot Id
+        /// </summary>
+        [XmlElement("previousId")]
+        public XmlTagName PreviousId { get; set; }
+        
         #endregion
 
         #region Method
