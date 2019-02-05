@@ -44,6 +44,7 @@ namespace CastReporting.Console
             Environment.ExitCode = DoWork(args, out showhelp);
 
             if (!string.IsNullOrEmpty(showhelp)) System.Console.WriteLine(showhelp);
+            LogHelper.Instance.FlushLog();
 
             // Uncomment if you want to see the console during debugging
             // System.Console.ReadLine();
@@ -471,14 +472,11 @@ namespace CastReporting.Console
                         help = $"Previous snapshot {arguments.Snapshot.Previous.Name} can't be found";
                         return string.Empty;
                     }
-                    if (prevSnapshot != null) LogHelper.Instance.LogInfo($"Previous snapshot {prevSnapshot.Name} Initialized successfully");
+                    LogHelper.Instance.LogInfo($"Previous snapshot {prevSnapshot.Name} Initialized successfully");
 
                     //Build previous snapshot results 
-                    if (prevSnapshot != null)
-                    {
-                        SnapshotBLL.BuildSnapshotResult(connection, prevSnapshot, false);
-                        LogHelper.Instance.LogInfo($"Result of previous snapshot {prevSnapshot.Name}  built successfully");
-                    }
+                    SnapshotBLL.BuildSnapshotResult(connection, prevSnapshot, false);
+                    LogHelper.Instance.LogInfo($"Result of previous snapshot {prevSnapshot.Name}  built successfully");
 
 
                     //Build report              
