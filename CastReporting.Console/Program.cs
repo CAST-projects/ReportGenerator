@@ -543,9 +543,10 @@ namespace CastReporting.Console
                         wordDocument.Close();
                         appWord.Quit();
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         // Error if office not installed, then do not save as pdf
+                        LogHelper.Instance.LogWarn("Report cannot be saved as pdf : " + e.Message);
                         reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
                         File.Copy(tmpReportFile, reportPath, true);
                     }
@@ -560,9 +561,10 @@ namespace CastReporting.Console
                         appPres.Close();
                         appPowerpoint.Quit();
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         // Error if office not installed, then do not save as pdf
+                        LogHelper.Instance.LogWarn("Report cannot be saved as pdf : " + e.Message);
                         reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
                         File.Copy(tmpReportFile, reportPath, true);
                     }
