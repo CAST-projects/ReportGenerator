@@ -466,18 +466,32 @@ namespace CastReporting.Console
                     LogHelper.Instance.LogInfo($"Result of current snapshot {currentSnapshot.Name} built successfully");
 
                     //Set previous snapshot
-                    Snapshot prevSnapshot = GetSnapshotOrDefault(arguments.Snapshot.Previous, arguments.Snapshot.PreviousId, application.Snapshots, 1);
-                    if (prevSnapshot == null)
+                    
+                    Snapshot prevSnapshot = GetSnapshotOrDefault(arguments.Snapshot.Previous, arguments.Snapshot.PreviousId, application.Snapshots, -1);
+                    if (prevSnapshot != null)
                     {
-                        help = $"Previous snapshot {arguments.Snapshot.Previous.Name} can't be found";
-                        return string.Empty;
+                        LogHelper.Instance.LogInfo($"Previous snapshot {prevSnapshot.Name} Initialized successfully");
+
+                        //Build previous snapshot results 
+                        SnapshotBLL.BuildSnapshotResult(connection, prevSnapshot, false);
+                        LogHelper.Instance.LogInfo($"Result of previous snapshot {prevSnapshot.Name}  built successfully");
                     }
-                    LogHelper.Instance.LogInfo($"Previous snapshot {prevSnapshot.Name} Initialized successfully");
-
-                    //Build previous snapshot results 
-                    SnapshotBLL.BuildSnapshotResult(connection, prevSnapshot, false);
-                    LogHelper.Instance.LogInfo($"Result of previous snapshot {prevSnapshot.Name}  built successfully");
-
+                    else 
+                    {
+                        if (arguments.Snapshot.Previous == null && arguments.Snapshot.PreviousId == null)
+                        {
+                            prevSnapshot = application.Snapshots.OrderByDescending(_ => _.Annotation.Date).Where(_ => _.Annotation.Date.DateSnapShot < currentSnapshot.Annotation.Date.DateSnapShot).ElementAtOrDefault(0);
+                            if (prevSnapshot == null)
+                            {
+                                LogHelper.Instance.LogInfo($"No Previous snapshot.");
+                            }
+                        }
+                        else
+                        {
+                            help = $"Previous snapshot can't be found";
+                            return string.Empty;
+                        }
+                    }
 
                     //Build report              
                     ReportData reportData = new ReportData()
@@ -618,7 +632,7 @@ namespace CastReporting.Console
             {
                 return snapshots.FirstOrDefault(_ => $"{_.Id}" == snapshotId.Name);
             }
-            return snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).ElementAtOrDefault(indexDefault);
+            return indexDefault == -1 ? null : snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).ElementAtOrDefault(indexDefault);
         }
 
         /// <summary>
