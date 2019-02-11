@@ -106,7 +106,7 @@ begin
 	PageParam.Add('');
 	
 	// Initialiser les valeurs par défaut (optional)
-	PageParam.Values[0] := ExpandConstant('{localappdata}')+'\CAST\ReportGenerator\' + '{#MyAppVersion}';
+	PageParam.Values[0] := ExpandConstant('{commonappdata}')+'\CAST\ReportGenerator\' + '{#MyAppVersion}';
 	
 end;
 
@@ -164,7 +164,7 @@ end;
 function GetSettingsPath(Param: String): String;
 begin
     //Settings dir name as used in C# report generator program
-    Result := ExpandConstant('{localappdata}') + '\CAST\ReportGenerator\' + '{#MyAppVersion}';
+    Result := ExpandConstant('{commonappdata}') + '\CAST\ReportGenerator\' + '{#MyAppVersion}';
 end;
 
 procedure SaveSettings();

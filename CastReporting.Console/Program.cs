@@ -44,6 +44,7 @@ namespace CastReporting.Console
             Environment.ExitCode = DoWork(args, out showhelp);
 
             if (!string.IsNullOrEmpty(showhelp)) System.Console.WriteLine(showhelp);
+            LogHelper.Instance.FlushLog();
 
             // Uncomment if you want to see the console during debugging
             // System.Console.ReadLine();
@@ -465,21 +466,32 @@ namespace CastReporting.Console
                     LogHelper.Instance.LogInfo($"Result of current snapshot {currentSnapshot.Name} built successfully");
 
                     //Set previous snapshot
-                    Snapshot prevSnapshot = GetSnapshotOrDefault(arguments.Snapshot.Previous, arguments.Snapshot.PreviousId, application.Snapshots, 1);
-                    if (prevSnapshot == null)
-                    {
-                        help = $"Previous snapshot {arguments.Snapshot.Previous.Name} can't be found";
-                        return string.Empty;
-                    }
-                    if (prevSnapshot != null) LogHelper.Instance.LogInfo($"Previous snapshot {prevSnapshot.Name} Initialized successfully");
-
-                    //Build previous snapshot results 
+                    
+                    Snapshot prevSnapshot = GetSnapshotOrDefault(arguments.Snapshot.Previous, arguments.Snapshot.PreviousId, application.Snapshots, -1);
                     if (prevSnapshot != null)
                     {
+                        LogHelper.Instance.LogInfo($"Previous snapshot {prevSnapshot.Name} Initialized successfully");
+
+                        //Build previous snapshot results 
                         SnapshotBLL.BuildSnapshotResult(connection, prevSnapshot, false);
                         LogHelper.Instance.LogInfo($"Result of previous snapshot {prevSnapshot.Name}  built successfully");
                     }
-
+                    else 
+                    {
+                        if (arguments.Snapshot.Previous == null && arguments.Snapshot.PreviousId == null)
+                        {
+                            prevSnapshot = application.Snapshots.OrderByDescending(_ => _.Annotation.Date).Where(_ => _.Annotation.Date.DateSnapShot < currentSnapshot.Annotation.Date.DateSnapShot).ElementAtOrDefault(0);
+                            if (prevSnapshot == null)
+                            {
+                                LogHelper.Instance.LogInfo($"No Previous snapshot.");
+                            }
+                        }
+                        else
+                        {
+                            help = $"Previous snapshot can't be found";
+                            return string.Empty;
+                        }
+                    }
 
                     //Build report              
                     ReportData reportData = new ReportData()
@@ -545,9 +557,10 @@ namespace CastReporting.Console
                         wordDocument.Close();
                         appWord.Quit();
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         // Error if office not installed, then do not save as pdf
+                        LogHelper.Instance.LogWarn("Report cannot be saved as pdf : " + e.Message);
                         reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
                         File.Copy(tmpReportFile, reportPath, true);
                     }
@@ -562,9 +575,10 @@ namespace CastReporting.Console
                         appPres.Close();
                         appPowerpoint.Quit();
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         // Error if office not installed, then do not save as pdf
+                        LogHelper.Instance.LogWarn("Report cannot be saved as pdf : " + e.Message);
                         reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
                         File.Copy(tmpReportFile, reportPath, true);
                     }
@@ -618,7 +632,7 @@ namespace CastReporting.Console
             {
                 return snapshots.FirstOrDefault(_ => $"{_.Id}" == snapshotId.Name);
             }
-            return snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).ElementAtOrDefault(indexDefault);
+            return indexDefault == -1 ? null : snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).ElementAtOrDefault(indexDefault);
         }
 
         /// <summary>
