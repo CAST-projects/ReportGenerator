@@ -349,6 +349,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Complexity Factor.
+        /// </summary>
+        public static string ComplexityFactor {
+            get {
+                return ResourceManager.GetString("ComplexityFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à High Complexity.
         /// </summary>
         public static string ComplexityHigh {
@@ -750,6 +759,15 @@ namespace CastReporting.Reporting.Languages {
         public static string FORMAT_SHORT_DATE {
             get {
                 return ResourceManager.GetString("FORMAT_SHORT_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Function Name.
+        /// </summary>
+        public static string FunctionName {
+            get {
+                return ResourceManager.GetString("FunctionName", resourceCulture);
             }
         }
         
@@ -1650,6 +1668,15 @@ namespace CastReporting.Reporting.Languages {
         public static string TRI {
             get {
                 return ResourceManager.GetString("TRI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Updated Artifacts.
+        /// </summary>
+        public static string UpdatedArtifacts {
+            get {
+                return ResourceManager.GetString("UpdatedArtifacts", resourceCulture);
             }
         }
         

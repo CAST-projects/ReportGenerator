@@ -282,6 +282,7 @@
     <Compile Include="Reporting\RuleBLLStub.cs" />
     <Compile Include="Reporting\SnapshotBLLStub.cs" />
     <Compile Include="Reporting\Graph\PortfolioGenericGraphTests.cs" />
+    <Compile Include="Reporting\Tables\AEFPListTests.cs" />
     <Compile Include="Reporting\Tables\QualityStandardsEvolutionTests.cs" />
     <Compile Include="Reporting\Tables\RulesListLargestVariationTests.cs" />
     <Compile Include="Reporting\Tables\RulesListStatisticsRatioTests.cs" />
