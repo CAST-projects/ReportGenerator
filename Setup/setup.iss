@@ -41,6 +41,9 @@ Name: "english"; MessagesFile: "compiler:Default.isl" ; LicenseFile: "../Setup/L
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
+[Dirs]
+Name: "{code:GetSettingsPath}"; Permissions: users-full
+
 [Files]
 
 ; NOTE:packages/CommonServiceLocator.1.0/lib/NET35
