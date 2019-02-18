@@ -443,6 +443,23 @@ namespace CastReporting.BLL
 
         }
 
+        public IEnumerable<OmgFunction> GetOmgFunctionsEvolutions(string snapshotHref, int count)
+        {
+            try
+            {
+                using (var castRepsitory = GetRepository())
+                {
+                    return castRepsitory.GetOmgFunctionsEvolutions(_Snapshot.Href, count);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+
+        }
+
         /// <summary>
         /// 
         /// </summary>
