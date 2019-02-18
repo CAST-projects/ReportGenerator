@@ -708,4 +708,13 @@
   <data name="NoRules" xml:space="preserve">
     <value>No applicable rules for given application</value>
   </data>
+  <data name="ComplexityFactor" xml:space="preserve">
+    <value>Complexity Factor</value>
+  </data>
+  <data name="FunctionName" xml:space="preserve">
+    <value>Function Name</value>
+  </data>
+  <data name="UpdatedArtifacts" xml:space="preserve">
+    <value>Updated Artifacts</value>
+  </data>
 </root>

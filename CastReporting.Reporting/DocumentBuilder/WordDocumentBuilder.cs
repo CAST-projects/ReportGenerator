@@ -56,6 +56,20 @@ namespace CastReporting.Reporting.Builder
             {
                 ParseDocument(onePart);
             }
+
+            /* To make the word document read only
+            var dp = new DocumentProtection
+            {
+                Edit = DocumentProtectionValues.ReadOnly,
+                Enforcement = OnOffValue.FromBoolean(true)
+            };
+            if (Equals(wordDoc.MainDocumentPart.DocumentSettingsPart.Settings, null))
+            {
+                wordDoc.MainDocumentPart.DocumentSettingsPart.Settings = new Settings();
+            }
+            wordDoc.MainDocumentPart.DocumentSettingsPart.Settings.AppendChild(dp);
+            wordDoc.MainDocumentPart.DocumentSettingsPart.Settings.Save();
+            */
         }
         /// <summary>
         /// Returns the block configuration of the block item given in parameter.

@@ -52,6 +52,7 @@ namespace CastReporting.Repositories
         private const string _query_transactions = "{0}/transactions/{1}?nbRows={2}";
         private const string _query_ifpug_functions = "{0}/ifpug-functions";
         private const string _query_ifpug_functions_evolutions = "{0}/ifpug-functions-evolution";
+        private const string _query_omg_functions_evolutions = "{0}/omg-functions-functional-evolution";
         private const string _query_metric_top_artefact = "{0}/violations?rule-pattern={1}";
         private const string _query_components = "{0}/components/{1}?nbRows={2}";
         private const string _query_components_with_properties = "{0}/components/{1}?properties=({2},{3})&order=({4})&startRow=1&nbRows={5}";
@@ -314,6 +315,13 @@ namespace CastReporting.Repositories
             var requestUrl = string.Format(_query_ifpug_functions_evolutions, snapshotHref);
 
             return CallCsvWS<IfpugFunction>(requestUrl, RequestComplexity.Long, count);
+        }
+
+        IEnumerable<OmgFunction> ICastRepsitory.GetOmgFunctionsEvolutions(string snapshotHref, int count)
+        {
+            var requestUrl = string.Format(_query_omg_functions_evolutions, snapshotHref);
+
+            return CallCsvWS<OmgFunction>(requestUrl, RequestComplexity.Long, count);
         }
 
         IEnumerable<MetricTopArtifact> ICastRepsitory.GetMetricTopArtefact(string snapshotHref, string RuleId, int count)

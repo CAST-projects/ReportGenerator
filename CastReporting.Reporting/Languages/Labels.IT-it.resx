@@ -708,4 +708,13 @@
   <data name="ratioCommentLinesCodeLines" xml:space="preserve">
     <value>Documentation Ratio</value>
   </data>
+  <data name="ComplexityFactor" xml:space="preserve">
+    <value>Fattore di complessità</value>
+  </data>
+  <data name="FunctionName" xml:space="preserve">
+    <value>Nome della funzione</value>
+  </data>
+  <data name="UpdatedArtifacts" xml:space="preserve">
+    <value>Artefatti aggiornati</value>
+  </data>
 </root>

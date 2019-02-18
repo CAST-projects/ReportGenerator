@@ -663,4 +663,13 @@
   <data name="WithViolations" xml:space="preserve">
     <value>含违规</value>
   </data>
+  <data name="ComplexityFactor" xml:space="preserve">
+    <value>复杂因素</value>
+  </data>
+  <data name="FunctionName" xml:space="preserve">
+    <value>功能名称</value>
+  </data>
+  <data name="UpdatedArtifacts" xml:space="preserve">
+    <value>更新的工件</value>
+  </data>
 </root>
