@@ -83,15 +83,15 @@ namespace CastReporting.Reporting.Block.Table
                 }
                 foreach (OmgFunction omgFunction in exportedList)
                 {
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.ElementType) ? " " : omgFunction.ElementType);
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.FunctionName) ? " " : omgFunction.FunctionName);
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.ObjectName) ? " " : omgFunction.ObjectName);
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.NoOfFPs) ? " " : omgFunction.NoOfFPs);
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.ComplexityFactor) ? " " : omgFunction.ComplexityFactor);
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.UpdatedArtifacts) ? " " : omgFunction.UpdatedArtifacts);
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.ObjectType) ? " " : omgFunction.ObjectType);
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.ModuleName) ? " " : omgFunction.ModuleName);
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.Technology) ? " " : omgFunction.Technology);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.ElementType) ? Constants.No_Data : omgFunction.ElementType);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.FunctionName) ? Constants.No_Data : omgFunction.FunctionName);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.ObjectName) ? Constants.No_Data : omgFunction.ObjectName);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.NoOfFPs) ? Constants.No_Data : omgFunction.NoOfFPs);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.ComplexityFactor) ? Constants.No_Data : omgFunction.ComplexityFactor);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.UpdatedArtifacts) ? Constants.No_Data : omgFunction.UpdatedArtifacts);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.ObjectType) ? Constants.No_Data : omgFunction.ObjectType);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.ModuleName) ? Constants.No_Data : omgFunction.ModuleName);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.Technology) ? Constants.No_Data : omgFunction.Technology);
                     nbRows += 1;
                 }
             }
