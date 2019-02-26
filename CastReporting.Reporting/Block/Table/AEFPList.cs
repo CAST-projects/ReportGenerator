@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
@@ -18,7 +19,7 @@ namespace CastReporting.Reporting.Block.Table
             {
                 nbLimitTop = 10;
             }
-            string type = null;
+            string type = string.Empty;
             if (null != options && options.ContainsKey("TYPE"))
             {
                 type = options["TYPE"] ?? string.Empty;
@@ -36,7 +37,7 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                 }
             }
-            string status = null;
+            string status = string.Empty;
             if (null != options && options.ContainsKey("STATUS"))
             {
                 status = options["STATUS"] ?? string.Empty;
@@ -62,7 +63,8 @@ namespace CastReporting.Reporting.Block.Table
             IEnumerable<OmgFunction> functions = reportData.SnapshotExplorer.GetOmgFunctionsEvolutions(reportData.CurrentSnapshot.Href, -1)?.ToList();
 
             List<string> rowData = new List<string>();
-            rowData.AddRange(new[] { Labels.IFPUG_ElementType, Labels.FunctionName, Labels.ObjectName, Labels.IFPUG_NoOfFPs, Labels.ComplexityFactor, Labels.UpdatedArtifacts, Labels.IFPUG_ObjectType, Labels.ModuleName, Labels.Technology });
+            if (type.Equals(string.Empty)) rowData.Add(Labels.IFPUG_ElementType);
+            rowData.AddRange(new[] { Labels.FunctionName, Labels.IFPUG_ObjectType, Labels.Technology, Labels.ModuleName, Labels.ObjectName, Labels.AEP, Labels.Status, Labels.ComplexityFactor, Labels.UpdatedArtifacts });
 
             int nbRows = 1;
 
@@ -83,21 +85,27 @@ namespace CastReporting.Reporting.Block.Table
                 }
                 foreach (OmgFunction omgFunction in exportedList)
                 {
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.ElementType) ? Constants.No_Data : omgFunction.ElementType);
+                    if (type.Equals(string.Empty))
+                    {
+                        rowData.Add(string.IsNullOrEmpty(omgFunction.ElementType) ? Constants.No_Data : GetType(omgFunction.ElementType));
+                    }
+                    
                     rowData.Add(string.IsNullOrEmpty(omgFunction.FunctionName) ? Constants.No_Data : omgFunction.FunctionName);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.ObjectType) ? Constants.No_Data : omgFunction.ObjectType);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.Technology) ? Constants.No_Data : omgFunction.Technology);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.ModuleName) ? Constants.No_Data : omgFunction.ModuleName);
                     rowData.Add(string.IsNullOrEmpty(omgFunction.ObjectName) ? Constants.No_Data : omgFunction.ObjectName);
                     rowData.Add(string.IsNullOrEmpty(omgFunction.NoOfFPs) ? Constants.No_Data : omgFunction.NoOfFPs);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.ElementType) ? Constants.No_Data : GetStatus(omgFunction.ElementType));
                     rowData.Add(string.IsNullOrEmpty(omgFunction.ComplexityFactor) ? Constants.No_Data : omgFunction.ComplexityFactor);
                     rowData.Add(string.IsNullOrEmpty(omgFunction.UpdatedArtifacts) ? Constants.No_Data : omgFunction.UpdatedArtifacts);
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.ObjectType) ? Constants.No_Data : omgFunction.ObjectType);
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.ModuleName) ? Constants.No_Data : omgFunction.ModuleName);
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.Technology) ? Constants.No_Data : omgFunction.Technology);
                     nbRows += 1;
                 }
             }
             else
             {
                 rowData.AddRange(new[] { Labels.NoItem, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
+                if (type.Equals(string.Empty)) rowData.Add(string.Empty);
             }
 
             var resultTable = new TableDefinition
@@ -105,11 +113,26 @@ namespace CastReporting.Reporting.Block.Table
                 HasRowHeaders = false,
                 HasColumnHeaders = true,
                 NbRows = nbRows,
-                NbColumns = 9,
+                NbColumns = type.Equals(string.Empty) ? 10 : 9,
                 Data = rowData
             };
 
             return resultTable;
+        }
+
+        string GetStatus(string source)
+        {
+            if (source.Contains("Added")) return "Added";
+            if (source.Contains("Modified")) return "Modified";
+            if (source.Contains("Deleted")) return "Deleted";
+            return string.Empty;
+        }
+
+        string GetType(string source)
+        {
+            if (source.Contains("Data Function")) return "Data Function";
+            if (source.Contains("Transactional")) return "Transactional";
+            return string.Empty;
         }
     }
 }

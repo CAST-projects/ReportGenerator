@@ -40,18 +40,18 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { "Element Type", "Function Name", "Object Name", "# of FPs", "Complexity Factor", "Updated Artifacts", "Object Type", "Module Name", "Technology" });
-            expectedData.AddRange(new List<string> { "Added Data Function AEFP", "COI5F21", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COCPB10.COI5F21", "5", "1.0", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Added Data Function AEFP", "CSI0F61", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].CSVAB482.CSI0F61", "5", "1.0", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Added Data Function AEFP", "CSI1F41", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].CSVAB482.CSI1F41", "5", "1.0", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Modified Data Function AEFP", "CSI1F51", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].CSVAB482.CSI1F51", "5", "1.0", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Modified Data Function AEFP", "CSI1F62", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].CSVAB482.CSI1F62", "5", "1.0", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Deleted Data Function AEFP", "EKPO", "unresolvedObjects/SAP_TABLE/EKPO", "3", "0.4", "-", "SAP unresolved Table", "Abap_castpubs", "SAP SQL" });
-            expectedData.AddRange(new List<string> { "Deleted Data Function AEFP", "COI1F91", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI1F91", "2", "0.4", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Deleted Data Function AEFP", "COI2F01", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI2F01", "2", "0.4", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Deleted Data Function AEFP", "COI2F11", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI2F11", "2", "0.4", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Modified Data Function AEFP", "COI1F71", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB18.COI1F71", "1", "0.25", "0", "Cobol File Link", "Presales", "Cobol" });
-            TestUtility.AssertTableContent(table, expectedData, 9, 11);
+            expectedData.AddRange(new List<string> { "Element Type", "Function Name", "Object Type", "Technology", "Module Name", "Object Name", "AEP", "Status", "Complexity Factor", "Updated Artifacts"});
+            expectedData.AddRange(new List<string> { "Data Function", "COI5F21", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COCPB10.COI5F21", "5", "Added", "1.0", "-"});
+            expectedData.AddRange(new List<string> { "Data Function", "CSI0F61", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].CSVAB482.CSI0F61", "5", "Added", "1.0", "-" });
+            expectedData.AddRange(new List<string> { "Data Function", "CSI1F41", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].CSVAB482.CSI1F41", "5", "Added", "1.0", "-" });
+            expectedData.AddRange(new List<string> { "Data Function", "CSI1F51", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].CSVAB482.CSI1F51", "5", "Modified", "1.0", "-" });
+            expectedData.AddRange(new List<string> { "Data Function", "CSI1F62", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].CSVAB482.CSI1F62", "5", "Modified", "1.0", "-" });
+            expectedData.AddRange(new List<string> {"Data Function", "EKPO", "SAP unresolved Table", "SAP SQL", "Abap_castpubs", "unresolvedObjects/SAP_TABLE/EKPO", "3", "Deleted", "0.4", "-"});
+            expectedData.AddRange(new List<string> {"Data Function", "COI1F91", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI1F91", "2", "Deleted", "0.4", "-"});
+            expectedData.AddRange(new List<string> { "Data Function", "COI2F01", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI2F01", "2", "Deleted", "0.4", "-"});
+            expectedData.AddRange(new List<string> { "Data Function", "COI2F11", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI2F11", "2", "Deleted", "0.4", "-" });
+            expectedData.AddRange(new List<string> { "Data Function", "COI1F71", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB18.COI1F71", "1", "Modified", "0.25", "0" });
+            TestUtility.AssertTableContent(table, expectedData, 10, 11);
         }
 
         [TestMethod]
@@ -83,10 +83,10 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { "Element Type", "Function Name", "Object Name", "# of FPs", "Complexity Factor", "Updated Artifacts", "Object Type", "Module Name", "Technology" });
-            expectedData.AddRange(new List<string> { "Added Data Function AEFP", "COI5F21", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COCPB10.COI5F21", "5", "1.0", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Added Data Function AEFP", "CSI0F61", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].CSVAB482.CSI0F61", "5", "1.0", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Added Data Function AEFP", "CSI1F41", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].CSVAB482.CSI1F41", "5", "1.0", "-", "Cobol File Link", "Presales", "Cobol" });
+            expectedData.AddRange(new List<string> { "Function Name", "Object Type", "Technology", "Module Name", "Object Name", "AEP", "Status", "Complexity Factor", "Updated Artifacts" });
+            expectedData.AddRange(new List<string> { "COI5F21", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COCPB10.COI5F21", "5", "Added", "1.0", "-" });
+            expectedData.AddRange(new List<string> { "CSI0F61", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].CSVAB482.CSI0F61", "5", "Added", "1.0", "-" });
+            expectedData.AddRange(new List<string> { "CSI1F41", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].CSVAB482.CSI1F41", "5", "Added", "1.0", "-" });
             TestUtility.AssertTableContent(table, expectedData, 9, 4);
         }
 
@@ -119,10 +119,10 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { "Element Type", "Function Name", "Object Name", "# of FPs", "Complexity Factor", "Updated Artifacts", "Object Type", "Module Name", "Technology" });
-            expectedData.AddRange(new List<string> { "Modified Transactional AEFP", "ERCO0CP2", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\JCL].ERCO0CP2", "4", "0.5", "1", "JCL Job", "Presales", "JCL" });
-            expectedData.AddRange(new List<string> { "Modified Transactional AEFP", "ERCO0MPY", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\JCL].ERCO0MPY", "4", "0.5", "0", "JCL Job", "Presales", "JCL" });
-            expectedData.AddRange(new List<string> { "Modified Transactional AEFP", "ERCS0NPA", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\JCL].ERCS0NPA", "4", "0.5", "2", "JCL Job", "Presales", "JCL" });
+            expectedData.AddRange(new List<string> { "Function Name", "Object Type", "Technology", "Module Name", "Object Name", "AEP", "Status", "Complexity Factor", "Updated Artifacts" });
+            expectedData.AddRange(new List<string> { "ERCO0CP2", "JCL Job", "JCL", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\JCL].ERCO0CP2", "4", "Modified", "0.5", "1" });
+            expectedData.AddRange(new List<string> { "ERCO0MPY", "JCL Job", "JCL", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\JCL].ERCO0MPY", "4", "Modified", "0.5", "0" });
+            expectedData.AddRange(new List<string> { "ERCS0NPA", "JCL Job", "JCL", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\JCL].ERCS0NPA", "4", "Modified", "0.5", "2" });
             TestUtility.AssertTableContent(table, expectedData, 9, 4);
         }
 
@@ -155,14 +155,14 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { "Element Type", "Function Name", "Object Name", "# of FPs", "Complexity Factor", "Updated Artifacts", "Object Type", "Module Name", "Technology" });
-            expectedData.AddRange(new List<string> { "Deleted Data Function AEFP", "EKPO", "unresolvedObjects/SAP_TABLE/EKPO", "3", "0.4", "-", "SAP unresolved Table", "Abap_castpubs", "SAP SQL" });
-            expectedData.AddRange(new List<string> { "Deleted Data Function AEFP", "COI1F91", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI1F91", "2", "0.4", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Deleted Data Function AEFP", "COI2F01", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI2F01", "2", "0.4", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Deleted Data Function AEFP", "COI2F11", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI2F11", "2", "0.4", "-", "Cobol File Link", "Presales", "Cobol" });
-            expectedData.AddRange(new List<string> { "Deleted Transactional AEFP", "ERCO0DPA", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\JCL].ERCO0DPA", "2", "0.25", "4", "JCL Job", "Presales", "JCL" });
-            expectedData.AddRange(new List<string> { "Deleted Transactional AEFP", "ERCO0SP2", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\JCL].ERCO0SP2", "2", "0.25", "1", "JCL Job", "Presales", "JCL" });
-            TestUtility.AssertTableContent(table, expectedData, 9, 7);
+            expectedData.AddRange(new List<string> { "Element Type", "Function Name", "Object Type", "Technology", "Module Name", "Object Name", "AEP", "Status", "Complexity Factor", "Updated Artifacts", "Data Function" });
+            expectedData.AddRange(new List<string> { "EKPO", "SAP unresolved Table", "SAP SQL", "Abap_castpubs", "unresolvedObjects/SAP_TABLE/EKPO", "3", "Deleted", "0.4", "-" });
+            expectedData.AddRange(new List<string> { "Data Function", "COI1F91", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI1F91", "2", "Deleted", "0.4", "-" });
+            expectedData.AddRange(new List<string> { "Data Function", "COI2F01", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI2F01", "2", "Deleted", "0.4", "-" });
+            expectedData.AddRange(new List<string> { "Data Function", "COI2F11", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI2F11", "2", "Deleted", "0.4", "-" });
+            expectedData.AddRange(new List<string> { "Transactional", "ERCO0DPA", "JCL Job", "JCL", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\JCL].ERCO0DPA", "2", "Deleted", "0.25", "4" });
+            expectedData.AddRange(new List<string> { "Transactional", "ERCO0SP2", "JCL Job", "JCL", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\JCL].ERCO0SP2", "2", "Deleted", "0.25", "1" });
+            TestUtility.AssertTableContent(table, expectedData, 10, 7);
         }
     }
 }

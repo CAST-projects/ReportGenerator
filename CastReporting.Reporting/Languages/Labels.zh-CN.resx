@@ -672,4 +672,7 @@
   <data name="UpdatedArtifacts" xml:space="preserve">
     <value>更新的工件</value>
   </data>
+  <data name="AEP" xml:space="preserve">
+    <value>AEP</value>
+  </data>
 </root>

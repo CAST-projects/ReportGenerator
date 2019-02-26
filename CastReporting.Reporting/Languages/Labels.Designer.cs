@@ -151,6 +151,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à AEP.
+        /// </summary>
+        public static string AEP {
+            get {
+                return ResourceManager.GetString("AEP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Application.
         /// </summary>
         public static string Application {
