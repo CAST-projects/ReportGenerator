@@ -95,7 +95,9 @@ namespace CastReporting.Reporting.Block.Table
                     rowData.Add(string.IsNullOrEmpty(omgFunction.Technology) ? Constants.No_Data : omgFunction.Technology);
                     rowData.Add(string.IsNullOrEmpty(omgFunction.ModuleName) ? Constants.No_Data : omgFunction.ModuleName);
                     rowData.Add(string.IsNullOrEmpty(omgFunction.ObjectName) ? Constants.No_Data : omgFunction.ObjectName);
-                    rowData.Add(string.IsNullOrEmpty(omgFunction.NoOfFPs) ? Constants.No_Data : omgFunction.NoOfFPs);
+                    rowData.Add(string.IsNullOrEmpty(omgFunction.Aeps) ? 
+                            string.IsNullOrEmpty(omgFunction.NoOfFPs) ? Constants.No_Data : omgFunction.NoOfFPs
+                            : omgFunction.Aeps);
                     rowData.Add(string.IsNullOrEmpty(omgFunction.ElementType) ? Constants.No_Data : GetStatus(omgFunction.ElementType));
                     rowData.Add(string.IsNullOrEmpty(omgFunction.ComplexityFactor) ? Constants.No_Data : omgFunction.ComplexityFactor);
                     rowData.Add(string.IsNullOrEmpty(omgFunction.UpdatedArtifacts) ? Constants.No_Data : omgFunction.UpdatedArtifacts);
