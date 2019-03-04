@@ -64,7 +64,11 @@ namespace CastReporting.Reporting.Block.Table
                 {
                     rowData.Add(string.IsNullOrEmpty(ifpugFunction.ElementType) ? " " : ifpugFunction.ElementType);
                     rowData.Add(string.IsNullOrEmpty(ifpugFunction.ObjectName) ? " " : ifpugFunction.ObjectName);
-                    rowData.Add(string.IsNullOrEmpty(ifpugFunction.NbOfFPs) ? string.IsNullOrEmpty(ifpugFunction.NoOfFPs) ? " " : ifpugFunction.NoOfFPs : ifpugFunction.NbOfFPs);
+                    rowData.Add(string.IsNullOrEmpty(ifpugFunction.NbOfFPs) ? 
+                        string.IsNullOrEmpty(ifpugFunction.NoOfFPs) ? 
+                        string.IsNullOrEmpty(ifpugFunction.Afps) ? " " : ifpugFunction.Afps
+                        : ifpugFunction.NoOfFPs 
+                        : ifpugFunction.NbOfFPs);
                     rowData.Add(string.IsNullOrEmpty(ifpugFunction.FPDetails) ? " " : ifpugFunction.FPDetails);
                     rowData.Add(string.IsNullOrEmpty(ifpugFunction.ObjectType) ? " " : ifpugFunction.ObjectType);
                     rowData.Add(string.IsNullOrEmpty(ifpugFunction.ModuleName) ? " " : ifpugFunction.ModuleName);

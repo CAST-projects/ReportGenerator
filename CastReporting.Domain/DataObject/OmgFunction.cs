@@ -18,6 +18,9 @@ namespace CastReporting.Domain
         [DataMember(Name = "No. FPs")]
         public string NoOfFPs { get; set; }
 
+        [DataMember(Name = "AEP")]
+        public string Aeps { get; set; }
+
         [DataMember(Name = "Complexity Factor")]
         public string ComplexityFactor { get; set; }
 
