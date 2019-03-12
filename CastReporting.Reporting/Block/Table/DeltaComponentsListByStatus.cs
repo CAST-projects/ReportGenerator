@@ -73,7 +73,8 @@ namespace CastReporting.Reporting.Block.Table
                 Module module = reportData.CurrentSnapshot.Modules.FirstOrDefault(_ => _.Name.Equals(moduleName));
                 if (module != null)
                 {
-                    rowData.AddRange(GetDeltaComponents(reportData, module.Href, status, currentSnapshotId, currentSnapshotName, complexity));
+                    string moduleHref = module.DomainId + "/modules/" + module.Id;
+                    rowData.AddRange(GetDeltaComponents(reportData, moduleHref, status, currentSnapshotId, previousSnapshotId, complexity));
                     return new TableDefinition { HasRowHeaders = false, HasColumnHeaders = true, NbRows = _nbRows, NbColumns = 8, Data = rowData };
                 }
                 else
