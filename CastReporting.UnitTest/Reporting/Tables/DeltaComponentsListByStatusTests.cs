@@ -262,6 +262,33 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "Technology not found in this application.", string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
             TestUtility.AssertTableContent(table, expectedData, 8, 2);
         }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\DeltaComponents.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
+        [DeploymentItem(@".\Data\PreviousBCresults.json", "Data")]
+        public void TestLimitResults()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            CastDate previousDate = new CastDate { Time = 1484866800000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCresults.json", "AED/applications/3/snapshots/6", "1.5.0", "V-1.5.0", currentDate,
+                null, @".\Data\PreviousBCresults.json", "AED/applications/3/snapshots/5", "1.4.0", "V-1.4.0", previousDate);
+            reportData.RuleExplorer = new RuleBLLStub();
+
+            var component = new CastReporting.Reporting.Block.Table.DeltaComponentsListByStatus();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COUNT", "2" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Object Name", "Complexity", "SQL Complexity", "Granularity", "Lack of comments", "Coupling", "Number of object updates", "Object full name" });
+            expectedData.AddRange(new List<string> { "get", "low risk", "low risk", "low risk", "very high risk", "moderate risk", "0", "CastReporting.BLL.Computing.ViolationSummaryModuleDTO.this.get" });
+            expectedData.AddRange(new List<string> { "SetActionsPlan", "moderate risk", "low risk", "moderate risk", "moderate risk", "low risk", "0", "CastReporting.BLL.PortfolioSnapshotsBLL.SetActionsPlan" });
+            TestUtility.AssertTableContent(table, expectedData, 8, 3);
+        }
     }
 }
 

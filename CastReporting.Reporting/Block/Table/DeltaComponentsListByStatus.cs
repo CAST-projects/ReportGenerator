@@ -18,13 +18,14 @@ namespace CastReporting.Reporting.Block.Table
     public class DeltaComponentsListByStatus : TableBlock
     {
         private int _nbRows;
+        private int _nbLimit;
 
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             List<string> rowData = new List<string>();
 
             string status = options.GetOption("STATUS", "added").ToLower();
-            int nbLimit = options.GetIntOption("COUNT", -1);
+            _nbLimit = options.GetIntOption("COUNT", 10);
 
             string moduleName = options.GetOption("MODULE", string.Empty);
             string technoName = options.GetOption("TECHNOLOGY", string.Empty);
@@ -107,7 +108,8 @@ namespace CastReporting.Reporting.Block.Table
                 ? reportData.RuleExplorer.GetDeltaComponents(href, status, currentSnapshotId, previousSnapshotId, technology).OrderBy(_ => _.Name)
                 : reportData.RuleExplorer.GetDeltaComponents(href, status, currentSnapshotId, previousSnapshotId, technology).Where(_ => _.Complexity.ToLower().Equals(complexity + " risk")).OrderBy(_ => _.Name);
 
-            foreach (DeltaComponent component in components.OrderBy(_ => _.Name))
+            components = (_nbLimit != -1) ? components.Take(_nbLimit) : components;
+            foreach (DeltaComponent component in components)
             {
                 dataList.AddRange(new string[]
                 {
