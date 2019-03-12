@@ -69,6 +69,7 @@ namespace CastReporting.Repositories
         private const string _query_quality_standards_evolution = "{0}/results?quality-standards=(c:{1})&select=(evolutionSummary)";
         private const string _query_quality_standards_information = "{0}/quality-standards";
         private const string _query_removed_violations_by_bcid = "{0}/removed-violations?rule-pattern=(cc:{1},nc:{1})&nbRows={2}";
+        private const string _query_delta_components = "{0}/components/65005?snapshot-ids=({1},{2})&status={3}";
 
         #endregion CONSTANTS
 
@@ -494,6 +495,20 @@ namespace CastReporting.Repositories
         #endregion modules
 
         #region Results
+
+        IEnumerable<DeltaComponent> ICastRepsitory.GetDeltaComponents(string levelHRef, string snapshotId, string previousSnapshotId, string status, string technology)
+        {
+            string query = _query_delta_components;
+            if (!string.IsNullOrEmpty(technology))
+                query = query + "&technologies=({4})";
+
+            // levelHRef can be the application HRef, or module HRef
+            // in case of technology, levelHRef should be application HRef
+            var requestUrl = string.Format(query, levelHRef, snapshotId, previousSnapshotId, status, technology);
+
+            return CallWS<IEnumerable<DeltaComponent>>(requestUrl, RequestComplexity.Standard);
+
+        }
 
         /// <summary>
         /// 

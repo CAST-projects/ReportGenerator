@@ -675,4 +675,37 @@
   <data name="AEP" xml:space="preserve">
     <value>AEP</value>
   </data>
+  <data name="Complexity1" xml:space="preserve">
+    <value>复杂</value>
+  </data>
+  <data name="Coupling1" xml:space="preserve">
+    <value>耦合</value>
+  </data>
+  <data name="Granularity" xml:space="preserve">
+    <value>粒度</value>
+  </data>
+  <data name="LackOfComments" xml:space="preserve">
+    <value>缺乏评论</value>
+  </data>
+  <data name="NumberOfObjectUpdates" xml:space="preserve">
+    <value>对象更新次数</value>
+  </data>
+  <data name="ObjectFullName" xml:space="preserve">
+    <value>对象全名</value>
+  </data>
+  <data name="SQLComplexity" xml:space="preserve">
+    <value>SQL复杂性</value>
+  </data>
+  <data name="ModuleNotFound" xml:space="preserve">
+    <value>在此应用程序中找不到模块</value>
+  </data>
+  <data name="NoPreviousSnapshot" xml:space="preserve">
+    <value>找不到以前的快照</value>
+  </data>
+  <data name="StatusNotAllowed" xml:space="preserve">
+    <value>不允许选择状态</value>
+  </data>
+  <data name="TechnoNotFound" xml:space="preserve">
+    <value>在此应用程序中找不到的技术</value>
+  </data>
 </root>

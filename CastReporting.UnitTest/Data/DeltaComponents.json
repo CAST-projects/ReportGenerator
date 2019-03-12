@@ -1,0 +1,46 @@
+[
+  {
+    "href": "aed/components/2235/snapshots/1",
+    "name": "CastReporting.BLL.Computing.ViolationSummaryModuleDTO.this.get",
+    "shortName": "get",
+    "nbOfUpdates": 0,
+    "complexity": "low risk",
+    "sqlComplexity": "low risk",
+    "granularity": "low risk",
+    "lackOfComments": "very high risk",
+    "coupling": "moderate risk"
+  },
+  {
+    "href": "aed/components/3247/snapshots/1",
+    "name": "CastReporting.BLL.PortfolioSnapshotsBLL.SetActionsPlan",
+    "shortName": "SetActionsPlan",
+    "nbOfUpdates": 0,
+    "complexity": "moderate risk",
+    "sqlComplexity": "low risk",
+    "granularity": "moderate risk",
+    "lackOfComments": "moderate risk",
+    "coupling": "low risk"
+  },
+  {
+    "href": "aed/components/2501/snapshots/1",
+    "name": "CastReporting.BLL.RuleBLL.GetRulesDetails",
+    "shortName": "GetRulesDetails",
+    "nbOfUpdates": 0,
+    "complexity": "high risk",
+    "sqlComplexity": "low risk",
+    "granularity": "low risk",
+    "lackOfComments": "low risk",
+    "coupling": "low risk"
+  },
+  {
+    "href": "local_reportgenerator_ENGINEERING_WEBI/components/3657/snapshots/1",
+    "name": "CastReporting.Domain.Interfaces.IRuleExplorer.GetRulesDetails",
+    "shortName": "GetRulesDetails",
+    "nbOfUpdates": 0,
+    "complexity": "very high risk",
+    "sqlComplexity": "low risk",
+    "granularity": "low risk",
+    "lackOfComments": "low risk",
+    "coupling": "low risk"
+  }
+]

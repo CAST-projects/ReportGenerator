@@ -62,5 +62,13 @@ namespace CastReporting.BLL
                 return castRepsitory.GetRulesForTechnicalCriteria(domain, technicalCriteria, snapshotHRef);
             }
         }
+
+        public IEnumerable<DeltaComponent> GetDeltaComponents(string href, string status, string currentSnapshotId, string previousSnapshotId, string technology)
+        {
+            using (var castRepository = GetRepository())
+            {
+                return castRepository.GetDeltaComponents(href, currentSnapshotId, previousSnapshotId, status, technology);
+            }
+        }
     }
 }
