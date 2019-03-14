@@ -76,6 +76,9 @@
     <None Include="Data\BaseQI60012.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\DeltaComponents.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\ComponentsWithProperties.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -290,6 +293,7 @@
     <Compile Include="Reporting\Tables\QualityRuleViolationsBookmarksTests.cs" />
     <Compile Include="Reporting\Tables\TopComponentsByPropertiesTests.cs" />
     <Compile Include="Reporting\Tables\RemovedViolationsListByBCTests.cs" />
+    <Compile Include="Reporting\Tables\DeltaComponentsListByStatusTests.cs" />
     <Compile Include="Reporting\Tables\ViolationsListByBCTests.cs" />
     <Compile Include="Reporting\Tables\PortfolioGenericTableTests.cs" />
     <Compile Include="Reporting\Tables\ActionPlanViolationsTests.cs" />

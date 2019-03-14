@@ -340,6 +340,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Complexity.
+        /// </summary>
+        public static string Complexity1 {
+            get {
+                return ResourceManager.GetString("Complexity1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Average Complexity.
         /// </summary>
         public static string ComplexityAverage {
@@ -435,6 +444,15 @@ namespace CastReporting.Reporting.Languages {
         public static string coupling {
             get {
                 return ResourceManager.GetString("coupling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Coupling.
+        /// </summary>
+        public static string Coupling1 {
+            get {
+                return ResourceManager.GetString("Coupling1", resourceCulture);
             }
         }
         
@@ -808,6 +826,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Granularity.
+        /// </summary>
+        public static string Granularity {
+            get {
+                return ResourceManager.GetString("Granularity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Halstead Program Length.
         /// </summary>
         public static string halsteadProgramLength {
@@ -898,6 +925,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Lack of comments.
+        /// </summary>
+        public static string LackOfComments {
+            get {
+                return ResourceManager.GetString("LackOfComments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Last Updated.
         /// </summary>
         public static string LastUpdated {
@@ -952,6 +988,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Module not found in this application..
+        /// </summary>
+        public static string ModuleNotFound {
+            get {
+                return ResourceManager.GetString("ModuleNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Modules.
         /// </summary>
         public static string Modules {
@@ -997,6 +1042,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Previous snapshot was not found..
+        /// </summary>
+        public static string NoPreviousSnapshot {
+            get {
+                return ResourceManager.GetString("NoPreviousSnapshot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à No applicable rules for given application.
         /// </summary>
         public static string NoRules {
@@ -1024,11 +1078,29 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Number of object updates.
+        /// </summary>
+        public static string NumberOfObjectUpdates {
+            get {
+                return ResourceManager.GetString("NumberOfObjectUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Obj..
         /// </summary>
         public static string Obj {
             get {
                 return ResourceManager.GetString("Obj", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Object full name.
+        /// </summary>
+        public static string ObjectFullName {
+            get {
+                return ResourceManager.GetString("ObjectFullName", resourceCulture);
             }
         }
         
@@ -1420,6 +1492,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à SQL Complexity.
+        /// </summary>
+        public static string SQLComplexity {
+            get {
+                return ResourceManager.GetString("SQLComplexity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Statistics.
         /// </summary>
         public static string Statistics {
@@ -1434,6 +1515,15 @@ namespace CastReporting.Reporting.Languages {
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Selected status not allowed. Allowed status are : added, deleted or updated..
+        /// </summary>
+        public static string StatusNotAllowed {
+            get {
+                return ResourceManager.GetString("StatusNotAllowed", resourceCulture);
             }
         }
         
@@ -1524,6 +1614,15 @@ namespace CastReporting.Reporting.Languages {
         public static string Technology {
             get {
                 return ResourceManager.GetString("Technology", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Technology not found in this application..
+        /// </summary>
+        public static string TechnoNotFound {
+            get {
+                return ResourceManager.GetString("TechnoNotFound", resourceCulture);
             }
         }
         

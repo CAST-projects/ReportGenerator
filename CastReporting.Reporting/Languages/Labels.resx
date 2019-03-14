@@ -720,4 +720,37 @@
   <data name="AEP" xml:space="preserve">
     <value>AEP</value>
   </data>
+  <data name="Complexity1" xml:space="preserve">
+    <value>Complexity</value>
+  </data>
+  <data name="Coupling1" xml:space="preserve">
+    <value>Coupling</value>
+  </data>
+  <data name="Granularity" xml:space="preserve">
+    <value>Granularity</value>
+  </data>
+  <data name="LackOfComments" xml:space="preserve">
+    <value>Lack of comments</value>
+  </data>
+  <data name="NumberOfObjectUpdates" xml:space="preserve">
+    <value>Number of object updates</value>
+  </data>
+  <data name="ObjectFullName" xml:space="preserve">
+    <value>Object full name</value>
+  </data>
+  <data name="SQLComplexity" xml:space="preserve">
+    <value>SQL Complexity</value>
+  </data>
+  <data name="ModuleNotFound" xml:space="preserve">
+    <value>Module not found in this application.</value>
+  </data>
+  <data name="NoPreviousSnapshot" xml:space="preserve">
+    <value>Previous snapshot was not found.</value>
+  </data>
+  <data name="StatusNotAllowed" xml:space="preserve">
+    <value>Selected status not allowed. Allowed status are : added, deleted or updated.</value>
+  </data>
+  <data name="TechnoNotFound" xml:space="preserve">
+    <value>Technology not found in this application.</value>
+  </data>
 </root>

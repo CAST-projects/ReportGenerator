@@ -49,6 +49,7 @@
     <Compile Include="DataObject\AssociatedValueObject.cs" />
     <Compile Include="DataObject\AssociatedValueGroup.cs" />
     <Compile Include="DataObject\AssociatedValuePath.cs" />
+    <Compile Include="DataObject\DeltaComponent.cs" />
     <Compile Include="DataObject\ComponentWithProperties.cs" />
     <Compile Include="DataObject\OmgFunction.cs" />
     <Compile Include="DataObject\ObjectType.cs" />

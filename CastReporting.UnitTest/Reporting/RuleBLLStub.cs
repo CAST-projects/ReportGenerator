@@ -88,5 +88,11 @@ namespace CastReporting.UnitTest.Reporting
 
             }
         }
+
+        [DeploymentItem(@".\Data\DeltaComponents.json", "Data")]
+        public IEnumerable<DeltaComponent> GetDeltaComponents(string href, string status, string currentSnapshotId, string previousSnapshotId, string technology)
+        {
+            return TestUtility.GetSampleResult<DeltaComponent>(@".\Data\DeltaComponents.json").ToList();
+        }
     }
 }

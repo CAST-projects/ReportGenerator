@@ -272,5 +272,7 @@ namespace CastReporting.Repositories.Interfaces
         List<string> GetFileContent(string domainHRef, string siteId, string fileId, int startLine, int endLine);
         IEnumerable<ComponentWithProperties> GetComponentsWithProperties(string snapshothref, int bcId, string prop1, string prop2, string order1, string order2, int count);
         IEnumerable<OmgFunction> GetOmgFunctionsEvolutions(string snapshotHref, int count);
+
+        IEnumerable<DeltaComponent> GetDeltaComponents(string levelHRef, string snapshotId, string previousSnapshotId, string status, string technology);
     }
 }

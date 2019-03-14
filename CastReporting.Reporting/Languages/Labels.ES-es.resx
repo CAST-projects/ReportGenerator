@@ -720,4 +720,37 @@
   <data name="AEP" xml:space="preserve">
     <value>AEP</value>
   </data>
+  <data name="Complexity1" xml:space="preserve">
+    <value>Complejidad</value>
+  </data>
+  <data name="Coupling1" xml:space="preserve">
+    <value>Acoplamiento</value>
+  </data>
+  <data name="Granularity" xml:space="preserve">
+    <value>Granularidad</value>
+  </data>
+  <data name="LackOfComments" xml:space="preserve">
+    <value>Falta de comentarios</value>
+  </data>
+  <data name="NumberOfObjectUpdates" xml:space="preserve">
+    <value>Número de actualizaciones de objetos</value>
+  </data>
+  <data name="ObjectFullName" xml:space="preserve">
+    <value>Nombre completo del objeto</value>
+  </data>
+  <data name="SQLComplexity" xml:space="preserve">
+    <value>Complejidad de SQL</value>
+  </data>
+  <data name="ModuleNotFound" xml:space="preserve">
+    <value>Módulo no encontrado en esta aplicación.</value>
+  </data>
+  <data name="NoPreviousSnapshot" xml:space="preserve">
+    <value>No se encontró la snapshot anterior</value>
+  </data>
+  <data name="StatusNotAllowed" xml:space="preserve">
+    <value>Estado seleccionado no permitido. Los estados permitidos son: added, deleted o updated.</value>
+  </data>
+  <data name="TechnoNotFound" xml:space="preserve">
+    <value>La tecnología no se encuentra en esta aplicación.</value>
+  </data>
 </root>
