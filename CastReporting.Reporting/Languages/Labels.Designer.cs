@@ -682,6 +682,24 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Effort complexity.
+        /// </summary>
+        public static string EffortComplexity {
+            get {
+                return ResourceManager.GetString("EffortComplexity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Equivalence ratio.
+        /// </summary>
+        public static string EquivalenceRatio {
+            get {
+                return ResourceManager.GetString("EquivalenceRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Essential Complexity.
         /// </summary>
         public static string essentialComplexity {

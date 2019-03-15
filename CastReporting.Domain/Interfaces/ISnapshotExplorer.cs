@@ -25,6 +25,7 @@ namespace CastReporting.Domain.Interfaces
         IEnumerable<IfpugFunction> GetIfpugFunctionsEvolutions(string snapshotHref, int count);
 
         IEnumerable<OmgFunction> GetOmgFunctionsEvolutions(string snapshotHref, int count);
+        IEnumerable<OmgFunctionTechnical> GetOmgFunctionsTechnical(string snapshotHref, int count);
 
         IEnumerable<CommonCategories> GetCommonCategories(WSConnection connection);
 

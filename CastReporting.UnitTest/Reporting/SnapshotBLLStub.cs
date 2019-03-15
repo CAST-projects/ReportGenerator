@@ -41,6 +41,12 @@ namespace CastReporting.UnitTest.Reporting
             return TestUtility.GetCsvSampleResult<OmgFunction>(@".\Data\OmgFunctionsEvolutions.csv", count, null).ToList();
         }
 
+        [DeploymentItem(@".\Data\OmgFunctionsTechnical.csv", "Data")]
+        public IEnumerable<OmgFunctionTechnical> GetOmgFunctionsTechnical(string snapshotHref, int count)
+        {
+            return TestUtility.GetCsvSampleResult<OmgFunctionTechnical>(@".\Data\OmgFunctionsTechnical.csv", count, null).ToList();
+        }
+
         public IEnumerable<CommonCategories> GetCommonCategories(WSConnection connection)
         {
             throw new NotImplementedException();

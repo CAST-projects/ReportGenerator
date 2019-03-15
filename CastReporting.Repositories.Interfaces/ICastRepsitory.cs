@@ -273,6 +273,8 @@ namespace CastReporting.Repositories.Interfaces
         IEnumerable<ComponentWithProperties> GetComponentsWithProperties(string snapshothref, int bcId, string prop1, string prop2, string order1, string order2, int count);
         IEnumerable<OmgFunction> GetOmgFunctionsEvolutions(string snapshotHref, int count);
 
+        IEnumerable<OmgFunctionTechnical> GetOmgFunctionsTechnical(string snapshotHref, int count);
+
         IEnumerable<DeltaComponent> GetDeltaComponents(string levelHRef, string snapshotId, string previousSnapshotId, string status, string technology);
     }
 }
