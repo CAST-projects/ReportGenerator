@@ -460,6 +460,23 @@ namespace CastReporting.BLL
 
         }
 
+        public IEnumerable<OmgFunctionTechnical> GetOmgFunctionsTechnical(string snapshotHref, int count)
+        {
+            try
+            {
+                using (var castRepository = GetRepository())
+                {
+                    return castRepository.GetOmgFunctionsTechnical(_Snapshot.Href, count);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Instance.LogInfo(ex.Message);
+                return null;
+            }
+
+        }
+
         /// <summary>
         /// 
         /// </summary>

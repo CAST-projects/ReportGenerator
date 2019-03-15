@@ -325,6 +325,13 @@ namespace CastReporting.Repositories
             return CallCsvWS<OmgFunction>(requestUrl, RequestComplexity.Long, count);
         }
 
+        IEnumerable<OmgFunctionTechnical> ICastRepsitory.GetOmgFunctionsTechnical(string snapshotHref, int count)
+        {
+            var requestUrl = string.Format(_query_omg_functions_evolutions + "?sheet=technical", snapshotHref);
+
+            return CallCsvWS<OmgFunctionTechnical>(requestUrl, RequestComplexity.Long, count);
+        }
+
         IEnumerable<MetricTopArtifact> ICastRepsitory.GetMetricTopArtefact(string snapshotHref, string RuleId, int count)
         {
             var requestUrl = string.Format(_query_metric_top_artefact, snapshotHref, RuleId);

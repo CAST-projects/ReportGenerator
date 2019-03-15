@@ -753,4 +753,10 @@
   <data name="TechnoNotFound" xml:space="preserve">
     <value>Technology not found in this application.</value>
   </data>
+  <data name="EffortComplexity" xml:space="preserve">
+    <value>Effort complexity</value>
+  </data>
+  <data name="EquivalenceRatio" xml:space="preserve">
+    <value>Equivalence ratio</value>
+  </data>
 </root>

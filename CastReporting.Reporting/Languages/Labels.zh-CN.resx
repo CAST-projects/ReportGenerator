@@ -664,19 +664,19 @@
     <value>含违规</value>
   </data>
   <data name="ComplexityFactor" xml:space="preserve">
-    <value>复杂因素</value>
+    <value>复杂度因子</value>
   </data>
   <data name="FunctionName" xml:space="preserve">
     <value>功能名称</value>
   </data>
   <data name="UpdatedArtifacts" xml:space="preserve">
-    <value>更新的工件</value>
+    <value>已更新工件</value>
   </data>
   <data name="AEP" xml:space="preserve">
     <value>AEP</value>
   </data>
   <data name="Complexity1" xml:space="preserve">
-    <value>复杂</value>
+    <value>复杂度</value>
   </data>
   <data name="Coupling1" xml:space="preserve">
     <value>耦合</value>
@@ -685,27 +685,33 @@
     <value>粒度</value>
   </data>
   <data name="LackOfComments" xml:space="preserve">
-    <value>缺乏评论</value>
+    <value>缺少注释</value>
   </data>
   <data name="NumberOfObjectUpdates" xml:space="preserve">
-    <value>对象更新次数</value>
+    <value>对象更新数</value>
   </data>
   <data name="ObjectFullName" xml:space="preserve">
     <value>对象全名</value>
   </data>
   <data name="SQLComplexity" xml:space="preserve">
-    <value>SQL复杂性</value>
+    <value>SQL复杂度</value>
   </data>
   <data name="ModuleNotFound" xml:space="preserve">
-    <value>在此应用程序中找不到模块</value>
+    <value>应用中未发现模块。</value>
   </data>
   <data name="NoPreviousSnapshot" xml:space="preserve">
-    <value>找不到以前的快照</value>
+    <value>未发现前一个快照</value>
   </data>
   <data name="StatusNotAllowed" xml:space="preserve">
-    <value>不允许选择状态</value>
+    <value>所选状态不允许。可以支持状态为："added", "deleted" 或"updated"。</value>
   </data>
   <data name="TechnoNotFound" xml:space="preserve">
-    <value>在此应用程序中找不到的技术</value>
+    <value>应用中未发现技术。</value>
+  </data>
+  <data name="EffortComplexity" xml:space="preserve">
+    <value>工作复杂性</value>
+  </data>
+  <data name="EquivalenceRatio" xml:space="preserve">
+    <value>等价比率</value>
   </data>
 </root>

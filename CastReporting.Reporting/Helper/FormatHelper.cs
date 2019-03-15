@@ -91,5 +91,11 @@ namespace CastReporting.Reporting.Helper
             else
                 return sign + pValue.ToString("F2");
         }
+
+        public static string FormatStringDoubleIntoString(this string pValue)
+        {
+            double var = double.Parse(pValue);
+            return var.ToString("N2");
+        }
     }
 }
