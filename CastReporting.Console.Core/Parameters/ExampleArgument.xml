@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<castReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.org/CastReportSchema.xsd">
+  <webservice name="http://castdemopmt:8080/NEWAPI/rest/" />
+  <username name="cast"/>
+  <password name="cast"/>
+  <application name="eCommerce" />
+  <template name="Executive-summary-sample1.pptx" />
+  <file name="test.pptx"/>
+  <snapshot>
+    <current name=""/>
+    <previous name=""/>
+  </snapshot>
+</castReport>

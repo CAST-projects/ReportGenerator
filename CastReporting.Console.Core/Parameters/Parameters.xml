@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<castReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.org/CastReportSchema.xsd">
+  <webservice name="" />
+  <username name=""/>
+  <password name=""/>
+  <application name="" />
+  <domain name="" />
+  <template name="" />
+  <file name=""/>
+  <snapshot>
+    <current name=""/>
+    <previous name=""/>
+    <currentId name=""/>
+    <previousId name=""/>
+  </snapshot>
+  <culture name=""/>
+</castReport>

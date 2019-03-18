@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="TemplatesFiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cast.Util.Core\Cast.Util.Core.csproj" />
+    <ProjectReference Include="..\CastReporting.BLL.Computing.Core\CastReporting.BLL.Computing.Core.csproj" />
+    <ProjectReference Include="..\CastReporting.BLL.Core\CastReporting.BLL.Core.csproj" />
+    <ProjectReference Include="..\CastReporting.Domain.Core\CastReporting.Domain.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.9.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenXmlPowerTools">
+      <HintPath>..\packages\OpenXmlPowerTools.4.5.3.2\lib\net45\OpenXmlPowerTools.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Common">
+      <HintPath>..\packages\system.drawing.common\4.5.1\lib\netstandard2.0\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Packaging">
+      <HintPath>..\packages\System.IO.Packaging.4.5.0\lib\netstandard2.0\System.IO.Packaging.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Languages\Labels.Designer.cs">
+      <DependentUpon>Labels.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Languages\Labels.resx">
+      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

@@ -114,7 +114,6 @@
     <None Include="DataObject\_Application.cd" />
     <None Include="DataObject\_Configuration.cd" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Cast.Util\Cast.Util.csproj">
       <Project>{1810eb4f-e9c6-4b34-94ec-65acb6802c58}</Project>

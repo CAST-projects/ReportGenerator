@@ -1,0 +1,762 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Robustness" xml:space="preserve">
+    <value>Robustness</value>
+  </data>
+  <data name="Efficiency" xml:space="preserve">
+    <value>Efficiency</value>
+  </data>
+  <data name="Changeability" xml:space="preserve">
+    <value>Changeability</value>
+  </data>
+  <data name="Transferability" xml:space="preserve">
+    <value>Transferability</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="AutomatedFP" xml:space="preserve">
+    <value>Automated Function Points</value>
+  </data>
+  <data name="BackfiredFP" xml:space="preserve">
+    <value>Backfired Function Points</value>
+  </data>
+  <data name="DecisionP" xml:space="preserve">
+    <value>Decision Points (total CC)</value>
+  </data>
+  <data name="Trans" xml:space="preserve">
+    <value>Trans.</value>
+  </data>
+  <data name="Chang" xml:space="preserve">
+    <value>Chang.</value>
+  </data>
+  <data name="Secu" xml:space="preserve">
+    <value>Secu.</value>
+  </data>
+  <data name="Efcy" xml:space="preserve">
+    <value>Efcy</value>
+  </data>
+  <data name="Robu" xml:space="preserve">
+    <value>Robu.</value>
+  </data>
+  <data name="Variation" xml:space="preserve">
+    <value>Variation</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Rule</value>
+  </data>
+  <data name="ViolationsStill" xml:space="preserve">
+    <value>Still Violations (#)</value>
+  </data>
+  <data name="ViolationsNew" xml:space="preserve">
+    <value>New Violations (#)</value>
+  </data>
+  <data name="ViolationsCritical" xml:space="preserve">
+    <value>Critical Violations</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>Current</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="NoItem" xml:space="preserve">
+    <value>No enabled item</value>
+  </data>
+  <data name="Evolution" xml:space="preserve">
+    <value>Evolution</value>
+  </data>
+  <data name="EvolutionPercent" xml:space="preserve">
+    <value>% Evolution</value>
+  </data>
+  <data name="ComplexityLow" xml:space="preserve">
+    <value>Low Complexity</value>
+  </data>
+  <data name="ComplexityAverage" xml:space="preserve">
+    <value>Average Complexity</value>
+  </data>
+  <data name="ComplexityVeryHigh" xml:space="preserve">
+    <value>Very High Complexity</value>
+  </data>
+  <data name="ComplexityHigh" xml:space="preserve">
+    <value>High Complexity</value>
+  </data>
+  <data name="Evol" xml:space="preserve">
+    <value>Evol.</value>
+  </data>
+  <data name="EvolPercent" xml:space="preserve">
+    <value>% Evol.</value>
+  </data>
+  <data name="CplxAverage" xml:space="preserve">
+    <value>Average</value>
+  </data>
+  <data name="CplxExtreme" xml:space="preserve">
+    <value>Extreme</value>
+  </data>
+  <data name="CplxLow" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="CplxHigh" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="Artifacts" xml:space="preserve">
+    <value>Artifacts</value>
+  </data>
+  <data name="Complexity" xml:space="preserve">
+    <value>CAST Complexity</value>
+  </data>
+  <data name="ComplexityExtreme" xml:space="preserve">
+    <value>Extreme Complexity</value>
+  </data>
+  <data name="ComplexityHighAndVeryHigh" xml:space="preserve">
+    <value>High and Very High Complexity</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TotalPercent" xml:space="preserve">
+    <value>% Total</value>
+  </data>
+  <data name="VersionCurrent" xml:space="preserve">
+    <value>Current Version</value>
+  </data>
+  <data name="VersionPrevious" xml:space="preserve">
+    <value>Previous Version</value>
+  </data>
+  <data name="ViolationsRemoved" xml:space="preserve">
+    <value>Removed</value>
+  </data>
+  <data name="ViolationsAdded" xml:space="preserve">
+    <value>Added</value>
+  </data>
+  <data name="Snapshot" xml:space="preserve">
+    <value>Snapshot</value>
+  </data>
+  <data name="SnapshotLabel" xml:space="preserve">
+    <value>Snapshot Label</value>
+  </data>
+  <data name="SnapshotDate" xml:space="preserve">
+    <value>Snapshot Date</value>
+  </data>
+  <data name="FORMAT_LONG_DATE" xml:space="preserve">
+    <value>MMM dd yyyy</value>
+  </data>
+  <data name="ModuleName" xml:space="preserve">
+    <value>Module Name</value>
+  </data>
+  <data name="LoC" xml:space="preserve">
+    <value>LoC</value>
+  </data>
+  <data name="RuleName" xml:space="preserve">
+    <value>Rule Name</value>
+  </data>
+  <data name="ViolationsCurrent" xml:space="preserve">
+    <value>Current Violations</value>
+  </data>
+  <data name="ViolationsPrevious" xml:space="preserve">
+    <value>Previous Violations</value>
+  </data>
+  <data name="Grade" xml:space="preserve">
+    <value>Grade</value>
+  </data>
+  <data name="GradeEvolution" xml:space="preserve">
+    <value>Grade Evolution</value>
+  </data>
+  <data name="ViolationsCount" xml:space="preserve">
+    <value># Violations</value>
+  </data>
+  <data name="ViolCount" xml:space="preserve">
+    <value># Viol.</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="kLoC" xml:space="preserve">
+    <value>kLoC</value>
+  </data>
+  <data name="ArtifactsSQL" xml:space="preserve">
+    <value>SQL Art.</value>
+  </data>
+  <data name="Tables" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="Classes" xml:space="preserve">
+    <value>Classes</value>
+  </data>
+  <data name="LoCCurrent" xml:space="preserve">
+    <value>Current LoC</value>
+  </data>
+  <data name="LoCPrevious" xml:space="preserve">
+    <value>Previous LoC</value>
+  </data>
+  <data name="TRI" xml:space="preserve">
+    <value>TRI</value>
+  </data>
+  <data name="TQI" xml:space="preserve">
+    <value>TQI</value>
+  </data>
+  <data name="TransactionEP" xml:space="preserve">
+    <value>Transaction Entry Point</value>
+  </data>
+  <data name="ArtifactName" xml:space="preserve">
+    <value>Artifact Name</value>
+  </data>
+  <data name="PRI" xml:space="preserve">
+    <value>PRI</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="Prog" xml:space="preserve">
+    <value>Prog.</value>
+  </data>
+  <data name="Arch" xml:space="preserve">
+    <value>Arch.</value>
+  </data>
+  <data name="Doc" xml:space="preserve">
+    <value>Doc.</value>
+  </data>
+  <data name="Rationale" xml:space="preserve">
+    <value>Rationale</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Remediation" xml:space="preserve">
+    <value>Remediation</value>
+  </data>
+  <data name="TQICur" xml:space="preserve">
+    <value>Cur. TQI</value>
+  </data>
+  <data name="TQIPrev" xml:space="preserve">
+    <value>Prev. TQI</value>
+  </data>
+  <data name="TQIPrevious" xml:space="preserve">
+    <value>Previous TQI</value>
+  </data>
+  <data name="TQICurrent" xml:space="preserve">
+    <value>Current TQI</value>
+  </data>
+  <data name="Var" xml:space="preserve">
+    <value>Var</value>
+  </data>
+  <data name="Techno" xml:space="preserve">
+    <value>Techno</value>
+  </data>
+  <data name="ArchitecturalDesign" xml:space="preserve">
+    <value>Architectural Design</value>
+  </data>
+  <data name="Documentation" xml:space="preserve">
+    <value>Documentation</value>
+  </data>
+  <data name="ProgrammingPractices" xml:space="preserve">
+    <value>Programming Practices</value>
+  </data>
+  <data name="SEIMaintainability" xml:space="preserve">
+    <value>SEI Maintainability</value>
+  </data>
+  <data name="PerFile" xml:space="preserve">
+    <value>per File</value>
+  </data>
+  <data name="PerkLoC" xml:space="preserve">
+    <value>per kLoC</value>
+  </data>
+  <data name="ComplexObjects" xml:space="preserve">
+    <value>Complex Objects</value>
+  </data>
+  <data name="WithViolations" xml:space="preserve">
+    <value>With Violations</value>
+  </data>
+  <data name="Debt" xml:space="preserve">
+    <value>Debt</value>
+  </data>
+  <data name="DebtAdded" xml:space="preserve">
+    <value>Debt Added</value>
+  </data>
+  <data name="DebtRemoved" xml:space="preserve">
+    <value>Debt Removed</value>
+  </data>
+  <data name="TechnicalDebt" xml:space="preserve">
+    <value>Technical Debt</value>
+  </data>
+  <data name="TechnicalDebtAdded" xml:space="preserve">
+    <value>Technical Debt Added</value>
+  </data>
+  <data name="TechnicalDebtRemoved" xml:space="preserve">
+    <value>Technical Debt Removed</value>
+  </data>
+  <data name="TotalChecks" xml:space="preserve">
+    <value>Total Checks</value>
+  </data>
+  <data name="TechnicalCriterionName" xml:space="preserve">
+    <value>Technical criterion name</value>
+  </data>
+  <data name="TotalFailed" xml:space="preserve">
+    <value>Total Failed</value>
+  </data>
+  <data name="TotalOk" xml:space="preserve">
+    <value>Successful Checks</value>
+  </data>
+  <data name="TechnicalCriterion" xml:space="preserve">
+    <value>Technical Criterion</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="Obj" xml:space="preserve">
+    <value>Obj.</value>
+  </data>
+  <data name="Objectives" xml:space="preserve">
+    <value>Objectives</value>
+  </data>
+  <data name="Achievement" xml:space="preserve">
+    <value>Achievement</value>
+  </data>
+  <data name="AchievementRatio" xml:space="preserve">
+    <value>Achievement ratio</value>
+  </data>
+  <data name="Achiev" xml:space="preserve">
+    <value>Achiev.</value>
+  </data>
+  <data name="AchievRatio" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="DeliveryWhole" xml:space="preserve">
+    <value>Entire Application (whole code)</value>
+  </data>
+  <data name="DeliveryLast" xml:space="preserve">
+    <value>Last Delivery (new and modified)</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size (kLoC)</value>
+  </data>
+  <data name="CplxVeryHigh" xml:space="preserve">
+    <value>Very High</value>
+  </data>
+  <data name="QualityVeryLow" xml:space="preserve">
+    <value>very low</value>
+  </data>
+  <data name="QualityLow" xml:space="preserve">
+    <value>low</value>
+  </data>
+  <data name="QualityMedium" xml:space="preserve">
+    <value>medium</value>
+  </data>
+  <data name="QualityGood" xml:space="preserve">
+    <value>good</value>
+  </data>
+  <data name="QualityVeryGood" xml:space="preserve">
+    <value>very good</value>
+  </data>
+  <data name="SizeS" xml:space="preserve">
+    <value>small</value>
+  </data>
+  <data name="SizeM" xml:space="preserve">
+    <value>medium</value>
+  </data>
+  <data name="SizeL" xml:space="preserve">
+    <value>large</value>
+  </data>
+  <data name="SizeXL" xml:space="preserve">
+    <value>extra large</value>
+  </data>
+  <data name="Criticality" xml:space="preserve">
+    <value>Criticality</value>
+  </data>
+  <data name="FORMAT_SHORT_DATE" xml:space="preserve">
+    <value>MM/dd/yyyy</value>
+  </data>
+  <data name="IFPUG_ElementType" xml:space="preserve">
+    <value>Element Type</value>
+  </data>
+  <data name="IFPUG_FPDetails" xml:space="preserve">
+    <value>FP Details</value>
+  </data>
+  <data name="IFPUG_NoOfFPs" xml:space="preserve">
+    <value># of FPs</value>
+  </data>
+  <data name="IFPUG_ObjectType" xml:space="preserve">
+    <value>Object Type</value>
+  </data>
+  <data name="ObjectName" xml:space="preserve">
+    <value>Object Name</value>
+  </data>
+  <data name="Technology" xml:space="preserve">
+    <value>Technology</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="Target" xml:space="preserve">
+    <value>Target score</value>
+  </data>
+  <data name="CurrentScore" xml:space="preserve">
+    <value>Current score</value>
+  </data>
+  <data name="SLAViolations" xml:space="preserve">
+    <value>SLA Violations</value>
+  </data>
+  <data name="Acceptable" xml:space="preserve">
+    <value>Acceptable</value>
+  </data>
+  <data name="Bad" xml:space="preserve">
+    <value>Poor</value>
+  </data>
+  <data name="BusinessCriterionName" xml:space="preserve">
+    <value>Business criterion name</value>
+  </data>
+  <data name="Good" xml:space="preserve">
+    <value>Good</value>
+  </data>
+  <data name="Critical" xml:space="preserve">
+    <value>Critical</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>Compliance</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>No data found</value>
+  </data>
+  <data name="NoSnapshot" xml:space="preserve">
+    <value>No snapshot found for this application</value>
+  </data>
+  <data name="AddedCriticalViolations" xml:space="preserve">
+    <value>Added Critical Violations</value>
+  </data>
+  <data name="AddedViolations" xml:space="preserve">
+    <value>Added Violations</value>
+  </data>
+  <data name="RemovedCriticalViolations" xml:space="preserve">
+    <value>Removed Critical Violations</value>
+  </data>
+  <data name="RemovedViolations" xml:space="preserve">
+    <value>Removed Violations</value>
+  </data>
+  <data name="TotalCriticalViolations" xml:space="preserve">
+    <value>Total Critical Violations</value>
+  </data>
+  <data name="TotalViolations" xml:space="preserve">
+    <value>Total Violations</value>
+  </data>
+  <data name="Metrics" xml:space="preserve">
+    <value>Metrics</value>
+  </data>
+  <data name="Modules" xml:space="preserve">
+    <value>Modules</value>
+  </data>
+  <data name="Snapshots" xml:space="preserve">
+    <value>Snapshots</value>
+  </data>
+  <data name="Technologies" xml:space="preserve">
+    <value>Technologies</value>
+  </data>
+  <data name="Violations" xml:space="preserve">
+    <value>Violations</value>
+  </data>
+  <data name="PreviousScore" xml:space="preserve">
+    <value>Previous score</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="ObjectsInViolationForRule" xml:space="preserve">
+    <value>Objects in violation for rule</value>
+  </data>
+  <data name="Periods" xml:space="preserve">
+    <value>Periods</value>
+  </data>
+  <data name="Applications" xml:space="preserve">
+    <value>Applications</value>
+  </data>
+  <data name="CurrentPeriod" xml:space="preserve">
+    <value>Current Period</value>
+  </data>
+  <data name="PreviousPeriod" xml:space="preserve">
+    <value>Previous Period</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last Updated</value>
+  </data>
+  <data name="Priority" xml:space="preserve">
+    <value>Priority</value>
+  </data>
+  <data name="ActionStatus" xml:space="preserve">
+    <value>Action Status</value>
+  </data>
+  <data name="ExclusionStatus" xml:space="preserve">
+    <value>Exclusion Status</value>
+  </data>
+  <data name="ObjectStatus" xml:space="preserve">
+    <value>Object Status</value>
+  </data>
+  <data name="ViolationStatus" xml:space="preserve">
+    <value>Violation Status</value>
+  </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>File path</value>
+  </data>
+  <data name="NoBookmark" xml:space="preserve">
+    <value>No bookmark available for this rule</value>
+  </data>
+  <data name="AdditionalInformation" xml:space="preserve">
+    <value>Additional information bookmark</value>
+  </data>
+  <data name="Defect" xml:space="preserve">
+    <value>Defect</value>
+  </data>
+  <data name="Violation" xml:space="preserve">
+    <value>Violation</value>
+  </data>
+  <data name="ViolationPath" xml:space="preserve">
+    <value>Violation Path</value>
+  </data>
+  <data name="ComplianceScorePercent" xml:space="preserve">
+    <value>Compliance Score (%)</value>
+  </data>
+  <data name="NoViolation" xml:space="preserve">
+    <value>No violation</value>
+  </data>
+  <data name="AddedVulnerabilities" xml:space="preserve">
+    <value>Added Vulnerabilities</value>
+  </data>
+  <data name="RemovedVulnerabilities" xml:space="preserve">
+    <value>Removed Vulnerabilities</value>
+  </data>
+  <data name="TotalVulnerabilities" xml:space="preserve">
+    <value>Total Vulnerabilities</value>
+  </data>
+  <data name="CASTRules" xml:space="preserve">
+    <value>CAST Rules</value>
+  </data>
+  <data name="PropertiesNotAvailable" xml:space="preserve">
+    <value>Properties are not available. Only following properties are available : </value>
+  </data>
+  <data name="codeLines" xml:space="preserve">
+    <value>Code Lines</value>
+  </data>
+  <data name="commentedCodeLines" xml:space="preserve">
+    <value>Commented Code Lines</value>
+  </data>
+  <data name="commentLines" xml:space="preserve">
+    <value>Comment Lines</value>
+  </data>
+  <data name="coupling" xml:space="preserve">
+    <value>Coupling</value>
+  </data>
+  <data name="cyclomaticComplexity" xml:space="preserve">
+    <value>Cyclomatic Complexity</value>
+  </data>
+  <data name="distinctOperands" xml:space="preserve">
+    <value>Distinct Operands</value>
+  </data>
+  <data name="distinctOperators" xml:space="preserve">
+    <value>Distinct Operators</value>
+  </data>
+  <data name="essentialComplexity" xml:space="preserve">
+    <value>Essential Complexity</value>
+  </data>
+  <data name="fanIn" xml:space="preserve">
+    <value>Fan-In</value>
+  </data>
+  <data name="fanOut" xml:space="preserve">
+    <value>Fan-Out</value>
+  </data>
+  <data name="halsteadProgramLength" xml:space="preserve">
+    <value>Halstead Program Length</value>
+  </data>
+  <data name="halsteadProgramVocabulary" xml:space="preserve">
+    <value>Halstead Program Vocabulary</value>
+  </data>
+  <data name="halsteadVolume" xml:space="preserve">
+    <value>Halstead Volume</value>
+  </data>
+  <data name="integrationComplexity" xml:space="preserve">
+    <value>Integration Complexity</value>
+  </data>
+  <data name="ratioCommentLinesCodeLines" xml:space="preserve">
+    <value>Documentation Ratio</value>
+  </data>
+  <data name="NoRules" xml:space="preserve">
+    <value>No applicable rules for given application</value>
+  </data>
+  <data name="ComplexityFactor" xml:space="preserve">
+    <value>Complexity Factor</value>
+  </data>
+  <data name="FunctionName" xml:space="preserve">
+    <value>Function Name</value>
+  </data>
+  <data name="UpdatedArtifacts" xml:space="preserve">
+    <value>Updated Artifacts</value>
+  </data>
+  <data name="AEP" xml:space="preserve">
+    <value>AEP</value>
+  </data>
+  <data name="Complexity1" xml:space="preserve">
+    <value>Complexity</value>
+  </data>
+  <data name="Coupling1" xml:space="preserve">
+    <value>Coupling</value>
+  </data>
+  <data name="Granularity" xml:space="preserve">
+    <value>Granularity</value>
+  </data>
+  <data name="LackOfComments" xml:space="preserve">
+    <value>Lack of comments</value>
+  </data>
+  <data name="NumberOfObjectUpdates" xml:space="preserve">
+    <value>Number of object updates</value>
+  </data>
+  <data name="ObjectFullName" xml:space="preserve">
+    <value>Object full name</value>
+  </data>
+  <data name="SQLComplexity" xml:space="preserve">
+    <value>SQL Complexity</value>
+  </data>
+  <data name="ModuleNotFound" xml:space="preserve">
+    <value>Module not found in this application.</value>
+  </data>
+  <data name="NoPreviousSnapshot" xml:space="preserve">
+    <value>Previous snapshot was not found.</value>
+  </data>
+  <data name="StatusNotAllowed" xml:space="preserve">
+    <value>Selected status not allowed. Allowed status are : added, deleted or updated.</value>
+  </data>
+  <data name="TechnoNotFound" xml:space="preserve">
+    <value>Technology not found in this application.</value>
+  </data>
+  <data name="EffortComplexity" xml:space="preserve">
+    <value>Effort complexity</value>
+  </data>
+  <data name="EquivalenceRatio" xml:space="preserve">
+    <value>Equivalence ratio</value>
+  </data>
+</root>

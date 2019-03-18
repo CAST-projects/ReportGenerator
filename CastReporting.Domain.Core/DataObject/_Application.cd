@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CastReporting.Domain.Application">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataObject\Application.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CastReporting.Domain.Annotation">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAgAAAAAAAAAAQAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>DataObject\Annotation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CastReporting.Domain.System">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataObject\System.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CastReporting.Domain.Snapshot">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataObject\Snapshot.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Annotation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CastReporting.Domain.Module">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataObject\Module.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CastReporting.Domain.Domain">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataObject\Domain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CastReporting.Domain.CRObject" Collapsed="true">
+    <Position X="1.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataObject\CRObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CastReporting.BLL.Computing.Core\CastReporting.BLL.Computing.Core.csproj" />
+    <ProjectReference Include="..\CastReporting.Domain.Core\CastReporting.Domain.Core.csproj" />
+    <ProjectReference Include="..\CastReporting.Mediation.Core\CastReporting.Mediation.Core.csproj" />
+    <ProjectReference Include="..\CastReporting.Mediation.Interfaces.Core\CastReporting.Mediation.Interfaces.Core.csproj" />
+    <ProjectReference Include="..\CastReporting.Repositories.Core\CastReporting.Repositories.Core.csproj" />
+    <ProjectReference Include="..\CastReporting.Repositories.Interfaces.Core\CastReporting.Repositories.Interfaces.Core.csproj" />
+  </ItemGroup>
+
+</Project>

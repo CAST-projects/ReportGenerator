@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CastReporting.Repositories.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ProductName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ReportGenerator</Value>
+    </Setting>
+    <Setting Name="CompanyName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Cast</Value>
+    </Setting>
+    <Setting Name="TemplateExtensions" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.docx,.pptx,.potx,.xlsx</Value>
+    </Setting>
+    <Setting Name="SettingFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CastReportingSetting.xml</Value>
+    </Setting>
+    <Setting Name="TemplateDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Templates</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

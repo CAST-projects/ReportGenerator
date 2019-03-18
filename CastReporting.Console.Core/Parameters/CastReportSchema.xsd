@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CastReportSchema"
+    targetNamespace="http://tempuri.org/CastReportSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/CastReportSchema.xsd"
+    xmlns:mstns="http://tempuri.org/CastReportSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name='castReport'>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name='reporttype'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
+        <xs:element name='webservice'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
+        <xs:element name='application' type='refTagName' minOccurs='0'  maxOccurs='1'/>
+        <xs:element name='template' type='refTagName' minOccurs='1'  maxOccurs='1'/>
+        <xs:element name='database'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
+        <xs:element name='domain'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
+        <xs:element name='file'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
+        <xs:element name='snapshot' type='refSnapshot' minOccurs='0'  maxOccurs='1'/>
+        <xs:element name='culture' type='refTagName' minOccurs='0'  maxOccurs='1'/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name ='refString'>
+    <xs:restriction base ='xs:string'>
+      <xs:minLength value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name ='refTagName'>
+    <xs:attribute name='name' type='refString' use='required'/>
+  </xs:complexType>
+  <xs:complexType name ='refSnapshot'>
+    <xs:sequence>
+      <xs:element name='current'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
+      <xs:element name='previous'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
+      <xs:element name='currentId'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
+      <xs:element name='previousId'  type='refTagName' minOccurs='0'  maxOccurs='1'/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

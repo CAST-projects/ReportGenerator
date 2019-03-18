@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CastReporting.Mediation.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TimeoutQuick" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">120000</Value>
+    </Setting>
+    <Setting Name="TimeoutStandard" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">180000</Value>
+    </Setting>
+    <Setting Name="TimoutLong" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">320000</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
