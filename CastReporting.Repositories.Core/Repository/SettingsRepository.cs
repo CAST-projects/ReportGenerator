@@ -84,6 +84,7 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         public string GetApplicationPath()
         {
+            /*
             Version vers = Assembly.GetExecutingAssembly().GetName().Version;
             string version = vers.Major.ToString() + '.' + vers.Minor.ToString() + '.' + vers.Build.ToString();
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), Settings.Default.CompanyName, Settings.Default.ProductName, version);
@@ -93,6 +94,9 @@ namespace CastReporting.Repositories
                 Directory.CreateDirectory(path);
 
             return path;
+            */
+            return System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
         }
 
 
