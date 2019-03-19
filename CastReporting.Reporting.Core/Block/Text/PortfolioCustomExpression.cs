@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Cast.Util;
 using CastReporting.Reporting.Atrributes;
@@ -25,8 +26,6 @@ namespace CastReporting.Reporting.Block.Text
             string _aggregator = options.GetOption("AGGREGATOR", "AVERAGE");
 
             string[] lstParams = _params.Split(' ');
-            string strParameters = string.Empty;
-            object[] objValues = new object[lstParams.Length / 2];
 
             if (string.IsNullOrEmpty(_params)) return Labels.NoData;
             if (reportData?.Applications == null) return Labels.NoData;
@@ -36,20 +35,13 @@ namespace CastReporting.Reporting.Block.Text
             for (int k = 0; k < _allApps.Length; k++)
             {
                 Application _app = _allApps[k];
-
+                string _appExpr = _expr;
                 Snapshot currentSnap = _app.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
                 if (currentSnap == null) continue;
-                int j = 0;
                 for (int i = 0; i < lstParams.Length; i += 2)
                 {
-                    if (i == 0)
-                    {
-                        strParameters = "double " + lstParams[i + 1];
-                    }
-                    else
-                    {
-                        strParameters = strParameters + ", double " + lstParams[i + 1];
-                    }
+                    string param = lstParams[i + 1];
+                    double? paramValue;
 
                     switch (lstParams[i])
                     {
@@ -57,56 +49,59 @@ namespace CastReporting.Reporting.Block.Text
                             int sizingId = int.Parse(options.GetOption(lstParams[i + 1], "0"));
                             if (sizingId == 0)
                             {
-                                objValues[j] = Labels.NoData;
+                                paramValue = null;
                                 break;
                             }
-                            var sizingValue = MeasureUtility.GetSizingMeasure(currentSnap, sizingId);
-                            if (sizingValue != null)
-                                objValues[j] = sizingValue;
-                            else
-                                objValues[j] = Labels.NoData;
-                            j++;
+                            paramValue = MeasureUtility.GetSizingMeasure(currentSnap, sizingId);
                             break;
-
+                            
                         case "QR":
                             int qrId = int.Parse(options.GetOption(lstParams[i + 1], "0"));
                             if (qrId == 0)
                             {
-                                objValues[j] = Labels.NoData;
+                                paramValue = null;
                                 break;
                             }
-                            var qrGrade = BusinessCriteriaUtility.GetMetricValue(currentSnap, qrId);
-                            if (qrGrade != null)
-                                objValues[j] = qrGrade;
-                            else
-                                objValues[j] = Labels.NoData;
-                            j++;
+                            paramValue = BusinessCriteriaUtility.GetMetricValue(currentSnap, qrId);
                             break;
 
                         case "BF":
                             string bfId = options.GetOption(lstParams[i + 1], string.Empty);
                             if (string.IsNullOrEmpty(bfId))
                             {
-                                objValues[j] = Labels.NoData;
+                                paramValue = null;
                                 break;
                             }
                             var bfValue = reportData.SnapshotExplorer.GetBackgroundFacts(currentSnap.Href, bfId).FirstOrDefault();
                             if (bfValue != null && bfValue.ApplicationResults.Any())
                             {
-                                objValues[j] = bfValue.ApplicationResults[0].DetailResult.Value;
+                                paramValue = bfValue.ApplicationResults[0].DetailResult.Value;
                             }
                             else
                             {
-                                objValues[j] = Labels.NoData;
+                                paramValue = null;
                             }
-                            j++;
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+                    if (paramValue != null)
+                    {
+                        _appExpr = _appExpr.Replace(param, paramValue.ToString());
+                    }
                 }
-                string value = ExpressionEvaluator.Eval(strParameters, _expr, objValues, string.Empty);
-                if (!value.Contains("Error"))
+                DataTable dt = new DataTable();
+                string value = string.Empty;
+                try
+                {
+                    value = double.Parse(dt.Compute(_appExpr, "").ToString()).ToString(_metricFormat);
+                }
+                catch (EvaluateException)
+                {
+                    value = null;
+                }
+                
+                if (!string.IsNullOrEmpty(value))
                 {
                     strValues[k] = value;
                 }

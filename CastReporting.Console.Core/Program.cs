@@ -484,6 +484,12 @@ namespace CastReporting.Console
                             {
                                 LogHelper.Instance.LogInfo($"No Previous snapshot.");
                             }
+                            else
+                            {
+                                //Build previous snapshot results 
+                                SnapshotBLL.BuildSnapshotResult(connection, prevSnapshot, false);
+                                LogHelper.Instance.LogInfo($"Result of previous snapshot {prevSnapshot.Name}  built successfully");
+                            }
                         }
                         else
                         {

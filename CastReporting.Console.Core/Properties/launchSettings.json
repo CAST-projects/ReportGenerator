@@ -2,7 +2,7 @@
   "profiles": {
     "CastReporting.Console.Core": {
       "commandName": "Project",
-      "commandLineArgs": "-webservice http://dash-aed-tomcat:8585/CAST-Health-Engineering/rest/ -username cio -password cast -application \"Jurassic Park\" -domain \"AED\" -template \"D:\\GitHub\\centos_support\\ReportGenerator\\CastReporting.Reporting.Core\\TemplatesFiles\\2- Word-components-new-library.docx\" -file \"D:\\temp\\CLIReport.pdf\""
+      "commandLineArgs": "-webservice http://dash-aed-tomcat:8585/CAST-Health-Engineering/rest/ -username cio -password cast -application \"Big Ben\" -domain \"AED\" -template \"D:\\GitHub\\centos_support\\ReportGenerator\\CastReporting.Reporting.Core\\TemplatesFiles\\2- Word-components-new-library.docx\" -file \"D:\\temp\\CLIReport.pdf\""
     }
   }
 }
