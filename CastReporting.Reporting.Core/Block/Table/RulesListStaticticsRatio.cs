@@ -73,7 +73,7 @@ namespace CastReporting.Reporting.Block.Table
             List<ApplicationResult> results = sortedByCompliance ? 
                     reportData.CurrentSnapshot?.QualityRulesResults.Where(_ => qualityRules.Contains(_.Reference.Key.ToString())).OrderBy(_ => _.DetailResult.ViolationRatio.Ratio).ToList()
                     : reportData.CurrentSnapshot?.QualityRulesResults.Where(_ => qualityRules.Contains(_.Reference.Key.ToString())).OrderByDescending(_=>  _.DetailResult.ViolationRatio.FailedChecks).ToList();
-
+            string colorBeige = "Beige";
             if (results?.Count > 0)
             {
                 foreach (var result in results)
@@ -85,25 +85,25 @@ namespace CastReporting.Reporting.Block.Table
                     dataRow.Set(Labels.CASTRules, (result.Reference?.Name + " (" + result.Reference?.Key + ")" ).NAIfEmpty());
                     if (nbViolations > 0)
                     {
-                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                        cellProps.Add(new CellAttributes(cellidx, colorBeige));
                     }
                     cellidx++;
                     dataRow.Set(lbltotal, detailResult.ViolationRatio.FailedChecks.HasValue ? detailResult.ViolationRatio?.FailedChecks.Value.ToString("N0") : Constants.No_Value);
                     if (nbViolations > 0)
                     {
-                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                        cellProps.Add(new CellAttributes(cellidx, colorBeige));
                     }
                     cellidx++;
                     dataRow.Set(lbladded, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
                     if (nbViolations > 0)
                     {
-                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                        cellProps.Add(new CellAttributes(cellidx, colorBeige));
                     }
                     cellidx++;
                     dataRow.Set(lblremoved, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
                     if (nbViolations > 0)
                     {
-                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                        cellProps.Add(new CellAttributes(cellidx, colorBeige));
                     }
                     cellidx++;
                     if (displayCompliance)
@@ -111,7 +111,7 @@ namespace CastReporting.Reporting.Block.Table
                         dataRow.Set(Labels.ComplianceScorePercent, detailResult.ViolationRatio?.Ratio.FormatPercent(false));
                         if (nbViolations > 0)
                         {
-                            cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                            cellProps.Add(new CellAttributes(cellidx, colorBeige));
                         }
                         cellidx++;
                     }

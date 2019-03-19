@@ -55,7 +55,7 @@ namespace CastReporting.Reporting.Block.Table
 
             var dataRow = headers.CreateDataRow();
             var data = new List<string>();
-
+            string colorBeige = "Beige";
             List<ApplicationResult> results = reportData.SnapshotExplorer.GetQualityStandardsTagsResults(reportData.CurrentSnapshot.Href,standard)?.FirstOrDefault()?.ApplicationResults?.ToList();
 
             if (results?.Count > 0)
@@ -69,28 +69,28 @@ namespace CastReporting.Reporting.Block.Table
                     dataRow.Set(standard, stdTagName);
                     if (nbViolations > 0)
                     {
-                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                        cellProps.Add(new CellAttributes(cellidx, colorBeige));
 
                     }
                     cellidx++;
                     dataRow.Set(lbltotal, detailResult.EvolutionSummary?.TotalViolations.NAIfEmpty());
                     if (nbViolations > 0)
                     {
-                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                        cellProps.Add(new CellAttributes(cellidx, colorBeige));
 
                     }
                     cellidx++;
                     dataRow.Set(lbladded, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
                     if (nbViolations > 0)
                     {
-                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                        cellProps.Add(new CellAttributes(cellidx, colorBeige));
 
                     }
                     cellidx++;
                     dataRow.Set(lblremoved, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
                     if (nbViolations > 0)
                     {
-                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+                        cellProps.Add(new CellAttributes(cellidx, colorBeige));
 
                     }
                     cellidx++;

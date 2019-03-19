@@ -255,7 +255,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                         new OXW.Shading()
                                         {
                                             Color = "auto",
-                                            Fill = ColorTranslator.ToHtml(attributes.BackgroundColor),
+                                            Fill = attributes.BackgroundColor,
                                             Val = OXW.ShadingPatternValues.Clear
                                         };
                                     // Add the Shading object to the TableCellProperties object
@@ -459,7 +459,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                             CellAttributes attributes = content.CellsAttributes.FirstOrDefault(a => a.Index == i);
                             if (attributes?.BackgroundColor != null)
                             {
-                                Color myColor = attributes.BackgroundColor;
+                                Color myColor = FormatHelper.FormatColor(attributes.BackgroundColor);
                                 OXD.RgbColorModelHex backColor = new OXD.RgbColorModelHex() { Val = $"{myColor.R:X2}{myColor.G:X2}{myColor.B:X2}" };
                                 OXD.SolidFill solidFill = new OXD.SolidFill();
                                 solidFill.Append(backColor);

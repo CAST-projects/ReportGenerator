@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Globalization;
 using CastReporting.Domain;
 
@@ -96,6 +97,28 @@ namespace CastReporting.Reporting.Helper
         {
             double var = double.Parse(pValue);
             return var.ToString("N2");
+        }
+
+        public static Color FormatColor(string myColor)
+        {
+            switch (myColor)
+            {
+                case "Gainsboro":
+                    return Color.Gainsboro;
+                case "White":
+                    return Color.White;
+                case "Lavender":
+                    return Color.Lavender;
+                case "LightYellow":
+                    return Color.LightYellow;
+                case "Beige":
+                    return Color.Beige;
+                case "Gray":
+                    return Color.Gray;
+                case "LightGray":
+                    return Color.LightGray;
+            }
+            return Color.White;
         }
     }
 }

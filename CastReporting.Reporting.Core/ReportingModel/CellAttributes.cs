@@ -33,21 +33,21 @@ namespace CastReporting.Reporting.ReportingModel
         /// <summary>
         /// Get/Set the background color of the cell
         /// </summary>
-        public Color BackgroundColor { get; set; }
+        public string BackgroundColor { get; set; }
 
         public Color FontColor { get; set; }
 
         public string Effect { get; set; }
 
 
-        public CellAttributes(int idx, Color back, Color font, string effect)
+        public CellAttributes(int idx, string back, Color font, string effect)
         {
             Index = idx;
             BackgroundColor = back;
             FontColor = font;
             Effect = effect;
         }
-        public CellAttributes(int idx, Color back, Color font)
+        public CellAttributes(int idx, string back, Color font)
         {
             Index = idx;
             BackgroundColor = back;
@@ -55,7 +55,7 @@ namespace CastReporting.Reporting.ReportingModel
             Effect = string.Empty;
         }
 
-        public CellAttributes(int idx, Color back, string effect)
+        public CellAttributes(int idx, string back, string effect)
         {
             Index = idx;
             BackgroundColor = back;
@@ -63,7 +63,7 @@ namespace CastReporting.Reporting.ReportingModel
             Effect = effect;
         }
 
-        public CellAttributes(int idx, Color back)
+        public CellAttributes(int idx, string back)
         {
             Index = idx;
             BackgroundColor = back;

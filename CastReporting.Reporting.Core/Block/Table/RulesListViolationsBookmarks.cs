@@ -14,6 +14,9 @@ namespace CastReporting.Reporting.Block.Table
     [Block("LIST_RULES_VIOLATIONS_BOOKMARKS")]
     public class RulesListViolationsBookmarks : TableBlock
     {
+        private const string ColorWhite = "White";
+        private const string ColorGray = "Gray";
+        private const string ColorLightGray = "colorLightGray";
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             List<string> rowData = new List<string>();
@@ -60,33 +63,33 @@ namespace CastReporting.Reporting.Block.Table
                     cellidx++;
 
                     rowData.Add(Labels.ObjectsInViolationForRule + " " + ruleName);
-                    cellProps.Add(new CellAttributes(cellidx, Color.Gray, Color.White, "bold"));
+                    cellProps.Add(new CellAttributes(cellidx, ColorGray, Color.White, "bold"));
                     cellidx++;
                     rowData.Add(Labels.ViolationsCount + ": " + violStats.TotalViolations);
-                    cellProps.Add(new CellAttributes(cellidx, Color.White));
+                    cellProps.Add(new CellAttributes(cellidx, ColorWhite));
                     cellidx++;
                     if (!string.IsNullOrWhiteSpace(rule.Rationale))
                     {
                         rowData.Add(Labels.Rationale + ": ");
-                        cellProps.Add(new CellAttributes(cellidx, Color.LightGray));
+                        cellProps.Add(new CellAttributes(cellidx, ColorLightGray));
                         cellidx++;
                         rowData.Add(rule.Rationale);
-                        cellProps.Add(new CellAttributes(cellidx, Color.White));
+                        cellProps.Add(new CellAttributes(cellidx, ColorWhite));
                         cellidx++;
                     }
                     rowData.Add(Labels.Description + ": ");
-                    cellProps.Add(new CellAttributes(cellidx, Color.LightGray));
+                    cellProps.Add(new CellAttributes(cellidx, ColorLightGray));
                     cellidx++;
                     rowData.Add(rule.Description);
-                    cellProps.Add(new CellAttributes(cellidx, Color.White));
+                    cellProps.Add(new CellAttributes(cellidx, ColorWhite));
                     cellidx++;
                     if (!string.IsNullOrWhiteSpace(rule.Remediation))
                     {
                         rowData.Add(Labels.Remediation + ": ");
-                        cellProps.Add(new CellAttributes(cellidx, Color.LightGray));
+                        cellProps.Add(new CellAttributes(cellidx, ColorLightGray));
                         cellidx++;
                         rowData.Add(rule.Remediation);
-                        cellProps.Add(new CellAttributes(cellidx, Color.White));
+                        cellProps.Add(new CellAttributes(cellidx, ColorWhite));
                         cellidx++;
                     }
 

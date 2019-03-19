@@ -12,6 +12,11 @@ namespace CastReporting.Reporting
 {
     public static class MetricsUtility
     {
+        private const string ColorGainsboro = "Gainsboro";
+        private const string ColorWhite = "White";
+        private const string ColorLavander = "Lavender";
+        private const string ColorLightYellow = "LightYellow";
+
         /// <summary>
         /// This method return the name of the metric from getting it in the results of the snapshot
         /// The metric id can be a BC, TC, QR, sizing or background fact measure
@@ -570,21 +575,21 @@ namespace CastReporting.Reporting
                 rowData.Add("");
                 cellidx++;
                 rowData.Add(Labels.Violation + " #" + violationCounter + "    " + ruleName);
-                cellProps.Add(new CellAttributes(cellidx, Color.Gainsboro));
+                cellProps.Add(new CellAttributes(cellidx, ColorGainsboro));
                 cellidx++;
                 rowData.Add(Labels.ObjectName + ": " + _violation.Component.Name);
-                cellProps.Add(new CellAttributes(cellidx, Color.White));
+                cellProps.Add(new CellAttributes(cellidx, ColorWhite));
                 cellidx++;
 
                 TypedComponent objectComponent = reportData.SnapshotExplorer.GetTypedComponent(reportData.CurrentSnapshot.DomainId, _violation.Component.GetComponentId(), reportData.CurrentSnapshot.GetId());
                 rowData.Add(Labels.IFPUG_ObjectType + ": " + objectComponent.Type.Label);
-                cellProps.Add(new CellAttributes(cellidx, Color.White));
+                cellProps.Add(new CellAttributes(cellidx, ColorWhite));
                 cellidx++;
 
                 if (hasPreviousSnapshot)
                 {
                     rowData.Add(Labels.Status + ": " + _violation.Diagnosis.Status);
-                    cellProps.Add(new CellAttributes(cellidx, Color.White));
+                    cellProps.Add(new CellAttributes(cellidx, ColorWhite));
                     cellidx++;
                 }
 
@@ -606,7 +611,7 @@ namespace CastReporting.Reporting
                             foreach (CodeBookmark _bookmark in _bookmarks)
                             {
                                 rowData.Add(Labels.FilePath + ": " + _bookmark.CodeFragment.CodeFile.Name);
-                                cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
+                                cellProps.Add(new CellAttributes(cellidx, ColorLavander));
                                 cellidx++;
                                 Dictionary<int, string> codeLines = reportData.SnapshotExplorer.GetSourceCodeBookmark(domainId, _bookmark, 3);
                                 if (codeLines == null) continue;
@@ -614,8 +619,8 @@ namespace CastReporting.Reporting
                                 {
                                     rowData.Add(codeLine.Key + " : " + codeLine.Value);
                                     cellProps.Add(codeLine.Key >= _bookmark.CodeFragment.StartLine && codeLine.Key <= _bookmark.CodeFragment.EndLine
-                                        ? new CellAttributes(cellidx, Color.LightYellow)
-                                        : new CellAttributes(cellidx, Color.White));
+                                        ? new CellAttributes(cellidx, ColorLightYellow)
+                                        : new CellAttributes(cellidx, ColorWhite));
                                     cellidx++;
                                 }
                             }
@@ -640,7 +645,7 @@ namespace CastReporting.Reporting
                             pathCounter++;
                             IEnumerable<CodeBookmark> _bookmarksValue = _value.ToList();
                             rowData.Add(Labels.ViolationPath + " #" + pathCounter);
-                            cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
+                            cellProps.Add(new CellAttributes(cellidx, ColorLavander));
                             cellidx++;
                             string previousFile = string.Empty;
                             foreach (CodeBookmark _bookval in _bookmarksValue)
@@ -649,7 +654,7 @@ namespace CastReporting.Reporting
                                 {
                                     previousFile = _bookval.CodeFragment.CodeFile.Name;
                                     rowData.Add(Labels.FilePath + ": " + _bookval.CodeFragment.CodeFile.Name);
-                                    cellProps.Add(new CellAttributes(cellidx, Color.White));
+                                    cellProps.Add(new CellAttributes(cellidx, ColorWhite));
                                     cellidx++;
                                 }
 
@@ -659,8 +664,8 @@ namespace CastReporting.Reporting
                                 {
                                     rowData.Add(codeLine.Key + " : " + codeLine.Value);
                                     cellProps.Add(codeLine.Key == _bookval.CodeFragment.StartLine
-                                        ? new CellAttributes(cellidx, Color.LightYellow)
-                                        : new CellAttributes(cellidx, Color.White));
+                                        ? new CellAttributes(cellidx, ColorLightYellow)
+                                        : new CellAttributes(cellidx, ColorWhite));
                                     cellidx++;
                                 }
                             }
@@ -685,7 +690,7 @@ namespace CastReporting.Reporting
                             foreach (CodeBookmark _component in components)
                             {
                                 rowData.Add(_component.Component.Name);
-                                cellProps.Add(new CellAttributes(cellidx, Color.White));
+                                cellProps.Add(new CellAttributes(cellidx, ColorWhite));
                                 cellidx++;
                             }
                             rowData.Add("");
@@ -711,7 +716,7 @@ namespace CastReporting.Reporting
             foreach (Tuple<string, Dictionary<int, string>> _code in codes)
             {
                 rowData.Add(Labels.FilePath + ": " + _code.Item1);
-                cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
+                cellProps.Add(new CellAttributes(cellidx, ColorLavander));
                 cellidx++;
 
                 Dictionary<int, string> codeLines = _code.Item2;
@@ -719,7 +724,7 @@ namespace CastReporting.Reporting
                 foreach (KeyValuePair<int, string> codeLine in codeLines)
                 {
                     rowData.Add(codeLine.Key + " : " + codeLine.Value);
-                    cellProps.Add(new CellAttributes(cellidx, Color.White));
+                    cellProps.Add(new CellAttributes(cellidx, ColorWhite));
                     cellidx++;
                 }
             }
