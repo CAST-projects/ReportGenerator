@@ -1,0 +1,76 @@
+﻿[
+  {
+    "number": 5,
+    "date": {
+      "time": 1496959200000,
+      "isoDate": "2017-06-09"
+    },
+    "application": {
+      "href": "AED/applications/3",
+      "name": "CoCRestAPI",
+      "adgDatabase": "cocra_central"
+    },
+    "applicationSnapshot": {
+      "href": "AED/applications/3/snapshots/5",
+      "name": "CoCRestAPI"
+    },
+    "applicationResults": [
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/1634/snapshots/5",
+          "name": "Avoid unreferenced Tables",
+          "key": "1634",
+          "critical": false
+        },
+        "result": {
+          "grade": 2.54324567,
+          "violationRatio": {
+            "totalChecks": 356,
+            "failedChecks": 26,
+            "successfulChecks": 330,
+            "ratio": 0.073
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [
+          {
+            "number": 5,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/5",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "grade": 1.3357142857142859,
+              "violationRatio": {
+                "totalChecks": 350,
+                "failedChecks": 128,
+                "successfulChecks": 222,
+                "ratio": 0.6342857142857142
+              }
+            },
+            "technologyResults": []
+          },
+          {
+            "number": 5,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/5",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "grade": 1.781802120141343,
+              "violationRatio": {
+                "totalChecks": 849,
+                "failedChecks": 159,
+                "successfulChecks": 690,
+                "ratio": 0.8127208480565371
+              }
+            },
+            "technologyResults": []
+          }
+        ],
+        "transactionResults": []
+      }
+    ]
+  }
+]

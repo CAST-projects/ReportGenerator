@@ -27,9 +27,7 @@ namespace CastReporting.Reporting.Block.Text
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-        	var ver = GetVersion(Assembly.GetEntryAssembly());
-        	if (string.IsNullOrEmpty(ver))
-        		ver = GetVersion(Assembly.GetExecutingAssembly());
+        	var ver = GetVersion(Assembly.GetExecutingAssembly());
         	if (string.IsNullOrEmpty(ver))
         		ver = Domain.Constants.No_Value;
         	

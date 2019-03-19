@@ -1,0 +1,6 @@
+﻿Quality rule name;Object name location;Object status;Snapshot Date;Associated Value;Violation status;Action plan status;Action plan priority
+Avoid declaring public Fields;CastReporting.BLL.Computing.DTO.EvolutionResult.type;added;2017-04-24;1;added;added;low
+Avoid declaring public Fields;CastReporting.Reporting.Builder.ExcelDocumentBuilder.reportData;updated;2017-04-24;1;added;added;low
+Avoid declaring public Fields;CastReporting.Reporting.Helper.GenericContent.ObjConfig.Parameters;added;2017-04-24;1;added;added;low
+Avoid declaring public Fields;CastReporting.Reporting.ReportingModel.ReportData.RuleExplorer;unchanged;2017-04-24;1;unchanged;added;low
+Avoid declaring public Fields;CastReporting.UI.WPF.Commands.MenuCommand.OpenHelp;unchanged;2017-04-24;1;unchanged;added;low

@@ -1,0 +1,59 @@
+[
+  {
+    "href": "AAD/applications/3",
+    "name": "ReportGenerator",
+    "technologies": [
+      ".NET"
+    ],
+    "systems": null,
+    "modules": {
+      "href": "AAD/applications/3/modules",
+      "name": "Modules of ReportGenerator"
+    },
+    "snapshots": {
+      "href": "AAD/applications/3/snapshots",
+      "name": "Snapshots of ReportGenerator"
+    },
+    "results": {
+      "href": "AAD/applications/3/results",
+      "name": "Results breakdown for ReportGenerator by snapshots, by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED/applications/3",
+      "name": "Origin of ReportGenerator"
+    },
+    "adgDatabase": "abd83coc_central",
+    "adgWebSite": "./InfoNoDrillDown.htm",
+    "adgLocalId": "3",
+    "adgVersion": "8.3.0"
+  },
+  {
+    "href": "AAD/applications/37",
+    "name": "AADAEDAdmin",
+    "technologies": [
+      "JEE",
+      "SQL Analyzer"
+    ],
+    "systems": null,
+    "modules": {
+      "href": "AAD/applications/37/modules",
+      "name": "Modules of AADAEDAdmin"
+    },
+    "snapshots": {
+      "href": "AAD/applications/37/snapshots",
+      "name": "Snapshots of AADAEDAdmin"
+    },
+    "results": {
+      "href": "AAD/applications/37/results",
+      "name": "Results breakdown for AADAEDAdmin by snapshots, by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED/applications/3501",
+      "name": "Origin of AADAEDAdmin"
+    },
+    "adgDatabase": "abd83coc_central",
+    "adgWebSite": "./InfoNoDrillDown.htm",
+    "adgLocalId": "3501",
+    "adgVersion": "8.3.0"
+  }
+]

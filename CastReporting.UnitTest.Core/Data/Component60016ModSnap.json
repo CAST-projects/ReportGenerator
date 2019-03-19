@@ -1,0 +1,62 @@
+[
+  {
+    "href": "AED/components/11301/snapshots/4",
+    "name": "measure.dss_history",
+    "shortName": "dss_history",
+    "propagationRiskIndex": 140504
+  },
+  {
+    "href": "AED/components/14381/snapshots/4",
+    "name": "com.castsoftware.aad.common.AadCommandLine.dumpStack",
+    "shortName": "dumpStack",
+    "propagationRiskIndex": 122280
+  },
+  {
+    "href": "AED/components/9836/snapshots/4",
+    "name": "measure.dss_snapshots",
+    "shortName": "dss_snapshots",
+    "propagationRiskIndex": 56224
+  },
+  {
+    "href": "AED/components/13668/snapshots/4",
+    "name": "com.castsoftware.aad.common.AadCommandLine.logInBase",
+    "shortName": "logInBase",
+    "propagationRiskIndex": 54120
+  },
+  {
+    "href": "AED/components/12843/snapshots/4",
+    "name": "measure.dss_objects",
+    "shortName": "dss_objects",
+    "propagationRiskIndex": 42504
+  },
+  {
+    "href": "AED/components/12002/snapshots/4",
+    "name": "com.castsoftware.aad.common.AadCommandLine.getFormattedMsg",
+    "shortName": "getFormattedMsg",
+    "propagationRiskIndex": 33825
+  },
+  {
+    "href": "AED/components/8367/snapshots/4",
+    "name": "measure.dss_metric_results",
+    "shortName": "dss_metric_results",
+    "propagationRiskIndex": 33376
+  },
+  {
+    "href": "AED/components/10527/snapshots/4",
+    "name": "measure.dss_translation_table",
+    "shortName": "dss_translation_table",
+    "propagationRiskIndex": 27552
+  },
+  {
+    "href": "AED/components/9748/snapshots/4",
+    "name": "measure.adg_delta_snapshots",
+    "shortName": "adg_delta_snapshots",
+    "propagationRiskIndex": 19488
+  },
+  {
+    "href": "AED/components/11607/snapshots/4",
+    "name": "measure.dss_links",
+    "shortName": "dss_links",
+    "propagationRiskIndex": 14784
+  }
+]

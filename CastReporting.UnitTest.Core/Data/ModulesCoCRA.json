@@ -1,0 +1,64 @@
+﻿[
+  {
+    "href": "AED/modules/4/snapshots/4",
+    "name": "AAD-Admin",
+    "technologies": [
+      "JEE",
+      "SQL Analyzer"
+    ],
+    "snapshots": {
+      "href": "AED/modules/4/snapshots",
+      "name": "Snapshots of AAD-Admin"
+    },
+    "results": {
+      "href": "AED/modules/4/results",
+      "name": "Results for AAD-Admin"
+    },
+    "adgLocalId": null,
+    "applications": {
+      "href": "AED/modules/4/application",
+      "name": "CoCRestAPI"
+    }
+  },
+  {
+    "href": "AED/modules/5/snapshots/4",
+    "name": "AED-Admin",
+    "technologies": [
+      "JEE",
+      "SQL Analyzer"
+    ],
+    "snapshots": {
+      "href": "AED/modules/5/snapshots",
+      "name": "Snapshots of AED-Admin"
+    },
+    "results": {
+      "href": "AED/modules/5/results",
+      "name": "Results for AED-Admin"
+    },
+    "adgLocalId": null,
+    "applications": {
+      "href": "AED/modules/5/application",
+      "name": "CoCRestAPI"
+    }
+  },
+  {
+    "href": "AED/modules/6/snapshots/4",
+    "name": "ReportGenerator",
+    "technologies": [
+      ".NET"
+    ],
+    "snapshots": {
+      "href": "AED/modules/6/snapshots",
+      "name": "Snapshots of ReportGenerator"
+    },
+    "results": {
+      "href": "AED/modules/6/results",
+      "name": "Results for ReportGenerator"
+    },
+    "adgLocalId": null,
+    "applications": {
+      "href": "AED/modules/6/application",
+      "name": "CoCRestAPI"
+    }
+  }
+]

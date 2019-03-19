@@ -1,0 +1,370 @@
+﻿[
+  {
+    "number": 4,
+    "date": {
+      "time": 1492984800000,
+      "isoDate": "2017-04-24"
+    },
+    "application": {
+      "href": "AED/applications/3",
+      "name": "CoCRestAPI",
+      "adgDatabase": "cocra_central"
+    },
+    "applicationSnapshot": {
+      "href": "AED/applications/3/snapshots/4",
+      "name": "CoCRestAPI"
+    },
+    "applicationResults": [
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60011/snapshots/4",
+          "name": "Transferability",
+          "shortName": "Trsf",
+          "key": "60011",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.8298898010754723
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 2.8942497682682524
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 2.8213103746276036
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.309609754295336
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60012/snapshots/4",
+          "name": "Changeability",
+          "shortName": "Chng",
+          "key": "60012",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.347970726241776
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 1.8698626599167703
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.019076530221599
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 2.5983475401338243
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60013/snapshots/4",
+          "name": "Robustness",
+          "shortName": "Rbst",
+          "key": "60013",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.095264033172759
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.178721019438145
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.3780181020298503
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.182013924368764
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60014/snapshots/4",
+          "name": "Efficiency",
+          "shortName": "Efcy",
+          "key": "60014",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 1.8456825269449897
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 2.6593702158364043
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 2.417494743822958
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 1.606163351416516
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60015/snapshots/4",
+          "name": "SEI Maintainability",
+          "shortName": "SEI",
+          "key": "60015",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.3356696743756373
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.3306856329810257
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.2830480456565057
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.6037618593659086
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60016/snapshots/4",
+          "name": "Security",
+          "shortName": "Secu",
+          "key": "60016",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.9341301683609444
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.2064701978472137
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.3053155832618004
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.120662209487424
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60017/snapshots/4",
+          "name": "Total Quality Index",
+          "shortName": "TQI",
+          "key": "60017",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.621589398493349
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 2.792354085619505
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 2.9790802249498594
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 2.785434488032325
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/66031/snapshots/4",
+          "name": "Programming Practices",
+          "shortName": "Prog",
+          "key": "66031",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.635671409680243
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 2.9559903408065877
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 2.939465473549299
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 2.4419133067619843
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/66032/snapshots/4",
+          "name": "Architectural Design",
+          "shortName": "Arch",
+          "key": "66032",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.4458812491128037
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 1.8148632826896562
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.049420291241396
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 2.8060087363643227
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/66033/snapshots/4",
+          "name": "Documentation",
+          "shortName": "Doc",
+          "key": "66033",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.378114337244366
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 2.573176148414353
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 2.1562367781722838
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 4
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  }
+]

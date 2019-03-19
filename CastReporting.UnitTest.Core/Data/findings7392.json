@@ -1,0 +1,81 @@
+﻿[
+  {
+    "name": "Number of potential ways to delete the SQL Table",
+    "type": "integer",
+    "values": [
+      3
+    ],
+    "bookmarks": [
+      [
+        {
+          "component": {
+            "href": "AED/components/8568/snapshots/2",
+            "name": "central.adg_delta_snapshots",
+            "shortName": "adg_delta_snapshots",
+            "sourceCodes": {
+              "href": "AED/components/8568/snapshots/2/source-codes",
+              "name": "Source Codes"
+            }
+          },
+          "codeFragment": {
+            "file": {
+              "href": "AED/local-sites/1471413225/file-contents/285",
+              "name": "D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql",
+              "size": 1311804
+            },
+            "startLine": 1200,
+            "startColumn": 21,
+            "endLine": 1201,
+            "endColumn": 40
+          }
+        }
+      ],
+      [
+        {
+          "component": {
+            "href": "AED/components/8568/snapshots/2",
+            "name": "central.adg_delta_snapshots",
+            "shortName": "adg_delta_snapshots",
+            "sourceCodes": {
+              "href": "AED/components/8568/snapshots/2/source-codes",
+              "name": "Source Codes"
+            }
+          },
+          "codeFragment": {
+            "file": {
+              "href": "AED/local-sites/1471413225/file-contents/159",
+              "name": "D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\Java\\AADAdmin\\AadSite\\sources\\com\\castsoftware\\aad\\site\\AadSite.java",
+              "size": 18969
+            },
+            "startLine": 1200,
+            "startColumn": 32,
+            "endLine": 1201,
+            "endColumn": 180
+          }
+        },
+        {
+          "component": {
+            "href": "AED/components/8568/snapshots/2",
+            "name": "central.adg_delta_snapshots",
+            "shortName": "adg_delta_snapshots",
+            "sourceCodes": {
+              "href": "AED/components/8568/snapshots/2/source-codes",
+              "name": "Source Codes"
+            }
+          },
+          "codeFragment": {
+            "file": {
+              "href": "AED/local-sites/1471413225/file-contents/159",
+              "name": "D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\Java\\AADAdmin\\AadSite\\sources\\com\\castsoftware\\aad\\site\\AadSite.java",
+              "size": 18969
+            },
+            "startLine": 1200,
+            "startColumn": 82,
+            "endLine": 1201,
+            "endColumn": 101
+          }
+        }
+      ]
+    ]
+  }
+]

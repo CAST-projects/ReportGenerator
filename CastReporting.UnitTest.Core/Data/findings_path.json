@@ -1,0 +1,49 @@
+﻿[
+  {
+    "name": "Call stack from user input source down to the target HTML user output method",
+    "type": "path",
+    "values": [
+      [
+        {
+          "component": {
+            "href": "AED833/components/36200/snapshots/16",
+            "name": "[c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\JSPBookDemo\\pages\\NewSales.jsp]",
+            "shortName": "NewSales.jsp"
+          },
+          "level": 0,
+          "codeFragment": {
+            "file": {
+              "href": "AED833/local-sites/85579248/file-contents/3295",
+              "name": "c:\\jenkins6_slave\\workspace\\caip_8.3.3_teste2e_css_adg\\work\\cast\\deploy\\jurassic park\\jspbookdemo\\pages\\newsales.jsp",
+              "size": 3551
+            },
+            "startLine": 51,
+            "startColumn": null,
+            "endLine": 51,
+            "endColumn": null
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/36265/snapshots/16",
+            "name": "WASecurityForm._Default.GetRawInputGet",
+            "shortName": "GetRawInputGet"
+          },
+          "level": 0,
+          "codeFragment": {
+            "file": {
+              "href": "AED833/local-sites/85579248/file-contents/2905",
+              "name": "c:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Jurassic Park\\WASecu\\WASecurityForm\\Default.aspx.cs",
+              "size": 11849
+            },
+            "startLine": 38,
+            "startColumn": null,
+            "endLine": 38,
+            "endColumn": null
+          }
+        }
+      ]
+    ],
+    "bookmarks": null
+  }
+]

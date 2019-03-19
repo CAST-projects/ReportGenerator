@@ -1,0 +1,17 @@
+﻿Element Type;Function Name;Object Name;AEP;Complexity Factor;Updated Artifacts;Object Type;Module Name;Technology
+Added Data Function AEFP;COI5F21;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\PROG-BATCH].COCPB10.COI5F21;5;1.0;;Cobol File Link;Presales;Cobol
+Added Data Function AEFP;CSI0F61;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\PROG-BATCH].CSVAB482.CSI0F61;5;1.0;;Cobol File Link;Presales;Cobol
+Added Data Function AEFP;CSI1F41;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\PROG-BATCH].CSVAB482.CSI1F41;5;1.0;;Cobol File Link;Presales;Cobol
+Modified Data Function AEFP;CSI1F51;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\PROG-BATCH].CSVAB482.CSI1F51;5;1.0;;Cobol File Link;Presales;Cobol
+Modified Data Function AEFP;CSI1F62;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\PROG-BATCH].CSVAB482.CSI1F62;5;1.0;;Cobol File Link;Presales;Cobol
+Deleted Data Function AEFP;EKPO;unresolvedObjects/SAP_TABLE/EKPO;3;0.4;;SAP unresolved Table;Abap_castpubs;SAP SQL
+Deleted Data Function AEFP;COI1F91;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\PROG-BATCH].COVAB24.COI1F91;2;0.4;;Cobol File Link;Presales;Cobol
+Deleted Data Function AEFP;COI2F01;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\PROG-BATCH].COVAB24.COI2F01;2;0.4;;Cobol File Link;Presales;Cobol
+Deleted Data Function AEFP;COI2F11;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\PROG-BATCH].COVAB24.COI2F11;2;0.4;;Cobol File Link;Presales;Cobol
+Modified Data Function AEFP;COI1F71;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\PROG-BATCH].COVAB18.COI1F71;1;0.25;0;Cobol File Link;Presales;Cobol
+Added Transactional AEFP;CCTGU55;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\JCL].CCTGU55;4;0.5;1;JCL Job;Presales;JCL
+Modified Transactional AEFP;ERCO0CP2;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\JCL].ERCO0CP2;4;0.5;1;JCL Job;Presales;JCL
+Modified Transactional AEFP;ERCO0MPY;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\JCL].ERCO0MPY;4;0.5;0;JCL Job;Presales;JCL
+Modified Transactional AEFP;ERCS0NPA;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\JCL].ERCS0NPA;4;0.5;2;JCL Job;Presales;JCL
+Deleted Transactional AEFP;ERCO0DPA;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\JCL].ERCO0DPA;2;0.25;4;JCL Job;Presales;JCL
+Deleted Transactional AEFP;ERCO0SP2;[c:\jenkins7_slave\workspace\CAIP_Trunk_TestE2E_CSS_ADG\Work\CAST\Deploy\Big Ben\Presales\JCL].ERCO0SP2;2;0.25;1;JCL Job;Presales;JCL

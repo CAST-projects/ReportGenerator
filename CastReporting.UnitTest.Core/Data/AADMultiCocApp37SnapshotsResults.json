@@ -1,0 +1,1076 @@
+[
+  {
+    "number": 4,
+    "date": {
+      "time": 1502229600000,
+      "isoDate": "2017-08-09"
+    },
+    "application": {
+      "href": "AAD/applications/37",
+      "name": "AADAEDAdmin",
+      "adgDatabase": "abd83coc_central"
+    },
+    "applicationSnapshot": {
+      "href": "AAD/applications/37/snapshots/9",
+      "name": "AADAEDAdmin"
+    },
+    "applicationResults": [
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AAD/sizing-measures/10151/snapshots/9",
+          "name": "Number of Code Lines",
+          "shortName": "LOCs",
+          "key": "10151",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 38103
+        },
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 12649
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 25454
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AAD/sizing-measures/10202/snapshots/9",
+          "name": "OMG-Compliant Automated Function Points",
+          "shortName": "AFP",
+          "key": "10202",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 13732
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60011/snapshots/9",
+          "name": "Transferability",
+          "shortName": "Trsf",
+          "key": "60011",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.9719440291988195,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 2179,
+            "totalViolations": 2687,
+            "addedViolations": 1178,
+            "removedViolations": 862
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 2.9751565393034407,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 2673,
+                "addedViolations": 1178,
+                "removedViolations": 862
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.743645647408596,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 14,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60012/snapshots/9",
+          "name": "Changeability",
+          "shortName": "Chng",
+          "key": "60012",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.3706806638242957,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 73,
+            "violationsInNewAndModifiedCode": 1073,
+            "totalViolations": 1324,
+            "addedViolations": 565,
+            "removedViolations": 691
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.32177032252636,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 73,
+                "totalViolations": 1310,
+                "addedViolations": 565,
+                "removedViolations": 691
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.9174199274794748,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 14,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60013/snapshots/9",
+          "name": "Robustness",
+          "shortName": "Rbst",
+          "key": "60013",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.683268049414729,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 4,
+            "violationsInNewAndModifiedCode": 942,
+            "totalViolations": 1034,
+            "addedViolations": 491,
+            "removedViolations": 335
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.6560034184998447,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 4,
+                "totalViolations": 1020,
+                "addedViolations": 491,
+                "removedViolations": 335
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.8640541688125016,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 14,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60014/snapshots/9",
+          "name": "Efficiency",
+          "shortName": "Efcy",
+          "key": "60014",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.714732972927036,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 51,
+            "totalCriticalViolations": 80,
+            "addedCriticalViolations": 9,
+            "removedCriticalViolations": 97,
+            "violationsInNewAndModifiedCode": 145,
+            "totalViolations": 220,
+            "addedViolations": 50,
+            "removedViolations": 180
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 2.7603901622116545,
+              "evolutionSummary": {
+                "totalCriticalViolations": 44,
+                "addedCriticalViolations": 8,
+                "removedCriticalViolations": 95,
+                "totalViolations": 133,
+                "addedViolations": 42,
+                "removedViolations": 175
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 2.5056851897493257,
+              "evolutionSummary": {
+                "totalCriticalViolations": 36,
+                "addedCriticalViolations": 1,
+                "removedCriticalViolations": 2,
+                "totalViolations": 87,
+                "addedViolations": 8,
+                "removedViolations": 5
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60015/snapshots/9",
+          "name": "SEI Maintainability",
+          "shortName": "SEI",
+          "key": "60015",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.3391603971116077,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 0,
+            "totalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.284368136366898,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 0,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.613121700835155,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 0,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60016/snapshots/9",
+          "name": "Security",
+          "shortName": "Secu",
+          "key": "60016",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.730436081960001,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 4,
+            "totalCriticalViolations": 4,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 91,
+            "violationsInNewAndModifiedCode": 440,
+            "totalViolations": 528,
+            "addedViolations": 271,
+            "removedViolations": 560
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.712682638648749,
+              "evolutionSummary": {
+                "totalCriticalViolations": 4,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 91,
+                "totalViolations": 528,
+                "addedViolations": 271,
+                "removedViolations": 560
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 4,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 0,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60017/snapshots/9",
+          "name": "Total Quality Index",
+          "shortName": "TQI",
+          "key": "60017",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.3030297870905794,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 51,
+            "totalCriticalViolations": 80,
+            "addedCriticalViolations": 9,
+            "removedCriticalViolations": 174,
+            "violationsInNewAndModifiedCode": 3036,
+            "totalViolations": 3716,
+            "addedViolations": 1698,
+            "removedViolations": 1508
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 3.2955729575153208,
+              "evolutionSummary": {
+                "totalCriticalViolations": 44,
+                "addedCriticalViolations": 8,
+                "removedCriticalViolations": 172,
+                "totalViolations": 3615,
+                "addedViolations": 1690,
+                "removedViolations": 1503
+              }
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "grade": 3.4809105296932192,
+              "evolutionSummary": {
+                "totalCriticalViolations": 36,
+                "addedCriticalViolations": 1,
+                "removedCriticalViolations": 2,
+                "totalViolations": 101,
+                "addedViolations": 8,
+                "removedViolations": 5
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/66031/snapshots/9",
+          "name": "Programming Practices",
+          "shortName": "Prog",
+          "key": "66031",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.363281699333592,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 51,
+            "totalCriticalViolations": 80,
+            "addedCriticalViolations": 9,
+            "removedCriticalViolations": 170,
+            "violationsInNewAndModifiedCode": 945,
+            "totalViolations": 1146,
+            "addedViolations": 568,
+            "removedViolations": 748
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/66032/snapshots/9",
+          "name": "Architectural Design",
+          "shortName": "Arch",
+          "key": "66032",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.2363182218091553,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 377,
+            "totalViolations": 399,
+            "addedViolations": 159,
+            "removedViolations": 106
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/66033/snapshots/9",
+          "name": "Documentation",
+          "shortName": "Doc",
+          "key": "66033",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.1655053586141273,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 1714,
+            "totalViolations": 2171,
+            "addedViolations": 971,
+            "removedViolations": 650
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "critical-violation-statistics",
+        "reference": {
+          "href": "AAD/sizing-measures/67013/snapshots/9",
+          "name": "Number of violations to critical quality rules per KLOC (average)",
+          "key": "67013",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 2.099572212161772
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-debt-statistics",
+        "reference": {
+          "href": "AAD/sizing-measures/68001/snapshots/9",
+          "name": "Technical Debt",
+          "shortName": "Debt",
+          "key": "68001",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 175144.125
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/61001/snapshots/9",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001",
+          "critical": false
+        },
+        "result": {
+          "grade": 3.924442190669371,
+          "evolutionSummary": {
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 19,
+            "addedViolations": 9,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/61003/snapshots/9",
+          "name": "Programming Practices - OO Inheritance and Polymorphism",
+          "key": "61003",
+          "critical": false
+        },
+        "result": {
+          "grade": 4,
+          "evolutionSummary": {
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AAD/quality-indicators/4592/snapshots/9",
+          "name": "Avoid hiding static Methods",
+          "key": "4592",
+          "critical": true
+        },
+        "result": {
+          "grade": 4,
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 3,
+            "addedViolations": 0,
+            "removedViolations": 3
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AAD/quality-indicators/4554/snapshots/9",
+          "name": "Avoid large Classes - too many Methods",
+          "key": "4554",
+          "critical": false
+        },
+        "result": {
+          "grade": 1.9913793103448278,
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 1,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "date": {
+      "time": 1489705200000,
+      "isoDate": "2017-03-17"
+    },
+    "application": {
+      "href": "AAD/applications/37",
+      "name": "AADAEDAdmin",
+      "adgDatabase": "abd83coc_central"
+    },
+    "applicationSnapshot": {
+      "href": "AAD/applications/37/snapshots/6",
+      "name": "AADAEDAdmin"
+    },
+    "applicationResults": [
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AAD/sizing-measures/10151/snapshots/6",
+          "name": "Number of Code Lines",
+          "shortName": "LOCs",
+          "key": "10151",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 36156
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AAD/sizing-measures/10202/snapshots/6",
+          "name": "OMG-Compliant Automated Function Points",
+          "shortName": "AFP",
+          "key": "10202",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 13371
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60011/snapshots/6",
+          "name": "Transferability",
+          "shortName": "Trsf",
+          "key": "60011",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.979906002177745,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 828,
+            "totalViolations": 2371,
+            "addedViolations": 555,
+            "removedViolations": 94
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60012/snapshots/6",
+          "name": "Changeability",
+          "shortName": "Chng",
+          "key": "60012",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.077085311206948,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 27,
+            "totalCriticalViolations": 73,
+            "addedCriticalViolations": 4,
+            "removedCriticalViolations": 6,
+            "violationsInNewAndModifiedCode": 557,
+            "totalViolations": 1450,
+            "addedViolations": 327,
+            "removedViolations": 52
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60013/snapshots/6",
+          "name": "Robustness",
+          "shortName": "Rbst",
+          "key": "60013",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.519571143573814,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 4,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 424,
+            "totalViolations": 878,
+            "addedViolations": 246,
+            "removedViolations": 23
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60014/snapshots/6",
+          "name": "Efficiency",
+          "shortName": "Efcy",
+          "key": "60014",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.404632115375874,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 42,
+            "totalCriticalViolations": 168,
+            "addedCriticalViolations": 20,
+            "removedCriticalViolations": 11,
+            "violationsInNewAndModifiedCode": 97,
+            "totalViolations": 350,
+            "addedViolations": 56,
+            "removedViolations": 24
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60015/snapshots/6",
+          "name": "SEI Maintainability",
+          "shortName": "SEI",
+          "key": "60015",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.3469901074629567,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 0,
+            "totalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60016/snapshots/6",
+          "name": "Security",
+          "shortName": "Secu",
+          "key": "60016",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.2914937379765754,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 20,
+            "totalCriticalViolations": 95,
+            "addedCriticalViolations": 14,
+            "removedCriticalViolations": 11,
+            "violationsInNewAndModifiedCode": 259,
+            "totalViolations": 817,
+            "addedViolations": 190,
+            "removedViolations": 37
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60017/snapshots/6",
+          "name": "Total Quality Index",
+          "shortName": "TQI",
+          "key": "60017",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.061562819150701,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 69,
+            "totalCriticalViolations": 245,
+            "addedCriticalViolations": 24,
+            "removedCriticalViolations": 17,
+            "violationsInNewAndModifiedCode": 1242,
+            "totalViolations": 3526,
+            "addedViolations": 810,
+            "removedViolations": 143
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/66031/snapshots/6",
+          "name": "Programming Practices",
+          "shortName": "Prog",
+          "key": "66031",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.089512512981293,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 69,
+            "totalCriticalViolations": 241,
+            "addedCriticalViolations": 24,
+            "removedCriticalViolations": 17,
+            "violationsInNewAndModifiedCode": 484,
+            "totalViolations": 1326,
+            "addedViolations": 284,
+            "removedViolations": 57
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/66032/snapshots/6",
+          "name": "Architectural Design",
+          "shortName": "Arch",
+          "key": "66032",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.25337269888864,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 176,
+            "totalViolations": 346,
+            "addedViolations": 102,
+            "removedViolations": 11
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/66033/snapshots/6",
+          "name": "Documentation",
+          "shortName": "Doc",
+          "key": "66033",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.277269388005865,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 582,
+            "totalViolations": 1850,
+            "addedViolations": 424,
+            "removedViolations": 75
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "critical-violation-statistics",
+        "reference": {
+          "href": "AAD/sizing-measures/67013/snapshots/6",
+          "name": "Number of violations to critical quality rules per KLOC (average)",
+          "key": "67013",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 6.776192056643434
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-debt-statistics",
+        "reference": {
+          "href": "AAD/sizing-measures/68001/snapshots/6",
+          "name": "Technical Debt",
+          "shortName": "Debt",
+          "key": "68001",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 195113.25000000003
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/61001/snapshots/6",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001",
+          "critical": false
+        },
+        "result": {
+          "grade": 3.924490950226245,
+          "evolutionSummary": {
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 17,
+            "addedViolations": 3,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/61003/snapshots/6",
+          "name": "Programming Practices - OO Inheritance and Polymorphism",
+          "key": "61003",
+          "critical": false
+        },
+        "result": {
+          "grade": 4,
+          "evolutionSummary": {
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AAD/quality-indicators/4592/snapshots/6",
+          "name": "Avoid hiding static Methods",
+          "key": "4592",
+          "critical": true
+        },
+        "result": {
+          "grade": 3,
+          "evolutionSummary": {
+            "addedCriticalViolations": 3,
+            "removedCriticalViolations": 0,
+            "addedViolations": 3,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AAD/quality-indicators/4554/snapshots/6",
+          "name": "Avoid large Classes - too many Methods",
+          "key": "4554",
+          "critical": false
+        },
+        "result": {
+          "grade": 1.9615384615384617,
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 1,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  }
+]

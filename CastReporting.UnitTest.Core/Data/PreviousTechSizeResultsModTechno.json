@@ -1,0 +1,4304 @@
+﻿[
+  {
+    "number": 3,
+    "date": {
+      "time": 1492380000000,
+      "isoDate": "2017-04-17"
+    },
+    "application": {
+      "href": "AED/applications/3",
+      "name": "CoCRestAPI",
+      "adgDatabase": "cocra_central"
+    },
+    "applicationSnapshot": {
+      "href": "AED/applications/3/snapshots/3",
+      "name": "CoCRestAPI"
+    },
+    "applicationResults": [
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10107/snapshots/3",
+          "name": "Number of Comment Lines",
+          "shortName": "Comment Lines",
+          "key": "10107",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 8876
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 6812
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 2064
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 1039
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 1039
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 1025
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 1025
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 6812
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 6812
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10109/snapshots/3",
+          "name": "Number of Commented-out Code Lines",
+          "shortName": "Commented-out Code Lines",
+          "key": "10109",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 40
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 40
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 38
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 38
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 2
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 2
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10151/snapshots/3",
+          "name": "Number of Code Lines",
+          "shortName": "LOCs",
+          "key": "10151",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 54168
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 18012
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 11716
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 24440
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 8820
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 7106
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 1714
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 27336
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 4610
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 22726
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 18012
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 18012
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10152/snapshots/3",
+          "name": "Number of Artifacts",
+          "shortName": "Artifacts",
+          "key": "10152",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 1954
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 828
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 576
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 550
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 339
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 301
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 38
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 787
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 275
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 512
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 828
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 828
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10154/snapshots/3",
+          "name": "Number of Files",
+          "shortName": "Files",
+          "key": "10154",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 375
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 324
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 49
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 2
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 29
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 28
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 1
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 22
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 21
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 1
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 324
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 324
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10155/snapshots/3",
+          "name": "Number of Classes",
+          "shortName": "Classes",
+          "key": "10155",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 291
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 239
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 52
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 27
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 27
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 25
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 25
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 239
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 239
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10156/snapshots/3",
+          "name": "Number of Programs",
+          "shortName": "Programs",
+          "key": "10156",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10157/snapshots/3",
+          "name": "Number of Forms",
+          "shortName": "Forms",
+          "key": "10157",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10158/snapshots/3",
+          "name": "Number of SQL Artifacts",
+          "shortName": "SQL Art.",
+          "key": "10158",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 550
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 550
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 38
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 38
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 512
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 512
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10159/snapshots/3",
+          "name": "Number of WEB Pages",
+          "shortName": "WEB Pages",
+          "key": "10159",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 13
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 13
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 13
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 13
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10160/snapshots/3",
+          "name": "Number of Interfaces",
+          "shortName": "Interfaces",
+          "key": "10160",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 10
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 8
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 2
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 1
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 1
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 1
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 1
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 8
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 8
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10161/snapshots/3",
+          "name": "Number of Methods",
+          "shortName": "Methods",
+          "key": "10161",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 1402
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 826
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 576
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 301
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 301
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 275
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 275
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 826
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 826
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10162/snapshots/3",
+          "name": "Number of Functions",
+          "shortName": "Functions",
+          "key": "10162",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10163/snapshots/3",
+          "name": "Number of Tables",
+          "shortName": "Tables",
+          "key": "10163",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 345
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 345
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 82
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 82
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 263
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 263
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10164/snapshots/3",
+          "name": "Number of Views",
+          "shortName": "Views",
+          "key": "10164",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 39
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 39
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 39
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 39
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10165/snapshots/3",
+          "name": "Number of Triggers",
+          "shortName": "Triggers",
+          "key": "10165",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10166/snapshots/3",
+          "name": "Number of Packages",
+          "shortName": "Packages",
+          "key": "10166",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 14
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 14
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 9
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 9
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 7
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 7
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10167/snapshots/3",
+          "name": "Number of Events",
+          "shortName": "Events",
+          "key": "10167",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 4
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 4
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 4
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 4
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19168/snapshots/3",
+          "name": "Number of Macros",
+          "shortName": "Macros",
+          "key": "19168",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19169/snapshots/3",
+          "name": "Number of Datawindows",
+          "shortName": "Datawindows",
+          "key": "19169",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19170/snapshots/3",
+          "name": "Number of Userobjects",
+          "shortName": "Userobjects",
+          "key": "19170",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19171/snapshots/3",
+          "name": "Number of Sections",
+          "shortName": "Sections",
+          "key": "19171",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19172/snapshots/3",
+          "name": "Number of Paragraphs",
+          "shortName": "Paragraphs",
+          "key": "19172",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19173/snapshots/3",
+          "name": "Number of Copybooks",
+          "shortName": "Copybooks",
+          "key": "19173",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19174/snapshots/3",
+          "name": "Number of Datablocks",
+          "shortName": "Datablocks",
+          "key": "19174",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19175/snapshots/3",
+          "name": "Number of Functions and Procedures",
+          "shortName": "Functions and Procedures",
+          "key": "19175",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 511
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 511
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 38
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 38
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 473
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 473
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19176/snapshots/3",
+          "name": "Number of Namespaces",
+          "shortName": "Namespaces",
+          "key": "19176",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 43
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 43
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 43
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 43
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19177/snapshots/3",
+          "name": "Number of Modules",
+          "shortName": "Modules",
+          "key": "19177",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19178/snapshots/3",
+          "name": "Number of Units",
+          "shortName": "Units",
+          "key": "19178",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19180/snapshots/3",
+          "name": "Number of Includes",
+          "shortName": "Includes",
+          "key": "19180",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19181/snapshots/3",
+          "name": "Number of Function Pools",
+          "shortName": "Function Pools",
+          "key": "19181",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19182/snapshots/3",
+          "name": "Number of Processing Screens",
+          "shortName": "Processing Screens",
+          "key": "19182",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19183/snapshots/3",
+          "name": "Number of Template Classes",
+          "shortName": "Template Classes",
+          "key": "19183",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 1
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 1
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 1
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 1
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19184/snapshots/3",
+          "name": "Number of Template Class Instances",
+          "shortName": "Template Class Instances",
+          "key": "19184",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 10
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 10
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 10
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 10
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 5
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 5
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19185/snapshots/3",
+          "name": "Number of Template Interfaces",
+          "shortName": "Template Interfaces",
+          "key": "19185",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19186/snapshots/3",
+          "name": "Number of Template Interface Instances",
+          "shortName": "Template Interface Instances",
+          "key": "19186",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 11
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 11
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 11
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 11
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 6
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 6
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19187/snapshots/3",
+          "name": "Number of Template Methods",
+          "shortName": "Template Methods",
+          "key": "19187",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 12
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 12
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 12
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 12
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19188/snapshots/3",
+          "name": "Number of Template Method Instances",
+          "shortName": "Template Method Instances",
+          "key": "19188",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19189/snapshots/3",
+          "name": "Number of Template Functions",
+          "shortName": "Template Functions",
+          "key": "19189",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19190/snapshots/3",
+          "name": "Number of Template Function Instances",
+          "shortName": "Template Function Instances",
+          "key": "19190",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19191/snapshots/3",
+          "name": "Number of ABAP User-Exits",
+          "shortName": "ABAP User-Exits",
+          "key": "19191",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/19192/snapshots/3",
+          "name": "Number of ABAP Transactions",
+          "shortName": "ABAP Transactions",
+          "key": "19192",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 0
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 0
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
+        "moduleResults": [
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/4/snapshots/3",
+              "name": "AAD-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/5/snapshots/3",
+              "name": "AED-Admin"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 0
+                }
+              },
+              {
+                "technology": "SQL Analyzer",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          },
+          {
+            "number": 3,
+            "moduleSnapshot": {
+              "href": "AED/modules/6/snapshots/3",
+              "name": "ReportGenerator"
+            },
+            "result": {
+              "value": 0
+            },
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
+          }
+        ],
+        "transactionResults": []
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+﻿[
+{
+  "name":"Database object used",
+  "type":"object",
+  "values": [
+    {
+      "component": {
+          "href":"ADG83/components/17413/snapshots/15",
+          "name":"O11JNK.LINDBERGH_CENTRAL.VIEWER_ACTIONS",
+          "shortName":"VIEWER_ACTIONS",
+          "sourceCodes": {
+            "href":"ADG83/components/17413/snapshots/15/source-codes",
+            "name":"Source Codes"
+          }
+      }
+    },
+	{
+	  "component": {
+	    "href":"ADG83/components/15006/snapshots/15",
+		"name":"O11JNK.LINDBERGH_CENTRAL.VIEWER_DATA_PERSISTERS",
+		"shortName":"VIEWER_DATA_PERSISTERS",
+		"sourceCodes": {
+		  "href":"ADG83/components/15006/snapshots/15/source-codes",
+		  "name":"Source Codes"
+		  }
+    }
+	}
+  ],
+  "bookmarks":[]
+}
+]

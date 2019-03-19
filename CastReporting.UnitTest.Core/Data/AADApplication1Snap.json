@@ -1,0 +1,47 @@
+[
+  {
+    "href": "AAD2/applications/3/snapshots/4",
+    "name": "AppliAEPtran",
+    "number": 4,
+    "technologies": [
+      "JEE",
+      "PL/SQL"
+    ],
+    "annotation": {
+      "version": "v1.1.4",
+      "date": {
+        "time": 1468360800000,
+        "isoDate": "2016-07-13"
+      },
+      "description": null,
+      "name": "Snap_v1.1.4",
+      "enhancementMeasure": "AEP"
+    },
+    "configurationSnapshot": {
+      "href": "AAD2/configuration/snapshots/4",
+      "name": "Configuration Snapshot #4"
+    },
+    "systems": null,
+    "application": {
+      "href": "AAD2/applications/3",
+      "name": "AppliAEPtran",
+      "adgDatabase": "aeptran82_central"
+    },
+    "moduleSnapshots": {
+      "href": "AAD2/applications/3/snapshots/4/modules",
+      "name": "Module Snapshots for AppliAEPtran #4"
+    },
+    "results": {
+      "href": "AAD2/applications/3/snapshots/4/results",
+      "name": "Results breakdown by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED2/applications/3/snapshots/4",
+      "name": "Origin of AppliAEPtran snapshot 4"
+    },
+    "actionPlan": null,
+    "components": null,
+    "transactions": null,
+    "treeNode": null
+  }
+]

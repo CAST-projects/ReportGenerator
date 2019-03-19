@@ -1,0 +1,19 @@
+﻿[
+  {
+    "href": "AED/rule-patterns/4592",
+    "key": "4592",
+    "name": "Avoid hiding static Methods",
+    "description": "Hiding Static Methods is not allowed. This Quality Rule retrieves all static methods that are redefined in subclasses i.e. \"implicitly hidden\". A Static Method MyMethod of Class MySuperClass is \"implicitly hidden\" in Subclass MySubClass if MySubClass contains a similar declaration of MyMethod (i.e. same signature).",
+    "technologies": [
+      "JEE"
+    ],
+    "rationale": "Hiding is all about polymorphism. This means that the OO designer expects to override methods and use polymorphism so that code calling methods through a base class will end up executing different methods depending on the instance being used. This is not the case with static methods. When static methods are called, there is no polymorphism in play. It is always the static method of the type used to reference the object used that is called. Hiding static methods is a misuse of OO practices that results in misunderstanding of what is going to be executed at runtime and thus leads to unexpected behavior, jeopardizing the stability of the application.",
+    "reference": "http://faq.javaranch.com/view?OverridingVsHiding",
+    "remediation": "Review the design of the Method",
+    "output": "This report lists all hidden Static Methods. It provides the following information: Method full name",
+    "associatedValueName": null,
+    "total": "The total procedure counts the number of static methods.",
+    "sample": null,
+    "remediationSample": null
+  }
+]

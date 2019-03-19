@@ -1,0 +1,140 @@
+﻿[
+	{
+		"number": 5,
+		"date": {
+			"time": 1484866800000,
+			"isoDate": "2017-01-20"
+		},
+		"application": {
+			"href": "AED/applications/3",
+			"name": "ReportGenerator",
+			"adgDatabase": "repgen82_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED/applications/3/snapshots/5",
+			"name": "ReportGenerator"
+		},
+		"applicationResults": [
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AED/sizing-measures/67010/snapshots/5",
+					"name": "Number of critical quality rules with violations",
+					"key": "67010",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 5
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AED/sizing-measures/67011/snapshots/5",
+					"name": "Number of violations to critical quality rules",
+					"key": "67011",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 97
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AED/sizing-measures/67012/snapshots/5",
+					"name": "Number of violations to critical quality rules per file (average)",
+					"key": "67012",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 0.2559366754617414
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AED/sizing-measures/67013/snapshots/5",
+					"name": "Number of violations to critical quality rules per KLOC (average)",
+					"key": "67013",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 4.340627377276592
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AED/sizing-measures/67014/snapshots/5",
+					"name": "Number of critical quality rules with violations in new and modified code",
+					"key": "67014",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 3
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AED/sizing-measures/67015/snapshots/5",
+					"name": "Number of violations to critical quality rules in new and modified code",
+					"key": "67015",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 6
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AED/sizing-measures/67901/snapshots/5",
+					"name": "Delta critical violations added",
+					"key": "67901",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 5
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AED/sizing-measures/67902/snapshots/5",
+					"name": "Delta critical violations removed",
+					"key": "67902",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 0
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	}
+]

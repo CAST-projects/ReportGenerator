@@ -1,0 +1,178 @@
+﻿[
+  {
+    "number": 5,
+    "date": {
+      "time": 1496959200000,
+      "isoDate": "2017-06-09"
+    },
+    "application": {
+      "href": "AED/applications/3",
+      "name": "CoCRestAPI",
+      "adgDatabase": "cocra_central"
+    },
+    "applicationSnapshot": {
+      "href": "AED/applications/3/snapshots/5",
+      "name": "CoCRestAPI"
+    },
+    "applicationResults": [
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/1634/snapshots/5",
+          "name": "Avoid unreferenced Tables",
+          "key": "1634",
+          "critical": false
+        },
+        "result": {
+          "grade": 1.6887755102040818,
+          "violationRatio": {
+            "totalChecks": 931,
+            "failedChecks": 209,
+            "successfulChecks": 722,
+            "ratio": 0.7755102040816326
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 159,
+            "removedViolations": 78
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/3550/snapshots/5",
+          "name": "Namespace naming convention - case control",
+          "key": "3550",
+          "critical": false
+        },
+        "result": {
+          "grade": 4,
+          "violationRatio": {
+            "totalChecks": 45,
+            "failedChecks": 0,
+            "successfulChecks": 45,
+            "ratio": 1
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/3554/snapshots/5",
+          "name": "Interface naming convention - case and character set control",
+          "key": "3554",
+          "critical": false
+        },
+        "result": {
+          "grade": 4,
+          "violationRatio": {
+            "totalChecks": 9,
+            "failedChecks": 0,
+            "successfulChecks": 9,
+            "ratio": 1
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/3558/snapshots/5",
+          "name": "Enumerations naming convention - case and character set control",
+          "key": "3558",
+          "critical": false
+        },
+        "result": {
+          "grade": 3.163043478260871,
+          "violationRatio": {
+            "totalChecks": 23,
+            "failedChecks": 1,
+            "successfulChecks": 22,
+            "ratio": 0.9565217391304348
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/3560/snapshots/5",
+          "name": "Enumeration Items naming convention - case and character set control",
+          "key": "3560",
+          "critical": false
+        },
+        "result": {
+          "grade": 4,
+          "violationRatio": {
+            "totalChecks": 136,
+            "failedChecks": 0,
+            "successfulChecks": 136,
+            "ratio": 1
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/61009/snapshots/5",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009",
+          "critical": false
+        },
+        "result": {
+          "grade": 3.5635420408081337,
+          "evolutionSummary": {
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 138,
+            "addedViolations": 77,
+            "removedViolations": 9
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  }
+]

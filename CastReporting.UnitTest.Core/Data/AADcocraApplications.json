@@ -1,0 +1,32 @@
+[
+  {
+    "href": "AAD/applications/3",
+    "name": "CoCRestAPI",
+    "technologies": [
+      ".NET",
+      "JEE",
+      "SQL Analyzer"
+    ],
+    "systems": null,
+    "modules": {
+      "href": "AAD/applications/3/modules",
+      "name": "Modules of CoCRestAPI"
+    },
+    "snapshots": {
+      "href": "AAD/applications/3/snapshots",
+      "name": "Snapshots of CoCRestAPI"
+    },
+    "results": {
+      "href": "AAD/applications/3/results",
+      "name": "Results breakdown for CoCRestAPI by snapshots, by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED/applications/3",
+      "name": "Origin of CoCRestAPI"
+    },
+    "adgDatabase": "cocra_central",
+    "adgWebSite": "./InfoNoDrillDown.htm",
+    "adgLocalId": "3",
+    "adgVersion": "8.2.4"
+  }
+]

@@ -1,0 +1,380 @@
+﻿[
+	{
+		"number": 6,
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"application": {
+			"href": "AED/applications/3",
+			"name": "ReportGenerator",
+			"adgDatabase": "repgen82_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED/applications/3/snapshots/6",
+			"name": "ReportGenerator"
+		},
+    "applicationResults": [
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AED/sizing-measures/10151/snapshots/6",
+          "name": "Number of Code Lines",
+          "shortName": "LOCs",
+          "key": "10151",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 21261
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60011/snapshots/6",
+          "name": "Transferability",
+          "shortName": "Trsf",
+          "key": "60011",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.915002923820198
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60012/snapshots/6",
+          "name": "Changeability",
+          "shortName": "Chng",
+          "key": "60012",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 1.9292488390128553
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60013/snapshots/6",
+          "name": "Robustness",
+          "shortName": "Rbst",
+          "key": "60013",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.1934772018853566
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60014/snapshots/6",
+          "name": "Efficiency",
+          "shortName": "Efcy",
+          "key": "60014",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.590669368680213
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60015/snapshots/6",
+          "name": "SEI Maintainability",
+          "shortName": "SEI",
+          "key": "60015",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.328550361785278
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60016/snapshots/6",
+          "name": "Security",
+          "shortName": "Secu",
+          "key": "60016",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.168514287491462
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60017/snapshots/6",
+          "name": "Total Quality Index",
+          "shortName": "TQI",
+          "key": "60017",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.7781377635159017
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/66031/snapshots/6",
+          "name": "Programming Practices",
+          "shortName": "Prog",
+          "key": "66031",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.9339329024899525
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/66032/snapshots/6",
+          "name": "Architectural Design",
+          "shortName": "Arch",
+          "key": "66032",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.0971869696973733
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/66033/snapshots/6",
+          "name": "Documentation",
+          "shortName": "Doc",
+          "key": "66033",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.6539073644920874
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-debt-statistics",
+        "reference": {
+          "href": "AED/sizing-measures/68001/snapshots/6",
+          "name": "Technical Debt",
+          "shortName": "Debt",
+          "key": "68001",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 236647.5
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-debt-statistics",
+        "reference": {
+          "href": "AED/sizing-measures/68002/snapshots/6",
+          "name": "Technical Debt density",
+          "shortName": "Debt density",
+          "key": "68002",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 11130.591223366728
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-debt-statistics",
+        "reference": {
+          "href": "AED/sizing-measures/68901/snapshots/6",
+          "name": "Technical Debt of added Violations",
+          "shortName": "Debt added",
+          "key": "68901",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 1946.25
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-debt-statistics",
+        "reference": {
+          "href": "AED/sizing-measures/68902/snapshots/6",
+          "name": "Technical Debt of removed Violations",
+          "shortName": "Debt removed",
+          "key": "68902",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 23599.500000000004
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/7424/snapshots/5",
+          "name": "Avoid using SQL queries inside a loop",
+          "key": "7424",
+          "critical": true
+        },
+        "result": {
+          "grade": 1
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AED/quality-indicators/7846/snapshots/5",
+          "name": "Avoid Methods with a very low comment/code ratio",
+          "key": "7846",
+          "critical": false
+        },
+        "result": {
+          "grade": 1.0740574506283662
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+	  {
+		"type": "quality-rules",
+		"reference": {
+			"href": "ADG83/quality-indicators/7390/snapshots/16",
+			"name": "Avoid having multiple Artifacts inserting data on the same SQL Table",
+			"key": "7390",
+			"critical": false
+		},
+		"result": {
+			"grade": 1.8088235294117645
+		},
+		"technologyResults": [],
+		"moduleResults": [],
+		"transactionResults": []
+	  },
+	  {
+	    "type": "quality-rules",
+		"reference": {
+			"href": "ADG83/quality-indicators/7156/snapshots/15",
+			"name": "Avoid Too Many Copy Pasted Artifacts",
+			"key": "7156",
+			"critical": false
+		},
+		"result": {
+			"grade": 1.8392255892255893
+		},
+		"technologyResults": [],
+		"moduleResults": [],
+		"transactionResults": []
+	  },
+	  {
+		"type": "quality-rules",
+		"reference": {
+			"href": "AED833/quality-indicators/7210/snapshots/16",
+			"name": "Avoid instantiations inside loops",
+			"key": "7210",
+			"critical": true
+		},
+		"result": {
+			"grade": 2.3935742971887635
+		},
+		"technologyResults": [],
+		"moduleResults": [],
+		"transactionResults": []
+	  },
+	  {
+		"type": "quality-rules",
+		"reference": {
+			"href": "AED833/quality-indicators/4722/snapshots/15",
+			"name": "Track Classes referencing Database objects",
+			"key": "4722",
+			"critical": false
+		},
+		"result": {
+			"grade": 2.25
+		},
+		"technologyResults": [],
+		"moduleResults": [],
+		"transactionResults": []
+	  },
+	  {
+		"type": "quality-rules",
+		"reference": {
+			"href": "AED833/quality-indicators/7740/snapshots/16",
+			"name": "CWE-79: Avoid cross-site scripting DOM vulnerabilities",
+			"key": "7740",
+			"critical": true
+		},
+		"result": {
+			"grade": 1.6111111111111143
+		},
+		"technologyResults": [],
+		"moduleResults": [],
+		"transactionResults": []
+	  },
+	  {
+		"type": "quality-rules",
+		"reference": {
+			"href": "AED833/quality-indicators/1596/snapshots/15",
+			"name": "Avoid using \"nullable\" Columns except in the last position in a Table",
+			"key": "1596",
+			"critical": false
+		},
+		"result": {
+			"grade": 1.75
+		},
+		"technologyResults": [],
+		"moduleResults": [],
+		"transactionResults": []
+	  }
+    ]
+  }
+]

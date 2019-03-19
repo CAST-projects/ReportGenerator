@@ -1,0 +1,129 @@
+[
+	{
+		"number": 4,
+		"date": {
+			"time": 1384484640000,
+			"isoDate": "2013-11-15"
+		},
+		"application": {
+			"href": "AAD2/applications/24",
+			"name": "Big Ben",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"applicationSnapshot": {
+			"href": "AAD2/applications/24/snapshots/12",
+			"name": "Big Ben"
+		},
+		"applicationResults": [
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AAD2/sizing-measures/10151/snapshots/12",
+					"name": "Number of Code Lines",
+					"shortName": "LOCs",
+					"key": "10151",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 219490
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "functional-weight-measures",
+				"reference": {
+					"href": "AAD2/sizing-measures/10202/snapshots/12",
+					"name": "OMG-Compliant Automated Function Points",
+					"shortName": "AFP",
+					"key": "10202",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 2781
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AAD2/quality-indicators/60014/snapshots/12",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.3246462004129334
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AAD2/quality-indicators/61004/snapshots/12",
+					"name": "Architecture - OS and Platform Independence",
+					"key": "61004",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.499449227223427
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/67011/snapshots/12",
+					"name": "Number of violations to critical quality rules",
+					"key": "67011",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 616
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "violation-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/67210/snapshots/12",
+					"name": "Number of quality rules with violations",
+					"key": "67210",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 111
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68001/snapshots/12",
+					"name": "Technical Debt",
+					"shortName": "Debt",
+					"key": "68001",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 612016.5
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	}
+]

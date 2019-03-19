@@ -1,0 +1,164 @@
+[
+  {
+    "component": {
+      "href": "AED/components/12561/snapshots/8",
+      "name": "Cast.Util.ExpressionEvaluator.Eval",
+      "shortName": "Eval",
+      "treeNodes": {
+        "href": "AED/components/12561/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7862",
+      "name": "Avoid catching an exception of type Exception, RuntimeException, or Throwable"
+    },
+    "remedialAction": {
+      "status": "added",
+      "priority": "low",
+      "comment": "do what you can",
+      "dates": {
+        "updated": {
+          "time": 1502445848000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/10382/snapshots/8",
+      "name": "CastReporting.BLL.CastDomainBLL.GetCategories",
+      "shortName": "GetCategories",
+      "treeNodes": {
+        "href": "AED/components/10382/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7862",
+      "name": "Avoid catching an exception of type Exception, RuntimeException, or Throwable"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "moderate",
+      "comment": "do what you can",
+      "dates": {
+        "updated": {
+          "time": 1502445848000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/12113/snapshots/8",
+      "name": "CastReporting.BLL.SnapshotBLL.GetBackgroundFacts",
+      "shortName": "GetBackgroundFacts",
+      "treeNodes": {
+        "href": "AED/components/12113/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7862",
+      "name": "Avoid catching an exception of type Exception, RuntimeException, or Throwable"
+    },
+    "remedialAction": {
+      "status": "solved",
+      "priority": "extreme",
+      "comment": "do what you can",
+      "dates": {
+        "updated": {
+          "time": 1502445848000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/1380/snapshots/8",
+      "name": "CastReporting.Reporting.Builder.WorksheetAccessorExt",
+      "shortName": "WorksheetAccessorExt",
+      "treeNodes": {
+        "href": "AED/components/1380/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7272",
+      "name": "Provide a private default Constructor for utility Classes"
+    },
+    "remedialAction": {
+      "status": "added",
+      "priority": "high",
+      "comment": "to do",
+      "dates": {
+        "updated": {
+          "time": 1502445900000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/2927/snapshots/8",
+      "name": "CastReporting.Reporting.Helper.StreamHelper",
+      "shortName": "StreamHelper",
+      "treeNodes": {
+        "href": "AED/components/2927/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7272",
+      "name": "Provide a private default Constructor for utility Classes"
+    },
+    "remedialAction": {
+      "status": "solved",
+      "priority": "high",
+      "comment": "to do",
+      "dates": {
+        "updated": {
+          "time": 1502445900000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "AED/components/12117/snapshots/8",
+      "name": "CastReporting.UI.WPF.Utilities.PasswordBoxAssistant",
+      "shortName": "PasswordBoxAssistant",
+      "treeNodes": {
+        "href": "AED/components/12117/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7272",
+      "name": "Provide a private default Constructor for utility Classes"
+    },
+    "remedialAction": {
+      "status": "pending",
+      "priority": "high",
+      "comment": "to do",
+      "dates": {
+        "updated": {
+          "time": 1502445900000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  }
+]

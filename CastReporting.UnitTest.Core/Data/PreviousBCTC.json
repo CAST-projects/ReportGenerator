@@ -1,0 +1,1075 @@
+﻿[
+	{
+		"number": 5,
+		"date": {
+			"time": 1484866800000,
+			"isoDate": "2017-01-20"
+		},
+		"application": {
+			"href": "AED/applications/3",
+			"name": "ReportGenerator",
+			"adgDatabase": "repgen82_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED/applications/3/snapshots/5",
+			"name": "ReportGenerator"
+		},
+		"applicationResults": [
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60011/snapshots/5",
+					"name": "Transferability",
+					"shortName": "Trsf",
+					"key": "60011",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.8168565157807244,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 1,
+						"totalCriticalViolations": 7,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 112,
+						"totalViolations": 2375,
+						"addedViolations": 99,
+						"removedViolations": 10
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60012/snapshots/5",
+					"name": "Changeability",
+					"shortName": "Chng",
+					"key": "60012",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.9264717663077922,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 5,
+						"totalCriticalViolations": 50,
+						"addedCriticalViolations": 4,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 111,
+						"totalViolations": 2541,
+						"addedViolations": 66,
+						"removedViolations": 12
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60013/snapshots/5",
+					"name": "Robustness",
+					"shortName": "Rbst",
+					"key": "60013",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 3.1474737816470357,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 1,
+						"totalCriticalViolations": 16,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 54,
+						"totalViolations": 1002,
+						"addedViolations": 30,
+						"removedViolations": 6
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60014/snapshots/5",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.6033401920945862,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 1,
+						"totalCriticalViolations": 45,
+						"addedCriticalViolations": 1,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 12,
+						"totalViolations": 191,
+						"addedViolations": 7,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60015/snapshots/5",
+					"name": "SEI Maintainability",
+					"shortName": "SEI",
+					"key": "60015",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 3.3391057515843965,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 0,
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60016/snapshots/5",
+					"name": "Security",
+					"shortName": "Secu",
+					"key": "60016",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 3.125886060676918,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 0,
+						"totalCriticalViolations": 9,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 19,
+						"totalViolations": 230,
+						"addedViolations": 11,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60017/snapshots/5",
+					"name": "Total Quality Index",
+					"shortName": "TQI",
+					"key": "60017",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.734271337501299,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 6,
+						"totalCriticalViolations": 97,
+						"addedCriticalViolations": 5,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 156,
+						"totalViolations": 3091,
+						"addedViolations": 118,
+						"removedViolations": 12
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61001/snapshots/5",
+					"name": "Architecture - Multi-Layers and Data Access",
+					"key": "61001",
+					"critical": false
+				},
+				"result": {
+					"grade": 1,
+					"evolutionSummary": {
+						"totalCriticalViolations": 7,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 7,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61003/snapshots/5",
+					"name": "Programming Practices - OO Inheritance and Polymorphism",
+					"key": "61003",
+					"critical": false
+				},
+				"result": {
+					"grade": 4,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 2,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61004/snapshots/5",
+					"name": "Architecture - OS and Platform Independence",
+					"key": "61004",
+					"critical": false
+				},
+				"result": {
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61006/snapshots/5",
+					"name": "Documentation - Style Conformity",
+					"key": "61006",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.6201007838745802,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 225,
+						"addedViolations": 7,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61007/snapshots/5",
+					"name": "Documentation - Bad Comments",
+					"key": "61007",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.272633744855966,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 38,
+						"addedViolations": 31,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61008/snapshots/5",
+					"name": "Documentation - Automated Documentation",
+					"key": "61008",
+					"critical": false
+				},
+				"result": {
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61009/snapshots/5",
+					"name": "Complexity - Algorithmic and Control Structure Complexity",
+					"key": "61009",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.405010996888888,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 47,
+						"addedViolations": 7,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61010/snapshots/5",
+					"name": "Complexity - OO Inheritance and Polymorphism",
+					"key": "61010",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.4753896467642016,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 12,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61011/snapshots/5",
+					"name": "Complexity - SQL Queries",
+					"key": "61011",
+					"critical": false
+				},
+				"result": {
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61013/snapshots/5",
+					"name": "Architecture - Object-level Dependencies",
+					"key": "61013",
+					"critical": false
+				},
+				"result": {
+					"grade": 2.972971694275223,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 427,
+						"addedViolations": 12,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61014/snapshots/5",
+					"name": "Programming Practices - Error and Exception Handling",
+					"key": "61014",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.563338437278624,
+					"evolutionSummary": {
+						"totalCriticalViolations": 2,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 46,
+						"addedViolations": 1,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61015/snapshots/5",
+					"name": "Programming Practices - File Organization Conformity",
+					"key": "61015",
+					"critical": false
+				},
+				"result": {
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61016/snapshots/5",
+					"name": "Maintainability Indexes (SEI)",
+					"key": "61016",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.3391057515843965,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61017/snapshots/5",
+					"name": "Documentation - Naming Convention Conformity",
+					"key": "61017",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.6097308067632325,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 173,
+						"addedViolations": 10,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61018/snapshots/5",
+					"name": "Efficiency - Memory, Network and Disk Space Management",
+					"key": "61018",
+					"critical": false
+				},
+				"result": {
+					"grade": 2.9496865570742994,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 133,
+						"addedViolations": 5,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61019/snapshots/5",
+					"name": "Efficiency - SQL and Data Handling Performance",
+					"key": "61019",
+					"critical": false
+				},
+				"result": {
+					"grade": 4,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61020/snapshots/5",
+					"name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+					"key": "61020",
+					"critical": false
+				},
+				"result": {
+					"grade": 1,
+					"evolutionSummary": {
+						"totalCriticalViolations": 36,
+						"addedCriticalViolations": 4,
+						"removedCriticalViolations": 0,
+						"totalViolations": 435,
+						"addedViolations": 9,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61022/snapshots/5",
+					"name": "Volume - Number of Components",
+					"key": "61022",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.3466329044620866,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 18,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61023/snapshots/5",
+					"name": "Volume - Number of LOC",
+					"key": "61023",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.8114833567116766,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 30,
+						"addedViolations": 6,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61024/snapshots/5",
+					"name": "Programming Practices - Structuredness",
+					"key": "61024",
+					"critical": false
+				},
+				"result": {
+					"grade": 1,
+					"evolutionSummary": {
+						"totalCriticalViolations": 7,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 46,
+						"addedViolations": 5,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61026/snapshots/5",
+					"name": "Complexity - Technical Complexity",
+					"key": "61026",
+					"critical": false
+				},
+				"result": {
+					"grade": 2.843249228712106,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61027/snapshots/5",
+					"name": "Dead code (static)",
+					"key": "61027",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.848357802443252,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 360,
+						"addedViolations": 3,
+						"removedViolations": 4
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61028/snapshots/5",
+					"name": "Documentation - Volume of Comments",
+					"key": "61028",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.3631497978382636,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 997,
+						"addedViolations": 18,
+						"removedViolations": 6
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61029/snapshots/5",
+					"name": "Complexity - Dynamic Instantiation",
+					"key": "61029",
+					"critical": false
+				},
+				"result": {
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61031/snapshots/5",
+					"name": "Complexity - Empty Code",
+					"key": "61031",
+					"critical": false
+				},
+				"result": {
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66008/snapshots/5",
+					"name": "Complexity - Functional Evolvability",
+					"key": "66008",
+					"critical": false
+				},
+				"result": {
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66009/snapshots/5",
+					"name": "Architecture - Reuse",
+					"key": "66009",
+					"critical": false
+				},
+				"result": {
+					"grade": 2.3312924023331703,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 37,
+						"addedViolations": 2,
+						"removedViolations": 2
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66031/snapshots/5",
+					"name": "Programming Practices",
+					"shortName": "Prog",
+					"key": "66031",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.908281893892647,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 6,
+						"totalCriticalViolations": 90,
+						"addedCriticalViolations": 5,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 79,
+						"totalViolations": 1187,
+						"addedViolations": 38,
+						"removedViolations": 4
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66032/snapshots/5",
+					"name": "Architectural Design",
+					"shortName": "Arch",
+					"key": "66032",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.101421365536131,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 0,
+						"totalCriticalViolations": 7,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 24,
+						"totalViolations": 471,
+						"addedViolations": 14,
+						"removedViolations": 2
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66033/snapshots/5",
+					"name": "Documentation",
+					"shortName": "Doc",
+					"key": "66033",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.4664037833330106,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 0,
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 53,
+						"totalViolations": 1433,
+						"addedViolations": 66,
+						"removedViolations": 6
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66062/snapshots/5",
+					"name": "Secure Coding - Input Validation",
+					"key": "66062",
+					"critical": false
+				},
+				"result": {
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66063/snapshots/5",
+					"name": "Secure Coding - API Abuse",
+					"key": "66063",
+					"critical": false
+				},
+				"result": {
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66064/snapshots/5",
+					"name": "Secure Coding - Weak Security Features",
+					"key": "66064",
+					"critical": false
+				},
+				"result": {
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66065/snapshots/5",
+					"name": "Secure Coding - Time and State",
+					"key": "66065",
+					"critical": false
+				},
+				"result": {
+					"grade": 4,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66066/snapshots/5",
+					"name": "Secure Coding - Encapsulation",
+					"key": "66066",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.3810794780545668,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 44,
+						"addedViolations": 5,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66068/snapshots/5",
+					"name": "Efficiency - Expensive Calls in Loops",
+					"key": "66068",
+					"critical": false
+				},
+				"result": {
+					"grade": 1,
+					"evolutionSummary": {
+						"totalCriticalViolations": 45,
+						"addedCriticalViolations": 1,
+						"removedCriticalViolations": 0,
+						"totalViolations": 58,
+						"addedViolations": 2,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66069/snapshots/5",
+					"name": "Programming Practices - Unexpected Behavior",
+					"key": "66069",
+					"critical": false
+				},
+				"result": {
+					"grade": 4,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66070/snapshots/5",
+					"name": "Architecture - Architecture Models Automated Checks",
+					"key": "66070",
+					"critical": false
+				},
+        "result": {
+          "grade": 2.69,
+          "evolutionSummary": {
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	}
+]

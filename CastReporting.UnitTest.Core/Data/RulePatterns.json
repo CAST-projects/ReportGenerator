@@ -1,0 +1,220 @@
+﻿[
+  {
+    "href": "AED/rule-patterns/7558",
+    "key": "7558",
+    "name": "Avoid accessing data by using the position and length",
+    "description": "This rule searches for Cobol programs accessing part of data by using a position and a length.",
+    "technologies": [
+      "Cobol"
+    ],
+    "rationale": "Parts of data can be accessed by using their position and their length in a data group. This mechanism is error prone for two points: the developer can introduce errors in defining the position of the part of data to access. \nIn addition, this position is dependent of any changes in the data before placed before it.\nThus, problems can easily occur in production and data may be corrupted.",
+    "reference": null,
+    "remediation": "Data which need to be accessed partially must have detailed fields. Then, look for accesses using position and length and replace them by fields accesses.",
+    "output": "Associated to each COBOL Program with violations, the Quality Rule provides:\n- The number of violation patterns\n- Bookmarks for violation patterns found in source code:\n  - Data accessed via a position and a length in the PROCEDURE division",
+    "associatedValueName": "Number of violation patterns",
+    "total": "Number of Cobol Programs",
+    "sample": "01 WSS-RUB     PIC X(10).\n01 WSS-VAL     PIC X(20).\n01 WSS-ENTITY PIC X(8).\n...\nIF WSS-RUB(1:3) = 'BAK' \n    MOVE WSS-VAL (1:8) TO WSS-ENTITE\nEND-IF",
+    "remediationSample": "01 WSS-RUB.\n    05 WSS-RUB-ID PIC X(3).\n    05 FILLER           PIC X(7).\n01 WSS-VAL.\n    05 WSS-VAL-ENTITY    PIC X(8).\n    05 WSS-OTHER-DATA PIC X(12).\n01 WSS-ENTITY PIC X(8).\n...\nIF WSS-RUB-ID = 'BAK' \n    MOVE WSS-VAL-ENTITY TO WSS-ENTITE\nEND-IF"
+  },
+  {
+    "href": "AED/rule-patterns/7132",
+    "key": "7132",
+    "name": "Action Mappings should have few forwards",
+    "description": "All Action Mappings with more than 5 forward will be listed.",
+    "technologies": [
+      "JEE"
+    ],
+    "rationale": "Action Mappings should have few forwards to avoid managing too complex behaviors in the Action class. A forward contains the request URI path to which control is passed when the mapping is invoked.",
+    "reference": null,
+    "remediation": null,
+    "output": "This report lists all action mapping that have more than X forward and the number of forwards.\nIt provides the following information:\n Action Class full name, Number of forward",
+    "associatedValueName": "Number of forward",
+    "total": "total of action mapping",
+    "sample": null,
+    "remediationSample": null
+  },
+  {
+    "href": "AED/rule-patterns/7766",
+    "key": "7766",
+    "name": "Avoid Artifacts with High Cyclomatic Complexity",
+    "description": "Retrieves all Artifacts having a Cyclomatic Complexity greater than the specified threshold . Cyclomatic Complexity is a measure of the complexity of the control structure of an Artifact. It is the number of linearly independent paths and therefore, the minimum number of independent paths when executing the software. \nThe threshold is a parameter and can be changed at will.",
+    "technologies": [
+      ".NET (Legacy Analyzer)",
+      "ABAP",
+      "ASP",
+      "C",
+      "C#",
+      "C++",
+      "Cobol",
+      "DB2 Server",
+      "Forms",
+      "JavaScript",
+      "JEE",
+      "Microsoft T-SQL",
+      "PL/SQL",
+      "PowerBuilder",
+      "SQL Server",
+      "Sybase T-SQL",
+      "VB.NET",
+      "Visual Basic"
+    ],
+    "rationale": "The effort and time for diagnosis of deficiencies or causes of failures, or for identification of parts to be modified is directly related to the number of execution paths, i.e. the complexity of the control flow. \nAnalyzability declines with increasing Cyclomatic Complexity. \nEach modification must be correct for all execution paths. Cyclomatic Complexity computes the number of the linearly independent paths, a lower bound of all execution paths ignoring multiple iterations. \nChangeability declines with increasing Cyclomatic Complexity. \nComplete testing requires coverage of all execution paths. Cyclomatic Complexity computes the number of the linearly independent paths, a lower bound of all execution paths ignoring multiple iterations. \nTestability declines with increasing Cyclomatic Complexity.",
+    "reference": "Carnegie Mellon's Software Engineering Institute on Cyclomatic Complexity\nhttp://www.sei.cmu.edu/reports/95cm028.pdf\n\nNIST (National Institute of Standards and Technology)\nStructured Testing: A Testing Methodology Using the Cyclomatic Complexity Metric\nhttp://hissa.nist.gov/HHRFdata/Artifacts/ITLdoc/235/sttoc.htm",
+    "remediation": "Review the design of the Artifact to reduce number of independent paths. E.g.: Reduce the number of conditional statements.",
+    "output": "This report lists all Artifacts with a Cyclomatic Complexity greater than X.It provides the following information:  Artifact full name, CC",
+    "associatedValueName": "Associated Value",
+    "total": "Number of Artifacts",
+    "sample": null,
+    "remediationSample": null
+  },
+  {
+    "href": "AED/rule-patterns/7388",
+    "key": "7388",
+    "name": "Avoid artifacts having recursive calls",
+    "description": "This metric retrieves all artifacts that are explicitly calling themselves (recursive call). Only executable artifacts are considered.",
+    "technologies": [],
+    "rationale": "Recursive calls can be unpredictable with regard to consumption of resources, especially memory.  Under certain condition, a function or procedure using a recursive call can keep calling itself and as each call consumes memory, the entire application runs out of memory. \nRecursive calls are known to be difficult to test for because the termination condition and thus the resource consumption might be dependent on the data used for the test.  For all these reasons, it is often forbidden and limited to academic usage rather than for mission-critical systems. Because the flip side is complexity, such a trade-off should be carefully chosen by architects or senior developers, balancing cost with reliability and in all cases the conditions under which it is used should be reviewed in details.",
+    "reference": null,
+    "remediation": "Review the Function / Procedure design",
+    "output": "This report lists all recursive artifacts.\nIt provides the following information:\n  artifact full name.",
+    "associatedValueName": null,
+    "total": "The total procedure counts the number of executable artifacts (all Artifacts excepts tables, views,  jsp, asp, vbScript, javascript, JScript and HTML files).",
+    "sample": null,
+    "remediationSample": null,
+    "qualityStandards": [
+      {
+        "standard": "CISQ",
+        "id": "ASCRM-CWE-674",
+        "name": "Uncontrolled Recursion",
+        "reference": null,
+        "description": null
+      }
+    ]
+  },
+  {
+    "href": "AED/distribution-patterns/65601",
+    "key": "65601",
+    "name": "4GL Complexity Distribution",
+    "description": "Distribution of Forms regarding their complexity",
+    "technologies": [],
+    "rationale": null,
+    "reference": null,
+    "remediation": null,
+    "output": null,
+    "associatedValueName": null
+  },
+  {
+	"href": "ADG83/rule-patterns/7390",
+	"key": "7390",
+	"name": "Avoid having multiple Artifacts inserting data on the same SQL Table",
+	"description": "This metric detects tables having too many ways to insert data into them. It retrieves table having more than X artifacts inserting these tables, where X a configurable parameter.",
+	"technologies": [],
+	"rationale": "One main source of data corruption within applications comes from lack of compliance to data modification rules defined for an application. These rules are usually related to the use of specific procedures for update/insert/delete, a specific API or a data layer that is fully tested to maintain data integrity. The creation of new, different update/insert/delete procedures and functions that do not make use the existing tested code is at origin of many data corruption cases.",
+	"reference": null,
+	"remediation": null,
+	"output": "Associated to each SQL table with violations, the Quality Rule provides: \n- The Number of potential ways to insert the SQL Table.",
+	"associatedValueName": "Number of potential ways to insert the SQL Table",
+	"total": "The total procedure counts the number of tables.",
+	"sample": null,
+	"remediationSample": null,
+	"qualityStandards": []
+   },
+   {
+	"href": "ADG83/rule-patterns/7156",
+	"key": "7156",
+	"name": "Avoid Too Many Copy Pasted Artifacts",
+	"description": "This metric measures the ratio between the number of duplicated, copy/pasted artifacts and the total number of artifacts.\n\nCopy / Paste detection is based on statistical detection methods. The statistical methods used compute a similarity metric between all artifacts. Artifacts are reported as copy / pasted when the similarity is higher than 90% (see metric parameter SIMILARITY).\nLike any statistical method, the detection algorithms require a well sized sample in order to provide significant results: testing these algorithms with a couple of classes will not do the job, a real life application's source code is required to yield usable results. The minimal size required stands at around 5000 lines of code.\nBelow such a size, the algorithms detect the full list of exact copies for the copy/paste code detection but slightly modified copy/paste code will not always be detected.\nAlso, for optimal efficiency, the copy/pasted code detection is enabled only for artifacts larger than 10 lines of code (methods, functions, procedures, triggers, programs...).",
+	"technologies": [],
+	"rationale": "A program with a lot of duplication is hard to change. It might be required to change every copy of a copy/pasted code while it is very difficult to locate these  copy/pasted code elements. Copy-and-paste is not always bad for a quick urgent \"hack\", but it is always a very dangerous practice in the long run.",
+	"reference": "CISQ rule: ASCMM-MNT-19.",
+	"remediation": null,
+	"output": null,
+	"associatedValueName": "Associated Value",
+	"total": "Artifacts larger than 10 lines of code ( default value of the CODELINE parameter )",
+	"sample": null,
+	"remediationSample": null,
+	"qualityStandards": []
+   },
+   {
+	"href": "AED/rule-patterns/7210",
+	"key": "7210",
+	"name": "Avoid instantiations inside loops",
+	"description": "Reports all artifacts with loops (for, while, do while)  that contain object instantiations (object creation)..\nJava artifacts include all methods and constructors with the following exclusions:\n- the cases where the instantiation appear at the end of a return or throw statement are excluded. \n- the case where the instantiated object is one of the arguments of a call to one of the following methods :\n   . java.util.Collection.add\n   . java.util.Map.put\n   . java.lang.StringBuilder.append\n   . java.lang.StringBuilder.insert\n   . java.lang.StringBuilder.replace\n   . java.lang.StringBuffer.append\n   . java.lang.StringBuffer.insert\n   . java.lang.StringBuffer.replace\n   . and any method with the same name in their respective derived classes (e.g. java.util.ArrayList. add(int index, E element)), as ArrayList implements java.util.Collection and has the same name as the authorized method add).",
+	"technologies": [
+		"JEE"
+	],
+	"rationale": "One of the fundamental OO performance management principles is this: Avoid excessive object creation. This doesn't mean that you should give up the benefits of object-oriented programming by not creating any objects, but you should be wary of object creation inside of tight loops when executing performance-critical code. Object creation is expensive enough that you should avoid unnecessarily creating temporary or intermediate objects in situations where performance is an issue.",
+	"reference": null,
+	"remediation": "Redesign the loop.",
+	"output": "This report lists all methods that create objects in a loop.\nIt provides the following information:\n Method full name",
+	"associatedValueName": null,
+	"total": "Total number of methods and constructors",
+	"sample": "public class MyLoop {\n     public void printCount() {\n         for (int i = 0; i < 100; i++) {\n             StringBuffer sb = new StringBuffer(); // VIOLATION\n             sb.append(\"count = \");\n             sb.append(i);\n             System.out.println(sb);\n         }\n     }\n }",
+	"remediationSample": "public class MyLoop {\n     public void printCount() {\n         StringBuffer sb = new StringBuffer(); // FIXED\n         for (int i = 0; i < 100; i++) {\n             sb.setLength(0);\n             sb.append(\"count = \");\n             sb.append(i);\n             System.out.println(sb);\n         }\n     }\n }",
+	"qualityStandards": [
+		{
+			"standard": "CISQ",
+			"id": "ASCPEM-PRF-8",
+			"name": "Control Elements Requiring Significant Resource Element within Control Flow Loop Block",
+			"reference": null,
+			"description": null
+		}
+	]
+   },
+   {
+	"href": "AED833/rule-patterns/4722",
+	"key": "4722",
+	"name": "Track Classes referencing Database objects",
+	"description": "All Classes should not have embedded SQL to the database. Only some Classes are allowed.",
+	"technologies": [
+		"JEE"
+	],
+	"rationale": "This rules permits to verify that only a specific set of classes are making access to the database and not all the application. Usually DAO classes are used to make access to the database.",
+	"reference": null,
+	"remediation": "Review the architecture of the application to move all classes that reference the database in a specific layer usually called data layer.",
+	"output": "This report lists all Classes having accesses to the database.\nIt provides the following information:\n - Class full name\n - Database object used",
+	"associatedValueName": "Database object used",
+	"total": "Java classes",
+	"sample": null,
+	"remediationSample": null,
+	"qualityStandards": []
+   },
+   {
+	"href": "AED833/rule-patterns/7740",
+	"key": "7740",
+	"name": "CWE-79: Avoid cross-site scripting DOM vulnerabilities",
+	"description": "Using CAST dataflow engine, this metric detects paths from user input methods to HTML user output methods which are open vulnerabilities to cross-site scripting injection flaws (XSS).\n\nThe list of user input methods can be customized as well as the output method and the sanitization methods (methods encoding the output to avoid hacks).",
+	"technologies": [
+		"C#",
+		"JEE",
+		"VB.NET"
+	],
+	"rationale": "The most dangerous web application vulnerabilty is known as cross-site scripting (XSS). It is caused by malicious script echoed back into HTML returned from a trusted site, and runs under trusted context.\nTo avoid the creation of XSS flaws, the Open Web Application Security Project (OWASP) recommends both input validation and \"strong output encoding\" or sanitization:\n\"Strong output encoding. Ensure that all user-supplied data is appropriately entity encoded (either HTML or XML depending on the output mechanism) before rendering, taking the approach to encode all characters other than a very limited subset. This is the approach of the Microsoft Anti-XSS library, and the forthcoming OWASP PHP Anti-XSS library. Also, set the character encodings for each page you output, which will reduce exposure to some variants.\"\n\nThis metric ensures that the appropriate output encoding (sanitization) is coded, as close as possible to user input method call, making security checking easier for all team members.",
+	"reference": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')\nhttp://cwe.mitre.org/data/definitions/79.html\n\nOpen Web Application Security Project (OWASP) \nhttp://www.owasp.org/index.php/Top_10_2007\n\nCISQ rule: ASCSM-CWE-79.",
+	"remediation": "Code the appropriate sanitization methods as close as possible to the user input method call.",
+	"output": "List all methods that miss calling the required sanitization method and provides access to the path demonstrating the vulnerability :\n\nIt provides the following information:\n- The full name of the method that calls the user input method. That is the source of the XSS flaw.\n- Call stack from user input source down to the target HTML user output method.",
+	"associatedValueName": "Call stack from user input source down to the target HTML user output method",
+	"total": "The number of methods calling user input methods",
+	"sample": null,
+	"remediationSample": null,
+	"qualityStandards": []
+   },
+   {
+	"href": "AED833/rule-patterns/1596",
+	"key": "1596",
+	"name": "Avoid using \"nullable\" Columns except in the last position in a Table",
+	"description": "\"Nullable\" Columns should be last in the Table Column order.",
+	"technologies": [
+		"PL/SQL"
+	],
+	"rationale": "Placing Columns that frequently contain NULLs last in the Table Column order, minimizes the average Row length and optimizes the Table data density, which of course benefits performance. \nThis column ordering also minimizes the number of Column length bytes that need to be navigated to access the non-NULL Column values. This also benefits performance.",
+	"reference": null,
+	"remediation": "Review the design of the Table to change Column order",
+	"output": "This report lists all Tables with \"nullable\" Columns not located at the end of the table.\nIt provides the following information: Table name, Table full name",
+	"associatedValueName": "Column name",
+	"total": null,
+	"sample": null,
+	"remediationSample": null,
+	"qualityStandards": []
+   }
+]

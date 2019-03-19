@@ -1,0 +1,94 @@
+[
+  {
+    "href": "AAD/applications/37/snapshots/9",
+    "name": "AADAEDAdmin",
+    "number": 4,
+    "technologies": [
+      "JEE",
+      "SQL Analyzer"
+    ],
+    "annotation": {
+      "version": "8.3.0",
+      "date": {
+        "time": 1502229600000,
+        "isoDate": "2017-08-09"
+      },
+      "description": null,
+      "name": "Computed on 201708111250",
+      "enhancementMeasure": "AEP"
+    },
+    "configurationSnapshot": {
+      "href": "AAD/configuration/snapshots/9",
+      "name": "Configuration Snapshot #4"
+    },
+    "systems": null,
+    "application": {
+      "href": "AAD/applications/37",
+      "name": "AADAEDAdmin",
+      "adgDatabase": "abd83coc_central"
+    },
+    "moduleSnapshots": {
+      "href": "AAD/applications/37/snapshots/9/modules",
+      "name": "Module Snapshots for AADAEDAdmin #4"
+    },
+    "results": {
+      "href": "AAD/applications/37/snapshots/9/results",
+      "name": "Results breakdown by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED/applications/3501/snapshots/9",
+      "name": "Origin of AADAEDAdmin snapshot 4"
+    },
+    "adgLocalId": "9",
+    "actionPlan": null,
+    "components": null,
+    "transactions": null,
+    "treeNode": null
+  },
+  {
+    "href": "AAD/applications/37/snapshots/6",
+    "name": "AADAEDAdmin",
+    "number": 3,
+    "technologies": [
+      "JEE",
+      "SQL Analyzer"
+    ],
+    "annotation": {
+      "version": "8.2.4",
+      "date": {
+        "time": 1489705200000,
+        "isoDate": "2017-03-17"
+      },
+      "description": null,
+      "name": "Computed on 201708111138",
+      "enhancementMeasure": "AEP"
+    },
+    "configurationSnapshot": {
+      "href": "AAD/configuration/snapshots/6",
+      "name": "Configuration Snapshot #3"
+    },
+    "systems": null,
+    "application": {
+      "href": "AAD/applications/37",
+      "name": "AADAEDAdmin",
+      "adgDatabase": "abd83coc_central"
+    },
+    "moduleSnapshots": {
+      "href": "AAD/applications/37/snapshots/6/modules",
+      "name": "Module Snapshots for AADAEDAdmin #3"
+    },
+    "results": {
+      "href": "AAD/applications/37/snapshots/6/results",
+      "name": "Results breakdown by modules, by technologies"
+    },
+    "origin": {
+      "href": "AED/applications/3501/snapshots/6",
+      "name": "Origin of AADAEDAdmin snapshot 3"
+    },
+    "adgLocalId": "6",
+    "actionPlan": null,
+    "components": null,
+    "transactions": null,
+    "treeNode": null
+  }
+]

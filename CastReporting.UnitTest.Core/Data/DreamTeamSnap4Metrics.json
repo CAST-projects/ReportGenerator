@@ -1,0 +1,159 @@
+﻿[
+	{
+		"number": 4,
+		"date": {
+			"time": 1385852400000,
+			"isoDate": "2013-12-01"
+		},
+		"application": {
+			"href": "AED3/applications/7",
+			"name": "Dream Team",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED3/applications/7/snapshots/15",
+			"name": "Dream Team"
+		},
+		"applicationResults": [
+			{
+				"type": "quality-rules",
+				"reference": {
+					"href": "AED3/quality-indicators/550/snapshots/15",
+					"name": "Class naming convention - case control",
+					"key": "550",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.8928571428571423
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "quality-rules",
+				"reference": {
+					"href": "AED3/quality-indicators/556/snapshots/15",
+					"name": "My Critical quality rule",
+					"key": "556",
+					"critical": true
+				},
+				"result": {
+					"grade": 3.8928571428571423
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AED3/sizing-measures/10151/snapshots/15",
+					"name": "Number of Code Lines",
+					"shortName": "LOCs",
+					"key": "10151",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 104851
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "functional-weight-measures",
+				"reference": {
+					"href": "AED3/sizing-measures/10202/snapshots/15",
+					"name": "OMG-Compliant Automated Function Points",
+					"shortName": "AFP",
+					"key": "10202",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 1136
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/60014/snapshots/15",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.7034874398555175
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED3/quality-indicators/61004/snapshots/15",
+					"name": "Architecture - OS and Platform Independence",
+					"key": "61004",
+					"critical": true
+				},
+				"result": {
+					"grade": 3.9247851002865333
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AED3/sizing-measures/67011/snapshots/15",
+					"name": "Number of violations to critical quality rules",
+					"key": "67011",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 520
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "violation-statistics",
+				"reference": {
+					"href": "AED3/sizing-measures/67210/snapshots/15",
+					"name": "Number of quality rules with violations",
+					"key": "67210",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 206
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AED3/sizing-measures/68001/snapshots/15",
+					"name": "Technical Debt",
+					"shortName": "Debt",
+					"key": "68001",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 1503963.75
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	}
+]

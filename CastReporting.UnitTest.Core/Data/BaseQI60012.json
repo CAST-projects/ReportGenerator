@@ -1,0 +1,6248 @@
+[
+  {
+    "href": "ETE4/quality-indicators/65601/snapshots/4",
+    "key": "65601",
+    "name": "4GL Complexity Distribution",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7140/snapshots/4",
+    "key": "7140",
+    "name": "Action Artifacts should not directly call a JSP page",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/7144/snapshots/4",
+    "key": "7144",
+    "name": "Action Artifacts should not directly use database objects",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/7142/snapshots/4",
+    "key": "7142",
+    "name": "Action Classes should have only one public method",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7138/snapshots/4",
+    "key": "7138",
+    "name": "Action Classes should only be called by Action Mappings tag (for Struts 1.x) or Action tag (for Struts 2.x)",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(8x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7240/snapshots/4",
+    "key": "7240",
+    "name": "Action Classes should only call Business Classes",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(8x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7132/snapshots/4",
+    "key": "7132",
+    "name": "Action Mappings should have few forwards",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/8062/snapshots/4",
+    "key": "8062",
+    "name": "An unconditional 'throw', 'return' or 'break' shall terminate every non-empty switch-clause",
+    "compoundedWeight": 49,
+    "compoundedWeightFormula": "(7x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7558/snapshots/4",
+    "key": "7558",
+    "name": "Avoid accessing data by using the position and length",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7670/snapshots/4",
+    "key": "7670",
+    "name": "Avoid accessing SAP standard Tables in modification from custom code",
+    "compoundedWeight": 72,
+    "compoundedWeightFormula": "(8x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/7726/snapshots/4",
+    "key": "7726",
+    "name": "Avoid Action artifacts that call packages that reference database",
+    "compoundedWeight": 64,
+    "compoundedWeightFormula": "(8x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/8148/snapshots/4",
+    "key": "8148",
+    "name": "Avoid artifacts having Incorrect Type Conversion or Cast",
+    "compoundedWeight": 40,
+    "compoundedWeightFormula": "(5x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "5x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61029/snapshots/4",
+          "name": "Complexity - Dynamic Instantiation",
+          "key": "61029"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/7388/snapshots/4",
+    "key": "7388",
+    "name": "Avoid artifacts having recursive calls",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(3x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7810/snapshots/4",
+    "key": "7810",
+    "name": "Avoid Artifacts with a Complex SELECT Clause",
+    "compoundedWeight": 20,
+    "compoundedWeightFormula": "(4x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61011/snapshots/4",
+          "name": "Complexity - SQL Queries",
+          "key": "61011"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7766/snapshots/4",
+    "key": "7766",
+    "name": "Avoid Artifacts with High Cyclomatic Complexity",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020000/snapshots/4",
+    "key": "1020000",
+    "name": "Avoid Artifacts with High Cyclomatic Complexity (HTML5/Javascript)",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7768/snapshots/4",
+    "key": "7768",
+    "name": "Avoid Artifacts with High Depth of Code",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020090/snapshots/4",
+    "key": "1020090",
+    "name": "Avoid Artifacts with High Depth of Code",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7772/snapshots/4",
+    "key": "7772",
+    "name": "Avoid Artifacts with High Essential Complexity",
+    "compoundedWeight": 42,
+    "compoundedWeightFormula": "(7x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7776/snapshots/4",
+    "key": "7776",
+    "name": "Avoid Artifacts with High Fan-In",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(7x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61013/snapshots/4",
+          "name": "Architecture - Object-level Dependencies",
+          "key": "61013"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7778/snapshots/4",
+    "key": "7778",
+    "name": "Avoid Artifacts with High Fan-Out",
+    "compoundedWeight": 28,
+    "compoundedWeightFormula": "(7x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61013/snapshots/4",
+          "name": "Architecture - Object-level Dependencies",
+          "key": "61013"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6162/snapshots/4",
+    "key": "6162",
+    "name": "Avoid Artifacts with High integration complexity",
+    "compoundedWeight": 49,
+    "compoundedWeightFormula": "(7x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61013/snapshots/4",
+          "name": "Architecture - Object-level Dependencies",
+          "key": "61013"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7774/snapshots/4",
+    "key": "7774",
+    "name": "Avoid Artifacts with High Integration Complexity",
+    "compoundedWeight": 49,
+    "compoundedWeightFormula": "(7x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61013/snapshots/4",
+          "name": "Architecture - Object-level Dependencies",
+          "key": "61013"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7828/snapshots/4",
+    "key": "7828",
+    "name": "Avoid Artifacts with High RAW SQL Complexity",
+    "compoundedWeight": 20,
+    "compoundedWeightFormula": "(4x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61011/snapshots/4",
+          "name": "Complexity - SQL Queries",
+          "key": "61011"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7770/snapshots/4",
+    "key": "7770",
+    "name": "Avoid Artifacts with too many parameters",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(3x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1101016/snapshots/4",
+    "key": "1101016",
+    "name": "Avoid Artifacts with too many parameters",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020076/snapshots/4",
+    "key": "1020076",
+    "name": "Avoid Artifacts with too many parameters (Javascript)",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(3x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3082/snapshots/4",
+    "key": "3082",
+    "name": "Avoid ASP pages having a very low Comment/Code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7694/snapshots/4",
+    "key": "7694",
+    "name": "Avoid calling the same paragraph with PERFORM and GO TO statements",
+    "compoundedWeight": 35,
+    "compoundedWeightFormula": "(7x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7238/snapshots/4",
+    "key": "7238",
+    "name": "Avoid calls between JSP Pages",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(8x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1608/snapshots/4",
+    "key": "1608",
+    "name": "Avoid cascading Triggers",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/610/snapshots/4",
+    "key": "610",
+    "name": "Avoid circular references between header files",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4716/snapshots/4",
+    "key": "4716",
+    "name": "Avoid Classes implementing too many Interfaces",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7596/snapshots/4",
+    "key": "7596",
+    "name": "Avoid Classes implementing too many Interfaces",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7434/snapshots/4",
+    "key": "7434",
+    "name": "Avoid classes overriding only equals() or only hashCode()",
+    "compoundedWeight": 27,
+    "compoundedWeightFormula": "(3x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/7802/snapshots/4",
+    "key": "7802",
+    "name": "Avoid Classes with a High Depth of Inheritance Tree",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7798/snapshots/4",
+    "key": "7798",
+    "name": "Avoid Classes with a High Lack of Cohesion",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7796/snapshots/4",
+    "key": "7796",
+    "name": "Avoid Classes with a High Lack of Cohesion - variant",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7792/snapshots/4",
+    "key": "7792",
+    "name": "Avoid Classes with a High Number Of Children",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7794/snapshots/4",
+    "key": "7794",
+    "name": "Avoid Classes with a High Public Data Ratio",
+    "compoundedWeight": 32,
+    "compoundedWeightFormula": "(8x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7780/snapshots/4",
+    "key": "7780",
+    "name": "Avoid Classes with a very low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7340/snapshots/4",
+    "key": "7340",
+    "name": "Avoid Classes with Destructor not explicitly virtual whenever one of its base Class has a virtual Destructor",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7800/snapshots/4",
+    "key": "7800",
+    "name": "Avoid Classes with High Coupling Between Objects",
+    "compoundedWeight": 28,
+    "compoundedWeightFormula": "(7x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61013/snapshots/4",
+          "name": "Architecture - Object-level Dependencies",
+          "key": "61013"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7804/snapshots/4",
+    "key": "7804",
+    "name": "Avoid Classes with High Weighted Methods per Class",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/578/snapshots/4",
+    "key": "578",
+    "name": "Avoid Classes with multiple inheritance",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7288/snapshots/4",
+    "key": "7288",
+    "name": "Avoid cyclic calls with PERFORM statements",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(3x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7294/snapshots/4",
+    "key": "7294",
+    "name": "Avoid cyclical calls and inheritances between namespaces content",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/7292/snapshots/4",
+    "key": "7292",
+    "name": "Avoid cyclical calls and inheritances between packages",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/8008/snapshots/4",
+    "key": "8008",
+    "name": "Avoid data members that are never read",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(1x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/630/snapshots/4",
+    "key": "630",
+    "name": "Avoid data members that are not private",
+    "compoundedWeight": 48,
+    "compoundedWeightFormula": "(8x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7654/snapshots/4",
+    "key": "7654",
+    "name": "Avoid database tables associated to more than one Entity",
+    "compoundedWeight": 72,
+    "compoundedWeightFormula": "(8x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6078/snapshots/4",
+    "key": "6078",
+    "name": "Avoid Datawindows accessing Database Procedures or Functions",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6076/snapshots/4",
+    "key": "6076",
+    "name": "Avoid Datawindows that does not access a database data",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2588/snapshots/4",
+    "key": "2588",
+    "name": "Avoid declaring Class Variables without declaring access Properties",
+    "compoundedWeight": 48,
+    "compoundedWeightFormula": "(8x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4572/snapshots/4",
+    "key": "4572",
+    "name": "Avoid declaring Final Instance Variables that are not dynamically initialized",
+    "compoundedWeight": 48,
+    "compoundedWeightFormula": "(8x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7306/snapshots/4",
+    "key": "7306",
+    "name": "Avoid declaring Inner Classes",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4566/snapshots/4",
+    "key": "4566",
+    "name": "Avoid declaring Instance Variables without defined access type",
+    "compoundedWeight": 48,
+    "compoundedWeightFormula": "(8x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4570/snapshots/4",
+    "key": "4570",
+    "name": "Avoid declaring Non Final Class Variables with Public or Package access type",
+    "compoundedWeight": 48,
+    "compoundedWeightFormula": "(8x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3576/snapshots/4",
+    "key": "3576",
+    "name": "Avoid declaring public Fields",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/4568/snapshots/4",
+    "key": "4568",
+    "name": "Avoid declaring Public Instance Variables",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/2572/snapshots/4",
+    "key": "2572",
+    "name": "Avoid declaring VB Variables without typing them",
+    "compoundedWeight": 30,
+    "compoundedWeightFormula": "(5x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "5x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61029/snapshots/4",
+          "name": "Complexity - Dynamic Instantiation",
+          "key": "61029"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3610/snapshots/4",
+    "key": "3610",
+    "name": "Avoid declaring VB Variables without typing them",
+    "compoundedWeight": 30,
+    "compoundedWeightFormula": "(5x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "5x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61029/snapshots/4",
+          "name": "Complexity - Dynamic Instantiation",
+          "key": "61029"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7716/snapshots/4",
+    "key": "7716",
+    "name": "Avoid defining singleton or factory when using Spring",
+    "compoundedWeight": 28,
+    "compoundedWeightFormula": "(4x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7914/snapshots/4",
+    "key": "7914",
+    "name": "Avoid direct access to Database Tables",
+    "compoundedWeight": 48,
+    "compoundedWeightFormula": "(8x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020072/snapshots/4",
+    "key": "1020072",
+    "name": "Avoid direct access to Database Tables in Javascript",
+    "compoundedWeight": 48,
+    "compoundedWeightFormula": "(8x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2242/snapshots/4",
+    "key": "2242",
+    "name": "Avoid direct definition of JavaScript Functions in a Web page",
+    "compoundedWeight": 16,
+    "compoundedWeightFormula": "(4x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7244/snapshots/4",
+    "key": "7244",
+    "name": "Avoid direct usage of EJB Entity from the client",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(8x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7916/snapshots/4",
+    "key": "7916",
+    "name": "Avoid direct use of Database objects (JSP/ASP)",
+    "compoundedWeight": 48,
+    "compoundedWeightFormula": "(8x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7682/snapshots/4",
+    "key": "7682",
+    "name": "Avoid domain model depending on other Java API",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(4x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7512/snapshots/4",
+    "key": "7512",
+    "name": "Avoid empty Functions, Forms and Modules",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61031/snapshots/4",
+          "name": "Complexity - Empty Code",
+          "key": "61031"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7514/snapshots/4",
+    "key": "7514",
+    "name": "Avoid empty Includes",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61031/snapshots/4",
+          "name": "Complexity - Empty Code",
+          "key": "61031"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7516/snapshots/4",
+    "key": "7516",
+    "name": "Avoid empty Programs",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61031/snapshots/4",
+          "name": "Complexity - Empty Code",
+          "key": "61031"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6104/snapshots/4",
+    "key": "6104",
+    "name": "Avoid events with a very low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2618/snapshots/4",
+    "key": "2618",
+    "name": "Avoid Forms with a very low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4062/snapshots/4",
+    "key": "4062",
+    "name": "Avoid Functions and Procedures doing an Insert, Update or Delete without managing a transaction",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7818/snapshots/4",
+    "key": "7818",
+    "name": "Avoid Functions having a very low Comment/Code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020086/snapshots/4",
+    "key": "1020086",
+    "name": "Avoid Functions having a very low Comment/Code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7342/snapshots/4",
+    "key": "7342",
+    "name": "Avoid functions overriding virtual functions without having the 'virtual' keyword",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7274/snapshots/4",
+    "key": "7274",
+    "name": "Avoid GOTO jumps out of PERFORM range",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(3x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/8102/snapshots/4",
+    "key": "8102",
+    "name": "Avoid hardcoded network resource names",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020070/snapshots/4",
+    "key": "1020070",
+    "name": "Avoid hardcoded network resource names in Javascript",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3630/snapshots/4",
+    "key": "3630",
+    "name": "Avoid having Classes implementing too many Interfaces",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7134/snapshots/4",
+    "key": "7134",
+    "name": "Avoid having local forward with same name as global forward",
+    "compoundedWeight": 32,
+    "compoundedWeightFormula": "(8x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7392/snapshots/4",
+    "key": "7392",
+    "name": "Avoid having multiple artifacts deleting data on the same SQL table",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7390/snapshots/4",
+    "key": "7390",
+    "name": "Avoid having multiple Artifacts inserting data on the same SQL Table",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7394/snapshots/4",
+    "key": "7394",
+    "name": "Avoid having multiple Artifacts updating data on the same SQL Table",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/8152/snapshots/4",
+    "key": "8152",
+    "name": "Avoid having transaction with the Thread.Sleep method in a loop",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(3x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6084/snapshots/4",
+    "key": "6084",
+    "name": "Avoid having unreferenced code",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1070/snapshots/4",
+    "key": "1070",
+    "name": "Avoid header files circular references",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1082/snapshots/4",
+    "key": "1082",
+    "name": "Avoid header files with a very low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1094/snapshots/4",
+    "key": "1094",
+    "name": "Avoid Implementation files with a very low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7242/snapshots/4",
+    "key": "7242",
+    "name": "Avoid implementing Action Classes inheriting directly from Struts Action",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(4x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7092/snapshots/4",
+    "key": "7092",
+    "name": "Avoid Include Circular references",
+    "compoundedWeight": 40,
+    "compoundedWeightFormula": "(8x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7068/snapshots/4",
+    "key": "7068",
+    "name": "Avoid Includes with low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7552/snapshots/4",
+    "key": "7552",
+    "name": "Avoid incoherent file accesses in Cobol programs and DISP clauses in JCL",
+    "compoundedWeight": 40,
+    "compoundedWeightFormula": "(8x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3590/snapshots/4",
+    "key": "3590",
+    "name": "Avoid Interface implementation on Structures",
+    "compoundedWeight": 40,
+    "compoundedWeightFormula": "(8x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7612/snapshots/4",
+    "key": "7612",
+    "name": "Avoid Interfaces with a low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3626/snapshots/4",
+    "key": "3626",
+    "name": "Avoid Interfaces with a very low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/576/snapshots/4",
+    "key": "576",
+    "name": "Avoid large Classes - too many Constructors",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3578/snapshots/4",
+    "key": "3578",
+    "name": "Avoid large Classes - too many Constructors",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4556/snapshots/4",
+    "key": "4556",
+    "name": "Avoid large Classes - too many Constructors",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/570/snapshots/4",
+    "key": "570",
+    "name": "Avoid large Interfaces - too many Methods",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4560/snapshots/4",
+    "key": "4560",
+    "name": "Avoid large Interfaces - too many Methods",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7458/snapshots/4",
+    "key": "7458",
+    "name": "Avoid large Interfaces - too many Methods",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7630/snapshots/4",
+    "key": "7630",
+    "name": "Avoid large Interfaces - too many Methods",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7786/snapshots/4",
+    "key": "7786",
+    "name": "Avoid long Table or View names",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7492/snapshots/4",
+    "key": "7492",
+    "name": "Avoid many-to-many association",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6134/snapshots/4",
+    "key": "6134",
+    "name": "Avoid menu with too high level of inheritance",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6150/snapshots/4",
+    "key": "6150",
+    "name": "Avoid Menus, UserObjects and Windows that have no inheritance relations with other objects",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7846/snapshots/4",
+    "key": "7846",
+    "name": "Avoid Methods with a very low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2622/snapshots/4",
+    "key": "2622",
+    "name": "Avoid Modules with a very low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7264/snapshots/4",
+    "key": "7264",
+    "name": "Avoid namespaces with High Afferent Coupling (CA)",
+    "compoundedWeight": 28,
+    "compoundedWeightFormula": "(7x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61013/snapshots/4",
+          "name": "Architecture - Object-level Dependencies",
+          "key": "61013"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7262/snapshots/4",
+    "key": "7262",
+    "name": "Avoid Namespaces with High Efferent Coupling (CE)",
+    "compoundedWeight": 28,
+    "compoundedWeightFormula": "(7x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61013/snapshots/4",
+          "name": "Architecture - Object-level Dependencies",
+          "key": "61013"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5572/snapshots/4",
+    "key": "5572",
+    "name": "Avoid objects without COMMENT property",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7248/snapshots/4",
+    "key": "7248",
+    "name": "Avoid Packages with High Afferent Coupling (CA)",
+    "compoundedWeight": 28,
+    "compoundedWeightFormula": "(7x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61013/snapshots/4",
+          "name": "Architecture - Object-level Dependencies",
+          "key": "61013"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7246/snapshots/4",
+    "key": "7246",
+    "name": "Avoid Packages with High Efferent Coupling (CE)",
+    "compoundedWeight": 28,
+    "compoundedWeightFormula": "(7x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61013/snapshots/4",
+          "name": "Architecture - Object-level Dependencies",
+          "key": "61013"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6082/snapshots/4",
+    "key": "6082",
+    "name": "Avoid PB Function/Event/Method accessing Database Procedures or Functions",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5080/snapshots/4",
+    "key": "5080",
+    "name": "Avoid Procedure Paragraphs that contains no statements",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61031/snapshots/4",
+          "name": "Complexity - Empty Code",
+          "key": "61031"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5082/snapshots/4",
+    "key": "5082",
+    "name": "Avoid Procedure Sections that contain no Paragraph",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61031/snapshots/4",
+          "name": "Complexity - Empty Code",
+          "key": "61031"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5110/snapshots/4",
+    "key": "5110",
+    "name": "Avoid Programs with a very low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020002/snapshots/4",
+    "key": "1020002",
+    "name": "Avoid programs with low comment / code ratio  (HTML5/Javascript)",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7066/snapshots/4",
+    "key": "7066",
+    "name": "Avoid Programs with low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4058/snapshots/4",
+    "key": "4058",
+    "name": "Avoid queries using old style join convention  instead of ANSI-Standard joins",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7236/snapshots/4",
+    "key": "7236",
+    "name": "Avoid recursive calls with PERFORM statements",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(3x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/4056/snapshots/4",
+    "key": "4056",
+    "name": "Avoid recursive Triggers",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5108/snapshots/4",
+    "key": "5108",
+    "name": "Avoid Sections with a very low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7704/snapshots/4",
+    "key": "7704",
+    "name": "Avoid static Fields that are not final",
+    "compoundedWeight": 72,
+    "compoundedWeightFormula": "(8x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5068/snapshots/4",
+    "key": "5068",
+    "name": "Avoid STOP RUN (use GOBACK instead)",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7706/snapshots/4",
+    "key": "7706",
+    "name": "Avoid table and column names that are too long (portability)",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7814/snapshots/4",
+    "key": "7814",
+    "name": "Avoid Tables not using referential integrity",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(7x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020502/snapshots/4",
+    "key": "1020502",
+    "name": "Avoid the use of JSON.parse and JSON.stringify in AngularJS web app",
+    "compoundedWeight": 16,
+    "compoundedWeightFormula": "(4x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7156/snapshots/4",
+    "key": "7156",
+    "name": "Avoid Too Many Copy Pasted Artifacts",
+    "compoundedWeight": 36,
+    "compoundedWeightFormula": "(4x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7676/snapshots/4",
+    "key": "7676",
+    "name": "Avoid too many packages referencing Mainframe",
+    "compoundedWeight": 40,
+    "compoundedWeightFormula": "(8x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7760/snapshots/4",
+    "key": "7760",
+    "name": "Avoid triggers, functions and procedures with a very low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7844/snapshots/4",
+    "key": "7844",
+    "name": "Avoid undocumented Classes",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6102/snapshots/4",
+    "key": "6102",
+    "name": "Avoid undocumented Events",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2616/snapshots/4",
+    "key": "2616",
+    "name": "Avoid undocumented Forms",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7836/snapshots/4",
+    "key": "7836",
+    "name": "Avoid undocumented Functions",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020082/snapshots/4",
+    "key": "1020082",
+    "name": "Avoid undocumented Functions",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1078/snapshots/4",
+    "key": "1078",
+    "name": "Avoid undocumented Header files",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1092/snapshots/4",
+    "key": "1092",
+    "name": "Avoid undocumented Implementation files",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7062/snapshots/4",
+    "key": "7062",
+    "name": "Avoid undocumented Includes",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7834/snapshots/4",
+    "key": "7834",
+    "name": "Avoid undocumented Interfaces",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7838/snapshots/4",
+    "key": "7838",
+    "name": "Avoid undocumented Methods",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2620/snapshots/4",
+    "key": "2620",
+    "name": "Avoid undocumented Modules",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3080/snapshots/4",
+    "key": "3080",
+    "name": "Avoid undocumented Pages",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5116/snapshots/4",
+    "key": "5116",
+    "name": "Avoid undocumented Paragraphs",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5114/snapshots/4",
+    "key": "5114",
+    "name": "Avoid undocumented Programs",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7060/snapshots/4",
+    "key": "7060",
+    "name": "Avoid undocumented Programs",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5112/snapshots/4",
+    "key": "5112",
+    "name": "Avoid undocumented Sections",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7762/snapshots/4",
+    "key": "7762",
+    "name": "Avoid undocumented Triggers, Functions and Procedures",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7568/snapshots/4",
+    "key": "7568",
+    "name": "Avoid undocumented User-exits",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2244/snapshots/4",
+    "key": "2244",
+    "name": "Avoid undocumented Web Server Pages",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7832/snapshots/4",
+    "key": "7832",
+    "name": "Avoid unreferenced Classes",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3078/snapshots/4",
+    "key": "3078",
+    "name": "Avoid unreferenced code",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7912/snapshots/4",
+    "key": "7912",
+    "name": "Avoid unreferenced Data Members",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1090/snapshots/4",
+    "key": "1090",
+    "name": "Avoid unreferenced Files",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2624/snapshots/4",
+    "key": "2624",
+    "name": "Avoid unreferenced Forms",
+    "compoundedWeight": 2,
+    "compoundedWeightFormula": "(1x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7860/snapshots/4",
+    "key": "7860",
+    "name": "Avoid unreferenced Functions",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020084/snapshots/4",
+    "key": "1020084",
+    "name": "Avoid unreferenced Functions",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7540/snapshots/4",
+    "key": "7540",
+    "name": "Avoid unreferenced Includes",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7830/snapshots/4",
+    "key": "7830",
+    "name": "Avoid unreferenced Interfaces",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2238/snapshots/4",
+    "key": "2238",
+    "name": "Avoid unreferenced JSPs and web client files",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(1x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7908/snapshots/4",
+    "key": "7908",
+    "name": "Avoid unreferenced Methods",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2626/snapshots/4",
+    "key": "2626",
+    "name": "Avoid unreferenced Modules",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(1x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7290/snapshots/4",
+    "key": "7290",
+    "name": "Avoid unreferenced Sections and Paragraphs",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(1x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1634/snapshots/4",
+    "key": "1634",
+    "name": "Avoid unreferenced Tables",
+    "compoundedWeight": 1,
+    "compoundedWeightFormula": "(1x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7404/snapshots/4",
+    "key": "7404",
+    "name": "Avoid unreferenced views",
+    "compoundedWeight": 1,
+    "compoundedWeightFormula": "(1x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7220/snapshots/4",
+    "key": "7220",
+    "name": "Avoid Unused Imports",
+    "compoundedWeight": 1,
+    "compoundedWeightFormula": "(1x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "1x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61027/snapshots/4",
+          "name": "Dead code (static)",
+          "key": "61027"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020312/snapshots/4",
+    "key": "1020312",
+    "name": "Avoid use of anonymous functions to attach events",
+    "compoundedWeight": 20,
+    "compoundedWeightFormula": "(4x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2580/snapshots/4",
+    "key": "2580",
+    "name": "Avoid use of Scripting.FileSystemObject",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2236/snapshots/4",
+    "key": "2236",
+    "name": "Avoid use of standard SQL API",
+    "compoundedWeight": 64,
+    "compoundedWeightFormula": "(8x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7570/snapshots/4",
+    "key": "7570",
+    "name": "Avoid User-Exits with low comment/code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6130/snapshots/4",
+    "key": "6130",
+    "name": "Avoid userobject with too high level of inheritance",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020506/snapshots/4",
+    "key": "1020506",
+    "name": "Avoid using $scope in controllers",
+    "compoundedWeight": 35,
+    "compoundedWeightFormula": "(7x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4594/snapshots/4",
+    "key": "4594",
+    "name": "Avoid using 'java.io.File'",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4598/snapshots/4",
+    "key": "4598",
+    "name": "Avoid using 'java.lang.Runtime.exec()'",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4596/snapshots/4",
+    "key": "4596",
+    "name": "Avoid using 'java.lang.System.getenv()'",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/8076/snapshots/4",
+    "key": "8076",
+    "name": "Avoid using 'new[]', prefer 'std::vector' or 'std::array'",
+    "compoundedWeight": 30,
+    "compoundedWeightFormula": "(5x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "5x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61029/snapshots/4",
+          "name": "Complexity - Dynamic Instantiation",
+          "key": "61029"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4606/snapshots/4",
+    "key": "4606",
+    "name": "Avoid using 'sun.*' Classes",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/8066/snapshots/4",
+    "key": "8066",
+    "name": "Avoid using 'using namespace' or 'using' declarations in header files",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/8032/snapshots/4",
+    "key": "8032",
+    "name": "Avoid using a break statement in 'for' loops",
+    "compoundedWeight": 42,
+    "compoundedWeightFormula": "(7x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5062/snapshots/4",
+    "key": "5062",
+    "name": "Avoid using ALTER",
+    "compoundedWeight": 63,
+    "compoundedWeightFormula": "(7x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/4610/snapshots/4",
+    "key": "4610",
+    "name": "Avoid using anonymous Classes",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7524/snapshots/4",
+    "key": "7524",
+    "name": "Avoid using BREAK or BREAK-POINT statement",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(7x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/7754/snapshots/4",
+    "key": "7754",
+    "name": "Avoid using COMPUTE statement for elementary arithmetic operation",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4574/snapshots/4",
+    "key": "4574",
+    "name": "Avoid using deprecated objects",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4708/snapshots/4",
+    "key": "4708",
+    "name": "Avoid using Dynamic instantiation",
+    "compoundedWeight": 20,
+    "compoundedWeightFormula": "(5x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "5x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61029/snapshots/4",
+          "name": "Complexity - Dynamic Instantiation",
+          "key": "61029"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7874/snapshots/4",
+    "key": "7874",
+    "name": "Avoid using dynamic queries",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/6126/snapshots/4",
+    "key": "6126",
+    "name": "Avoid using dynamic SQL in scripts",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7672/snapshots/4",
+    "key": "7672",
+    "name": "Avoid using EXIT statement in Include",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4602/snapshots/4",
+    "key": "4602",
+    "name": "Avoid using Fields (non static final) from other Classes",
+    "compoundedWeight": 72,
+    "compoundedWeightFormula": "(8x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/6114/snapshots/4",
+    "key": "6114",
+    "name": "Avoid using global functions",
+    "compoundedWeight": 32,
+    "compoundedWeightFormula": "(8x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/590/snapshots/4",
+    "key": "590",
+    "name": "Avoid using global objects in Constructors and Destructors",
+    "compoundedWeight": 40,
+    "compoundedWeightFormula": "(8x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/588/snapshots/4",
+    "key": "588",
+    "name": "Avoid using Global Variables",
+    "compoundedWeight": 40,
+    "compoundedWeightFormula": "(8x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2574/snapshots/4",
+    "key": "2574",
+    "name": "Avoid using Global Variables",
+    "compoundedWeight": 48,
+    "compoundedWeightFormula": "(8x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6112/snapshots/4",
+    "key": "6112",
+    "name": "Avoid using global variables",
+    "compoundedWeight": 32,
+    "compoundedWeightFormula": "(8x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5144/snapshots/4",
+    "key": "5144",
+    "name": "Avoid using GOTO statement",
+    "compoundedWeight": 49,
+    "compoundedWeightFormula": "(7x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7816/snapshots/4",
+    "key": "7816",
+    "name": "Avoid using GOTO statement",
+    "compoundedWeight": 49,
+    "compoundedWeightFormula": "(7x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/8236/snapshots/4",
+    "key": "8236",
+    "name": "Avoid using hard-coded values",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7526/snapshots/4",
+    "key": "7526",
+    "name": "Avoid using hardcoded paths",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7308/snapshots/4",
+    "key": "7308",
+    "name": "Avoid using Inner Classes",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020516/snapshots/4",
+    "key": "1020516",
+    "name": "Avoid using Javascript Array typecheck in AngularJS application",
+    "compoundedWeight": 35,
+    "compoundedWeightFormula": "(7x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020518/snapshots/4",
+    "key": "1020518",
+    "name": "Avoid using Javascript Date typecheck in AngularJS application",
+    "compoundedWeight": 35,
+    "compoundedWeightFormula": "(7x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020520/snapshots/4",
+    "key": "1020520",
+    "name": "Avoid using Javascript Function typecheck in AngularJS application",
+    "compoundedWeight": 35,
+    "compoundedWeightFormula": "(7x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020526/snapshots/4",
+    "key": "1020526",
+    "name": "Avoid using Javascript Number typecheck in AngularJS application",
+    "compoundedWeight": 35,
+    "compoundedWeightFormula": "(7x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020524/snapshots/4",
+    "key": "1020524",
+    "name": "Avoid using Javascript Object typecheck in AngularJS application",
+    "compoundedWeight": 35,
+    "compoundedWeightFormula": "(7x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020528/snapshots/4",
+    "key": "1020528",
+    "name": "Avoid using Javascript Regexp typecheck in AngularJS application",
+    "compoundedWeight": 35,
+    "compoundedWeightFormula": "(7x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020522/snapshots/4",
+    "key": "1020522",
+    "name": "Avoid using Javascript String typecheck in AngularJS application",
+    "compoundedWeight": 35,
+    "compoundedWeightFormula": "(7x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3570/snapshots/4",
+    "key": "3570",
+    "name": "Avoid using Keywords as names",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2584/snapshots/4",
+    "key": "2584",
+    "name": "Avoid using late binding",
+    "compoundedWeight": 30,
+    "compoundedWeightFormula": "(5x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "5x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61029/snapshots/4",
+          "name": "Complexity - Dynamic Instantiation",
+          "key": "61029"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7522/snapshots/4",
+    "key": "7522",
+    "name": "Avoid using literals in assignments (hardcoded values)",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(3x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3076/snapshots/4",
+    "key": "3076",
+    "name": "Avoid using more than one scripting language in one page",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5094/snapshots/4",
+    "key": "5094",
+    "name": "Avoid using MOVE CORRESPONDING ... TO ...",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(3x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/4612/snapshots/4",
+    "key": "4612",
+    "name": "Avoid using native Methods (JNI)",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7882/snapshots/4",
+    "key": "7882",
+    "name": "Avoid using Native SQL",
+    "compoundedWeight": 27,
+    "compoundedWeightFormula": "(3x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/7550/snapshots/4",
+    "key": "7550",
+    "name": "Avoid using nested programs",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(7x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5090/snapshots/4",
+    "key": "5090",
+    "name": "Avoid using NEXT SENTENCE",
+    "compoundedWeight": 42,
+    "compoundedWeightFormula": "(7x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5066/snapshots/4",
+    "key": "5066",
+    "name": "Avoid using PERFORM ... THROUGH | THRU",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7302/snapshots/4",
+    "key": "7302",
+    "name": "Avoid using Pointers",
+    "compoundedWeight": 28,
+    "compoundedWeightFormula": "(7x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5086/snapshots/4",
+    "key": "5086",
+    "name": "Avoid using Sections in the PROCEDURE DIVISION (use Paragraphs only)",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7678/snapshots/4",
+    "key": "7678",
+    "name": "Avoid using specific logging implementation",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(4x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/580/snapshots/4",
+    "key": "580",
+    "name": "Avoid using Structures",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(8x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7886/snapshots/4",
+    "key": "7886",
+    "name": "Avoid using SYSTEM-CALL",
+    "compoundedWeight": 27,
+    "compoundedWeightFormula": "(3x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4076/snapshots/4",
+    "key": "4076",
+    "name": "Avoid using temporary Objects",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3102/snapshots/4",
+    "key": "3102",
+    "name": "Avoid using Transactions in an ASP Page",
+    "compoundedWeight": 32,
+    "compoundedWeightFormula": "(8x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7460/snapshots/4",
+    "key": "7460",
+    "name": "Avoid using untyped DataSet",
+    "compoundedWeight": 42,
+    "compoundedWeightFormula": "(7x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/634/snapshots/4",
+    "key": "634",
+    "name": "Avoid using VARIANT Structures",
+    "compoundedWeight": 16,
+    "compoundedWeightFormula": "(8x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020018/snapshots/4",
+    "key": "1020018",
+    "name": "Avoid using Web SQL databases",
+    "compoundedWeight": 72,
+    "compoundedWeightFormula": "(8x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/2576/snapshots/4",
+    "key": "2576",
+    "name": "Avoid Variables declared as Variants",
+    "compoundedWeight": 35,
+    "compoundedWeightFormula": "(5x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "5x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61029/snapshots/4",
+          "name": "Complexity - Dynamic Instantiation",
+          "key": "61029"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/2248/snapshots/4",
+    "key": "2248",
+    "name": "Avoid Web Server pages having a very low Comment/Code ratio",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61028/snapshots/4",
+          "name": "Documentation - Volume of Comments",
+          "key": "61028"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6128/snapshots/4",
+    "key": "6128",
+    "name": "Avoid window with too high level of inheritance",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5560/snapshots/4",
+    "key": "5560",
+    "name": "Based Data Block Items naming convention - represented column",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5558/snapshots/4",
+    "key": "5558",
+    "name": "Based Data Blocks naming convention - represented table",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/66015/snapshots/4",
+    "key": "66015",
+    "name": "Class Complexity Distribution (WMC)",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/66021/snapshots/4",
+    "key": "66021",
+    "name": "Class Fan-In Distribution",
+    "compoundedWeight": 42,
+    "compoundedWeightFormula": "(7x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61013/snapshots/4",
+          "name": "Architecture - Object-level Dependencies",
+          "key": "61013"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/66020/snapshots/4",
+    "key": "66020",
+    "name": "Class Fan-Out Distribution",
+    "compoundedWeight": 42,
+    "compoundedWeightFormula": "(7x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61013/snapshots/4",
+          "name": "Architecture - Object-level Dependencies",
+          "key": "61013"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7624/snapshots/4",
+    "key": "7624",
+    "name": "Class members should be declared as Private",
+    "compoundedWeight": 48,
+    "compoundedWeightFormula": "(8x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7598/snapshots/4",
+    "key": "7598",
+    "name": "Class naming convention",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7812/snapshots/4",
+    "key": "7812",
+    "name": "Class naming convention - case and character set control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/550/snapshots/4",
+    "key": "550",
+    "name": "Class naming convention - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4734/snapshots/4",
+    "key": "4734",
+    "name": "Class naming convention - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7122/snapshots/4",
+    "key": "7122",
+    "name": "Complexity Volume (% of LoC)",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/554/snapshots/4",
+    "key": "554",
+    "name": "Constant naming convention - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4738/snapshots/4",
+    "key": "4738",
+    "name": "Constant naming convention - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3572/snapshots/4",
+    "key": "3572",
+    "name": "Controls naming convention - prefix, case and character set control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/66067/snapshots/4",
+    "key": "66067",
+    "name": "Copy Pasted Code (% of LOC)",
+    "compoundedWeight": 36,
+    "compoundedWeightFormula": "(4x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/65350/snapshots/4",
+    "key": "65350",
+    "name": "Coupling Distribution",
+    "compoundedWeight": 7,
+    "compoundedWeightFormula": "(7x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61013/snapshots/4",
+          "name": "Architecture - Object-level Dependencies",
+          "key": "61013"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1564/snapshots/4",
+    "key": "1564",
+    "name": "Cursor naming convention - prefix control",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/65501/snapshots/4",
+    "key": "65501",
+    "name": "Cyclomatic Complexity Distribution",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3616/snapshots/4",
+    "key": "3616",
+    "name": "Data Access must be based on Stored Procedure Calls",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/558/snapshots/4",
+    "key": "558",
+    "name": "Data Members naming convention - case control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7854/snapshots/4",
+    "key": "7854",
+    "name": "Database table naming convention - prefix control",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7852/snapshots/4",
+    "key": "7852",
+    "name": "Database view naming convention - prefix control",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6050/snapshots/4",
+    "key": "6050",
+    "name": "Datawindow naming convention",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6124/snapshots/4",
+    "key": "6124",
+    "name": "Datawindows accessing database must be based on procedure",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/8070/snapshots/4",
+    "key": "8070",
+    "name": "Do not alter a control variable in the body of a 'for' statement",
+    "compoundedWeight": 35,
+    "compoundedWeightFormula": "(7x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/8010/snapshots/4",
+    "key": "8010",
+    "name": "Do not overload the ampersand, comma, logical AND or logical OR operators",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/8046/snapshots/4",
+    "key": "8046",
+    "name": "Do not return non-const handles to Class data from const member Functions",
+    "compoundedWeight": 64,
+    "compoundedWeightFormula": "(8x8)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x8",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7714/snapshots/4",
+    "key": "7714",
+    "name": "Do not use auto-wiring",
+    "compoundedWeight": 28,
+    "compoundedWeightFormula": "(4x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7136/snapshots/4",
+    "key": "7136",
+    "name": "Each method in an Action Class should have a small complexity",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2592/snapshots/4",
+    "key": "2592",
+    "name": "Encapsulation compliance",
+    "compoundedWeight": 32,
+    "compoundedWeightFormula": "(8x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3560/snapshots/4",
+    "key": "3560",
+    "name": "Enumeration Items naming convention - case and character set control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3558/snapshots/4",
+    "key": "3558",
+    "name": "Enumerations naming convention - case and character set control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7234/snapshots/4",
+    "key": "7234",
+    "name": "EVALUATE statements must be closed by END-EVALUATE",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2552/snapshots/4",
+    "key": "2552",
+    "name": "Event naming convention - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3568/snapshots/4",
+    "key": "3568",
+    "name": "Events naming convention - case and character set control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7920/snapshots/4",
+    "key": "7920",
+    "name": "Exceptions naming convention - case and character set control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7918/snapshots/4",
+    "key": "7918",
+    "name": "Exceptions naming convention -suffix control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4740/snapshots/4",
+    "key": "4740",
+    "name": "Field naming convention - case control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/562/snapshots/4",
+    "key": "562",
+    "name": "File naming convention - embedded Class",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7826/snapshots/4",
+    "key": "7826",
+    "name": "Forms naming convention - prefix control",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7050/snapshots/4",
+    "key": "7050",
+    "name": "Function naming convention",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6052/snapshots/4",
+    "key": "6052",
+    "name": "Global function naming convention",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6066/snapshots/4",
+    "key": "6066",
+    "name": "Global variable naming convention",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4580/snapshots/4",
+    "key": "4580",
+    "name": "Good use of Interfaces when instantiating a collection",
+    "compoundedWeight": 40,
+    "compoundedWeightFormula": "(8x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4578/snapshots/4",
+    "key": "4578",
+    "name": "Good use of Interfaces with collections as Method return types",
+    "compoundedWeight": 40,
+    "compoundedWeightFormula": "(8x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7304/snapshots/4",
+    "key": "7304",
+    "name": "IF statements must be closed by END-IF",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7074/snapshots/4",
+    "key": "7074",
+    "name": "Include naming convention",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6068/snapshots/4",
+    "key": "6068",
+    "name": "Instance variable naming convention",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3554/snapshots/4",
+    "key": "3554",
+    "name": "Interface naming convention - case and character set control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4732/snapshots/4",
+    "key": "4732",
+    "name": "Interface naming convention - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7848/snapshots/4",
+    "key": "7848",
+    "name": "Interface naming convention - prefix",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7148/snapshots/4",
+    "key": "7148",
+    "name": "JSP pages should always be accessed through their tiles definition",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7146/snapshots/4",
+    "key": "7146",
+    "name": "JSP pages should only reference Java Objects associated to J2EE Scoped Bean",
+    "compoundedWeight": 24,
+    "compoundedWeightFormula": "(8x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/556/snapshots/4",
+    "key": "556",
+    "name": "Macros naming convention - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1052/snapshots/4",
+    "key": "1052",
+    "name": "Macros naming conventions - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6054/snapshots/4",
+    "key": "6054",
+    "name": "Menu naming convention",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6072/snapshots/4",
+    "key": "6072",
+    "name": "Method naming convention",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/552/snapshots/4",
+    "key": "552",
+    "name": "Method naming convention - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4736/snapshots/4",
+    "key": "4736",
+    "name": "Method naming convention - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2558/snapshots/4",
+    "key": "2558",
+    "name": "Method/Sub naming convention - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3566/snapshots/4",
+    "key": "3566",
+    "name": "Methods naming convention - case and character set control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3550/snapshots/4",
+    "key": "3550",
+    "name": "Namespace naming convention - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7554/snapshots/4",
+    "key": "7554",
+    "name": "Never access an IMS segment with an access mode not authorized in the PCB",
+    "compoundedWeight": 40,
+    "compoundedWeightFormula": "(8x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7296/snapshots/4",
+    "key": "7296",
+    "name": "Never define static variables in header files",
+    "compoundedWeight": 49,
+    "compoundedWeightFormula": "(7x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/1084/snapshots/4",
+    "key": "1084",
+    "name": "Non static functions naming conventions - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5564/snapshots/4",
+    "key": "5564",
+    "name": "Not Based Data Block Items naming convention - prefix control",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5562/snapshots/4",
+    "key": "5562",
+    "name": "Not Based Data Blocks naming convention - prefix control",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7484/snapshots/4",
+    "key": "7484",
+    "name": "Objects in Universe using inexistent Table/Column",
+    "compoundedWeight": 72,
+    "compoundedWeightFormula": "(8x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": true
+  },
+  {
+    "href": "ETE4/quality-indicators/65701/snapshots/4",
+    "key": "65701",
+    "name": "OO Complexity Distribution",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61010/snapshots/4",
+          "name": "Complexity - OO Inheritance and Polymorphism",
+          "key": "61010"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1560/snapshots/4",
+    "key": "1560",
+    "name": "Package Function naming convention - prefix control",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4730/snapshots/4",
+    "key": "4730",
+    "name": "Package naming convention - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1558/snapshots/4",
+    "key": "1558",
+    "name": "Package naming convention - prefix control",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1562/snapshots/4",
+    "key": "1562",
+    "name": "Package Stored Procedure naming convention - prefix control",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5074/snapshots/4",
+    "key": "5074",
+    "name": "Paragraph naming convention - prefix control",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3562/snapshots/4",
+    "key": "3562",
+    "name": "Private Fields naming convention - case and character set control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7088/snapshots/4",
+    "key": "7088",
+    "name": "Processing Screen Naming Convention",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7072/snapshots/4",
+    "key": "7072",
+    "name": "Program naming convention",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5064/snapshots/4",
+    "key": "5064",
+    "name": "Program naming convention - prefix control",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3574/snapshots/4",
+    "key": "3574",
+    "name": "Properties naming convention - case and character set control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2560/snapshots/4",
+    "key": "2560",
+    "name": "Property naming convention - case control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4576/snapshots/4",
+    "key": "4576",
+    "name": "Provide accessors to Private Fields",
+    "compoundedWeight": 32,
+    "compoundedWeightFormula": "(8x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61020/snapshots/4",
+          "name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+          "key": "61020"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3564/snapshots/4",
+    "key": "3564",
+    "name": "Public Fields naming convention - case and character set control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/66010/snapshots/4",
+    "key": "66010",
+    "name": "Reuse by Call Distribution",
+    "compoundedWeight": 4,
+    "compoundedWeightFormula": "(4x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5070/snapshots/4",
+    "key": "5070",
+    "name": "Section naming convention - prefix control",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7718/snapshots/4",
+    "key": "7718",
+    "name": "Sections and paragraphs should be located after the first statement calling them",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61009/snapshots/4",
+          "name": "Complexity - Algorithmic and Control Structure Complexity",
+          "key": "61009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/65801/snapshots/4",
+    "key": "65801",
+    "name": "SQL Complexity Distribution",
+    "compoundedWeight": 20,
+    "compoundedWeightFormula": "(4x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61011/snapshots/4",
+          "name": "Complexity - SQL Queries",
+          "key": "61011"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7898/snapshots/4",
+    "key": "7898",
+    "name": "SQL Function naming convention - prefix control",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1050/snapshots/4",
+    "key": "1050",
+    "name": "Static Functions naming conventions - case control",
+    "compoundedWeight": 18,
+    "compoundedWeightFormula": "(3x6)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x6",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7900/snapshots/4",
+    "key": "7900",
+    "name": "Stored Procedure naming convention - prefix control",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6056/snapshots/4",
+    "key": "6056",
+    "name": "Structure naming convention",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6590/snapshots/4",
+    "key": "6590",
+    "name": "Table naming convention - character set control",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6586/snapshots/4",
+    "key": "6586",
+    "name": "Table naming convention - name size control",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/4722/snapshots/4",
+    "key": "4722",
+    "name": "Track Classes referencing Database objects",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7602/snapshots/4",
+    "key": "7602",
+    "name": "Transaction naming convention",
+    "compoundedWeight": 15,
+    "compoundedWeightFormula": "(3x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7840/snapshots/4",
+    "key": "7840",
+    "name": "Trigger naming convention - prefix control",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1606/snapshots/4",
+    "key": "1606",
+    "name": "Triggers should not directly modify tables, a procedure or function should be used instead",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1054/snapshots/4",
+    "key": "1054",
+    "name": "Types naming conventions - suffix control",
+    "compoundedWeight": 6,
+    "compoundedWeightFormula": "(3x2)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x2",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020532/snapshots/4",
+    "key": "1020532",
+    "name": "Use Angular factory() instead of service()",
+    "compoundedWeight": 35,
+    "compoundedWeightFormula": "(7x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020508/snapshots/4",
+    "key": "1020508",
+    "name": "Use Angular wrapper service $document",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(7x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020512/snapshots/4",
+    "key": "1020512",
+    "name": "Use Angular wrapper service $timeout",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(7x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1020510/snapshots/4",
+    "key": "1020510",
+    "name": "Use Angular wrapper service $window",
+    "compoundedWeight": 21,
+    "compoundedWeightFormula": "(7x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "7x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61024/snapshots/4",
+          "name": "Programming Practices - Structuredness",
+          "key": "61024"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/1101036/snapshots/4",
+    "key": "1101036",
+    "name": "Use ANSI standard operators in SQL WHERE clauses",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/5566/snapshots/4",
+    "key": "5566",
+    "name": "Use of call_form built-in Function from a centralized location",
+    "compoundedWeight": 8,
+    "compoundedWeightFormula": "(8x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2230/snapshots/4",
+    "key": "2230",
+    "name": "Use of style sheets",
+    "compoundedWeight": 16,
+    "compoundedWeightFormula": "(4x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3058/snapshots/4",
+    "key": "3058",
+    "name": "Use of style sheets",
+    "compoundedWeight": 16,
+    "compoundedWeightFormula": "(4x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "4x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/66009/snapshots/4",
+          "name": "Architecture - Reuse",
+          "key": "66009"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/3066/snapshots/4",
+    "key": "3066",
+    "name": "Use of Web Classes",
+    "compoundedWeight": 9,
+    "compoundedWeightFormula": "(3x3)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x3",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61004/snapshots/4",
+          "name": "Architecture - OS and Platform Independence",
+          "key": "61004"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7510/snapshots/4",
+    "key": "7510",
+    "name": "Use only Hibernate API to access to the database",
+    "compoundedWeight": 72,
+    "compoundedWeightFormula": "(8x9)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x9",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7700/snapshots/4",
+    "key": "7700",
+    "name": "Use only Struts HTTP Servlet",
+    "compoundedWeight": 40,
+    "compoundedWeightFormula": "(8x5)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x5",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/2582/snapshots/4",
+    "key": "2582",
+    "name": "Use Option Explicit",
+    "compoundedWeight": 5,
+    "compoundedWeightFormula": "(5x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "5x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61029/snapshots/4",
+          "name": "Complexity - Dynamic Instantiation",
+          "key": "61029"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6070/snapshots/4",
+    "key": "6070",
+    "name": "User event naming convention",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6106/snapshots/4",
+    "key": "6106",
+    "name": "User event naming convention - declare only",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/7260/snapshots/4",
+    "key": "7260",
+    "name": "User Interface elements must not use directly the database",
+    "compoundedWeight": 56,
+    "compoundedWeightFormula": "(8x7)",
+    "compoundedWeightTerms": [
+      {
+        "term": "8x7",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61001/snapshots/4",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6588/snapshots/4",
+    "key": "6588",
+    "name": "View naming convention - character set control",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6584/snapshots/4",
+    "key": "6584",
+    "name": "View naming convention - name size control",
+    "compoundedWeight": 3,
+    "compoundedWeightFormula": "(3x1)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x1",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  },
+  {
+    "href": "ETE4/quality-indicators/6062/snapshots/4",
+    "key": "6062",
+    "name": "Window naming convention",
+    "compoundedWeight": 12,
+    "compoundedWeightFormula": "(3x4)",
+    "compoundedWeightTerms": [
+      {
+        "term": "3x4",
+        "technicalCriterion": {
+          "href": "ETE4/quality-indicators/61017/snapshots/4",
+          "name": "Documentation - Naming Convention Conformity",
+          "key": "61017"
+        }
+      }
+    ],
+    "critical": false
+  }
+]

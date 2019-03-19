@@ -1,0 +1,77 @@
+﻿[
+  {
+    "number": 3,
+    "date": {
+      "time": 1539208800000,
+      "isoDate": "2018-10-11"
+    },
+    "application": {
+      "href": "GOAT/applications/3",
+      "name": "Webgoat",
+      "adgDatabase": "webgoat_central"
+    },
+    "applicationSnapshot": {
+      "href": "GOAT/applications/3/snapshots/3",
+      "name": "Webgoat"
+    },
+    "applicationResults": [
+      {
+        "type": "quality-standards",
+        "reference": {
+          "name": "CWE-22"
+        },
+        "result": {
+          "evolutionSummary": {
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-standards",
+        "reference": {
+          "name": "CWE-78"
+        },
+        "result": {
+          "evolutionSummary": {
+            "totalCriticalViolations": 7,
+            "addedCriticalViolations": 7,
+            "removedCriticalViolations": 5,
+            "totalViolations": 7,
+            "addedViolations": 7,
+            "removedViolations": 5
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-standards",
+        "reference": {
+          "name": "CWE-79"
+        },
+        "result": {
+          "evolutionSummary": {
+            "totalCriticalViolations": 7,
+            "addedCriticalViolations": 7,
+            "removedCriticalViolations": 2,
+            "totalViolations": 7,
+            "addedViolations": 7,
+            "removedViolations": 2
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  }
+]

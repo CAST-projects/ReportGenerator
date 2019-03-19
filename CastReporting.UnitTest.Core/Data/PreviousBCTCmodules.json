@@ -1,0 +1,3174 @@
+﻿[
+	{
+		"number": 3,
+		"date": {
+			"time": 1492380000000,
+			"isoDate": "2017-04-17"
+		},
+		"application": {
+			"href": "AED/applications/3",
+			"name": "CoCRestAPI",
+			"adgDatabase": "cocra_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED/applications/3/snapshots/3",
+			"name": "CoCRestAPI"
+		},
+		"applicationResults": [
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60011/snapshots/3",
+					"name": "Transferability",
+					"shortName": "Trsf",
+					"key": "60011",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.859640077182029,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 0,
+						"totalCriticalViolations": 10,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 903,
+						"totalViolations": 5112,
+						"addedViolations": 601,
+						"removedViolations": 95
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 2.8741238611488216,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 2,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 540,
+								"totalViolations": 1397,
+								"addedViolations": 457,
+								"removedViolations": 95
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.058770695922807,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 1,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 363,
+								"totalViolations": 1826,
+								"addedViolations": 144,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 2.9452782369722024,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 7,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 1889,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60012/snapshots/3",
+					"name": "Changeability",
+					"shortName": "Chng",
+					"key": "60012",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.3718192301189243,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 27,
+						"totalCriticalViolations": 99,
+						"addedCriticalViolations": 4,
+						"removedCriticalViolations": 6,
+						"violationsInNewAndModifiedCode": 636,
+						"totalViolations": 4518,
+						"addedViolations": 378,
+						"removedViolations": 57
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 2.779583764372874,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 7,
+								"totalCriticalViolations": 45,
+								"addedCriticalViolations": 2,
+								"removedCriticalViolations": 6,
+								"violationsInNewAndModifiedCode": 334,
+								"totalViolations": 828,
+								"addedViolations": 274,
+								"removedViolations": 52
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 2.887530401532667,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 20,
+								"totalCriticalViolations": 28,
+								"addedCriticalViolations": 2,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 302,
+								"totalViolations": 1639,
+								"addedViolations": 102,
+								"removedViolations": 3
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 1.925311123681597,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 26,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 2051,
+								"addedViolations": 2,
+								"removedViolations": 2
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60013/snapshots/3",
+					"name": "Robustness",
+					"shortName": "Rbst",
+					"key": "60013",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.9547814125393823,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 0,
+						"totalCriticalViolations": 30,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 470,
+						"totalViolations": 2643,
+						"addedViolations": 280,
+						"removedViolations": 34
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.1741669716381935,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 5,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 203,
+								"totalViolations": 532,
+								"addedViolations": 174,
+								"removedViolations": 23
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.397265688722667,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 2,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 267,
+								"totalViolations": 1235,
+								"addedViolations": 104,
+								"removedViolations": 9
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 2.9123381547266103,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 23,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 876,
+								"addedViolations": 2,
+								"removedViolations": 2
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60014/snapshots/3",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.8454624903539087,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 58,
+						"totalCriticalViolations": 548,
+						"addedCriticalViolations": 28,
+						"removedCriticalViolations": 11,
+						"violationsInNewAndModifiedCode": 225,
+						"totalViolations": 1100,
+						"addedViolations": 138,
+						"removedViolations": 39
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 1.8238482384823846,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 32,
+								"totalCriticalViolations": 180,
+								"addedCriticalViolations": 18,
+								"removedCriticalViolations": 6,
+								"violationsInNewAndModifiedCode": 73,
+								"totalViolations": 310,
+								"addedViolations": 51,
+								"removedViolations": 16
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 1.8746327799412446,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 26,
+								"totalCriticalViolations": 329,
+								"addedCriticalViolations": 10,
+								"removedCriticalViolations": 5,
+								"violationsInNewAndModifiedCode": 152,
+								"totalViolations": 683,
+								"addedViolations": 87,
+								"removedViolations": 23
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 2.688317131756702,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 39,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 107,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60015/snapshots/3",
+					"name": "SEI Maintainability",
+					"shortName": "SEI",
+					"key": "60015",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 3.3502714334531802,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 0,
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.335096181984494,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.4796790505133126,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 3.380097050961461,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60016/snapshots/3",
+					"name": "Security",
+					"shortName": "Secu",
+					"key": "60016",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.6964987569906333,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 20,
+						"totalCriticalViolations": 111,
+						"addedCriticalViolations": 14,
+						"removedCriticalViolations": 11,
+						"violationsInNewAndModifiedCode": 236,
+						"totalViolations": 972,
+						"addedViolations": 174,
+						"removedViolations": 44
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.047918510885609,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 19,
+								"totalCriticalViolations": 73,
+								"addedCriticalViolations": 14,
+								"removedCriticalViolations": 6,
+								"violationsInNewAndModifiedCode": 111,
+								"totalViolations": 294,
+								"addedViolations": 89,
+								"removedViolations": 32
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.237070283971469,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 1,
+								"totalCriticalViolations": 22,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 5,
+								"violationsInNewAndModifiedCode": 125,
+								"totalViolations": 573,
+								"addedViolations": 85,
+								"removedViolations": 12
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 2.739312162056562,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 16,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 105,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/60017/snapshots/3",
+					"name": "Total Quality Index",
+					"shortName": "TQI",
+					"key": "60017",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.5473555200813176,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 85,
+						"totalCriticalViolations": 663,
+						"addedCriticalViolations": 32,
+						"removedCriticalViolations": 17,
+						"violationsInNewAndModifiedCode": 1417,
+						"totalViolations": 7518,
+						"addedViolations": 927,
+						"removedViolations": 168
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 2.7565403214402298,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 39,
+								"totalCriticalViolations": 230,
+								"addedCriticalViolations": 20,
+								"removedCriticalViolations": 12,
+								"violationsInNewAndModifiedCode": 739,
+								"totalViolations": 1933,
+								"addedViolations": 601,
+								"removedViolations": 134
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 2.9225682577792798,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 46,
+								"totalCriticalViolations": 359,
+								"addedCriticalViolations": 12,
+								"removedCriticalViolations": 5,
+								"violationsInNewAndModifiedCode": 678,
+								"totalViolations": 3127,
+								"addedViolations": 324,
+								"removedViolations": 32
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 2.652114162991422,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 74,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 2458,
+								"addedViolations": 2,
+								"removedViolations": 2
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61001/snapshots/3",
+					"name": "Architecture - Multi-Layers and Data Access",
+					"key": "61001",
+					"critical": false
+				},
+				"result": {
+					"grade": 1,
+					"evolutionSummary": {
+						"totalCriticalViolations": 7,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 205,
+						"addedViolations": 4,
+						"removedViolations": 1
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 2.931226420107339,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 33,
+								"addedViolations": 4,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 2.64958063073138,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 165,
+								"addedViolations": 0,
+								"removedViolations": 1
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 7,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 7,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61003/snapshots/3",
+					"name": "Programming Practices - OO Inheritance and Polymorphism",
+					"key": "61003",
+					"critical": false
+				},
+				"result": {
+					"grade": 1,
+					"evolutionSummary": {
+						"totalCriticalViolations": 3,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 4,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 2,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 2,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 1,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 1,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 1,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61004/snapshots/3",
+					"name": "Architecture - OS and Platform Independence",
+					"key": "61004",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.91898148148148,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 2,
+						"addedViolations": 2,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.8449612403100764,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 2,
+								"addedViolations": 2,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61006/snapshots/3",
+					"name": "Documentation - Style Conformity",
+					"key": "61006",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.5176957831325304,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 389,
+						"addedViolations": 60,
+						"removedViolations": 6
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 1.285234899328859,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 115,
+								"addedViolations": 56,
+								"removedViolations": 6
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 1.6801470588235294,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 62,
+								"addedViolations": 4,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 1.5507915567282322,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 212,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61007/snapshots/3",
+					"name": "Documentation - Bad Comments",
+					"key": "61007",
+					"critical": false
+				},
+				"result": {
+					"grade": 4,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 10,
+						"addedViolations": 8,
+						"removedViolations": 2
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.502491694352159,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 9,
+								"addedViolations": 8,
+								"removedViolations": 2
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 1,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61008/snapshots/3",
+					"name": "Documentation - Automated Documentation",
+					"key": "61008",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.2655606995884776,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 1282,
+						"addedViolations": 280,
+						"removedViolations": 54
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 1.281469176818014,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 621,
+								"addedViolations": 196,
+								"removedViolations": 54
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 1.26981351981352,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 661,
+								"addedViolations": 84,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61009/snapshots/3",
+					"name": "Complexity - Algorithmic and Control Structure Complexity",
+					"key": "61009",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.5220539999045255,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 76,
+						"addedViolations": 5,
+						"removedViolations": 1
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.2902615429045317,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 17,
+								"addedViolations": 4,
+								"removedViolations": 1
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.816668574303336,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 11,
+								"addedViolations": 1,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 3.4369618024119992,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 48,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61010/snapshots/3",
+					"name": "Complexity - OO Inheritance and Polymorphism",
+					"key": "61010",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.658090286956267,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 14,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.718792866941015,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 2,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.861111111111111,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 1,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 3.452928870292887,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 11,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61011/snapshots/3",
+					"name": "Complexity - SQL Queries",
+					"key": "61011",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.7327924209020513,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 9,
+						"addedViolations": 3,
+						"removedViolations": 1
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.5555555555555554,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 9,
+								"addedViolations": 3,
+								"removedViolations": 1
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.971988795518207,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61013/snapshots/3",
+					"name": "Architecture - Object-level Dependencies",
+					"key": "61013",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.3098083399899676,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 679,
+						"addedViolations": 89,
+						"removedViolations": 7
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.14515336412052,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 147,
+								"addedViolations": 55,
+								"removedViolations": 7
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.2724191250148773,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 144,
+								"addedViolations": 34,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 3.1062445964786556,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 388,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61014/snapshots/3",
+					"name": "Programming Practices - Error and Exception Handling",
+					"key": "61014",
+					"critical": false
+				},
+				"result": {
+					"grade": 2.644578313253021,
+					"evolutionSummary": {
+						"totalCriticalViolations": 9,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 146,
+						"addedViolations": 58,
+						"removedViolations": 8
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.853611892906112,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 36,
+								"addedViolations": 14,
+								"removedViolations": 2
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.827956989247312,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 64,
+								"addedViolations": 44,
+								"removedViolations": 6
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 1.8126649076517083,
+							"evolutionSummary": {
+								"totalCriticalViolations": 9,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 46,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61016/snapshots/3",
+					"name": "Maintainability Indexes (SEI)",
+					"key": "61016",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.3502714334531802,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.335096181984494,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.4796790505133126,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 3.380097050961461,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61017/snapshots/3",
+					"name": "Documentation - Naming Convention Conformity",
+					"key": "61017",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.541235027484225,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 214,
+						"addedViolations": 5,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.4009675266903914,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 33,
+								"addedViolations": 5,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.307791095890411,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 55,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 3.708219087876792,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 126,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61018/snapshots/3",
+					"name": "Efficiency - Memory, Network and Disk Space Management",
+					"key": "61018",
+					"critical": false
+				},
+				"result": {
+					"grade": 1,
+					"evolutionSummary": {
+						"totalCriticalViolations": 91,
+						"addedCriticalViolations": 14,
+						"removedCriticalViolations": 11,
+						"totalViolations": 207,
+						"addedViolations": 30,
+						"removedViolations": 15
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 70,
+								"addedCriticalViolations": 14,
+								"removedCriticalViolations": 6,
+								"totalViolations": 132,
+								"addedViolations": 30,
+								"removedViolations": 10
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 21,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 5,
+								"totalViolations": 40,
+								"addedViolations": 0,
+								"removedViolations": 5
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 3.1961196820944364,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 35,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61019/snapshots/3",
+					"name": "Efficiency - SQL and Data Handling Performance",
+					"key": "61019",
+					"critical": false
+				},
+				"result": {
+					"grade": 1,
+					"evolutionSummary": {
+						"totalCriticalViolations": 329,
+						"addedCriticalViolations": 8,
+						"removedCriticalViolations": 0,
+						"totalViolations": 696,
+						"addedViolations": 97,
+						"removedViolations": 23
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 75,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 121,
+								"addedViolations": 12,
+								"removedViolations": 5
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 254,
+								"addedCriticalViolations": 8,
+								"removedCriticalViolations": 0,
+								"totalViolations": 575,
+								"addedViolations": 85,
+								"removedViolations": 18
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61020/snapshots/3",
+					"name": "Programming Practices - Modularity and OO Encapsulation Conformity",
+					"key": "61020",
+					"critical": false
+				},
+				"result": {
+					"grade": 1,
+					"evolutionSummary": {
+						"totalCriticalViolations": 85,
+						"addedCriticalViolations": 4,
+						"removedCriticalViolations": 6,
+						"totalViolations": 804,
+						"addedViolations": 84,
+						"removedViolations": 20
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 45,
+								"addedCriticalViolations": 2,
+								"removedCriticalViolations": 6,
+								"totalViolations": 116,
+								"addedViolations": 43,
+								"removedViolations": 20
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 28,
+								"addedCriticalViolations": 2,
+								"removedCriticalViolations": 0,
+								"totalViolations": 330,
+								"addedViolations": 41,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 12,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 358,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61022/snapshots/3",
+					"name": "Volume - Number of Components",
+					"key": "61022",
+					"critical": false
+				},
+				"result": {
+					"grade": 2.5715643342767747,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 37,
+						"addedViolations": 5,
+						"removedViolations": 1
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 2.5897745571658617,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 8,
+								"addedViolations": 3,
+								"removedViolations": 1
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 1.8369565217391304,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 14,
+								"addedViolations": 2,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 3.3574991953653037,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 15,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61023/snapshots/3",
+					"name": "Volume - Number of LOC",
+					"key": "61023",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.8066384948253784,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 37,
+						"addedViolations": 3,
+						"removedViolations": 2
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.4319950109877047,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 10,
+								"addedViolations": 2,
+								"removedViolations": 2
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 1,
+								"addedViolations": 1,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 3.8071201866085436,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 26,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61024/snapshots/3",
+					"name": "Programming Practices - Structuredness",
+					"key": "61024",
+					"critical": false
+				},
+				"result": {
+					"grade": 1,
+					"evolutionSummary": {
+						"totalCriticalViolations": 7,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 386,
+						"addedViolations": 9,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 2.1916666666666664,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 84,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 2.6819852941176467,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 270,
+								"addedViolations": 9,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 7,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 32,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61026/snapshots/3",
+					"name": "Complexity - Technical Complexity",
+					"key": "61026",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.54276474314396,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 3.80489417989418,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.915216086434574,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 3.039637488508003,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61027/snapshots/3",
+					"name": "Dead code (static)",
+					"key": "61027",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.6726831786644458,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 927,
+						"addedViolations": 62,
+						"removedViolations": 9
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 2.2858434955409446,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 144,
+								"addedViolations": 56,
+								"removedViolations": 9
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 1.904545177627532,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 506,
+								"addedViolations": 6,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 1.864790119487382,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 277,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61028/snapshots/3",
+					"name": "Documentation - Volume of Comments",
+					"key": "61028",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.9760534017442855,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 1048,
+						"addedViolations": 72,
+						"removedViolations": 12
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 2.8397435897435894,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 196,
+								"addedViolations": 69,
+								"removedViolations": 12
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 2.877545248868778,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 99,
+								"addedViolations": 3,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 1.5040607227375895,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 753,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/61029/snapshots/3",
+					"name": "Complexity - Dynamic Instantiation",
+					"key": "61029",
+					"critical": false
+				},
+				"result": {
+					"grade": 4,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66009/snapshots/3",
+					"name": "Architecture - Reuse",
+					"key": "66009",
+					"critical": false
+				},
+				"result": {
+					"grade": 1.8288951855254456,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 154,
+						"addedViolations": 43,
+						"removedViolations": 6
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 1.8489111260246371,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 45,
+								"addedViolations": 33,
+								"removedViolations": 2
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 2.026242315106844,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 58,
+								"addedViolations": 8,
+								"removedViolations": 2
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 1.893652267059817,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 51,
+								"addedViolations": 2,
+								"removedViolations": 2
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66031/snapshots/3",
+					"name": "Programming Practices",
+					"shortName": "Prog",
+					"key": "66031",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.5655068959604517,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 85,
+						"totalCriticalViolations": 652,
+						"addedCriticalViolations": 32,
+						"removedCriticalViolations": 17,
+						"violationsInNewAndModifiedCode": 620,
+						"totalViolations": 3531,
+						"addedViolations": 364,
+						"removedViolations": 80
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 2.6865977447181226,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 39,
+								"totalCriticalViolations": 227,
+								"addedCriticalViolations": 20,
+								"removedCriticalViolations": 12,
+								"violationsInNewAndModifiedCode": 233,
+								"totalViolations": 729,
+								"addedViolations": 173,
+								"removedViolations": 51
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 2.743819033315868,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 46,
+								"totalCriticalViolations": 358,
+								"addedCriticalViolations": 12,
+								"removedCriticalViolations": 5,
+								"violationsInNewAndModifiedCode": 387,
+								"totalViolations": 1881,
+								"addedViolations": 191,
+								"removedViolations": 29
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 2.8237663277531686,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 67,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 921,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66032/snapshots/3",
+					"name": "Architectural Design",
+					"shortName": "Arch",
+					"key": "66032",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.5144212517492233,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 0,
+						"totalCriticalViolations": 7,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 214,
+						"totalViolations": 1040,
+						"addedViolations": 138,
+						"removedViolations": 14
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 2.942563037640643,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 110,
+								"totalViolations": 227,
+								"addedViolations": 94,
+								"removedViolations": 9
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 2.9870605177132754,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 104,
+								"totalViolations": 367,
+								"addedViolations": 42,
+								"removedViolations": 3
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 1.9999656211794907,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 7,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 446,
+								"addedViolations": 2,
+								"removedViolations": 2
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66033/snapshots/3",
+					"name": "Documentation",
+					"shortName": "Doc",
+					"key": "66033",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.4601089823899036,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 0,
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 583,
+						"totalViolations": 2943,
+						"addedViolations": 425,
+						"removedViolations": 74
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 2.4619813773866026,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 396,
+								"totalViolations": 974,
+								"addedViolations": 334,
+								"removedViolations": 74
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 2.6270593846792476,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 187,
+								"totalViolations": 878,
+								"addedViolations": 91,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 2.6907678418356533,
+							"evolutionSummary": {
+								"criticalViolationsInNewAndModifiedCode": 0,
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"violationsInNewAndModifiedCode": 0,
+								"totalViolations": 1091,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66062/snapshots/3",
+					"name": "Secure Coding - Input Validation",
+					"key": "66062",
+					"critical": false
+				},
+				"result": {
+					"grade": 4,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66065/snapshots/3",
+					"name": "Secure Coding - Time and State",
+					"key": "66065",
+					"critical": false
+				},
+				"result": {
+					"grade": 4,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 0,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66066/snapshots/3",
+					"name": "Secure Coding - Encapsulation",
+					"key": "66066",
+					"critical": false
+				},
+				"result": {
+					"grade": 3.027958355361706,
+					"evolutionSummary": {
+						"totalCriticalViolations": 0,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 408,
+						"addedViolations": 80,
+						"removedViolations": 20
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 2.6363636363636362,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 88,
+								"addedViolations": 39,
+								"removedViolations": 20
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 2.572314049586777,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 303,
+								"addedViolations": 41,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 3.388772663877267,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 17,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66068/snapshots/3",
+					"name": "Efficiency - Expensive Calls in Loops",
+					"key": "66068",
+					"critical": false
+				},
+				"result": {
+					"grade": 1,
+					"evolutionSummary": {
+						"totalCriticalViolations": 128,
+						"addedCriticalViolations": 6,
+						"removedCriticalViolations": 0,
+						"totalViolations": 188,
+						"addedViolations": 8,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 35,
+								"addedCriticalViolations": 4,
+								"removedCriticalViolations": 0,
+								"totalViolations": 48,
+								"addedViolations": 6,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 54,
+								"addedCriticalViolations": 2,
+								"removedCriticalViolations": 0,
+								"totalViolations": 68,
+								"addedViolations": 2,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 1,
+							"evolutionSummary": {
+								"totalCriticalViolations": 39,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 72,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-criteria",
+				"reference": {
+					"href": "AED/quality-indicators/66069/snapshots/3",
+					"name": "Programming Practices - Unexpected Behavior",
+					"key": "66069",
+					"critical": false
+				},
+				"result": {
+					"grade": 2.596491228070164,
+					"evolutionSummary": {
+						"totalCriticalViolations": 4,
+						"addedCriticalViolations": 0,
+						"removedCriticalViolations": 0,
+						"totalViolations": 4,
+						"addedViolations": 0,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/4/snapshots/3",
+							"name": "AAD-Admin"
+						},
+						"result": {
+							"grade": 1.993288590604024,
+							"evolutionSummary": {
+								"totalCriticalViolations": 3,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 3,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/5/snapshots/3",
+							"name": "AED-Admin"
+						},
+						"result": {
+							"grade": 3.270108043217276,
+							"evolutionSummary": {
+								"totalCriticalViolations": 1,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 1,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					},
+					{
+						"number": 3,
+						"moduleSnapshot": {
+							"href": "AED/modules/6/snapshots/3",
+							"name": "ReportGenerator"
+						},
+						"result": {
+							"grade": 4,
+							"evolutionSummary": {
+								"totalCriticalViolations": 0,
+								"addedCriticalViolations": 0,
+								"removedCriticalViolations": 0,
+								"totalViolations": 0,
+								"addedViolations": 0,
+								"removedViolations": 0
+							}
+						},
+						"technologyResults": []
+					}
+				],
+				"transactionResults": []
+			}
+		]
+	}
+]

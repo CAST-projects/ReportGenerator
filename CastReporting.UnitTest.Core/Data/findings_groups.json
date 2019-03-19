@@ -1,0 +1,33 @@
+﻿[
+  {
+    "name": "Associated Value",
+    "type": "group",
+    "values": [
+      [
+        {
+          "component": {
+            "href": "AED833/components/33469/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_APPLICATIONPROPERTIES/CLASS/CX_IOS_APPLICATIONPROPERTIES/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_APPLICATIONPROPERTIES",
+            "sourceCodes": {
+              "href": "AED833/components/33469/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        },
+        {
+          "component": {
+            "href": "AED833/components/32351/snapshots/16",
+            "name": "C:\\JENKINS6_SLAVE\\WORKSPACE\\CAIP_8.3.3_TESTE2E_CSS_ADG\\WORK\\CAST\\DEPLOY\\JURASSIC PARK\\WEBDYNPRO\\SIOS\\ABAP/CLASSPOOL/CX_IOS_WORDPROCESSING/CLASS/CX_IOS_WORDPROCESSING/METHOD/CONSTRUCTOR",
+            "shortName": "CX_IOS_WORDPROCESSING",
+            "sourceCodes": {
+              "href": "AED833/components/32351/snapshots/16/source-codes",
+              "name": "Source Codes"
+            }
+          }
+        }
+      ]
+    ],
+    "bookmarks": null
+  }
+]

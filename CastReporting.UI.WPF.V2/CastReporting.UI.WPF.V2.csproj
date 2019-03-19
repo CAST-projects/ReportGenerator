@@ -297,24 +297,6 @@
     <SplashScreen Include="Resources\Images\splash.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cast.Util\Cast.Util.csproj">
-      <Project>{1810eb4f-e9c6-4b34-94ec-65acb6802c58}</Project>
-      <Name>Cast.Util</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CastReporting.BLL\CastReporting.BLL.csproj">
-      <Project>{2f09fbca-1a16-4517-a485-ba2a5c0bc9f4}</Project>
-      <Name>CastReporting.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CastReporting.Domain\CastReporting.Domain.csproj">
-      <Project>{e696cc9d-e471-4360-8664-fba3c5b3d375}</Project>
-      <Name>CastReporting.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CastReporting.Reporting\CastReporting.Reporting.csproj">
-      <Project>{a00b1634-960e-44e0-94c3-bbfeb0e98e23}</Project>
-      <Name>CastReporting.Reporting</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\combobox-arrow.png" />
   </ItemGroup>
   <ItemGroup>

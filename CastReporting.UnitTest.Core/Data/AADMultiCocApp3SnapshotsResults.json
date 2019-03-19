@@ -1,0 +1,972 @@
+[
+  {
+    "number": 5,
+    "date": {
+      "time": 1501020000000,
+      "isoDate": "2017-07-26"
+    },
+    "application": {
+      "href": "AAD/applications/3",
+      "name": "ReportGenerator",
+      "adgDatabase": "abd83coc_central"
+    },
+    "applicationSnapshot": {
+      "href": "AAD/applications/3/snapshots/8",
+      "name": "ReportGenerator"
+    },
+    "applicationResults": [
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AAD/sizing-measures/10151/snapshots/8",
+          "name": "Number of Code Lines",
+          "shortName": "LOCs",
+          "key": "10151",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 29486
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 29486
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AAD/sizing-measures/10202/snapshots/8",
+          "name": "OMG-Compliant Automated Function Points",
+          "shortName": "AFP",
+          "key": "10202",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 477
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60011/snapshots/8",
+          "name": "Transferability",
+          "shortName": "Trsf",
+          "key": "60011",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.0675981635459384,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 6,
+            "violationsInNewAndModifiedCode": 1898,
+            "totalViolations": 4271,
+            "addedViolations": 1373,
+            "removedViolations": 149
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.0675981635459384,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 6,
+                "totalViolations": 4271,
+                "addedViolations": 1373,
+                "removedViolations": 149
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60012/snapshots/8",
+          "name": "Changeability",
+          "shortName": "Chng",
+          "key": "60012",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.5460690954629297,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 8,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 24,
+            "violationsInNewAndModifiedCode": 2108,
+            "totalViolations": 4417,
+            "addedViolations": 1418,
+            "removedViolations": 193
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 2.5460690954629297,
+              "evolutionSummary": {
+                "totalCriticalViolations": 8,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 24,
+                "totalViolations": 4417,
+                "addedViolations": 1418,
+                "removedViolations": 193
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60013/snapshots/8",
+          "name": "Robustness",
+          "shortName": "Rbst",
+          "key": "60013",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.324169202174385,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 8,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 6,
+            "violationsInNewAndModifiedCode": 817,
+            "totalViolations": 1939,
+            "addedViolations": 577,
+            "removedViolations": 78
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.324169202174385,
+              "evolutionSummary": {
+                "totalCriticalViolations": 8,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 6,
+                "totalViolations": 1939,
+                "addedViolations": 577,
+                "removedViolations": 78
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60014/snapshots/8",
+          "name": "Efficiency",
+          "shortName": "Efcy",
+          "key": "60014",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.654835102984507,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 9,
+            "totalCriticalViolations": 33,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 9,
+            "violationsInNewAndModifiedCode": 109,
+            "totalViolations": 192,
+            "addedViolations": 82,
+            "removedViolations": 30
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 2.654835102984507,
+              "evolutionSummary": {
+                "totalCriticalViolations": 33,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 9,
+                "totalViolations": 192,
+                "addedViolations": 82,
+                "removedViolations": 30
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60015/snapshots/8",
+          "name": "SEI Maintainability",
+          "shortName": "SEI",
+          "key": "60015",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.313471129049412,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 0,
+            "totalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.313471129049412,
+              "evolutionSummary": {
+                "totalCriticalViolations": 0,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 0,
+                "addedViolations": 0,
+                "removedViolations": 0
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60016/snapshots/8",
+          "name": "Security",
+          "shortName": "Secu",
+          "key": "60016",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.2956017703485663,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 8,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 97,
+            "totalViolations": 189,
+            "addedViolations": 83,
+            "removedViolations": 47
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.2956017703485663,
+              "evolutionSummary": {
+                "totalCriticalViolations": 8,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 0,
+                "totalViolations": 189,
+                "addedViolations": 83,
+                "removedViolations": 47
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60017/snapshots/8",
+          "name": "Total Quality Index",
+          "shortName": "TQI",
+          "key": "60017",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.0255837805875934,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 9,
+            "totalCriticalViolations": 41,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 33,
+            "violationsInNewAndModifiedCode": 2490,
+            "totalViolations": 5278,
+            "addedViolations": 1691,
+            "removedViolations": 241
+          }
+        },
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.0255837805875934,
+              "evolutionSummary": {
+                "totalCriticalViolations": 41,
+                "addedCriticalViolations": 0,
+                "removedCriticalViolations": 33,
+                "totalViolations": 5278,
+                "addedViolations": 1691,
+                "removedViolations": 241
+              }
+            }
+          }
+        ],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/66031/snapshots/8",
+          "name": "Programming Practices",
+          "shortName": "Prog",
+          "key": "66031",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.31863321051196,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 9,
+            "totalCriticalViolations": 33,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 33,
+            "violationsInNewAndModifiedCode": 959,
+            "totalViolations": 1817,
+            "addedViolations": 594,
+            "removedViolations": 120
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/66032/snapshots/8",
+          "name": "Architectural Design",
+          "shortName": "Arch",
+          "key": "66032",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 1.8128752687336345,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 8,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 357,
+            "totalViolations": 904,
+            "addedViolations": 217,
+            "removedViolations": 35
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/66033/snapshots/8",
+          "name": "Documentation",
+          "shortName": "Doc",
+          "key": "66033",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.56544445857315,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 1174,
+            "totalViolations": 2557,
+            "addedViolations": 880,
+            "removedViolations": 86
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "critical-violation-statistics",
+        "reference": {
+          "href": "AAD/sizing-measures/67013/snapshots/8",
+          "name": "Number of violations to critical quality rules per KLOC (average)",
+          "key": "67013",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 1.3904904022247846
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-debt-statistics",
+        "reference": {
+          "href": "AAD/sizing-measures/68001/snapshots/8",
+          "name": "Technical Debt",
+          "shortName": "Debt",
+          "key": "68001",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 420178.125
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/61001/snapshots/8",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001",
+          "critical": false
+        },
+        "result": {
+          "grade": 1,
+          "evolutionSummary": {
+            "totalCriticalViolations": 8,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 8,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/61003/snapshots/8",
+          "name": "Programming Practices - OO Inheritance and Polymorphism",
+          "key": "61003",
+          "critical": false
+        },
+        "result": {
+          "grade": 4,
+          "evolutionSummary": {
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 1
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AAD/quality-indicators/7460/snapshots/8",
+          "name": "Avoid using untyped DataSet",
+          "key": "7460",
+          "critical": true
+        },
+        "result": {
+          "grade": 4,
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 6,
+            "addedViolations": 0,
+            "removedViolations": 6
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AAD/quality-indicators/3580/snapshots/8",
+          "name": "Avoid large Classes - too many Methods",
+          "key": "3580",
+          "critical": false
+        },
+        "result": {
+          "grade": 4,
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 1
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "date": {
+      "time": 1497909600000,
+      "isoDate": "2017-06-20"
+    },
+    "application": {
+      "href": "AAD/applications/3",
+      "name": "ReportGenerator",
+      "adgDatabase": "abd83coc_central"
+    },
+    "applicationSnapshot": {
+      "href": "AAD/applications/3/snapshots/7",
+      "name": "ReportGenerator"
+    },
+    "applicationResults": [
+      {
+        "type": "technical-size-measures",
+        "reference": {
+          "href": "AAD/sizing-measures/10151/snapshots/7",
+          "name": "Number of Code Lines",
+          "shortName": "LOCs",
+          "key": "10151",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 24447
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "functional-weight-measures",
+        "reference": {
+          "href": "AAD/sizing-measures/10202/snapshots/7",
+          "name": "OMG-Compliant Automated Function Points",
+          "shortName": "AFP",
+          "key": "10202",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 499
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60011/snapshots/7",
+          "name": "Transferability",
+          "shortName": "Trsf",
+          "key": "60011",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.8907926476397767,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 4,
+            "totalCriticalViolations": 6,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 1,
+            "violationsInNewAndModifiedCode": 2493,
+            "totalViolations": 3047,
+            "addedViolations": 1467,
+            "removedViolations": 582
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60012/snapshots/7",
+          "name": "Changeability",
+          "shortName": "Chng",
+          "key": "60012",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 1.865154781468156,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 10,
+            "totalCriticalViolations": 32,
+            "addedCriticalViolations": 8,
+            "removedCriticalViolations": 3,
+            "violationsInNewAndModifiedCode": 2598,
+            "totalViolations": 3192,
+            "addedViolations": 1442,
+            "removedViolations": 584
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60013/snapshots/7",
+          "name": "Robustness",
+          "shortName": "Rbst",
+          "key": "60013",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.180307698268813,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 4,
+            "totalCriticalViolations": 14,
+            "addedCriticalViolations": 2,
+            "removedCriticalViolations": 1,
+            "violationsInNewAndModifiedCode": 1219,
+            "totalViolations": 1440,
+            "addedViolations": 728,
+            "removedViolations": 265
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60014/snapshots/7",
+          "name": "Efficiency",
+          "shortName": "Efcy",
+          "key": "60014",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.6593702158364043,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 41,
+            "totalCriticalViolations": 42,
+            "addedCriticalViolations": 8,
+            "removedCriticalViolations": 6,
+            "violationsInNewAndModifiedCode": 123,
+            "totalViolations": 140,
+            "addedViolations": 69,
+            "removedViolations": 41
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60015/snapshots/7",
+          "name": "SEI Maintainability",
+          "shortName": "SEI",
+          "key": "60015",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.3306872221254578,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 0,
+            "totalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60016/snapshots/7",
+          "name": "Security",
+          "shortName": "Secu",
+          "key": "60016",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.2154540954925928,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 8,
+            "addedCriticalViolations": 2,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 112,
+            "totalViolations": 153,
+            "addedViolations": 75,
+            "removedViolations": 26
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/60017/snapshots/7",
+          "name": "Total Quality Index",
+          "shortName": "TQI",
+          "key": "60017",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.79243619551904,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 51,
+            "totalCriticalViolations": 74,
+            "addedCriticalViolations": 16,
+            "removedCriticalViolations": 9,
+            "violationsInNewAndModifiedCode": 3191,
+            "totalViolations": 3828,
+            "addedViolations": 1783,
+            "removedViolations": 701
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/66031/snapshots/7",
+          "name": "Programming Practices",
+          "shortName": "Prog",
+          "key": "66031",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.9558241081884775,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 51,
+            "totalCriticalViolations": 66,
+            "addedCriticalViolations": 14,
+            "removedCriticalViolations": 9,
+            "violationsInNewAndModifiedCode": 1096,
+            "totalViolations": 1343,
+            "addedViolations": 572,
+            "removedViolations": 268
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/66032/snapshots/7",
+          "name": "Architectural Design",
+          "shortName": "Arch",
+          "key": "66032",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 1.807581572115998,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 8,
+            "addedCriticalViolations": 2,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 674,
+            "totalViolations": 722,
+            "addedViolations": 358,
+            "removedViolations": 92
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/66033/snapshots/7",
+          "name": "Documentation",
+          "shortName": "Doc",
+          "key": "66033",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.573176148414353,
+          "evolutionSummary": {
+            "criticalViolationsInNewAndModifiedCode": 0,
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "violationsInNewAndModifiedCode": 1421,
+            "totalViolations": 1763,
+            "addedViolations": 853,
+            "removedViolations": 341
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "critical-violation-statistics",
+        "reference": {
+          "href": "AAD/sizing-measures/67013/snapshots/7",
+          "name": "Number of violations to critical quality rules per KLOC (average)",
+          "key": "67013",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 3.0269562727533033
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-debt-statistics",
+        "reference": {
+          "href": "AAD/sizing-measures/68001/snapshots/7",
+          "name": "Technical Debt",
+          "shortName": "Debt",
+          "key": "68001",
+          "critical": "N/A"
+        },
+        "result": {
+          "value": 311865.75
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/61001/snapshots/7",
+          "name": "Architecture - Multi-Layers and Data Access",
+          "key": "61001",
+          "critical": false
+        },
+        "result": {
+          "grade": 1,
+          "evolutionSummary": {
+            "totalCriticalViolations": 8,
+            "addedCriticalViolations": 2,
+            "removedCriticalViolations": 0,
+            "totalViolations": 8,
+            "addedViolations": 2,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "technical-criteria",
+        "reference": {
+          "href": "AAD/quality-indicators/61003/snapshots/7",
+          "name": "Programming Practices - OO Inheritance and Polymorphism",
+          "key": "61003",
+          "critical": false
+        },
+        "result": {
+          "grade": 4,
+          "evolutionSummary": {
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 1,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AAD/quality-indicators/7460/snapshots/7",
+          "name": "Avoid using untyped DataSet",
+          "key": "7460",
+          "critical": true
+        },
+        "result": {
+          "grade": 1,
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 1,
+            "addedViolations": 0,
+            "removedViolations": 1
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "AAD/quality-indicators/3580/snapshots/7",
+          "name": "Avoid large Classes - too many Methods",
+          "key": "3580",
+          "critical": false
+        },
+        "result": {
+          "grade": 3.9098639455782305,
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 1,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  }
+]

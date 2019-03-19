@@ -1,0 +1,202 @@
+[
+  {
+    "component": {
+      "href": "AED/components/273/snapshots/8",
+      "name": "CastReporting.Reporting.Helper",
+      "shortName": "Helper",
+      "propagationRiskIndex": 1288,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/273/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/273/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/273/snapshots/8/findings/7294",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7294",
+      "name": "Avoid cyclical calls and inheritances between namespaces content"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/961/snapshots/8",
+      "name": "CastReporting.UI.WPF.ViewModel",
+      "shortName": "ViewModel",
+      "propagationRiskIndex": 336,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/961/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/961/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "added",
+      "findings": {
+        "href": "AED/components/961/snapshots/8/findings/7294",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": {
+      "status": "added",
+      "userName": "architect",
+      "comment": "to exclude",
+      "dates": {
+        "updated": {
+          "time": 1504855007000,
+          "isoDate": "2017-09-08"
+        }
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7294",
+      "name": "Avoid cyclical calls and inheritances between namespaces content"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/2917/snapshots/8",
+      "name": "CastReporting.Mediation.Interfaces",
+      "shortName": "Interfaces",
+      "propagationRiskIndex": 168,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/2917/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/2917/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "unchanged",
+      "findings": {
+        "href": "AED/components/2917/snapshots/8/findings/7294",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7294",
+      "name": "Avoid cyclical calls and inheritances between namespaces content"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/1094/snapshots/8",
+      "name": "CastReporting.Reporting.Builder",
+      "shortName": "Builder",
+      "propagationRiskIndex": 168,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/1094/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/1094/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "updated",
+      "findings": {
+        "href": "AED/components/1094/snapshots/8/findings/7294",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7294",
+      "name": "Avoid cyclical calls and inheritances between namespaces content"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/806/snapshots/8",
+      "name": "CastReporting.Reporting",
+      "shortName": "Reporting",
+      "propagationRiskIndex": 112,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/806/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/806/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "updated",
+      "findings": {
+        "href": "AED/components/806/snapshots/8/findings/7294",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "AED/rule-patterns/7294",
+      "name": "Avoid cyclical calls and inheritances between namespaces content"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "AED/components/3015/snapshots/8",
+      "name": "CastReporting.UI.WPF",
+      "shortName": "WPF",
+      "propagationRiskIndex": 112,
+      "status": "unchanged",
+      "sourceCodes": {
+        "href": "AED/components/3015/snapshots/8/source-codes",
+        "name": "Source Codes"
+      },
+      "treeNodes": {
+        "href": "AED/components/3015/snapshots/8/tree-nodes",
+        "name": "Tree Nodes"
+      }
+    },
+    "diagnosis": {
+      "status": "added",
+      "findings": {
+        "href": "AED/components/3015/snapshots/8/findings/7294",
+        "name": "Diagnosis Findings"
+      }
+    },
+    "exclusionRequest": {
+      "status": "added",
+      "userName": "architect",
+      "comment": "to exclude",
+      "dates": {
+        "updated": {
+          "time": 1504855007000,
+          "isoDate": "2017-09-08"
+        }
+      }
+    },
+    "rulePattern": {
+      "href": "AED/rule-patterns/7294",
+      "name": "Avoid cyclical calls and inheritances between namespaces content"
+    },
+    "remedialAction": null
+  }
+]

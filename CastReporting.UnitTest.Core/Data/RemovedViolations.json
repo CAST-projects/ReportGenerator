@@ -1,0 +1,222 @@
+[
+  {
+    "component": {
+      "href": "ETE4/components/21590/snapshots/15",
+      "name": "com.castsoftware.util.server.Session.server",
+      "shortName": "server",
+      "status": "unchanged"
+    },
+    "diagnosis": {
+      "status": "corrected",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7650",
+      "name": "All types of a serializable Class must be serializable (ASCRM-RLB-2)"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/22310/snapshots/15",
+      "name": "com.castsoftware.util.server.user.User.dataManager",
+      "shortName": "dataManager",
+      "status": "unchanged"
+    },
+    "diagnosis": {
+      "status": "corrected",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7650",
+      "name": "All types of a serializable Class must be serializable (ASCRM-RLB-2)"
+    },
+    "remedialAction": {
+      "status": "solved",
+      "priority": "high",
+      "comment": "to do",
+      "dates": {
+        "updated": {
+          "time": 1502445900000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "ETE4/components/18830/snapshots/15",
+      "name": "<Default Package>.ButtonOk.actionPerformed",
+      "shortName": "actionPerformed",
+      "status": "unchanged"
+    },
+    "diagnosis": {
+      "status": "disappeared",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7126",
+      "name": "Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio"
+    },
+    "remedialAction": {
+      "status": "added",
+      "priority": "high",
+      "comment": "to do",
+      "dates": {
+        "updated": {
+          "time": 1502445900000,
+          "isoDate": "2017-08-11"
+        }
+      }
+    }
+  },
+  {
+    "component": {
+      "href": "ETE4/components/33247/snapshots/15",
+      "name": "<Default Package>.ConfigOptions.ConfigOptions",
+      "shortName": "ConfigOptions",
+      "status": "unchanged"
+    },
+    "diagnosis": {
+      "status": "disappeared",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7126",
+      "name": "Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/21002/snapshots/15",
+      "name": "<Default Package>.DynGraph.init",
+      "shortName": "init",
+      "status": "unchanged"
+    },
+    "diagnosis": {
+      "status": "excluded",
+      "findings": null
+    },
+    "exclusionRequest": {
+      "status": "added",
+      "userName": "architect",
+      "comment": "to exclude",
+      "dates": {
+        "updated": {
+          "time": 1504855007000,
+          "isoDate": "2017-09-08"
+        }
+      }
+    },
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7126",
+      "name": "Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/20949/snapshots/15",
+      "name": "<Default Package>.DynGraph.mouseClicked",
+      "shortName": "mouseClicked",
+      "status": "unchanged"
+    },
+    "diagnosis": {
+      "status": "excluded",
+      "findings": null
+    },
+    "exclusionRequest": {
+      "status": "added",
+      "userName": "architect",
+      "comment": "to exclude",
+      "dates": {
+        "updated": {
+          "time": 1504855007000,
+          "isoDate": "2017-09-08"
+        }
+      }
+    },
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7126",
+      "name": "Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/19552/snapshots/15",
+      "name": "<Default Package>.PolygonButton.mouseEntered",
+      "shortName": "mouseEntered",
+      "status": "unchanged"
+    },
+    "diagnosis": {
+      "status": "corrected",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7126",
+      "name": "Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/17014/snapshots/15",
+      "name": "<Default Package>.PolygonButton.mouseExited",
+      "shortName": "mouseExited",
+      "status": "unchanged"
+    },
+    "diagnosis": {
+      "status": "disappeared",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7126",
+      "name": "Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/16619/snapshots/15",
+      "name": "<none>",
+      "shortName": "OnNewConnection",
+      "status": "updated"
+    },
+    "diagnosis": {
+      "status": "disappeared",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7126",
+      "name": "Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio"
+    },
+    "remedialAction": null
+  },
+  {
+    "component": {
+      "href": "ETE4/components/20973/snapshots/15",
+      "name": "[C:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Dream Team\\DssAdmin\\DssAdmin\\DSSADMIN.cpp].[_tmain(int, TCHAR**, TCHAR**)]",
+      "shortName": "_tmain",
+      "status": "updated"
+    },
+    "diagnosis": {
+      "status": "corrected",
+      "findings": null
+    },
+    "exclusionRequest": null,
+    "rulePattern": {
+      "href": "ETE4/rule-patterns/7126",
+      "name": "Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio"
+    },
+    "remedialAction": null
+  }
+]

@@ -1,0 +1,84 @@
+[
+	{
+		"number": 6,
+		"date": {
+			"time": 1484953200000,
+			"isoDate": "2017-01-21"
+		},
+		"application": {
+			"href": "AED/applications/3",
+			"name": "ReportGenerator",
+			"adgDatabase": "repgen82_central"
+		},
+		"applicationSnapshot": {
+			"href": "AED/applications/3/snapshots/6",
+			"name": "ReportGenerator"
+		},
+    "applicationResults": [
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60013/snapshots/6",
+          "name": "Robustness",
+          "shortName": "Rbst",
+          "key": "60013",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 3.1934772018853566
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60014/snapshots/6",
+          "name": "Efficiency",
+          "shortName": "Efcy",
+          "key": "60014",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.590669368680213
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60017/snapshots/6",
+          "name": "Total Quality Index",
+          "shortName": "TQI",
+          "key": "60017",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 2.7781377635159017
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "business-criteria",
+        "reference": {
+          "href": "AED/quality-indicators/60017/snapshots/6",
+          "name": "CustomMillion",
+          "shortName": "Million",
+          "key": "11203569",
+          "critical": "N/A"
+        },
+        "result": {
+          "grade": 1.92
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+	}
+]

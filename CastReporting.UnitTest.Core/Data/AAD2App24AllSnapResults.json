@@ -1,0 +1,662 @@
+﻿[
+	{
+		"number": 4,
+		"date": {
+			"time": 1384484640000,
+			"isoDate": "2013-11-15"
+		},
+		"application": {
+			"href": "AAD2/applications/24",
+			"name": "Big Ben",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"applicationSnapshot": {
+			"href": "AAD2/applications/24/snapshots/12",
+			"name": "Big Ben"
+		},
+		"applicationResults": [
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AAD2/sizing-measures/10151/snapshots/12",
+					"name": "Number of Code Lines",
+					"shortName": "LOCs",
+					"key": "10151",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 219490
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "functional-weight-measures",
+				"reference": {
+					"href": "AAD2/sizing-measures/10202/snapshots/12",
+					"name": "OMG-Compliant Automated Function Points",
+					"shortName": "AFP",
+					"key": "10202",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 2781
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AAD2/quality-indicators/60014/snapshots/12",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.3246462004129334,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 3,
+						"totalCriticalViolations": 151,
+						"addedCriticalViolations": 1,
+						"removedCriticalViolations": 4,
+						"violationsInNewAndModifiedCode": 55,
+						"totalViolations": 1079,
+						"addedViolations": 24,
+						"removedViolations": 20
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AAD2/quality-indicators/60017/snapshots/12",
+					"name": "Total Quality Index",
+					"shortName": "TQI",
+					"key": "60017",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.228244474595921,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 29,
+						"totalCriticalViolations": 616,
+						"addedCriticalViolations": 11,
+						"removedCriticalViolations": 10,
+						"violationsInNewAndModifiedCode": 389,
+						"totalViolations": 5533,
+						"addedViolations": 169,
+						"removedViolations": 67
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/67013/snapshots/12",
+					"name": "Number of violations to critical quality rules per KLOC (average)",
+					"key": "67013",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 2.8065059911613286
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68001/snapshots/12",
+					"name": "Technical Debt",
+					"shortName": "Debt",
+					"key": "68001",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 612016.5
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68901/snapshots/12",
+					"name": "Technical Debt of added Violations",
+					"shortName": "Debt added",
+					"key": "68901",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 16578.375
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68902/snapshots/12",
+					"name": "Technical Debt of removed Violations",
+					"shortName": "Debt removed",
+					"key": "68902",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 7878.000000000001
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	},
+	{
+		"number": 3,
+		"date": {
+			"time": 1380578400000,
+			"isoDate": "2013-10-01"
+		},
+		"application": {
+			"href": "AAD2/applications/24",
+			"name": "Big Ben",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"applicationSnapshot": {
+			"href": "AAD2/applications/24/snapshots/11",
+			"name": "Big Ben"
+		},
+		"applicationResults": [
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AAD2/sizing-measures/10151/snapshots/11",
+					"name": "Number of Code Lines",
+					"shortName": "LOCs",
+					"key": "10151",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 211810
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "functional-weight-measures",
+				"reference": {
+					"href": "AAD2/sizing-measures/10202/snapshots/11",
+					"name": "OMG-Compliant Automated Function Points",
+					"shortName": "AFP",
+					"key": "10202",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 2528
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AAD2/quality-indicators/60014/snapshots/11",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.323452854666743,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 147,
+						"totalCriticalViolations": 154,
+						"addedCriticalViolations": 143,
+						"removedCriticalViolations": 1,
+						"violationsInNewAndModifiedCode": 926,
+						"totalViolations": 1075,
+						"addedViolations": 890,
+						"removedViolations": 24
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AAD2/quality-indicators/60017/snapshots/11",
+					"name": "Total Quality Index",
+					"shortName": "TQI",
+					"key": "60017",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.2319575015914457,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 505,
+						"totalCriticalViolations": 615,
+						"addedCriticalViolations": 484,
+						"removedCriticalViolations": 11,
+						"violationsInNewAndModifiedCode": 3940,
+						"totalViolations": 5431,
+						"addedViolations": 3719,
+						"removedViolations": 172
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/67013/snapshots/11",
+					"name": "Number of violations to critical quality rules per KLOC (average)",
+					"key": "67013",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 2.903545630517917
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68001/snapshots/11",
+					"name": "Technical Debt",
+					"shortName": "Debt",
+					"key": "68001",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 603892.125
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68901/snapshots/11",
+					"name": "Technical Debt of added Violations",
+					"shortName": "Debt added",
+					"key": "68901",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 427115.625
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68902/snapshots/11",
+					"name": "Technical Debt of removed Violations",
+					"shortName": "Debt removed",
+					"key": "68902",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 16770.375
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	},
+	{
+		"number": 2,
+		"date": {
+			"time": 1364767200000,
+			"isoDate": "2013-04-01"
+		},
+		"application": {
+			"href": "AAD2/applications/24",
+			"name": "Big Ben",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"applicationSnapshot": {
+			"href": "AAD2/applications/24/snapshots/10",
+			"name": "Big Ben"
+		},
+		"applicationResults": [
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AAD2/sizing-measures/10151/snapshots/10",
+					"name": "Number of Code Lines",
+					"shortName": "LOCs",
+					"key": "10151",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 129635
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "functional-weight-measures",
+				"reference": {
+					"href": "AAD2/sizing-measures/10202/snapshots/10",
+					"name": "OMG-Compliant Automated Function Points",
+					"shortName": "AFP",
+					"key": "10202",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 2474
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AAD2/quality-indicators/60014/snapshots/10",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.8877595155709344,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 4,
+						"totalCriticalViolations": 12,
+						"addedCriticalViolations": 3,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 59,
+						"totalViolations": 209,
+						"addedViolations": 37,
+						"removedViolations": 8
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AAD2/quality-indicators/60017/snapshots/10",
+					"name": "Total Quality Index",
+					"shortName": "TQI",
+					"key": "60017",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.462032784796614,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 34,
+						"totalCriticalViolations": 142,
+						"addedCriticalViolations": 20,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 585,
+						"totalViolations": 1884,
+						"addedViolations": 383,
+						"removedViolations": 38
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/67013/snapshots/10",
+					"name": "Number of violations to critical quality rules per KLOC (average)",
+					"key": "67013",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 1.0953831912677903
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68001/snapshots/10",
+					"name": "Technical Debt",
+					"shortName": "Debt",
+					"key": "68001",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 192010.875
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68901/snapshots/10",
+					"name": "Technical Debt of added Violations",
+					"shortName": "Debt added",
+					"key": "68901",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 37520.25
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68902/snapshots/10",
+					"name": "Technical Debt of removed Violations",
+					"shortName": "Debt removed",
+					"key": "68902",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 3472.125
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	},
+	{
+		"number": 1,
+		"date": {
+			"time": 1362103380000,
+			"isoDate": "2013-03-01"
+		},
+		"application": {
+			"href": "AAD2/applications/24",
+			"name": "Big Ben",
+			"adgDatabase": "endtoend_820_central"
+		},
+		"applicationSnapshot": {
+			"href": "AAD2/applications/24/snapshots/9",
+			"name": "Big Ben"
+		},
+		"applicationResults": [
+			{
+				"type": "technical-size-measures",
+				"reference": {
+					"href": "AAD2/sizing-measures/10151/snapshots/9",
+					"name": "Number of Code Lines",
+					"shortName": "LOCs",
+					"key": "10151",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 120412
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "functional-weight-measures",
+				"reference": {
+					"href": "AAD2/sizing-measures/10202/snapshots/9",
+					"name": "OMG-Compliant Automated Function Points",
+					"shortName": "AFP",
+					"key": "10202",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 2164
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AAD2/quality-indicators/60014/snapshots/9",
+					"name": "Efficiency",
+					"shortName": "Efcy",
+					"key": "60014",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 1.889622798271851,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 9,
+						"totalCriticalViolations": 9,
+						"addedCriticalViolations": 9,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 180,
+						"totalViolations": 180,
+						"addedViolations": 180,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "business-criteria",
+				"reference": {
+					"href": "AAD2/quality-indicators/60017/snapshots/9",
+					"name": "Total Quality Index",
+					"shortName": "TQI",
+					"key": "60017",
+					"critical": "N/A"
+				},
+				"result": {
+					"grade": 2.3642301533360572,
+					"evolutionSummary": {
+						"criticalViolationsInNewAndModifiedCode": 122,
+						"totalCriticalViolations": 122,
+						"addedCriticalViolations": 122,
+						"removedCriticalViolations": 0,
+						"violationsInNewAndModifiedCode": 1539,
+						"totalViolations": 1539,
+						"addedViolations": 1539,
+						"removedViolations": 0
+					}
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "critical-violation-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/67013/snapshots/9",
+					"name": "Number of violations to critical quality rules per KLOC (average)",
+					"key": "67013",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 1.0131880543467429
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68001/snapshots/9",
+					"name": "Technical Debt",
+					"shortName": "Debt",
+					"key": "68001",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 158346.75
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68901/snapshots/9",
+					"name": "Technical Debt of added Violations",
+					"shortName": "Debt added",
+					"key": "68901",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 158346.75
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			},
+			{
+				"type": "technical-debt-statistics",
+				"reference": {
+					"href": "AAD2/sizing-measures/68902/snapshots/9",
+					"name": "Technical Debt of removed Violations",
+					"shortName": "Debt removed",
+					"key": "68902",
+					"critical": "N/A"
+				},
+				"result": {
+					"value": 0
+				},
+				"technologyResults": [],
+				"moduleResults": [],
+				"transactionResults": []
+			}
+		]
+	}
+]

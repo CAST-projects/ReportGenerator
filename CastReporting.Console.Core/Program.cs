@@ -5,6 +5,8 @@ using CastReporting.Console.Argument;
 using CastReporting.Domain;
 using CastReporting.Reporting.Builder;
 using CastReporting.Reporting.ReportingModel;
+//using Microsoft.Office.Interop.PowerPoint;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -370,7 +372,7 @@ namespace CastReporting.Console
                             {
                                 tmpReportFile = tmpReportFileFlexi;
                             }
-                            File.Copy(tmpReportFile, reportPath, true);
+                            ConvertToPdfIfNeeded(arguments, ref reportPath, tmpReportFile);
                         }
                         finally
                         {
@@ -520,7 +522,7 @@ namespace CastReporting.Console
                     {
                         tmpReportFile = tmpReportFileFlexi;
                     }
-                    File.Copy(tmpReportFile, reportPath, true);
+                    ConvertToPdfIfNeeded(arguments, ref reportPath, tmpReportFile);
 
                     LogHelper.Instance.LogInfo("Report moved to generation directory successfully");
 
@@ -538,10 +540,64 @@ namespace CastReporting.Console
             }
         }
 
+        private static void ConvertToPdfIfNeeded(XmlCastReport arguments, ref string reportPath, string tmpReportFile)
+        {
+            // convert docx or pptx to pdf
+            if (reportPath.Contains(".pdf"))
+            {
+                if (tmpReportFile.Contains(".docx"))
+                {
+                    try
+                    {
+                        Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
+                        Document wordDocument = appWord.Documents.Open(tmpReportFile);
+                        wordDocument.ExportAsFixedFormat(reportPath, WdExportFormat.wdExportFormatPDF);
+                        wordDocument.Close();
+                        appWord.Quit();
+                    }
+                    catch (Exception e)
+                    {
+                        // Error if office not installed, then do not save as pdf
+                        LogHelper.Instance.LogWarn("Report cannot be saved as pdf : " + e.Message);
+                        reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
+                        File.Copy(tmpReportFile, reportPath, true);
+                    }
+                }
+                /*else if (tmpReportFile.Contains(".pptx"))
+                {
+                    try
+                    {
+                        Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
+                        Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
+                        appPres.ExportAsFixedFormat(reportPath, PpFixedFormatType.ppFixedFormatTypePDF);
+                        appPres.Close();
+                        appPowerpoint.Quit();
+                    }
+                    catch (Exception e)
+                    {
+                        // Error if office not installed, then do not save as pdf
+                        LogHelper.Instance.LogWarn("Report cannot be saved as pdf : " + e.Message);
+                        reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
+                        File.Copy(tmpReportFile, reportPath, true);
+                    }
+                }*/
+                else
+                {
+                    string report = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
+                    File.Copy(tmpReportFile, report, true);
+                }
+            }
+            else
+            {
+                //Copy report file to the selected destination
+                File.Copy(tmpReportFile, reportPath, true);
+            }
+        }
+        
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="arguments"></param>
+         /// 
+         /// </summary>
+         /// <param name="arguments"></param>
         private static void SetFileName(XmlCastReport arguments)
         {
             if (arguments.File == null)
