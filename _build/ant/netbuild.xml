@@ -106,6 +106,12 @@
 			</fileset>
 		</copy>
 		<chmod file="${wksp.dir}/flat/ReportGenerator.sh" perm="700"/>
+		<!-- copy the license -->
+		<copy todir="${wksp.dir}/flat">
+			<fileset dir="${rg.dir}/Setup">
+				<include name="License.rtf"/>
+			</fileset>
+		</copy>
 		<!-- zip the package -->
 		<castZip basedir="${wksp.dir}/flat" destfile="${wksp.dir}/flat.zip" />
 	</target>
