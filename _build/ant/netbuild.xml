@@ -116,6 +116,11 @@
 			</fileset>
 		</copy>
 		<!-- zip the package -->
-		<castZip basedir="${wksp.dir}/flat" destfile="${wksp.dir}/flat.zip" />
+		<zip destfile="${wksp.dir}/flat.zip" defaultexcludes="yes">
+			<fileset dir="${wksp.dir}/flat">
+				<include name="*"/>
+				<include name="**/*"/>
+			</fileset>
+		</zip>
 	</target>
 </project>
