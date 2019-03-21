@@ -214,7 +214,7 @@ namespace Cast.Util.Log
         /// </summary>
         public static void  SetPathLog(string pathLog)
         {
-            GlobalContext.Properties["APPNAME"] = Process.GetCurrentProcess().MainModule.ModuleName.Split('.')[0];
+            GlobalContext.Properties["APPNAME"] = "ReportGenerator";
             GlobalContext.Properties["LOGPATH"] = pathLog;
             GlobalContext.Properties["DATE"] = DateTime.Today.ToString("yyyyMMdd");
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());

@@ -32,7 +32,6 @@ namespace CastReporting.Console
         { 
             string showhelp;
             
-
             LogHelper.SetPathLog(SettingsBLL.GetApplicationPath());
             
             SetCulture();

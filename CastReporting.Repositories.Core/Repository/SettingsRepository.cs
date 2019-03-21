@@ -95,7 +95,7 @@ namespace CastReporting.Repositories
 
             return path;
             */
-            return System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         }
 
