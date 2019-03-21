@@ -5,8 +5,6 @@ using CastReporting.Console.Argument;
 using CastReporting.Domain;
 using CastReporting.Reporting.Builder;
 using CastReporting.Reporting.ReportingModel;
-//using Microsoft.Office.Interop.PowerPoint;
-using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -179,7 +177,7 @@ namespace CastReporting.Console
                     }
                     LogHelper.Instance.LogInfo("Web services Initialized successfully");
 
-                    List<Domain.Application> _apps = new List<Domain.Application>();
+                    List<Application> _apps = new List<Application>();
                     
                     try
                     {
@@ -193,13 +191,13 @@ namespace CastReporting.Console
                         LogHelper.Instance.LogInfo("Error occured while trying get applications for the portfolio : " + ex.Message);
                     }
 
-                    Domain.Application[] _selectedApps = _apps.ToArray<Domain.Application>();
+                    Application[] _selectedApps = _apps.ToArray<Application>();
                     LogHelper.Instance.LogInfo("Applications in the portfolio found successfully");
                     string[] _appsToIgnorePortfolioResult = PortfolioBLL.BuildPortfolioResult(connection, _selectedApps);
                     LogHelper.Instance.LogInfo("Build result for the portfolio");
-                    List<Domain.Application> _n_apps = new List<Domain.Application>();
+                    List<Application> _n_apps = new List<Application>();
                     //Remove from Array the Ignored Apps
-                    foreach (Domain.Application app in _selectedApps)
+                    foreach (Application app in _selectedApps)
                     {
                         int intAppYes = 0;
                         foreach (string s in _appsToIgnorePortfolioResult)
@@ -220,7 +218,7 @@ namespace CastReporting.Console
                             _n_apps.Add(app);
                         }
                     }
-                    Domain.Application[] _n_selectedApps = _n_apps.ToArray();
+                    Application[] _n_selectedApps = _n_apps.ToArray();
 
                     List<Snapshot> _snapshots = new List<Snapshot>();
 
@@ -372,7 +370,7 @@ namespace CastReporting.Console
                             {
                                 tmpReportFile = tmpReportFileFlexi;
                             }
-                            ConvertToPdfIfNeeded(arguments, ref reportPath, tmpReportFile);
+                            File.Copy(tmpReportFile, reportPath, true);
                         }
                         finally
                         {
@@ -429,7 +427,7 @@ namespace CastReporting.Console
 
 
                     //Initialize Application
-                    Domain.Application application = GetApplication(arguments, connection);
+                    Application application = GetApplication(arguments, connection);
                     if (application == null)
                     {
                         help = arguments.Application != null ? $"Application {arguments.Application.Name} can't be found." : "Application not set in arguments.";
@@ -528,7 +526,7 @@ namespace CastReporting.Console
                     {
                         tmpReportFile = tmpReportFileFlexi;
                     }
-                    ConvertToPdfIfNeeded(arguments, ref reportPath, tmpReportFile);
+                    File.Copy(tmpReportFile, reportPath, true);
 
                     LogHelper.Instance.LogInfo("Report moved to generation directory successfully");
 
@@ -546,60 +544,6 @@ namespace CastReporting.Console
             }
         }
 
-        private static void ConvertToPdfIfNeeded(XmlCastReport arguments, ref string reportPath, string tmpReportFile)
-        {
-            // convert docx or pptx to pdf
-            if (reportPath.Contains(".pdf"))
-            {
-                if (tmpReportFile.Contains(".docx"))
-                {
-                    try
-                    {
-                        Microsoft.Office.Interop.Word.Application appWord = new Microsoft.Office.Interop.Word.Application();
-                        Document wordDocument = appWord.Documents.Open(tmpReportFile);
-                        wordDocument.ExportAsFixedFormat(reportPath, WdExportFormat.wdExportFormatPDF);
-                        wordDocument.Close();
-                        appWord.Quit();
-                    }
-                    catch (Exception e)
-                    {
-                        // Error if office not installed, then do not save as pdf
-                        LogHelper.Instance.LogWarn("Report cannot be saved as pdf : " + e.Message);
-                        reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
-                        File.Copy(tmpReportFile, reportPath, true);
-                    }
-                }
-                /*else if (tmpReportFile.Contains(".pptx"))
-                {
-                    try
-                    {
-                        Microsoft.Office.Interop.PowerPoint.Application appPowerpoint = new Microsoft.Office.Interop.PowerPoint.Application();
-                        Presentation appPres = appPowerpoint.Presentations.Open(tmpReportFile);
-                        appPres.ExportAsFixedFormat(reportPath, PpFixedFormatType.ppFixedFormatTypePDF);
-                        appPres.Close();
-                        appPowerpoint.Quit();
-                    }
-                    catch (Exception e)
-                    {
-                        // Error if office not installed, then do not save as pdf
-                        LogHelper.Instance.LogWarn("Report cannot be saved as pdf : " + e.Message);
-                        reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
-                        File.Copy(tmpReportFile, reportPath, true);
-                    }
-                }*/
-                else
-                {
-                    string report = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
-                    File.Copy(tmpReportFile, report, true);
-                }
-            }
-            else
-            {
-                //Copy report file to the selected destination
-                File.Copy(tmpReportFile, reportPath, true);
-            }
-        }
-        
         /// <summary>
          /// 
          /// </summary>
@@ -645,7 +589,7 @@ namespace CastReporting.Console
         /// <param name="connection"></param>
         /// <param name="application"></param>
         /// <returns></returns>
-        private static void SetSnapshots(WSConnection connection, Domain.Application application)
+        private static void SetSnapshots(WSConnection connection, Application application)
         {          
             using (ApplicationBLL applicationBLL = new ApplicationBLL(connection, application))
             {
@@ -659,9 +603,9 @@ namespace CastReporting.Console
         /// <param name="arguments"></param>
         /// <param name="connection"></param>
         /// <returns></returns>
-        private static Domain.Application GetApplication(XmlCastReport arguments, WSConnection connection)
+        private static Application GetApplication(XmlCastReport arguments, WSConnection connection)
         {
-            List<Domain.Application> applications;
+            List<Application> applications;
 
             using (CastDomainBLL castDomainBLL = new CastDomainBLL(connection))
             {

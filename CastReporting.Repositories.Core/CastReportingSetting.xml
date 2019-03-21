@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Setting xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ReportingParameter>
+		<ApplicationSizeLimitSupSmall>200000</ApplicationSizeLimitSupSmall>
+		<ApplicationSizeLimitSupMedium>500000</ApplicationSizeLimitSupMedium>
+		<ApplicationSizeLimitSupLarge>1000000</ApplicationSizeLimitSupLarge>
+		<ApplicationQualityVeryLow>2</ApplicationQualityVeryLow>
+		<ApplicationQualityLow>2.8</ApplicationQualityLow>
+		<ApplicationQualityMedium>3.2</ApplicationQualityMedium>
+		<ApplicationQualityGood>3.5</ApplicationQualityGood>
+		<NbResultDefault>5</NbResultDefault>
+		<TemplatePath></TemplatePath>
+    <PortfolioFolderNamePath></PortfolioFolderNamePath>
+    <CultureName>en-US</CultureName>
+	</ReportingParameter>
+	<WSConnections />
+</Setting>

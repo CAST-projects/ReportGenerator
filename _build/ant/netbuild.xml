@@ -102,12 +102,12 @@
 		<copy todir="${wksp.dir}/flat/Templates/Portfolio">
 			<fileset dir="${reporting.dir}/PortfolioTemplatesFiles"/>
 		</copy>
-		<!-- copy the sh file
+		<!-- copy the settings file -->
 		<copy todir="${wksp.dir}/flat">
-			<fileset dir="${rg.dir}/_build">
-				<include name="ReportGenerator.sh"/>
+			<fileset dir="${rg.dir}/CastReporting.Repositories.Core">
+				<include name="CastReportingSetting.xml"/>
 			</fileset>
-		</copy> -->
+		</copy> 
 		<!-- copy the license -->
 		<copy todir="${wksp.dir}/flat">
 			<fileset dir="${rg.dir}/Setup">
