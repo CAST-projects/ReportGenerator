@@ -102,25 +102,17 @@
 		<copy todir="${wksp.dir}/flat/Templates/Portfolio">
 			<fileset dir="${reporting.dir}/PortfolioTemplatesFiles"/>
 		</copy>
-		<!-- add .sh file and make it as executable for linux -->
+		<!-- add .sh file -->
 		<copy todir="${wksp.dir}/flat">
 			<fileset dir="${rg.dir}/_build">
 				<include name="ReportGenerator.sh"/>
 			</fileset>
 		</copy>
-		<chmod file="${wksp.dir}/flat/ReportGenerator.sh" perm="700"/>
 		<!-- copy the license -->
 		<copy todir="${wksp.dir}/flat">
 			<fileset dir="${rg.dir}/Setup">
 				<include name="License.rtf"/>
 			</fileset>
 		</copy>
-		<!-- zip the package -->
-		<zip destfile="${wksp.dir}/flat.zip" defaultexcludes="yes">
-			<fileset dir="${wksp.dir}/flat">
-				<include name="*"/>
-				<include name="**/*"/>
-			</fileset>
-		</zip>
 	</target>
 </project>
