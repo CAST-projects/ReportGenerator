@@ -20,8 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Model", "_Model", "{9D27CA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Mediation", "1 - Mediation", "{47D6B6E1-1281-41CF-9A4B-BE95CE402C86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastReporting.UI.WPF.V2", "CastReporting.UI.WPF.V2\CastReporting.UI.WPF.V2.csproj", "{3FBE9345-25A4-49A3-B7A9-A8B51ACB5309}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cast.Util.Core", "Cast.Util.Core\Cast.Util.Core.csproj", "{F910A299-7E72-4B91-8DED-98FF2EB1222F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CastReporting.Domain.Core", "CastReporting.Domain.Core\CastReporting.Domain.Core.csproj", "{BE7BD5D7-E5CC-43EE-A5E6-865CD4C0EB32}"
@@ -42,7 +40,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CastReporting.Reporting.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CastReporting.Console.Core", "CastReporting.Console.Core\CastReporting.Console.Core.csproj", "{8AF1063F-3924-4FA0-9547-5A8D00F8616C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastReporting.UnitTest.Core", "CastReporting.UnitTest.Core\CastReporting.UnitTest.Core.csproj", "{248DD071-7CAC-4572-93A0-F526E7E42C84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CastReporting.UnitTest.Core", "CastReporting.UnitTest.Core\CastReporting.UnitTest.Core.csproj", "{248DD071-7CAC-4572-93A0-F526E7E42C84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,10 +48,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3FBE9345-25A4-49A3-B7A9-A8B51ACB5309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FBE9345-25A4-49A3-B7A9-A8B51ACB5309}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FBE9345-25A4-49A3-B7A9-A8B51ACB5309}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FBE9345-25A4-49A3-B7A9-A8B51ACB5309}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F910A299-7E72-4B91-8DED-98FF2EB1222F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F910A299-7E72-4B91-8DED-98FF2EB1222F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F910A299-7E72-4B91-8DED-98FF2EB1222F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -103,7 +97,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3FBE9345-25A4-49A3-B7A9-A8B51ACB5309} = {EBE93F10-1F78-426D-93D7-8E6F52361729}
 		{F910A299-7E72-4B91-8DED-98FF2EB1222F} = {FAC15DB8-86BC-49E2-BC1B-5CC1E99BF1F0}
 		{BE7BD5D7-E5CC-43EE-A5E6-865CD4C0EB32} = {9D27CABD-3305-4BB0-BFBF-3B69EFC0CB0D}
 		{BCAD5B72-7D42-496C-A023-0AE725116CC0} = {47D6B6E1-1281-41CF-9A4B-BE95CE402C86}

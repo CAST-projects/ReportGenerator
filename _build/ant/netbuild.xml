@@ -65,6 +65,7 @@
 	
 	<target name="signSetup">
 		<trycatch>
+
 			<try>
 				<castSignFile file="${Setup}" />
 			</try>
@@ -74,4 +75,10 @@
 		</trycatch>
 	</target>
 	
+	<target name="buildPackage">
+		<!-- create a dir for the package -->
+		<!-- put the needed dll and files from release build -->
+		<!-- put the templates in the right places -->
+		<!-- add .sh file and make it as executable for linux -->
+	</target>
 </project>
