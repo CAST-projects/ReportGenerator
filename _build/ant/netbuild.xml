@@ -117,7 +117,7 @@
 		<!-- zip the package -->
 		<zip destfile="${wksp.dir}/ReportGenerator.zip" defaultexcludes="yes" encoding="UTF-8">
 			<zipfileset dir="${wksp.dir}/flat" encoding="CESU-8" includes="**/*"/>
-			<zipfileset dir="${rg.dir}/_build" includes="*.sh" filemode="700" />
+			<!--zipfileset dir="${rg.dir}/_build" includes="*.sh" filemode="700" /-->
 		</zip>
 	</target>
 </project>
