@@ -115,5 +115,11 @@
 				<include name="License.rtf"/>
 			</fileset>
 		</copy>
+		<!-- zip the package -->
+		<zip destfile="${wksp.dir}/flat_test.zip" defaultexcludes="yes">
+			<zipfileset dir="${wksp.dir}/flat" encoding="CESU8" includes="*"/>
+			<zipfileset dir="${wksp.dir}/flat" encoding="CESU8" includes="**/*"/>
+			<zipfileset dir="${rg.dir}/_build/ReportGenerator.sh" filemode="700" />
+		</zip>
 	</target>
 </project>
