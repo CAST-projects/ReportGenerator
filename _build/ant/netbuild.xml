@@ -102,12 +102,13 @@
 		<copy todir="${wksp.dir}/flat/Templates/Portfolio">
 			<fileset dir="${reporting.dir}/PortfolioTemplatesFiles"/>
 		</copy>
-		<!-- add .sh file -->
+		<!-- add .sh file and make it as executable for linux -->
 		<copy todir="${wksp.dir}/flat">
 			<fileset dir="${rg.dir}/_build">
 				<include name="ReportGenerator.sh"/>
 			</fileset>
 		</copy>
+		<chmod file="${wksp.dir}/flat/ReportGenerator.sh" perm="700"/>
 		<!-- copy the license -->
 		<copy todir="${wksp.dir}/flat">
 			<fileset dir="${rg.dir}/Setup">
