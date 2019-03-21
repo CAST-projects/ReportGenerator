@@ -76,9 +76,37 @@
 	</target>
 	
 	<target name="buildPackage">
+		<property name="rg.dir" value="${wksp.dir}/ReportGenerator"/>
+		<property name="reporting.dir" value="${rg.dir}/CastReporting.Reporting.Core"/>
+		<property name="console.dir" value="${rg.dir}/CastReporting.Console.Core/bin/Release/netcoreapp2.2"/>
+	
 		<!-- create a dir for the package -->
+		<mkdir dir="${wksp.dir}/flat"/>
 		<!-- put the needed dll and files from release build -->
+		<copy todir="${wksp.dir}/flat">
+			<fileset dir="${console.dir}">
+				<include name="*.dll"/>
+				<include name="*/*.dll"/>
+				<include name="*.config"/>
+				<include name="CastReporting.Console.Core.runtimeconfig.json"/>
+				<include name="CastReporting.Console.Core.deps.json"/>
+				<include name="Parameters/Parameters.xml"/>
+			</fileset>
+		</copy>
 		<!-- put the templates in the right places -->
+		<mkdir dir="${wksp.dir}/flat/Templates"/>
+		<copy todir="${wksp.dir}/flat/Templates">
+			<fileset dir="${reporting.dir}/Templates"/>
+			<fileset dir="${reporting.dir}/PortfolioTemplatesFiles"/>
+		</copy>
 		<!-- add .sh file and make it as executable for linux -->
+		<copy todir="${wksp.dir}/flat">
+			<fileset dir="${rg.dir}/_build">
+				<include name="ReportGenerator.sh"/>
+			</fileset>
+		</copy>
+		<chmod file="${wksp.dir}/flat/ReportGenerator.sh" perm="700"/>
+		<!-- zip the package -->
+		<castZip basedir="${wksp.dir}/flat" destfile="${wksp.dir}/flat.zip" />
 	</target>
 </project>
