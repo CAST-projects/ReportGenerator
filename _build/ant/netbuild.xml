@@ -119,7 +119,7 @@
 		<zip destfile="${wksp.dir}/flat_test.zip" defaultexcludes="yes">
 			<zipfileset dir="${wksp.dir}/flat" encoding="CESU8" includes="*"/>
 			<zipfileset dir="${wksp.dir}/flat" encoding="CESU8" includes="**/*"/>
-			<zipfileset dir="${rg.dir}/_build/ReportGenerator.sh" filemode="700" />
+			<zipfileset dir="${rg.dir}/_build" includes="*.sh" filemode="700" />
 		</zip>
 	</target>
 </project>
