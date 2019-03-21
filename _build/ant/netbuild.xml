@@ -96,7 +96,10 @@
 		<!-- put the templates in the right places -->
 		<mkdir dir="${wksp.dir}/flat/Templates"/>
 		<copy todir="${wksp.dir}/flat/Templates">
-			<fileset dir="${reporting.dir}/Templates"/>
+			<fileset dir="${reporting.dir}/TemplatesFiles"/>
+		</copy>
+		<mkdir dir="${wksp.dir}/flat/Templates/Portfolio"/>
+		<copy todir="${wksp.dir}/flat/Templates/Portfolio">
 			<fileset dir="${reporting.dir}/PortfolioTemplatesFiles"/>
 		</copy>
 		<!-- add .sh file and make it as executable for linux -->
