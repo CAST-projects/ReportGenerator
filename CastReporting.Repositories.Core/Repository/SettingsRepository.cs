@@ -15,6 +15,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -51,9 +52,12 @@ namespace CastReporting.Repositories
             string settingFilePath = Path.Combine(GetApplicationPath(), Settings.Default.SettingFileName);
 
             var setting = File.Exists(settingFilePath) ? SerializerHelper.DeserializeFromFile<Setting>(settingFilePath) : new Setting();
-            
-            if(string.IsNullOrEmpty(setting.ReportingParameter.TemplatePath))
-                setting.ReportingParameter.TemplatePath = Path.Combine(GetApplicationPath(), Settings.Default.TemplateDirectory);
+
+            if (string.IsNullOrEmpty(setting.ReportingParameter.TemplatePath))
+            {
+                //setting.ReportingParameter.TemplatePath = Path.Combine(GetApplicationPath(), Settings.Default.TemplateDirectory);
+                setting.ReportingParameter.TemplatePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Settings.Default.TemplateDirectory);
+            }
             return setting;
         }
 
@@ -84,7 +88,6 @@ namespace CastReporting.Repositories
         /// <returns></returns>
         public string GetApplicationPath()
         {
-            /*
             Version vers = Assembly.GetExecutingAssembly().GetName().Version;
             string version = vers.Major.ToString() + '.' + vers.Minor.ToString() + '.' + vers.Build.ToString();
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), Settings.Default.CompanyName, Settings.Default.ProductName, version);
@@ -94,8 +97,13 @@ namespace CastReporting.Repositories
                 Directory.CreateDirectory(path);
 
             return path;
-            */
-            return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            /*
+            Console.Out.WriteLine("CodeBase : " + Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase));
+            Console.Out.WriteLine("Escaped CodeBase : " + Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().EscapedCodeBase));
+            Console.Out.WriteLine("Location : " + Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            Console.Out.WriteLine("AppDomain.CurrentDomain.BaseDirectory : " + AppDomain.CurrentDomain.BaseDirectory);
+            return AppDomain.CurrentDomain.BaseDirectory;
+                        */
 
         }
 
@@ -104,11 +112,11 @@ namespace CastReporting.Repositories
         /// 
         /// </summary>
         void IDisposable.Dispose()
-        {
+{
 
-        }              
-     
+}              
 
-      
-    }
+
+
+}
 }
