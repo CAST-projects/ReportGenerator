@@ -821,6 +821,7 @@ namespace CastReporting.Reporting.Helper
                 string _col1Name = GetItemName(type0, itemcol1, reportData);
                 if (_posConfig[1] != null)
                 {
+                    // ReSharper disable once AccessToModifiedClosure => false positive
                     rowData.AddRange(_posConfig[1].Parameters.Select(itemcol11 => GetItemName(type1, itemcol11, reportData)).Select(col11Name => _col1Name + " - " + col11Name));
                 }
                 else

@@ -17,7 +17,6 @@ using System;
 using log4net;
 using log4net.Appender;
 using log4net.Repository.Hierarchy;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using log4net.Config;

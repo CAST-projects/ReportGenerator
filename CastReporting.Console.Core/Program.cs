@@ -479,7 +479,7 @@ namespace CastReporting.Console
                             prevSnapshot = application.Snapshots.OrderByDescending(_ => _.Annotation.Date).Where(_ => _.Annotation.Date.DateSnapShot < currentSnapshot.Annotation.Date.DateSnapShot).ElementAtOrDefault(0);
                             if (prevSnapshot == null)
                             {
-                                LogHelper.Instance.LogInfo($"No Previous snapshot.");
+                                LogHelper.Instance.LogInfo("No Previous snapshot.");
                             }
                             else
                             {
@@ -490,7 +490,7 @@ namespace CastReporting.Console
                         }
                         else
                         {
-                            help = $"Previous snapshot can't be found";
+                            help = "Previous snapshot can't be found";
                             return string.Empty;
                         }
                     }

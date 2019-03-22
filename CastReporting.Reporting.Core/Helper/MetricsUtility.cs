@@ -2,7 +2,6 @@
 using CastReporting.Domain;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Helper;

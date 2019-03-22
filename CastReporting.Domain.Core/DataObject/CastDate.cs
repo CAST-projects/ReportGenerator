@@ -38,10 +38,7 @@ namespace CastReporting.Domain
                 DateTime date = new DateTime(1970, 01, 01, 0, 0, 0, DateTimeKind.Utc);
                 DateSnapShot = _time.HasValue ? date.AddMilliseconds(_time.Value).ToLocalTime() : (DateTime?)null;
             }
-            get
-            {
-                return _time;
-            }     
+            get => _time;
         }
 
 

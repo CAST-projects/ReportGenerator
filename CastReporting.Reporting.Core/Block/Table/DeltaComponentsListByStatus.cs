@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using CastReporting.BLL;
-using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Domain;
 using CastReporting.Reporting.Helper;
 using CastReporting.Reporting.Core.Languages;
-using DocumentFormat.OpenXml.Office.CoverPageProps;
 
 namespace CastReporting.Reporting.Block.Table
 {
@@ -57,14 +52,14 @@ namespace CastReporting.Reporting.Block.Table
 
             if (previousSnapshotId == null)
             {
-                rowData.AddRange(new string[]{Labels.NoPreviousSnapshot,string.Empty,string.Empty,string.Empty,string.Empty,string.Empty,string.Empty,string.Empty});
+                rowData.AddRange(new[]{Labels.NoPreviousSnapshot,string.Empty,string.Empty,string.Empty,string.Empty,string.Empty,string.Empty,string.Empty});
                 return new TableDefinition {HasRowHeaders = false,HasColumnHeaders = true,NbRows = 2,NbColumns = 8,Data = rowData};
             }
 
-            string[] allowedStatus = new string[] { "added", "deleted", "updated"};
+            string[] allowedStatus = new[] { "added", "deleted", "updated"};
             if (!allowedStatus.Contains(status))
             {
-                rowData.AddRange(new string[] { Labels.StatusNotAllowed, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
+                rowData.AddRange(new[] { Labels.StatusNotAllowed, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
                 return new TableDefinition { HasRowHeaders = false, HasColumnHeaders = true, NbRows = 2, NbColumns = 8, Data = rowData };
             }
 
@@ -79,7 +74,7 @@ namespace CastReporting.Reporting.Block.Table
                 }
                 else
                 {
-                    rowData.AddRange(new string[] { Labels.ModuleNotFound, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
+                    rowData.AddRange(new[] { Labels.ModuleNotFound, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
                     return new TableDefinition { HasRowHeaders = false, HasColumnHeaders = true, NbRows = 2, NbColumns = 8, Data = rowData };
                 }
             }
@@ -93,7 +88,7 @@ namespace CastReporting.Reporting.Block.Table
                 }
                 else
                 {
-                    rowData.AddRange(new string[] { Labels.TechnoNotFound, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
+                    rowData.AddRange(new[] { Labels.TechnoNotFound, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
                     return new TableDefinition { HasRowHeaders = false, HasColumnHeaders = true, NbRows = 2, NbColumns = 8, Data = rowData };
                 }
             }
@@ -105,14 +100,14 @@ namespace CastReporting.Reporting.Block.Table
         private IEnumerable<string> GetDeltaComponents(ReportData reportData, string href, string status, string currentSnapshotId, string previousSnapshotId, string complexity = "all", string technology = null)
         {
             List<string> dataList = new List<string>();
-            IEnumerable<DeltaComponent> components = complexity.Equals("all") || !(new string[] {"low", "moderate", "high", "very high"}.Contains(complexity))
+            IEnumerable<DeltaComponent> components = complexity.Equals("all") || !(new[] {"low", "moderate", "high", "very high"}.Contains(complexity))
                 ? reportData.RuleExplorer.GetDeltaComponents(href, status, currentSnapshotId, previousSnapshotId, technology).OrderBy(_ => _.Name)
                 : reportData.RuleExplorer.GetDeltaComponents(href, status, currentSnapshotId, previousSnapshotId, technology).Where(_ => _.Complexity.ToLower().Equals(complexity + " risk")).OrderBy(_ => _.Name);
 
             components = (_nbLimit != -1) ? components.Take(_nbLimit) : components;
             foreach (DeltaComponent component in components)
             {
-                dataList.AddRange(new string[]
+                dataList.AddRange(new[]
                 {
                     component.ShortName,
                     component.Complexity,

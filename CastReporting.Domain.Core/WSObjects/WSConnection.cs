@@ -70,10 +70,7 @@ namespace CastReporting.Domain
                 _url = string.IsNullOrEmpty(value) ? string.Empty : value.Trim();
                 Uri = (!string.IsNullOrEmpty(_url)) ? new Uri(_url) : null;
             }
-            get
-            {
-                return _url;
-            }
+            get => _url;
         }
 
         /// <summary>

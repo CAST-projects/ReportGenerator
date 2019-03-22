@@ -28,9 +28,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             reportData.RuleExplorer = new RuleBLLStub();
 
             var component = new CastReporting.Reporting.Block.Table.DeltaComponentsListByStatus();
-            Dictionary<string, string> config = new Dictionary<string, string>
-            {
-            };
+            Dictionary<string, string> config = new Dictionary<string, string>();
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
@@ -54,9 +52,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             reportData.RuleExplorer = new RuleBLLStub();
 
             var component = new CastReporting.Reporting.Block.Table.DeltaComponentsListByStatus();
-            Dictionary<string, string> config = new Dictionary<string, string>
-            {
-            };
+            Dictionary<string, string> config = new Dictionary<string, string>();
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();

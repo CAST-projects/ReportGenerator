@@ -14,7 +14,6 @@
  *
  */
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;

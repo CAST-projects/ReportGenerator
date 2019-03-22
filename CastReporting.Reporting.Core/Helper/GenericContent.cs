@@ -202,13 +202,14 @@ namespace CastReporting.Reporting.Helper
                         }
                         else
                         {
+                            var _i = i;
                             if ((snapshotConfiguration == null || snapshotConfiguration.Contains("CURRENT")) && reportData.CurrentSnapshot != null)
                             {
-                                modules.AddRange(reportData.CurrentSnapshot.Modules.Where(_ => _posConfig[i].Parameters.Contains(_.Name)));
+                                modules.AddRange(reportData.CurrentSnapshot.Modules.Where(_ => _posConfig[_i].Parameters.Contains(_.Name)));
                             }
                             else if (snapshotConfiguration.Contains("PREVIOUS") && reportData.PreviousSnapshot != null)
                             {
-                                modules.AddRange(reportData.PreviousSnapshot.Modules.Where(_ => _posConfig[i].Parameters.Contains(_.Name)));
+                                modules.AddRange(reportData.PreviousSnapshot.Modules.Where(_ => _posConfig[_i].Parameters.Contains(_.Name)));
                             }
                         }
                         _posConfig[i].Parameters = modules.Select(_ => _.Name).ToArray();
@@ -1064,6 +1065,7 @@ namespace CastReporting.Reporting.Helper
                 string _col1Name = GetItemName(type0, itemcol1, reportData);
                 if (_posConfig[1] != null)
                 {
+                    // ReSharper disable once AccessToModifiedClosure => false positive
                     rowData.AddRange(_posConfig[1].Parameters.Select(itemcol11 => GetItemName(type1, itemcol11, reportData)).Select(col11Name => _col1Name + " - " + col11Name));
                 }
                 else

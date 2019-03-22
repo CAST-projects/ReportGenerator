@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using Cast.Util;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -91,7 +90,7 @@ namespace CastReporting.Reporting.Block.Text
                     }
                 }
                 DataTable dt = new DataTable();
-                string value = string.Empty;
+                string value;
                 try
                 {
                     value = double.Parse(dt.Compute(_appExpr, "").ToString()).ToString(_metricFormat);

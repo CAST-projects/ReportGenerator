@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using CastReporting.BLL.Computing;
+﻿using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CastReporting.UnitTest.Reporting;
@@ -29,7 +28,7 @@ namespace CastReporting.UnitTest
             };
 
             var result = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(selectedSnapshot, Constants.BusinessCriteria.TechnicalQualityIndex, true);
-            Debug.Assert(result != null, "result != null");
+            if (result == null) Assert.Fail();
             Assert.AreEqual(3.4, result.Value);
             result = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(selectedSnapshot, Constants.BusinessCriteria.TechnicalQualityIndex, false);
             Assert.AreEqual("3.40", result?.ToString("N2"));

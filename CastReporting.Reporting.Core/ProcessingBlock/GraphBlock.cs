@@ -30,7 +30,6 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Drawing.Charts;
 using DocumentFormat.OpenXml.Packaging;
 using OpenXmlPowerTools;
-using OXP = DocumentFormat.OpenXml.Presentation;
 using OXS = DocumentFormat.OpenXml.Spreadsheet;
 using OXW = DocumentFormat.OpenXml.Wordprocessing;
 // ReSharper disable UnusedParameter.Local

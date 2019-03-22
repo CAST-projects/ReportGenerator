@@ -469,13 +469,13 @@ namespace CastReporting.UnitTest.Reporting
             Snapshot _snap0 = reportData.Applications[0].Snapshots.FirstOrDefault();
             TimeSpan time0 = DateTime.Now.AddMonths(-2) - date;
             CastDate _date0 = new CastDate { Time = time0.TotalMilliseconds };
-            Debug.Assert(_snap0 != null, "_snap0 != null");
+            if (_snap0 == null) Assert.Fail();
             _snap0.Annotation.Date = _date0;
 
             Snapshot _snap1 = reportData.Applications[0].Snapshots.ElementAt(1);
             TimeSpan time1 = DateTime.Now.AddMonths(-15) - date;
             CastDate _date1 = new CastDate { Time = time1.TotalMilliseconds };
-            Debug.Assert(_snap1 != null, "_snap1 != null");
+            if (_snap1 == null) Assert.Fail();
             _snap1.Annotation.Date = _date1;
 
             Snapshot[] _snapshots1 = new Snapshot[2];
@@ -486,7 +486,7 @@ namespace CastReporting.UnitTest.Reporting
             Snapshot _snap2 = reportData.Applications[1].Snapshots.FirstOrDefault();
             TimeSpan time2 = DateTime.Now.AddMonths(-1) - date;
             CastDate _date2 = new CastDate { Time = time2.TotalMilliseconds };
-            Debug.Assert(_snap2 != null, "_snap2 != null");
+            if (_snap2 == null) Assert.Fail();
             _snap2.Annotation.Date = _date2;
 
             Snapshot _snap3 = reportData.Applications[1].Snapshots.ElementAt(1);
