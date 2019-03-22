@@ -102,8 +102,7 @@ namespace CastReporting.Repositories
             Console.Out.WriteLine("Escaped CodeBase : " + Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().EscapedCodeBase));
             Console.Out.WriteLine("Location : " + Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             Console.Out.WriteLine("AppDomain.CurrentDomain.BaseDirectory : " + AppDomain.CurrentDomain.BaseDirectory);
-            return AppDomain.CurrentDomain.BaseDirectory;
-                        */
+            */
 
         }
 
