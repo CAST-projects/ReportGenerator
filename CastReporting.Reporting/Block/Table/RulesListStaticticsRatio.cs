@@ -94,13 +94,13 @@ namespace CastReporting.Reporting.Block.Table
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));
                     }
                     cellidx++;
-                    dataRow.Set(lbladded, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty());
+                    dataRow.Set(lbladded, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty("N0"));
                     if (nbViolations > 0)
                     {
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));
                     }
                     cellidx++;
-                    dataRow.Set(lblremoved, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty());
+                    dataRow.Set(lblremoved, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty("N0"));
                     if (nbViolations > 0)
                     {
                         cellProps.Add(new CellAttributes(cellidx, Color.Beige));
