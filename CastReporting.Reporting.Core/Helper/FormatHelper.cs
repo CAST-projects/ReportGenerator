@@ -13,6 +13,12 @@ namespace CastReporting.Reporting.Helper
             return (string.IsNullOrWhiteSpace(s)) ? Constants.No_Value : s;
         }
 
+        public static string NAIfEmpty(this int? data, string format)
+        {
+            var s = data?.ToString(format) ?? Constants.No_Value;
+            return (string.IsNullOrWhiteSpace(s)) ? Constants.No_Value : s;
+        }
+
         /// <summary>
         /// Format the display of percent value into 3 digits if we can
         /// <para>Example : "3.65 %" or "10.4 %" or "243 %" or "10 052 %"</para>
