@@ -759,4 +759,7 @@
   <data name="ratioCommentLinesCodeLines" xml:space="preserve">
     <value>Documentation Ratio</value>
   </data>
+  <data name="SnapshotNotTheLatestOne" xml:space="preserve">
+    <value>当前快照不是最新，无法显示结果</value>
+  </data>
 </root>

@@ -16,6 +16,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -74,12 +75,19 @@ namespace CastReporting.Reporting.Block.Table
             }
             else
             {
+                if (SnapshotUtility.IsLatestSnapshot(reportData.Application, reportData.CurrentSnapshot))
+                {
                 List<ComponentWithProperties> components = reportData.SnapshotExplorer.GetComponentsByProperties(reportData.CurrentSnapshot.Href, 60017, prop1, prop2, order1, order2, nbLimitTop).ToList();
                 foreach (ComponentWithProperties _component in components)
                 {
                     rowData.Add(_component.Name);
                     rowData.Add(_component.GetPropertyValueString(prop1));
                     rowData.Add(_component.GetPropertyValueString(prop2));
+                }
+            }
+                else
+                {
+                    rowData.AddRange(new List<string>() { Labels.SnapshotNotTheLatestOne, string.Empty, string.Empty });
                 }
             }
 
