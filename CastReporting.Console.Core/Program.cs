@@ -111,7 +111,7 @@ namespace CastReporting.Console
 
             if (!string.IsNullOrEmpty(help))
             {             
-                return -1;
+                return 1;
             }
 
             if (arguments.Culture != null)
@@ -126,9 +126,9 @@ namespace CastReporting.Console
                 LogHelper.Instance.LogError(help);
                 if (help.Contains("Webservice can't be access or is bad formatted."))
                 {
-                    return -2;
+                    return 2;
                 }
-                return -3;
+                return 3;
             }
             else
             {
