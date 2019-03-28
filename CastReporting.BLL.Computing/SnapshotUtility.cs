@@ -1,5 +1,6 @@
 ﻿using CastReporting.Domain;
 using System;
+using System.Linq;
 
 namespace CastReporting.BLL.Computing
 {
@@ -31,5 +32,14 @@ namespace CastReporting.BLL.Computing
         {
 			return snapshot?.Annotation?.Date?.DateSnapShot;
         }
+
+        public static bool IsLatestSnapshot(Application application, Snapshot snapshot)
+        {
+            int nbSnapshot = application.Snapshots.Count();
+            if (nbSnapshot <= 0) return false;
+            Snapshot latest = nbSnapshot == 1 ? application.Snapshots.FirstOrDefault() : application.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).FirstOrDefault();
+            return latest?.Equals(snapshot) ?? false;
+        }
+
     }
 }
