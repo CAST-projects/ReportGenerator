@@ -759,4 +759,7 @@
   <data name="EquivalenceRatio" xml:space="preserve">
     <value>Relación de equivalencia</value>
   </data>
+  <data name="SnapshotNotTheLatestOne" xml:space="preserve">
+    <value>La snapshot actual no es la más reciente. No se pueden mostrar datos.</value>
+  </data>
 </root>

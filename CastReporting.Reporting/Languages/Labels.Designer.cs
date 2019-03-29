@@ -1501,6 +1501,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Current snapshot is not the latest one. No data can be displayed..
+        /// </summary>
+        public static string SnapshotNotTheLatestOne {
+            get {
+                return ResourceManager.GetString("SnapshotNotTheLatestOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Snapshots.
         /// </summary>
         public static string Snapshots {
