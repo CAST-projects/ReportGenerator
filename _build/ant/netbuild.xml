@@ -93,6 +93,8 @@
 				<include name="Parameters/Parameters.xml"/>
 			</fileset>
 		</copy>
+		<!-- create the log folder -->
+		<mkdir dir="${wksp.dir}/flat/Logs"/>
 		<!-- put the templates in the right places -->
 		<mkdir dir="${wksp.dir}/flat/Templates"/>
 		<copy todir="${wksp.dir}/flat/Templates">
