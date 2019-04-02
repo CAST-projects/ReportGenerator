@@ -101,7 +101,15 @@ namespace CastReporting.Reporting.Helper
 
         public static string FormatStringDoubleIntoString(this string pValue)
         {
-            double var = double.Parse(pValue);
+            double var;
+            try
+            {
+                var = double.Parse(pValue, CultureInfo.CurrentCulture);
+            }
+            catch (FormatException)
+            {
+                var = double.Parse(pValue, new CultureInfo("en-US"));
+            }
             return var.ToString("N2");
         }
 
