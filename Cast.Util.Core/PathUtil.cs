@@ -36,8 +36,6 @@ namespace Cast.Util
             if (!string.IsNullOrEmpty(tempFolder) && !Directory.Exists(tempFolder)) 
                 Directory.CreateDirectory(tempFolder);
 
-
-            
             string tempName = $"~{Path.GetFileNameWithoutExtension(templatePath)}_{DateTime.Now:MMdd_HHmmss}{Path.GetExtension(templatePath)}";
 
             // ReSharper disable once AssignNullToNotNullAttribute
@@ -51,8 +49,6 @@ namespace Cast.Util
         {
             if (!string.IsNullOrEmpty(tempFolder) && !Directory.Exists(tempFolder))
                 Directory.CreateDirectory(tempFolder);
-
-
 
             string tempName = $"~{Path.GetFileNameWithoutExtension(templatePath)}_{DateTime.Now:yyMMdd_HHmmss}{Path.GetExtension(templatePath)}";
 
