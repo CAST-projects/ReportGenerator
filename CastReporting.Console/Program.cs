@@ -272,7 +272,7 @@ namespace CastReporting.Console
                         {
 
                             //Create temporary report
-                            tmpReportFile = PathUtil.CreateTempCopy(workDirectory, Path.Combine(settings.ReportingParameter.TemplatePath + "\\Portfolio", arguments.Template.Name));
+                            tmpReportFile = PathUtil.CreateTempCopy(workDirectory, Path.Combine(settings.ReportingParameter.TemplatePath, "Portfolio", arguments.Template.Name));
                             if (tmpReportFile.Contains(".xlsx"))
                             {
                                 tmpReportFileFlexi = PathUtil.CreateTempCopyFlexi(workDirectory, arguments.Template.Name);
