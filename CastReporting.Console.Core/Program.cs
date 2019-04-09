@@ -291,7 +291,8 @@ namespace CastReporting.Console
                                     Tag = arguments.Tag.Name,
                                     Snapshots = _n_selectedApps_snapshots,
                                     IgnoresApplications = _appsToIgnorePortfolioResult,
-                                    IgnoresSnapshots = _snapsToIgnore
+                                    IgnoresSnapshots = _snapsToIgnore,
+                                    Parameter = settings.ReportingParameter
                                 };
                             }
                             else if (arguments.Category != null && arguments.Tag == null)
