@@ -27,20 +27,12 @@ namespace CastReporting.Domain
     public abstract class CRObject
     {
         #region PROPERTIES
-
-       
        
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
-       
         [DataMember(Name = "href")]
         public string Href { get; set; }
-
-        
-
-
-
 
         [DataMember(Name = "adgWebSite")]
         public string AdgWebSite { get; set; }

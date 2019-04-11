@@ -85,7 +85,8 @@ namespace CastReporting.UnitTest.Reporting
             ReportData reportData = new ReportData
             {
                 Parameter = new ReportingParameter(),
-                CurrencySymbol = "$"
+                CurrencySymbol = "$",
+                ServerVersion = "1.9.0.457"
             };
 
             if (currentJson == null) return null;

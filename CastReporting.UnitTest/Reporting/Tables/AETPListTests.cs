@@ -138,5 +138,39 @@ namespace CastReporting.UnitTest.Reporting.Tables
             TestUtility.AssertTableContent(table, expectedData, 7, 18);
         }
 
+        [TestMethod]
+        [DeploymentItem(@".\Data\ModulesCoCRA.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCTCmodules.json", "Data")]
+        [DeploymentItem(@".\Data\OmgFunctionsTechnical.csv", "Data")]
+        public void TestAETPBadVersion()
+        {
+            CastDate currentDate = new CastDate { Time = 1492984800000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("CoCRestAPI",
+                @".\Data\ModulesCoCRA.json", @".\Data\CurrentBCTCmodules.json", "AED/applications/3/snapshots/4", "Snap4_CAIP-8.3ra_RG-1.5.a", "8.3.ra", currentDate,
+                null, null, null, null, null, null);
+            reportData.ServerVersion = "1.8.0.999";
+            WSConnection connection = new WSConnection()
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+
+            var component = new AETPList();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                { "COUNT", "-1"}
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Object Name", "Object full name", "Object Type", "Status", "Effort complexity", "Equivalence ratio", "AEP" });
+            expectedData.AddRange(new List<string> { "No data found", string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
+            TestUtility.AssertTableContent(table, expectedData, 7, 2);
+        }
+
     }
 }

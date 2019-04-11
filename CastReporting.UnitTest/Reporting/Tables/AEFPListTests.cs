@@ -155,14 +155,48 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>();
-            expectedData.AddRange(new List<string> { "Element Type", "Function Name", "Object Type", "Technology", "Module Name", "Object Name", "AEP", "Status", "Complexity Factor", "Updated Artifacts", "Data Function" });
-            expectedData.AddRange(new List<string> { "EKPO", "SAP unresolved Table", "SAP SQL", "Abap_castpubs", "unresolvedObjects/SAP_TABLE/EKPO", "3", "Deleted", "0.4", "-" });
+            expectedData.AddRange(new List<string> { "Element Type", "Function Name", "Object Type", "Technology", "Module Name", "Object Name", "AEP", "Status", "Complexity Factor", "Updated Artifacts" });
+            expectedData.AddRange(new List<string> { "Data Function", "EKPO", "SAP unresolved Table", "SAP SQL", "Abap_castpubs", "unresolvedObjects/SAP_TABLE/EKPO", "3", "Deleted", "0.4", "-" });
             expectedData.AddRange(new List<string> { "Data Function", "COI1F91", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI1F91", "2", "Deleted", "0.4", "-" });
             expectedData.AddRange(new List<string> { "Data Function", "COI2F01", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI2F01", "2", "Deleted", "0.4", "-" });
             expectedData.AddRange(new List<string> { "Data Function", "COI2F11", "Cobol File Link", "Cobol", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\PROG-BATCH].COVAB24.COI2F11", "2", "Deleted", "0.4", "-" });
             expectedData.AddRange(new List<string> { "Transactional", "ERCO0DPA", "JCL Job", "JCL", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\JCL].ERCO0DPA", "2", "Deleted", "0.25", "4" });
             expectedData.AddRange(new List<string> { "Transactional", "ERCO0SP2", "JCL Job", "JCL", "Presales", "[c:\\jenkins7_slave\\workspace\\CAIP_Trunk_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Big Ben\\Presales\\JCL].ERCO0SP2", "2", "Deleted", "0.25", "1" });
             TestUtility.AssertTableContent(table, expectedData, 10, 7);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\ModulesCoCRA.json", "Data")]
+        [DeploymentItem(@".\Data\CurrentBCTCmodules.json", "Data")]
+        [DeploymentItem(@".\Data\OmgFunctionsEvolutions.csv", "Data")]
+        public void TestAEFPBadVersion()
+        {
+            CastDate currentDate = new CastDate { Time = 1492984800000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("CoCRestAPI",
+                @".\Data\ModulesCoCRA.json", @".\Data\CurrentBCTCmodules.json", "AED/applications/3/snapshots/4", "Snap4_CAIP-8.3ra_RG-1.5.a", "8.3.ra", currentDate,
+                null, null, null, null, null, null);
+            reportData.ServerVersion = "1.8.0.456";
+            WSConnection connection = new WSConnection
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+
+            var component = new AEFPList();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                { "COUNT", "-1"}
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Element Type", "Function Name", "Object Type", "Technology", "Module Name", "Object Name", "AEP", "Status", "Complexity Factor", "Updated Artifacts" });
+            expectedData.AddRange(new List<string> { "No data found", string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
+            TestUtility.AssertTableContent(table, expectedData, 10, 2);
         }
     }
 }
