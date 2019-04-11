@@ -839,7 +839,7 @@ namespace CastReporting.UI.WPF.ViewModel
                     tmpReportFileFlexi = PathUtil.CreateTempCopyFlexi(workDirectory, SelectedTemplateFile.FullName);
                 }
                 //Build report
-                ReportData reportData = new ReportData()
+                ReportData reportData = new ReportData
                 {
                     FileName = tmpReportFile,
                     Application = SelectedApplication.Application,
@@ -848,7 +848,8 @@ namespace CastReporting.UI.WPF.ViewModel
                     Parameter = Setting.ReportingParameter,
                     RuleExplorer = new RuleBLL(ActiveConnection),
                     SnapshotExplorer = new SnapshotBLL(ActiveConnection, SelectedSnapshot),
-                    CurrencySymbol = "$"
+                    CurrencySymbol = "$",
+                    ServerVersion = CommonBLL.GetServiceVersion(ActiveConnection)
                 };
 
 
@@ -960,7 +961,7 @@ namespace CastReporting.UI.WPF.ViewModel
                     tmpReportFileFlexi = PathUtil.CreateTempCopyFlexi(workDirectory, SelectedTemplateFile.FullName);
                 }
                 //Build report
-                ReportData reportData = new ReportData()
+                ReportData reportData = new ReportData
                 {
                     FileName = tmpReportFile,
                     Application = null,
@@ -970,6 +971,7 @@ namespace CastReporting.UI.WPF.ViewModel
                     RuleExplorer = new RuleBLL(ActiveConnection),
                     SnapshotExplorer = new SnapshotBLL(ActiveConnection, SelectedSnapshot),
                     CurrencySymbol = "$",
+                    ServerVersion = CommonBLL.GetServiceVersion(ActiveConnection),
                     Applications = ApplicationsArray,
                     Category = SelectedCategory,
                     Tag = SelectedTag,

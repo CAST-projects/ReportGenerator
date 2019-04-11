@@ -106,7 +106,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 null, @".\Data\CurrentBCTC.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
                 null, null, null, null, null, null);
 
-            WSConnection connection = new WSConnection()
+            WSConnection connection = new WSConnection
             {
                 Url = "http://tests/CAST-RESTAPI/rest/",
                 Login = "admin",
@@ -147,6 +147,44 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "essentialComplexity",  "", "" });
             TestUtility.AssertTableContent(table, expectedData, 3, 17);
         }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
+        [DeploymentItem(@".\Data\ComponentsWithProperties.json", "Data")]
+        public void TestBadServerVersion()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCTC.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            reportData.ServerVersion = "1.7.0.000";
+            WSConnection connection = new WSConnection
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+
+            var component = new CastReporting.Reporting.Block.Table.TopComponentsByProperties();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"PROP1","cyclomaticPlexity" },
+                {"PROP2","ratioCommentLinesCodeLines" },
+                {"ORDER1","desc" },
+                {"ORDER2","asc" },
+                {"COUNT","5" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Object Name" });
+            expectedData.AddRange(new List<string> { "No data found" });
+            TestUtility.AssertTableContent(table, expectedData, 1, 2);
+        }
+
     }
 }
 
