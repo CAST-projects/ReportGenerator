@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Cast.Util.Log;
+using Cast.Util.Version;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -58,15 +60,33 @@ namespace CastReporting.Reporting.Block.Table
                 }
             }
 
-            // return all data because the filter cannot be applied now (no filter in url)
-            IEnumerable<OmgFunction> functions = reportData.SnapshotExplorer.GetOmgFunctionsEvolutions(reportData.CurrentSnapshot.Href, -1)?.ToList();
-
             List<string> rowData = new List<string>();
             if (type.Equals(string.Empty)) rowData.Add(Labels.IFPUG_ElementType);
             rowData.AddRange(new[] { Labels.FunctionName, Labels.IFPUG_ObjectType, Labels.Technology, Labels.ModuleName, Labels.ObjectName, Labels.AEP, Labels.Status, Labels.ComplexityFactor, Labels.UpdatedArtifacts });
-
             int nbRows = 1;
 
+            if (!VersionUtil.Is19Compatible(reportData.ServerVersion))
+            {
+                LogHelper.Instance.LogError("Bad version of RestAPI. Should be 1.9 at least for component AEFP_LIST");
+                rowData.Add(Labels.NoData);
+                int cnt = type.Equals(string.Empty) ? 9 : 8;
+                for (int i = 0; i < cnt; i++)
+                {
+                    rowData.Add(string.Empty);
+                }
+                nbRows++;
+                return new TableDefinition
+                {
+                    HasRowHeaders = false,
+                    HasColumnHeaders = true,
+                    NbRows = nbRows,
+                    NbColumns = type.Equals(string.Empty) ? 10 : 9,
+                    Data = rowData
+                };
+            }
+
+            // return all data because the filter cannot be applied now (no filter in url)
+            IEnumerable<OmgFunction> functions = reportData.SnapshotExplorer.GetOmgFunctionsEvolutions(reportData.CurrentSnapshot.Href, -1)?.ToList();
             if (functions != null && functions.Any())
             {
                 var exportedList = functions;

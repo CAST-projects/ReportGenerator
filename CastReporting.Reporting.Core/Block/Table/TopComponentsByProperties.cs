@@ -16,6 +16,8 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Cast.Util.Log;
+using Cast.Util.Version;
 using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
@@ -44,6 +46,20 @@ namespace CastReporting.Reporting.Block.Table
             if (nbLimitTop == -1) nbLimitTop = 50;
 
             List<string> rowData = new List<string> {Labels.ObjectName};
+
+            if (!VersionUtil.Is18Compatible(reportData.ServerVersion))
+            {
+                LogHelper.Instance.LogError("Bad version of RestAPI. Should be 1.8 at least for component TOP_COMPONENTS_BY_PROPERTIES");
+                rowData.Add(Labels.NoData);
+                return new TableDefinition
+                {
+                    HasRowHeaders = false,
+                    HasColumnHeaders = true,
+                    NbRows = 2,
+                    NbColumns = 1,
+                    Data = rowData
+                };
+            }
 
             string _prop1Name = MetricsUtility.GetPropertyName(prop1);
             rowData.Add(_prop1Name);
@@ -77,20 +93,26 @@ namespace CastReporting.Reporting.Block.Table
             {
                 if (SnapshotUtility.IsLatestSnapshot(reportData.Application, reportData.CurrentSnapshot))
                 {
-                List<ComponentWithProperties> components = reportData.SnapshotExplorer.GetComponentsByProperties(reportData.CurrentSnapshot.Href, 60017, prop1, prop2, order1, order2, nbLimitTop).ToList();
-                foreach (ComponentWithProperties _component in components)
-                {
-                    rowData.Add(_component.Name);
-                    rowData.Add(_component.GetPropertyValueString(prop1));
-                    rowData.Add(_component.GetPropertyValueString(prop2));
+                    List<ComponentWithProperties> components = reportData.SnapshotExplorer.GetComponentsByProperties(reportData.CurrentSnapshot.Href, 60017, prop1, prop2, order1, order2, nbLimitTop).ToList();
+                    if (components.Count <= 0)
+                    {
+                        rowData.AddRange(new List<string> { Labels.NoData, string.Empty, string.Empty });
+                    }
+                    else
+                    {
+                        foreach (ComponentWithProperties _component in components)
+                        {
+                            rowData.Add(_component.Name);
+                            rowData.Add(_component.GetPropertyValueString(prop1));
+                            rowData.Add(_component.GetPropertyValueString(prop2));
+                        }
+                    }
                 }
-            }
                 else
                 {
                     rowData.AddRange(new List<string>() { Labels.SnapshotNotTheLatestOne, string.Empty, string.Empty });
                 }
             }
-
 
             var resultTable = new TableDefinition
             {

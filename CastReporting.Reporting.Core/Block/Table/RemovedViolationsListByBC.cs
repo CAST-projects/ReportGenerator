@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Cast.Util.Log;
+using Cast.Util.Version;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -27,6 +29,24 @@ namespace CastReporting.Reporting.Block.Table
             rowData.Add(Labels.Weight);
             rowData.Add(Labels.ObjectName);
             rowData.Add(Labels.ObjectStatus);
+
+            if (!VersionUtil.Is18Compatible(reportData.ServerVersion))
+            {
+                LogHelper.Instance.LogError("Bad version of RestAPI. Should be 1.8 at least for component REMOVED_VIOLATIONS_LIST");
+                rowData.Add(Labels.NoData);
+                for (int i = 0; i < 6; i++)
+                {
+                    rowData.Add(string.Empty);
+                }
+                return new TableDefinition
+                {
+                    HasRowHeaders = false,
+                    HasColumnHeaders = true,
+                    NbRows = 2,
+                    NbColumns = 7,
+                    Data = rowData
+                };
+            }
 
             List<Violation> removedViolations = reportData.SnapshotExplorer.GetRemovedViolationsbyBC(reportData.CurrentSnapshot.Href, bcId, nbLimitTop).ToList();
 

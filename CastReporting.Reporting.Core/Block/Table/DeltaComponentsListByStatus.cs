@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Cast.Util.Log;
+using Cast.Util.Version;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -44,6 +46,30 @@ namespace CastReporting.Reporting.Block.Table
             rowData.Add(Labels.ObjectFullName);
             _nbRows = 1;
 
+            if (!VersionUtil.Is19Compatible(reportData.ServerVersion))
+            {
+                LogHelper.Instance.LogError("Bad version of RestAPI. Should be 1.9 at least for component DELTA_COMPONENTS_LIST_BY_STATUS");
+                rowData.AddRange(new[]
+                {
+                    Labels.NoData,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty
+                });
+                return new TableDefinition
+                {
+                    HasRowHeaders = false,
+                    HasColumnHeaders = true,
+                    NbRows = 2,
+                    NbColumns = 8,
+                    Data = rowData
+                };
+            }
+
             string currentSnapshotId = currentSnapshotName.Equals(string.Empty) ? reportData.CurrentSnapshot.GetId()
                 : reportData.Application.Snapshots.FirstOrDefault(_ => _.Name.Equals(currentSnapshotName))?.GetId() ?? reportData.CurrentSnapshot.GetId();
 
@@ -56,7 +82,7 @@ namespace CastReporting.Reporting.Block.Table
                 return new TableDefinition {HasRowHeaders = false,HasColumnHeaders = true,NbRows = 2,NbColumns = 8,Data = rowData};
             }
 
-            string[] allowedStatus = new[] { "added", "deleted", "updated"};
+            string[] allowedStatus = { "added", "deleted", "updated"};
             if (!allowedStatus.Contains(status))
             {
                 rowData.AddRange(new[] { Labels.StatusNotAllowed, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
@@ -72,11 +98,8 @@ namespace CastReporting.Reporting.Block.Table
                     rowData.AddRange(GetDeltaComponents(reportData, moduleHref, status, currentSnapshotId, previousSnapshotId, complexity));
                     return new TableDefinition { HasRowHeaders = false, HasColumnHeaders = true, NbRows = _nbRows, NbColumns = 8, Data = rowData };
                 }
-                else
-                {
-                    rowData.AddRange(new[] { Labels.ModuleNotFound, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
-                    return new TableDefinition { HasRowHeaders = false, HasColumnHeaders = true, NbRows = 2, NbColumns = 8, Data = rowData };
-                }
+                rowData.AddRange(new[] { Labels.ModuleNotFound, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
+                return new TableDefinition { HasRowHeaders = false, HasColumnHeaders = true, NbRows = 2, NbColumns = 8, Data = rowData };
             }
 
             if (!technoName.Equals(string.Empty))
@@ -86,11 +109,8 @@ namespace CastReporting.Reporting.Block.Table
                     rowData.AddRange(GetDeltaComponents(reportData, reportData.Application.Href, status, currentSnapshotId, previousSnapshotId, complexity, technoName));
                     return new TableDefinition { HasRowHeaders = false, HasColumnHeaders = true, NbRows = _nbRows, NbColumns = 8, Data = rowData };
                 }
-                else
-                {
-                    rowData.AddRange(new[] { Labels.TechnoNotFound, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
-                    return new TableDefinition { HasRowHeaders = false, HasColumnHeaders = true, NbRows = 2, NbColumns = 8, Data = rowData };
-                }
+                rowData.AddRange(new[] { Labels.TechnoNotFound, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
+                return new TableDefinition { HasRowHeaders = false, HasColumnHeaders = true, NbRows = 2, NbColumns = 8, Data = rowData };
             }
 
             rowData.AddRange(GetDeltaComponents(reportData, reportData.Application.Href, status, currentSnapshotId, previousSnapshotId, complexity));
@@ -105,6 +125,12 @@ namespace CastReporting.Reporting.Block.Table
                 : reportData.RuleExplorer.GetDeltaComponents(href, status, currentSnapshotId, previousSnapshotId, technology).Where(_ => _.Complexity.ToLower().Equals(complexity + " risk")).OrderBy(_ => _.Name);
 
             components = (_nbLimit != -1) ? components.Take(_nbLimit) : components;
+            if (!components.Any())
+            {
+                dataList.AddRange(new[] { Labels.NoData, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty });
+                return dataList;
+            }
+
             foreach (DeltaComponent component in components)
             {
                 dataList.AddRange(new[]

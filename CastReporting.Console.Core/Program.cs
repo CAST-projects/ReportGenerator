@@ -278,7 +278,7 @@ namespace CastReporting.Console
                             ReportData reportData;
                             if (arguments.Category != null && arguments.Tag != null)
                             {
-                                reportData = new ReportData()
+                                reportData = new ReportData
                                 {
                                     FileName = tmpReportFile,
                                     Application = null,
@@ -286,6 +286,7 @@ namespace CastReporting.Console
                                     PreviousSnapshot = null,
                                     RuleExplorer = new RuleBLL(connection),
                                     CurrencySymbol = "$",
+                                    ServerVersion = CommonBLL.GetServiceVersion(connection),
                                     Applications = _n_selectedApps,
                                     Category = arguments.Category.Name,
                                     Tag = arguments.Tag.Name,
@@ -297,7 +298,7 @@ namespace CastReporting.Console
                             }
                             else if (arguments.Category != null && arguments.Tag == null)
                             {
-                                reportData = new ReportData()
+                                reportData = new ReportData
                                 {
                                     FileName = tmpReportFile,
                                     Application = null,
@@ -305,6 +306,7 @@ namespace CastReporting.Console
                                     PreviousSnapshot = null,
                                     RuleExplorer = new RuleBLL(connection),
                                     CurrencySymbol = "$",
+                                    ServerVersion = CommonBLL.GetServiceVersion(connection),
                                     Applications = _n_selectedApps,
                                     Category = arguments.Category.Name,
                                     Tag = null,
@@ -316,7 +318,7 @@ namespace CastReporting.Console
                             }
                             else if (arguments.Category == null && arguments.Tag != null)
                             {
-                                reportData = new ReportData()
+                                reportData = new ReportData
                                 {
                                     FileName = tmpReportFile,
                                     Application = null,
@@ -324,6 +326,7 @@ namespace CastReporting.Console
                                     PreviousSnapshot = null,
                                     RuleExplorer = new RuleBLL(connection),
                                     CurrencySymbol = "$",
+                                    ServerVersion = CommonBLL.GetServiceVersion(connection),
                                     Applications = _n_selectedApps,
                                     Category = null,
                                     Tag = arguments.Tag.Name,
@@ -335,7 +338,7 @@ namespace CastReporting.Console
                             }
                             else
                             {
-                                reportData = new ReportData()
+                                reportData = new ReportData
                                 {
                                     FileName = tmpReportFile,
                                     Application = null,
@@ -343,6 +346,7 @@ namespace CastReporting.Console
                                     PreviousSnapshot = null,
                                     RuleExplorer = new RuleBLL(connection),
                                     CurrencySymbol = "$",
+                                    ServerVersion = CommonBLL.GetServiceVersion(connection),
                                     Applications = _n_selectedApps,
                                     Category = null,
                                     Tag = null,
@@ -497,7 +501,7 @@ namespace CastReporting.Console
                     }
 
                     //Build report              
-                    ReportData reportData = new ReportData()
+                    ReportData reportData = new ReportData
                     {
                         FileName = tmpReportFile,
                         Application = application,
@@ -506,7 +510,8 @@ namespace CastReporting.Console
                         Parameter = settings.ReportingParameter,
                         RuleExplorer = new RuleBLL(connection),
                         SnapshotExplorer = new SnapshotBLL(connection, currentSnapshot),
-                        CurrencySymbol = "$"
+                        CurrencySymbol = "$",
+                        ServerVersion = CommonBLL.GetServiceVersion(connection)
                     };
 
                     using (IDocumentBuilder docBuilder = BuilderFactory.CreateBuilder(reportData, tmpReportFileFlexi))
