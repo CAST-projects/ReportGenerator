@@ -178,7 +178,7 @@
     <value>Web service valido !</value>
   </data>
   <data name="msgReportGenerationSuccess" xml:space="preserve">
-    <value>Generation proceeded successfully. Click below to see the report :</value>
+    <value>La generación procedió con éxito. Haga clic abajo para ver el informe:</value>
   </data>
   <data name="msgGenericError" xml:space="preserve">
     <value> Error durante la ejecución</value>
