@@ -39,10 +39,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -63,10 +59,6 @@
       <Project>{1810eb4f-e9c6-4b34-94ec-65acb6802c58}</Project>
       <Name>Cast.Util</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CastReporting.BLL.Computing\CastReporting.BLL.Computing.csproj">
-      <Project>{692f3269-684c-44ed-8f1b-98d458da3f9a}</Project>
-      <Name>CastReporting.BLL.Computing</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CastReporting.DAL\CastReporting.Repositories.csproj">
       <Project>{3c791d3a-83b6-490f-86c8-11fa3076a739}</Project>
       <Name>CastReporting.Repositories</Name>
@@ -78,10 +70,6 @@
     <ProjectReference Include="..\CastReporting.Mediation.Interfaces\CastReporting.Mediation.Interfaces.csproj">
       <Project>{5D974A06-C1F5-442D-902F-77DCF5D1C16E}</Project>
       <Name>CastReporting.Mediation.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CastReporting.Mediation\CastReporting.Mediation.csproj">
-      <Project>{A2DF17B9-5643-4F29-9A4C-561E5EB15406}</Project>
-      <Name>CastReporting.Mediation</Name>
     </ProjectReference>
     <ProjectReference Include="..\CastReporting.Repositories.Interfaces\CastReporting.Repositories.Interfaces.csproj">
       <Project>{bf557781-bd7e-4ec2-bb64-ed7981b4d9d0}</Project>

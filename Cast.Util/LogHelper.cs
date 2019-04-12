@@ -17,7 +17,6 @@ using System;
 using log4net;
 using log4net.Appender;
 using log4net.Repository.Hierarchy;
-using System.Diagnostics;
 
 namespace Cast.Util.Log
 {
@@ -211,10 +210,15 @@ namespace Cast.Util.Log
         /// </summary>
         public static void  SetPathLog(string pathLog)
         {
-            GlobalContext.Properties["APPNAME"] = Process.GetCurrentProcess().MainModule.ModuleName.Split('.')[0];
+            GlobalContext.Properties["APPNAME"] = "ReportGenerator";
             GlobalContext.Properties["LOGPATH"] = pathLog;
             GlobalContext.Properties["DATE"] = DateTime.Today.ToString("yyyyMMdd");
             log4net.Config.XmlConfigurator.Configure();
+            /*
+            var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+            string configFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "log4net.config");
+            XmlConfigurator.Configure(logRepository, new FileInfo(configFilePath));
+             */
         }
 
         #endregion

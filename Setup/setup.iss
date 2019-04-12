@@ -72,13 +72,6 @@ Source: "../CastReporting.Reporting\TemplatesFiles/*"; DestDir: "{code:GetTempPa
 Source: "../CastReporting.Reporting\PortfolioTemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio"; Flags: ignoreversion; AfterInstall:SavePortfolioSettings()
 Source: "../CastReporting.Reporting\TemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN\Portfolio"; Flags: ignoreversion
-; NOTE:CastReporting.Reporting/bin/Release
-source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.dll";DestDir: "{app}"; Flags: ignoreversion
-source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.Interactivity.dll";DestDir: "{app}"; Flags: ignoreversion
-source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.Interactivity.xml";DestDir: "{app}"; Flags: ignoreversion
-source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.MefExtensions.dll";DestDir: "{app}"; Flags: ignoreversion
-source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.MefExtensions.xml";DestDir: "{app}"; Flags: ignoreversion
-source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.xml";DestDir: "{app}"; Flags: ignoreversion
 ; NOTE:License
 Source: "../Setup/License.rtf"; DestDir: "{app}"; Flags: ignoreversion
 
