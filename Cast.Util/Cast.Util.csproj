@@ -46,7 +46,6 @@
     <Compile Include="CastReportingException.cs" />
     <Compile Include="CryptoHelper.cs" />
     <Compile Include="DateUtil.cs" />
-    <Compile Include="ExpressionEvaluator.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="PathUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

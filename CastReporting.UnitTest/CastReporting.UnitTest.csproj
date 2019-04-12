@@ -380,7 +380,6 @@
     <Compile Include="Reporting\Text\ADGDatabaseTest.cs" />
     <Compile Include="Reporting\Text\ApplicationRuleTest.cs" />
     <Compile Include="Reporting\Tables\ActionPlansTests.cs" />
-    <Compile Include="Util\ExpressionEvaluatorTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Util\DateUtilTests.cs" />
     <Compile Include="Util\VersionUtilTests.cs" />

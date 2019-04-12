@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using Cast.Util;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -20,26 +20,17 @@ namespace CastReporting.Reporting.Block.Text
         {
             string _metricFormat = options.GetOption("FORMAT", "N2");
             string _params = options.GetOption("PARAMS", string.Empty);
-            string _expr = options.GetOption("EXPR",string.Empty);
+            string _expr = options.GetOption("EXPR", string.Empty);
             string _snapshot = options.GetOption("SNAPSHOT", "CURRENT");
 
             string[] lstParams = _params.Split(' ');
-            string strParameters = string.Empty;
-            object[] objValues = new object[lstParams.Length / 2];
 
             if (reportData?.CurrentSnapshot == null) return Labels.NoData;
             if (string.IsNullOrEmpty(_params)) return Labels.NoData;
-            int j = 0;
-            for (int i=0; i < lstParams.Length; i+=2)
+            for (int i = 0; i < lstParams.Length; i += 2)
             {
-                if (i == 0)
-                {
-                    strParameters = "double " + lstParams[i + 1];
-                }
-                else
-                {
-                    strParameters = strParameters + ", double " + lstParams[i + 1];
-                }
+                string param = lstParams[i + 1];
+                double? paramValue;
 
                 switch (lstParams[i])
                 {
@@ -56,8 +47,7 @@ namespace CastReporting.Reporting.Block.Text
                         {
                             sizingValue = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, sizingId);
                         }
-                        objValues[j] = sizingValue;
-                        j++;
+                        paramValue = sizingValue;
                         break;
 
                     case "QR":
@@ -73,8 +63,7 @@ namespace CastReporting.Reporting.Block.Text
                         {
                             qrGrade = BusinessCriteriaUtility.GetMetricValue(reportData.CurrentSnapshot, qrId);
                         }
-                        objValues[j] = qrGrade;
-                        j++;
+                        paramValue = qrGrade;
                         break;
 
                     case "BF":
@@ -91,22 +80,23 @@ namespace CastReporting.Reporting.Block.Text
                         }
                         if (bfValue != null && bfValue.ApplicationResults.Any())
                         {
-                            objValues[j] = bfValue.ApplicationResults[0].DetailResult.Value;
+                            paramValue = bfValue.ApplicationResults[0].DetailResult.Value;
                         }
                         else
                         {
                             return Labels.NoData;
                         }
-                        j++;
                         break;
                     default:
                         return Labels.NoData;
                 }
-            }
+                if (paramValue != null) _expr = _expr.Replace(param, paramValue.ToString());
 
-            string value = ExpressionEvaluator.Eval(strParameters, _expr, objValues, _metricFormat);
-            return value;
+            }
+            DataTable dt = new DataTable();
+            return double.Parse(dt.Compute(_expr, "").ToString()).ToString(_metricFormat);
         }
         #endregion METHODS
     }
+
 }
