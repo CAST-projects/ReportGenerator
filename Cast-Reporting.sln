@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Presentation", "4 - Pre
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2- DAL", "2- DAL", "{0870F529-D64D-469B-BBFC-C17F55AE0B4B}"
 	ProjectSection(SolutionItems) = preProject
-		CastReporting.DAL\CastReportingSetting.xml = CastReporting.DAL\CastReportingSetting.xml
+		CastReporting.Repositories.Core\CastReportingSetting.xml = CastReporting.Repositories.Core\CastReportingSetting.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_CrossCutting", "_CrossCutting", "{FAC15DB8-86BC-49E2-BC1B-5CC1E99BF1F0}"
