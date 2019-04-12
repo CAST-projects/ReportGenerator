@@ -37,11 +37,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CastProxy.cs">
@@ -58,10 +53,6 @@
     <ProjectReference Include="..\Cast.Util\Cast.Util.csproj">
       <Project>{1810eb4f-e9c6-4b34-94ec-65acb6802c58}</Project>
       <Name>Cast.Util</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CastReporting.Domain\CastReporting.Domain.csproj">
-      <Project>{E696CC9D-E471-4360-8664-FBA3C5B3D375}</Project>
-      <Name>CastReporting.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\CastReporting.Mediation.Interfaces\CastReporting.Mediation.Interfaces.csproj">
       <Project>{5d974a06-c1f5-442d-902f-77dcf5d1c16e}</Project>
