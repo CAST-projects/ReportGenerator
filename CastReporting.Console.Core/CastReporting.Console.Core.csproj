@@ -29,6 +29,15 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net\2.0.8\lib\netstandard1.3\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.PowerPoint">
+      <HintPath>..\packages\Office15\Microsoft.Office.Interop.PowerPoint.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word">
+      <HintPath>..\packages\Office15\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="office">
+      <HintPath>..\packages\Office15\Office.dll</HintPath>
+    </Reference>
     <Reference Include="System.IO.Packaging">
       <HintPath>..\packages\System.IO.Packaging.4.5.0\lib\netstandard2.0\System.IO.Packaging.dll</HintPath>
     </Reference>
