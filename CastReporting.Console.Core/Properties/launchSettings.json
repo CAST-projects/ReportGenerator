@@ -2,7 +2,7 @@
   "profiles": {
     "CastReporting.Console.Core": {
       "commandName": "Project",
-      "commandLineArgs": "-webservice http://localhost:8585/CAST-RESTAPI/rest/ -username cast -password cast -application \"Jurassic Park\" -domain \"AED8311\" -template \"D:\\GitHub\\1.10.AllOS\\ReportGenerator\\CastReporting.Reporting.Core\\TemplatesFiles\\OWASP-2013-Top10 - Detailed.docx\" -file \"D:\\temp\\CLICoreReport.pdf\" -culture \"EN-en\""
+      "commandLineArgs": "-webservice http://localhost:8585/CAST-RESTAPI/rest/ -username cast -password cast -application \"JurassicPark_tst\" -domain \"JP1\" -template \"C:\\ProgramData\\CAST\\ReportGenerator\\1.10.0\\Templates\\PCI-DSS-V3.1-Summary Report.docx\" -file \"D:\\temp\\CLICorePCIReport.docx\" -culture \"EN-en\""
     }
   }
 }
