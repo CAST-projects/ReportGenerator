@@ -1,18 +1,18 @@
 #define MyAppName "CAST Report Generator"
 #define MyAppShortName "ReportGenerator"
-#define MyAppVersion "1.10.0"
+#define MyAppVersion "1.11.0"
 #define MyAppPublisher "CAST"
 #define MyAppURL "http://www.castsoftware.com/"
 #define MyAppExeName "CastReporting.UI.WPF.exe"
 #define MyAppExe "../CastReporting.UI.WPF.V2/bin/Release/"+MyAppExeName
 #define MyAppCopyright GetFileCopyright(MyAppExe)
-#define App1100Id "{{2ED7D267-6974-423C-97F8-4872D7CD4311}"
+#define App1110Id "{{9A411A05-2D4F-454A-A9B0-7EFE668B6D50}"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{2ED7D267-6974-423C-97F8-4872D7CD4311}
+AppId={{9A411A05-2D4F-454A-A9B0-7EFE668B6D50}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} {#MyAppVersion}
@@ -253,7 +253,7 @@ begin
             'and then re-run the {#MyAppName} setup program.', mbInformation, MB_OK);
         exit;
     end;
-    result := UninstallOldVersion('{#App1100Id}', '1.10.0');
+    result := UninstallOldVersion('{#App1110Id}', '1.11.0');
 end;
 
 procedure InitializeWizard;
