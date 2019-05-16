@@ -1,18 +1,18 @@
 #define MyAppName "CAST Report Generator"
 #define MyAppShortName "ReportGenerator"
-#define MyAppVersion "1.9.0"
+#define MyAppVersion "1.11.0"
 #define MyAppPublisher "CAST"
 #define MyAppURL "http://www.castsoftware.com/"
 #define MyAppExeName "CastReporting.UI.WPF.exe"
 #define MyAppExe "../CastReporting.UI.WPF.V2/bin/Release/"+MyAppExeName
 #define MyAppCopyright GetFileCopyright(MyAppExe)
-#define App190Id "{{82EE044D-937D-434A-AA71-726204558811}"
+#define App1110Id "{{9A411A05-2D4F-454A-A9B0-7EFE668B6D50}"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{82EE044D-937D-434A-AA71-726204558811}
+AppId={{9A411A05-2D4F-454A-A9B0-7EFE668B6D50}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} {#MyAppVersion}
@@ -72,13 +72,6 @@ Source: "../CastReporting.Reporting\TemplatesFiles/*"; DestDir: "{code:GetTempPa
 Source: "../CastReporting.Reporting\PortfolioTemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio"; Flags: ignoreversion; AfterInstall:SavePortfolioSettings()
 Source: "../CastReporting.Reporting\TemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN\Portfolio"; Flags: ignoreversion
-; NOTE:CastReporting.Reporting/bin/Release
-source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.dll";DestDir: "{app}"; Flags: ignoreversion
-source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.Interactivity.dll";DestDir: "{app}"; Flags: ignoreversion
-source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.Interactivity.xml";DestDir: "{app}"; Flags: ignoreversion
-source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.MefExtensions.dll";DestDir: "{app}"; Flags: ignoreversion
-source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.MefExtensions.xml";DestDir: "{app}"; Flags: ignoreversion
-source: "../CastReporting.Reporting/bin/Release/Microsoft.Practices.Prism.xml";DestDir: "{app}"; Flags: ignoreversion
 ; NOTE:License
 Source: "../Setup/License.rtf"; DestDir: "{app}"; Flags: ignoreversion
 
@@ -260,7 +253,7 @@ begin
             'and then re-run the {#MyAppName} setup program.', mbInformation, MB_OK);
         exit;
     end;
-    result := UninstallOldVersion('{#App190Id}', '1.9.0');
+    result := UninstallOldVersion('{#App1110Id}', '1.11.0');
 end;
 
 procedure InitializeWizard;
