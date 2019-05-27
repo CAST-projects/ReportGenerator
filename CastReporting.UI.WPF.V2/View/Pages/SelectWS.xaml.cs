@@ -13,7 +13,10 @@
  * limitations under the License.
  *
  */
+
+using System.Collections.Generic;
 using System.Windows.Controls;
+using CastReporting.Domain;
 using CastReporting.UI.WPF.ViewModel;
 
 namespace CastReporting.UI.WPF.View
@@ -34,7 +37,25 @@ namespace CastReporting.UI.WPF.View
             DataContext = new SelectWSVM();
              
         }
-                 
-        
+
+        private void ActivateWebService_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            var list = e.Parameter as List<object>;
+            if (list != null)
+            {
+                var connection = new WSConnection
+                {
+                    Url = (string)list[0],
+                    Login = (string)list[1],
+                    Password = (string)list[2],
+                    ApiKey = (bool)list[3]
+                };
+
+                (DataContext as SelectWSVM)?.ExecuteAddCommand(connection);
+            }
+            e.Handled = true;
+        }
     }
+
 }
+
