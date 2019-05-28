@@ -69,7 +69,11 @@ namespace CastReporting.Mediation
         {
             CookieContainer = cookies ?? new CookieContainer();
             AutoRedirect = autoRedirect;
-
+            if (cookies?.Count > 0)
+            {
+                RemoveAuthenticationHeaders(apiKey);
+                return;
+            }
             if (apiKey)
             {
                 Headers.Add("X-API-KEY", password);
@@ -107,6 +111,19 @@ namespace CastReporting.Mediation
         public CookieContainer GetCookieContainer()
         {
             return CookieContainer;
+        }
+
+        public void RemoveAuthenticationHeaders(bool apikey)
+        {
+            if (apikey)
+            {
+                Headers.Remove("X-API-KEY");
+                Headers.Remove("X-API-USER");
+            }
+            else
+            {
+                Headers.Remove(HttpRequestHeader.Authorization);
+            }
         }
 
         /// <summary>
