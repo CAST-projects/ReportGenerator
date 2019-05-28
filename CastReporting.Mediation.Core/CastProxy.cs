@@ -65,13 +65,21 @@ namespace CastReporting.Mediation
         /// <param name="cookies">The cookies. If set to <c>null</c> a container will be created.</param>
         /// <param name="autoRedirect">if set to <c>true</c> the client should handle the redirect automatically. Default value is <c>true</c></param>
         /// </summary>
-        public CastProxy(string login, string password, CookieContainer cookies = null, bool autoRedirect = true)
+        public CastProxy(string login, string password, bool apiKey, CookieContainer cookies = null, bool autoRedirect = true)
         {
             CookieContainer = cookies ?? new CookieContainer();
             AutoRedirect = autoRedirect;
 
-            string credentials = CreateBasicAuthenticationCredentials(login, password);
-            Headers.Add(HttpRequestHeader.Authorization, credentials);
+            if (apiKey)
+            {
+                Headers.Add("X-API-KEY", password);
+                Headers.Add("X-API-USER", login);
+            }
+            else
+            {
+                string credentials = CreateBasicAuthenticationCredentials(login, password);
+                Headers.Add(HttpRequestHeader.Authorization, credentials);
+            }
 
             // to debug on https with self signed certificat, uncomment the following to disabled certificate validation
             #if DEBUG
