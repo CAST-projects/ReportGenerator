@@ -439,6 +439,15 @@ namespace CastReporting.UI.WPF.Resources.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à API Key ?.
+        /// </summary>
+        public static string lblUseApiKey {
+            get {
+                return ResourceManager.GetString("lblUseApiKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à About.
         /// </summary>
         public static string mnuAbout {

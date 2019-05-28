@@ -109,6 +109,25 @@ namespace CastReporting.UI.WPF.ViewModel
 
         /// <summary>
         /// 
+        /// </summary>
+        private bool _newConnectionApiKey;
+        public bool NewConnectionApiKey
+        {
+            get
+            {
+                return _newConnectionApiKey;
+            }
+            set
+            {
+                _newConnectionApiKey = value;
+
+                OnPropertyChanged("NewConnectionApiKey");
+            }
+
+        }
+
+        /// <summary>
+        /// 
         /// </summary>       
         private ObservableCollection<WSConnection> _wsConnections;
         public ObservableCollection<WSConnection> WSConnections 
@@ -151,8 +170,6 @@ namespace CastReporting.UI.WPF.ViewModel
         public SelectWSVM()
         {
 
-            AddCommand = new CommandHandler(ExecuteAddCommand, null);
-
             RemoveCommand = new CommandHandler(ExecuteRemoveCommand, null);
 
             ActiveCommand = new CommandHandler(ExecuteActiveCommand, null);
@@ -166,12 +183,10 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// Implement Add service Command
         /// </summary>
-        private void ExecuteAddCommand(object prameter)
+        public void ExecuteAddCommand(WSConnection conn)
         {
             try
             {
-
-                WSConnection conn = new WSConnection(NewConnectionUrl, NewConnectionLogin, NewConnectionPassword, string.Empty);
 
                 StatesEnum state;
                 Setting = SettingsBLL.AddConnection(conn, false, out state);

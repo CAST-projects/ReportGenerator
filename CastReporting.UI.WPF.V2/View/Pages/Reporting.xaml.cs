@@ -131,14 +131,15 @@ namespace CastReporting.UI.WPF.View
         /// <param name="e"></param>
         private void ActivateWebService_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            var list = e.Parameter as List<string>;
+            var list = e.Parameter as List<object>;
             if (list != null)
             {
                 var connection = new WSConnection
                 {
-                    Url = list[0],
-                    Login = list[1],
-                    Password = list[2]
+                    Url = (string)list[0],
+                    Login = (string)list[1],
+                    Password = (string)list[2],
+                    ApiKey = (bool)list[3]
                 };
 
                 (DataContext as ReportingVM)?.ActiveCurrentWebService(connection);

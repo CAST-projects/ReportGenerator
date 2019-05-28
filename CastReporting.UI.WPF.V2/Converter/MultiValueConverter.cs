@@ -16,6 +16,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Data;
 
 namespace CastReporting.UI.WPF.Converter
@@ -24,13 +25,7 @@ namespace CastReporting.UI.WPF.Converter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            List<string> list = new List<string>();
-            foreach (var item in values)
-            {
-                list.Add(item as string);
-            }
-
-            return list;
+            return values.Select(item => item).ToList();
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

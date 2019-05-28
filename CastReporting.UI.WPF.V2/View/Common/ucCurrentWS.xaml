@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:label="clr-namespace:CastReporting.UI.WPF.Resources.Languages"
-             xmlns:control="clr-namespace:CastReporting.UI.WPF.Common"
              xmlns:command="clr-namespace:CastReporting.UI.WPF.Commands"
              xmlns:converters="clr-namespace:CastReporting.UI.WPF.Converter"
              xmlns:w="clr-namespace:CastReporting.UI.WPF.Utilities"
@@ -17,11 +16,12 @@
 
     <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="95"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="126"/>
+            <ColumnDefinition Width="100"/>
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -66,24 +66,28 @@
             </Border>
         </Grid>
         <Label  Grid.Row="1" Grid.Column="0" Content="{x:Static label:Messages.lblFieldUrlWS}" HorizontalAlignment="Right" Height="25.96" Margin="0,7.02,10,7.02" Width="76" Foreground="White"/>
-        <TextBox Grid.Row="1" ToolTip="{x:Static label:Messages.toolTipUrlWs}" Style="{StaticResource EditBox}" Grid.ColumnSpan="4" Grid.Column="1" x:Name="TxtCurrentWs" Text="{Binding Url, Mode=TwoWay}" Margin="0,3"/>
+        <TextBox Grid.Row="1" ToolTip="{x:Static label:Messages.toolTipUrlWs}" Style="{StaticResource EditBox}" Grid.ColumnSpan="5" Grid.Column="1" x:Name="TxtCurrentWs" Text="{Binding Url, Mode=TwoWay}" Margin="0,3"/>
 
-        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static label:Messages.lblFieldWSLogin}"  HorizontalAlignment="Right" Height="25.96" Margin="0,22.02,10,12.02" Foreground="White"/>
-        <TextBox Style="{StaticResource EditBox}" Grid.Row="2" Grid.Column="1" x:Name="TxtLogin" Text="{Binding Login, Mode=TwoWay}"   Margin="0,20,0,8" />
+        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static label:Messages.lblFieldWSLogin}"  HorizontalAlignment="Right" Height="25" Margin="0,21,10,14" Foreground="White"/>
+        <TextBox Style="{StaticResource EditBox}" Grid.Row="2" Grid.Column="1" x:Name="TxtLogin" Text="{Binding Login, Mode=TwoWay}"   Margin="0,21,94.5,8" Grid.ColumnSpan="2" />
 
 
-        <Label Grid.Row="2" Grid.Column="2" Content="{x:Static label:Messages.lblFieldWSPassword}"  HorizontalAlignment="Right" Height="25.96" Margin="0,22.02,10,12.02" Foreground="White"/>
-        <PasswordBox w:PasswordBoxAssistant.BindPassword="True" w:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource PassEditBox}" Grid.Row="2" Grid.Column="3" Margin="0,20,0,10"/>
+        <Label Grid.Row="2" Grid.Column="2" Content="{x:Static label:Messages.lblFieldWSPassword}"  HorizontalAlignment="Right" Height="25" Margin="0,21,9.5,14" Foreground="White"/>
+        <PasswordBox w:PasswordBoxAssistant.BindPassword="True" w:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource PassEditBox}" Grid.Row="2" Grid.Column="2" Margin="94.5,21,0,8" Grid.ColumnSpan="2"/>
 
         <Button Style="{StaticResource StdButtonStyle}" Command="command:WebServiceCommand.ActivateWebService" 
-                Grid.Row="2" Grid.Column="4" x:Name="BtnActiveWs"  Content="{x:Static label:Messages.btnAddWS}" Height="Auto" Margin="20,20,0,8" Width="Auto" >
+                Grid.Row="2" Grid.Column="5" x:Name="BtnActiveWs"  Content="{x:Static label:Messages.btnAddWS}" Height="Auto" Margin="20,18,0,8" Width="Auto" >
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource MultiValueConverter}">
                     <Binding Path="Url" />
                     <Binding Path="Login" />
                     <Binding Path="Password" />
+                    <Binding Path="ApiKey" />
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>
+
+        <CheckBox Name="CbApiKey" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" Height="25.96" Margin="0,21,10,14" Foreground="White" BorderBrush="White" 
+                  IsChecked="{Binding ApiKey, Mode=TwoWay}" Checked="CbApiKey_CheckedChanged" Content="{x:Static label:Messages.lblUseApiKey}" VerticalContentAlignment="Center" ></CheckBox>
     </Grid>
 </UserControl>

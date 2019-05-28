@@ -4,10 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:label="clr-namespace:CastReporting.UI.WPF.Resources.Languages"
-      xmlns:converter="clr-namespace:CastReporting.UI.WPF.Converter"   
-      xmlns:w="clr-namespace:CastReporting.UI.WPF.Utilities"
+      xmlns:commands="clr-namespace:CastReporting.UI.WPF.Commands"
+      xmlns:common="clr-namespace:CastReporting.UI.WPF.Common"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="600">
+
+    <Page.CommandBindings>
+        <CommandBinding Command="commands:WebServiceCommand.ActivateWebService" Executed="ActivateWebService_Executed" />
+    </Page.CommandBindings>
 
     <Grid Margin="0,0" Background="#FF202020" Width="Auto" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
@@ -21,84 +25,13 @@
             <TextBlock Text="{x:Static label:Messages.lblTitleManageWS}" Margin="20,16,0,0" FontSize="17" Foreground="White" Height="35"/>
         </StackPanel>
 
-        <Border Grid.Row="1" CornerRadius="4" Margin="46,20,46,0" Padding="0,0,10,20">
+        <Border Grid.Row="1" CornerRadius="4" Margin="46,20,46,0" Padding="0,0,0,20">
             <Border.Background>
                 <ImageBrush ImageSource="/CastReporting.UI.WPF;component/Resources/Images/connection-bg.jpg"
 						RenderOptions.BitmapScalingMode="NearestNeighbor"
 						RenderOptions.EdgeMode="Aliased" />
             </Border.Background>
-            <StackPanel>
-
-                <Grid HorizontalAlignment="Stretch">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="99"/>
-
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30" />
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="50"/>
-                    </Grid.RowDefinitions>
-
-                    <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,-8,0,-20" Grid.ZIndex="3" HorizontalAlignment="Left">
-                        <Border Width="416" Height="48" Name="TooltipUrl">
-                            <Border.Style>
-                                <Style>
-                                    <Setter Property="Border.Margin" Value="0,0,0,10"/>
-                                    <Setter Property="Border.Opacity" Value="0"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=TxtUrl,Path=IsFocused}" Value="True" >
-                                            <Setter Property="Border.Margin" Value="0"></Setter>
-                                            <DataTrigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2"/>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.EnterActions>
-                                            <DataTrigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.0"/>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.ExitActions>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <Border.Background>
-                                <ImageBrush ImageSource="/CastReporting.UI.WPF;component/Resources/Images/url-tooltip.png" Stretch="Fill" />
-                            </Border.Background>
-                            <TextBlock Margin="6,6,0,0"> 
-                        <Span FontWeight="Bold">http://<Span Foreground="#FF0078fe">SERVER</Span>:<Span Foreground="#FF0078fe">PORT</Span>/<Span Foreground="#FF0078fe">WAR</Span>/rest</Span>
-                            </TextBlock>
-                        </Border>
-                    </Grid>
-                   
-                    <Label  Grid.Row="1" Grid.Column="0" Content="{x:Static label:Messages.lblFieldUrlWS}" HorizontalAlignment="Right" Height="26" Margin="0,7" Width="85" Foreground="White"/>
-                    <TextBox Style="{StaticResource EditBox}" ToolTip="{x:Static label:Messages.toolTipUrlWs}" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="1" x:Name="TxtUrl" Text="{Binding NewConnectionUrl, Mode=TwoWay}" Margin="0,5" Height="Auto"/>
-
-                    <Label Grid.Row="2" Grid.Column="0" Content="{x:Static label:Messages.lblFieldWSLogin}"  HorizontalAlignment="Right" Height="26" Margin="0,6,10,18" Foreground="White"/>
-                    <TextBox Style="{StaticResource EditBox}" Grid.Row="2" Grid.Column="1" x:Name="TxtLogin" Text="{Binding NewConnectionLogin, Mode=TwoWay}"   Margin="0,6,0,14" Height="Auto" />
-
-
-                    <Label Grid.Row="2" Grid.Column="2" Content="{x:Static label:Messages.lblFieldWSPassword}"  HorizontalAlignment="Right" Height="26" Margin="0,6,10,18"  Foreground="White"/>
-                    <PasswordBox w:PasswordBoxAssistant.BindPassword="True" w:PasswordBoxAssistant.BoundPassword="{Binding Path=NewConnectionPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource PassEditBox}" Grid.Row="2" Grid.Column="3" Margin="0,6,2,14" Height="Auto"/>
-                    
-
-
-                    <Button Style="{StaticResource StdButtonStyle}"  Grid.Row="2" Grid.Column="4" Height="Auto" Margin="20,6,-1,12" Width="80"
-                                            Content="{x:Static label:Messages.btnAddWS}" 
-                                            HorizontalAlignment="Left"  
-                                            Command="{Binding AddCommand}"/>
-                </Grid>
-
-            </StackPanel>
+            <common:UcCurrentWS Login="{Binding NewConnectionLogin}" Password="{Binding NewConnectionPassword}" Url="{Binding NewConnectionUrl}" ApiKey="{Binding NewConnectionApiKey}"  DockPanel.Dock="Right" Margin="10,0,20,10"  HorizontalAlignment="Stretch"/>
         </Border>
 
         <Border Grid.Row="2" Height="Auto" HorizontalAlignment="Stretch" Width="60" Margin="-1,-1,-1,-1">

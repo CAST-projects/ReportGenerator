@@ -66,7 +66,7 @@
 						RenderOptions.BitmapScalingMode="NearestNeighbor"
 						RenderOptions.EdgeMode="Aliased" />
                 </Border.Background>
-                <commonCtrl:UcCurrentWS Height="160" Login="{Binding ActiveConnection.Login}" Password="{Binding ActiveConnection.Password}" Url="{Binding ActiveConnection.Url}" DockPanel.Dock="Right" Margin="10,0,33,0"  HorizontalAlignment="Stretch"/>
+                <commonCtrl:UcCurrentWS Height="160" Login="{Binding ActiveConnection.Login}" Password="{Binding ActiveConnection.Password}" Url="{Binding ActiveConnection.Url}" ApiKey="{Binding ActiveConnection.ApiKey}"  DockPanel.Dock="Right" Margin="10,0,33,0"  HorizontalAlignment="Stretch"/>
             </Border>
 
             <Border Grid.Row="1" Grid.Column="0" Height="Auto" HorizontalAlignment="Stretch" Width="Auto" Margin="0,-1,0,-1">
