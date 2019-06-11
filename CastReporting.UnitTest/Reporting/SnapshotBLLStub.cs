@@ -59,7 +59,7 @@ namespace CastReporting.UnitTest.Reporting
 
         [DeploymentItem(@".\Data\RemovedViolations.json", "Data")]
         [DeploymentItem(@".\Data\RemovedViolations-60012.json", "Data")]
-        public IEnumerable<Violation> GetRemovedViolationsbyBC(string snapshotHref, string bcId, int count)
+        public IEnumerable<Violation> GetRemovedViolationsbyBC(string snapshotHref, string bcId, int count, string criticity)
         {
             IEnumerable<Violation> res;
             switch (bcId)

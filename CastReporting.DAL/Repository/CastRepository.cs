@@ -69,7 +69,7 @@ namespace CastReporting.Repositories
         private const string _query_component_type = "{0}/components/{1}/snapshots/{2}";
         private const string _query_quality_standards_evolution = "{0}/results?quality-standards=(c:{1})&select=(evolutionSummary)";
         private const string _query_quality_standards_information = "{0}/quality-standards";
-        private const string _query_removed_violations_by_bcid = "{0}/removed-violations?rule-pattern=(cc:{1},nc:{1})&nbRows={2}";
+        private const string _query_removed_violations_by_bcid = "{0}/removed-violations?";
         private const string _query_delta_components = "{0}/components/65005?snapshot-ids=({1},{2})&status={3}";
 
         #endregion CONSTANTS
@@ -98,13 +98,8 @@ namespace CastReporting.Repositories
             }           
         }
         protected bool _CurrentApiKey;
-        public bool CurrentApiKey
-        {
-            get
-            {
-                return _CurrentApiKey;
-            }
-        }
+        public bool CurrentApiKey => _CurrentApiKey;
+
         #endregion PROPERTIES
 
         #region CONSTRUCTORS
@@ -434,11 +429,24 @@ namespace CastReporting.Repositories
             return CallWS<IEnumerable<Result>>(requestUrl, RequestComplexity.Standard);
         }
 
-        public IEnumerable<Violation> GetRemovedViolations(string snapshotHRef, string businessCriteria, int count)
+        public IEnumerable<Violation> GetRemovedViolations(string snapshotHRef, string businessCriteria, int count, string criticity)
         {
-            var requestUrl = (count != -1) ? string.Format(_query_removed_violations_by_bcid, snapshotHRef, businessCriteria, count)
-                : string.Format(_query_removed_violations_by_bcid, snapshotHRef, businessCriteria, "$all");
-
+            string query = _query_removed_violations_by_bcid;
+            if (criticity == null || criticity.Equals(string.Empty)) criticity = "all";
+            switch (criticity)
+            {
+                case "c":
+                    query += "rule-pattern=(cc:{1})";
+                    break;
+                case "nc":
+                    query += "rule-pattern=(nc:{1})";
+                    break;
+                default:
+                    query += "rule-pattern=(cc:{1},nc:{1})";
+                    break;
+             }
+            query += count == -1 ?"&nbRows=$all" : $"&nbRows={count}";
+            var requestUrl = string.Format(query, snapshotHRef, businessCriteria);
             return CallWS<IEnumerable<Violation>>(requestUrl, RequestComplexity.Long);
         }
 

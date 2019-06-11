@@ -21,6 +21,7 @@ namespace CastReporting.Reporting.Block.Table
             string bcId = options.GetOption("BCID", "60017"); // by default, TQI
             int nbLimitTop = options.GetIntOption("COUNT", 50); // -1 for all removed violations
             int nbRows;
+            string criticity = options.GetOption("CRITICITY", "all"); // should be "c" for critical, "nc" for non critical, and any other thing for both
 
             rowData.Add(Labels.ViolationStatus);
             rowData.Add(Labels.ExclusionStatus);
@@ -48,7 +49,7 @@ namespace CastReporting.Reporting.Block.Table
                 };
             }
 
-            List<Violation> removedViolations = reportData.SnapshotExplorer.GetRemovedViolationsbyBC(reportData.CurrentSnapshot.Href, bcId, nbLimitTop).ToList();
+            List<Violation> removedViolations = reportData.SnapshotExplorer.GetRemovedViolationsbyBC(reportData.CurrentSnapshot.Href, bcId, nbLimitTop,criticity).ToList();
 
             List<RuleDetails> rulesDetails = reportData.RuleExplorer.GetRulesDetails(reportData.CurrentSnapshot.DomainId, int.Parse(bcId), reportData.CurrentSnapshot.Id).ToList();
 
