@@ -97,6 +97,14 @@ namespace CastReporting.Repositories
                 return _CurrentConnection;
             }           
         }
+        protected bool _CurrentApiKey;
+        public bool CurrentApiKey
+        {
+            get
+            {
+                return _CurrentApiKey;
+            }
+        }
         #endregion PROPERTIES
 
         #region CONSTRUCTORS
@@ -108,9 +116,10 @@ namespace CastReporting.Repositories
         /// <param name="client"></param>
         public CastRepository(WSConnection connection, ICastProxy client)
         {
-            _Client = new CastProxy(connection.Login, connection.Password, client?.GetCookieContainer());
+            _Client = new CastProxy(connection.Login, connection.Password, connection.ApiKey, client?.GetCookieContainer());
             
             _CurrentConnection = connection.Url;
+            _CurrentApiKey = connection.ApiKey;
         }
 
         public ICastProxy GetClient()
@@ -697,11 +706,13 @@ namespace CastReporting.Repositories
              var requestUrl = _CurrentConnection.EndsWith("/") ? _CurrentConnection.Substring(0, _CurrentConnection.Length - 1) : _CurrentConnection;
             requestUrl += "/";
             requestUrl += relativeURL.StartsWith("/") ? relativeURL.Substring(1) : relativeURL;
-
             try
             {
+                if (_Client.GetCookieContainer().Count > 0)
+                {
+                    _Client.RemoveAuthenticationHeaders(CurrentApiKey);
+                }
                 var jsonString = _Client.DownloadString(requestUrl, pComplexity);
-
                 var serializer = new DataContractJsonSerializer(typeof(T));
                 MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
                 try
@@ -730,6 +741,10 @@ namespace CastReporting.Repositories
             var jsonString = string.Empty;
             try
             {
+                if (_Client.GetCookieContainer().Count > 0)
+                {
+                    _Client.RemoveAuthenticationHeaders(CurrentApiKey);
+                }
                 jsonString = _Client.DownloadString(requestUrl, pComplexity);
             }
             catch (WebException e)
@@ -757,6 +772,10 @@ namespace CastReporting.Repositories
 
             try
             {
+                if (_Client.GetCookieContainer().Count > 0)
+                {
+                    _Client.RemoveAuthenticationHeaders(CurrentApiKey);
+                }
                 var csvString = _Client.DownloadCsvString(requestUrl, pComplexity);
                 var serializer = new CsvSerializer<T>();
                 return serializer.ReadObjects(csvString, count, PropNames);
@@ -777,6 +796,10 @@ namespace CastReporting.Repositories
 
             try
             {
+                if (_Client.GetCookieContainer().Count > 0)
+                {
+                    _Client.RemoveAuthenticationHeaders(CurrentApiKey);
+                }
                 return _Client.DownloadPlainText(requestUrl, pComplexity);
             }
             catch (WebException e)

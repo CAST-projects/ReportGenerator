@@ -46,6 +46,7 @@ namespace CastReporting.Domain
             Login = login;
             Password = password;
             Name = name;
+            ApiKey = false;
         }
 
         #region PROPERTIES
@@ -152,6 +153,8 @@ namespace CastReporting.Domain
         /// Get/Set the connection name
         /// </summary>       
         public bool IsActive { get; set; }
+
+        public bool ApiKey { get; set; }
 
         /// <summary>
         /// 

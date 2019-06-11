@@ -133,11 +133,9 @@ namespace CastReporting.Console
                 }
                 return -3;
             }
-            else
-            {
-                LogHelper.Instance.LogInfo($"Report successfully generated in {pathFile}");
-                return 0;
-            }
+
+            LogHelper.Instance.LogInfo($"Report successfully generated in {pathFile}");
+            return 0;
         }
 
         /// <summary>
@@ -167,7 +165,7 @@ namespace CastReporting.Console
 
                     //Initialize Web services
 
-                    var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty);
+                    var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty) {ApiKey = arguments.ApiKey?.Name.Equals("true") ?? false};
                     using (CommonBLL commonBLL = new CommonBLL(connection))
                     {
 
@@ -422,7 +420,7 @@ namespace CastReporting.Console
                     }
                     //Initialize Web services
 
-                    var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty);
+                    var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty) {ApiKey = arguments.ApiKey?.Name.Equals("true") ?? false};
                     using (CommonBLL commonBLL = new CommonBLL(connection))
                     {
                         if (!commonBLL.CheckService())
