@@ -450,7 +450,7 @@ namespace CastReporting.Repositories
                     query += "rule-pattern=(cc:{1},nc:{1})";
                     break;
              }
-            query += count == -1 ?"&nbRows =$all" : $"&nbRows={count}";
+            query += count == -1 ?"&nbRows=$all" : $"&nbRows={count}";
             var requestUrl = string.Format(query, snapshotHRef, businessCriteria);
             return CallWS<IEnumerable<Violation>>(requestUrl, RequestComplexity.Long);
         }
