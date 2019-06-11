@@ -2,7 +2,7 @@
   "profiles": {
     "CastReporting.Console.Core": {
       "commandName": "Project",
-      "commandLineArgs": "-webservice http://localhost:8585/CAST-Health-Engineering/rest/ -username cast -password cast -apikey false -application \"STIG\" -domain \"STIG\" -template \"C:\\ProgramData\\CAST\\ReportGenerator\\1.11.0\\Templates\\Assessment-sample1.docx\" -file \"D:\\temp\\CLICorePCIReport.docx\" -culture \"EN-en\""
+      "commandLineArgs": "-webservice http://aed-tests-perf:8538/CAST-RESTAPI-integrated/rest/ -username cast -password cast -application \"Dream Team\" -domain \"AED8311\" -template \"C:\\ProgramData\\CAST\\ReportGenerator\\1.11.0\\Templates\\3- Excel-components-library.xlsx\" -file \"D:\\temp\\CLITests.xlsx\" -culture \"EN-en\""
     }
   }
 }

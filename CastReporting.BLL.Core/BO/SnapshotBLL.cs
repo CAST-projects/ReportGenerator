@@ -527,13 +527,13 @@ namespace CastReporting.BLL
 
         }
 
-        public IEnumerable<Violation> GetRemovedViolationsbyBC(string snapshotHref, string bcId, int count)
+        public IEnumerable<Violation> GetRemovedViolationsbyBC(string snapshotHref, string bcId, int count, string criticity)
         {
             try
             {
                 using (var castRepository = GetRepository())
                 {
-                    return castRepository.GetRemovedViolations(snapshotHref, bcId, count);
+                    return castRepository.GetRemovedViolations(snapshotHref, bcId, count, criticity);
                 }
             }
             catch (Exception ex)
