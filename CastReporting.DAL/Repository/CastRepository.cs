@@ -98,13 +98,8 @@ namespace CastReporting.Repositories
             }           
         }
         protected bool _CurrentApiKey;
-        public bool CurrentApiKey
-        {
-            get
-            {
-                return _CurrentApiKey;
-            }
-        }
+        public bool CurrentApiKey => _CurrentApiKey;
+
         #endregion PROPERTIES
 
         #region CONSTRUCTORS
