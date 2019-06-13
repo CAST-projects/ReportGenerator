@@ -46,7 +46,6 @@ namespace CastReporting.Domain
             Login = login;
             Password = password;
             Name = name;
-            ApiKey = false;
         }
 
         #region PROPERTIES
