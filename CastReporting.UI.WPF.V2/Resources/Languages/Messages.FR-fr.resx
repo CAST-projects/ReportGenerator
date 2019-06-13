@@ -166,7 +166,7 @@
     <value>Web Service</value>
   </data>
   <data name="btnAddWS" xml:space="preserve">
-    <value>Ajouter</value>
+    <value>Valider</value>
   </data>
   <data name="btnPingWS" xml:space="preserve">
     <value>Tester</value>
