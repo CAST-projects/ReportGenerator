@@ -116,7 +116,7 @@
                     <Border x:Name="BdRounded" BorderThickness="0" CornerRadius="4" Background="White"/>
                     <DataGrid BorderBrush="{x:Null}" Height="200" ItemsSource="{Binding WSConnections}" SelectedValue="{Binding SelectedWSConnection}"
                           AutoGenerateColumns="False" SelectionMode="Extended"  HeadersVisibility="Column" IsReadOnly="True" SelectionUnit="FullRow"
-                          CanUserAddRows="False" CanUserDeleteRows="False" RowHeight="30" FontFamily="Open Sans Bold" HorizontalGridLinesBrush="#FFcfcfcf" VerticalGridLinesBrush="#FFcfcfcf">
+                          CanUserAddRows="False" CanUserDeleteRows="False" RowHeight="30" FontFamily="Open Sans Bold" HorizontalGridLinesBrush="#FFcfcfcf" VerticalGridLinesBrush="#FFcfcfcf" SelectionChanged="DataGrid_SelectionChanged">
                         <DataGrid.Resources>
                             <Style TargetType="{x:Type DataGridColumnHeader}">
                                 <Setter Property="Background" Value="#FF10acc0" />
@@ -163,7 +163,6 @@
                         </DataGrid.Resources>
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Url}" Header="{x:Static label:Messages.lblFieldUrlWS}" Width="4*"/>
-                            <DataGridTextColumn Binding="{Binding Login}" Header="{x:Static label:Messages.lblFieldWSLogin}" Width="*"/>
                             <DataGridTextColumn Binding="{Binding IsActive}" Header="{x:Static label:Messages.lblFieldActiveWS}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -175,11 +174,6 @@
                 <Button  Style="{StaticResource StdButtonStyle}" x:Name="BtnRemovedWs"  Content="{x:Static label:Messages.btnDeleteWS}" 
                                     HorizontalAlignment="Right"
                                     Command="{Binding RemoveCommand}"
-                         Margin="0,20,10,0" Width="100"/>
-
-                <Button  Style="{StaticResource StdButtonStyle}" x:Name="BtnTestdWs"  Content="{x:Static label:Messages.btnPingWS}" 
-                                    HorizontalAlignment="Right"
-                                    Command="{Binding TestCommand}" CommandParameter="{Binding SelectedWSConnection}"
                          Margin="0,20,10,0" Width="100"/>
 
                 <Button  Style="{StaticResource StdButtonStyle}" x:Name="BtnActiveWs"  Content="{x:Static label:Messages.btnActiveWS}" 

@@ -34,7 +34,10 @@ namespace CastReporting.UI.WPF.View
             DataContext = new SelectWSVM();
              
         }
-                 
-        
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
