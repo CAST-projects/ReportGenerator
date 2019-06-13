@@ -80,6 +80,7 @@ namespace CastReporting.Domain
         /// <summary>
         /// 
         /// </summary>
+        [XmlIgnore]
         public byte[] CryptedLogin
         {
             get;
@@ -113,11 +114,12 @@ namespace CastReporting.Domain
         /// <summary>
         /// Get/Set the connection name
         /// </summary>       
-        
+
 
         /// <summary>
         /// 
         /// </summary>
+        [XmlIgnore]
         public byte[] CryptedPassword
         {
             get;
