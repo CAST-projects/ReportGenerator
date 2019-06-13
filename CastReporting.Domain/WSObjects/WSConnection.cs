@@ -156,6 +156,7 @@ namespace CastReporting.Domain
         /// </summary>       
         public bool IsActive { get; set; }
 
+        [XmlIgnore]
         public bool ApiKey { get; set; }
 
         /// <summary>
