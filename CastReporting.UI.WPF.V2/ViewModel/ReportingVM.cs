@@ -1018,30 +1018,28 @@ namespace CastReporting.UI.WPF.ViewModel
             ActiveConnection = Setting?.GetActiveConnection();
 
             //Get list of domains
-            if (_ActiveConnection != null)
+            if (_ActiveConnection?.Password == null || _ActiveConnection?.Login == null) return;
+            try
             {
-                try
+                using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
                 {
-                    using (CastDomainBLL castDomainBLL = new CastDomainBLL(ActiveConnection))
+                    Applications = castDomainBLL.GetApplications().Select(app => new ApplicationItem(app));
+                    List<CastDomain> domains = castDomainBLL.GetDomains().ToList();
+                    foreach (CastDomain domain in domains)
                     {
-                        Applications = castDomainBLL.GetApplications().Select(app => new ApplicationItem(app));
-                        List<CastDomain> domains = castDomainBLL.GetDomains().ToList();
-                        foreach (CastDomain domain in domains)
-                        {
-                            if (domain.DBType.Equals("AAD")) Categories = castDomainBLL.GetCategories();
-                        }
-                        if (Categories == null)
-                        {
-                            Categories = new List<string>();
-                        }
-
-                        SelectedTab = 0;
+                        if (domain.DBType.Equals("AAD")) Categories = castDomainBLL.GetCategories();
                     }
+                    if (Categories == null)
+                    {
+                        Categories = new List<string>();
+                    }
+
+                    SelectedTab = 0;
                 }
-                catch(Exception ex)
-                {
-                    MessageManager.OnErrorOccured(ex);
-                }
+            }
+            catch(Exception ex)
+            {
+                MessageManager.OnErrorOccured(ex);
             }
         }
 
