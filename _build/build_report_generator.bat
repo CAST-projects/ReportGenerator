@@ -161,8 +161,6 @@ echo ==============================================
 xcopy /f /y plugin.nuspec %RESDIR%
 if errorlevel 1 goto endclean
 
-sed -i 's/_BUILDNO_/%BUILDNO%/' %RESDIR%/plugin.nuspec
-if errorlevel 1 goto endclean
 sed -i 's/_THE_VERSION_/%VERSION%/' %RESDIR%/plugin.nuspec
 if errorlevel 1 goto endclean
 sed -i 's/_THE_SHORT_VERSION_/%SHORT_VERSION%/' %RESDIR%/plugin.nuspec
