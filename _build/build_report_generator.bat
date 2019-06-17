@@ -16,7 +16,7 @@ set CMDPATH=%0
 set RETCODE=1
 
 set BUILDNO=
-set OUTDIR=
+set RESDIR=
 set SRCDIR=
 set BUILDDIR=
 set WORKSPACE=
@@ -46,9 +46,9 @@ if not defined WORKSPACE (
 	echo No "workspace" defined !
 	goto Usage
 )
-if not defined OUTDIR (
+if not defined RESDIR (
 	echo.
-	echo No "outdir" defined !
+	echo No "resdir" defined !
 	goto Usage
 )
 if not defined BUILDDIR (
@@ -61,15 +61,11 @@ set NOPUB=false
 set FILESRV=\\productfs01
 if not defined ENGTOOLS set ENGTOOLS=%FILESRV%\EngTools
 set SIGNDIR=%ENGTOOLS%\certificates
-set ENGBUILD=%FILESRV%\EngBuild
-set NIGHTLYEXTOFF=%ENGBUILD%\NightlyBuilds\ExtendOfflineServer
 set PATH=%PATH%;C:\CAST-Caches\Win64
-set WORK=%WORKSPACE%\work
 set INNODIR=%WORKSPACE%\InnoSetup5
 
 set VERSION=1.11.0
 set ID=com.castsoftware.aip.reportgenerator
-set PACKNAME=ExtendServer
 
 for /f "delims=. tokens=1,2" %%a in ('echo %VERSION%') do set SHORT_VERSION=%%a.%%b
 echo.
@@ -99,18 +95,37 @@ echo.
 echo ==============================================
 echo Cleaning ...
 echo ==============================================
-if exist %OUTDIR% (
-    echo Cleaning %OUTDIR%
-    rmdir /q /s %OUTDIR%
+if exist %RESDIR% (
+    echo Cleaning %RESDIR%
+    rmdir /q /s %RESDIR%
 )
-mkdir %OUTDIR%
+mkdir %RESDIR%
 if errorlevel 1 goto endclean
+pushd %RESDIR%
+for /f "delims=/" %%a in ('cd') do set RESDIR=%%a
+popd
 
 cd %SRCDIR%
-%INNODIR%\ISCC.exe Setup/setup.iss
+
+echo.
+echo ==============================================
+echo Compiling main and tests ...
+echo ==============================================
+
+call "%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
+@echo %LOGDEBUG%
+if errorlevel 1 goto endclean
+call devenv.com Cast-Reporting.sln /rebuild "Release"
 if errorlevel 1 (
 	echo.
-	echo ERROR: InnoSetup generation failed
+	echo ERROR: Main compilation failed
+	goto endclean
+)
+
+"%ProgramFiles(x86)%\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" CastReporting.UnitTest\bin\Release\CastReporting.UnitTest.dll /Logger:trx
+if errorlevel 1 (
+	echo.
+	echo ERROR: Tests compilation failed
 	goto endclean
 )
 
@@ -118,95 +133,54 @@ echo.
 echo ==============================================
 echo Building setup ...
 echo ==============================================
-set SETUPCONFIG=setup.iss
-sed.exe 's/__THE_VERSION__/%VERSION%/' %WORKSPACE%\%SRCDIR%\Setup\setup.iss >%WORKSPACE%\%SETUPCONFIG%
-if errorlevel 1 goto end
-%WORKSPACE%\InnoSetup5\ISCC.exe /V3 %WORKSPACE%\%SETUPCONFIG%
-if errorlevel 1 goto end
+set SETUPCONFIG=%WORKSPACE%\%SRCDIR%\Setup\setup.iss
+set SETUPPATH=%WORKSPACE%\%SRCDIR%\Setup\ReportGeneratorSetup.exe
+set ZIPPATH=%RESDIR%\ReportGeneratorSetup.zip
+sed.exe 's/_THE_VERSION_/%VERSION%/' %SETUPCONFIG% >%SETUPCONFIG%_tmp
+if errorlevel 1 goto endclean
+%INNODIR%\ISCC.exe /V3 %SETUPCONFIG%_tmp
+if errorlevel 1 (
+	echo.
+	echo ERROR: InnoSetup generation failed
+	goto endclean
+)
 
 :: sign executable
-call %SIGNDIR%\signtool.bat  ReportGeneratorSetup.exe SHA256
-if errorlevel 1 goto end
-xcopy /f /y ReportGeneratorSetup.exe %OUTDIR%
+call %SIGNDIR%\signtool.bat  %SETUPPATH% SHA256
+if errorlevel 1 goto endclean
+7z.exe a -y -r %ZIPPATH% %SETUPPATH%
 if errorlevel 1 goto endclean
 
 echo.
-echo Package path is: %OUTDIR%\%PACKNAME%
-
-echo.
-echo ====================================
-echo Get last successfull ReportGenerator Client artifact ...
-echo ====================================
-set LASTSUCCESSFUL=http://jenkins7/job/CAIP_Tool_Build_CS_ReportGenerator_Core/lastSuccessfulBuild/artifact/*zip*/archive.zip
-set nbretry=0
-set CLIPACKNAME=ReportGeneratorCLIforAllOS
-
-:retry_get_package
-echo.
-echo Getting %LASTSUCCESSFUL%
-curl.exe -o %WORKSPACE%\%CLIPACKNAME%.zip %LASTSUCCESSFUL%
-if errorlevel 1 (
-    echo.
-    echo ERROR: curl get of artifact has failed
-    echo.
-    if %nbretry% gtr 3 (
-        goto end
-    ) else (
-        set /a nbretry=%nbretry%+1
-        sleep.exe 5
-        goto retry_get_package
-    )
-)
-if not exist %WORKSPACE%\%CLIPACKNAME%.zip (
-    echo.
-    echo ERROR: download of artifact has failed
-    echo.
-    if %nbretry% gtr 3 (
-        goto end
-    ) else (
-        set /a nbretry=%nbretry%+1
-        sleep.exe 5
-        goto retry_get_package
-    )
-)
-OUTDIR
-7z.exe -o%OUTDIR% x %WORK%\%CLIPACKNAME%.zip
-if errorlevel 1 (
-    echo.
-    echo ERROR: unzip of artifact has failed
-    echo.
-    if %nbretry% gtr 3 (
-        goto end
-    ) else (
-        set /a nbretry=%nbretry%+1
-        sleep.exe 5
-        goto retry_get_package
-    )
-)
+echo Package path is: %ZIPPATH%
 
 echo.
 echo ==============================================
 echo Nuget packaging ...
 echo ==============================================
-xcopy /f /y plugin.nuspec %OUTDIR%
+xcopy /f /y plugin.nuspec %RESDIR%
 if errorlevel 1 goto endclean
 
-sed -i 's/__THE_VERSION__/%VERSION%/' %OUTDIR%/plugin.nuspec
+sed -i 's/_BUILDNO_/%BUILDNO%/' %RESDIR%/plugin.nuspec
 if errorlevel 1 goto endclean
-sed -i 's/__THE_SHORT_VERSION__/%VERSION%/' %OUTDIR%/plugin.nuspec
+sed -i 's/_THE_VERSION_/%VERSION%/' %RESDIR%/plugin.nuspec
 if errorlevel 1 goto endclean
-sed -i 's/__THE_ID__/%ID%/' %OUTDIR%/plugin.nuspec
+sed -i 's/_THE_SHORT_VERSION_/%SHORT_VERSION%/' %RESDIR%/plugin.nuspec
 if errorlevel 1 goto endclean
-set CMD=%BUILDDIR%\nuget_package_basics.bat outdir=%OUTDIR% pkgdir=%OUTDIR% buildno=%BUILDNO% nopub=%NOPUB%
+sed -i 's/_THE_ID_/%ID%/' %RESDIR%/plugin.nuspec
+if errorlevel 1 goto endclean
+
+cd %WORKSPACE%
+set CMD=%BUILDDIR%\nuget_package_basics.bat outdir=%RESDIR% pkgdir=%RESDIR% buildno=%BUILDNO% nopub=%NOPUB%
 echo Executing command:
 echo %CMD%
 call %CMD%
 if errorlevel 1 goto endclean
 
-for /f "tokens=*" %%a in ('dir /b %OUTDIR%\com.castsoftware.*.nupkg') do set PACKPATH=%OUTDIR%\%%a
+for /f "tokens=*" %%a in ('dir /b %RESDIR%\com.castsoftware.*.nupkg') do set PACKPATH=%RESDIR%\%%a
 if not defined PACKPATH (
 	echo .
-	echo ERROR: No package was created : file not found %OUTDIR%\com.castsoftware.*.nupkg ...
+	echo ERROR: No package was created : file not found %RESDIR%\com.castsoftware.*.nupkg ...
 	goto endclean
 )
 if not exist %PACKPATH% (
@@ -243,12 +217,12 @@ exit /b %RETCODE%
 
 :Usage
     echo usage:
-    echo %0 workspace=^<path^> srcdir=^<path^> builddir=^<path^> outdir=^<path^> buildno=^<number^>
+    echo %0 workspace=^<path^> srcdir=^<path^> builddir=^<path^> RESDIR=^<path^> buildno=^<number^>
     echo.
     echo workspace: full path to the workspace dir
     echo srcdir: sources directory full path
     echo builddir: extension build directory full path
-    echo outdir: output directory full path
+    echo RESDIR: output directory full path
     echo buildno: build number: build number for this package
     echo.
     goto endclean
