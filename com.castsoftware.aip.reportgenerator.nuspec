@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>com.castsoftware.aip.reportgenerator</id>
-    <version>1.10.0</version>
+    <version>1.11.0</version>
     <authors>CAST Product</authors>
     <owners>CAST</owners>
     <iconUrl>https://raw.githubusercontent.com/CAST-Extend/resources/master/com.castsoftware.aip.reportgenerator.png</iconUrl>
