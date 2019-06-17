@@ -134,6 +134,57 @@ echo.
 echo Package path is: %OUTDIR%\%PACKNAME%
 
 echo.
+echo ====================================
+echo Get last successfull ReportGenerator Client artifact ...
+echo ====================================
+set LASTSUCCESSFUL=http://jenkins7/job/CAIP_Tool_Build_CS_ReportGenerator_Core/lastSuccessfulBuild/artifact/*zip*/archive.zip
+set nbretry=0
+set CLIPACKNAME=ReportGeneratorCLIforAllOS
+
+:retry_get_package
+echo.
+echo Getting %LASTSUCCESSFUL%
+curl.exe -o %WORKSPACE%\%CLIPACKNAME%.zip %LASTSUCCESSFUL%
+if errorlevel 1 (
+    echo.
+    echo ERROR: curl get of artifact has failed
+    echo.
+    if %nbretry% gtr 3 (
+        goto end
+    ) else (
+        set /a nbretry=%nbretry%+1
+        sleep.exe 5
+        goto retry_get_package
+    )
+)
+if not exist %WORKSPACE%\%CLIPACKNAME%.zip (
+    echo.
+    echo ERROR: download of artifact has failed
+    echo.
+    if %nbretry% gtr 3 (
+        goto end
+    ) else (
+        set /a nbretry=%nbretry%+1
+        sleep.exe 5
+        goto retry_get_package
+    )
+)
+OUTDIR
+7z.exe -o%OUTDIR% x %WORK%\%CLIPACKNAME%.zip
+if errorlevel 1 (
+    echo.
+    echo ERROR: unzip of artifact has failed
+    echo.
+    if %nbretry% gtr 3 (
+        goto end
+    ) else (
+        set /a nbretry=%nbretry%+1
+        sleep.exe 5
+        goto retry_get_package
+    )
+)
+
+echo.
 echo ==============================================
 echo Nuget packaging ...
 echo ==============================================
