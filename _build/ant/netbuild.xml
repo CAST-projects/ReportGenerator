@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="netbuild" basedir=".">
+
+    <!-- Local properties -->
+	<property environment="env" />
+	<property name="wksp.dir"       value="${env.WORKSPACE}" />
+    <property name="EXT_TOOLS32" value="\\productfs01\EngTools\external_tools\win32" />
+	<property name="ENGTOOLS"    value="\\productfs01\EngTools" />
+
+	<property name="Setup" value="${wksp.dir}/ReportGenerator/Setup/ReportGeneratorSetup.exe" />
+
+	<path id="tasks.classpath">
+		<pathelement location="${wksp.dir}/ReportGenerator/_build/ant/lib/ant-contrib.jar"/>
+	</path>	
+
+	<!-- pour Ant-Contrib : for -->
+	<taskdef resource="net/sf/antcontrib/antlib.xml" onerror="failall" loaderref="tasks.classloader" classpathref="tasks.classpath" />
+
+	<macrodef name="castSignFile">
+		<attribute name="file" description="file to sign" />
+		<sequential>
+			<if><not><equals arg1="Inc" arg2="${BUILDNO}"/></not>
+				<then>
+					<exec executable="${EXT_TOOLS32}/signtool.exe" failonerror="true">
+						<arg value="sign"/>
+						<arg value="/f"/>
+						<arg value="${ENGTOOLS}/certificates/certif_02_09_2021.pfx"/>
+						<arg value="/t"/>
+						<arg value="http://timestamp.verisign.com/scripts/timstamp.dll"/>
+						<arg value="/p"/>
+						<arg value="castcast"/>
+						<arg value="@{file}"/>
+					</exec>
+					<exec executable="${EXT_TOOLS32}/signtool.exe" failonerror="true">
+						<arg value="verify"/>
+						<arg value="/pa"/>
+						<arg value="@{file}"/>
+					</exec>
+				</then>
+			</if>  
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="setJobUnstable">
+		<attribute name="cause" default="Undefined cause..."/>
+		<sequential>
+			<echo>Build unstability: @{cause}</echo>
+		</sequential>
+	</macrodef>
+	
+	<target name="buildInnoSetup">
+    <!-- build the setup -->    
+		<trycatch>
+			<try>
+				<exec executable="${wksp.dir}/InnoSetup5/ISCC.exe" dir="${wksp.dir}/ReportGenerator/">
+				  <arg value="${wksp.dir}/ReportGenerator/Setup/setup.iss"/>
+				</exec>
+			</try>
+			<catch>
+				<setJobUnstable cause="Fail to build new Setup!"/>
+			</catch>
+		</trycatch>
+	</target>
+	
+	<target name="signSetup">
+		<trycatch>
+			<try>
+				<castSignFile file="${Setup}" />
+			</try>
+			<catch>
+				<setJobUnstable cause="Fail to sign new Setup!"/>
+			</catch>
+		</trycatch>
+	</target>
+	
+</project>

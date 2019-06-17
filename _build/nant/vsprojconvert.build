@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+£ $HeadURL: svn://gargantua/DEV/branches/7.0.11/_build/nant/vsprojconvert.build $ £
+£ $Id: vsprojconvert.build 45258 2010-09-24 09:59:25Z YLE $ £
+£ Creation date : 2010.05.29                                                  £
+£ Creator : YLE@CAST                                                          £
+£ Authors : YLE@CAST                                                          £
+£ What it is : NAnt file used to run conversion of vsprojects to NAnt build   £
+£ files (relies on stylesheet vsprojconvert.xsl)                              £
+-->
+
+
+<project name="vsprojconverter" default="convert" xmlns="http://nant.sf.net/release/0.90/nant.xsd">
+    <description>Converts a Visual Studio project to a NAnt build file</description>
+    <!--
+    £   usage : nant -buildfile:vsprojconvert.build -D:input_path=<input_path> -D:output_path=<output_path> -D:bin_dir=<bin_dir>
+    -->
+    <property name="vsprojconvert_style" value="vsprojconvert.xsl"/>
+
+    <target name="convert">
+        <property name="output_directory" value="${path::get-directory-name(output_path)}"/>
+        <mkdir dir="${output_directory}" failonerror="true" unless="${directory::exists(output_directory)}"/>
+        <style style="${vsprojconvert_style}"
+               in="${input_path}"
+               out="${output_path}"
+               extension="${path::get-extension(output_path)}">
+            <parameters>
+                <parameter name="project_name" value="${path::get-file-name-without-extension(input_path)}"/>
+                <parameter name="project_dir" value="${path::get-directory-name(input_path)}"/>
+                <parameter name="project_full_path" value="${input_path}"/>
+                <parameter name="bin_dir" value="${bin_dir}"/>
+            </parameters>
+        </style>
+    </target>
+</project>
+
