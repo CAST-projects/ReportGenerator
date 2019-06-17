@@ -171,7 +171,7 @@ sed -i 's/_THE_ID_/%ID%/' %RESDIR%/plugin.nuspec
 if errorlevel 1 goto endclean
 
 cd %WORKSPACE%
-set CMD=%BUILDDIR%\nuget_package_basics.bat outdir=%RESDIR% pkgdir=%RESDIR% buildno=%BUILDNO% nopub=%NOPUB%
+set CMD=%BUILDDIR%\nuget_package_basics.bat outdir=%RESDIR% pkgdir=%RESDIR% buildno=%BUILDNO% nopub=%NOPUB% is_component=true
 echo Executing command:
 echo %CMD%
 call %CMD%
