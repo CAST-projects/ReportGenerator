@@ -64,7 +64,7 @@ set SIGNDIR=%ENGTOOLS%\certificates
 set PATH=%PATH%;C:\CAST-Caches\Win64
 set INNODIR=%WORKSPACE%\InnoSetup5
 
-set VERSION=1.11.0
+set VERSION=1.10.0
 set ID=com.castsoftware.aip.reportgenerator
 
 for /f "delims=. tokens=1,2" %%a in ('echo %VERSION%') do set SHORT_VERSION=%%a.%%b
