@@ -3,6 +3,7 @@
   <metadata>
     <id>__THE_ID__</id>
     <version>__THE_VERSION__</version>
+    <title>Report Generator</title>
     <authors>CAST Product</authors>
     <owners>CAST</owners>
     <iconUrl>https://raw.githubusercontent.com/CAST-Extend/resources/master/com.castsoftware.aip.reportgenerator.png</iconUrl>
