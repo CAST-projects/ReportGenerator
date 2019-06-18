@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <title>Report Generator</title>
+    <title>ReportGenerator</title>
     <id>_THE_ID_</id>
     <version>_THE_VERSION_-build_BUILDNO_</version>
     <authors>CAST Product</authors>
@@ -14,7 +14,7 @@
     <projectUrl>https://doc.castsoftware.com/display/DOCCOM/CAST+Report+Generator</projectUrl>
     <tags>RepGen</tags>
     <dependencies>
-            <dependency id="CAIP" version="8.2.0" />
+            <dependency id="CAIP" version="8.3.4" />
     </dependencies>
   </metadata>
 </package>
