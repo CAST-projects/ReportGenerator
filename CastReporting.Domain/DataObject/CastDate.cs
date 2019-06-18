@@ -57,7 +57,7 @@ namespace CastReporting.Domain
 
         public int CompareTo(object obj)
         {
-            var dt = (obj as CastDate);
+            var dt = obj as CastDate;
 
 
             return dt != null && DateSnapShot.HasValue && dt.DateSnapShot.HasValue ? DateTime.Compare(DateSnapShot.Value, dt.DateSnapShot.Value) : 1;

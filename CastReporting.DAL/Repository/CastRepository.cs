@@ -350,7 +350,7 @@ namespace CastReporting.Repositories
 
         IEnumerable<Violation> ICastRepsitory.GetViolationsListIDbyBC(string snapshotHref, string RuleId, string bcId, int count, string technos)
         {
-            var requestUrl = (count != -1) ? string.Format(_query_violations_list_by_rule_bcid, snapshotHref, RuleId, bcId, count,technos)
+            var requestUrl = count != -1 ? string.Format(_query_violations_list_by_rule_bcid, snapshotHref, RuleId, bcId, count,technos)
                     : string.Format(_query_violations_list_by_rule_bcid, snapshotHref, RuleId, bcId, "$all", technos);
 
             return CallWS<IEnumerable<Violation>>(requestUrl, RequestComplexity.Long);
@@ -358,7 +358,7 @@ namespace CastReporting.Repositories
 
         IEnumerable<Violation> ICastRepsitory.GetViolationsInActionPlan(string snapshotHref, int count)
         {
-            var requestUrl = (count != -1) ? string.Format(_query_action_plan_issues, snapshotHref, count)
+            var requestUrl = count != -1 ? string.Format(_query_action_plan_issues, snapshotHref, count)
                 : string.Format(_query_action_plan_issues, snapshotHref, "$all") ;
 
             return CallWS<IEnumerable<Violation>>(requestUrl, RequestComplexity.Long);

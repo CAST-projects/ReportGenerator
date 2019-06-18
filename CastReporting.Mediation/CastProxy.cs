@@ -153,15 +153,12 @@ namespace CastReporting.Mediation
             get
             {
                 var result = HttpStatusCode.Gone;
+                if (_request == null) return result;
 
-                if (_request != null)
+                var response = GetWebResponse(_request) as HttpWebResponse;
+                if (response != null)
                 {
-                    var response = GetWebResponse(_request) as HttpWebResponse;
-
-                    if (response != null)
-                    {
-                        result = response.StatusCode;
-                    }
+                    result = response.StatusCode;
                 }
 
                 return result;
@@ -183,12 +180,7 @@ namespace CastReporting.Mediation
         /// <returns>The value.</returns>
         public string GetHeaderValue(string headerName)
         {
-            if (_request != null)
-            {
-                return GetWebResponse(_request)?.Headers?[headerName];
-            }
-
-            return null;
+            return _request != null ? GetWebResponse(_request)?.Headers?[headerName] : null;
         }
 
 

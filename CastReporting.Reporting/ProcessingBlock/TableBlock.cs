@@ -51,7 +51,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
 
         public static bool IsMatching(string blockType)
         {
-            return (BlockTypeName.Equals(blockType));
+            return BlockTypeName.Equals(blockType);
         }
 
         public TableDefinition GetContent(ReportData client, Dictionary<string, string> options)
@@ -66,23 +66,22 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         public static void BuildContent(ReportData client, OpenXmlPartContainer container, BlockItem block, string blockName, Dictionary<string, string> options)
         {
             TableBlock instance = BlockHelper.GetAssociatedBlockInstance<TableBlock>(blockName);
-            if (null != instance)
+            if (null == instance) return;
+
+            LogHelper.Instance.LogDebugFormat("Start TableBlock generation : Type {0}", blockName);
+            Stopwatch treatmentWatch = Stopwatch.StartNew();
+            TableDefinition content = instance.Content(client, options);
+            if (null != content)
             {
-                LogHelper.Instance.LogDebugFormat("Start TableBlock generation : Type {0}", blockName);
-                Stopwatch treatmentWatch = Stopwatch.StartNew();
-                TableDefinition content = instance.Content(client, options);
-                if (null != content)
-                {
-                    ApplyContent(client, container, block, content, options);
-                }
-                treatmentWatch.Stop();
-                LogHelper.Instance.LogDebugFormat
-                    ("End TableBlock generation ({0}) in {1} millisecond{2}"
-                    , blockName
-                    , treatmentWatch.ElapsedMilliseconds.ToString()
-                    , treatmentWatch.ElapsedMilliseconds > 1 ? "s" : string.Empty
-                    );
+                ApplyContent(client, container, block, content, options);
             }
+            treatmentWatch.Stop();
+            LogHelper.Instance.LogDebugFormat
+            ("End TableBlock generation ({0}) in {1} millisecond{2}"
+                , blockName
+                , treatmentWatch.ElapsedMilliseconds.ToString()
+                , treatmentWatch.ElapsedMilliseconds > 1 ? "s" : string.Empty
+            );
         }
         public static void ApplyContent(ReportData client, OpenXmlPartContainer container, BlockItem block, TableDefinition content, Dictionary<string, string> options)
         {
@@ -203,7 +202,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                     {
                         for (int i = 0, lim = content.NbColumns - columns.Count; i < lim; i++)
                         {
-                            tablegrid.AppendChild(new OXW.GridColumn() { Width = "200" });
+                            tablegrid.AppendChild(new OXW.GridColumn { Width = "200" });
                         }
                     }
                 }
@@ -248,11 +247,11 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                 if (attributes != null)
                                 {
                                     OXW.TableCellProperties tcp = new OXW.TableCellProperties(
-                                        new OXW.TableCellWidth { Type = OXW.TableWidthUnitValues.Auto, }
+                                        new OXW.TableCellWidth { Type = OXW.TableWidthUnitValues.Auto }
                                     );
                                     // Create the Shading object
                                     OXW.Shading shading =
-                                        new OXW.Shading()
+                                        new OXW.Shading
                                         {
                                             Color = "auto",
                                             Fill = ColorTranslator.ToHtml(attributes.BackgroundColor),
@@ -335,7 +334,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 run = new OXW.Run();
             }
             OXW.Text text = run?.Descendants<OXW.Text>().FirstOrDefault();
-            text = (null == text ? new OXW.Text() : text.CloneNode(true) as OXW.Text);
+            text = null == text ? new OXW.Text() : text.CloneNode(true) as OXW.Text;
             run?.RemoveAllChildren<OXW.Text>();
             if (!string.IsNullOrEmpty(txtColor) && !string.IsNullOrEmpty(effect))
             {
@@ -350,6 +349,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                     runProperties1 = new OXW.RunProperties();
                 }
 
+                // ReSharper disable once SwitchStatementMissingSomeCases nothing to do on default case
                 switch (effect)
                 {
                     case "bold":
@@ -368,7 +368,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                         break;
                 }
 
-                OXW.Color color2 = new OXW.Color() { Val = txtColor };
+                OXW.Color color2 = new OXW.Color { Val = txtColor };
                 runProperties1?.Append(color2);
                 run?.Append(runProperties1);
             }
@@ -460,11 +460,11 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                             if (attributes?.BackgroundColor != null)
                             {
                                 Color myColor = attributes.BackgroundColor;
-                                OXD.RgbColorModelHex backColor = new OXD.RgbColorModelHex() { Val = $"{myColor.R:X2}{myColor.G:X2}{myColor.B:X2}" };
+                                OXD.RgbColorModelHex backColor = new OXD.RgbColorModelHex { Val = $"{myColor.R:X2}{myColor.G:X2}{myColor.B:X2}" };
                                 OXD.SolidFill solidFill = new OXD.SolidFill();
                                 solidFill.Append(backColor);
                                 OXD.TableCellProperties props = cell?.Descendants<OXD.TableCellProperties>().FirstOrDefault();
-                                OXD.TableCellProperties new_props = (props != null) ? props.CloneNode(true) as OXD.TableCellProperties : new OXD.TableCellProperties();
+                                OXD.TableCellProperties new_props = props != null ? props.CloneNode(true) as OXD.TableCellProperties : new OXD.TableCellProperties();
 
                                 OXD.SolidFill oldFill = new_props?.Descendants<OXD.SolidFill>().FirstOrDefault();
                                 oldFill?.Remove();
@@ -542,7 +542,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 col.Width = col.Width > 0 ? Convert.ToInt64(Math.Floor((tableWidth - newColWidth) / (tableWidth / col.Width))) : 0;
             }
 
-            OXD.GridColumn newcol = new OXD.GridColumn() { Width = Convert.ToInt64(newColWidth) };
+            OXD.GridColumn newcol = new OXD.GridColumn { Width = Convert.ToInt64(newColWidth) };
             OXD.ExtensionList init_extlst = newcol.Descendants<OXD.ExtensionList>().FirstOrDefault();
             if (init_extlst != null)
             {
@@ -597,7 +597,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             if (run == null) return;
             OXD.Run final_run = run.CloneNode(true) as OXD.Run;
             OXD.Text text = final_run?.Descendants<OXD.Text>().FirstOrDefault();
-            OXD.Text final_text = (null == text) ? new OXD.Text() : text.CloneNode(true) as OXD.Text;
+            OXD.Text final_text = null == text ? new OXD.Text() : text.CloneNode(true) as OXD.Text;
             if (final_text != null)
             {
                 final_text.Text = txt;

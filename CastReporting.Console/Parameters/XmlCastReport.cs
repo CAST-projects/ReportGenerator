@@ -166,9 +166,9 @@ namespace CastReporting.Console.Argument
                 // ReSharper disable once UseStringInterpolation
                 return string.Format
                     ("Cast Report '{0}' to DB '{1}' and template '{2}'"
-                    , (!string.IsNullOrEmpty(Application?.Name)) ? Application.Name : "?"
-                    , (!string.IsNullOrEmpty(Database?.Name)) ? Database.Name : "?"
-                    , (!string.IsNullOrEmpty(Template?.Name)) ? Template.Name : "?"
+                    , !string.IsNullOrEmpty(Application?.Name) ? Application.Name : "?"
+                    , !string.IsNullOrEmpty(Database?.Name) ? Database.Name : "?"
+                    , !string.IsNullOrEmpty(Template?.Name) ? Template.Name : "?"
                     );
             }
             catch

@@ -940,7 +940,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
             };
 
             // Needed for background facts, as there are retrieved one by one by url request
-            WSConnection connection = new WSConnection()
+            WSConnection connection = new WSConnection
             {
                 Url = "http://tests/CAST-RESTAPI/rest/",
                 Login = "admin",

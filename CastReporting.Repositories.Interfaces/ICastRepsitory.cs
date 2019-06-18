@@ -115,7 +115,7 @@ namespace CastReporting.Repositories.Interfaces
         /// <param name="domainHRef"></param>
         /// <param name="snapshotId"></param>
         /// <returns></returns>
-        IEnumerable<QIQualityRules> GetConfQualityRulesBySnapshot(string domainHRef, Int64 snapshotId);
+        IEnumerable<QIQualityRules> GetConfQualityRulesBySnapshot(string domainHRef, long snapshotId);
 
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace CastReporting.Repositories.Interfaces
         /// <param name="domainHRef"></param>
         /// <param name="snapshotId"></param>
         /// <returns></returns>
-        IEnumerable<QIBusinessCriteria> GetConfBusinessCriteriaBySnapshot(string domainHRef, Int64 snapshotId);
+        IEnumerable<QIBusinessCriteria> GetConfBusinessCriteriaBySnapshot(string domainHRef, long snapshotId);
 
         /// <summary>
         /// 

@@ -35,7 +35,7 @@ namespace CastReporting.Reporting.Block.Table
             double? backFiredFPoints = MeasureUtility.GetBackfiredIFPUGFunction(reportData.CurrentSnapshot);
 
             const string metricFormat = "N0";
-            var rowData = new List<string>() 
+            var rowData = new List<string>
             {  Labels.Name, Labels.Total
                 , Labels.AutomatedFP, automatedFPoints?.ToString(metricFormat) ?? Domain.Constants.No_Value
                 , Labels.DecisionP,decisionPoints?.ToString(metricFormat) ?? Domain.Constants.No_Value

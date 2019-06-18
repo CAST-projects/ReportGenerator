@@ -24,7 +24,7 @@ namespace CastReporting.Reporting.Block.Table
             string[] filter = options.GetOption("FILTER", "ALL").Trim().Split('|');
             bool critical = options.GetOption("VIOLATIONS", "CRITICAL").Equals("CRITICAL");
             string module = options.GetOption("MODULE");
-            string[] technos = (options.GetOption("TECHNOLOGIES") != null && !options.GetOption("TECHNOLOGIES").Equals("ALL")) ? options.GetOption("TECHNOLOGIES").Trim().Split('|') : new[] { "$all" };
+            string[] technos = options.GetOption("TECHNOLOGIES") != null && !options.GetOption("TECHNOLOGIES").Equals("ALL") ? options.GetOption("TECHNOLOGIES").Trim().Split('|') : new[] { "$all" };
 
             rowData.Add(Labels.ViolationStatus);
             if (hasPri) rowData.Add(Labels.PRI);
@@ -42,10 +42,10 @@ namespace CastReporting.Reporting.Block.Table
             
             foreach (string _bcid in bcIds)
             {
-                Module mod = (module != null) ? reportData.CurrentSnapshot.Modules.FirstOrDefault(m => m.Name.Equals(module)) : null;
-                string href = (mod == null) ? reportData.CurrentSnapshot.Href : mod.Href;
+                Module mod = module != null ? reportData.CurrentSnapshot.Modules.FirstOrDefault(m => m.Name.Equals(module)) : null;
+                string href = mod == null ? reportData.CurrentSnapshot.Href : mod.Href;
 
-                string technologies = technos.Aggregate(string.Empty, (current, techno) => (current.Equals(string.Empty)) ? techno : current + "," + techno);
+                string technologies = technos.Aggregate(string.Empty, (current, techno) => current.Equals(string.Empty) ? techno : current + "," + techno);
 
                 IEnumerable <Violation> bcresults = critical ? 
                     reportData.SnapshotExplorer.GetViolationsListIDbyBC(href, "(critical-rules)", _bcid, -1, "(" + technologies + ")").ToList()

@@ -33,6 +33,7 @@ CAST REPORT GENERATOR HELP - APPLICATION LEVEL
      and containing required arguments for document generation by batch.
      Replace console arguments « -webservice », « -application », 
      « -template », « -file » and « -snapshot ».
+-apikey true : to connect with the rest api key (in this case username is a user with expected roles, password is the apikey)
 
 CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
 -reporttype : Portfolio --Mandatory and must always be the first parameter
@@ -50,7 +51,7 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
      and containing required arguments for document generation by batch.
      Replace console arguments « -webservice », « -application », 
      « -template », « -file » and « -snapshot ».
-
+-apikey true : to connect with the rest api key (in this case username is a user with expected roles, password is the apikey)
 
 
 ";
@@ -86,14 +87,11 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
                 {
                     // Load from XML file
                     XmlCastReport cstRep = XmlCastReport.LoadXML(pArgs[0]);
-                    if (!cstRep.Check())
-                    {
-                        // XSD do not check -> show help
-                        pShowHelp = true;
-                        // return nothing
-                        return null;
-                    }
-                    return cstRep;
+                    if (cstRep.Check()) return cstRep;
+                    // XSD do not check -> show help
+                    pShowHelp = true;
+                    // return nothing
+                    return null;
                 }
                 catch
                 {
@@ -105,7 +103,7 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
             }
             if (pArgs.Length % 2 == 0)
             {
-                XmlCastReport castReport = new XmlCastReport() { Snapshot = new XmlSnapshot() };
+                XmlCastReport castReport = new XmlCastReport { Snapshot = new XmlSnapshot() };
 
                 for (int i = 1; i < pArgs.Length; i += 2)
                 {
@@ -122,14 +120,11 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
                     SetArgument(type, value, castReport);
                 }
                 // all right
-                if (!castReport.Check())
-                {
-                    // XSD do not check -> show help
-                    pShowHelp = true;
-                    // return nothing
-                    return null;
-                }
-                return castReport;
+                if (castReport.Check()) return castReport;
+                // XSD do not check -> show help
+                pShowHelp = true;
+                // return nothing
+                return null;
             }
 
             // not enough arguments -> show help
@@ -145,7 +140,7 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
         public void Dispose()
         {
             // Here don't need SuppressFinalize because there is no Destructor
-            //GC.SuppressFinalize(this);
+            // GC.SuppressFinalize(this);
         }
 
         #region Private
@@ -155,7 +150,7 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
         /// </summary>
         /// <param name="pArg">Argument</param>
         /// <returns></returns>
-        static string LoadType(string pArg)
+        private static string LoadType(string pArg)
         {
             if (string.IsNullOrEmpty(pArg))
                 // No Arguments
@@ -175,7 +170,7 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
         /// <param name="pValue">Value</param>
         /// <param name="pCastReport">Cast Report</param>
         [SuppressMessage("ReSharper", "UseNameofExpression")]
-        static void SetArgument(string pType, string pValue, XmlCastReport pCastReport)
+        private static void SetArgument(string pType, string pValue, XmlCastReport pCastReport)
         {
             if (string.IsNullOrEmpty(pType))
                 throw new ArgumentNullException("pType");
@@ -184,26 +179,27 @@ CAST REPORT GENERATOR HELP - PORTFOLIO LEVEL
             if (pCastReport.Snapshot == null)
                 throw new ArgumentException("pCastReport misses Snapshot");
 
+            // ReSharper disable once SwitchStatementMissingSomeCases nothing to do by default
             switch (pType)
             {
-                case "webservice": pCastReport.Webservice = new XmlTagName() { Name = pValue }; break;
-                case "application": pCastReport.Application = new XmlTagName() { Name = pValue }; break;
-                case "template": pCastReport.Template = new XmlTagName() { Name = pValue }; break;
-                case "file": pCastReport.File = new XmlTagName() { Name = pValue }; break;
-                case "database": pCastReport.Database = new XmlTagName() { Name = pValue }; break;
-                case "domain": pCastReport.Domain = new XmlTagName() { Name = pValue }; break;
-                case "snapshot_cur": pCastReport.Snapshot.Current = new XmlTagName() { Name = pValue }; break;
-                case "snapshot_prev": pCastReport.Snapshot.Previous = new XmlTagName() { Name = pValue }; break;
-                case "snapshot_cur_id": pCastReport.Snapshot.CurrentId = new XmlTagName() { Name = pValue }; break;
-                case "snapshot_prev_id": pCastReport.Snapshot.PreviousId = new XmlTagName() { Name = pValue }; break;
-                case "username": pCastReport.Username = new XmlTagName() { Name = pValue }; break;
-                case "password": pCastReport.Password = new XmlTagName() { Name = pValue }; break;
-                case "apikey": pCastReport.ApiKey = new XmlTagName() { Name = pValue }; break;
-                case "culture": pCastReport.Culture = new XmlTagName() {Name = pValue }; break;
+                case "webservice": pCastReport.Webservice = new XmlTagName { Name = pValue }; break;
+                case "application": pCastReport.Application = new XmlTagName { Name = pValue }; break;
+                case "template": pCastReport.Template = new XmlTagName { Name = pValue }; break;
+                case "file": pCastReport.File = new XmlTagName { Name = pValue }; break;
+                case "database": pCastReport.Database = new XmlTagName { Name = pValue }; break;
+                case "domain": pCastReport.Domain = new XmlTagName { Name = pValue }; break;
+                case "snapshot_cur": pCastReport.Snapshot.Current = new XmlTagName { Name = pValue }; break;
+                case "snapshot_prev": pCastReport.Snapshot.Previous = new XmlTagName { Name = pValue }; break;
+                case "snapshot_cur_id": pCastReport.Snapshot.CurrentId = new XmlTagName { Name = pValue }; break;
+                case "snapshot_prev_id": pCastReport.Snapshot.PreviousId = new XmlTagName { Name = pValue }; break;
+                case "username": pCastReport.Username = new XmlTagName { Name = pValue }; break;
+                case "password": pCastReport.Password = new XmlTagName { Name = pValue }; break;
+                case "apikey": pCastReport.ApiKey = new XmlTagName { Name = pValue }; break;
+                case "culture": pCastReport.Culture = new XmlTagName {Name = pValue }; break;
 
-                case "reporttype": pCastReport.ReportType = new XmlTagName() { Name = pValue }; break;
-                case "category": pCastReport.Category = new XmlTagName() { Name = pValue }; break;
-                case "tag": pCastReport.Tag = new XmlTagName() { Name = pValue }; break;
+                case "reporttype": pCastReport.ReportType = new XmlTagName { Name = pValue }; break;
+                case "category": pCastReport.Category = new XmlTagName { Name = pValue }; break;
+                case "tag": pCastReport.Tag = new XmlTagName { Name = pValue }; break;
             }
         }
         #endregion

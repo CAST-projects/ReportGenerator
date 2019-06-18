@@ -40,14 +40,13 @@ namespace Cast.Util.Log
         {
             get
             {
-                if (null == _instance)
+                if (null != _instance) return _instance;
+                lock (Lock)
                 {
-                    lock (Lock)
+                    if (null == _instance)
                     {
-                        if (null == _instance)
-                        {
-                            _instance = new LogHelper();
-                        }
+                        // ReSharper disable once PossibleMultipleWriteAccessInDoubleCheckLocking
+                        _instance = new LogHelper();
                     }
                 }
                 return _instance;

@@ -91,8 +91,8 @@ namespace CastReporting.BLL.Computing
                 {
                     Name = _.Reference.Name, 
                     Grade = _.DetailResult.Grade,
-                    TotalChecks = _.RulesViolation.Sum(r => (r.DetailResult?.ViolationRatio != null) ? r.DetailResult.ViolationRatio.TotalChecks : 0),
-                    TotalFailed = _.RulesViolation.Sum(r => (r.DetailResult?.ViolationRatio != null) ? r.DetailResult.ViolationRatio.FailedChecks : 0)
+                    TotalChecks = _.RulesViolation.Sum(r => r.DetailResult?.ViolationRatio != null ? r.DetailResult.ViolationRatio.TotalChecks : 0),
+                    TotalFailed = _.RulesViolation.Sum(r => r.DetailResult?.ViolationRatio != null ? r.DetailResult.ViolationRatio.FailedChecks : 0)
                 })
                 .OrderByDescending(_ => _.TotalFailed)
                 .Take(count)
@@ -236,11 +236,11 @@ namespace CastReporting.BLL.Computing
             }
 
 
-            query = (from bc in query
-                     where bc.DetailResult != null
-                     && bc.DetailResult.ViolationRatio != null
-                     && (!onlyFailedChecks || bc.DetailResult.ViolationRatio.FailedChecks > 0)
-                     select bc);
+            query = from bc in query
+                where bc.DetailResult != null
+                      && bc.DetailResult.ViolationRatio != null
+                      && (!onlyFailedChecks || bc.DetailResult.ViolationRatio.FailedChecks > 0)
+                select bc;
 
             return query;
         }

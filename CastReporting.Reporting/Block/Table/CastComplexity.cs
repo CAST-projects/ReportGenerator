@@ -33,7 +33,7 @@ namespace CastReporting.Reporting.Block.Table
 
             TableDefinition back = new TableDefinition();
 
-            bool hasPreviousSnapshot = (null != reportData.PreviousSnapshot);
+            bool hasPreviousSnapshot = null != reportData.PreviousSnapshot;
 
             if (reportData.CurrentSnapshot == null) return back;
 
@@ -93,27 +93,27 @@ namespace CastReporting.Reporting.Block.Table
             { Labels.ComplexityLow
                 , selectedLowVal?.ToString("N0") ?? noData
                 , previousLowVal?.ToString("N0") ?? noData
-                , (selectedLowVal.HasValue && previousLowVal.HasValue) ? FormatEvolution((int)(selectedLowVal.Value - previousLowVal.Value)) : noData
-                , (selectedLowVal.HasValue && previousLowVal.HasValue && Math.Abs(previousLowVal.Value) > 0) ? FormatPercent((selectedLowVal - previousLowVal) / previousLowVal) : noData
-                , (selectedLowVal.HasValue && selectedTotal.Value>0) ? FormatPercent(selectedLowVal / selectedTotal, false) : noData
+                , selectedLowVal.HasValue && previousLowVal.HasValue ? FormatEvolution((int)(selectedLowVal.Value - previousLowVal.Value)) : noData
+                , selectedLowVal.HasValue && previousLowVal.HasValue && Math.Abs(previousLowVal.Value) > 0 ? FormatPercent((selectedLowVal - previousLowVal) / previousLowVal) : noData
+                , selectedLowVal.HasValue && selectedTotal.Value>0 ? FormatPercent(selectedLowVal / selectedTotal, false) : noData
             });
 
             rowData.AddRange(new[]
             { Labels.ComplexityAverage
                 , selectedAveVal?.ToString("N0") ?? noData
                 , previousAveVal?.ToString("N0") ?? noData
-                , (selectedAveVal.HasValue && previousAveVal.HasValue) ? FormatEvolution((int)(selectedAveVal.Value - previousAveVal.Value)) : noData
-                , (selectedAveVal.HasValue && previousAveVal.HasValue && Math.Abs(previousAveVal.Value) > 0) ? FormatPercent((selectedAveVal - previousAveVal) / previousAveVal) : noData
-                , (selectedAveVal.HasValue && selectedTotal.Value>0) ? FormatPercent(selectedAveVal / selectedTotal, false): noData
+                , selectedAveVal.HasValue && previousAveVal.HasValue ? FormatEvolution((int)(selectedAveVal.Value - previousAveVal.Value)) : noData
+                , selectedAveVal.HasValue && previousAveVal.HasValue && Math.Abs(previousAveVal.Value) > 0 ? FormatPercent((selectedAveVal - previousAveVal) / previousAveVal) : noData
+                , selectedAveVal.HasValue && selectedTotal.Value>0 ? FormatPercent(selectedAveVal / selectedTotal, false): noData
             });
 
             rowData.AddRange(new[]
             { Labels.ComplexityHigh
                 , selectedHigVal?.ToString("N0") ?? noData
                 , previousHigVal?.ToString("N0") ?? noData
-                , (selectedHigVal.HasValue && previousHigVal.HasValue) ? FormatEvolution((int)(selectedHigVal.Value - previousHigVal.Value)) : noData
-                , (selectedHigVal.HasValue && previousHigVal.HasValue && Math.Abs(previousHigVal.Value) > 0) ? FormatPercent((selectedHigVal - previousHigVal) / previousHigVal) : noData
-                , (selectedHigVal.HasValue && selectedTotal.Value > 0) ? FormatPercent(selectedHigVal / selectedTotal, false): noData
+                , selectedHigVal.HasValue && previousHigVal.HasValue ? FormatEvolution((int)(selectedHigVal.Value - previousHigVal.Value)) : noData
+                , selectedHigVal.HasValue && previousHigVal.HasValue && Math.Abs(previousHigVal.Value) > 0 ? FormatPercent((selectedHigVal - previousHigVal) / previousHigVal) : noData
+                , selectedHigVal.HasValue && selectedTotal.Value > 0 ? FormatPercent(selectedHigVal / selectedTotal, false): noData
             });
 
             rowData.AddRange(new[]
@@ -121,8 +121,8 @@ namespace CastReporting.Reporting.Block.Table
                 , selectedVhiVal?.ToString("N0") ?? noData
                 , previousVhiVal?.ToString("N0") ?? noData
                 , previousVhiVal.HasValue && selectedVhiVal.HasValue ? FormatEvolution((int)(selectedVhiVal.Value - previousVhiVal.Value)): noData
-                , (selectedVhiVal.HasValue && previousVhiVal.HasValue && Math.Abs(previousVhiVal.Value) > 0)? FormatPercent((selectedVhiVal - previousVhiVal) / previousVhiVal) : noData
-                , (selectedVhiVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0) ? FormatPercent(selectedVhiVal / selectedTotal, false): noData
+                , selectedVhiVal.HasValue && previousVhiVal.HasValue && Math.Abs(previousVhiVal.Value) > 0? FormatPercent((selectedVhiVal - previousVhiVal) / previousVhiVal) : noData
+                , selectedVhiVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0 ? FormatPercent(selectedVhiVal / selectedTotal, false): noData
             });
 
             #endregion Data

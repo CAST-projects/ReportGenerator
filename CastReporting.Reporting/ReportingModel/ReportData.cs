@@ -154,6 +154,8 @@ namespace CastReporting.Reporting.ReportingModel
         {
             RuleExplorer?.Dispose();
             SnapshotExplorer?.Dispose();
+
+            GC.SuppressFinalize(this);
         }
 
         public string ServerVersion { get; set; }

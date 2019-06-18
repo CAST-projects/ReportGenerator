@@ -57,7 +57,7 @@ namespace CastReporting.Reporting.Block.Table
             double? decisionPointsPercent = MathUtility.GetPercent(decisionPointsEvol, decisionPointsPrev);
             double? backFiredFPointsPercent = MathUtility.GetPercent(backFiredFPointsEvol, backFiredFPointsPrev);
 
-            bool hasPrevious = (reportData.PreviousSnapshot != null);
+            bool hasPrevious = reportData.PreviousSnapshot != null;
 
             #endregion
 
@@ -69,19 +69,19 @@ namespace CastReporting.Reporting.Block.Table
 
                 , Labels.AutomatedFP
                 , automatedFPoints?.ToString(metricFormat) ?? noData
-                , (hasPrevious && automatedFPointsPrev.HasValue)?  automatedFPointsPrev.Value.ToString(metricFormat) : noData
-                , (hasPrevious && automatedFPointsEvol.HasValue)? FormatEvolution((int)automatedFPointsEvol.Value) : noData
-                , (automatedFPointsPercent.HasValue)? FormatPercent(automatedFPointsPercent.Value): noData
+                , hasPrevious && automatedFPointsPrev.HasValue?  automatedFPointsPrev.Value.ToString(metricFormat) : noData
+                , hasPrevious && automatedFPointsEvol.HasValue? FormatEvolution((int)automatedFPointsEvol.Value) : noData
+                , automatedFPointsPercent.HasValue? FormatPercent(automatedFPointsPercent.Value): noData
                 , Labels.DecisionP
                 , decisionPoints?.ToString(metricFormat) ?? noData
-                , (hasPrevious&& decisionPointsPrev.HasValue)? decisionPointsPrev.Value.ToString(metricFormat) : noData
-                , (hasPrevious && decisionPointsEvol.HasValue)? FormatEvolution((int)decisionPointsEvol.Value) : noData
-                , (decisionPointsPercent.HasValue)? FormatPercent(decisionPointsPercent.Value): noData
+                , hasPrevious&& decisionPointsPrev.HasValue? decisionPointsPrev.Value.ToString(metricFormat) : noData
+                , hasPrevious && decisionPointsEvol.HasValue? FormatEvolution((int)decisionPointsEvol.Value) : noData
+                , decisionPointsPercent.HasValue? FormatPercent(decisionPointsPercent.Value): noData
                 , Labels.BackfiredFP
                 , backFiredFPoints?.ToString(metricFormat) ?? noData
-                , (hasPrevious && backFiredFPointsPrev.HasValue)? backFiredFPointsPrev.Value.ToString(metricFormat) : noData
-                , (hasPrevious && backFiredFPointsEvol.HasValue)? FormatEvolution((int)Math.Round(backFiredFPointsEvol.Value,0)) : noData
-                , (backFiredFPointsPercent.HasValue)? FormatPercent(backFiredFPointsPercent.Value): noData
+                , hasPrevious && backFiredFPointsPrev.HasValue? backFiredFPointsPrev.Value.ToString(metricFormat) : noData
+                , hasPrevious && backFiredFPointsEvol.HasValue? FormatEvolution((int)Math.Round(backFiredFPointsEvol.Value,0)) : noData
+                , backFiredFPointsPercent.HasValue? FormatPercent(backFiredFPointsPercent.Value): noData
             };
 
             resultTable = new TableDefinition

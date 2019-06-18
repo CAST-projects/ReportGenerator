@@ -334,12 +334,9 @@ namespace CastReporting.UI.WPF.ViewModel
                 {
                     return true;
                 }
-                else
-                {
-                    return _SelectedApplication != null &&
-                           _SelectedSnapshot != null &&
-                           _SelectedTemplateFile != null;
-                }
+                return _SelectedApplication != null &&
+                       _SelectedSnapshot != null &&
+                       _SelectedTemplateFile != null;
             }
         }
 
@@ -355,14 +352,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 {
                     return true;
                 }
-                else if (_SelectedApplication != null && _SelectedSnapshot != null && _SelectedTemplateFile != null && _SelectedTab == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return _SelectedApplication != null && _SelectedSnapshot != null && _SelectedTemplateFile != null && _SelectedTab == 0;
             }
         }
 
@@ -402,7 +392,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// Implement Command that Load the templates list
         /// </summary>
-        void ExecuteReloadTemplatesCommand(object parameter)
+        private void ExecuteReloadTemplatesCommand(object parameter)
         {
             switch (SelectedTab)
             {
@@ -743,7 +733,7 @@ namespace CastReporting.UI.WPF.ViewModel
                         System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
 
-                        if ((AppsToIgnorePortfolioResult.Length > 0) || (SnapsToIgnore?.Length > 0))
+                        if (AppsToIgnorePortfolioResult.Length > 0 || SnapsToIgnore?.Length > 0)
                         {
                             sb.Append(Messages.msgIgnoredAppSnaps);
 

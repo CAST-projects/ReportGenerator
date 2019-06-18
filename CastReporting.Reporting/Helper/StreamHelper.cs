@@ -26,14 +26,13 @@ namespace CastReporting.Reporting.Helper
         #region METHODS
         public static void CopyStream(Stream input, Stream output)
         {
-            if ((input != null) && (output != null))
+            if (input == null || output == null) return;
+
+            int num;
+            byte[] buffer = new byte[0x2000];
+            while ((num = input.Read(buffer, 0, buffer.Length)) > 0)
             {
-                int num;
-                byte[] buffer = new byte[0x2000];
-                while ((num = input.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    output.Write(buffer, 0, num);
-                }
+                output.Write(buffer, 0, num);
             }
         }
         #endregion METHODS

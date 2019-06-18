@@ -86,7 +86,7 @@ namespace CastReporting.Reporting.Block.Graph
                 }
             }
 
-            int nbCol = (_version == "CURRENT" || _version == "PREVIOUS") ? 2 : 3;
+            int nbCol = _version == "CURRENT" || _version == "PREVIOUS" ? 2 : 3;
             if ((_version == "BOTH" || _version == "PREVIOUS") && reportData.PreviousSnapshot == null) nbCol--;
 
             TableDefinition resultTable = new TableDefinition

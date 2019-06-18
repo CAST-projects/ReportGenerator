@@ -82,7 +82,7 @@ namespace CastReporting.Repositories.Util
             try
             {
                 
-                XmlSerializer serializer = (overrides==null)?new XmlSerializer(typeof(T)) : new XmlSerializer(typeof(T),overrides);
+                XmlSerializer serializer = overrides==null?new XmlSerializer(typeof(T)) : new XmlSerializer(typeof(T),overrides);
 
                 stream = File.OpenRead(filePath);
 

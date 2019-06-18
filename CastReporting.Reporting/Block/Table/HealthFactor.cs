@@ -33,18 +33,18 @@ namespace CastReporting.Reporting.Block.Table
 
             const string metricFormat = "N2";
 
-            bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
+            bool displayShortHeader = options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"];
 
 			int param;
 
 			bool showEvol = false;
 			if (options != null && options.ContainsKey("SHOW_EVOL") && int.TryParse(options["SHOW_EVOL"], out param)) {
-				showEvol = (param != 0);
+				showEvol = param != 0;
 			}
 
 			bool showEvolPercent = true;
 			if (options != null && options.ContainsKey("SHOW_EVOL_PERCENT") && int.TryParse(options["SHOW_EVOL_PERCENT"], out param)) {
-				showEvolPercent = (param != 0);
+				showEvolPercent = param != 0;
 			}
 
             if (reportData?.CurrentSnapshot?.BusinessCriteriaResults == null) return null;
@@ -77,8 +77,8 @@ namespace CastReporting.Reporting.Block.Table
 
             if (hasPreviousSnapshot) {
                 #region variation
-                BusinessCriteriaDTO _businessCriteriaGradesEvol = (currSnapshotBisCriDTO - prevSnapshotBisCriDTO);
-                BusinessCriteriaDTO _businessCriteriaGradesEvolPercent = (_businessCriteriaGradesEvol / prevSnapshotBisCriDTO);
+                BusinessCriteriaDTO _businessCriteriaGradesEvol = currSnapshotBisCriDTO - prevSnapshotBisCriDTO;
+                BusinessCriteriaDTO _businessCriteriaGradesEvolPercent = _businessCriteriaGradesEvol / prevSnapshotBisCriDTO;
                 #endregion  variation
 
                 rowData.AddRange(
@@ -89,7 +89,7 @@ namespace CastReporting.Reporting.Block.Table
                         prevSnapshotBisCriDTO.Performance?.ToString(metricFormat) ?? Constants.No_Value,
                         prevSnapshotBisCriDTO.Security?.ToString(metricFormat) ?? Constants.No_Value,
                         prevSnapshotBisCriDTO.Transferability?.ToString(metricFormat) ?? Constants.No_Value,
-                        prevSnapshotBisCriDTO.Changeability?.ToString(metricFormat) ?? Constants.No_Value,
+                        prevSnapshotBisCriDTO.Changeability?.ToString(metricFormat) ?? Constants.No_Value
                     });
                 
                 if (showEvol) {

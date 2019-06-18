@@ -71,38 +71,38 @@ namespace CastReporting.Reporting.Block.Table
             const string noData = Constants.No_Value;
             const string metricFormat = "N0";
 
-            var rowData = new List<string>() 
+            var rowData = new List<string>
             { Labels.Name, Labels.Current, Labels.Previous, Labels.Evolution, Labels.EvolutionPercent
 
                 , Labels.LoC
                 , codeLineNumber?.ToString(metricFormat) ?? noData
                 , codeLineNumberPrev?.ToString(metricFormat) ?? noData
                 , hasPrevious? FormatEvolution((int)codeLineNumberEvol.Value) : noData
-                , (codeLineNumberPercent.HasValue)? FormatPercent(codeLineNumberPercent.Value): noData
+                , codeLineNumberPercent.HasValue? FormatPercent(codeLineNumberPercent.Value): noData
                    
                 , "   " + Labels.Files
                 , fileNumber?.ToString(metricFormat) ?? noData
                 , fileNumberPrev?.ToString(metricFormat) ?? noData
                 , hasPrevious? FormatEvolution((int)fileNumberEvol.Value) : noData
-                , (fileNumberPercent.HasValue)? FormatPercent(fileNumberPercent.Value): noData
+                , fileNumberPercent.HasValue? FormatPercent(fileNumberPercent.Value): noData
                     
                 , "   " + Labels.Classes
                 , classNumber?.ToString(metricFormat) ?? noData
                 , classNumberPrev?.ToString(metricFormat) ?? noData
                 , hasPrevious? FormatEvolution((int)classNumberEvol.Value) : noData
-                , (classNumberPercent.HasValue)? FormatPercent(classNumberPercent.Value): noData
+                , classNumberPercent.HasValue? FormatPercent(classNumberPercent.Value): noData
 
                 , Labels.ArtifactsSQL
                 , sqlArtifactNumber?.ToString(metricFormat) ?? noData
                 , sqlArtifactNumberPrev?.ToString(metricFormat) ?? noData
                 , hasPrevious? FormatEvolution((int)sqlArtifactNumberEvol.Value) : noData
-                , (sqlArtifactNumberPercent.HasValue)? FormatPercent(sqlArtifactNumberPercent.Value): noData
+                , sqlArtifactNumberPercent.HasValue? FormatPercent(sqlArtifactNumberPercent.Value): noData
                     
                 , "   " + Labels.Tables
                 , tableNumber?.ToString(metricFormat) ?? noData
                 , tableNumberPrev?.ToString(metricFormat) ?? noData
                 , hasPrevious? FormatEvolution((int)tableNumberEvol.Value) : noData
-                , (tableNumberPercent.HasValue)? FormatPercent(tableNumberPercent.Value): noData
+                , tableNumberPercent.HasValue? FormatPercent(tableNumberPercent.Value): noData
             };
 
             var resultTable = new TableDefinition

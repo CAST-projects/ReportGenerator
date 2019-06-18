@@ -9,6 +9,7 @@ namespace CastReporting.UI.WPF.Utilities
         {
             // Avoid instanciation of the class
         }
+
         public static readonly DependencyProperty BoundPassword =
                   DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordBoxAssistant), new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
 
@@ -55,8 +56,8 @@ namespace CastReporting.UI.WPF.Utilities
                 return;
             }
 
-            bool wasBound = (bool)(e.OldValue);
-            bool needToBind = (bool)(e.NewValue);
+            bool wasBound = (bool)e.OldValue;
+            bool needToBind = (bool)e.NewValue;
 
             if (wasBound)
             {

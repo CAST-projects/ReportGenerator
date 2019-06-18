@@ -53,7 +53,7 @@ namespace CastReporting.Reporting.Block.Table
 
                 rowData.Add(mod.Name);
 
-                rowData.AddRange(reportData.CurrentSnapshot.Technologies.Select(techName => technologyLoc.FirstOrDefault(_ => _.Name == techName)).Select(result => (result != null) ? result.Value?.ToString(MetricFormat) : Constants.No_Value));
+                rowData.AddRange(reportData.CurrentSnapshot.Technologies.Select(techName => technologyLoc.FirstOrDefault(_ => _.Name == techName)).Select(result => result != null ? result.Value?.ToString(MetricFormat) : Constants.No_Value));
             }
 
             var resultTable = new TableDefinition

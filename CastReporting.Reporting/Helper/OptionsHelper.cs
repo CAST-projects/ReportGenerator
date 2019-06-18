@@ -44,7 +44,7 @@ namespace CastReporting.Reporting.Helper
             } else {
                 int v;
                 if (int.TryParse(s, out v)) {
-                    value = (v != 0);
+                    value = v != 0;
                 } else {
                     s = s.ToLower();
                     switch (s) {

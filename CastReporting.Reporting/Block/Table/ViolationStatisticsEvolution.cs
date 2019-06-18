@@ -114,7 +114,7 @@ namespace CastReporting.Reporting.Block.Table
 
             #endregion evolutionPercMetric
 
-            var rowData = new List<string>() 
+            var rowData = new List<string>
             { Labels.Name
                 , Labels.Current
                 , Labels.Previous
@@ -122,17 +122,17 @@ namespace CastReporting.Reporting.Block.Table
                 , Labels.ViolationsCritical
                 , criticalViolation?.ToString(metricFormat) ?? Constants.No_Value
                 , criticalViolationPrev?.ToString(metricFormat) ?? Constants.No_Value
-                , (criticalViolationEvolPerc.HasValue) ? FormatPercent(criticalViolationEvolPerc.Value): Constants.No_Value
+                , criticalViolationEvolPerc.HasValue ? FormatPercent(criticalViolationEvolPerc.Value): Constants.No_Value
 
                 , "  " + Labels.PerFile
                 , numCritPerFileIfNegative
                 , numCritPerFilePrevIfNegative
-                , (numCritPerFileEvolPerc.HasValue ) ? FormatPercent(numCritPerFileEvolPerc.Value) : Constants.No_Value
+                , numCritPerFileEvolPerc.HasValue ? FormatPercent(numCritPerFileEvolPerc.Value) : Constants.No_Value
 
                 , "  " + Labels.PerkLoC
                 , _numCritPerKloc?.ToString("N2") ?? Constants.No_Value
                 , _numCritPerKlocPrev?.ToString("N2") ?? Constants.No_Value
-                , (_numCritPerKlocEvolPerc.HasValue) ? FormatPercent(_numCritPerKlocEvolPerc.Value) : Constants.No_Value
+                , _numCritPerKlocEvolPerc.HasValue ? FormatPercent(_numCritPerKlocEvolPerc.Value) : Constants.No_Value
                    
                 , Labels.ComplexObjects
                 , _highveryHighCostComplexityArtefacts?.ToString(metricFormat) ?? Constants.No_Value

@@ -348,4 +348,7 @@
   <data name="msgBuildPortfSnapshotsResults" xml:space="preserve">
     <value>应用组合快照构建结果</value>
   </data>
+  <data name="lblUseApiKey" xml:space="preserve">
+    <value>API Key ?</value>
+  </data>
 </root>

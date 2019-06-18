@@ -163,7 +163,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <param name="pingOk"></param>
         public void OnServiceChecked(string url, bool pingOk)
         {
-            MessagesList.Add(new MessageItem { Message = (pingOk) ? Messages.msgPingServiceSuccess : Messages.msgPingServiceFailure, FileName = string.Empty });             
+            MessagesList.Add(new MessageItem { Message = pingOk ? Messages.msgPingServiceSuccess : Messages.msgPingServiceFailure, FileName = string.Empty });             
         }
 
         /// <summary>

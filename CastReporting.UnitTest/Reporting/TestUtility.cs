@@ -95,7 +95,7 @@ namespace CastReporting.UnitTest.Reporting
             {
                 Name = appliName,
                 Href = currentHref,
-                Annotation = new Annotation() { Name = currentName, Version = currentVersion }
+                Annotation = new Annotation { Name = currentName, Version = currentVersion }
             };
             if (moduleJson != null) currentSnap.Modules = GetSampleResult<Module>(moduleJson).ToList();
 
@@ -136,7 +136,7 @@ namespace CastReporting.UnitTest.Reporting
             {
                 Name = appliName,
                 Href = previousHref,
-                Annotation = new Annotation() { Name = previousName, Version = previousVersion }
+                Annotation = new Annotation { Name = previousName, Version = previousVersion }
             };
             if (modulePrevJson != null) previousSnap.Modules = GetSampleResult<Module>(modulePrevJson).ToList();
             var qualityIndicatorsResults2 = GetSampleResult<Result>(previousJson);
@@ -224,12 +224,13 @@ namespace CastReporting.UnitTest.Reporting
                 currentComplexityResultsList.AddRange(GetSampleResult<Result>(currentJsonComplexity).SelectMany(_ => _.ApplicationResults));
                 reportData.CurrentSnapshot.CostComplexityResults = currentComplexityResultsList;
             }
-            if (previousJsonComplexity != null)
-            {
-                var previousComplexityResultsList = new List<ApplicationResult>();
-                previousComplexityResultsList.AddRange(GetSampleResult<Result>(previousJsonComplexity).SelectMany(_ => _.ApplicationResults));
-                reportData.PreviousSnapshot.CostComplexityResults = previousComplexityResultsList;
-            }
+
+            if (previousJsonComplexity == null) return reportData;
+            
+            var previousComplexityResultsList = new List<ApplicationResult>();
+            previousComplexityResultsList.AddRange(GetSampleResult<Result>(previousJsonComplexity).SelectMany(_ => _.ApplicationResults));
+            reportData.PreviousSnapshot.CostComplexityResults = previousComplexityResultsList;
+            
             return reportData;
         }
 
@@ -241,12 +242,11 @@ namespace CastReporting.UnitTest.Reporting
                 currentActionPlanSummary.AddRange(GetSampleResult<ActionPlan>(currentJsonActionPlan));
                 reportData.CurrentSnapshot.ActionsPlan = currentActionPlanSummary;
             }
-            if (previousJsonActionPlan != null)
-            {
-                var previousActionPlanSummary = new List<ActionPlan>();
-                previousActionPlanSummary.AddRange(GetSampleResult<ActionPlan>(previousJsonActionPlan));
-                reportData.PreviousSnapshot.ActionsPlan = previousActionPlanSummary;
-            }
+            if (previousJsonActionPlan == null) return reportData;
+
+            var previousActionPlanSummary = new List<ActionPlan>();
+            previousActionPlanSummary.AddRange(GetSampleResult<ActionPlan>(previousJsonActionPlan));
+            reportData.PreviousSnapshot.ActionsPlan = previousActionPlanSummary;
             return reportData;
         }
 
@@ -263,7 +263,7 @@ namespace CastReporting.UnitTest.Reporting
                 }
                 if (bcres != null) bcres.CriticalRulesViolation = currentCriticalRuleViolations;
             }
-            if (previousJsonCriticalRuleViolations != null)
+            if (previousJsonCriticalRuleViolations == null) return reportData;
             {
                 var previousCriticalRuleViolations = new List<ApplicationResult>();
                 var bcres = reportData.PreviousSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == bcid);
@@ -300,7 +300,7 @@ namespace CastReporting.UnitTest.Reporting
                 }
                 if (bcres != null) bcres.NonCriticalRulesViolation = currentNonCriticalRuleViolations;
             }
-            if (previousJsonNonCriticalRuleViolations != null)
+            if (previousJsonNonCriticalRuleViolations == null) return reportData;
             {
                 var previousNonCriticalRuleViolations = new List<ApplicationResult>();
                 var bcres = reportData.PreviousSnapshot.BusinessCriteriaResults.FirstOrDefault(_ => _.Reference.Key == bcid);
@@ -341,7 +341,7 @@ namespace CastReporting.UnitTest.Reporting
                 }
                 reportData.CurrentSnapshot.SizingMeasuresResults = sizingAppRes;
             }
-            if (previousJsonSizingResults != null)
+            if (previousJsonSizingResults == null) return reportData;
             {
                 var results = GetSampleResult<Result>(previousJsonSizingResults).ToList();
                 List<ApplicationResult> sizingAppRes = reportData.PreviousSnapshot.SizingMeasuresResults.ToList();

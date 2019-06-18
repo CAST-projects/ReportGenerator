@@ -180,7 +180,7 @@ namespace CastReporting.UnitTest.Reporting.Text
                 null, @".\Data\DreamTeamSnap1Sample12.json", "AED3/applications/7/snapshots/3", "ADGAutoSnap_Dream Team_1", "1");
 
             // Needed for background facts, as there are retrieved one by one by url request
-            WSConnection connection = new WSConnection()
+            WSConnection connection = new WSConnection
             {
                 Url = "http://tests/CAST-RESTAPI/rest/",
                 Login = "admin",

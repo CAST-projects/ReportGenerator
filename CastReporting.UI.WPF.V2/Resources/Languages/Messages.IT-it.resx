@@ -348,4 +348,7 @@
   <data name="msgBuildPortfSnapshotsResults" xml:space="preserve">
     <value>Crea risultati per istantanee in portfolio</value>
   </data>
+  <data name="lblUseApiKey" xml:space="preserve">
+    <value>API Key ?</value>
+  </data>
 </root>

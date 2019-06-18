@@ -348,4 +348,7 @@
   <data name="msgBuildPortfSnapshotsResults" xml:space="preserve">
     <value>Generar resultados para instantáneas en cartera</value>
   </data>
+  <data name="lblUseApiKey" xml:space="preserve">
+    <value>API Key ?</value>
+  </data>
 </root>

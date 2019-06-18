@@ -35,7 +35,7 @@ namespace CastReporting.Reporting.Block.Table
           
             const string metricFormat = "N2";
             TableDefinition resultTable = null;
-            bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
+            bool displayShortHeader = options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"];
 
             if (reportData?.CurrentSnapshot?.BusinessCriteriaResults == null) return resultTable;
 

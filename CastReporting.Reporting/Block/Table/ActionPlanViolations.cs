@@ -31,6 +31,7 @@ namespace CastReporting.Reporting.Block.Table
             IEnumerable<Violation> results = reportData.SnapshotExplorer.GetViolationsInActionPlan(reportData.CurrentSnapshot.Href, nbLimitTop);
             if (results != null)
             {
+                // ReSharper disable once SwitchStatementMissingSomeCases nothing to do on default case
                 switch (filter)
                 {
                     case "ADDED":

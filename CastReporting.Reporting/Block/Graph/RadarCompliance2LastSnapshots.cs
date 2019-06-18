@@ -80,7 +80,7 @@ namespace CastReporting.Reporting.Block.Graph
                 HasRowHeaders = true,
                 HasColumnHeaders = true,
                 NbRows = 4,
-                NbColumns = (prevSnapshotBCResult != null) ? 3 : 2,
+                NbColumns = prevSnapshotBCResult != null ? 3 : 2,
                 Data = rowData
             };
 

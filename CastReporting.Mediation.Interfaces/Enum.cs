@@ -36,6 +36,6 @@ namespace CastReporting.Mediation
         /// <summary>
         /// No specific indication.
         /// </summary>
-        None,
+        None
     }
 }

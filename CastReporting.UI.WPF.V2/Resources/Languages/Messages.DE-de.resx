@@ -348,4 +348,7 @@
   <data name="msgBuildPortfSnapshotsResults" xml:space="preserve">
     <value>Erstellen Sie das Ergebnis für Snapshots im Portfolio</value>
   </data>
+  <data name="lblUseApiKey" xml:space="preserve">
+    <value>API Key ?</value>
+  </data>
 </root>

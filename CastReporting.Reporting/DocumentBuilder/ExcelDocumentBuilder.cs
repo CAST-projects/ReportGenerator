@@ -193,42 +193,38 @@ namespace CastReporting.Reporting.Builder
                         #region TextPopulate
                         foreach (var cell in sheetData.Descendants<Cell>())
                         {
-                            if (cell.CellValue != null)
+                            if (cell.CellValue == null) continue;
+                            if (cell.CellFormula != null)
                             {
-                                if (cell.CellFormula != null)
+                                // force recompute
+                                cell.CellValue.Remove();
+                            }
+                            else if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
+                            {
+                                var index = int.Parse(cell.CellValue.Text);
+                                if (!values[index].InnerText.StartsWith(FLEXI_PREFIX)) continue;
+                                string strBlockTypeAndName = values[index].InnerText.Substring(FLEXI_PREFIX.Length);
+
+                                BlockConfiguration config = GetBlockConfiguration(strBlockTypeAndName);
+
+                                if (TextBlock.IsMatching(config.Type))
                                 {
-                                    // force recompute
-                                    cell.CellValue.Remove();
-                                }
-                                else if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
-                                {
-                                    var index = int.Parse(cell.CellValue.Text);
-                                    if (values[index].InnerText.StartsWith(FLEXI_PREFIX))
+                                    TextBlock instance = BlockHelper.GetAssociatedBlockInstance<TextBlock>(config.Name);
+                                    if (instance != null)
                                     {
-                                        string strBlockTypeAndName = values[index].InnerText.Substring(FLEXI_PREFIX.Length);
-
-                                        BlockConfiguration config = GetBlockConfiguration(strBlockTypeAndName);
-
-                                        if (TextBlock.IsMatching(config.Type))
+                                        SetCellValue(cell, instance.GetContent(reportData, config.Options));
+                                    }
+                                }
+                                else if (TableBlock.IsMatching(config.Type))
+                                {
+                                    TableBlock instance = BlockHelper.GetAssociatedBlockInstance<TableBlock>(config.Name);
+                                    if (instance != null)
+                                    {
+                                        tableTargets.Add(new TableInfo
                                         {
-                                            TextBlock instance = BlockHelper.GetAssociatedBlockInstance<TextBlock>(config.Name);
-                                            if (instance != null)
-                                            {
-                                                SetCellValue(cell, instance.GetContent(reportData, config.Options));
-                                            }
-                                        }
-                                        else if (TableBlock.IsMatching(config.Type))
-                                        {
-                                            TableBlock instance = BlockHelper.GetAssociatedBlockInstance<TableBlock>(config.Name);
-                                            if (instance != null)
-                                            {
-                                                tableTargets.Add(new TableInfo
-                                                {
-                                                    cell = cell,
-                                                    table = instance.GetContent(reportData, config.Options)
-                                                });
-                                            }
-                                        }
+                                            cell = cell,
+                                            table = instance.GetContent(reportData, config.Options)
+                                        });
                                     }
                                 }
                             }
@@ -265,7 +261,7 @@ namespace CastReporting.Reporting.Builder
                                 SetCellValue(c, result);
                                 // to avoid crash when too many columns generated
                                 if (curColIdx > 676) continue;
-                                c.CellReference = alph[curColIdx - 1] + curRowIdx.ToString();
+                                c.CellReference = alph[curColIdx - 1] + curRowIdx;
                                 c.StyleIndex = 0;
                                 // ReSharper disable once PossiblyMistakenUseOfParamsMethod
                                 curRow.Append(c);
@@ -307,7 +303,7 @@ namespace CastReporting.Reporting.Builder
 
             foreach (Row row in rows)
             {
-                uint newIndex = (isDeletedRow ? row.RowIndex - 1 : row.RowIndex + 1);
+                uint newIndex = isDeletedRow ? row.RowIndex - 1 : row.RowIndex + 1;
                 string curRowIndex = row.RowIndex.ToString();
                 string newRowIndex = newIndex.ToString();
 
@@ -361,13 +357,13 @@ namespace CastReporting.Reporting.Builder
                 if (GetRowIndex(cellReference.ElementAt(0)) >= rowIndex)
                 {
                     string columnName = GetColumnName(cellReference.ElementAt(0));
-                    cellReference[0] = isDeletedRow ? columnName + (GetRowIndex(cellReference.ElementAt(0)) - 1).ToString() : IncrementCellReference(cellReference.ElementAt(0), CellReferencePartEnum.Row);
+                    cellReference[0] = isDeletedRow ? columnName + (GetRowIndex(cellReference.ElementAt(0)) - 1) : IncrementCellReference(cellReference.ElementAt(0), CellReferencePartEnum.Row);
                 }
 
                 if (GetRowIndex(cellReference.ElementAt(1)) >= rowIndex)
                 {
                     string columnName = GetColumnName(cellReference.ElementAt(1));
-                    cellReference[1] = isDeletedRow ? columnName + (GetRowIndex(cellReference.ElementAt(1)) - 1).ToString() : IncrementCellReference(cellReference.ElementAt(1), CellReferencePartEnum.Row);
+                    cellReference[1] = isDeletedRow ? columnName + (GetRowIndex(cellReference.ElementAt(1)) - 1) : IncrementCellReference(cellReference.ElementAt(1), CellReferencePartEnum.Row);
                 }
 
                 mergeCell.Reference = new StringValue(cellReference[0] + ":" + cellReference[1]);
@@ -417,50 +413,48 @@ namespace CastReporting.Reporting.Builder
         {
             string newReference = reference;
 
-            if (cellRefPart != CellReferencePartEnum.None && !String.IsNullOrEmpty(reference))
+            if (cellRefPart == CellReferencePartEnum.None || string.IsNullOrEmpty(reference)) return newReference;
+            string[] parts = Regex.Split(reference, "([A-Z]+)");
+
+            if (cellRefPart == CellReferencePartEnum.Column || cellRefPart == CellReferencePartEnum.Both)
             {
-                string[] parts = Regex.Split(reference, "([A-Z]+)");
+                List<char> col = parts[1].ToCharArray().ToList();
+                bool needsIncrement = true;
+                int index = col.Count - 1;
 
-                if (cellRefPart == CellReferencePartEnum.Column || cellRefPart == CellReferencePartEnum.Both)
+                do
                 {
-                    List<char> col = parts[1].ToCharArray().ToList();
-                    bool needsIncrement = true;
-                    int index = col.Count - 1;
+                    // increment the last letter
+                    col[index] = Letters[Letters.IndexOf(col[index]) + 1];
 
-                    do
+                    // if it is the last letter, then we need to roll it over to 'A'
+                    if (col[index] == Letters[Letters.Count - 1])
                     {
-                        // increment the last letter
-                        col[index] = Letters[Letters.IndexOf(col[index]) + 1];
-
-                        // if it is the last letter, then we need to roll it over to 'A'
-                        if (col[index] == Letters[Letters.Count - 1])
-                        {
-                            col[index] = Letters[0];
-                        }
-                        else
-                        {
-                            needsIncrement = false;
-                        }
-
-                    } while (needsIncrement && --index >= 0);
-
-                    // If true, then we need to add another letter to the mix. Initial value was something like "ZZ"
-                    if (needsIncrement)
+                        col[index] = Letters[0];
+                    }
+                    else
                     {
-                        col.Add(Letters[0]);
+                        needsIncrement = false;
                     }
 
-                    parts[1] = new String(col.ToArray());
-                }
+                } while (needsIncrement && --index >= 0);
 
-                if (cellRefPart == CellReferencePartEnum.Row || cellRefPart == CellReferencePartEnum.Both)
+                // If true, then we need to add another letter to the mix. Initial value was something like "ZZ"
+                if (needsIncrement)
                 {
-                    // Increment the row number. A reference is invalid without this componenet, so we assume it will always be present.
-                    parts[2] = (int.Parse(parts[2]) + 1).ToString();
+                    col.Add(Letters[0]);
                 }
 
-                newReference = parts[1] + parts[2];
+                parts[1] = new string(col.ToArray());
             }
+
+            if (cellRefPart == CellReferencePartEnum.Row || cellRefPart == CellReferencePartEnum.Both)
+            {
+                // Increment the row number. A reference is invalid without this componenet, so we assume it will always be present.
+                parts[2] = (int.Parse(parts[2]) + 1).ToString();
+            }
+
+            newReference = parts[1] + parts[2];
 
             return newReference;
         }
@@ -484,7 +478,7 @@ namespace CastReporting.Reporting.Builder
             Both
         }
 
-        protected static List<char> Letters = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ' };
+        protected static List<char> Letters = new List<char> { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ' };
 
         public static uint GetRowIndex(string cellReference)
         {
@@ -507,27 +501,25 @@ namespace CastReporting.Reporting.Builder
             if (retRow != null)
             {
                 // if retRow is not null and we are inserting a new row, then move all existing rows down.
-                if (insertRow != null)
+                if (insertRow == null) return retRow;
+                UpdateRowIndexes(worksheetPart, rowIndex, false);
+                UpdateMergedCellReferences(worksheetPart, rowIndex, false);
+                UpdateHyperlinkReferences(worksheetPart, rowIndex, false);
+
+                // actually insert the new row into the sheet
+                retRow = sheetData.InsertBefore(insertRow, retRow);  // at this point, retRow still points to the row that had the insert rowIndex
+
+                string curIndex = rowIndex.ToString();
+                string newIndex = rowIndex.ToString();
+
+                foreach (Cell cell in retRow.Elements<Cell>())
                 {
-                    UpdateRowIndexes(worksheetPart, rowIndex, false);
-                    UpdateMergedCellReferences(worksheetPart, rowIndex, false);
-                    UpdateHyperlinkReferences(worksheetPart, rowIndex, false);
-
-                    // actually insert the new row into the sheet
-                    retRow = sheetData.InsertBefore(insertRow, retRow);  // at this point, retRow still points to the row that had the insert rowIndex
-
-                    string curIndex = rowIndex.ToString();
-                    string newIndex = rowIndex.ToString();
-
-                    foreach (Cell cell in retRow.Elements<Cell>())
-                    {
-                        // Update the references for the rows cells.
-                        cell.CellReference = new StringValue(cell.CellReference.Value.Replace(curIndex, newIndex));
-                    }
-
-                    // Update the row index.
-                    retRow.RowIndex = rowIndex;
+                    // Update the references for the rows cells.
+                    cell.CellReference = new StringValue(cell.CellReference.Value.Replace(curIndex, newIndex));
                 }
+
+                // Update the row index.
+                retRow.RowIndex = rowIndex;
             }
             else
             {
@@ -536,7 +528,7 @@ namespace CastReporting.Reporting.Builder
                 Row refRow = !isNewLastRow ? sheetData.Elements<Row>().FirstOrDefault(row => row.RowIndex > rowIndex) : null;
 
                 // use the insert row if it exists
-                retRow = insertRow ?? new Row() { RowIndex = rowIndex };
+                retRow = insertRow ?? new Row { RowIndex = rowIndex };
 
                 IEnumerable<Cell> _cellsInRow = retRow.Elements<Cell>().ToList();
                 if (_cellsInRow.Any())

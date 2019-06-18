@@ -59,7 +59,7 @@ namespace CastReporting.Reporting.Block.Table
             keys?.AddRange(businessCriteria.NonCriticalRulesViolation.Select(_ => _.Reference.Key));
 
             // ReSharper disable once PossibleNullReferenceException
-            var technicalCriteria = (keys != null) ? reportData.CurrentSnapshot.TechnicalCriteriaResults.FirstOrDefault(_ => _.Reference.Key == techcriteriaId && keys.Contains(_.Reference.Key)) : null;
+            var technicalCriteria = keys != null ? reportData.CurrentSnapshot.TechnicalCriteriaResults.FirstOrDefault(_ => _.Reference.Key == techcriteriaId && keys.Contains(_.Reference.Key)) : null;
 
             if (technicalCriteria?.RulesViolation != null)
             {
@@ -95,7 +95,7 @@ namespace CastReporting.Reporting.Block.Table
                 HasColumnHeaders = true,
                 NbRows = rowCount + 1,
                 NbColumns = 3,
-                Data = rowData,
+                Data = rowData
             };
 
             return resultTable;

@@ -56,7 +56,7 @@ namespace CastReporting.Reporting.Block.Table
                 List<RuleViolationResultDTO> currentCriticalRulesViolation = 
                     RulesViolationUtility.GetNbViolationByRule(reportData.CurrentSnapshot, reportData.RuleExplorer, bcIds, -1);
                 
-                List<RuleViolationResultDTO> previousCriticalRulesViolation = (reportData.PreviousSnapshot != null) ? 
+                List<RuleViolationResultDTO> previousCriticalRulesViolation = reportData.PreviousSnapshot != null ? 
                     RulesViolationUtility.GetNbViolationByRule(reportData.PreviousSnapshot, reportData.RuleExplorer, bcIds, -1)
                     : null;
 

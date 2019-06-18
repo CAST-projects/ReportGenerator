@@ -86,7 +86,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                null, null, null, null, null, null);
 
             var component = new HFbyModule();
-            Dictionary<string, string> config = new Dictionary<string, string>()
+            Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"HEADER","SHORT" }
             };

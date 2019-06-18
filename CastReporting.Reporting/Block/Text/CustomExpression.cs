@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using Cast.Util.Log;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -90,11 +91,20 @@ namespace CastReporting.Reporting.Block.Text
                     default:
                         return Labels.NoData;
                 }
-                if (paramValue != null) _expr = _expr.Replace(param, paramValue.ToString());
+                if (paramValue == null) return Labels.NoData;
+                _expr = _expr.Replace(param, paramValue.ToString());
 
             }
             DataTable dt = new DataTable();
-            return double.Parse(dt.Compute(_expr, "").ToString()).ToString(_metricFormat);
+            try
+            {
+                return double.Parse(dt.Compute(_expr, "").ToString()).ToString(_metricFormat);
+            }
+            catch (EvaluateException e)
+            {
+                LogHelper.Instance.LogError("Expression cannot be evaluate : " + e.Message);
+                return Labels.NoData;
+            }
         }
         #endregion METHODS
     }

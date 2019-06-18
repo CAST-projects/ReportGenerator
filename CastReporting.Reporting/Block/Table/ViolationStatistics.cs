@@ -70,7 +70,7 @@ namespace CastReporting.Reporting.Block.Table
             else
                 numCritPerFileIfNegative = numCritPerFile?.ToString(metricFormatPrecision) ?? Constants.No_Value;
                 
-            var rowData = new List<string>() 
+            var rowData = new List<string>
             { 
                 Labels.Name
                 , Labels.Value

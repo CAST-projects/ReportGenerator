@@ -33,7 +33,7 @@ namespace CastReporting.Reporting.Block.Table
         {
             const string numberFormat = "N0";
 
-            bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
+            bool displayShortHeader = options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"];
 
             List<string> rowData = new List<string>();
 
@@ -46,7 +46,7 @@ namespace CastReporting.Reporting.Block.Table
                 rowData.AddRange(new[] { Labels.Name, Labels.Value });
                 rowData.AddRange(new[] {
                     displayShortHeader ? Labels.Debt : Labels.TechnicalDebt  + " (" + reportData.CurrencySymbol + ")",
-                   technicalDebtBuild?.ToString(numberFormat) ?? Constants.No_Value ,                   
+                   technicalDebtBuild?.ToString(numberFormat) ?? Constants.No_Value                   
                 });
 
 
@@ -55,7 +55,7 @@ namespace CastReporting.Reporting.Block.Table
 
                 rowData.AddRange(new[] {
                      displayShortHeader ? Labels.DebtAdded : Labels.TechnicalDebtAdded + " (" + reportData.CurrencySymbol + ")",
-                   technicalDebtadded?.ToString(numberFormat) ?? Constants.No_Value,                   
+                   technicalDebtadded?.ToString(numberFormat) ?? Constants.No_Value
                 });
 
                 //Build Debt removed row            
@@ -63,7 +63,7 @@ namespace CastReporting.Reporting.Block.Table
 
                 rowData.AddRange(new[] {
                      displayShortHeader ? Labels.DebtRemoved : Labels.TechnicalDebtRemoved + " (" + reportData.CurrencySymbol + ")",
-                   technicalDebtremoved?.ToString(numberFormat) ?? Constants.No_Value,                   
+                   technicalDebtremoved?.ToString(numberFormat) ?? Constants.No_Value
                 });
             }
 

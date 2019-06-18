@@ -50,7 +50,7 @@ namespace CastReporting.BLL.Computing
                     Performance = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Performance, round),
                     Security = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Security, round),
                     Changeability = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Changeability, round),
-                    Transferability = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Transferability, round),
+                    Transferability = GetBusinessCriteriaModuleGrade(snapshot, module.Href, Constants.BusinessCriteria.Transferability, round)
                 })
                 .ToList();
               
@@ -205,14 +205,8 @@ namespace CastReporting.BLL.Computing
             }
 
             var ccgrade = snapshot.CostComplexityResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
-            // ReSharper disable once UseNullPropagation
-            if (null != ccgrade)
-            {
-                return ccgrade.DetailResult.Grade;
-            }
-
-            return null;
-
+            
+            return ccgrade?.DetailResult.Grade;
         }
 
 
@@ -276,16 +270,11 @@ namespace CastReporting.BLL.Computing
             }
 
             var ccgrade = snapshot.CostComplexityResults?.SingleOrDefault(_ => _.Reference.Key == metricId);
-            // ReSharper disable once ConvertIfStatementToReturnStatement
-            if (null != ccgrade)
-            {
-                if (shortName & ccgrade.Reference.ShortName != null)
-                    return ccgrade.Reference.ShortName;
-                return ccgrade.Reference.Name;
-            }
+            if (null == ccgrade) return string.Empty;
 
-            return string.Empty;
-
+            if (shortName & ccgrade.Reference.ShortName != null)
+                return ccgrade.Reference.ShortName;
+            return ccgrade.Reference.Name;
         }
 
         

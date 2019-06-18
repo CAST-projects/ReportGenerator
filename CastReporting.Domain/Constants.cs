@@ -74,19 +74,19 @@ namespace CastReporting.Domain
             ProgrammingPractices = 66031,
             ArchitecturalDesign = 66032,
             Documentation = 66033,
-            SEIMaintainability = 60015,
+            SEIMaintainability = 60015
         }
 
         public enum Qualify
         {
             ApplicationSize = 1,
-            QualityType = 2,
+            QualityType = 2
         }
         public enum RulesViolation
         {
             All = 0,
             NonCriticalRulesViolation = 1,
-            CriticalRulesViolation = 2,
+            CriticalRulesViolation = 2
         }
         public enum QualityDistribution
         {
@@ -167,35 +167,35 @@ namespace CastReporting.Domain
             CouplingArtifacts_Low = 65301,
             CouplingArtifacts_Average = 65302,
             CouplingArtifacts_High = 65303,
-            CouplingArtifacts_VeryHigh = 65304,
+            CouplingArtifacts_VeryHigh = 65304
         }
         public enum ClassFanOut
         {
             FanOutclasses_Low = 66025,
             FanOutclasses_Moderate = 66024,
             FanOutclasses_High = 66023,
-            FanOutclasses_VeryHigh = 66022,
+            FanOutclasses_VeryHigh = 66022
         }
         public enum ClassFanIn
         {
             FanInclasses_Low = 66029,
             FanInclasses_Moderate = 66028,
             FanInclasses_High = 66027,
-            FanInclasses_VeryHigh = 66026,
+            FanInclasses_VeryHigh = 66026
         }
         public enum SizeArtifacts
         {
             SizeArtifacts_Small = 65101,
             SizeArtifacts_Average = 65102,
             SizeArtifacts_Large = 65103,
-            SizeArtifacts_VeryLarge = 65104,
+            SizeArtifacts_VeryLarge = 65104
         }
         public enum ReuseByCall
         {
             ReusebyCall_Low = 66014,
             ReusebyCall_Average = 66013,
             ReusebyCall_High = 66012,
-            ReusebyCall_VeryHigh = 66011,
+            ReusebyCall_VeryHigh = 66011
         }
 
         public const string Uri_PathSeparator = "/";

@@ -51,7 +51,7 @@ namespace CastReporting.UI.WPF.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void OnLoaded(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             (DataContext as ReportingVM)?.InitializeFromWS();
         }
@@ -65,12 +65,12 @@ namespace CastReporting.UI.WPF.View
         /// <param name="e"></param>
         private void GenerateButtonClicked(object sender, RoutedEventArgs e)
         {
-            ReportingVM _reportingVm = (DataContext as ReportingVM);
+            ReportingVM _reportingVm = DataContext as ReportingVM;
 
             if (_reportingVm == null) return;
             SaveFileDialog dialog = new SaveFileDialog
             {
-                Filter = (_reportingVm.SelectedTemplateFile.Extension != ".xlsx") ?
+                Filter = _reportingVm.SelectedTemplateFile.Extension != ".xlsx" ?
                     string.Format("*{0}, *.pdf|*{0};*.pdf", _reportingVm.SelectedTemplateFile.Extension)
                     : string.Format("*{0}|*{0}", _reportingVm.SelectedTemplateFile.Extension),
                 DefaultExt = _reportingVm.SelectedTemplateFile.Extension,

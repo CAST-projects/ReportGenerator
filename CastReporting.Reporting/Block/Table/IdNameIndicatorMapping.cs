@@ -74,8 +74,7 @@ namespace CastReporting.Reporting.Block.Table
                     Constants.QualityDistribution.ClassFanInDistribution.ToString(),
                     Constants.QualityDistribution.ClassFanInDistribution.GetHashCode().ToString(),
                     Constants.QualityDistribution.SizeDistribution.ToString(), 
-                    Constants.QualityDistribution.SizeDistribution.GetHashCode().ToString(), 
-
+                    Constants.QualityDistribution.SizeDistribution.GetHashCode().ToString()
                 });
                
 

@@ -34,7 +34,7 @@ namespace CastReporting.BLL
         /// </summary>
         // ReSharper disable once FieldCanBeMadeReadOnly.Local
         // ReSharper disable once InconsistentNaming
-        Application _Application;
+        private Application _Application;
 
         /// <summary>
         /// 

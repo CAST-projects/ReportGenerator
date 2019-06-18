@@ -76,14 +76,14 @@ namespace CastReporting.UnitTest.Reporting
                 case "66070":
                     return new List<Contributor>
                     {
-                        new Contributor() {Key = 7132, Critical = true},
-                        new Contributor() {Key = 7846, Critical = false}
+                        new Contributor {Key = 7132, Critical = true},
+                        new Contributor {Key = 7846, Critical = false}
                     };
                 default:
                     return new List<Contributor>
                     {
-                        new Contributor() {Key = 7424},
-                        new Contributor() {Key = 7846}
+                        new Contributor {Key = 7424},
+                        new Contributor {Key = 7846}
                     };
 
             }

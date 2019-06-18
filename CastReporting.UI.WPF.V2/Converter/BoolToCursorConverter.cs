@@ -32,7 +32,7 @@ namespace CastReporting.UI.WPF.Converter
         {
             if (value == null) return null;
             Visibility visibility = (Visibility)value;
-            return (visibility == Visibility.Visible);
+            return visibility == Visibility.Visible;
         }
     }
 }

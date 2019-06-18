@@ -43,7 +43,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 {"SID", "10151"},
                 {"BID", "66061"}
             };
-            WSConnection connection = new WSConnection()
+            WSConnection connection = new WSConnection
             {
                 Url = "http://tests/CAST-RESTAPI/rest/",
                 Login = "admin",
@@ -85,7 +85,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 {"SID", "10151|10107|10152|67210|67011"}
             };
 
-            WSConnection connection = new WSConnection()
+            WSConnection connection = new WSConnection
             {
                 Url = "http://tests/CAST-RESTAPI/rest/",
                 Login = "admin",

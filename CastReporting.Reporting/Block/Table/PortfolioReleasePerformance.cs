@@ -112,7 +112,7 @@ namespace CastReporting.Reporting.Block.Table
                         int previousYear = DateUtil.GetPreviousQuarterYear(_dateNow);
 
                         Snapshot _previous = _app.Snapshots.Where(_ => _.Annotation.Date.DateSnapShot != null 
-                            && ((_.Annotation.Date.DateSnapShot.Value.Year <= previousYear && DateUtil.GetQuarter(_.Annotation.Date.DateSnapShot.Value) <= previousQuarter) || (_.Annotation.Date.DateSnapShot.Value.Year < previousYear)))
+                            && (_.Annotation.Date.DateSnapShot.Value.Year <= previousYear && DateUtil.GetQuarter(_.Annotation.Date.DateSnapShot.Value) <= previousQuarter || _.Annotation.Date.DateSnapShot.Value.Year < previousYear))
                                 .OrderByDescending(_ => _.Annotation.Date.DateSnapShot)
                                 .First();
 

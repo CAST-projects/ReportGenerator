@@ -36,7 +36,7 @@ namespace CastReporting.Reporting.Block.Table
         /// <returns></returns>
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            string srBusinessCriterias = (options != null && options.ContainsKey("PAR")) ? options["PAR"] : null;
+            string srBusinessCriterias = options != null && options.ContainsKey("PAR") ? options["PAR"] : null;
             int count;
             if (options == null || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out count))
             {
