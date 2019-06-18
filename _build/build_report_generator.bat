@@ -135,7 +135,7 @@ echo Building setup ...
 echo ==============================================
 set SETUPCONFIG=%WORKSPACE%\%SRCDIR%\Setup\setup.iss
 set SETUPPATH=%WORKSPACE%\%SRCDIR%\Setup\ReportGeneratorSetup.exe
-set ZIPPATH=%RESDIR%\ReportGeneratorSetup.zip
+set ZIPPATH=%RESDIR%\%ID%.%VERSION%.zip
 sed.exe 's/_THE_VERSION_/%VERSION%/' %SETUPCONFIG% >%SETUPCONFIG%_tmp
 if errorlevel 1 goto endclean
 %INNODIR%\ISCC.exe /V3 %SETUPCONFIG%_tmp
