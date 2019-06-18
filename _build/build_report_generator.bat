@@ -154,11 +154,12 @@ if errorlevel 1 goto endclean
 echo.
 echo Package path is: %ZIPPATH%
 
+pushd %WORKSPACE%
 echo.
 echo ==============================================
 echo Nuget packaging ...
 echo ==============================================
-xcopy /f /y plugin.nuspec %RESDIR%
+xcopy /f /y %SRCDIR%\_build\plugin.nuspec %RESDIR%
 if errorlevel 1 goto endclean
 
 sed -i 's/_THE_VERSION_/%VERSION%/' %RESDIR%/plugin.nuspec
