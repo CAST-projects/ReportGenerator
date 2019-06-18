@@ -29,7 +29,7 @@ namespace CastReporting.Reporting.Block.Text
         {
             if (reportData?.CurrentSnapshot == null) return Domain.Constants.No_Value;
             double? result = MeasureUtility.GetTechnicalDebtMetric(reportData.CurrentSnapshot);
-            return (result.HasValue ? $"{result.Value:N0} {reportData.CurrencySymbol}" : Domain.Constants.No_Value);
+            return result.HasValue ? $"{result.Value:N0} {reportData.CurrencySymbol}" : Domain.Constants.No_Value;
         }
         #endregion METHODS
     }

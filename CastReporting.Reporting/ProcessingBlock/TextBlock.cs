@@ -55,7 +55,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         #region METHODS
         public static bool IsMatching(string blockType)
         {
-            return (BlockTypeName.Equals(blockType));
+            return BlockTypeName.Equals(blockType);
         }
 
         public string GetContent(ReportData client, Dictionary<string, string> options)

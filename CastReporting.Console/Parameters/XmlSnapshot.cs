@@ -48,8 +48,8 @@ namespace CastReporting.Console.Argument
             // ReSharper disable once UseStringInterpolation
             return string.Format
                 ("Current '{0}' - Previous '{1}'"
-                , (Current != null) ? Current.Name ?? "?" : "?"
-                , (Previous != null) ? Previous.Name ?? "?" : "?"
+                , Current != null ? Current.Name ?? "?" : "?"
+                , Previous != null ? Previous.Name ?? "?" : "?"
                 );
         }
 

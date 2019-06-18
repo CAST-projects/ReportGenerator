@@ -156,16 +156,14 @@ namespace CastReporting.Reporting.Builder
                     blockOptionStr = optionList[2];
                 }
             }
-            if (null != optionList && optionList.Length >= 2)
+            if (null == optionList || optionList.Length < 2) return back;
+            back.Type = optionList[0];
+            back.Name = optionList[1];
+            if (optionList.Length > 2 && string.IsNullOrWhiteSpace(blockOptionStr))
             {
-                back.Type = optionList[0];
-                back.Name = optionList[1];
-                if (optionList.Length > 2 && string.IsNullOrWhiteSpace(blockOptionStr))
-                {
-                    blockOptionStr += $",{optionList.Skip(2).Aggregate((current, next) => $"{current},{next}")}";
-                }
-                back.Options = string.IsNullOrWhiteSpace(blockOptionStr) ? new Dictionary<string, string>() : ParseOptions(blockOptionStr);
+                blockOptionStr += $",{optionList.Skip(2).Aggregate((current, next) => $"{current},{next}")}";
             }
+            back.Options = string.IsNullOrWhiteSpace(blockOptionStr) ? new Dictionary<string, string>() : ParseOptions(blockOptionStr);
             return back;
         }
         /// <summary>
@@ -227,11 +225,10 @@ namespace CastReporting.Reporting.Builder
         /// </summary>
         public virtual void Dispose()
         {
-            if (Package != null)
-            {
-                Package.Close();
-                Package.Dispose();
-            }
+            if (Package == null) return;
+
+            Package.Close();
+            Package.Dispose();
         }
         
         #endregion Inherited

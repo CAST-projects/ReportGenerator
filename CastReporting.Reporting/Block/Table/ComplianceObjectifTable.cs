@@ -40,7 +40,7 @@ namespace CastReporting.Reporting.Block.Table
         {
             List<string> rowData = new List<string>();           
 
-            bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);           
+            bool displayShortHeader = options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"];           
                      
             if (reportData?.CurrentSnapshot != null)
             {
@@ -49,16 +49,16 @@ namespace CastReporting.Reporting.Block.Table
 
                 //Compute nb acchiveemnt for the whole applcation
                 int? nbRuleWithViolations = RulesViolationUtility.GetNbRuleWithViolations(reportData.CurrentSnapshot, Constants.RulesViolation.CriticalRulesViolation, 0, true);
-                int? nbAchievement = (nbObjectives.HasValue && nbRuleWithViolations.HasValue) ? (nbObjectives.Value - nbRuleWithViolations.Value) : (int?)null;
+                int? nbAchievement = nbObjectives.HasValue && nbRuleWithViolations.HasValue ? nbObjectives.Value - nbRuleWithViolations.Value : (int?)null;
 
-                double? achievementRatio = (nbAchievement.HasValue && nbObjectives.Value != 0) ? (double)nbAchievement.Value / nbObjectives.Value : (double?)null;
+                double? achievementRatio = nbAchievement.HasValue && nbObjectives.Value != 0 ? (double)nbAchievement.Value / nbObjectives.Value : (double?)null;
 
                 //Compute nb acchiveemnt add in the last delivery
                 int? nbAddedCriticalViolations = MeasureUtility.GetAddedCriticalViolations(reportData.CurrentSnapshot);
                 if (!nbAddedCriticalViolations.HasValue) nbAddedCriticalViolations = 0;
-                int? nbAchievementAdded = (nbObjectives.HasValue) ? nbObjectives.Value - nbAddedCriticalViolations.Value : (int?)null;
+                int? nbAchievementAdded = nbObjectives.HasValue ? nbObjectives.Value - nbAddedCriticalViolations.Value : (int?)null;
 
-                double? achievementAddedRatio = (nbAchievementAdded.HasValue && nbObjectives.Value != 0) ? (double)nbAchievementAdded.Value / nbObjectives.Value : (double?)null;
+                double? achievementAddedRatio = nbAchievementAdded.HasValue && nbObjectives.Value != 0 ? (double)nbAchievementAdded.Value / nbObjectives.Value : (double?)null;
 
                 //BuildContent header
                 rowData.AddRange(displayShortHeader ? new[] { " ", Labels.Obj, Labels.Achiev, Labels.AchievRatio }

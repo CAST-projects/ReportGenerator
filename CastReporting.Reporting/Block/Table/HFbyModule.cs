@@ -39,7 +39,7 @@ namespace CastReporting.Reporting.Block.Table
         {
             const string metricFormat = "N2";
 
-            bool displayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
+            bool displayShortHeader = options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"];
             int nbRows = 0;
 
             List<string> rowData = new List<string>();

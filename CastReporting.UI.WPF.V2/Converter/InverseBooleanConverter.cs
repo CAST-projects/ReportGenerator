@@ -19,7 +19,7 @@ using System.Windows.Data;
 
 namespace CastReporting.UI.WPF.Converter
 {
-    class InverseBooleanConverter : IValueConverter
+    internal class InverseBooleanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

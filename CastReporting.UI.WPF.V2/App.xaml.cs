@@ -75,7 +75,7 @@ namespace CastReporting.UI.WPF
                    
             LogHelper.Instance.LogError(Messages.msgGenericError, currentException);
             
-            IMessageManager messageManager = (MainWindow?.DataContext as IMessageManager);
+            IMessageManager messageManager = MainWindow?.DataContext as IMessageManager;
             messageManager?.OnErrorOccured(currentException);
 
             messageManager?.SetBusyMode(false);

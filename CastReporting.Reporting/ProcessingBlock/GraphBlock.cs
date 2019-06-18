@@ -50,7 +50,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
 
         public static bool IsMatching(string blockType)
         {
-            return (BlockTypeName.Equals(blockType));
+            return BlockTypeName.Equals(blockType);
         }
 
         /// <summary>
@@ -130,289 +130,288 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 #endregion Get the block Id in document
 
                 var chartPart = GetChartPart(pPackage, pBlock, chartId);
-                if (null != chartPart)
+                if (null == chartPart) return;
+
+                string spreadsheetId = GetSpreadsheetId(chartPart);
+                if (!string.IsNullOrWhiteSpace(spreadsheetId))
                 {
-                    string spreadsheetId = GetSpreadsheetId(chartPart);
-                    if (!string.IsNullOrWhiteSpace(spreadsheetId))
+                    #region Associated content management
+                    var embedPackage = (EmbeddedPackagePart)chartPart.GetPartById(spreadsheetId);
+                    if (null != embedPackage)
                     {
-                        #region Associated content management
-                        var embedPackage = (EmbeddedPackagePart)chartPart.GetPartById(spreadsheetId);
-                        if (null != embedPackage)
+                        using (var ms = new MemoryStream())
                         {
-                            using (var ms = new MemoryStream())
+                            #region Set content in memory to work with
+                            using (Stream str = embedPackage.GetStream())
                             {
-                                #region Set content in memory to work with
-                                using (Stream str = embedPackage.GetStream())
-                                {
-                                    StreamHelper.CopyStream(str, ms);
-                                    str.Close();
-                                }
-                                #endregion Set content in memory to work with
+                                StreamHelper.CopyStream(str, ms);
+                                str.Close();
+                            }
+                            #endregion Set content in memory to work with
 
-                                using (SpreadsheetDocument spreadsheetDoc = SpreadsheetDocument.Open(ms, true))
+                            using (SpreadsheetDocument spreadsheetDoc = SpreadsheetDocument.Open(ms, true))
+                            {
+                                #region Associated Data File content Management
+                                var ws = (OXS.Sheet)spreadsheetDoc.WorkbookPart.Workbook.Sheets.FirstOrDefault();
+                                if (ws != null)
                                 {
-                                    #region Associated Data File content Management
-                                    var ws = (OXS.Sheet)spreadsheetDoc.WorkbookPart.Workbook.Sheets.FirstOrDefault();
-                                    if (ws != null)
+                                    string sheetId = ws.Id;
+                                    var wsp = (WorksheetPart)spreadsheetDoc.WorkbookPart.GetPartById(sheetId);
+                                    XDocument shPart = wsp.GetXDocument();
+                                    XElement shData = shPart.Descendants(S.sheetData).FirstOrDefault();
+
+                                    #region Use of the data content (Only data, no titles)
+                                    if (null != shData)
                                     {
-                                        string sheetId = ws.Id;
-                                        var wsp = (WorksheetPart)spreadsheetDoc.WorkbookPart.GetPartById(sheetId);
-                                        XDocument shPart = wsp.GetXDocument();
-                                        XElement shData = shPart.Descendants(S.sheetData).FirstOrDefault();
+                                        IEnumerable<XElement> allRows = shData.Descendants(S.row); // => if ToList() cause some graph to fail to generate
+                                        int ctRow = 0;
+                                        int nbRows = allRows.Count();
 
-                                        #region Use of the data content (Only data, no titles)
-                                        if (null != shData)
+                                        // Cleaning Cells  ======================================================================
+                                        // We clean row not having Cell information
+                                        int idxRow = 1;
+                                        var nbCorrectSeries = allRows.Where(x => x.Descendants(S.c).Any(y => y.Attribute(NoNamespace.r) != null &&
+                                                                                                                y.Attribute(NoNamespace.r)?.Value != ""))
+                                            .Max(x => x.Descendants(S.c).Count());
+                                        for (int ctn = 0; ctn < nbRows; ctn += 1)
                                         {
-                                            IEnumerable<XElement> allRows = shData.Descendants(S.row); // => if ToList() cause some graph to fail to generate
-                                            int ctRow = 0;
-                                            int nbRows = allRows.Count();
+                                            var oneRow = allRows.ElementAt(ctn);//[ctn];
+                                            // DCO - 9/21/2012 - I added the condition that the count of CELL must be indeed equal of numCorrectSeries OR to the number of column
+                                            // It happens for graphs with 3 cells defined per row, but only two used (so no Value for third cell), when NbColumns was == 2
+                                            var isRowValid = (oneRow.Descendants(S.c).Count() == nbCorrectSeries || oneRow.Descendants(S.c).Count() >= pContent.NbColumns) &&
+                                                             (oneRow.Descendants(S.c).Descendants(S.v).Count() == oneRow.Descendants(S.c).Count() ||
+                                                              oneRow.Descendants(S.c).Descendants(S.v).Count() >= pContent.NbColumns);
 
-                                            // Cleaning Cells  ======================================================================
-                                            // We clean row not having Cell information
-                                            int idxRow = 1;
-                                            var nbCorrectSeries = allRows.Where(x => x.Descendants(S.c).Any(y => y.Attribute(NoNamespace.r) != null &&
-                                                                                                                 y.Attribute(NoNamespace.r)?.Value != ""))
-                                                .Max(x => x.Descendants(S.c).Count());
-                                            for (int ctn = 0; ctn < nbRows; ctn += 1)
+                                            // We remove rows that are not defined in content
+                                            if (isRowValid == false || ctRow >= pContent.NbRows)
                                             {
-                                                var oneRow = allRows.ElementAt(ctn);//[ctn];
-                                                // DCO - 9/21/2012 - I added the condition that the count of CELL must be indeed equal of numCorrectSeries OR to the number of column
-                                                // It happens for graphs with 3 cells defined per row, but only two used (so no Value for third cell), when NbColumns was == 2
-                                                var isRowValid = ((oneRow.Descendants(S.c).Count() == nbCorrectSeries || oneRow.Descendants(S.c).Count() >= pContent.NbColumns) &&
-                                                                  (oneRow.Descendants(S.c).Descendants(S.v).Count() == oneRow.Descendants(S.c).Count() ||
-                                                                   oneRow.Descendants(S.c).Descendants(S.v).Count() >= pContent.NbColumns));
-
-                                                // We remove rows that are not defined in content
-                                                if (isRowValid == false || ctRow >= pContent.NbRows)
-                                                {
-                                                    oneRow.Remove();
-                                                    ctn -= 1;
-                                                    nbRows -= 1;
-                                                    continue;
-                                                }
-                                                var _xAttribute = oneRow.Attribute(NoNamespace.r);
-                                                if (_xAttribute != null) _xAttribute.Value = idxRow.ToString();
-                                                idxRow += 1;
+                                                oneRow.Remove();
+                                                ctn -= 1;
+                                                nbRows -= 1;
+                                                continue;
                                             }
-                                            // ====================================================================================
-
-
-                                            // Copying new row  ========================================================================
-                                            // We copied new row if needed and extrapolate formula
-                                            // Take cell with no t SharedString
-                                            nbRows = allRows.Count();
-                                            if (pContent.NbRows > nbRows)
-                                            {
-                                                // We need to detect the best ROW to copy
-                                                //    Usually the first row is the header so it contains two cells with SharedString 
-                                                //    Case 1: For others rows, it will be two cells with value.
-                                                //    Case 2: For other rows, it can be one cell with SharedString and one cell with value (in case of App Nane + value)
-                                                var oneSerieRow =
-                                                    // Case 1
-                                                    allRows.FirstOrDefault(x => x.Attribute(NoNamespace.r) != null &&
-                                                                                x.Attribute(NoNamespace.r)?.Value != "" && x.Descendants(S.c).Any() &&
-                                                                                x.Descendants(S.c).Attributes(NoNamespace.t).Any() == false)
-                                                    ?? // Case 2: One or several SharedString, but at least one Value (by using < content.NbColumns)
-                                                    allRows.FirstOrDefault(x => x.Attribute(NoNamespace.r) != null &&
-                                                                                x.Attribute(NoNamespace.r)?.Value != "" && x.Descendants(S.c).Any() &&
-                                                                                x.Descendants(S.c).Attributes(NoNamespace.t).Count() < pContent.NbColumns)
-                                                    ?? // Case 3: Any row but the first (avoiding Header)
-                                                    allRows.FirstOrDefault(x => x.Attribute(NoNamespace.r) != null &&
-                                                                                x.Attribute(NoNamespace.r)?.Value != "" &&
-                                                                                x.Attribute(NoNamespace.r)?.Value != "1" && x.Descendants(S.c).Any());
-
-                                                if (oneSerieRow != null)
-                                                {
-                                                    var previousRowValue = Convert.ToInt32(oneSerieRow.Attribute(NoNamespace.r)?.Value);
-                                                    while (nbRows < pContent.NbRows)
-                                                    {
-                                                        var newRow = new XElement(oneSerieRow);
-                                                        var _xAttribute = newRow.Attribute(NoNamespace.r);
-                                                        if (_xAttribute != null) _xAttribute.Value = (nbRows + 1).ToString(); // DCO Correction, ROW ID starts at 1
-                                                        var serieCells = newRow.Descendants(S.c);
-                                                        foreach (var oneCell in serieCells)
-                                                        {
-                                                            if (oneCell.Attribute(NoNamespace.r) == null) continue;
-
-
-                                                            var previousFormula = oneCell.Attribute(NoNamespace.r)?.Value;
-                                                            // We extrapolate
-                                                            int indexRow;
-                                                            int indexCol;
-                                                            WorksheetAccessorExt.GetRowColumnValue(previousFormula, out indexRow, out indexCol);
-                                                            int newRowValue = nbRows + 1 + (indexRow - previousRowValue);
-                                                            var _attribute = oneCell.Attribute(NoNamespace.r);
-                                                            if (_attribute != null) _attribute.Value = string.Concat(WorksheetAccessor.GetColumnId(indexCol), newRowValue.ToString());
-
-                                                            if (oneCell.Attributes(NoNamespace.t).Any() != true) continue;
-                                                            var vElement = oneCell.Descendants(S.v).FirstOrDefault();
-                                                            if (vElement != null)
-                                                                vElement.Value = WorksheetAccessorExt.AddSharedStringValue(spreadsheetDoc, "").ToString();
-                                                            // ---
-                                                        }
-                                                        shData.Add(newRow);
-                                                        nbRows += 1;
-                                                    }
-                                                }
-                                                else { LogHelper.Instance.LogWarn("Adding Rows: Could not find a row without a SharedString element."); }
-                                            }
-                                            //-----
-
-                                            // Define Sheet Dimension ================================================================
-                                            int minStartRow = -1;
-                                            int minStartCol = -1;
-                                            int maxEndRow = -1;
-                                            int maxEndCol = -1;
-                                            var entireScope = allRows.SelectMany(x => x.Descendants(S.c).Attributes(NoNamespace.r).Select(y => y.Value));
-                                            foreach (var oneFormula in entireScope)
-                                            {
-                                                var startRow = -1;
-                                                var endRow = -1;
-                                                var startCol = -1;
-                                                var endCol = -1;
-                                                WorksheetAccessorExt.GetFormulaCoord(oneFormula, out startRow, out startCol,
-                                                    out endRow, out endCol);
-                                                if (minStartRow == -1 || startRow < minStartRow) { minStartRow = startRow; }
-                                                if (minStartCol == -1 || startCol < minStartCol) { minStartCol = startCol; }
-                                                if (maxEndRow == -1 || endRow > maxEndRow) { maxEndRow = endRow; }
-                                                if (maxEndCol == -1 || endCol > maxEndCol) { maxEndCol = endCol; }
-                                            }
-                                            XElement sheetDimension = shPart.Descendants(S.s + "dimension").FirstOrDefault();
-                                            if (sheetDimension?.Attribute(NoNamespace._ref) != null)
-                                                sheetDimension.Attribute(NoNamespace._ref)?.SetValue(WorksheetAccessorExt.SetFormula("", minStartRow, minStartCol, maxEndRow, maxEndCol, false));
-                                            // ====================================================================================
-
-                                            int contentEltCount = pContent.Data?.Count() ?? 0;
-                                            // Apply values =======================================================================
-                                            for (int ctn = 0; ctn < nbRows; ctn++)
-                                            {
-                                                var oneRow = allRows.ElementAt(ctn);
-                                                // TODO: We may have to correct the "spans" in:  <row r="1" spans="1:3" 
-                                                List<XElement> allCells = oneRow.Descendants(S.c).ToList();
-                                                var ctCell = 0;
-                                                int nbCells = allCells.Count;
-                                                for (int ctc = 0; ctc < nbCells; ctc++)
-                                                {
-                                                    var oneCell = allCells[ctc];
-
-                                                    // We remove cell if they are not defined as content columns
-                                                    if (ctCell >= pContent.NbColumns)
-                                                    {
-                                                        LogHelper.Instance.LogWarn("More cells that defined content ");
-                                                        if (null != oneCell.Parent) { oneCell.Remove(); }
-
-                                                        ctc -= 1;
-                                                        nbCells -= 1;
-                                                        continue;
-                                                    }
-
-                                                    // We inject text
-                                                    var targetText = ((ctRow * pContent.NbColumns + ctCell) < contentEltCount ?
-                                                        pContent.Data?.ElementAt(ctRow * pContent.NbColumns + ctCell) :
-                                                        string.Empty);
-                                                    if (null != targetText && !"<KEEP>".Equals(targetText)) // Keep for managing UniversalGraph
-                                                    {
-                                                        var isSharedString = oneCell.Attribute(NoNamespace.t);
-                                                        if (null != isSharedString && "s".Equals(isSharedString.Value))
-                                                        {
-                                                            if ("".Equals(targetText)) { LogHelper.Instance.LogWarn("Target Text empty for Shared String, this can create abnormal behavior."); }
-                                                            var idx = Convert.ToInt32(oneCell.Value);
-                                                            WorksheetAccessorExt.SetSharedStringValue(spreadsheetDoc, idx, targetText);
-                                                        }
-                                                        else
-                                                        {
-                                                            XElement cell = oneCell.Descendants(S.v).FirstOrDefault();
-                                                            if (null != cell) { cell.Value = targetText; }
-                                                            else { LogHelper.Instance.LogWarn("No correct cell value found"); }
-                                                        }
-                                                    }
-                                                    ctCell += 1;
-                                                }
-                                                ctRow += 1;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            LogHelper.Instance.LogWarn("Embedded spreadsheet is not formatted correctly");
+                                            var _xAttribute = oneRow.Attribute(NoNamespace.r);
+                                            if (_xAttribute != null) _xAttribute.Value = idxRow.ToString();
+                                            idxRow += 1;
                                         }
                                         // ====================================================================================
-                                        #endregion Get and use of the data content (Only data, no titles)
 
-                                        // We modify Table Definition (defining scope of Graph)
-                                        foreach (TableDefinitionPart t in wsp.TableDefinitionParts)
+
+                                        // Copying new row  ========================================================================
+                                        // We copied new row if needed and extrapolate formula
+                                        // Take cell with no t SharedString
+                                        nbRows = allRows.Count();
+                                        if (pContent.NbRows > nbRows)
                                         {
-                                            t.Table.Reference = String.Concat(WorksheetAccessor.GetColumnId(1), 1, ":",
-                                                WorksheetAccessor.GetColumnId(pContent.NbColumns), pContent.NbRows);
+                                            // We need to detect the best ROW to copy
+                                            //    Usually the first row is the header so it contains two cells with SharedString 
+                                            //    Case 1: For others rows, it will be two cells with value.
+                                            //    Case 2: For other rows, it can be one cell with SharedString and one cell with value (in case of App Nane + value)
+                                            var oneSerieRow =
+                                                // Case 1
+                                                allRows.FirstOrDefault(x => x.Attribute(NoNamespace.r) != null &&
+                                                                            x.Attribute(NoNamespace.r)?.Value != "" && x.Descendants(S.c).Any() &&
+                                                                            x.Descendants(S.c).Attributes(NoNamespace.t).Any() == false)
+                                                ?? // Case 2: One or several SharedString, but at least one Value (by using < content.NbColumns)
+                                                allRows.FirstOrDefault(x => x.Attribute(NoNamespace.r) != null &&
+                                                                            x.Attribute(NoNamespace.r)?.Value != "" && x.Descendants(S.c).Any() &&
+                                                                            x.Descendants(S.c).Attributes(NoNamespace.t).Count() < pContent.NbColumns)
+                                                ?? // Case 3: Any row but the first (avoiding Header)
+                                                allRows.FirstOrDefault(x => x.Attribute(NoNamespace.r) != null &&
+                                                                            x.Attribute(NoNamespace.r)?.Value != "" &&
+                                                                            x.Attribute(NoNamespace.r)?.Value != "1" && x.Descendants(S.c).Any());
 
-                                            // We reduce the scope TableColumn if needed
-                                            var columnCount = t.Table.TableColumns.Count;
-                                            for (int ctCol = 0; ctCol < columnCount; ctCol += 1)
+                                            if (oneSerieRow != null)
                                             {
-                                                var tabColumn = t.Table.TableColumns.ElementAt(ctCol);
-                                                if (ctCol >= pContent.NbColumns)
+                                                var previousRowValue = Convert.ToInt32(oneSerieRow.Attribute(NoNamespace.r)?.Value);
+                                                while (nbRows < pContent.NbRows)
                                                 {
-                                                    tabColumn.Remove();
-                                                    ctCol -= 1;
-                                                    columnCount -= 1; // DCO - 10/23/2012 - Correction when reducing scope to a column (count is corrected afterwards).
+                                                    var newRow = new XElement(oneSerieRow);
+                                                    var _xAttribute = newRow.Attribute(NoNamespace.r);
+                                                    if (_xAttribute != null) _xAttribute.Value = (nbRows + 1).ToString(); // DCO Correction, ROW ID starts at 1
+                                                    var serieCells = newRow.Descendants(S.c);
+                                                    foreach (var oneCell in serieCells)
+                                                    {
+                                                        if (oneCell.Attribute(NoNamespace.r) == null) continue;
+
+
+                                                        var previousFormula = oneCell.Attribute(NoNamespace.r)?.Value;
+                                                        // We extrapolate
+                                                        int indexRow;
+                                                        int indexCol;
+                                                        WorksheetAccessorExt.GetRowColumnValue(previousFormula, out indexRow, out indexCol);
+                                                        int newRowValue = nbRows + 1 + (indexRow - previousRowValue);
+                                                        var _attribute = oneCell.Attribute(NoNamespace.r);
+                                                        if (_attribute != null) _attribute.Value = string.Concat(WorksheetAccessor.GetColumnId(indexCol), newRowValue.ToString());
+
+                                                        if (oneCell.Attributes(NoNamespace.t).Any() != true) continue;
+                                                        var vElement = oneCell.Descendants(S.v).FirstOrDefault();
+                                                        if (vElement != null)
+                                                            vElement.Value = WorksheetAccessorExt.AddSharedStringValue(spreadsheetDoc, "").ToString();
+                                                        // ---
+                                                    }
+                                                    shData.Add(newRow);
+                                                    nbRows += 1;
+                                                }
+                                            }
+                                            else { LogHelper.Instance.LogWarn("Adding Rows: Could not find a row without a SharedString element."); }
+                                        }
+                                        //-----
+
+                                        // Define Sheet Dimension ================================================================
+                                        int minStartRow = -1;
+                                        int minStartCol = -1;
+                                        int maxEndRow = -1;
+                                        int maxEndCol = -1;
+                                        var entireScope = allRows.SelectMany(x => x.Descendants(S.c).Attributes(NoNamespace.r).Select(y => y.Value));
+                                        foreach (var oneFormula in entireScope)
+                                        {
+                                            var startRow = -1;
+                                            var endRow = -1;
+                                            var startCol = -1;
+                                            var endCol = -1;
+                                            WorksheetAccessorExt.GetFormulaCoord(oneFormula, out startRow, out startCol,
+                                                out endRow, out endCol);
+                                            if (minStartRow == -1 || startRow < minStartRow) { minStartRow = startRow; }
+                                            if (minStartCol == -1 || startCol < minStartCol) { minStartCol = startCol; }
+                                            if (maxEndRow == -1 || endRow > maxEndRow) { maxEndRow = endRow; }
+                                            if (maxEndCol == -1 || endCol > maxEndCol) { maxEndCol = endCol; }
+                                        }
+                                        XElement sheetDimension = shPart.Descendants(S.s + "dimension").FirstOrDefault();
+                                        if (sheetDimension?.Attribute(NoNamespace._ref) != null)
+                                            sheetDimension.Attribute(NoNamespace._ref)?.SetValue(WorksheetAccessorExt.SetFormula("", minStartRow, minStartCol, maxEndRow, maxEndCol, false));
+                                        // ====================================================================================
+
+                                        int contentEltCount = pContent.Data?.Count() ?? 0;
+                                        // Apply values =======================================================================
+                                        for (int ctn = 0; ctn < nbRows; ctn++)
+                                        {
+                                            var oneRow = allRows.ElementAt(ctn);
+                                            // TODO: We may have to correct the "spans" in:  <row r="1" spans="1:3" 
+                                            List<XElement> allCells = oneRow.Descendants(S.c).ToList();
+                                            var ctCell = 0;
+                                            int nbCells = allCells.Count;
+                                            for (int ctc = 0; ctc < nbCells; ctc++)
+                                            {
+                                                var oneCell = allCells[ctc];
+
+                                                // We remove cell if they are not defined as content columns
+                                                if (ctCell >= pContent.NbColumns)
+                                                {
+                                                    LogHelper.Instance.LogWarn("More cells that defined content ");
+                                                    if (null != oneCell.Parent) { oneCell.Remove(); }
+
+                                                    ctc -= 1;
+                                                    nbCells -= 1;
                                                     continue;
                                                 }
 
-                                                // We align column name with the correct Shared String
-                                                if (!string.IsNullOrEmpty(pContent.Data?.ElementAt(ctCol)) && ctCol < pContent.NbColumns && "<KEEP>" != pContent.Data.ElementAt(ctCol))
+                                                // We inject text
+                                                var targetText = ctRow * pContent.NbColumns + ctCell < contentEltCount ?
+                                                    pContent.Data?.ElementAt(ctRow * pContent.NbColumns + ctCell) :
+                                                    string.Empty;
+                                                if (null != targetText && !"<KEEP>".Equals(targetText)) // Keep for managing UniversalGraph
                                                 {
-                                                    tabColumn.SetAttribute(new OpenXmlAttribute("", "name", "", pContent.Data.ElementAt(ctCol)));
+                                                    var isSharedString = oneCell.Attribute(NoNamespace.t);
+                                                    if (null != isSharedString && "s".Equals(isSharedString.Value))
+                                                    {
+                                                        if ("".Equals(targetText)) { LogHelper.Instance.LogWarn("Target Text empty for Shared String, this can create abnormal behavior."); }
+                                                        var idx = Convert.ToInt32(oneCell.Value);
+                                                        WorksheetAccessorExt.SetSharedStringValue(spreadsheetDoc, idx, targetText);
+                                                    }
+                                                    else
+                                                    {
+                                                        XElement cell = oneCell.Descendants(S.v).FirstOrDefault();
+                                                        if (null != cell) { cell.Value = targetText; }
+                                                        else { LogHelper.Instance.LogWarn("No correct cell value found"); }
+                                                    }
                                                 }
+                                                ctCell += 1;
+                                            }
+                                            ctRow += 1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        LogHelper.Instance.LogWarn("Embedded spreadsheet is not formatted correctly");
+                                    }
+                                    // ====================================================================================
+                                    #endregion Get and use of the data content (Only data, no titles)
+
+                                    // We modify Table Definition (defining scope of Graph)
+                                    foreach (TableDefinitionPart t in wsp.TableDefinitionParts)
+                                    {
+                                        t.Table.Reference = string.Concat(WorksheetAccessor.GetColumnId(1), 1, ":",
+                                            WorksheetAccessor.GetColumnId(pContent.NbColumns), pContent.NbRows);
+
+                                        // We reduce the scope TableColumn if needed
+                                        var columnCount = t.Table.TableColumns.Count;
+                                        for (int ctCol = 0; ctCol < columnCount; ctCol += 1)
+                                        {
+                                            var tabColumn = t.Table.TableColumns.ElementAt(ctCol);
+                                            if (ctCol >= pContent.NbColumns)
+                                            {
+                                                tabColumn.Remove();
+                                                ctCol -= 1;
+                                                columnCount -= 1; // DCO - 10/23/2012 - Correction when reducing scope to a column (count is corrected afterwards).
+                                                continue;
                                             }
 
-                                            // The Count attribute is not updated correctly, so we do the work for them :)
-                                            if (pContent.NbColumns < t.Table.TableColumns.Count)
+                                            // We align column name with the correct Shared String
+                                            if (!string.IsNullOrEmpty(pContent.Data?.ElementAt(ctCol)) && ctCol < pContent.NbColumns && "<KEEP>" != pContent.Data.ElementAt(ctCol))
                                             {
-                                                t.Table.TableColumns.SetAttribute(new OpenXmlAttribute("", "count", "", pContent.NbColumns.ToString()));
+                                                tabColumn.SetAttribute(new OpenXmlAttribute("", "name", "", pContent.Data.ElementAt(ctCol)));
                                             }
                                         }
-                                        // We save the XML content
-                                        wsp.PutXDocument(shPart);
+
+                                        // The Count attribute is not updated correctly, so we do the work for them :)
+                                        if (pContent.NbColumns < t.Table.TableColumns.Count)
+                                        {
+                                            t.Table.TableColumns.SetAttribute(new OpenXmlAttribute("", "count", "", pContent.NbColumns.ToString()));
+                                        }
                                     }
-                                    // We update cached data in Word document
-                                    UpdateCachedValues(pClient, chartPart, spreadsheetDoc, pContent);
-                                    #endregion Associated Data File content Management
+                                    // We save the XML content
+                                    wsp.PutXDocument(shPart);
                                 }
-                                // Write the modified memory stream back
-                                // into the embedded package part.
-                                using (Stream s = embedPackage.GetStream())
-                                {
-                                    ms.WriteTo(s);
-                                    s.SetLength(ms.Length);
-                                }
+                                // We update cached data in Word document
+                                UpdateCachedValues(pClient, chartPart, spreadsheetDoc, pContent);
+                                #endregion Associated Data File content Management
+                            }
+                            // Write the modified memory stream back
+                            // into the embedded package part.
+                            using (Stream s = embedPackage.GetStream())
+                            {
+                                ms.WriteTo(s);
+                                s.SetLength(ms.Length);
                             }
                         }
-                        else
-                        {
-                            LogHelper.Instance.LogWarn("No embedded excel file found.");
-                        }
-                        #endregion Associated content management
                     }
                     else
                     {
-                        LogHelper.Instance.LogWarn("No spreadsheet identifier found.");
+                        LogHelper.Instance.LogWarn("No embedded excel file found.");
                     }
-
-                    #region Additionnal parameters
-
-                    if (null == pContent.GraphOptions || !pContent.GraphOptions.HasConfiguration) return;
-                    Chart chart = chartPart.ChartSpace.Descendants<Chart>().FirstOrDefault();
-                    PlotArea p_c = chart?.PlotArea;
-                    var primaryVerticalAxis = p_c?.Descendants<ValueAxis>().FirstOrDefault(_ => "valAx".Equals(_.LocalName));
-                    if (pContent.GraphOptions.AxisConfiguration.VerticalAxisMinimal.HasValue)
-                    {
-                        if (primaryVerticalAxis != null) primaryVerticalAxis.Scaling.MinAxisValue.Val = DoubleValue.FromDouble(pContent.GraphOptions.AxisConfiguration.VerticalAxisMinimal.Value);
-                    }
-                    if (!pContent.GraphOptions.AxisConfiguration.VerticalAxisMaximal.HasValue) return;
-                    // ReSharper disable once PossibleInvalidOperationException
-                    if (primaryVerticalAxis != null) primaryVerticalAxis.Scaling.MaxAxisValue.Val = DoubleValue.FromDouble(pContent.GraphOptions.AxisConfiguration.VerticalAxisMaximal.Value);
-
-                    #endregion Additionnal parameters
+                    #endregion Associated content management
                 }
+                else
+                {
+                    LogHelper.Instance.LogWarn("No spreadsheet identifier found.");
+                }
+
+                #region Additionnal parameters
+
+                if (null == pContent.GraphOptions || !pContent.GraphOptions.HasConfiguration) return;
+                Chart chart = chartPart.ChartSpace.Descendants<Chart>().FirstOrDefault();
+                PlotArea p_c = chart?.PlotArea;
+                var primaryVerticalAxis = p_c?.Descendants<ValueAxis>().FirstOrDefault(_ => "valAx".Equals(_.LocalName));
+                if (pContent.GraphOptions.AxisConfiguration.VerticalAxisMinimal.HasValue)
+                {
+                    if (primaryVerticalAxis != null) primaryVerticalAxis.Scaling.MinAxisValue.Val = DoubleValue.FromDouble(pContent.GraphOptions.AxisConfiguration.VerticalAxisMinimal.Value);
+                }
+                if (!pContent.GraphOptions.AxisConfiguration.VerticalAxisMaximal.HasValue) return;
+                // ReSharper disable once PossibleInvalidOperationException
+                if (primaryVerticalAxis != null) primaryVerticalAxis.Scaling.MaxAxisValue.Val = DoubleValue.FromDouble(pContent.GraphOptions.AxisConfiguration.VerticalAxisMaximal.Value);
+
+                #endregion Additionnal parameters
             }
             catch (Exception exception)
             {
@@ -516,8 +515,8 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                             int endRow;
                             int endCol;
                             string sheetName = WorksheetAccessorExt.GetFormulaCoord(oneFormula.Value, out startRow, out startCol, out endRow, out endCol);
-                            if ((startRow > content.NbRows && endRow > content.NbRows) ||
-                                (startCol > content.NbColumns && endCol > content.NbColumns))
+                            if (startRow > content.NbRows && endRow > content.NbRows ||
+                                startCol > content.NbColumns && endCol > content.NbColumns)
                             {
                                 // We need to remove the whole serie as it is out of scope
                                 isSerieDeleted = true;
@@ -525,7 +524,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                 break;
                             }
                             // ignore if mapped to a single cell of first row or first column
-                            if ((endCol - startCol == 0 && endRow - startRow == 0) && (startCol == 1 || startRow == 1))
+                            if (endCol - startCol == 0 && endRow - startRow == 0 && (startCol == 1 || startRow == 1))
                             	continue;
                             // otherwise this is mapped to a range: update
                             if (startCol == endCol && endRow != content.NbRows && startRow != endRow)
@@ -533,11 +532,9 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                 endRow = content.NbRows; // -startRow;
                                 oneFormula.Value = WorksheetAccessorExt.SetFormula(sheetName, startRow, startCol, endRow, endCol);
                             }
-                            if (startRow == endRow && endCol != content.NbColumns && startCol != endCol)
-                            {
-                                endCol = content.NbColumns; // -startRow;
-                                oneFormula.Value = WorksheetAccessorExt.SetFormula(sheetName, startRow, startCol, endRow, endCol);
-                            }
+                            if (startRow != endRow || endCol == content.NbColumns || startCol == endCol) continue;
+                            endCol = content.NbColumns; // -startRow;
+                            oneFormula.Value = WorksheetAccessorExt.SetFormula(sheetName, startRow, startCol, endRow, endCol);
                         }
                         // ------------
 
@@ -634,69 +631,68 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                         }
 
                         // Data Label Modification
-                        if (content.GraphDataLabelText)
+                        if (!content.GraphDataLabelText) continue;
+                        // TODO: Create elements if it does not exist
+                        // As of today, the user needs to display Axis value, that will be changed by text by the following code
+                        IEnumerable<XElement> dataLabels = oneSerie.Descendants(C.dLbl);
+                        var tempLbl = dataLabels.FirstOrDefault();
+                        if (tempLbl != null)
                         {
-                            // TODO: Create elements if it does not exist
-                            // As of today, the user needs to display Axis value, that will be changed by text by the following code
-                            IEnumerable<XElement> dataLabels = oneSerie.Descendants(C.dLbl);
-                            var tempLbl = dataLabels.FirstOrDefault();
-                            if (tempLbl != null)
-                            {
-                                XElement parentNode = tempLbl.Parent;
+                            XElement parentNode = tempLbl.Parent;
 
-                                // We copied new row if needed
-                                int nbDataLabels = dataLabels.Count();
-                                if (content.DataLabel.Count() > nbDataLabels)
+                            // We copied new row if needed
+                            int nbDataLabels = dataLabels.Count();
+                            if (content.DataLabel.Count() > nbDataLabels)
+                            {
+                                var idx = nbDataLabels - 1;
+                                var lastElement = dataLabels.ElementAt(idx);
+                                while (content.DataLabel.Count() > nbDataLabels)
                                 {
-                                    var idx = nbDataLabels - 1;
-                                    var lastElement = dataLabels.ElementAt(idx);
-                                    while (content.DataLabel.Count() > nbDataLabels)
+                                    XElement newElement = new XElement(lastElement);
+                                    var idxValue = newElement.Descendants(C.idx).FirstOrDefault();
+                                    // We need to assign IDX at 0 so we're sure it is in the correct range, we change the value afterwards
+                                    if (idxValue?.Attribute(NoNamespace.val) != null)
                                     {
-                                        XElement newElement = new XElement(lastElement);
-                                        var idxValue = newElement.Descendants(C.idx).FirstOrDefault();
-                                        // We need to assign IDX at 0 so we're sure it is in the correct range, we change the value afterwards
-                                        if (idxValue?.Attribute(NoNamespace.val) != null)
-                                        {
-                                            idxValue.Attribute(NoNamespace.val).SetValue(0);
-                                        }
-                                        parentNode?.AddFirst(newElement);
-                                        nbDataLabels += 1;
+                                        idxValue.Attribute(NoNamespace.val).SetValue(0);
                                     }
-                                }
-                                // We remove DataLabel is there are too many
-                                nbDataLabels = dataLabels.Count();
-                                if (content.DataLabel.Count() < nbDataLabels)
-                                {
-                                    while (content.DataLabel.Count() < nbDataLabels)
-                                    {
-                                        dataLabels.ElementAt(nbDataLabels - 1).Remove();
-                                        nbDataLabels -= 1;
-                                    }
+                                    parentNode?.AddFirst(newElement);
+                                    nbDataLabels += 1;
                                 }
                             }
-                            // ----
-
-                            int nbDlbl = dataLabels.Count();
-                            for (int ctDlbl = 0; ctDlbl < nbDlbl; ctDlbl += 1)
+                            // We remove DataLabel is there are too many
+                            nbDataLabels = dataLabels.Count();
+                            if (content.DataLabel.Count() < nbDataLabels)
                             {
-                                var oneDataLbl = dataLabels.ElementAt(ctDlbl);
-                                var idxTag = oneDataLbl.Descendants(C.idx).FirstOrDefault();
-                                if (idxTag?.Attribute(NoNamespace.val) != null)
+                                while (content.DataLabel.Count() < nbDataLabels)
                                 {
-                                    idxTag.Attribute(NoNamespace.val).SetValue(ctDlbl);
+                                    dataLabels.ElementAt(nbDataLabels - 1).Remove();
+                                    nbDataLabels -= 1;
                                 }
-
-                                var indexVal = oneDataLbl.Descendants(C.idx).FirstOrDefault();
-                                if (indexVal?.Attribute(NoNamespace.val) == null || "".Equals(indexVal.Attribute(NoNamespace.val).Value))
-                                {
-                                    continue;
-                                }
-                                int idxDataLbl = Convert.ToInt32(indexVal.Attribute(NoNamespace.val).Value);
-                                var textTag = oneDataLbl.Descendants(C.tx).FirstOrDefault();
-                                var textValue = textTag?.Descendants(A.t).FirstOrDefault();
-                                textValue?.SetValue(content.DataLabel.ElementAt(idxDataLbl));
                             }
                         }
+                        // ----
+
+                        int nbDlbl = dataLabels.Count();
+                        for (int ctDlbl = 0; ctDlbl < nbDlbl; ctDlbl += 1)
+                        {
+                            var oneDataLbl = dataLabels.ElementAt(ctDlbl);
+                            var idxTag = oneDataLbl.Descendants(C.idx).FirstOrDefault();
+                            if (idxTag?.Attribute(NoNamespace.val) != null)
+                            {
+                                idxTag.Attribute(NoNamespace.val).SetValue(ctDlbl);
+                            }
+
+                            var indexVal = oneDataLbl.Descendants(C.idx).FirstOrDefault();
+                            if (indexVal?.Attribute(NoNamespace.val) == null || "".Equals(indexVal.Attribute(NoNamespace.val).Value))
+                            {
+                                continue;
+                            }
+                            int idxDataLbl = Convert.ToInt32(indexVal.Attribute(NoNamespace.val).Value);
+                            var textTag = oneDataLbl.Descendants(C.tx).FirstOrDefault();
+                            var textValue = textTag?.Descendants(A.t).FirstOrDefault();
+                            textValue?.SetValue(content.DataLabel.ElementAt(idxDataLbl));
+                        }
+
                         #endregion Serie Treatment
                     }
                 }

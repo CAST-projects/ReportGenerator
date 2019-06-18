@@ -43,7 +43,7 @@ namespace CastReporting.Reporting.Block.Table
         {
             int nbTot = 0;
             List<string> rowData = new List<string>();
-            int? metricId = (options != null && options.ContainsKey("ID")) ? Convert.ToInt32(options["ID"]) : (int?)Domain.Constants.BusinessCriteria.TechnicalQualityIndex;
+            int? metricId = options != null && options.ContainsKey("ID") ? Convert.ToInt32(options["ID"]) : (int?)Domain.Constants.BusinessCriteria.TechnicalQualityIndex;
 
             var result = reportData?.CurrentSnapshot?.BusinessCriteriaResults.FirstOrDefault(r => r.Reference.Key == metricId);
                 
@@ -65,7 +65,7 @@ namespace CastReporting.Reporting.Block.Table
             return resultTable;
         }
 
-        static string Text(int value)
+        private static string Text(int value)
         {
             // Begin the switch.
             switch (value) {

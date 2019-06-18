@@ -47,7 +47,7 @@ namespace CastReporting.Reporting.Block.Table
 				Labels.GradeEvolution
 			});
 
-            int? metricId = (options != null && options.ContainsKey("PAR")) ? int.Parse(options["PAR"]) : (int?)null;
+            int? metricId = options != null && options.ContainsKey("PAR") ? int.Parse(options["PAR"]) : (int?)null;
 
             if (options == null || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop)) {
                 nbLimitTop = reportData.Parameter.NbResultDefault;
@@ -63,7 +63,7 @@ namespace CastReporting.Reporting.Block.Table
                                                                                             true);
 
 
-                var previousCriticalRulesViolation = (reportData.PreviousSnapshot != null) ? RulesViolationUtility.GetAllRuleViolations(reportData.PreviousSnapshot,
+                var previousCriticalRulesViolation = reportData.PreviousSnapshot != null ? RulesViolationUtility.GetAllRuleViolations(reportData.PreviousSnapshot,
                                                                                                                                      Constants.RulesViolation.All,
                                                                                                                                     (Constants.BusinessCriteria)metricId,
                                                                                                                                      false)
@@ -78,16 +78,16 @@ namespace CastReporting.Reporting.Block.Table
                         double? previousGrade = previousitem?.Grade;
 
                         //Compute the varioation
-                        double? variationVal = (item.TotalFailed.HasValue && previousVal.HasValue) ? (item.TotalFailed.Value - previousVal.Value) : (double?)null;
-                        double? variationGrade = (item.Grade.HasValue && previousGrade.HasValue) ? (item.Grade.Value - previousGrade.Value) : (double?)null;
+                        double? variationVal = item.TotalFailed.HasValue && previousVal.HasValue ? item.TotalFailed.Value - previousVal.Value : (double?)null;
+                        double? variationGrade = item.Grade.HasValue && previousGrade.HasValue ? item.Grade.Value - previousGrade.Value : (double?)null;
 
                         variationRules.Add(new RuleVariationResultDTO {
                                                 Rule = new RuleDetailsDTO { Name = item.Rule.Name, Key = item.Rule.Key },
                                                 CurrentNbViolations = item.TotalFailed ?? -1,
                                                 PreviousNbViolations = previousitem?.TotalFailed ?? -1,
-                                                Evolution = (variationVal.HasValue && previousVal > 0) ? variationVal / previousVal : double.NaN,
+                                                Evolution = variationVal.HasValue && previousVal > 0 ? variationVal / previousVal : double.NaN,
                                                 Grade = item.Grade ?? double.NaN,
-                                                GradeEvolution = (variationGrade.HasValue && previousGrade > 0) ? variationGrade / previousGrade : double.NaN
+                                                GradeEvolution = variationGrade.HasValue && previousGrade > 0 ? variationGrade / previousGrade : double.NaN
                                             });
                     }
 
@@ -113,11 +113,11 @@ namespace CastReporting.Reporting.Block.Table
                         rowData.AddRange(new[] 
                                 { 
                                       varRule.Rule.Name
-                                    , (varRule.CurrentNbViolations.HasValue && varRule.CurrentNbViolations.Value != -1)? varRule.CurrentNbViolations.Value.ToString("N0"): Constants.No_Value
-                                    , (varRule.PreviousNbViolations.HasValue && varRule.PreviousNbViolations.Value != -1)? varRule.PreviousNbViolations.Value.ToString("N0"): Constants.No_Value
-                                    , (varRule.Evolution.HasValue && !double.IsNaN(varRule.Evolution.Value)) ? FormatPercent(varRule.Evolution.Value) : Constants.No_Value
-                                    , (varRule.Grade.HasValue && !double.IsNaN(varRule.Grade.Value)) ? varRule.Grade.Value.ToString("N2"):Constants.No_Value
-                                    , (varRule.GradeEvolution.HasValue && !double.IsNaN(varRule.GradeEvolution.Value)) ? FormatPercent(varRule.GradeEvolution.Value) : Constants.No_Value
+                                    , varRule.CurrentNbViolations.HasValue && varRule.CurrentNbViolations.Value != -1? varRule.CurrentNbViolations.Value.ToString("N0"): Constants.No_Value
+                                    , varRule.PreviousNbViolations.HasValue && varRule.PreviousNbViolations.Value != -1? varRule.PreviousNbViolations.Value.ToString("N0"): Constants.No_Value
+                                    , varRule.Evolution.HasValue && !double.IsNaN(varRule.Evolution.Value) ? FormatPercent(varRule.Evolution.Value) : Constants.No_Value
+                                    , varRule.Grade.HasValue && !double.IsNaN(varRule.Grade.Value) ? varRule.Grade.Value.ToString("N2"):Constants.No_Value
+                                    , varRule.GradeEvolution.HasValue && !double.IsNaN(varRule.GradeEvolution.Value) ? FormatPercent(varRule.GradeEvolution.Value) : Constants.No_Value
                                }
                             );
 						rowCount++;

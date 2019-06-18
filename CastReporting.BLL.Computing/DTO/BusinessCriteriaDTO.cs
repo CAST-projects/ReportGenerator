@@ -90,12 +90,12 @@ namespace CastReporting.BLL.Computing
             BusinessCriteriaDTO _getBusinessCriteriaGradesVartiation = new BusinessCriteriaDTO();
             if (left == null || right == null) return _getBusinessCriteriaGradesVartiation;
 
-            _getBusinessCriteriaGradesVartiation.TQI = (left.TQI.HasValue && right.TQI.HasValue) ? left.TQI - right.TQI : null;
-            _getBusinessCriteriaGradesVartiation.Robustness = (left.Robustness.HasValue && right.Robustness.HasValue) ? left.Robustness - right.Robustness : null;
-            _getBusinessCriteriaGradesVartiation.Performance = (left.Performance.HasValue && right.Performance.HasValue) ? left.Performance - right.Performance : null;
-            _getBusinessCriteriaGradesVartiation.Security = (left.Security.HasValue && right.Security.HasValue) ? left.Security - right.Security : null;
-            _getBusinessCriteriaGradesVartiation.Transferability = (left.Transferability.HasValue && right.Transferability.HasValue) ? left.Transferability - right.Transferability : null;
-            _getBusinessCriteriaGradesVartiation.Changeability = (left.Changeability.HasValue && right.Changeability.HasValue) ? left.Changeability - right.Changeability : null;
+            _getBusinessCriteriaGradesVartiation.TQI = left.TQI.HasValue && right.TQI.HasValue ? left.TQI - right.TQI : null;
+            _getBusinessCriteriaGradesVartiation.Robustness = left.Robustness.HasValue && right.Robustness.HasValue ? left.Robustness - right.Robustness : null;
+            _getBusinessCriteriaGradesVartiation.Performance = left.Performance.HasValue && right.Performance.HasValue ? left.Performance - right.Performance : null;
+            _getBusinessCriteriaGradesVartiation.Security = left.Security.HasValue && right.Security.HasValue ? left.Security - right.Security : null;
+            _getBusinessCriteriaGradesVartiation.Transferability = left.Transferability.HasValue && right.Transferability.HasValue ? left.Transferability - right.Transferability : null;
+            _getBusinessCriteriaGradesVartiation.Changeability = left.Changeability.HasValue && right.Changeability.HasValue ? left.Changeability - right.Changeability : null;
             return _getBusinessCriteriaGradesVartiation;           
         }
 
@@ -110,12 +110,12 @@ namespace CastReporting.BLL.Computing
             BusinessCriteriaDTO _getBusinessCriteriaGradesVartiation = new BusinessCriteriaDTO();
             if (left == null || right == null) return _getBusinessCriteriaGradesVartiation;
 
-            _getBusinessCriteriaGradesVartiation.TQI = (right.TQI.Equals(0.00) ? 0 : left.TQI / right.TQI);
-            _getBusinessCriteriaGradesVartiation.Robustness = (right.Robustness.Equals(0.00) ? 0 : left.Robustness / right.Robustness);
-            _getBusinessCriteriaGradesVartiation.Performance = (right.Performance.Equals(0.00) ? 0 : left.Performance / right.Performance);
-            _getBusinessCriteriaGradesVartiation.Security = (right.Security.Equals(0.00) ? 0 : left.Security / right.Security);
-            _getBusinessCriteriaGradesVartiation.Transferability = (right.Transferability.Equals(0.00) ? 0 : left.Transferability / right.Transferability);
-            _getBusinessCriteriaGradesVartiation.Changeability = (right.Changeability.Equals(0.00) ? 0 : left.Changeability / right.Changeability);
+            _getBusinessCriteriaGradesVartiation.TQI = right.TQI.Equals(0.00) ? 0 : left.TQI / right.TQI;
+            _getBusinessCriteriaGradesVartiation.Robustness = right.Robustness.Equals(0.00) ? 0 : left.Robustness / right.Robustness;
+            _getBusinessCriteriaGradesVartiation.Performance = right.Performance.Equals(0.00) ? 0 : left.Performance / right.Performance;
+            _getBusinessCriteriaGradesVartiation.Security = right.Security.Equals(0.00) ? 0 : left.Security / right.Security;
+            _getBusinessCriteriaGradesVartiation.Transferability = right.Transferability.Equals(0.00) ? 0 : left.Transferability / right.Transferability;
+            _getBusinessCriteriaGradesVartiation.Changeability = right.Changeability.Equals(0.00) ? 0 : left.Changeability / right.Changeability;
             return _getBusinessCriteriaGradesVartiation;
         }
     }

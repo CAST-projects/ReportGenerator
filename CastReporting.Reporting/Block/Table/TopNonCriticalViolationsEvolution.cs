@@ -46,7 +46,7 @@ namespace CastReporting.Reporting.Block.Table
 				Labels.EvolutionPercent
 			});
 
-            int? metricId = ((options != null && options.ContainsKey("BC-ID")) ? int.Parse(options["BC-ID"]) : (int?)null) ?? ((options != null && options.ContainsKey("PAR")) ? int.Parse((options["PAR"])) : (int?)null);
+            int? metricId = (options != null && options.ContainsKey("BC-ID") ? int.Parse(options["BC-ID"]) : (int?)null) ?? (options != null && options.ContainsKey("PAR") ? int.Parse(options["PAR"]) : (int?)null);
             if (options == null || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop)) {
                 nbLimitTop = reportData.Parameter.NbResultDefault;
             }
@@ -61,7 +61,7 @@ namespace CastReporting.Reporting.Block.Table
                                                                                             true);
 
 
-                var previousNonCriticalRulesViolation = (reportData.PreviousSnapshot != null) ? RulesViolationUtility.GetAllRuleViolations(reportData.PreviousSnapshot, Constants.RulesViolation.NonCriticalRulesViolation,
+                var previousNonCriticalRulesViolation = reportData.PreviousSnapshot != null ? RulesViolationUtility.GetAllRuleViolations(reportData.PreviousSnapshot, Constants.RulesViolation.NonCriticalRulesViolation,
                                                                                                                                     (Constants.BusinessCriteria)metricId,
                                                                                                                                      false)
                                                                                            : null;
@@ -77,7 +77,7 @@ namespace CastReporting.Reporting.Block.Table
                         double? previousval = previousitem?.TotalFailed;
 
                         //Compute the varioation
-                        double? variation = (item.TotalFailed.HasValue && previousval.HasValue) ? (item.TotalFailed.Value - previousval.Value) : (double?)null;
+                        double? variation = item.TotalFailed.HasValue && previousval.HasValue ? item.TotalFailed.Value - previousval.Value : (double?)null;
 
                         variationRules.Add(new RuleViolationsVariationResultDTO
                         {
@@ -85,7 +85,7 @@ namespace CastReporting.Reporting.Block.Table
                             CurrentNbViolations = item.TotalFailed ?? -1,
                             PreviousNbViolations = previousitem?.TotalFailed ?? -1,
                             Variation = variation ?? double.NaN,
-                            Ratio = (variation.HasValue && previousval > 0) ? variation / previousval : double.NaN
+                            Ratio = variation.HasValue && previousval > 0 ? variation / previousval : double.NaN
                         });
                     }
                     var selectedRules = variationRules.OrderByDescending(_ => _.Ratio).Take(nbLimitTop);
@@ -94,10 +94,10 @@ namespace CastReporting.Reporting.Block.Table
                         rowData.AddRange(new[] 
                                     { 
                                           varRule.Rule.Name
-                                        , (varRule.CurrentNbViolations.HasValue && varRule.CurrentNbViolations.Value != -1)? varRule.CurrentNbViolations.Value.ToString("N0"): Constants.No_Value
-                                        , (varRule.PreviousNbViolations.HasValue && varRule.PreviousNbViolations.Value != -1)? varRule.PreviousNbViolations.Value.ToString("N0"): Constants.No_Value
-                                        , (varRule.Variation.HasValue && !double.IsNaN(varRule.Variation.Value))? FormatEvolution((int)varRule.Variation.Value):Constants.No_Value
-                                        ,  (varRule.Ratio.HasValue && !double.IsNaN(varRule.Ratio.Value)) ? FormatPercent(varRule.Ratio.Value) : Constants.No_Value
+                                        , varRule.CurrentNbViolations.HasValue && varRule.CurrentNbViolations.Value != -1? varRule.CurrentNbViolations.Value.ToString("N0"): Constants.No_Value
+                                        , varRule.PreviousNbViolations.HasValue && varRule.PreviousNbViolations.Value != -1? varRule.PreviousNbViolations.Value.ToString("N0"): Constants.No_Value
+                                        , varRule.Variation.HasValue && !double.IsNaN(varRule.Variation.Value)? FormatEvolution((int)varRule.Variation.Value):Constants.No_Value
+                                        ,  varRule.Ratio.HasValue && !double.IsNaN(varRule.Ratio.Value) ? FormatPercent(varRule.Ratio.Value) : Constants.No_Value
                                    }
                             );
                     }

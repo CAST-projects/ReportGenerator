@@ -38,7 +38,7 @@ namespace CastReporting.Reporting.Block.Table
             
             int nbRows = 0;
             int nbLimitTop;
-            int? metricId = ((options != null && options.ContainsKey("BC-ID")) ? int.Parse(options["BC-ID"]) : (int?)null) ?? ((options != null && options.ContainsKey("PAR")) ? int.Parse(options["PAR"]) : (int?)null);
+            int? metricId = (options != null && options.ContainsKey("BC-ID") ? int.Parse(options["BC-ID"]) : (int?)null) ?? (options != null && options.ContainsKey("PAR") ? int.Parse(options["PAR"]) : (int?)null);
 
             if (null == options || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop)) {
                 nbLimitTop = reportData.Parameter.NbResultDefault;

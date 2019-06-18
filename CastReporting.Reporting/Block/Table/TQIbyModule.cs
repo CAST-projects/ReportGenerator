@@ -42,7 +42,7 @@ namespace CastReporting.Reporting.Block.Table
         /// <returns></returns>
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
-            bool isDisplayShortHeader = (options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"]);
+            bool isDisplayShortHeader = options != null && options.ContainsKey("HEADER") && "SHORT" == options["HEADER"];
 
             List<string> rowData = new List<string>();
             rowData.AddRange(isDisplayShortHeader
@@ -75,7 +75,7 @@ namespace CastReporting.Reporting.Block.Table
                             result.Name,
                             result.TqiCurrent?.ToString(MetricFormat) ?? Domain.Constants.No_Value,     
                             result.TqiPrevious?.ToString(MetricFormat) ?? Domain.Constants.No_Value,     
-                            result.PercentVariation.HasValue ? FormatPercent(result.PercentVariation):Domain.Constants.No_Value,
+                            result.PercentVariation.HasValue ? FormatPercent(result.PercentVariation):Domain.Constants.No_Value
                         });
 					count++;
                 }

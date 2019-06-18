@@ -17,13 +17,14 @@ namespace CastReporting.BLL.Computing
         {
             var result = snapshot?.CostComplexityResults?.FirstOrDefault(_ => _.Reference.Key == categorieId);
             var category = result?.DetailResult?.Categories?.FirstOrDefault(_ => _.key == metricId);
-            return (category != null) ? MathUtility.GetRound(category.Value) : null;
+            return category != null ? MathUtility.GetRound(category.Value) : null;
         }
 
         public static double? GetCostComplexityGrade(Snapshot snapshot, int categorieId, string position)
         {
             var result = snapshot?.CostComplexityResults?.FirstOrDefault(_ => _.Reference.Key == categorieId);
             Category category = null;
+            // ReSharper disable once SwitchStatementMissingSomeCases nothing to do on default case
             switch (position)
             {
                 case "low":
@@ -35,8 +36,8 @@ namespace CastReporting.BLL.Computing
                         ?? result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("moderate"));
                     break;
                 case "high":
-                    category = result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("high") && !(_.Name.ToLower().Contains("very")))
-                               ?? result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("large") && !(_.Name.ToLower().Contains("very")));
+                    category = result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("high") && !_.Name.ToLower().Contains("very"))
+                               ?? result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("large") && !_.Name.ToLower().Contains("very"));
                     break;
                 case "very_high":
                     category = result?.DetailResult?.Categories?.FirstOrDefault(_ => _.Name.ToLower().Contains("high") && _.Name.ToLower().Contains("very"))
@@ -44,7 +45,7 @@ namespace CastReporting.BLL.Computing
                     break;
             }
 
-            return (category != null) ? MathUtility.GetRound(category.Value) : null;
+            return category != null ? MathUtility.GetRound(category.Value) : null;
         }
         /// <summary>
         /// 

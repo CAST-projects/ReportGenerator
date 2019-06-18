@@ -150,7 +150,7 @@ namespace CastReporting.UnitTest.Reporting.Text
             reportData.Snapshots = _snapshots;
 
 
-            WSConnection connection = new WSConnection()
+            WSConnection connection = new WSConnection
             {
                 Url = "http://tests/CAST-RESTAPI/rest/",
                 Login = "admin",

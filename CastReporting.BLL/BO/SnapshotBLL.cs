@@ -37,7 +37,7 @@ namespace CastReporting.BLL
         /// </summary>
         // ReSharper disable once FieldCanBeMadeReadOnly.Local
         // ReSharper disable once InconsistentNaming
-        Snapshot _Snapshot;
+        private Snapshot _Snapshot;
 
         /// <summary>
         /// 
@@ -874,7 +874,7 @@ namespace CastReporting.BLL
                         string fileId = _fragment.CodeFile.GetFileId();
                         int startLine = _fragment.StartLine;
                         int endLine = _fragment.EndLine;
-                        int endIdx = (endLine - startLine < offset) ? endLine : startLine + offset;
+                        int endIdx = endLine - startLine < offset ? endLine : startLine + offset;
 
                         Dictionary<int, string> codeLines = new Dictionary<int, string>();
                         int idx = startLine;

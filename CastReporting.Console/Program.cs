@@ -19,7 +19,7 @@ namespace CastReporting.Console
     /// <summary>
     /// 
     /// </summary>
-    class Program
+    internal class Program
     {
         private Program()
         {
@@ -30,7 +30,7 @@ namespace CastReporting.Console
         /// 
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)
+        private static void Main(string[] args)
         { 
             string showhelp;
             
@@ -207,10 +207,7 @@ namespace CastReporting.Console
                                 intAppYes = 1;
                                 break;
                             }
-                            else
-                            {
-                                intAppYes = 0;
-                            }
+                            intAppYes = 0;
                         }
 
                         if (intAppYes == 0)
@@ -235,155 +232,150 @@ namespace CastReporting.Console
                     }
                     LogHelper.Instance.LogInfo("Snapshots in the portfolio found successfully");
                     List<Snapshot> _n_snaps = new List<Snapshot>();
-                    if (_snapshots != null)
+                    if (_snapshots == null) return reportPath;
+
+                    Snapshot[] _selectedApps_snapshots = _snapshots.ToArray<Snapshot>();
+                    var _snapsToIgnore = PortfolioSnapshotsBLL.BuildSnapshotResult(connection, _selectedApps_snapshots, true);
+                    LogHelper.Instance.LogInfo("Build result for snapshots in portfolio");
+
+                    foreach (Snapshot snap in _selectedApps_snapshots)
                     {
-                        Snapshot[] _selectedApps_snapshots = _snapshots.ToArray<Snapshot>();
-                        var _snapsToIgnore = PortfolioSnapshotsBLL.BuildSnapshotResult(connection, _selectedApps_snapshots, true);
-                        LogHelper.Instance.LogInfo("Build result for snapshots in portfolio");
-
-                        foreach (Snapshot snap in _selectedApps_snapshots)
+                        int intRemoveYes = 0;
+                        foreach (string s in _snapsToIgnore)
                         {
-                            int intRemoveYes = 0;
-                            foreach (string s in _snapsToIgnore)
+                            if (s == snap.Href)
                             {
-                                if (s == snap.Href)
-                                {
-                                    intRemoveYes = 1;
-                                    break;
-                                }
-                                else
-                                {
-                                    intRemoveYes = 0;
-                                }
+                                intRemoveYes = 1;
+                                break;
                             }
-                            if (intRemoveYes == 0)
-                            {
-                                _n_snaps.Add(snap);
-                            }
+                            intRemoveYes = 0;
                         }
-
-                        Snapshot[] _n_selectedApps_snapshots = _n_snaps.ToArray();
-
-                        string tmpReportFileFlexi = string.Empty;
-
-                        try
+                        if (intRemoveYes == 0)
                         {
-
-                            //Create temporary report
-                            tmpReportFile = PathUtil.CreateTempCopy(workDirectory, Path.Combine(settings.ReportingParameter.TemplatePath, "Portfolio", arguments.Template.Name));
-                            if (tmpReportFile.Contains(".xlsx"))
-                            {
-                                tmpReportFileFlexi = PathUtil.CreateTempCopyFlexi(workDirectory, arguments.Template.Name);
-                            }
-                            //Build report
-                            ReportData reportData;
-                            if (arguments.Category != null && arguments.Tag != null)
-                            {
-                                reportData = new ReportData
-                                {
-                                    FileName = tmpReportFile,
-                                    Application = null,
-                                    CurrentSnapshot = null,
-                                    PreviousSnapshot = null,
-                                    RuleExplorer = new RuleBLL(connection),
-                                    CurrencySymbol = "$",
-                                    ServerVersion = CommonBLL.GetServiceVersion(connection),
-                                    Applications = _n_selectedApps,
-                                    Category = arguments.Category.Name,
-                                    Tag = arguments.Tag.Name,
-                                    Snapshots = _n_selectedApps_snapshots,
-                                    IgnoresApplications = _appsToIgnorePortfolioResult,
-                                    IgnoresSnapshots = _snapsToIgnore,
-                                    Parameter = settings.ReportingParameter
-                                };
-                            }
-                            else if (arguments.Category != null && arguments.Tag == null)
-                            {
-                                reportData = new ReportData
-                                {
-                                    FileName = tmpReportFile,
-                                    Application = null,
-                                    CurrentSnapshot = null,
-                                    PreviousSnapshot = null,
-                                    RuleExplorer = new RuleBLL(connection),
-                                    CurrencySymbol = "$",
-                                    ServerVersion = CommonBLL.GetServiceVersion(connection),
-                                    Applications = _n_selectedApps,
-                                    Category = arguments.Category.Name,
-                                    Tag = null,
-                                    Snapshots = _n_selectedApps_snapshots,
-                                    IgnoresApplications = _appsToIgnorePortfolioResult,
-                                    IgnoresSnapshots = _snapsToIgnore,
-                                    Parameter = settings.ReportingParameter
-                                };
-                            }
-                            else if (arguments.Category == null && arguments.Tag != null)
-                            {
-                                reportData = new ReportData
-                                {
-                                    FileName = tmpReportFile,
-                                    Application = null,
-                                    CurrentSnapshot = null,
-                                    PreviousSnapshot = null,
-                                    RuleExplorer = new RuleBLL(connection),
-                                    CurrencySymbol = "$",
-                                    ServerVersion = CommonBLL.GetServiceVersion(connection),
-                                    Applications = _n_selectedApps,
-                                    Category = null,
-                                    Tag = arguments.Tag.Name,
-                                    Snapshots = _n_selectedApps_snapshots,
-                                    IgnoresApplications = _appsToIgnorePortfolioResult,
-                                    IgnoresSnapshots = _snapsToIgnore,
-                                    Parameter = settings.ReportingParameter
-                                };
-                            }
-                            else
-                            {
-                                reportData = new ReportData
-                                {
-                                    FileName = tmpReportFile,
-                                    Application = null,
-                                    CurrentSnapshot = null,
-                                    PreviousSnapshot = null,
-                                    RuleExplorer = new RuleBLL(connection),
-                                    CurrencySymbol = "$",
-                                    ServerVersion = CommonBLL.GetServiceVersion(connection),
-                                    Applications = _n_selectedApps,
-                                    Category = null,
-                                    Tag = null,
-                                    Snapshots = _n_selectedApps_snapshots,
-                                    IgnoresApplications = _appsToIgnorePortfolioResult,
-                                    IgnoresSnapshots = _snapsToIgnore,
-                                    Parameter = settings.ReportingParameter
-                                };
-                            }
-
-                            using (IDocumentBuilder docBuilder = BuilderFactory.CreateBuilder(reportData, tmpReportFile))
-                            {
-                                docBuilder.BuildDocument();
-                            }
-                            LogHelper.Instance.LogInfo("Report generated successfully");
-
-                            //Set filte report              
-                            SetFileName(arguments);
-
-                            reportPath = Path.Combine(string.IsNullOrEmpty(settings.ReportingParameter.GeneratedFilePath) 
-                                ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) 
-                                : settings.ReportingParameter.GeneratedFilePath, arguments.File.Name);
-                            
-                            if (tmpReportFile.Contains(".xlsx"))
-                            {
-                                tmpReportFile = tmpReportFileFlexi;
-                            }
-
-                            ConvertToPdfIfNeeded(arguments, ref reportPath, tmpReportFile);
-                        }
-                        finally
-                        {
-                            if (!string.IsNullOrEmpty(tmpReportFile)) File.Delete(tmpReportFile);
+                            _n_snaps.Add(snap);
                         }
                     }
 
+                    Snapshot[] _n_selectedApps_snapshots = _n_snaps.ToArray();
+
+                    string tmpReportFileFlexi = string.Empty;
+
+                    try
+                    {
+
+                        //Create temporary report
+                        tmpReportFile = PathUtil.CreateTempCopy(workDirectory, Path.Combine(settings.ReportingParameter.TemplatePath, "Portfolio", arguments.Template.Name));
+                        if (tmpReportFile.Contains(".xlsx"))
+                        {
+                            tmpReportFileFlexi = PathUtil.CreateTempCopyFlexi(workDirectory, arguments.Template.Name);
+                        }
+                        //Build report
+                        ReportData reportData;
+                        if (arguments.Category != null && arguments.Tag != null)
+                        {
+                            reportData = new ReportData
+                            {
+                                FileName = tmpReportFile,
+                                Application = null,
+                                CurrentSnapshot = null,
+                                PreviousSnapshot = null,
+                                RuleExplorer = new RuleBLL(connection),
+                                CurrencySymbol = "$",
+                                ServerVersion = CommonBLL.GetServiceVersion(connection),
+                                Applications = _n_selectedApps,
+                                Category = arguments.Category.Name,
+                                Tag = arguments.Tag.Name,
+                                Snapshots = _n_selectedApps_snapshots,
+                                IgnoresApplications = _appsToIgnorePortfolioResult,
+                                IgnoresSnapshots = _snapsToIgnore,
+                                Parameter = settings.ReportingParameter
+                            };
+                        }
+                        else if (arguments.Category != null && arguments.Tag == null)
+                        {
+                            reportData = new ReportData
+                            {
+                                FileName = tmpReportFile,
+                                Application = null,
+                                CurrentSnapshot = null,
+                                PreviousSnapshot = null,
+                                RuleExplorer = new RuleBLL(connection),
+                                CurrencySymbol = "$",
+                                ServerVersion = CommonBLL.GetServiceVersion(connection),
+                                Applications = _n_selectedApps,
+                                Category = arguments.Category.Name,
+                                Tag = null,
+                                Snapshots = _n_selectedApps_snapshots,
+                                IgnoresApplications = _appsToIgnorePortfolioResult,
+                                IgnoresSnapshots = _snapsToIgnore,
+                                Parameter = settings.ReportingParameter
+                            };
+                        }
+                        else if (arguments.Category == null && arguments.Tag != null)
+                        {
+                            reportData = new ReportData
+                            {
+                                FileName = tmpReportFile,
+                                Application = null,
+                                CurrentSnapshot = null,
+                                PreviousSnapshot = null,
+                                RuleExplorer = new RuleBLL(connection),
+                                CurrencySymbol = "$",
+                                ServerVersion = CommonBLL.GetServiceVersion(connection),
+                                Applications = _n_selectedApps,
+                                Category = null,
+                                Tag = arguments.Tag.Name,
+                                Snapshots = _n_selectedApps_snapshots,
+                                IgnoresApplications = _appsToIgnorePortfolioResult,
+                                IgnoresSnapshots = _snapsToIgnore,
+                                Parameter = settings.ReportingParameter
+                            };
+                        }
+                        else
+                        {
+                            reportData = new ReportData
+                            {
+                                FileName = tmpReportFile,
+                                Application = null,
+                                CurrentSnapshot = null,
+                                PreviousSnapshot = null,
+                                RuleExplorer = new RuleBLL(connection),
+                                CurrencySymbol = "$",
+                                ServerVersion = CommonBLL.GetServiceVersion(connection),
+                                Applications = _n_selectedApps,
+                                Category = null,
+                                Tag = null,
+                                Snapshots = _n_selectedApps_snapshots,
+                                IgnoresApplications = _appsToIgnorePortfolioResult,
+                                IgnoresSnapshots = _snapsToIgnore,
+                                Parameter = settings.ReportingParameter
+                            };
+                        }
+
+                        using (IDocumentBuilder docBuilder = BuilderFactory.CreateBuilder(reportData, tmpReportFile))
+                        {
+                            docBuilder.BuildDocument();
+                        }
+                        LogHelper.Instance.LogInfo("Report generated successfully");
+
+                        //Set filte report              
+                        SetFileName(arguments);
+
+                        reportPath = Path.Combine(string.IsNullOrEmpty(settings.ReportingParameter.GeneratedFilePath) 
+                            ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) 
+                            : settings.ReportingParameter.GeneratedFilePath, arguments.File.Name);
+                            
+                        if (tmpReportFile.Contains(".xlsx"))
+                        {
+                            tmpReportFile = tmpReportFileFlexi;
+                        }
+
+                        ConvertToPdfIfNeeded(arguments, ref reportPath, tmpReportFile);
+                    }
+                    finally
+                    {
+                        if (!string.IsNullOrEmpty(tmpReportFile)) File.Delete(tmpReportFile);
+                    }
 
                     return reportPath;
                 }
@@ -613,7 +605,7 @@ namespace CastReporting.Console
         {
             if (arguments.File == null)
             {
-                arguments.File = new XmlTagName() { Name = null };
+                arguments.File = new XmlTagName { Name = null };
             }
             if (string.IsNullOrEmpty(arguments.File.Name))
             {

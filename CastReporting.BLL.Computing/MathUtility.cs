@@ -35,7 +35,7 @@ namespace CastReporting.BLL.Computing
         /// <returns></returns>
         public static double? GetEvolution(double? currMesure, double? prevMesure)
         {
-            return (currMesure.HasValue && prevMesure.HasValue) ? (currMesure.Value - prevMesure.Value) : (double?)null;
+            return currMesure.HasValue && prevMesure.HasValue ? currMesure.Value - prevMesure.Value : (double?)null;
         }
 
 
@@ -47,7 +47,7 @@ namespace CastReporting.BLL.Computing
         /// <returns></returns>
         public static double? GetSum(double? currMesure, double? prevMesure)
         {
-            return (currMesure.HasValue && prevMesure.HasValue) ? (currMesure.Value + prevMesure.Value) : (double?)null;
+            return currMesure.HasValue && prevMesure.HasValue ? currMesure.Value + prevMesure.Value : (double?)null;
         }
 
 
@@ -59,7 +59,7 @@ namespace CastReporting.BLL.Computing
         /// <returns></returns>
         public static double? GetPercent(double? value, double? reference)
         {
-            return (value.HasValue && reference.HasValue && Math.Abs(reference.Value) > 0) ? (value.Value / reference.Value) :(double?) null;
+            return value.HasValue && reference.HasValue && Math.Abs(reference.Value) > 0 ? value.Value / reference.Value :(double?) null;
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace CastReporting.BLL.Computing
         public static double? GetVariationPercent(double? currMesure, double? prevMesure)
         {
             var variaton = GetEvolution(currMesure, prevMesure);
-            return (variaton.HasValue && prevMesure.HasValue && prevMesure.Value > 0) ? (variaton / prevMesure) : null;
+            return variaton.HasValue && prevMesure.HasValue && prevMesure.Value > 0 ? variaton / prevMesure : null;
         }
 
         

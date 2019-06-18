@@ -22,20 +22,20 @@ namespace CastReporting.BLL.Computing
 
         public static double? GetSizingMeasure(Snapshot snapshot, int measureId)
         {
-            var measure =(snapshot?.SizingMeasuresResults)?.FirstOrDefault(_ => _.Reference.Key == measureId);
+            var measure =snapshot?.SizingMeasuresResults?.FirstOrDefault(_ => _.Reference.Key == measureId);
             return measure?.DetailResult?.Value;
         }
 
         public static string GetSizingMeasureName(Snapshot snapshot, int measureId, bool shortname = false)
         {
-            var measure = (snapshot?.SizingMeasuresResults)?.FirstOrDefault(_ => _.Reference.Key == measureId);
+            var measure = snapshot?.SizingMeasuresResults?.FirstOrDefault(_ => _.Reference.Key == measureId);
             var name = (shortname ? measure?.Reference.ShortName : measure?.Reference.Name) ?? measure?.Reference.Name;
             return name;
         }
 
         public static double? GetSizingMeasureModule(Snapshot snapshot, int moduleId, int measureId)
         {
-            var measure = (snapshot?.SizingMeasuresResults)?.FirstOrDefault(_ => _.Reference.Key == measureId);
+            var measure = snapshot?.SizingMeasuresResults?.FirstOrDefault(_ => _.Reference.Key == measureId);
             return measure?.ModulesResult.FirstOrDefault(_=>_.Module.Id == moduleId)?.DetailResult?.Value;
         }
 
@@ -282,7 +282,7 @@ namespace CastReporting.BLL.Computing
                 select new TechnologyResultDTO
                 {
                     Name = techno,
-                    Value = (codeLineNumber?.TechnologyResult)?.FirstOrDefault(_ => _.Technology.Equals(techno))?.DetailResult.Value ?? -1
+                    Value = codeLineNumber?.TechnologyResult?.FirstOrDefault(_ => _.Technology.Equals(techno))?.DetailResult.Value ?? -1
 
                 }).OrderByDescending(_ => _.Value).Take(nbResult).ToList();
             return technologyInfos;
@@ -300,7 +300,7 @@ namespace CastReporting.BLL.Computing
                 select new TechnologyResultDTO
                 {
                     Name = techno,
-                    Value = (codeLineNumber?.TechnologyResult)?.FirstOrDefault(_ => _.Technology.Equals(techno))?.DetailResult.Value ?? -1
+                    Value = codeLineNumber?.TechnologyResult?.FirstOrDefault(_ => _.Technology.Equals(techno))?.DetailResult.Value ?? -1
                 }).OrderByDescending(_ => _.Value).Take(nbResult).ToList();
             return technologyInfos;
         }
@@ -317,7 +317,7 @@ namespace CastReporting.BLL.Computing
                 select new TechnologyResultDTO
                 {
                     Name = techno,
-                    Value = (codeLineNumber?.TechnologyResult)?.FirstOrDefault(_ => _.Technology.Equals(techno))?.DetailResult.Value ?? -1
+                    Value = codeLineNumber?.TechnologyResult?.FirstOrDefault(_ => _.Technology.Equals(techno))?.DetailResult.Value ?? -1
 
                 }).OrderByDescending(_ => _.Value).Take(nbResult).ToList();
             return technologyInfos;

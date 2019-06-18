@@ -36,7 +36,7 @@ namespace CastReporting.Reporting.Block.Table
                         break;
                 }
             }
-            bool displayHeader = (options == null || !options.ContainsKey("HEADER") || "NO" != options["HEADER"]);
+            bool displayHeader = options == null || !options.ContainsKey("HEADER") || "NO" != options["HEADER"];
 
             IEnumerable<IfpugFunction> functions = reportData.SnapshotExplorer.GetIfpugFunctions(reportData.CurrentSnapshot.Href, string.IsNullOrEmpty(type) ? nbLimitTop : -1)?.ToList();
 

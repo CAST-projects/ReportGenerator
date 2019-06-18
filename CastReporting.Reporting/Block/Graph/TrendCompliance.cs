@@ -102,9 +102,9 @@ namespace CastReporting.Reporting.Block.Graph
                             , locValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
                             });
 
-                List<double> values = new List<double>() { bcGrade.ProgrammingPractices.GetValueOrDefault(), 
-                                                           bcGrade.ArchitecturalDesign.GetValueOrDefault(), 
-                                                           bcGrade.Documentation.GetValueOrDefault() };
+                List<double> values = new List<double> { bcGrade.ProgrammingPractices.GetValueOrDefault(), 
+                                                         bcGrade.ArchitecturalDesign.GetValueOrDefault(), 
+                                                         bcGrade.Documentation.GetValueOrDefault() };
                 minValy = Math.Min( minValy, values.Min());
                 maxValy = Math.Max( maxValy, values.Max());
                 count = count +1;
@@ -115,7 +115,7 @@ namespace CastReporting.Reporting.Block.Graph
             #region Graphic Options
             GraphOptions graphOptions = null;
             if (hasVerticalZoom) {
-                graphOptions = new GraphOptions() { AxisConfiguration = new AxisDefinition() };
+                graphOptions = new GraphOptions { AxisConfiguration = new AxisDefinition() };
                 graphOptions.AxisConfiguration.VerticalAxisMinimal = MathUtility.GetVerticalMinValue(minValy, stepV);
                 graphOptions.AxisConfiguration.VerticalAxisMaximal = MathUtility.GetVerticalMaxValue(maxValy, stepV);
             }

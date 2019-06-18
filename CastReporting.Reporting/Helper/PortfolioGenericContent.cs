@@ -1166,34 +1166,31 @@ namespace CastReporting.Reporting.Helper
                 }
             }
 
-            if (metricsAggregated.Count == 0 && metrics.Count > 0)
+            if (metricsAggregated.Count != 0 || metrics.Count <= 0) return;
+            // case when configuration contains only id and no groups
+            if (aggregators != null)
             {
-                // case when configuration contains only id and no groups
-                if (aggregators != null)
+                foreach (string _metric in metrics)
                 {
-                    foreach (string _metric in metrics)
+                    try
                     {
-                        try
-                        {
-                            metricsAggregated.Add(_metric, aggregators[metrics.IndexOf(_metric)]);
-                        }
-                        catch (IndexOutOfRangeException)
-                        {
-                            // case when only one aggregator is defined for all ids
-                            metricsAggregated.Add(_metric, aggregators.Length > 0 ? aggregators.FirstOrDefault() : string.Empty);
-                        }
+                        metricsAggregated.Add(_metric, aggregators[metrics.IndexOf(_metric)]);
                     }
-                }
-                else
-                {
-                    // case when violations and critical violations on a metric id
-                    foreach (string _metric in metrics)
+                    catch (IndexOutOfRangeException)
                     {
-                        metricsAggregated.Add(_metric, string.Empty);
+                        // case when only one aggregator is defined for all ids
+                        metricsAggregated.Add(_metric, aggregators.Length > 0 ? aggregators.FirstOrDefault() : string.Empty);
                     }
                 }
             }
-
+            else
+            {
+                // case when violations and critical violations on a metric id
+                foreach (string _metric in metrics)
+                {
+                    metricsAggregated.Add(_metric, string.Empty);
+                }
+            }
         }
 
 

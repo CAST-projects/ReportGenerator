@@ -52,8 +52,8 @@ namespace CastReporting.Reporting.Block.Table
                 Constants.QualityDistribution.CostComplexityDistribution.GetHashCode(),
                 Constants.CostComplexity.CostComplexityArtifacts_VeryHigh.GetHashCode());
 
-            double? selectedTotal = (selectedLowVal.HasValue && selectedAveVal.HasValue && selectedHigVal.HasValue && selectedVhiVal.HasValue)?selectedLowVal.Value + selectedAveVal.Value + selectedHigVal.Value + selectedVhiVal.Value : (double?)null;
-            double? selectedHttVal = (selectedHigVal.HasValue && selectedVhiVal.HasValue)?selectedHigVal.Value + selectedVhiVal.Value:(double?)null;
+            double? selectedTotal = selectedLowVal.HasValue && selectedAveVal.HasValue && selectedHigVal.HasValue && selectedVhiVal.HasValue?selectedLowVal.Value + selectedAveVal.Value + selectedHigVal.Value + selectedVhiVal.Value : (double?)null;
+            double? selectedHttVal = selectedHigVal.HasValue && selectedVhiVal.HasValue?selectedHigVal.Value + selectedVhiVal.Value:(double?)null;
                 
             #endregion Selected Snapshot
 
@@ -72,7 +72,7 @@ namespace CastReporting.Reporting.Block.Table
             #endregion Previous Snapshot
 
             #region Data
-            int? variation = (selectedHttVal.HasValue && previousHttVal.HasValue) ? (int)(selectedHttVal - previousHttVal) : (int?)null;
+            int? variation = selectedHttVal.HasValue && previousHttVal.HasValue ? (int)(selectedHttVal - previousHttVal) : (int?)null;
                
 
             rowData.AddRange(new[] { Labels.Complexity, Labels.Current, Labels.Previous, Labels.Evol, Labels.TotalPercent });
@@ -82,7 +82,7 @@ namespace CastReporting.Reporting.Block.Table
                 , selectedHttVal?.ToString(MetricFormat) ?? Constants.No_Value
                 , previousHttVal?.ToString(MetricFormat) ?? Constants.No_Value
                 , variation.HasValue? FormatEvolution(variation.Value): Constants.No_Value
-                , (selectedHttVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)? FormatPercent(selectedHttVal.Value / selectedTotal.Value, false): Constants.No_Value
+                , selectedHttVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0? FormatPercent(selectedHttVal.Value / selectedTotal.Value, false): Constants.No_Value
             });
             #endregion Data
 

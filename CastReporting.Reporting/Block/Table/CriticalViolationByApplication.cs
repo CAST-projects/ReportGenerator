@@ -17,7 +17,7 @@ namespace CastReporting.Reporting.Block.Table
 			int param;
 			bool showPrevious = false;
 			if (reportData.PreviousSnapshot != null && null != options && options.ContainsKey("SHOW_PREVIOUS") && int.TryParse(options["SHOW_PREVIOUS"], out param)) {
-				showPrevious = (param != 0);
+				showPrevious = param != 0;
 			}
 
 			List<string> rowData = new List<string>();

@@ -105,8 +105,7 @@ namespace CastReporting.Reporting.Block.Graph
                     bcGrade.Robustness.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
                     bcGrade.Performance.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
                     bcGrade.Security.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-                    locValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-
+                    locValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
                 });
                 List<double> values = new List<double>
                 {
@@ -128,7 +127,7 @@ namespace CastReporting.Reporting.Block.Graph
             #region Graphic Options
             GraphOptions graphOptions = null;
             if (hasVerticalZoom) {
-                graphOptions = new GraphOptions() { AxisConfiguration = new AxisDefinition() };
+                graphOptions = new GraphOptions { AxisConfiguration = new AxisDefinition() };
                 graphOptions.AxisConfiguration.VerticalAxisMinimal = MathUtility.GetVerticalMinValue(minVVal, stepV);
                 graphOptions.AxisConfiguration.VerticalAxisMaximal = MathUtility.GetVerticalMaxValue(maxVVal, stepV);
             }

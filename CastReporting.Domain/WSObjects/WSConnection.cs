@@ -68,7 +68,7 @@ namespace CastReporting.Domain
             set
             {
                 _url = string.IsNullOrEmpty(value) ? string.Empty : value.Trim();
-                Uri = (!string.IsNullOrEmpty(_url)) ? new Uri(_url) : null;
+                Uri = !string.IsNullOrEmpty(_url) ? new Uri(_url) : null;
             }
             get
             {
@@ -186,7 +186,7 @@ namespace CastReporting.Domain
         public override bool Equals(object obj)
         {
             var connection = obj as WSConnection;
-            return (connection != null) && Uri.Equals(connection.Uri);
+            return connection != null && Uri.Equals(connection.Uri);
         }
 
 

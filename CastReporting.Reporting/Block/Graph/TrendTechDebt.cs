@@ -78,7 +78,7 @@ namespace CastReporting.Reporting.Block.Graph
                         prevDoubleSnapshotDate.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
                         prevRemovedTechDebtValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
                         prevAddedTechDebtValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
-                        prevTotalTechDebtValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture),
+                        prevTotalTechDebtValue.GetValueOrDefault().ToString(CultureInfo.CurrentCulture)
                     });
                 count = count + 1;
             }

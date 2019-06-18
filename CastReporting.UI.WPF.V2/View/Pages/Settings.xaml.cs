@@ -29,7 +29,7 @@ namespace CastReporting.UI.WPF.View
     {
         public bool HasError => !IsValid(this);
 
-        private bool IsValid(DependencyObject obj)
+        private static bool IsValid(DependencyObject obj)
         {
             // The dependency object is valid if it has no errors, 
             //and all of its children (that are dependency objects) are error-free.

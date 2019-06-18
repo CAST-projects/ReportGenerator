@@ -35,7 +35,7 @@ namespace CastReporting.Reporting.Block.Graph
              
 
                 #region Required Options
-                string moduleIdstr = (options != null && options.ContainsKey("M") ? options["M"] : string.Empty);
+                string moduleIdstr = options != null && options.ContainsKey("M") ? options["M"] : string.Empty;
                 int moduleId;
                 if (string.IsNullOrWhiteSpace(moduleIdstr) || !int.TryParse(moduleIdstr, out moduleId))
                 {

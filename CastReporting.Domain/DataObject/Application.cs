@@ -50,14 +50,14 @@ namespace CastReporting.Domain
         public string SystemNames {
         	get {
         		var sb = new StringBuilder();
-        		if (Systems != null) {
-        			 foreach (var sys in Systems) {
-        				if (sb.Length > 0)
-        					sb.Append(", ");
-        				sb.Append(sys.Name);
-        			 }
-        		}
-        		return sb.ToString();
+	            if (Systems == null) return sb.ToString();
+
+	            foreach (var sys in Systems) {
+	                if (sb.Length > 0)
+	                    sb.Append(", ");
+	                sb.Append(sys.Name);
+	            }
+	            return sb.ToString();
         	}
         }
         

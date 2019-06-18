@@ -26,7 +26,7 @@ namespace CastReporting.Reporting.Block.Text
         #region METHODS
         public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
-            return (reportData != null) ? reportData.Tag ?? "All" : Domain.Constants.No_Value;
+            return reportData != null ? reportData.Tag ?? "All" : Domain.Constants.No_Value;
         }
         #endregion METHODS
     }

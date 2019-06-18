@@ -34,7 +34,7 @@ namespace CastReporting.Reporting.Block.Table
             List<string> rowData = new List<string>();
             int count = -1, nbRows = 0, nbColumns = 0, nb;
             
-            IList<string> strMetricId = ((options != null && options.ContainsKey("PAR")) ? options["PAR"] : string.Empty).Split(',');
+            IList<string> strMetricId = (options != null && options.ContainsKey("PAR") ? options["PAR"] : string.Empty).Split(',');
                         
             if (null != options && options.ContainsKey("COUNT") && int.TryParse(options["COUNT"], out nb) && 0 < nb) {
                 count = nb;
@@ -72,7 +72,7 @@ namespace CastReporting.Reporting.Block.Table
                         string evol = Constants.No_Value;
                         if (prevGrade != null) {
                             double? variation = MathUtility.GetVariationPercent(grade.Grade, prevGrade.Grade);
-                            evol = (variation.HasValue) ? FormatPercent(variation) : Constants.No_Value;
+                            evol = variation.HasValue ? FormatPercent(variation) : Constants.No_Value;
                         }                       
 
                         rowData.Add(evol);

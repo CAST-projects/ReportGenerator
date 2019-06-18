@@ -45,7 +45,7 @@ namespace CastReporting.Reporting.Block.Graph
             double? previousHigVal = null;
             double? previousVhiVal = null;
 
-            bool hasPreviousSnapshot = (null != reportData.PreviousSnapshot);
+            bool hasPreviousSnapshot = null != reportData.PreviousSnapshot;
             string previousName = string.Empty;
 
 

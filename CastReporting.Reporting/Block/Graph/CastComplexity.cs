@@ -34,7 +34,7 @@ namespace CastReporting.Reporting.Block.Graph
         {
         
             List<string> rowData = new List<string>();
-            bool hasPreviousSnapshot = (null != reportData.PreviousSnapshot);
+            bool hasPreviousSnapshot = null != reportData.PreviousSnapshot;
 
             double? previousLowVal = null;
             double? previousAveVal = null;

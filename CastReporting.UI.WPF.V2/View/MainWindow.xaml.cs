@@ -65,7 +65,7 @@ namespace CastReporting.UI.WPF
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TextBox_SelectAllText(object sender, RoutedEventArgs e)
+        private static void TextBox_SelectAllText(object sender, RoutedEventArgs e)
         {
             ((TextBox)sender).SelectAll();
         }
@@ -76,7 +76,7 @@ namespace CastReporting.UI.WPF
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TextBox_SelectivelyIgnoreMouseButton(object sender, MouseButtonEventArgs e)
+        private static void TextBox_SelectivelyIgnoreMouseButton(object sender, MouseButtonEventArgs e)
         {
             // If its a triple click, select all text for the user.
             if (e.ClickCount == 3)
@@ -107,9 +107,9 @@ namespace CastReporting.UI.WPF
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void OnFrameNavigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        private void OnFrameNavigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            var selectPage = (e.Content as Page);
+            var selectPage = e.Content as Page;
 
             if (selectPage == null) return;
             var dataContext = selectPage.DataContext as ViewModelBase;
@@ -126,7 +126,7 @@ namespace CastReporting.UI.WPF
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void OnLanguageChanged(object sender, RoutedEventArgs e)
+        private void OnLanguageChanged(object sender, RoutedEventArgs e)
         {
             UcMessages.Refresh();
             UcHeader.Refresh();

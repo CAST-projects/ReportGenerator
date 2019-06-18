@@ -42,7 +42,7 @@ namespace CastReporting.Reporting.Block.Table
 				Labels.ViolationsCount
 			});
                                    
-            int? metricId = ((options != null && options.ContainsKey("BC-ID")) ? int.Parse(options["BC-ID"]) : (int?)null) ?? ((options != null && options.ContainsKey("PAR")) ? int.Parse(options["PAR"]) : (int?)null);
+            int? metricId = (options != null && options.ContainsKey("BC-ID") ? int.Parse(options["BC-ID"]) : (int?)null) ?? (options != null && options.ContainsKey("PAR") ? int.Parse(options["PAR"]) : (int?)null);
             if (options == null || !options.ContainsKey("COUNT") || !int.TryParse(options["COUNT"], out nbLimitTop)) {
                 nbLimitTop = reportData.Parameter.NbResultDefault;
             }

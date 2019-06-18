@@ -1259,12 +1259,10 @@ namespace CastReporting.Reporting.Helper
             foreach (string _metric in metrics)
             {
                 int idx;
-                if (!int.TryParse(_metric, out idx))
-                {
-                    tags.Add(_metric);
-                    List<string> stdTagMetrics = reportData.SnapshotExplorer.GetQualityStandardsRulesList(reportData.CurrentSnapshot.Href, _metric);
-                    metricstags.AddRange(stdTagMetrics);
-                }
+                if (int.TryParse(_metric, out idx)) continue;
+                tags.Add(_metric);
+                List<string> stdTagMetrics = reportData.SnapshotExplorer.GetQualityStandardsRulesList(reportData.CurrentSnapshot.Href, _metric);
+                metricstags.AddRange(stdTagMetrics);
             }
             foreach (string tag in tags)
             {

@@ -24,7 +24,7 @@ namespace CastReporting.BLL.Computing
 					return false;
 				int xk = x.Rule?.Key ?? 0;
 				int yk = y.Rule?.Key ?? 0;
-				return (xk != 0 && xk == yk);
+				return xk != 0 && xk == yk;
 			}
 			public int GetHashCode(RuleViolationResultDTO obj)
 			{

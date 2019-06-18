@@ -23,6 +23,6 @@ namespace CastReporting.Reporting.ReportingModel
     {
         Word,
         Excel,
-        PowerPoint,
+        PowerPoint
     }
 }

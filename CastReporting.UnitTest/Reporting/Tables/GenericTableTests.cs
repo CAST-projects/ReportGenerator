@@ -839,7 +839,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             };
 
             // Needed for background facts, as there are retrieved one by one by url request
-            WSConnection connection = new WSConnection()
+            WSConnection connection = new WSConnection
             {
                 Url = "http://tests/CAST-RESTAPI/rest/",
                 Login = "admin",
@@ -882,7 +882,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 {"SNAPSHOTS", "CURRENT|PREVIOUS"},
                 {"MODULES", "ALL"}
             };
-            WSConnection connection = new WSConnection()
+            WSConnection connection = new WSConnection
             {
                 Url = "http://tests/CAST-RESTAPI/rest/",
                 Login = "admin",

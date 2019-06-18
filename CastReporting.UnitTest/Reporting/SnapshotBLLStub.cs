@@ -12,7 +12,7 @@ namespace CastReporting.UnitTest.Reporting
     {
         // ReSharper disable once InconsistentNaming
         // ReSharper disable once NotAccessedField.Local
-        Snapshot _Snapshot;
+        private readonly Snapshot _Snapshot;
 
         public SnapshotBLLStub(WSConnection connection, Snapshot snapshot)
             : base(connection)
@@ -204,8 +204,8 @@ namespace CastReporting.UnitTest.Reporting
         
         public TypedComponent GetTypedComponent(string domainId, string componentId, string snapshotId)
         {
-            ObjectType type = new ObjectType(){Label = "MyObjType", Name="toto"};
-            return new TypedComponent() {Type = type};
+            ObjectType type = new ObjectType {Label = "MyObjType", Name="toto"};
+            return new TypedComponent {Type = type};
         }
 
         [DeploymentItem(@".\Data\IfpugFunctions.csv", "Data")]

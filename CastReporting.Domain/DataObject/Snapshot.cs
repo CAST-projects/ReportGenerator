@@ -108,7 +108,7 @@ namespace CastReporting.Domain
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{Name} - {((Annotation != null) ? Annotation.Version : string.Empty)}";
+            return $"{Name} - {(Annotation != null ? Annotation.Version : string.Empty)}";
         }
 
         // ReSharper disable once AssignNullToNotNullAttribute

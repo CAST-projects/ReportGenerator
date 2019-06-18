@@ -196,7 +196,7 @@ namespace CastReporting.UI.WPF.ViewModel
         {
             get
             {
-                return (!string.IsNullOrEmpty(Setting.ReportingParameter.CultureName)) ? new CultureInfo(Setting.ReportingParameter.CultureName) : null;
+                return !string.IsNullOrEmpty(Setting.ReportingParameter.CultureName) ? new CultureInfo(Setting.ReportingParameter.CultureName) : null;
             }
             set
             {

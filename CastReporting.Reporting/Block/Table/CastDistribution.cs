@@ -93,18 +93,18 @@ namespace CastReporting.Reporting.Block.Table
             { Labels.ComplexityLow
                 , selectedLowVal?.ToString("N0") ?? Constants.No_Value
                 , previousLowVal?.ToString("N0") ?? Constants.No_Value
-                , (selectedLowVal.HasValue && previousLowVal.HasValue) ? FormatEvolution((int)(selectedLowVal.Value - previousLowVal.Value)): Constants.No_Value
-                , (selectedLowVal.HasValue && previousLowVal.HasValue && Math.Abs(previousLowVal.Value) > 0)? FormatPercent((selectedLowVal - previousLowVal) / previousLowVal): Constants.No_Value
-                , (selectedLowVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)?FormatPercent(selectedLowVal / selectedTotal, false): Constants.No_Value
+                , selectedLowVal.HasValue && previousLowVal.HasValue ? FormatEvolution((int)(selectedLowVal.Value - previousLowVal.Value)): Constants.No_Value
+                , selectedLowVal.HasValue && previousLowVal.HasValue && Math.Abs(previousLowVal.Value) > 0? FormatPercent((selectedLowVal - previousLowVal) / previousLowVal): Constants.No_Value
+                , selectedLowVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0?FormatPercent(selectedLowVal / selectedTotal, false): Constants.No_Value
             });
 
             rowData.AddRange(new[]
             { Labels.ComplexityAverage
                 , selectedAveVal?.ToString("N0") ?? Constants.No_Value
                 , previousAveVal?.ToString("N0") ?? Constants.No_Value
-                , (selectedAveVal.HasValue && previousAveVal.HasValue) ? FormatEvolution((int)(selectedAveVal.Value - previousAveVal.Value)) : Constants.No_Value
-                , (selectedAveVal.HasValue && previousAveVal.HasValue && Math.Abs(previousAveVal.Value) > 0)? FormatPercent((selectedAveVal - previousAveVal) / previousAveVal): Constants.No_Value
-                , (selectedAveVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)?FormatPercent(selectedAveVal / selectedTotal, false): Constants.No_Value
+                , selectedAveVal.HasValue && previousAveVal.HasValue ? FormatEvolution((int)(selectedAveVal.Value - previousAveVal.Value)) : Constants.No_Value
+                , selectedAveVal.HasValue && previousAveVal.HasValue && Math.Abs(previousAveVal.Value) > 0? FormatPercent((selectedAveVal - previousAveVal) / previousAveVal): Constants.No_Value
+                , selectedAveVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0?FormatPercent(selectedAveVal / selectedTotal, false): Constants.No_Value
             });
 
             rowData.AddRange(new[]
@@ -112,17 +112,17 @@ namespace CastReporting.Reporting.Block.Table
                 , selectedHigVal?.ToString("N0") ?? Constants.No_Value
                 , previousHigVal?.ToString("N0") ?? Constants.No_Value
                 , previousHigVal.HasValue ? FormatEvolution((int)(selectedHigVal.Value - previousHigVal.Value)): Constants.No_Value
-                , (selectedHigVal.HasValue && previousHigVal.HasValue && Math.Abs(previousHigVal.Value) > 0)? FormatPercent((selectedHigVal - previousHigVal) / previousHigVal): Constants.No_Value
-                , (selectedHigVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)?FormatPercent(selectedHigVal / selectedTotal, false): Constants.No_Value
+                , selectedHigVal.HasValue && previousHigVal.HasValue && Math.Abs(previousHigVal.Value) > 0? FormatPercent((selectedHigVal - previousHigVal) / previousHigVal): Constants.No_Value
+                , selectedHigVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0?FormatPercent(selectedHigVal / selectedTotal, false): Constants.No_Value
             });
 
             rowData.AddRange(new[]
             { Labels.ComplexityExtreme
                 , selectedVhiVal?.ToString("N0") ?? Constants.No_Value
                 , previousVhiVal?.ToString("N0") ?? Constants.No_Value
-                , (selectedVhiVal.HasValue && previousVhiVal.HasValue) ? FormatEvolution((int)(selectedVhiVal.Value - previousVhiVal.Value)): Constants.No_Value
-                , (selectedVhiVal.HasValue && previousVhiVal.HasValue && Math.Abs(previousVhiVal.Value) > 0)? FormatPercent((selectedVhiVal - previousVhiVal) / previousVhiVal): Constants.No_Value
-                , (selectedVhiVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0)?FormatPercent(selectedVhiVal / selectedTotal, false): Constants.No_Value
+                , selectedVhiVal.HasValue && previousVhiVal.HasValue ? FormatEvolution((int)(selectedVhiVal.Value - previousVhiVal.Value)): Constants.No_Value
+                , selectedVhiVal.HasValue && previousVhiVal.HasValue && Math.Abs(previousVhiVal.Value) > 0? FormatPercent((selectedVhiVal - previousVhiVal) / previousVhiVal): Constants.No_Value
+                , selectedVhiVal.HasValue && selectedTotal.HasValue && selectedTotal.Value>0?FormatPercent(selectedVhiVal / selectedTotal, false): Constants.No_Value
             });
                 
             #endregion Data

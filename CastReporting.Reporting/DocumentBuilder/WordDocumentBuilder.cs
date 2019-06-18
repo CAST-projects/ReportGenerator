@@ -165,14 +165,12 @@ namespace CastReporting.Reporting.Builder
             {
                 return _part.Header;
             }
-            else if (container is FooterPart)
+            var _container = container as FooterPart;
+            if (_container != null)
             {
-                return ((FooterPart)container).Footer;
+                return _container.Footer;
             }
-            else
-            {
-                return ((WordprocessingDocument)container).MainDocumentPart.Document;
-            }
+            return ((WordprocessingDocument)container).MainDocumentPart.Document;
         }
         #endregion METHODS
     }
