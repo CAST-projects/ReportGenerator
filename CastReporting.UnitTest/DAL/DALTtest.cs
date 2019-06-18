@@ -301,6 +301,7 @@ namespace CastReporting.UnitTest.DAL
         [TestMethod()]
         public void GetConfQualityRuleChinese()
         {
+            if (!"ABD".Equals(Environment.UserName)) return;
             WSConnection _connection3 = new WSConnection()
             {
                 Url = "http://dash-aed-tomcat:8585/CAST-Health-Engineering/rest/",
@@ -312,22 +313,19 @@ namespace CastReporting.UnitTest.DAL
 
             TestUtility.SetCulture("zh-CN");
             ICastRepsitory ccontext = new CastRepository(_connection3, null);
-            if ("ABD".Equals(Environment.UserName))
-            {
-                const string cdomainHref = "AAD/quality-indicators/7126/snapshots/1";
-                var result = ccontext.GetConfBusinessCriteria(cdomainHref);
-                Assert.AreEqual("避免工件的已注释掉代码行/代码行的比率过高", result.Name);
-
-                TestUtility.SetCulture("en-US");
-                ICastRepsitory ccontext2 = new CastRepository(_connection3, null);
-                const string cdomainHref2 = "AAD/quality-indicators/7126/snapshots/1";
-                var result2 = ccontext2.GetConfBusinessCriteria(cdomainHref2);
-                Assert.AreEqual("Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio", result2.Name);
-                return;
-            }
 
             bool valid = ccontext.IsServiceValid();
             Assert.IsTrue(valid);
+
+            const string cdomainHref = "AAD/quality-indicators/7126/snapshots/1";
+            var result = ccontext.GetConfBusinessCriteria(cdomainHref);
+            Assert.AreEqual("避免工件的已注释掉代码行/代码行的比率过高", result.Name);
+
+            TestUtility.SetCulture("en-US");
+            ICastRepsitory ccontext2 = new CastRepository(_connection3, null);
+            const string cdomainHref2 = "AAD/quality-indicators/7126/snapshots/1";
+            var result2 = ccontext2.GetConfBusinessCriteria(cdomainHref2);
+            Assert.AreEqual("Avoid Artifacts with high Commented-out Code Lines/Code Lines ratio", result2.Name);
         }
 
     }

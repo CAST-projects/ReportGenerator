@@ -173,7 +173,7 @@ namespace CastReporting.Reporting.Builder
         /// </summary>
         /// <param name="strOption">Value where to find options.</param>
         /// <returns>The options into the value given in argument.</returns>
-        protected Dictionary<string, string> ParseOptions(string strOption)
+        protected static Dictionary<string, string> ParseOptions(string strOption)
         {
             Dictionary<string, string> options = new Dictionary<string, string>();
             string[] allOpt = strOption.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

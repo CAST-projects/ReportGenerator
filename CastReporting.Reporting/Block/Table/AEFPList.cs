@@ -141,19 +141,17 @@ namespace CastReporting.Reporting.Block.Table
             return resultTable;
         }
 
-        string GetStatus(string source)
+        private static string GetStatus(string source)
         {
             if (source.Contains("Added")) return "Added";
             if (source.Contains("Modified")) return "Modified";
-            if (source.Contains("Deleted")) return "Deleted";
-            return string.Empty;
+            return source.Contains("Deleted") ? "Deleted" : string.Empty;
         }
 
-        string GetType(string source)
+        private static string GetType(string source)
         {
             if (source.Contains("Data Function")) return "Data Function";
-            if (source.Contains("Transactional")) return "Transactional";
-            return string.Empty;
+            return source.Contains("Transactional") ? "Transactional" : string.Empty;
         }
     }
 }
