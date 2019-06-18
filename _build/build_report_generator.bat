@@ -154,6 +154,7 @@ if errorlevel 1 goto endclean
 echo.
 echo Package path is: %ZIPPATH%
 
+pushd %WORKSPACE%
 echo.
 echo ==============================================
 echo Nuget packaging ...
