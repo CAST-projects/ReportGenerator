@@ -493,7 +493,7 @@
     <value>dd.MM.yyyy</value>
   </data>
   <data name="Application" xml:space="preserve">
-    <value>Application</value>
+    <value>Applikation</value>
   </data>
   <data name="Target" xml:space="preserve">
     <value>Score mal</value>
@@ -592,7 +592,7 @@
     <value>Perioden</value>
   </data>
   <data name="Applications" xml:space="preserve">
-    <value>Anwendungen</value>
+    <value>Applikationen</value>
   </data>
   <data name="CurrentPeriod" xml:space="preserve">
     <value>Derzeitige Periode</value>
