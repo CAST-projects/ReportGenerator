@@ -28,7 +28,7 @@ namespace CastReporting.BLL.Computing.DTO
         
     }
 
-    public enum metricType
+    public enum MetricType
     {
         BusinessCriteria,
         TechnicalCriteria,
@@ -41,7 +41,7 @@ namespace CastReporting.BLL.Computing.DTO
     public class SimpleResult
     {
         public string name { get; set; }
-        public metricType type { get; set; }
+        public MetricType type { get; set; }
         public double? result { get; set; }
         public string resultStr { get; set; }
     }
@@ -50,7 +50,7 @@ namespace CastReporting.BLL.Computing.DTO
     {
         public string name { get; set; }
 
-        public metricType type { get; set; }
+        public MetricType type { get; set; }
         public string curResult { get; set; }
         public string prevResult { get; set; }
         public string evolution { get; set; }

@@ -50,30 +50,30 @@ namespace CastReporting.Reporting
         /// <returns></returns>
         public static SimpleResult GetMetricNameAndResult(ReportData reportData, Snapshot snapshot, string metricId, Module module, string technology, bool format)
         {
-            metricType type = metricType.NotKnown;
+            MetricType type = MetricType.NotKnown;
             Result bfResult = null;
             double? result = null;
             string resStr = string.Empty;
 
             string name = snapshot.BusinessCriteriaResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault();
-            if (name != null) type = metricType.BusinessCriteria;
+            if (name != null) type = MetricType.BusinessCriteria;
             // if metricId is not a Business Criteria
             if (name == null)
             {
                 name = snapshot.TechnicalCriteriaResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault();
-                if (name != null) type = metricType.TechnicalCriteria;
+                if (name != null) type = MetricType.TechnicalCriteria;
             }
             // if metricId is not a technical criteria
             if (name == null)
             {
                 name = snapshot.QualityRulesResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault();
-                if (name != null) type = metricType.QualityRule;
+                if (name != null) type = MetricType.QualityRule;
             }
             // if metricId is not a quality rule
             if (name == null)
             {
                 name = snapshot.SizingMeasuresResults.Where(_ => _.Reference.Key == int.Parse(metricId)).Select(_ => _.Reference.Name).FirstOrDefault();
-                if (name != null) type = metricType.SizingMeasure;
+                if (name != null) type = MetricType.SizingMeasure;
             }
             // if metricId is not a sizing measure, perhaps a background fact
             if (name == null)
@@ -81,14 +81,14 @@ namespace CastReporting.Reporting
                 bfResult = reportData.SnapshotExplorer.GetBackgroundFacts(snapshot.Href, metricId, true, true).FirstOrDefault();
                 if (bfResult == null || !bfResult.ApplicationResults.Any()) return null;
                 name = bfResult.ApplicationResults[0].Reference.Name;
-                if (name != null) type = metricType.BackgroundFact;
+                if (name != null) type = MetricType.BackgroundFact;
             }
             // we don't know what is this metric
             if (name == null) return null;
 
             switch (type)
             {
-                case metricType.BusinessCriteria:
+                case MetricType.BusinessCriteria:
                     if (module == null && string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.BusinessCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId))
@@ -115,7 +115,7 @@ namespace CastReporting.Reporting
                     }
                     resStr = result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                     break;
-                case metricType.TechnicalCriteria:
+                case MetricType.TechnicalCriteria:
                     if (module == null && string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.TechnicalCriteriaResults?.Where(_ => _.Reference.Key == int.Parse(metricId))
@@ -142,7 +142,7 @@ namespace CastReporting.Reporting
                     }
                     resStr = result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                     break;
-                case metricType.QualityRule:
+                case MetricType.QualityRule:
                     if (module == null && string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.QualityRulesResults?.Where(_ => _.Reference.Key == int.Parse(metricId))
@@ -170,7 +170,7 @@ namespace CastReporting.Reporting
                     resStr = result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                     
                     break;
-                case metricType.SizingMeasure:
+                case MetricType.SizingMeasure:
                     if (module == null && string.IsNullOrEmpty(technology))
                     {
                         result = snapshot.SizingMeasuresResults?.Where(_ => _.Reference.Key == int.Parse(metricId))
@@ -197,7 +197,7 @@ namespace CastReporting.Reporting
                     }
                     resStr = format ? result?.ToString("N0") ?? Constants.No_Value : result?.ToString() ?? "0";
                     break;
-                case metricType.BackgroundFact:
+                case MetricType.BackgroundFact:
                     if (module == null && string.IsNullOrEmpty(technology))
                     {
                         result = bfResult?.ApplicationResults[0].DetailResult.Value;
@@ -220,13 +220,13 @@ namespace CastReporting.Reporting
                     }
                     resStr = format ? result?.ToString("N0") ?? Constants.No_Value : result?.ToString() ?? "0";
                     break;
-                case metricType.NotKnown:
+                case MetricType.NotKnown:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (metricType.QualityRule == type)
+            if (MetricType.QualityRule == type)
             {
                 name = name + " (" + metricId + ")";
             }
@@ -256,19 +256,19 @@ namespace CastReporting.Reporting
             if (!evol && (curResult?.result != null || prevResult?.result != null))
             {
                 string name = curResult?.name ?? prevResult?.name ?? Constants.No_Value;
-                metricType type = curResult?.type ?? prevResult?.type ?? metricType.NotKnown;
+                MetricType type = curResult?.type ?? prevResult?.type ?? MetricType.NotKnown;
                 string curRes = format ? Constants.No_Value : "0";
                 string prevRes = format ? Constants.No_Value : "0";
                 switch (type)
                 {
-                    case metricType.BusinessCriteria:
-                    case metricType.TechnicalCriteria:
-                    case metricType.QualityRule:
+                    case MetricType.BusinessCriteria:
+                    case MetricType.TechnicalCriteria:
+                    case MetricType.QualityRule:
                         curRes = curResult?.result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                         prevRes = prevResult?.result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                         break;
-                    case metricType.SizingMeasure:
-                    case metricType.BackgroundFact:
+                    case MetricType.SizingMeasure:
+                    case MetricType.BackgroundFact:
                         if (format)
                         {
                             curRes = curResult?.result?.ToString("N0") ?? Constants.No_Value;
@@ -281,7 +281,7 @@ namespace CastReporting.Reporting
 
                         }
                         break;
-                    case metricType.NotKnown:
+                    case MetricType.NotKnown:
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -300,19 +300,19 @@ namespace CastReporting.Reporting
             if (curResult?.result == null || prevResult?.result == null)
             {
                 string name = curResult?.name ?? prevResult?.name ?? Constants.No_Value;
-                metricType type = curResult?.type ?? prevResult?.type ?? metricType.NotKnown;
+                MetricType type = curResult?.type ?? prevResult?.type ?? MetricType.NotKnown;
                 string curRes = format ? Constants.No_Value : "0";
                 string prevRes = format ? Constants.No_Value : "0";
                 switch (type)
                 {
-                    case metricType.BusinessCriteria:
-                    case metricType.TechnicalCriteria:
-                    case metricType.QualityRule:
+                    case MetricType.BusinessCriteria:
+                    case MetricType.TechnicalCriteria:
+                    case MetricType.QualityRule:
                         curRes = curResult?.result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                         prevRes = prevResult?.result?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                         break;
-                    case metricType.SizingMeasure:
-                    case metricType.BackgroundFact:
+                    case MetricType.SizingMeasure:
+                    case MetricType.BackgroundFact:
                         if (format)
                         {
                             curRes = curResult?.result?.ToString("N0") ?? Constants.No_Value;
@@ -324,7 +324,7 @@ namespace CastReporting.Reporting
                             prevRes = prevResult?.result?.ToString() ?? "0";
                         }
                         break;
-                    case metricType.NotKnown:
+                    case MetricType.NotKnown:
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -349,9 +349,9 @@ namespace CastReporting.Reporting
             double? evp;
             switch (curResult.type)
             {
-                case metricType.BusinessCriteria:
-                case metricType.TechnicalCriteria:
-                case metricType.QualityRule:
+                case MetricType.BusinessCriteria:
+                case MetricType.TechnicalCriteria:
+                case MetricType.QualityRule:
                     if (curResult.result != null && prevResult.result != null)
                     {
                         finalCurRes = curResult.result.Value.ToString("N2");
@@ -368,8 +368,8 @@ namespace CastReporting.Reporting
                         evolPercent = format ? Constants.No_Value : "0";
                     }
                     break;
-                case metricType.SizingMeasure:
-                case metricType.BackgroundFact:
+                case MetricType.SizingMeasure:
+                case MetricType.BackgroundFact:
                     if (curResult.result != null && prevResult.result != null)
                     {
                         if (format)
@@ -395,7 +395,7 @@ namespace CastReporting.Reporting
                         evolPercent = format ? Constants.No_Value : "0";
                     }
                     break;
-                case metricType.NotKnown:
+                case MetricType.NotKnown:
                     finalCurRes = format ? Constants.No_Value : "0";
                     finalPrevRes = format ? Constants.No_Value : "0";
                     evolution = format ? Constants.No_Value : "0";
@@ -438,7 +438,7 @@ namespace CastReporting.Reporting
             string metName = results.FirstOrDefault()?.name;
             if (metName == null) return null;
 
-            metricType metType = results.FirstOrDefault()?.type ?? metricType.NotKnown;
+            MetricType metType = results.FirstOrDefault()?.type ?? MetricType.NotKnown;
 
             double? curResult = 0;
 
@@ -447,13 +447,13 @@ namespace CastReporting.Reporting
                 // ReSharper disable once SwitchStatementMissingSomeCases nothing to do on default case, managed in next switch
                 switch (metType)
                 {
-                    case metricType.QualityRule:
-                    case metricType.TechnicalCriteria:
-                    case metricType.BusinessCriteria:
+                    case MetricType.QualityRule:
+                    case MetricType.TechnicalCriteria:
+                    case MetricType.BusinessCriteria:
                         aggregator = "AVERAGE";
                         break;
-                    case metricType.SizingMeasure:
-                    case metricType.BackgroundFact:
+                    case MetricType.SizingMeasure:
+                    case MetricType.BackgroundFact:
                         aggregator = "SUM";
                         break;
                 }
@@ -482,16 +482,16 @@ namespace CastReporting.Reporting
             string res;
             switch (metType)
             {
-                case metricType.BusinessCriteria:
-                case metricType.TechnicalCriteria:
-                case metricType.QualityRule:
+                case MetricType.BusinessCriteria:
+                case MetricType.TechnicalCriteria:
+                case MetricType.QualityRule:
                     res = curResult?.ToString("N2") ?? (format ? Constants.No_Value : "0");
                     break;
-                case metricType.SizingMeasure:
-                case metricType.BackgroundFact:
+                case MetricType.SizingMeasure:
+                case MetricType.BackgroundFact:
                     res = format ? curResult?.ToString("N0") ?? Constants.No_Value : curResult?.ToString() ?? "0";
                     break;
-                case metricType.NotKnown:
+                case MetricType.NotKnown:
                     res = curResult?.ToString() ?? (format ? Constants.No_Value : "0");
                     break;
                 default:
