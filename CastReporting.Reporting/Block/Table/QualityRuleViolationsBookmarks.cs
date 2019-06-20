@@ -39,7 +39,8 @@ namespace CastReporting.Reporting.Block.Table
                     int violation_counter = 0;
                     string domainId = reportData.CurrentSnapshot.DomainId;
                     string snapshotId = reportData.CurrentSnapshot.Id.ToString();
-                    MetricsUtility.PopulateViolationsBookmarks(reportData, _violations, violation_counter, rowData, cellidx, ruleName, cellProps, hasPreviousSnapshot, domainId, snapshotId, ruleId);
+                    MetricsUtility.ViolationsBookmarksProperties violationsBookmarksProperties = new MetricsUtility.ViolationsBookmarksProperties(_violations, violation_counter, rowData, ruleName, hasPreviousSnapshot, domainId, snapshotId, ruleId);
+                    MetricsUtility.PopulateViolationsBookmarks(reportData, violationsBookmarksProperties, cellidx, cellProps);
                 }
                 else
                 {

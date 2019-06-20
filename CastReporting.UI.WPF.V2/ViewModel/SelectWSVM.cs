@@ -31,17 +31,6 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        public ICommand TestCommand { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ICommand AddCommand { get; set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
         public ICommand RemoveCommand { get; set; }
 
 
@@ -174,8 +163,6 @@ namespace CastReporting.UI.WPF.ViewModel
 
             ActiveCommand = new CommandHandler(ExecuteActiveCommand, null);
 
-            TestCommand = new CommandHandler(ExecuteTestCommand, null);
-
             WSConnections = new ObservableCollection<WSConnection>(Setting.WSConnections);
            
         }
@@ -236,36 +223,6 @@ namespace CastReporting.UI.WPF.ViewModel
 
             WSConnections = new ObservableCollection<WSConnection>(Setting.WSConnections);
         }
-
-        /// <summary>
-        /// Implement test service Command
-        /// </summary>
-        private void ExecuteTestCommand(object prameter)
-        {
-            bool resutTest;
-
-            if (prameter == null) //Test of WS defined on "Add service area" 
-            {
-                if (string.IsNullOrEmpty(NewConnectionUrl) || !Uri.IsWellFormedUriString(NewConnectionUrl, UriKind.Absolute)) return;
-                using (CommonBLL commonBLL = new CommonBLL(new WSConnection(NewConnectionUrl, NewConnectionLogin, NewConnectionPassword, string.Empty))) 
-                {
-                    resutTest=  commonBLL.CheckService();
-
-                    MessageManager.OnServiceChecked(NewConnectionUrl, resutTest);
-                }
-            }
-            else
-            {
-                using (CommonBLL commonBLL = new CommonBLL(SelectedWSConnection)) 
-                {
-                    resutTest = commonBLL.CheckService();
-
-                    MessageManager.OnServiceChecked(SelectedWSConnection.Url, resutTest);
-                }
-            }            
-        }
-
-       
 
     }
 }

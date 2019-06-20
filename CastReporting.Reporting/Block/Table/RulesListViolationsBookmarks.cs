@@ -94,10 +94,9 @@ namespace CastReporting.Reporting.Block.Table
                     if (results == null) continue;
                     var _violations = results as Violation[] ?? results.ToArray();
                     if (_violations.Length == 0) continue;
-                    int violation_counter = 0;
-                    string domainId = reportData.CurrentSnapshot.DomainId;
-                    string snapshotId = reportData.CurrentSnapshot.Id.ToString();
-                    cellidx = MetricsUtility.PopulateViolationsBookmarks(reportData, _violations, violation_counter, rowData, cellidx, ruleName, cellProps, hasPreviousSnapshot, domainId, snapshotId, _metric);
+
+                    MetricsUtility.ViolationsBookmarksProperties violationsBookmarksProperties = new MetricsUtility.ViolationsBookmarksProperties(_violations, 0, rowData, ruleName, hasPreviousSnapshot, reportData.CurrentSnapshot.DomainId, reportData.CurrentSnapshot.Id.ToString(), _metric);
+                    cellidx = MetricsUtility.PopulateViolationsBookmarks(reportData, violationsBookmarksProperties, cellidx, cellProps);
 
                     // Add empty lines for readability
                     for (int i = 1; i < 5; i++)

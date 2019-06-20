@@ -322,25 +322,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 OnPropertyChanged("ReportFileName");
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>      
-        public bool Is
-        {
-            get
-            {
-                if (_SelectedTag != null && _SelectedTemplateFile != null)
-                {
-                    return true;
-                }
-                return _SelectedApplication != null &&
-                       _SelectedSnapshot != null &&
-                       _SelectedTemplateFile != null;
-            }
-        }
-
-        
+       
         /// <summary>
         /// 
         /// </summary>      
@@ -462,16 +444,6 @@ namespace CastReporting.UI.WPF.ViewModel
                     throw new ArgumentOutOfRangeException();
             }
         }
-
-/*
-        /// <summary>
-        /// Implement Command that Load the templates list of Portfolio
-        /// </summary>
-        private void ExecuteLoadTemplatesPortfolioCommand(object parameter)
-        {
-            TemplateFiles = SettingsBLL.GetTemplateFileListPortfolio();
-        }
-*/
 
         /// <summary>
         /// Implement Command that Load the current snapshots list

@@ -30,11 +30,6 @@ namespace CastReporting.UI.WPF
     // ReSharper disable once RedundantExtendsListEntry
     public partial class MainWindow : Window
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Messges { get; set; }
-
 
         /// <summary>
         /// 

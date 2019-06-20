@@ -198,13 +198,6 @@ namespace CastReporting.Domain
             ReusebyCall_VeryHigh = 66011
         }
 
-        public const string Uri_PathSeparator = "/";
-        public const string ControllerName_SnapshotModules = "SnapshotedModules";
-        public const string ControllerName_SnapshotTechnologies = "SnapshotedTechnologies";
-        public const string ControllerName_Snapshots = "Snapshots";
-        public const string ControllerName_SnapshotedApplicationQualityData = "SnapshotedApplicationQualityData";
-        public const string ControllerName_Transactions = "Transactions";
-        public const string ControllerName_CriticalObjectsRanking = "CriticalObjectsRanking";
         public const string No_Value = "n/a";
 		public const string No_Data = "-";
         public const string Zero = "0";

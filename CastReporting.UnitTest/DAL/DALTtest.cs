@@ -18,11 +18,6 @@ namespace CastReporting.UnitTest.DAL
     [TestClass()]
     public class CRContextTest
     {
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
 
         /// <summary>
         /// 

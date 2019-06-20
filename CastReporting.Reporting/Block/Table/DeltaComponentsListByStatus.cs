@@ -26,7 +26,7 @@ namespace CastReporting.Reporting.Block.Table
 
             string moduleName = options.GetOption("MODULE", string.Empty);
             string technoName = options.GetOption("TECHNOLOGY", string.Empty);
-            if (moduleName != string.Empty && technoName != string.Empty)
+            if (moduleName.Length > 0 && technoName.Length > 0)
             {
                 moduleName = string.Empty;
                 technoName = string.Empty;

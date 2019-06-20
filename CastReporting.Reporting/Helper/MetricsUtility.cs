@@ -560,8 +560,41 @@ namespace CastReporting.Reporting
             return qualityRules.Distinct().ToList();
         }
 
-        public static int PopulateViolationsBookmarks(ReportData reportData, Violation[] violations, int violationCounter, List<string> rowData, int cellidx, string ruleName, List<CellAttributes> cellProps, bool hasPreviousSnapshot, string domainId, string snapshotId, string metric)
+        public class ViolationsBookmarksProperties
         {
+            public Violation[] Violations { get; }
+            public int ViolationCounter { get; }
+            public List<string> RowData { get; }
+            public string RuleName { get; }
+            public bool HasPreviousSnapshot { get; }
+            public string DomainId { get; }
+            public string SnapshotId { get; }
+            public string Metric { get; }
+
+            public ViolationsBookmarksProperties(Violation[] violations, int violationCounter, List<string> rowData, string ruleName, bool hasPreviousSnapshot, string domainId, string snapshotId, string metric)
+            {
+                Violations = violations;
+                ViolationCounter = violationCounter;
+                RowData = rowData;
+                RuleName = ruleName;
+                HasPreviousSnapshot = hasPreviousSnapshot;
+                DomainId = domainId;
+                SnapshotId = snapshotId;
+                Metric = metric;
+            }
+        }
+
+        public static int PopulateViolationsBookmarks(ReportData reportData, ViolationsBookmarksProperties violationsBookmarksProperties, int cellidx, List<CellAttributes> cellProps)
+        {
+            Violation[] violations = violationsBookmarksProperties.Violations;
+            int violationCounter = violationsBookmarksProperties.ViolationCounter;
+            List<string> rowData = violationsBookmarksProperties.RowData;
+            string ruleName = violationsBookmarksProperties.RuleName;
+            bool hasPreviousSnapshot = violationsBookmarksProperties.HasPreviousSnapshot;
+            string domainId = violationsBookmarksProperties.DomainId;
+            string snapshotId = violationsBookmarksProperties.SnapshotId;
+            string metric = violationsBookmarksProperties.Metric;
+
             foreach (Violation _violation in violations)
             {
                 violationCounter++;
