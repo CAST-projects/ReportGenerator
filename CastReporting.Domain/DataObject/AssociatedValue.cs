@@ -14,5 +14,8 @@ namespace CastReporting.Domain
         [DataMember(Name = "type")]
         public string Type { get; set; }
 
+        [DataMember(Name = "values")]
+        public object[] Values { get; set; }
+
     }
 }

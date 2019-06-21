@@ -714,9 +714,6 @@
   <data name="EquivalenceRatio" xml:space="preserve">
     <value>等价比率</value>
   </data>
-  <data name="SnapshotNotTheLatestOne" xml:space="preserve">
-    <value>当前快照不是最新，无法显示结果</value>
-  </data>
   <data name="codeLines" xml:space="preserve">
     <value>Code Lines</value>
   </data>
@@ -761,5 +758,11 @@
   </data>
   <data name="ratioCommentLinesCodeLines" xml:space="preserve">
     <value>Documentation Ratio</value>
+  </data>
+  <data name="SnapshotNotTheLatestOne" xml:space="preserve">
+    <value>当前快照不是最新，无法显示结果</value>
+  </data>
+  <data name="AssociatedValue" xml:space="preserve">
+    <value>相关价值</value>
   </data>
 </root>

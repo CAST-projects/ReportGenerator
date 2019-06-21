@@ -223,6 +223,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Associated Value.
+        /// </summary>
+        public static string AssociatedValue {
+            get {
+                return ResourceManager.GetString("AssociatedValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Automated Function Points.
         /// </summary>
         public static string AutomatedFP {

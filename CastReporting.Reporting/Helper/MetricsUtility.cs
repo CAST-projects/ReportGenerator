@@ -624,6 +624,13 @@ namespace CastReporting.Reporting
 
                 if (associatedValue.Type == null || associatedValue.Type.Equals("integer"))
                 {
+                    if (associatedValue.Values != null && associatedValue.Values.Length > 0)
+                    {
+                        var value = associatedValue.Values[0];
+                        rowData.Add(Labels.AssociatedValue + ": " + value);
+                        cellProps.Add(new CellAttributes(cellidx, Color.White));
+                        cellidx++;
+                    }
                     IEnumerable<IEnumerable<CodeBookmark>> bookmarks = associatedValue.Bookmarks;
                     if (bookmarks == null || !bookmarks.Any())
                     {

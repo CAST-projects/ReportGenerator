@@ -762,4 +762,7 @@
   <data name="SnapshotNotTheLatestOne" xml:space="preserve">
     <value>La snapshot actual no es la más reciente. No se pueden mostrar datos.</value>
   </data>
+  <data name="AssociatedValue" xml:space="preserve">
+    <value>Valor asociado</value>
+  </data>
 </root>
