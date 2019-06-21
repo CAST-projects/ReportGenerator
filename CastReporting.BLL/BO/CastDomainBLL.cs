@@ -234,7 +234,7 @@ namespace CastReporting.BLL
 
                 return _categories;
             }
-            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException)
+            catch (Exception ex)
             {
                 LogHelper.Instance.LogInfo(ex.Message);
                 List<string> _categories = new List<string>();
