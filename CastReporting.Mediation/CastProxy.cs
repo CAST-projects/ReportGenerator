@@ -42,7 +42,7 @@ namespace CastReporting.Mediation
 
         private WebRequest _request;
 
-        private bool restApiKey;
+        private readonly bool _restApiKey;
 
         #endregion ATTRIBUTES
 
@@ -71,7 +71,7 @@ namespace CastReporting.Mediation
         {
             CookieContainer = cookies ?? new CookieContainer();
             AutoRedirect = autoRedirect;
-            restApiKey = apiKey;
+            _restApiKey = apiKey;
             if (cookies?.Count > 0)
             {
                 RemoveAuthenticationHeaders();
@@ -118,7 +118,7 @@ namespace CastReporting.Mediation
 
         public void RemoveAuthenticationHeaders()
         {
-            if (restApiKey)
+            if (_restApiKey)
             {
                 Headers.Remove("X-API-KEY");
                 Headers.Remove("X-API-USER");
