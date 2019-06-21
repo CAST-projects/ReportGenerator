@@ -14,6 +14,7 @@
  *
  */
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -233,7 +234,7 @@ namespace CastReporting.BLL
 
                 return _categories;
             }
-            catch ( System.Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException)
             {
                 LogHelper.Instance.LogInfo(ex.Message);
                 List<string> _categories = new List<string>();

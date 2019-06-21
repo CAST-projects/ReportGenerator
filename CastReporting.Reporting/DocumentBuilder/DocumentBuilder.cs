@@ -137,7 +137,7 @@ namespace CastReporting.Reporting.Builder
         /// <param name="alias">Alias text content.</param>
         /// <param name="tag">Tag text content.</param>
         /// <returns>The block configuration of the given alias and tag.</returns>
-        protected BlockConfiguration GetBlockConfiguration(string alias, string tag)
+        protected static BlockConfiguration GetBlockConfiguration(string alias, string tag)
         {
             BlockConfiguration back = new BlockConfiguration();
 

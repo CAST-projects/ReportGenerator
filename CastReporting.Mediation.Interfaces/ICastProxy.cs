@@ -26,7 +26,7 @@ namespace CastReporting.Mediation.Interfaces
     {
         CookieContainer GetCookieContainer();
 
-        void RemoveAuthenticationHeaders(bool apiKey);
+        void RemoveAuthenticationHeaders();
 
         /// <summary>
         /// 

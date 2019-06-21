@@ -25,7 +25,6 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         public string Name { get; set; }
         public string Type { get; set; }
         public Dictionary<string, string> Options { get; set; }
-        public BlockItem Block { get; set; }
 
         /// <summary>
         /// Displayed Text

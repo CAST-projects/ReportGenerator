@@ -70,7 +70,7 @@ namespace CastReporting.Reporting.Builder
         }
 
 
-        protected new BlockConfiguration GetBlockConfiguration(string alias, string tag)
+        protected new static BlockConfiguration GetBlockConfiguration(string alias, string tag)
         {
             BlockConfiguration back = new BlockConfiguration();
 

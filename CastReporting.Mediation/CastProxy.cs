@@ -42,6 +42,8 @@ namespace CastReporting.Mediation
 
         private WebRequest _request;
 
+        private bool restApiKey;
+
         #endregion ATTRIBUTES
 
         #region PROPERTIES
@@ -69,9 +71,10 @@ namespace CastReporting.Mediation
         {
             CookieContainer = cookies ?? new CookieContainer();
             AutoRedirect = autoRedirect;
+            restApiKey = apiKey;
             if (cookies?.Count > 0)
             {
-                RemoveAuthenticationHeaders(apiKey);
+                RemoveAuthenticationHeaders();
                 return;
             }
             if (apiKey)
@@ -113,9 +116,9 @@ namespace CastReporting.Mediation
             return CookieContainer;
         }
 
-        public void RemoveAuthenticationHeaders(bool apikey)
+        public void RemoveAuthenticationHeaders()
         {
-            if (apikey)
+            if (restApiKey)
             {
                 Headers.Remove("X-API-KEY");
                 Headers.Remove("X-API-USER");
@@ -188,11 +191,14 @@ namespace CastReporting.Mediation
 
         private string DownloadContent(string pUrl, string mimeType, RequestComplexity pComplexity)
         {
-
             string result;
 
             try
             {
+                if (GetCookieContainer().Count > 0)
+                {
+                    RemoveAuthenticationHeaders();
+                }
                 Headers.Add(HttpRequestHeader.Accept, mimeType);
                 var culture = Thread.CurrentThread.CurrentCulture;
                 Headers.Remove(HttpRequestHeader.AcceptLanguage);

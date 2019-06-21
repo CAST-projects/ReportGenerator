@@ -716,10 +716,6 @@ namespace CastReporting.Repositories
             requestUrl += relativeURL.StartsWith("/") ? relativeURL.Substring(1) : relativeURL;
             try
             {
-                if (_Client.GetCookieContainer().Count > 0)
-                {
-                    _Client.RemoveAuthenticationHeaders(CurrentApiKey);
-                }
                 var jsonString = _Client.DownloadString(requestUrl, pComplexity);
                 var serializer = new DataContractJsonSerializer(typeof(T));
                 MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
@@ -749,10 +745,6 @@ namespace CastReporting.Repositories
             var jsonString = string.Empty;
             try
             {
-                if (_Client.GetCookieContainer().Count > 0)
-                {
-                    _Client.RemoveAuthenticationHeaders(CurrentApiKey);
-                }
                 jsonString = _Client.DownloadString(requestUrl, pComplexity);
             }
             catch (WebException e)
@@ -780,10 +772,6 @@ namespace CastReporting.Repositories
 
             try
             {
-                if (_Client.GetCookieContainer().Count > 0)
-                {
-                    _Client.RemoveAuthenticationHeaders(CurrentApiKey);
-                }
                 var csvString = _Client.DownloadCsvString(requestUrl, pComplexity);
                 var serializer = new CsvSerializer<T>();
                 return serializer.ReadObjects(csvString, count, PropNames);
@@ -804,10 +792,6 @@ namespace CastReporting.Repositories
 
             try
             {
-                if (_Client.GetCookieContainer().Count > 0)
-                {
-                    _Client.RemoveAuthenticationHeaders(CurrentApiKey);
-                }
                 return _Client.DownloadPlainText(requestUrl, pComplexity);
             }
             catch (WebException e)
