@@ -58,6 +58,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "Violation #1    Avoid using SQL queries inside a loop",
                 "Object Name: aedtst_exclusions_central.adg_central_grades_std",
                 "Object Type: MyObjType",
+                "Associated Value: 3",
                 "File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql",
                 "1197 : PreparedStatement statement = null;",
                 "1198 :         try",
@@ -84,10 +85,10 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "1203 :         }"
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 1, 29);
+            TestUtility.AssertTableContent(table, expectedData, 1, 30);
 
             var cellsProperties = table.CellsAttributes;
-            Assert.AreEqual(27, cellsProperties.Count);
+            Assert.AreEqual(28, cellsProperties.Count);
 
         }
 
@@ -123,18 +124,20 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             Assert.AreEqual(1, table.NbColumns);
-            Assert.AreEqual(146, table.NbRows);
+            Assert.AreEqual(151, table.NbRows);
             Assert.AreEqual("Violation #1    Avoid using SQL queries inside a loop", table.Data.ElementAt(2));
             Assert.AreEqual("Object Name: aedtst_exclusions_central.adg_central_grades_std", table.Data.ElementAt(3));
             Assert.AreEqual("Object Type: MyObjType", table.Data.ElementAt(4));
             Assert.AreEqual("Status: added", table.Data.ElementAt(5));
-            Assert.AreEqual("Violation #4    Avoid using SQL queries inside a loop", table.Data.ElementAt(89));
-            Assert.AreEqual("Object Name: aedtst_exclusions_central.adg_m_central_grades_std", table.Data.ElementAt(90));
-            Assert.AreEqual("Object Type: MyObjType", table.Data.ElementAt(91));
-            Assert.AreEqual("Status: updated", table.Data.ElementAt(92));
+            Assert.AreEqual("Associated Value: 3", table.Data.ElementAt(6));
+            Assert.AreEqual("Violation #4    Avoid using SQL queries inside a loop", table.Data.ElementAt(92));
+            Assert.AreEqual("Object Name: aedtst_exclusions_central.adg_m_central_grades_std", table.Data.ElementAt(93));
+            Assert.AreEqual("Object Type: MyObjType", table.Data.ElementAt(94));
+            Assert.AreEqual("Status: updated", table.Data.ElementAt(95));
+            Assert.AreEqual("Associated Value: 3", table.Data.ElementAt(96));
 
             var cellsProperties = table.CellsAttributes;
-            Assert.AreEqual(140, cellsProperties.Count);
+            Assert.AreEqual(145, cellsProperties.Count);
         }
 
         [TestMethod]
@@ -168,18 +171,20 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             Assert.AreEqual(1, table.NbColumns);
-            Assert.AreEqual(197, table.NbRows);
+            Assert.AreEqual(204, table.NbRows);
             Assert.AreEqual("Violation #1    Avoid using SQL queries inside a loop", table.Data.ElementAt(2));
             Assert.AreEqual("Object Name: aedtst_exclusions_central.adg_central_grades_std", table.Data.ElementAt(3));
             Assert.AreEqual("Object Type: MyObjType", table.Data.ElementAt(4));
-            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql", table.Data.ElementAt(5));
-            Assert.AreEqual("Violation #7    Avoid using SQL queries inside a loop", table.Data.ElementAt(170));
-            Assert.AreEqual("Object Name: aedtst_exclusions_central.adgc_delta_debt_removed", table.Data.ElementAt(171));
-            Assert.AreEqual("Object Type: MyObjType", table.Data.ElementAt(172));
-            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql", table.Data.ElementAt(173));
+            Assert.AreEqual("Associated Value: 3", table.Data.ElementAt(5));
+            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql", table.Data.ElementAt(6));
+            Assert.AreEqual("Violation #7    Avoid using SQL queries inside a loop", table.Data.ElementAt(176));
+            Assert.AreEqual("Object Name: aedtst_exclusions_central.adgc_delta_debt_removed", table.Data.ElementAt(177));
+            Assert.AreEqual("Object Type: MyObjType", table.Data.ElementAt(178));
+            Assert.AreEqual("Associated Value: 3", table.Data.ElementAt(179));
+            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql", table.Data.ElementAt(180));
 
             var cellsProperties = table.CellsAttributes;
-            Assert.AreEqual(189, cellsProperties.Count);
+            Assert.AreEqual(196, cellsProperties.Count);
         }
 
         [TestMethod]
@@ -220,6 +225,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "Violation #1    Avoid using SQL queries inside a loop",
                 "Object Name: aedtst_exclusions_central.adg_central_grades_std",
                 "Object Type: MyObjType",
+                "Associated Value: 3",
                 "File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql",
                 "1197 : PreparedStatement statement = null;",
                 "1198 :         try",
@@ -246,10 +252,10 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "1203 :         }"
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 1, 29);
+            TestUtility.AssertTableContent(table, expectedData, 1, 30);
 
             var cellsProperties = table.CellsAttributes;
-            Assert.AreEqual(27, cellsProperties.Count);
+            Assert.AreEqual(28, cellsProperties.Count);
 
         }
 
@@ -290,6 +296,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "Violation #1    Avoid having multiple Artifacts inserting data on the same SQL Table",
                 "Object Name: aedtst_exclusions_central.adg_central_grades_std",
                 "Object Type: MyObjType",
+                "Associated Value: 2",
                 "File path: C:\\jenkins6_slave\\workspace\\CAIP_8.3.3_TestE2E_CSS_ADG\\Work\\CAST\\Deploy\\Dream Team\\DssAdmin\\DssAdmin\\MetricTree.cpp",
                 "4904 :      m_bGridModified = FALSE;",
                 "4905 :  }",
@@ -299,10 +306,10 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "4909 :      int i, index, nAggregate, nAggregateCentral, nType, nLastLine;"
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 1, 12);
+            TestUtility.AssertTableContent(table, expectedData, 1, 13);
 
             var cellsProperties = table.CellsAttributes;
-            Assert.AreEqual(10, cellsProperties.Count);
+            Assert.AreEqual(11, cellsProperties.Count);
 
         }
 

@@ -69,6 +69,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "Violation #1    Avoid using SQL queries inside a loop",
                 "Object Name: aedtst_exclusions_central.adg_central_grades_std",
                 "Object Type: MyObjType",
+                "Associated Value: 3",
                 "File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql",
                 "1197 : PreparedStatement statement = null;",
                 "1198 :         try",
@@ -123,31 +124,10 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 ""
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 1, 66);
+            TestUtility.AssertTableContent(table, expectedData, 1, 67);
 
             var cellsProperties = table.CellsAttributes;
-            Assert.AreEqual(53, cellsProperties.Count);
-            Assert.AreEqual(Color.Gray, cellsProperties[0].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[1].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[2].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[3].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[4].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[5].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[6].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[7].BackgroundColor);
-            Assert.AreEqual(Color.Gainsboro, cellsProperties[8].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[9].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[10].BackgroundColor);
-            Assert.AreEqual(Color.Lavender, cellsProperties[11].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[12].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[13].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[14].BackgroundColor);
-            Assert.AreEqual(Color.LightYellow, cellsProperties[15].BackgroundColor);
-            Assert.AreEqual(Color.LightYellow, cellsProperties[16].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[17].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[18].BackgroundColor);
-
-            Assert.AreEqual(Color.White, cellsProperties[52].BackgroundColor);
+            Assert.AreEqual(54, cellsProperties.Count);
         }
 
         [TestMethod]
@@ -191,27 +171,6 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var cellsProperties = table.CellsAttributes;
             Assert.AreEqual(58, cellsProperties.Count);
-            Assert.AreEqual(Color.Gray, cellsProperties[0].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[1].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[2].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[3].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[4].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[5].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[6].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[7].BackgroundColor);
-            Assert.AreEqual(Color.Gainsboro, cellsProperties[8].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[9].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[10].BackgroundColor);
-            Assert.AreEqual(Color.Lavender, cellsProperties[11].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[12].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[13].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[14].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[15].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[16].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[17].BackgroundColor);
-            Assert.AreEqual(Color.Gainsboro, cellsProperties[18].BackgroundColor);
-
-            Assert.AreEqual(Color.White, cellsProperties[57].BackgroundColor);
         }
 
         [TestMethod]
@@ -245,41 +204,20 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             Assert.AreEqual(1, table.NbColumns);
-            Assert.AreEqual(210, table.NbRows);
+            Assert.AreEqual(217, table.NbRows);
             Assert.AreEqual("Violations", table.Data.ElementAt(0));
             Assert.AreEqual("Objects in violation for rule Avoid using SQL queries inside a loop", table.Data.ElementAt(2));
             Assert.AreEqual("# Violations: 86", table.Data.ElementAt(3));
-            Assert.AreEqual("Violation #7    Avoid using SQL queries inside a loop", table.Data.ElementAt(179));
-            Assert.AreEqual("Object Name: aedtst_exclusions_central.adgc_delta_debt_removed", table.Data.ElementAt(180));
-            Assert.AreEqual("Object Type: MyObjType", table.Data.ElementAt(181));
-            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql", table.Data.ElementAt(182));
-            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\Java\\AADAdmin\\AadSite\\sources\\com\\castsoftware\\aad\\site\\AadSite.java", table.Data.ElementAt(198));
-            Assert.AreEqual("1203 :         }", table.Data.ElementAt(205));
+            Assert.AreEqual("Violation #7    Avoid using SQL queries inside a loop", table.Data.ElementAt(185));
+            Assert.AreEqual("Object Name: aedtst_exclusions_central.adgc_delta_debt_removed", table.Data.ElementAt(186));
+            Assert.AreEqual("Object Type: MyObjType", table.Data.ElementAt(187));
+            Assert.AreEqual("Associated Value: 3", table.Data.ElementAt(188));
+            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\SQL\\central.sql", table.Data.ElementAt(189));
+            Assert.AreEqual("File path: D:\\CASTMS\\TST834\\Deploy\\Team\\AADAED\\Java\\AADAdmin\\AadSite\\sources\\com\\castsoftware\\aad\\site\\AadSite.java", table.Data.ElementAt(205));
+            Assert.AreEqual("1203 :         }", table.Data.ElementAt(212));
 
             var cellsProperties = table.CellsAttributes;
-            Assert.AreEqual(197, cellsProperties.Count);
-            Assert.AreEqual(Color.Gray, cellsProperties[0].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[1].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[2].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[3].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[4].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[5].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[6].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[7].BackgroundColor);
-            Assert.AreEqual(Color.Gainsboro, cellsProperties[8].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[9].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[10].BackgroundColor);
-            Assert.AreEqual(Color.Lavender, cellsProperties[11].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[12].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[13].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[14].BackgroundColor);
-            Assert.AreEqual(Color.LightYellow, cellsProperties[15].BackgroundColor);
-            Assert.AreEqual(Color.LightYellow, cellsProperties[16].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[17].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[18].BackgroundColor);
-
-            Assert.AreEqual(Color.Gainsboro, cellsProperties[35].BackgroundColor);
-            Assert.AreEqual(Color.Gainsboro, cellsProperties[170].BackgroundColor);
+            Assert.AreEqual(204, cellsProperties.Count);
         }
 
         [TestMethod]
@@ -314,41 +252,21 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             Assert.AreEqual(1, table.NbColumns);
-            Assert.AreEqual(206, table.NbRows);
+            Assert.AreEqual(212, table.NbRows);
             Assert.AreEqual("Violations", table.Data.ElementAt(0));
             Assert.AreEqual("Objects in violation for rule Action Mappings should have few forwards", table.Data.ElementAt(2));
             Assert.AreEqual("# Violations: 77", table.Data.ElementAt(3));
             Assert.AreEqual("Violation #1    Action Mappings should have few forwards", table.Data.ElementAt(9));
-            Assert.AreEqual("Violation #2    Action Mappings should have few forwards", table.Data.ElementAt(37));
-            Assert.AreEqual("Objects in violation for rule Avoid accessing data by using the position and length", table.Data.ElementAt(69));
-            Assert.AreEqual("# Violations: 6", table.Data.ElementAt(70));
-            Assert.AreEqual("Objects in violation for rule Avoid artifacts having recursive calls", table.Data.ElementAt(138));
-            Assert.AreEqual("# Violations: 12", table.Data.ElementAt(139));
-            Assert.AreEqual("1203 :         }", table.Data.ElementAt(201));
+            Assert.AreEqual("Violation #2    Action Mappings should have few forwards", table.Data.ElementAt(38));
+            Assert.AreEqual("Objects in violation for rule Avoid accessing data by using the position and length", table.Data.ElementAt(71));
+            Assert.AreEqual("# Violations: 6", table.Data.ElementAt(72));
+            Assert.AreEqual("Objects in violation for rule Avoid artifacts having recursive calls", table.Data.ElementAt(142));
+            Assert.AreEqual("# Violations: 12", table.Data.ElementAt(143));
+            Assert.AreEqual("1203 :         }", table.Data.ElementAt(207));
 
 
             var cellsProperties = table.CellsAttributes;
-            Assert.AreEqual(184, cellsProperties.Count);
-            Assert.AreEqual(Color.Gray, cellsProperties[0].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[1].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[2].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[3].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[4].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[5].BackgroundColor);
-            Assert.AreEqual(Color.Gainsboro, cellsProperties[6].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[7].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[8].BackgroundColor);
-            Assert.AreEqual(Color.Lavender, cellsProperties[9].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[10].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[11].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[12].BackgroundColor);
-            Assert.AreEqual(Color.LightYellow, cellsProperties[13].BackgroundColor);
-            Assert.AreEqual(Color.LightYellow, cellsProperties[14].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[15].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[16].BackgroundColor);
-
-            Assert.AreEqual(Color.Gray, cellsProperties[60].BackgroundColor);
-            Assert.AreEqual(Color.Gray, cellsProperties[122].BackgroundColor);
+            Assert.AreEqual(190, cellsProperties.Count);
 
         }
 
@@ -385,34 +303,16 @@ namespace CastReporting.UnitTest.Reporting.Tables
             var table = component.Content(reportData, config);
 
             Assert.AreEqual(1, table.NbColumns);
-            Assert.AreEqual(68, table.NbRows);
+            Assert.AreEqual(70, table.NbRows);
             Assert.AreEqual("Violations", table.Data.ElementAt(0));
             Assert.AreEqual("Objects in violation for rule Action Mappings should have few forwards", table.Data.ElementAt(2));
             Assert.AreEqual("# Violations: 77", table.Data.ElementAt(3));
             Assert.AreEqual("Violation #1    Action Mappings should have few forwards", table.Data.ElementAt(9));
-            Assert.AreEqual("Violation #2    Action Mappings should have few forwards", table.Data.ElementAt(37));
+            Assert.AreEqual("Violation #2    Action Mappings should have few forwards", table.Data.ElementAt(38));
 
 
             var cellsProperties = table.CellsAttributes;
-            Assert.AreEqual(60, cellsProperties.Count);
-            Assert.AreEqual(Color.Gray, cellsProperties[0].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[1].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[2].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[3].BackgroundColor);
-            Assert.AreEqual(Color.LightGray, cellsProperties[4].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[5].BackgroundColor);
-            Assert.AreEqual(Color.Gainsboro, cellsProperties[6].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[7].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[8].BackgroundColor);
-            Assert.AreEqual(Color.Lavender, cellsProperties[9].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[10].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[11].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[12].BackgroundColor);
-            Assert.AreEqual(Color.LightYellow, cellsProperties[13].BackgroundColor);
-            Assert.AreEqual(Color.LightYellow, cellsProperties[14].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[15].BackgroundColor);
-            Assert.AreEqual(Color.White, cellsProperties[16].BackgroundColor);
-
+            Assert.AreEqual(62, cellsProperties.Count);
         }
 
     }
