@@ -87,15 +87,15 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var expectedData = new List<string>
             {
-                "STIG-V4R8","Id","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities",
-                "STIG-V4R8-CAT1 ","Total","0","0","0",
-                "","STIG-V-70245 The application must protect the confidentiality and integrity of transmitted information.","0","0","0",
-                "","STIG-V-70261 The application must protect from command injection.","0","0","0",
-                "STIG-V4R8-CAT3 ","Total","589","31","6",
-                "","STIG-V-70385 The application development team must follow a set of coding standards.","589","31","6",
+                "STIG-V4R8", "Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities",
+                "STIG-V4R8-CAT1 ","0","0","0",
+                "    STIG-V-70245 The application must protect the confidentiality and integrity of transmitted information.","0","0","0",
+                "    STIG-V-70261 The application must protect from command injection.","0","0","0",
+                "STIG-V4R8-CAT3 ","589","31","6",
+                "    STIG-V-70385 The application development team must follow a set of coding standards.","589","31","6",
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 5, 6);
+            TestUtility.AssertTableContent(table, expectedData, 4, 6);
 
         }
 
