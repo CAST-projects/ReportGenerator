@@ -338,10 +338,22 @@ namespace CastReporting.UnitTest.Reporting
         }
 
         [DeploymentItem(@".\Data\Snapshot_StdTagResultsCWE.json", "Data")]
+        [DeploymentItem(@".\Data\Snapshot_StdTagResultsSTIGv4R8.json", "Data")]
+        [DeploymentItem(@".\Data\Snapshot_StdTagResultsSTIGv4R8CAT1.json", "Data")]
+        [DeploymentItem(@".\Data\Snapshot_StdTagResultsSTIGv4R8CAT3.json", "Data")]
         public IEnumerable<Result> GetQualityStandardsTagsResults(string snapshotHref, string standardTag)
         {
-            IEnumerable<Result> res = TestUtility.GetSampleResult<Result>(@".\Data\Snapshot_StdTagResultsCWE.json").ToList();
-            return res;
+            switch (standardTag)
+            {
+                case "STIG-V4R8":
+                    return TestUtility.GetSampleResult<Result>(@".\Data\Snapshot_StdTagResultsSTIGv4R8.json").ToList();
+                case "STIG-V4R8-CAT1":
+                    return TestUtility.GetSampleResult<Result>(@".\Data\Snapshot_StdTagResultsSTIGv4R8CAT1.json").ToList();
+                case "STIG-V4R8-CAT3":
+                    return TestUtility.GetSampleResult<Result>(@".\Data\Snapshot_StdTagResultsSTIGv4R8CAT3.json").ToList();
+                default:
+                    return TestUtility.GetSampleResult<Result>(@".\Data\Snapshot_StdTagResultsCWE.json").ToList();
+            }
         }
 
         [DeploymentItem(@".\Data\DreamTeamSnap4Sample12.json", "Data")]
