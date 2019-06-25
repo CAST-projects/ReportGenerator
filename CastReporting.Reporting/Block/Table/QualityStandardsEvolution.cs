@@ -32,12 +32,11 @@ namespace CastReporting.Reporting.Block.Table
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             string standard = options.GetOption("STD");
-
+            bool detail = options.GetOption("MORE", "false").ToLower().Equals("true");
             bool vulnerability = options.GetOption("LBL", "vulnerabilities").ToLower().Equals("vulnerabilities");
             string lbltotal = vulnerability ? Labels.TotalVulnerabilities : Labels.TotalViolations;
             string lbladded = vulnerability ? Labels.AddedVulnerabilities : Labels.AddedViolations;
             string lblremoved = vulnerability ? Labels.RemovedVulnerabilities : Labels.RemovedViolations;
-
 
             // cellProps will contains the properties of the cell (background color) linked to the data by position in the list stored with cellidx.
             List<CellAttributes> cellProps = new List<CellAttributes>();
@@ -53,54 +52,67 @@ namespace CastReporting.Reporting.Block.Table
             headers.Append(lblremoved);
             cellidx++;
 
-            var dataRow = headers.CreateDataRow();
             var data = new List<string>();
-
             List<ApplicationResult> results = reportData.SnapshotExplorer.GetQualityStandardsTagsResults(reportData.CurrentSnapshot.Href,standard)?.FirstOrDefault()?.ApplicationResults?.ToList();
 
             if (results?.Count > 0)
             {
                 foreach (var result in results)
                 {
+                    var dataRow = headers.CreateDataRow();
                     var detailResult = result.DetailResult;
                     if (detailResult == null) continue;
                     int? nbViolations = detailResult.EvolutionSummary?.TotalViolations;
+                    // usefull when the STD is a tag. when STD is a category it is not in the standardTags list for application, so only STD name is displayed
                     string stdTagName = result.Reference?.Name + " " + reportData.Application.StandardTags?.Where(_ => _.Key == result.Reference?.Name).FirstOrDefault()?.Name;
                     dataRow.Set(standard, stdTagName);
-                    if (nbViolations > 0)
-                    {
-                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
-
-                    }
+                    AddGrayOrBold(detail, cellProps, cellidx, nbViolations);
                     cellidx++;
                     dataRow.Set(lbltotal, detailResult.EvolutionSummary?.TotalViolations.NAIfEmpty("N0"));
-                    if (nbViolations > 0)
-                    {
-                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
-
-                    }
+                    AddGrayOrBold(detail, cellProps, cellidx, nbViolations);
                     cellidx++;
                     dataRow.Set(lbladded, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty("N0"));
-                    if (nbViolations > 0)
-                    {
-                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
-
-                    }
+                    AddGrayOrBold(detail, cellProps, cellidx, nbViolations);
                     cellidx++;
                     dataRow.Set(lblremoved, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty("N0"));
-                    if (nbViolations > 0)
-                    {
-                        cellProps.Add(new CellAttributes(cellidx, Color.Beige));
-
-                    }
+                    AddGrayOrBold(detail, cellProps, cellidx, nbViolations);
                     cellidx++;
                     data.AddRange(dataRow);
+
+                    // add lines for all sub tags if detail version
+                    if (!detail) continue;
+                    {
+                        List<ApplicationResult> stdresults = reportData.SnapshotExplorer.GetQualityStandardsTagsResults(reportData.CurrentSnapshot.Href, result.Reference?.Name)?.FirstOrDefault()?.ApplicationResults?.ToList();
+                        if (!(stdresults?.Count > 0)) continue;
+                        foreach (var stdres in stdresults)
+                        {
+                            var stddataRow = headers.CreateDataRow();
+
+                            var detailStdResult = stdres.DetailResult;
+                            if (detailStdResult == null) continue;
+                            int? nbStdViolations = detailStdResult.EvolutionSummary?.TotalViolations;
+                            string stdresTagName = stdres.Reference?.Name + " " + reportData.Application.StandardTags?.Where(_ => _.Key == stdres.Reference?.Name).FirstOrDefault()?.Name;
+                            stddataRow.Set(standard, "    " + stdresTagName);
+                            AddGrayOrBold(false, cellProps, cellidx, nbStdViolations);
+                            cellidx++;
+                            stddataRow.Set(lbltotal, detailStdResult.EvolutionSummary?.TotalViolations.NAIfEmpty("N0"));
+                            AddGrayOrBold(false, cellProps, cellidx, nbStdViolations);
+                            cellidx++;
+                            stddataRow.Set(lbladded, detailStdResult.EvolutionSummary?.AddedViolations.NAIfEmpty("N0"));
+                            AddGrayOrBold(false, cellProps, cellidx, nbStdViolations);
+                            cellidx++;
+                            stddataRow.Set(lblremoved, detailStdResult.EvolutionSummary?.RemovedViolations.NAIfEmpty("N0"));
+                            AddGrayOrBold(false, cellProps, cellidx, nbStdViolations);
+                            cellidx++;
+                            data.AddRange(stddataRow);
+                        }
+                    }
                 }
             }
 
             if (data.Count == 0)
             {
-                dataRow.Reset();
+                var dataRow = headers.CreateDataRow();
                 dataRow.Set(0, Labels.NoRules);
                 data.AddRange(dataRow);
             }
@@ -116,6 +128,18 @@ namespace CastReporting.Reporting.Block.Table
                 NbRows = data.Count / headers.Count,
                 CellsAttributes = cellProps
             };
+        }
+
+        private static void AddGrayOrBold(bool detail, List<CellAttributes> cellProps, int cellidx, int? nbViolations)
+        {
+            if (detail)
+            {
+                cellProps.Add(new CellAttributes(cellidx, Color.LightGray, "bold"));
+            }
+            else if (nbViolations > 0)
+            {
+                cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+            }
         }
     }
 }

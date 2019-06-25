@@ -1,0 +1,436 @@
+﻿[
+  {
+    "standard": "OWASP",
+    "id": "A1-2013",
+    "name": "Injection",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A1-2017",
+    "name": "Injection",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A2-2013",
+    "name": "Broken Authentication and Session Management",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A2-2017",
+    "name": "Broken Authentication",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A3-2017",
+    "name": "Sensitive Data Exposure",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A5-2017",
+    "name": "Broken Access Control",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A6-2013",
+    "name": "Sensitive Data Exposure",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A9-2013",
+    "name": "Using Components with Known Vulnerabilities",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "A9-2017",
+    "name": "Using Components with Known Vulnerabilities",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-CAST-LITE",
+    "name": "Rule implemented in CAST Lite product",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-CR-EFFICIENCY",
+    "name": "CloudReady - focus on inter-component and inter-service communication efficiency",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-CR-PORTABILITY",
+    "name": "CloudReady - focus on seamless portability",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-CR-SCALABILITY",
+    "name": "CloudReady - focus on on-demand scalability",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-CR-SECURITY",
+    "name": "CloudReady - focus on security",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-HA-FAILURES",
+    "name": "HA - detect and handle failures",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-HA-INTERNAL",
+    "name": "HA - internal failure mitigation",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-HA-THREATS",
+    "name": "HA - external threats mitigation",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-HA-WORKLOAD",
+    "name": "HA - unexpected workload mitigation",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-MIPS-ALGORITHMIC-COST",
+    "name": "MIPS Reduction - focus on algorithmic costs",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-MIPS-DATA-ACCESS",
+    "name": "MIPS Reduction - focus on data access efficiency",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "AIP-MIPS-TRANSACTIONS-FAILURE",
+    "name": "MIPS Reduction - focus on avoiding transaction failure",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-1",
+    "name": "Control Flow Transfer Control Element outside Switch Block",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-3",
+    "name": "Storable and Member Data Element Initialization with Hard-Coded Literals",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-4",
+    "name": "Callable and Method Control Element Number of Outward Calls",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-6",
+    "name": "Commented-out Code Element Excessive Volume",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-8",
+    "name": "Source Element Excessive Size",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-11",
+    "name": "Callable and Method Control Element Excessive Cyclomatic Complexity Value",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-17",
+    "name": "Class Element Excessive Inheritance Level",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-18",
+    "name": "Class Element Excessive Number of Children",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-19",
+    "name": "Named Callable and Method Control Element Excessive Similarity",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCMM-MNT-20",
+    "name": "Unreachable Named Callable or Method Control Element",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCPEM-PRF-4",
+    "name": "Data Resource Read and Write Access Excessive Complexity",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCPEM-PRF-8",
+    "name": "Control Elements Requiring Significant Resource Element within Control Flow Loop Block",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCPEM-PRF-12",
+    "name": "Storable and Member Data Element Excessive Number of Aggregated Storable and Member Data Elements",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-CWE-456",
+    "name": "Storable and Member Data Element Missing Initialization",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-CWE-674",
+    "name": "Uncontrolled Recursion",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-RLB-1",
+    "name": "Empty Exception Block",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCRM-RLB-14",
+    "name": "Parent Class Element with References to Child Class Element",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCSM-CWE-78",
+    "name": "OS Command Injection Improper Input Neutralization",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCSM-CWE-397",
+    "name": "Declaration of Throws for Generic Exception",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCSM-CWE-456",
+    "name": "Storable and Member Data Element Missing Initialization",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CISQ",
+    "id": "ASCSM-CWE-681",
+    "name": "Numeric Types Incorrect Conversion",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "AIP",
+    "id": "COMMAND-INJECTION",
+    "name": "OS/LDAP Command Injection or Expression evaluation injection",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-285",
+    "name": "Improper Authorization",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-336",
+    "name": "Same Seed in Pseudo-Random Number Generator (PRNG)",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-390",
+    "name": "Detection of Error Condition Without Action",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-391",
+    "name": "Unchecked Error Condition",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-397",
+    "name": "Declaration of Throws for Generic Exception",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-456",
+    "name": "Missing Initialization of a Variable",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-478",
+    "name": "Missing Default Case in Switch Statement",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-489",
+    "name": "Leftover Debug Code",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-676",
+    "name": "Use of Potentially Dangerous Function",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-681",
+    "name": "Incorrect Conversion between Numeric Types",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "CWE",
+    "id": "CWE-862",
+    "name": "Missing Authorization",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "OWASP",
+    "id": "M7-2016",
+    "name": "Poor Code Quality",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "NIST-SP-800-53R4",
+    "id": "NIST-SI-10",
+    "name": "Information Input Validation",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "NIST-SP-800-53R4",
+    "id": "NIST-SI-11",
+    "name": "Error Handling",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "PCI-DSS-V3.1",
+    "id": "PCI-Requirement-6.5.1",
+    "name": "Injection flaws, particularly SQL injection. Also consider OS Command Injection, LDAP and XPath injection flaws as well as other injection flaws.",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "PCI-DSS-V3.1",
+    "id": "PCI-Requirement-6.5.5",
+    "name": "Improper error handling",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "STIG-V4R8",
+    "id": "STIG-V-70245",
+    "name": "The application must protect the confidentiality and integrity of transmitted information.",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "STIG-V4R8",
+    "id": "STIG-V-70261",
+    "name": "The application must protect from command injection.",
+    "reference": null,
+    "description": null
+  },
+  {
+    "standard": "STIG-V4R8",
+    "id": "STIG-V-70385",
+    "name": "The application development team must follow a set of coding standards.",
+    "reference": null,
+    "description": null
+  }
+]

@@ -1,0 +1,59 @@
+﻿[
+  {
+    "number": 4,
+    "date": {
+      "time": 1384484640000,
+      "isoDate": "2013-11-15"
+    },
+    "version": "4",
+    "application": {
+      "href": "AED8314/applications/14",
+      "name": "Big Ben",
+      "adgDatabase": "tst_8314_central"
+    },
+    "applicationSnapshot": {
+      "href": "AED8314/applications/14/snapshots/14",
+      "name": "Big Ben"
+    },
+    "applicationResults": [
+      {
+        "type": "quality-standards",
+        "reference": {
+          "name": "STIG-V-70245"
+        },
+        "result": {
+          "evolutionSummary": {
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-standards",
+        "reference": {
+          "name": "STIG-V-70261"
+        },
+        "result": {
+          "evolutionSummary": {
+            "totalCriticalViolations": 0,
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "totalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  }
+]

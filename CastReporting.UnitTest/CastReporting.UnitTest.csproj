@@ -94,6 +94,18 @@
     <None Include="Data\RemovedViolations-60012.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\Snapshot_StdTagResultsSTIGV4R8CAT3.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Snapshot_StdTagResultsSTIGV4R8CAT1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Snapshot_StdTagResultsSTIGV4R8.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\StandardTagsSTIG.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\StandardTags.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
