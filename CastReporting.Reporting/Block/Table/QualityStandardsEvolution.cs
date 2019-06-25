@@ -113,7 +113,10 @@ namespace CastReporting.Reporting.Block.Table
             if (data.Count == 0)
             {
                 var dataRow = headers.CreateDataRow();
-                dataRow.Set(0, Labels.NoRules);
+                dataRow.Set(standard, Labels.NoRules);
+                dataRow.Set(lbltotal, string.Empty);
+                dataRow.Set(lbladded, string.Empty);
+                dataRow.Set(lblremoved, string.Empty);
                 data.AddRange(dataRow);
             }
 
