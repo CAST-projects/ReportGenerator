@@ -313,10 +313,10 @@ namespace CastReporting.UnitTest.Reporting
 
         }
 
-        [DeploymentItem(@".\Data\Snapshot_StdTagsOWASPresults1.json", "Data")]
-        public IEnumerable<Result> GetQualityStandardsRulesResults(string snapshotHref, string qualityIndicator)
+        [DeploymentItem(@".\Data\Snapshot_StdTagsCWE78results.json", "Data")]
+        public IEnumerable<Result> GetQualityStandardsRulesResults(string snapshotHref, string qualityIndicator, bool evolutionSummary)
         {
-            IEnumerable<Result> res = TestUtility.GetSampleResult<Result>(@".\Data\Snapshot_QIresults1.json").ToList();
+            IEnumerable<Result> res = TestUtility.GetSampleResult<Result>(@".\Data\Snapshot_StdTagsCWE78results.json").ToList();
             return res;
 
         }

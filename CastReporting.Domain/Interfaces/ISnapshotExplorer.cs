@@ -37,7 +37,7 @@ namespace CastReporting.Domain.Interfaces
         IEnumerable<Result> GetSizingMeasureResults(string snapshotHref, string sizingMeasure);
         IEnumerable<Result> GetQualityIndicatorResults(string snapshotHref, string qualityIndicator);
 
-        IEnumerable<Result> GetQualityStandardsRulesResults(string snapshotHref, string standardTag);
+        IEnumerable<Result> GetQualityStandardsRulesResults(string snapshotHref, string standardTag, bool evolutionSummary);
 
         IEnumerable<Result> GetQualityStandardsTagsResults(string snapshotHref, string standardTag);
 

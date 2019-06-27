@@ -305,13 +305,13 @@ namespace CastReporting.BLL
         /// <summary>
         /// 
         /// </summary>
-        public IEnumerable<Result> GetQualityStandardsRulesResults(string snapshotHref, string standardTag)
+        public IEnumerable<Result> GetQualityStandardsRulesResults(string snapshotHref, string standardTag, bool evolutionSummary = false)
         {
             using (var castRepsitory = GetRepository())
             {
                 try
                 {
-                    return VersionUtil.IsAdgVersion833Compliant(_Snapshot.AdgVersion) ? castRepsitory.GetResultsQualityStandardsRules(snapshotHref, standardTag, string.Empty, string.Empty) : null;
+                    return VersionUtil.IsAdgVersion833Compliant(_Snapshot.AdgVersion) ? castRepsitory.GetResultsQualityStandardsRules(snapshotHref, standardTag, string.Empty, string.Empty, evolutionSummary) : null;
                 }
                 catch (System.Net.WebException ex)
                 {
@@ -346,7 +346,7 @@ namespace CastReporting.BLL
             {
                 try
                 {
-                    IEnumerable<Result> results = VersionUtil.IsAdgVersion833Compliant(_Snapshot.AdgVersion) ? castRepsitory.GetResultsQualityStandardsRules(snapshotHref, standardTag, string.Empty, string.Empty) : null;
+                    IEnumerable<Result> results = VersionUtil.IsAdgVersion833Compliant(_Snapshot.AdgVersion) ? castRepsitory.GetResultsQualityStandardsRules(snapshotHref, standardTag, string.Empty, string.Empty, false) : null;
                     if (results == null) return null;
                     List<string> metrics = new List<string>();
                     foreach (Result _result in results)
