@@ -1,0 +1,75 @@
+﻿[
+  {
+    "number": 2,
+    "date": {
+      "time": 1541509200000,
+      "isoDate": "2018-11-06"
+    },
+    "version": "v1.5.0",
+    "application": {
+      "href": "webi_ENGINEERING_WEBI/applications/3",
+      "name": "webi",
+      "adgDatabase": "webi_central"
+    },
+    "applicationSnapshot": {
+      "href": "webi_ENGINEERING_WEBI/applications/3/snapshots/2",
+      "name": "webi"
+    },
+    "applicationResults": [
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "webi_ENGINEERING_WEBI/quality-indicators/4598/snapshots/2",
+          "name": "Avoid using 'java.lang.Runtime.exec()'",
+          "key": "4598",
+          "critical": false
+        },
+        "result": {
+          "grade": 4,
+          "violationRatio": {
+            "totalChecks": 8989,
+            "failedChecks": 5,
+            "successfulChecks": 8989,
+            "ratio": 1
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 2,
+            "removedCriticalViolations": 1,
+            "addedViolations": 2,
+            "removedViolations": 1
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      },
+      {
+        "type": "quality-rules",
+        "reference": {
+          "href": "webi_ENGINEERING_WEBI/quality-indicators/7748/snapshots/2",
+          "name": "Avoid OS command injection vulnerabilities",
+          "key": "7748",
+          "critical": true
+        },
+        "result": {
+          "grade": 4,
+          "violationRatio": {
+            "totalChecks": 3,
+            "failedChecks": 0,
+            "successfulChecks": 3,
+            "ratio": 1
+          },
+          "evolutionSummary": {
+            "addedCriticalViolations": 0,
+            "removedCriticalViolations": 0,
+            "addedViolations": 0,
+            "removedViolations": 0
+          }
+        },
+        "technologyResults": [],
+        "moduleResults": [],
+        "transactionResults": []
+      }
+    ]
+  }
+]

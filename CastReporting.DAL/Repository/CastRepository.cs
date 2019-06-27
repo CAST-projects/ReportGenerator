@@ -577,7 +577,7 @@ namespace CastReporting.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Result> ICastRepsitory.GetResultsQualityStandardsRules(string hRef, string stgTagParam, string modulesParam, string technologiesParam)
+        IEnumerable<Result> ICastRepsitory.GetResultsQualityStandardsRules(string hRef, string stgTagParam, string modulesParam, string technologiesParam, bool evolutionSummary)
         {
             string query = _query_result_quality_standards_rules;
 
@@ -586,6 +586,9 @@ namespace CastReporting.Repositories
 
             if (!string.IsNullOrEmpty(technologiesParam))
                 query = query + "&technologies=({4})";
+
+            if (evolutionSummary)
+                query = query + "&select=(violationRatio,evolutionSummary)";
 
             string relativeURL = string.Format(query, hRef, stgTagParam, modulesParam, technologiesParam);
 

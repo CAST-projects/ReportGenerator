@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using CastReporting.Domain;
+using CastReporting.Reporting.ReportingModel;
 
 namespace CastReporting.Reporting.Helper
 {
@@ -110,6 +113,18 @@ namespace CastReporting.Reporting.Helper
             }
             
             return var.ToString("N2");
+        }
+
+        public static void AddGrayOrBold(bool detail, List<CellAttributes> cellProps, int cellidx, int? nbViolations)
+        {
+            if (detail)
+            {
+                cellProps.Add(new CellAttributes(cellidx, Color.LightGray, "bold"));
+            }
+            else if (nbViolations > 0)
+            {
+                cellProps.Add(new CellAttributes(cellidx, Color.Beige));
+            }
         }
     }
 }

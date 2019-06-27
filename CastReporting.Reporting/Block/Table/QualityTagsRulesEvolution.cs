@@ -25,13 +25,12 @@ using CastReporting.Reporting.Helper;
 
 namespace CastReporting.Reporting.Block.Table
 {
-    [Block("QUALITY_STANDARDS_EVOLUTION")]
-    public class QualityStandardsEvolution : TableBlock
+    [Block("QUALITY_TAGS_RULES_EVOLUTION")]
+    public class QualityTagsRulesEvolution : TableBlock
     {
         public override TableDefinition Content(ReportData reportData, Dictionary<string, string> options)
         {
             string standard = options.GetOption("STD");
-            bool detail = options.GetOption("MORE", "false").ToLower().Equals("true");
             bool vulnerability = options.GetOption("LBL", "vulnerabilities").ToLower().Equals("vulnerabilities");
             string lbltotal = vulnerability ? Labels.TotalVulnerabilities : Labels.TotalViolations;
             string lbladded = vulnerability ? Labels.AddedVulnerabilities : Labels.AddedViolations;
@@ -61,50 +60,59 @@ namespace CastReporting.Reporting.Block.Table
                     var dataRow = headers.CreateDataRow();
                     var detailResult = result.DetailResult;
                     if (detailResult == null) continue;
-                    int? nbViolations = detailResult.EvolutionSummary?.TotalViolations;
-                    // usefull when the STD is a tag. when STD is a category it is not in the standardTags list for application, so only STD name is displayed
+                    int? _nbTagViolations = detailResult.EvolutionSummary?.TotalViolations;
                     string stdTagName = result.Reference?.Name + " " + reportData.Application.StandardTags?.Where(_ => _.Key == result.Reference?.Name).FirstOrDefault()?.Name;
+                    // Add a line for each tag of the category
                     dataRow.Set(standard, stdTagName);
-                    FormatHelper.AddGrayOrBold(detail, cellProps, cellidx, nbViolations);
+                    FormatHelper.AddGrayOrBold(true, cellProps, cellidx, _nbTagViolations);
                     cellidx++;
                     dataRow.Set(lbltotal, detailResult.EvolutionSummary?.TotalViolations.NAIfEmpty("N0"));
-                    FormatHelper.AddGrayOrBold(detail, cellProps, cellidx, nbViolations);
+                    FormatHelper.AddGrayOrBold(true, cellProps, cellidx, _nbTagViolations);
                     cellidx++;
                     dataRow.Set(lbladded, detailResult.EvolutionSummary?.AddedViolations.NAIfEmpty("N0"));
-                    FormatHelper.AddGrayOrBold(detail, cellProps, cellidx, nbViolations);
+                    FormatHelper.AddGrayOrBold(true, cellProps, cellidx, _nbTagViolations);
                     cellidx++;
                     dataRow.Set(lblremoved, detailResult.EvolutionSummary?.RemovedViolations.NAIfEmpty("N0"));
-                    FormatHelper.AddGrayOrBold(detail, cellProps, cellidx, nbViolations);
+                    FormatHelper.AddGrayOrBold(true, cellProps, cellidx, _nbTagViolations);
                     cellidx++;
                     data.AddRange(dataRow);
 
-                    // add lines for all sub tags if detail version
-                    if (!detail) continue;
+                    // for each tag of the category add lines for all cast rules associated to this tag
+                    List<ApplicationResult> stdresults = reportData.SnapshotExplorer.GetQualityStandardsRulesResults(reportData.CurrentSnapshot.Href, result.Reference?.Name, true)?.FirstOrDefault()?.ApplicationResults?.ToList();
+                    if (stdresults?.Count > 0)
                     {
-                        List<ApplicationResult> stdresults = reportData.SnapshotExplorer.GetQualityStandardsTagsResults(reportData.CurrentSnapshot.Href, result.Reference?.Name)?.FirstOrDefault()?.ApplicationResults?.ToList();
-                        if (!(stdresults?.Count > 0)) continue;
-                        foreach (var stdres in stdresults)
+                        foreach (var ruleresult in stdresults)
                         {
-                            var stddataRow = headers.CreateDataRow();
+                            var _ruleDr = headers.CreateDataRow();
 
-                            var detailStdResult = stdres.DetailResult;
-                            if (detailStdResult == null) continue;
-                            int? nbStdViolations = detailStdResult.EvolutionSummary?.TotalViolations;
-                            string stdresTagName = stdres.Reference?.Name + " " + reportData.Application.StandardTags?.Where(_ => _.Key == stdres.Reference?.Name).FirstOrDefault()?.Name;
-                            stddataRow.Set(standard, "    " + stdresTagName);
-                            FormatHelper.AddGrayOrBold(false, cellProps, cellidx, nbStdViolations);
+                            var _resultDetail = ruleresult.DetailResult;
+                            if (_resultDetail == null) continue;
+                            int? _nbViolations = _resultDetail.ViolationRatio?.FailedChecks;
+                            string ruleName = ruleresult.Reference?.Name;
+                            _ruleDr.Set(standard, "    " + ruleName);
+                            FormatHelper.AddGrayOrBold(false, cellProps, cellidx, _nbViolations);
                             cellidx++;
-                            stddataRow.Set(lbltotal, detailStdResult.EvolutionSummary?.TotalViolations.NAIfEmpty("N0"));
-                            FormatHelper.AddGrayOrBold(false, cellProps, cellidx, nbStdViolations);
+                            _ruleDr.Set(lbltotal, _resultDetail.ViolationRatio?.FailedChecks.NAIfEmpty("N0"));
+                            FormatHelper.AddGrayOrBold(false, cellProps, cellidx, _nbViolations);
                             cellidx++;
-                            stddataRow.Set(lbladded, detailStdResult.EvolutionSummary?.AddedViolations.NAIfEmpty("N0"));
-                            FormatHelper.AddGrayOrBold(false, cellProps, cellidx, nbStdViolations);
+                            _ruleDr.Set(lbladded, _resultDetail.EvolutionSummary?.AddedViolations.NAIfEmpty("N0"));
+                            FormatHelper.AddGrayOrBold(false, cellProps, cellidx, _nbViolations);
                             cellidx++;
-                            stddataRow.Set(lblremoved, detailStdResult.EvolutionSummary?.RemovedViolations.NAIfEmpty("N0"));
-                            FormatHelper.AddGrayOrBold(false, cellProps, cellidx, nbStdViolations);
+                            _ruleDr.Set(lblremoved, _resultDetail.EvolutionSummary?.RemovedViolations.NAIfEmpty("N0"));
+                            FormatHelper.AddGrayOrBold(false, cellProps, cellidx, _nbViolations);
                             cellidx++;
-                            data.AddRange(stddataRow);
+                            data.AddRange(_ruleDr);
                         }
+                    }
+                    else
+                    {
+                        var _ruleDr = headers.CreateDataRow();
+                        _ruleDr.Set(standard, Labels.NoRules);
+                        _ruleDr.Set(lbltotal, string.Empty);
+                        _ruleDr.Set(lbladded, string.Empty);
+                        _ruleDr.Set(lblremoved, string.Empty);
+                        cellidx++;
+                        data.AddRange(_ruleDr);
                     }
                 }
             }
@@ -112,7 +120,7 @@ namespace CastReporting.Reporting.Block.Table
             if (data.Count == 0)
             {
                 var dataRow = headers.CreateDataRow();
-                dataRow.Set(standard, Labels.NoRules);
+                dataRow.Set(standard, Labels.NoItem);
                 dataRow.Set(lbltotal, string.Empty);
                 dataRow.Set(lbladded, string.Empty);
                 dataRow.Set(lblremoved, string.Empty);
@@ -131,5 +139,6 @@ namespace CastReporting.Reporting.Block.Table
                 CellsAttributes = cellProps
             };
         }
+
     }
 }

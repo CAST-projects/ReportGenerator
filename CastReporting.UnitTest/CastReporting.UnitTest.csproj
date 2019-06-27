@@ -187,7 +187,7 @@
     <None Include="Data\Snapshot_StdTagResultsCWE.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Snapshot_StdTagsOWASPresults1.json">
+    <None Include="Data\Snapshot_StdTagsCWE78results.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\RemovedViolations.json">
@@ -296,6 +296,7 @@
     <Compile Include="Reporting\Graph\PortfolioGenericGraphTests.cs" />
     <Compile Include="Reporting\Tables\AETPListTests.cs" />
     <Compile Include="Reporting\Tables\AEFPListTests.cs" />
+    <Compile Include="Reporting\Tables\QualityTagsRulesEvolutionTests.cs" />
     <Compile Include="Reporting\Tables\QualityStandardsEvolutionTests.cs" />
     <Compile Include="Reporting\Tables\RulesListLargestVariationTests.cs" />
     <Compile Include="Reporting\Tables\RulesListStatisticsRatioTests.cs" />

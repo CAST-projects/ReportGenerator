@@ -6,7 +6,7 @@ using CastReporting.Reporting.ReportingModel;
 namespace CastReporting.UnitTest.Reporting.Tables
 {
     [TestClass]
-    public class QualityStandardsEvolutionTests
+    public class QualityTagsRulesEvolutionTests
     {
         [TestInitialize()]
         public void Initialize()
@@ -17,6 +17,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [TestMethod]
         [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
         [DeploymentItem(@".\Data\Snapshot_StdTagResultsCWE.json", "Data")]
+        [DeploymentItem(@".\Data\Snapshot_StdTagsCWE78results.json", "Data")]
         [DeploymentItem(@".\Data\StandardTags.json", "Data")]
         public void TestStgTagCWE()
         {
@@ -35,7 +36,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             };
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
 
-            var component = new CastReporting.Reporting.Block.Table.QualityStandardsEvolution();
+            var component = new CastReporting.Reporting.Block.Table.QualityTagsRulesEvolution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"STD","CWE-2011-Top25" }
@@ -46,11 +47,17 @@ namespace CastReporting.UnitTest.Reporting.Tables
             {
                 "CWE-2011-Top25","Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities",
                 "CWE-22 Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')","0","0","0",
+                "    Avoid using 'java.lang.Runtime.exec()'","5","2","1",
+                "    Avoid OS command injection vulnerabilities","0","0","0",
                 "CWE-78 Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')","7","7","5",
-                "CWE-79 Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')","7","7","2"
+                "    Avoid using 'java.lang.Runtime.exec()'","5","2","1",
+                "    Avoid OS command injection vulnerabilities","0","0","0",
+                "CWE-79 Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')","7","7","2",
+                "    Avoid using 'java.lang.Runtime.exec()'","5","2","1",
+                "    Avoid OS command injection vulnerabilities","0","0","0"
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 4, 4);
+            TestUtility.AssertTableContent(table, expectedData, 4, 10);
 
         }
 
@@ -58,7 +65,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
         [DeploymentItem(@".\Data\Snapshot_StdTagResultsSTIGv4R8.json", "Data")]
         [DeploymentItem(@".\Data\Snapshot_StdTagResultsSTIGv4R8CAT1.json", "Data")]
-        [DeploymentItem(@".\Data\Snapshot_StdTagResultsSTIGv4R8CAT3.json", "Data")]
+        [DeploymentItem(@".\Data\Snapshot_StdTagsOWASPresults1.json", "Data")]
         [DeploymentItem(@".\Data\StandardTagsSTIG.json", "Data")]
         public void TestStgTagDetailSTIG()
         {
@@ -77,31 +84,32 @@ namespace CastReporting.UnitTest.Reporting.Tables
             };
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
 
-            var component = new CastReporting.Reporting.Block.Table.QualityStandardsEvolution();
+            var component = new CastReporting.Reporting.Block.Table.QualityTagsRulesEvolution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
-                {"STD","STIG-V4R8" },
-                {"MORE","true" }
+                {"STD","STIG-V4R8-CAT1" }
             };
             var table = component.Content(reportData, config);
 
             var expectedData = new List<string>
             {
-                "STIG-V4R8", "Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities",
-                "STIG-V4R8-CAT1 ","0","0","0",
-                "    STIG-V-70245 The application must protect the confidentiality and integrity of transmitted information.","0","0","0",
-                "    STIG-V-70261 The application must protect from command injection.","0","0","0",
-                "STIG-V4R8-CAT3 ","589","31","6",
-                "    STIG-V-70385 The application development team must follow a set of coding standards.","589","31","6"
+                "STIG-V4R8-CAT1", "Total Vulnerabilities","Added Vulnerabilities","Removed Vulnerabilities",
+                "STIG-V-70245 The application must protect the confidentiality and integrity of transmitted information.","0","0","0",
+                "    Avoid using 'java.lang.Runtime.exec()'","5","2","1",
+                "    Avoid OS command injection vulnerabilities","0","0","0",
+                "STIG-V-70261 The application must protect from command injection.","0","0","0",
+                "    Avoid using 'java.lang.Runtime.exec()'","5","2","1",
+                "    Avoid OS command injection vulnerabilities","0","0","0"
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 4, 6);
+            TestUtility.AssertTableContent(table, expectedData, 4, 7);
 
         }
 
         [TestMethod]
         [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
         [DeploymentItem(@".\Data\Snapshot_StdTagResultsCWE.json", "Data")]
+        [DeploymentItem(@".\Data\Snapshot_StdTagsOWASPresults1.json", "Data")]
         [DeploymentItem(@".\Data\StandardTags.json", "Data")]
         public void TestStgTagCWEHeaders()
         {
@@ -120,7 +128,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             };
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
 
-            var component = new CastReporting.Reporting.Block.Table.QualityStandardsEvolution();
+            var component = new CastReporting.Reporting.Block.Table.QualityTagsRulesEvolution();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"STD","CWE-2011-Top25" },
@@ -132,11 +140,17 @@ namespace CastReporting.UnitTest.Reporting.Tables
             {
                 "CWE-2011-Top25","Total Violations","Added Violations","Removed Violations",
                 "CWE-22 Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')","0","0","0",
+                "    Avoid using 'java.lang.Runtime.exec()'","5","2","1",
+                "    Avoid OS command injection vulnerabilities","0","0","0",
                 "CWE-78 Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')","7","7","5",
-                "CWE-79 Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')","7","7","2"
+                "    Avoid using 'java.lang.Runtime.exec()'","5","2","1",
+                "    Avoid OS command injection vulnerabilities","0","0","0",
+                "CWE-79 Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')","7","7","2",
+                "    Avoid using 'java.lang.Runtime.exec()'","5","2","1",
+                "    Avoid OS command injection vulnerabilities","0","0","0"
             };
 
-            TestUtility.AssertTableContent(table, expectedData, 4, 4);
+            TestUtility.AssertTableContent(table, expectedData, 4, 10);
 
         }
     }
