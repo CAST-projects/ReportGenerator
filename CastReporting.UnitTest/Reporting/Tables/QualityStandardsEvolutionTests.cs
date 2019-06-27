@@ -92,7 +92,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
                 "    STIG-V-70245 The application must protect the confidentiality and integrity of transmitted information.","0","0","0",
                 "    STIG-V-70261 The application must protect from command injection.","0","0","0",
                 "STIG-V4R8-CAT3 ","589","31","6",
-                "    STIG-V-70385 The application development team must follow a set of coding standards.","589","31","6",
+                "    STIG-V-70385 The application development team must follow a set of coding standards.","589","31","6"
             };
 
             TestUtility.AssertTableContent(table, expectedData, 4, 6);
