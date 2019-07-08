@@ -15,6 +15,8 @@
  */
 using System;
 using System.IO;
+using System.IO.Compression;
+using Cast.Util.Log;
 
 namespace Cast.Util
 {
@@ -35,8 +37,6 @@ namespace Cast.Util
         {
             if (!string.IsNullOrEmpty(tempFolder) && !Directory.Exists(tempFolder)) 
                 Directory.CreateDirectory(tempFolder);
-
-
             
             string tempName = $"~{Path.GetFileNameWithoutExtension(templatePath)}_{DateTime.Now:MMdd_HHmmss}{Path.GetExtension(templatePath)}";
 
@@ -64,6 +64,66 @@ namespace Cast.Util
 
         }
 
-       
+        public static void UnzipAndCopy(string archive, string dirname)
+        {
+            try
+            {
+                string tempDirectory = Path.Combine(Path.GetTempPath(), "RG-templates_" + DateTime.Today.ToString("yyyyMMdd"));
+                if (Directory.Exists(tempDirectory))
+                {
+                    File.SetAttributes(tempDirectory, FileAttributes.Normal);
+                    Directory.Delete(tempDirectory, true);
+                }
+                Directory.CreateDirectory(tempDirectory);
+                ZipFile.ExtractToDirectory(archive, tempDirectory);
+                File.SetAttributes(tempDirectory, FileAttributes.Normal);
+                DirectoryCopy(tempDirectory, dirname, true, true);
+                File.SetAttributes(dirname, FileAttributes.Normal);
+            }
+            catch (IOException e)
+            {
+                LogHelper.Instance.LogError(e.Message);
+            }
+
+        }
+
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool overwrite)
+        {
+            // Get the subdirectories for the specified directory.
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            // If the destination directory doesn't exist, create it.
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+            }
+
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, overwrite);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs, overwrite);
+                }
+            }
+        }
+
     }
 }

@@ -39,6 +39,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IExtendProxy.cs" />
     <Compile Include="ICastProxy.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

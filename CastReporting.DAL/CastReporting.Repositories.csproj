@@ -50,6 +50,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repository\ExtendRepository.cs" />
     <Compile Include="Repository\SettingsRepository.cs" />
   </ItemGroup>
   <ItemGroup>

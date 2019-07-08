@@ -193,6 +193,9 @@
     <None Include="Data\RemovedViolations.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\Templates.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Violations7426_60017.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -274,6 +277,7 @@
     <None Include="Data\topArtefacts7212.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Compile Include="DAL\ExtendTest.cs" />
     <Compile Include="Reporting\Graph\GenericGraphTests.cs" />
     <Compile Include="Reporting\Graph\PieTechnoLoCTests.cs" />
     <Compile Include="Reporting\Graph\PortfolioBarChartTests.cs" />
@@ -433,6 +437,10 @@
     <ProjectReference Include="..\CastReporting.Mediation.Interfaces\CastReporting.Mediation.Interfaces.csproj">
       <Project>{5D974A06-C1F5-442D-902F-77DCF5D1C16E}</Project>
       <Name>CastReporting.Mediation.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CastReporting.Mediation\CastReporting.Mediation.csproj">
+      <Project>{a2df17b9-5643-4f29-9a4c-561e5eb15406}</Project>
+      <Name>CastReporting.Mediation</Name>
     </ProjectReference>
     <ProjectReference Include="..\CastReporting.Reporting\CastReporting.Reporting.csproj">
       <Project>{A00B1634-960E-44E0-94C3-BBFEB0E98E23}</Project>

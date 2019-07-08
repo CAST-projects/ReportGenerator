@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
+using System.IO;
+using Cast.Util;
 
 namespace CastReporting.UnitTest
 {
@@ -34,6 +36,22 @@ namespace CastReporting.UnitTest
             var key2 = Tuple.Create(1234, "JEE", 60017);
             Console.WriteLine(values[key]);
             Console.WriteLine(values[key2]);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\Templates.zip", "Data")]
+        public void TestUnzipAndCopy()
+        {
+            string tempDirectory = Path.Combine(Path.GetTempPath(), "RGtests_" + DateTime.Today.ToString("yyyyMMdd"));
+            if (Directory.Exists(tempDirectory))
+            {
+                File.SetAttributes(tempDirectory, FileAttributes.Normal);
+                Directory.Delete(tempDirectory, true);
+            }
+            Directory.CreateDirectory(tempDirectory);
+            File.SetAttributes(tempDirectory, FileAttributes.Normal);
+            PathUtil.UnzipAndCopy(@".\Data\Templates.zip",tempDirectory);
+            Assert.IsTrue(Directory.Exists(Path.Combine(tempDirectory, "Templates","Portfolio")));
         }
 
     }

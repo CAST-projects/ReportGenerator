@@ -102,6 +102,7 @@
     <Compile Include="DataObject\ResultReference.cs" />
     <Compile Include="DataObject\SizingMeasure.cs" />
     <Compile Include="DataObject\TechnologyResult.cs" />
+    <Compile Include="WSObjects\ExtendPackage.cs" />
     <Compile Include="WSObjects\ReportingParameter.cs" />
     <Compile Include="WSObjects\Setting.cs" />
     <Compile Include="WSObjects\WSConnection.cs" />
