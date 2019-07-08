@@ -1,9 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Net;
 using System.Text;
-using Cast.Util.Log;
-using System.Runtime.Serialization.Json;
 using CastReporting.Mediation.Interfaces;
 
 namespace CastReporting.Mediation

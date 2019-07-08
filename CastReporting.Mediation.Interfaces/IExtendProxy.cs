@@ -14,8 +14,6 @@
  *
  */
 using System;
-using System.IO;
-using System.Net;
 
 namespace CastReporting.Mediation.Interfaces
 {
