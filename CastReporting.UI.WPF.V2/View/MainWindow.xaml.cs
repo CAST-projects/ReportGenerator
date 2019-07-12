@@ -82,14 +82,13 @@ namespace CastReporting.UI.WPF
 
             // Find the TextBox
             DependencyObject parent = e.OriginalSource as UIElement;
-            while (parent != null && !(parent is TextBox))
+            while (parent != null && !(parent.GetType() == typeof(TextBox)))
             {
                 parent = System.Windows.Media.VisualTreeHelper.GetParent(parent);
             }
 
-            // ReSharper disable once IsExpressionAlwaysTrue
-            if (!(parent is TextBox)) return;
-            var textBox = (TextBox) parent;
+            if (parent == null) return;
+            TextBox textBox = (TextBox)parent;
             if (textBox.IsKeyboardFocusWithin) return;
             // If the text box is not yet focussed, give it the focus and
             // stop further processing of this click event.

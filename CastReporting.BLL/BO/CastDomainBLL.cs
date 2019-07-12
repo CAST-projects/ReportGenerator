@@ -138,18 +138,12 @@ namespace CastReporting.BLL
                         return _commonTaggedApplications;
                     }
                     var _commonTagsss3 = new DataContractJsonSerializer(typeof(CommonTags[]));
-                    MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(strCommonTagsJson));
-                    try
+                    using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(strCommonTagsJson)))
                     {
-                        
                         var _commonTags = _commonTagsss3.ReadObject(ms) as CommonTags[];
 
                         if (_commonTags == null || !_commonTags.Any()) return _commonTaggedApplications;
                         _commonTaggedApplications.AddRange(_commonTags.Select(ct => GetApplications().First(_ => _.Href == ct.application.Href)));
-                    }
-                    finally 
-                    {
-                        ms.Close();
                     }
                 }
             }
@@ -161,8 +155,7 @@ namespace CastReporting.BLL
                     if (strCommonTagsJson == null) return _commonTaggedApplications;
 
                     var _commonTagsss3 = new DataContractJsonSerializer(typeof(CommonTags[]));
-                    MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(strCommonTagsJson));
-                    try
+                    using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(strCommonTagsJson)))
                     {
                         var _commonTags = _commonTagsss3.ReadObject(ms) as CommonTags[];
 
@@ -173,10 +166,6 @@ namespace CastReporting.BLL
                             Tagg[] tags = ct.commonTags;
                             _commonTaggedApplications.AddRange(from tag in tags select string.IsNullOrEmpty(tag.label) ? " " : tag.label into strTagLabel where strTagLabel == strSelectedTag select app);
                         }
-                    }
-                    finally
-                    {
-                        ms.Close();
                     }
                 }
             }
@@ -192,8 +181,7 @@ namespace CastReporting.BLL
                 string _commonCategoriesJson = castRepository.GetCommonCategoriesJson();
                 if (_commonCategoriesJson == "") return _tags;
                 var _commonTagsss3 = new DataContractJsonSerializer(typeof(CommonCategoriess[]));
-                MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(_commonCategoriesJson));
-                try
+                using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(_commonCategoriesJson)))
                 {
                     var _commonCategorys = _commonTagsss3.ReadObject(ms) as CommonCategoriess[];
 
@@ -209,11 +197,6 @@ namespace CastReporting.BLL
                         }
                     }
                 }
-                finally
-                {
-                    ms.Close();
-                }
-                
             }
 
             return _tags;
