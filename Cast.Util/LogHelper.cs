@@ -22,47 +22,16 @@ namespace Cast.Util.Log
 {
     public class LogHelper
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        private static volatile ILog _log;
+        private readonly ILog _log;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private static readonly object Lock = new object();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private static LogHelper _instance;
-        public static LogHelper Instance
-        {
-            get
-            {
-                if (null != _instance) return _instance;
-                lock (Lock)
-                {
-                    if (null == _instance)
-                    {
-                        // ReSharper disable once PossibleMultipleWriteAccessInDoubleCheckLocking
-                        _instance = new LogHelper();
-                    }
-                }
-                return _instance;
-            }
-        }
-
-      
-
-        /// <summary>
-        /// 
-        /// </summary>
         private LogHelper()
         {
             if (_log == null)
                 _log = LogManager.GetLogger(typeof(LogHelper));           
         }
+
+        private static readonly Lazy<LogHelper> LazyInstance = new Lazy<LogHelper>(() => new LogHelper());
+        public static LogHelper Instance => LazyInstance.Value;
 
         #region METHODS - Log4Net
 
