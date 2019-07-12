@@ -149,16 +149,10 @@ namespace CastReporting.Repositories
                 var jsonString = _Client.DownloadString(requestUrl, RequestComplexity.Standard);
 
                 var serializer = new DataContractJsonSerializer(typeof(string));
-                MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
-                try
+                using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString)))
                 {
                     serializer.ReadObject(ms);
                 }
-                finally
-                {
-                    ms.Close();
-                }
-
             }
             catch
             {
@@ -721,17 +715,12 @@ namespace CastReporting.Repositories
             {
                 var jsonString = _Client.DownloadString(requestUrl, pComplexity);
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
-                try
+                using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString)))
                 {
                     T res = serializer.ReadObject(ms) as T;
                     return res;
+
                 }
-                finally
-                {
-                    ms.Close();
-                }
-                
             }
             catch (WebException e)
             {

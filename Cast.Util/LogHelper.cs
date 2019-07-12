@@ -213,11 +213,6 @@ namespace Cast.Util.Log
             GlobalContext.Properties["LOGPATH"] = pathLog;
             GlobalContext.Properties["DATE"] = DateTime.Today.ToString("yyyyMMdd");
             log4net.Config.XmlConfigurator.Configure();
-            /*
-            var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
-            string configFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "log4net.config");
-            XmlConfigurator.Configure(logRepository, new FileInfo(configFilePath));
-             */
         }
 
         #endregion
