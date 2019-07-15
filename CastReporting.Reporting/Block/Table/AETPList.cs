@@ -28,7 +28,7 @@ namespace CastReporting.Reporting.Block.Table
 
             if (!VersionUtil.Is19Compatible(reportData.ServerVersion))
             {
-                LogHelper.Instance.LogError("Bad version of RestAPI. Should be 1.9 at least for component AETP_LIST");
+                LogHelper.LogError("Bad version of RestAPI. Should be 1.9 at least for component AETP_LIST");
                 rowData.Add(Labels.NoData);
                 for (int i = 0; i < 6; i++)
                 {

@@ -219,7 +219,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 List<string> _categories = new List<string>();
                 return _categories;
             }

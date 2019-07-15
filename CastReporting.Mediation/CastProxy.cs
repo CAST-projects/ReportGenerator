@@ -216,7 +216,7 @@ namespace CastReporting.Mediation
 
                 _currentComplexity = previousComplexity;
 
-                LogHelper.Instance.LogDebugFormat
+                LogHelper.LogDebugFormat
                         ("Request URL '{0}' - Time elapsed : {1} "
                         , pUrl
                         , requestWatch.Elapsed.ToString()
@@ -225,7 +225,7 @@ namespace CastReporting.Mediation
             }
             catch(Exception ex)
             {
-                 LogHelper.Instance.LogErrorFormat
+                 LogHelper.LogErrorFormat
                         ("Request URL '{0}' - Error execution :  {1}"
                         , pUrl
                         , ex.Message
@@ -281,7 +281,7 @@ namespace CastReporting.Mediation
             catch (WebException webEx)
             {
                 // AIP < 8 sends CSV data as application/vnd.ms-excel
-                LogHelper.Instance.LogInfo(webEx.Message);
+                LogHelper.LogInfo(webEx.Message);
                 return DownloadContent(pUrl, "application/vnd.ms-excel", pComplexity);
             }
         }

@@ -102,7 +102,7 @@ namespace CastReporting.Reporting.Block.Text
             }
             catch (EvaluateException e)
             {
-                LogHelper.Instance.LogError("Expression cannot be evaluate : " + e.Message);
+                LogHelper.LogError("Expression cannot be evaluate : " + e.Message);
                 return Labels.NoData;
             }
         }

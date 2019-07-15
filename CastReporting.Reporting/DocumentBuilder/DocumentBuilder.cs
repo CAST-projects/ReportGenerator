@@ -109,13 +109,13 @@ namespace CastReporting.Reporting.Builder
                     }
                     else
                     {
-                        LogHelper.Instance.LogWarnFormat("Block type '{0}' not found.", config.Type);
+                        LogHelper.LogWarnFormat("Block type '{0}' not found.", config.Type);
                     }
                 }
                 catch (Exception exception)
                 {
                     string logMessage = $"Exception thrown during document parsing (BlockType : {(null != config ? config.Type : string.Empty)}, BlockName : {(null != config ? config.Name : string.Empty)})";
-                    LogHelper.Instance.LogError(logMessage, exception);
+                    LogHelper.LogError(logMessage, exception);
                 }
             }
         }
@@ -196,7 +196,7 @@ namespace CastReporting.Reporting.Builder
         private static OpenXmlPackage GetPackage(string pPath, FormatType reportType)
         {
             if (string.IsNullOrWhiteSpace(pPath)) return null;
-            LogHelper.Instance.LogInfoFormat("Opening '{0}'...", pPath);
+            LogHelper.LogInfoFormat("Opening '{0}'...", pPath);
             // ReSharper disable once SwitchStatementMissingSomeCases
             switch (reportType)
             {
