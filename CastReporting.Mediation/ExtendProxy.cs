@@ -10,25 +10,10 @@ namespace CastReporting.Mediation
         // https://extendng.castsoftware.com/api/search/packages/EXTENSION-ID/latest 
         // https://extendng.castsoftware.com/api/package/download/EXTENSION_ID/VERSION
 
-        public ExtendProxy(string login, string password, bool nugetApiKey)
+        public ExtendProxy(string nugetApiKey)
         {
             // To connect to cast extend to download latest version of reports
-            if (nugetApiKey)
-            {
-                Headers.Add("x-nuget-apikey", password);
-            }
-            else
-            {
-                string credentials = CreateBasicAuthenticationCredentials(login, password);
-                Headers.Add(HttpRequestHeader.Authorization, credentials);
-            }
-        }
-
-        private static string CreateBasicAuthenticationCredentials(string userName, string password)
-        {
-            string base64UsernamePassword = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{userName}:{password}"));
-            var returnValue = $"Basic {base64UsernamePassword}";
-            return returnValue;
+            Headers.Add("x-nuget-apikey", nugetApiKey);
         }
 
         public string UploadJsonString(string query)
