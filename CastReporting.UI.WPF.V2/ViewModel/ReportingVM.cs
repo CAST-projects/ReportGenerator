@@ -52,7 +52,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        public ICommand LoadTemplatesCommand { get; set; }
+        //public ICommand LoadTemplatesCommand { get; set; }
 
         /// <summary>
         /// 
@@ -76,8 +76,8 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private IEnumerable<FileInfo> _TemplateFiles;
-        public IEnumerable<FileInfo> TemplateFiles
+        private IEnumerable<FileSystemInfo> _TemplateFiles;
+        public IEnumerable<FileSystemInfo> TemplateFiles
         {
             get { return _TemplateFiles; }
             set
@@ -89,8 +89,8 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private FileInfo _SelectedTemplateFile;
-        public FileInfo SelectedTemplateFile
+        private FileSystemInfo _SelectedTemplateFile;
+        public FileSystemInfo SelectedTemplateFile
         {
             get { return _SelectedTemplateFile; }
             set
@@ -365,11 +365,11 @@ namespace CastReporting.UI.WPF.ViewModel
             GenerateCommand = new CommandHandler(ExecuteGenerateCommand, CanExecuteGenerateCommand);
             LoadSnapshotsCommand = new CommandHandler(ExecuteLoadSnapshotsCommand, null);
             LoadPreviousSnapshotsCommand = new CommandHandler(ExecuteLoadPreviousSnapshotsCommand, null);
-            LoadTemplatesCommand = new CommandHandler(ExecuteLoadTemplatesCommand, null);
+            //LoadTemplatesCommand = new CommandHandler(ExecuteLoadTemplatesCommand, null);
             LoadTagsCommand = new CommandHandler(ExecuteLoadTagsCommand, null);
             ReloadTemplatesCommand = new CommandHandler(ExecuteReloadTemplatesCommand, null);
             //Load Tempalte
-            LoadTemplatesCommand.Execute(null);
+            //LoadTemplatesCommand.Execute(null);
         }
         /// <summary>
         /// Implement Command that Load the templates list
@@ -383,14 +383,14 @@ namespace CastReporting.UI.WPF.ViewModel
                     _SelectedCategory = null;
                     _SelectedTemplateFile = null;
                     SelectedTemplateFile = null;
-                    TemplateFiles = SettingsBLL.GetTemplateFileList();
+                    //TemplateFiles = SettingsBLL.GetTemplateFileList();
                     break;
                 case 1:
                     SelectedApplication = null;
                     SelectedSnapshot = null;
                     _SelectedApplication = null;
                     _SelectedSnapshot = null;
-                    TemplateFiles = SettingsBLL.GetTemplateFileListPortfolio();
+                    //TemplateFiles = SettingsBLL.GetTemplateFileListPortfolio();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -430,7 +430,7 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// Implement Command that Load the templates list
         /// </summary>
-        private void ExecuteLoadTemplatesCommand(object parameter)
+        /*private void ExecuteLoadTemplatesCommand(object parameter)
         {
             switch (SelectedTab)
             {
@@ -443,7 +443,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
+        }*/
 
         /// <summary>
         /// Implement Command that Load the current snapshots list

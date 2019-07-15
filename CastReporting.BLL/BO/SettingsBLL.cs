@@ -36,7 +36,7 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <returns></returns>
-        public static List<FileInfo> GetTemplateFileList()
+        public static List<FileSystemInfo> GetTemplateFileList()
         {
             using (ISettingRepository setttingRepository = new SettingsRepository())
             {
@@ -50,7 +50,7 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <returns></returns>
-        public static List<FileInfo> GetTemplateFileListPortfolio()
+        public static List<FileSystemInfo> GetTemplateFileListPortfolio()
         {
             using (ISettingRepository setttingRepository = new SettingsRepository())
             {

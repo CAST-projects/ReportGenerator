@@ -20,7 +20,6 @@
         </Style>
 
         <converter:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-        <converter:IsEnabledConverter x:Key="IsEnabledConverter" />
 
         <ControlTemplate x:Key="SimpleTemplate">
             <DockPanel>
@@ -260,8 +259,8 @@
                 </Grid.RowDefinitions>
 
                 <Button  ToolTip="{x:Static label:Messages.toolTipRefreshTemplate}" Grid.Row="0" Grid.Column="0" Style="{StaticResource IcoButtonStyle}"
-                                    Command="{Binding LoadTemplatesCommand}" 
-                                    IsEnabled="{Binding SelectedTemplateFile, Converter={StaticResource IsEnabledConverter}}" Margin="20,4,0,0">
+                                    Command="{Binding ReloadTemplatesCommand}" Click="ReloadTemplatesClicked"
+                                    Margin="20,4,0,0">
                     <Button.Content>
                         <Image Source="/CastReporting.UI.WPF;component/Resources/Images/refresh.png" VerticalAlignment="Center" HorizontalAlignment="Center" RenderOptions.EdgeMode="Aliased"  Width="24" Height="24" Margin="0,0,2,0"/>
                     </Button.Content>
@@ -270,13 +269,18 @@
                     <TextBlock Text="{x:Static label:Messages.lblTitleTemplateSelection}" Margin="6,10,0,0" FontSize="17" Foreground="White" Height="35"/>
                 </StackPanel>
 
-                <ListBox ToolTip="{x:Static label:Messages.toolTipTemplateLb}" x:Name="TemplateList" Grid.Row="1" Grid.ColumnSpan="2"
+                <!--ListBox ToolTip="{x:Static label:Messages.toolTipTemplateLb}" x:Name="TemplateList" Grid.Row="1" Grid.ColumnSpan="2"
                          Grid.Column="0"
                          Height="Auto" 
                              ItemsSource="{Binding TemplateFiles}" 
                              SelectedValue="{Binding SelectedTemplateFile}" 
                              Margin="20,4,20,0" 
-                             MouseDoubleClick="OnFileListDoubleClicked"  />
+                             MouseDoubleClick="OnFileListDoubleClicked"  /-->
+                <TreeView Name="TrvStructure" TreeViewItem.Expanded="TreeViewItem_Expanded" 
+                          Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
+                          Height="Auto" Margin="20,4,20,0"
+                          SelectedItemChanged="TreeView_SelectedItemChanged"
+                          MouseDoubleClick="OnFileListDoubleClicked"/>
 
                 <StackPanel  Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,4,20,4" Width="115">
                     <Button Name="BtnApplicationReport" Style="{StaticResource StdButtonStyle}" Content="{x:Static label:Messages.btnGenerateReport}" 
