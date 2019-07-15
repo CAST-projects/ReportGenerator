@@ -49,7 +49,7 @@ namespace CastReporting.Reporting.Block.Table
 
             if (!VersionUtil.Is18Compatible(reportData.ServerVersion))
             {
-                LogHelper.Instance.LogError("Bad version of RestAPI. Should be 1.8 at least for component TOP_COMPONENTS_BY_PROPERTIES");
+                LogHelper.LogError("Bad version of RestAPI. Should be 1.8 at least for component TOP_COMPONENTS_BY_PROPERTIES");
                 rowData.Add(Labels.NoData);
                 return new TableDefinition
                 {

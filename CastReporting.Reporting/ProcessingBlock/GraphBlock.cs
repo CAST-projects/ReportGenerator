@@ -68,7 +68,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
 
             GraphBlock instance = BlockHelper.GetAssociatedBlockInstance<GraphBlock>(blockName);
             if (null == instance) return;
-            LogHelper.Instance.LogDebugFormat("Start GraphBlock generation : Type {0}", blockName);
+            LogHelper.LogDebugFormat("Start GraphBlock generation : Type {0}", blockName);
             Stopwatch treatmentWatch = Stopwatch.StartNew();
             TableDefinition content = instance.Content(client, options);
             try
@@ -83,7 +83,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 Thread.CurrentThread.CurrentCulture = previousCulture;
 
                 treatmentWatch.Stop();
-                LogHelper.Instance.LogDebugFormat
+                LogHelper.LogDebugFormat
                 ("End GraphBlock generation ({0}) in {1} millisecond{2}"
                     , blockName
                     , treatmentWatch.ElapsedMilliseconds
@@ -103,7 +103,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 var phElem = GetElements(pBlock.OxpBlock, pClient.ReportType)?.ToList();
                 if (phElem == null || phElem.Count == 0)
                 {
-                    LogHelper.Instance.LogError("No placeholder content found.");
+                    LogHelper.LogError("No placeholder content found.");
                     return;
                 }
 
@@ -119,12 +119,12 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                     }
                     else
                     {
-                        LogHelper.Instance.LogFatal("Graphic object present but not a graph.");
+                        LogHelper.LogFatal("Graphic object present but not a graph.");
                     }
                 }
                 else
                 {
-                    LogHelper.Instance.LogFatal("No graphic / chart object inside the block.");
+                    LogHelper.LogFatal("No graphic / chart object inside the block.");
                 }
                 if (null == chartId) { pBlock.XBlock.ReplaceWith(allElementInPlaceHolder); return; }
                 #endregion Get the block Id in document
@@ -254,7 +254,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                                     nbRows += 1;
                                                 }
                                             }
-                                            else { LogHelper.Instance.LogWarn("Adding Rows: Could not find a row without a SharedString element."); }
+                                            else { LogHelper.LogWarn("Adding Rows: Could not find a row without a SharedString element."); }
                                         }
                                         //-----
 
@@ -298,7 +298,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                                 // We remove cell if they are not defined as content columns
                                                 if (ctCell >= pContent.NbColumns)
                                                 {
-                                                    LogHelper.Instance.LogWarn("More cells that defined content ");
+                                                    LogHelper.LogWarn("More cells that defined content ");
                                                     if (null != oneCell.Parent) { oneCell.Remove(); }
 
                                                     ctc -= 1;
@@ -315,7 +315,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                                     var isSharedString = oneCell.Attribute(NoNamespace.t);
                                                     if (null != isSharedString && "s".Equals(isSharedString.Value))
                                                     {
-                                                        if ("".Equals(targetText)) { LogHelper.Instance.LogWarn("Target Text empty for Shared String, this can create abnormal behavior."); }
+                                                        if ("".Equals(targetText)) { LogHelper.LogWarn("Target Text empty for Shared String, this can create abnormal behavior."); }
                                                         var idx = Convert.ToInt32(oneCell.Value);
                                                         WorksheetAccessorExt.SetSharedStringValue(spreadsheetDoc, idx, targetText);
                                                     }
@@ -323,7 +323,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                                     {
                                                         XElement cell = oneCell.Descendants(S.v).FirstOrDefault();
                                                         if (null != cell) { cell.Value = targetText; }
-                                                        else { LogHelper.Instance.LogWarn("No correct cell value found"); }
+                                                        else { LogHelper.LogWarn("No correct cell value found"); }
                                                     }
                                                 }
                                                 ctCell += 1;
@@ -333,7 +333,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                     }
                                     else
                                     {
-                                        LogHelper.Instance.LogWarn("Embedded spreadsheet is not formatted correctly");
+                                        LogHelper.LogWarn("Embedded spreadsheet is not formatted correctly");
                                     }
                                     // ====================================================================================
                                     #endregion Get and use of the data content (Only data, no titles)
@@ -388,13 +388,13 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                     }
                     else
                     {
-                        LogHelper.Instance.LogWarn("No embedded excel file found.");
+                        LogHelper.LogWarn("No embedded excel file found.");
                     }
                     #endregion Associated content management
                 }
                 else
                 {
-                    LogHelper.Instance.LogWarn("No spreadsheet identifier found.");
+                    LogHelper.LogWarn("No spreadsheet identifier found.");
                 }
 
                 #region Additionnal parameters
@@ -415,7 +415,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             }
             catch (Exception exception)
             {
-                LogHelper.Instance.LogError("Unexpected exception thrown.", exception);
+                LogHelper.LogError("Unexpected exception thrown.", exception);
                 throw;
             }
            
@@ -595,7 +595,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                             }
                                             else
                                             {
-                                                LogHelper.Instance.LogWarn("No cell value in cached cell or no cell value in attached spreadsheet.");
+                                                LogHelper.LogWarn("No cell value in cached cell or no cell value in attached spreadsheet.");
                                             }
 
                                             indexCell += 1;
@@ -621,12 +621,12 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                                 }
                                 else
                                 {
-                                    LogHelper.Instance.LogWarn("Invalid sheet for cached data.");
+                                    LogHelper.LogWarn("Invalid sheet for cached data.");
                                 }
                             }
                             else
                             {
-                                LogHelper.Instance.LogWarn("No formula defining range of cached data.");
+                                LogHelper.LogWarn("No formula defining range of cached data.");
                             }
                         }
 
@@ -698,14 +698,14 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 }
                 else
                 {
-                    LogHelper.Instance.LogWarn("No cached chart data found.");
+                    LogHelper.LogWarn("No cached chart data found.");
                 }
 
                 chartPart.PutXDocument(chartDoc);
             }
             catch (Exception exception)
             {
-                LogHelper.Instance.LogError("Unexpected exception thrown.", exception);
+                LogHelper.LogError("Unexpected exception thrown.", exception);
                 throw;
             }
         }

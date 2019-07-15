@@ -485,7 +485,7 @@ namespace CastReporting.Repositories
             }
             catch (WebException webEx)
             {
-                LogHelper.Instance.LogInfo(webEx.Message);
+                LogHelper.LogInfo(webEx.Message);
                 // url for action plan has changed in API, and some old versions does not support the 2 format of the url
                 return CallWS<IEnumerable<ActionPlan>>(requestUrl2, RequestComplexity.Standard);
             }
@@ -724,7 +724,7 @@ namespace CastReporting.Repositories
             }
             catch (WebException e)
             {
-                LogHelper.Instance.LogError(e.Message);
+                LogHelper.LogError(e.Message);
                 return null;
             }
         }
@@ -741,7 +741,7 @@ namespace CastReporting.Repositories
             }
             catch (WebException e)
             {
-                LogHelper.Instance.LogError(e.Message);
+                LogHelper.LogError(e.Message);
             }
             
             return jsonString;
@@ -770,7 +770,7 @@ namespace CastReporting.Repositories
             }
             catch (WebException e)
             {
-                LogHelper.Instance.LogError(e.Message);
+                LogHelper.LogError(e.Message);
                 return null;
             }
 
@@ -788,7 +788,7 @@ namespace CastReporting.Repositories
             }
             catch (WebException e)
             {
-                LogHelper.Instance.LogError(e.Message);
+                LogHelper.LogError(e.Message);
                 return null;
             }
 

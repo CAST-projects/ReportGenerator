@@ -68,7 +68,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             TableBlock instance = BlockHelper.GetAssociatedBlockInstance<TableBlock>(blockName);
             if (null == instance) return;
 
-            LogHelper.Instance.LogDebugFormat("Start TableBlock generation : Type {0}", blockName);
+            LogHelper.LogDebugFormat("Start TableBlock generation : Type {0}", blockName);
             Stopwatch treatmentWatch = Stopwatch.StartNew();
             TableDefinition content = instance.Content(client, options);
             if (null != content)
@@ -76,7 +76,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 ApplyContent(client, container, block, content, options);
             }
             treatmentWatch.Stop();
-            LogHelper.Instance.LogDebugFormat
+            LogHelper.LogDebugFormat
             ("End TableBlock generation ({0}) in {1} millisecond{2}"
                 , blockName
                 , treatmentWatch.ElapsedMilliseconds.ToString()
@@ -299,7 +299,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             }
             else
             {
-                LogHelper.Instance.LogErrorFormat("Impossible to load data in Table block with a block source of type \"{0}\"", block?.GetType().ToString() ?? "null");
+                LogHelper.LogErrorFormat("Impossible to load data in Table block with a block source of type \"{0}\"", block?.GetType().ToString() ?? "null");
             }
         }
         private static void ModifyWordRowTextContent(OpenXmlElement headerRowTemplate, string txt, string txtColor, string effect)
@@ -513,7 +513,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                 }
                 catch (Exception exception)
                 {
-                    LogHelper.Instance.LogErrorFormat("An unhandled exception was thrown during table block content generation : '{0}'", exception.ToString());
+                    LogHelper.LogErrorFormat("An unhandled exception was thrown during table block content generation : '{0}'", exception.ToString());
                     if (initTable.Descendants<OXD.TableRow>() != null && !initTable.Descendants<OXD.TableRow>().Any())
                     {
                         foreach (var row in initTable.Descendants<OXD.TableRow>().Skip(1))
@@ -525,7 +525,7 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
             }
             else
             {
-                LogHelper.Instance.LogErrorFormat("Impossible to load data in table block with a block source of type \"{0}\"", block?.GetType().ToString() ?? "null");
+                LogHelper.LogErrorFormat("Impossible to load data in table block with a block source of type \"{0}\"", block?.GetType().ToString() ?? "null");
             }
         }
 

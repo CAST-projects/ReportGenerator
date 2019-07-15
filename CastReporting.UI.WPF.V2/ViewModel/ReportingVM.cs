@@ -764,7 +764,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 }
                 catch (System.Net.WebException webEx)
                 {
-                    LogHelper.Instance.LogErrorFormat
+                    LogHelper.LogErrorFormat
                     ("Request URL '{0}' - Error execution :  {1}"
                         , ""
                         , webEx.Message

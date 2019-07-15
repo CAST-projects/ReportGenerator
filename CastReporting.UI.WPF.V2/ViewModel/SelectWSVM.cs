@@ -189,7 +189,7 @@ namespace CastReporting.UI.WPF.ViewModel
             }
             catch (UriFormatException ex)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 MessageManager.OnServiceAdded(NewConnectionUrl, StatesEnum.ServiceInvalid);
             }
         }

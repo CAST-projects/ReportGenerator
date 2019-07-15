@@ -111,7 +111,7 @@ namespace CastReporting.BLL
                 }
                 catch (System.Net.WebException ex)
                 {
-                    LogHelper.Instance.LogInfo(ex.Message);
+                    LogHelper.LogInfo(ex.Message);
                     const string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                     _Application.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Application.Href, strSizingMeasuresOld, "$all", string.Empty, string.Empty)?.ToList();
                 }
@@ -145,7 +145,7 @@ namespace CastReporting.BLL
                 }
                 catch (System.Net.WebException ex)
                 {
-                    LogHelper.Instance.LogInfo(ex.Message);
+                    LogHelper.LogInfo(ex.Message);
                 }
 
             }

@@ -132,7 +132,7 @@ namespace CastReporting.BLL
                 }
                 catch (WebException ex)
                 {
-                    LogHelper.Instance.LogInfo(ex.Message);
+                    LogHelper.LogInfo(ex.Message);
                     const string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                     _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasuresOld, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
                 }
@@ -199,7 +199,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 _Snapshot.ActionsPlan = null;
             }
         }
@@ -223,7 +223,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
             
@@ -240,7 +240,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -263,7 +263,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -280,7 +280,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -297,7 +297,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -316,7 +316,7 @@ namespace CastReporting.BLL
                 }
                 catch (WebException ex)
                 {
-                    LogHelper.Instance.LogInfo(ex.Message);
+                    LogHelper.LogInfo(ex.Message);
                     return null;
                 }
             }
@@ -332,7 +332,7 @@ namespace CastReporting.BLL
                 }
                 catch (WebException ex)
                 {
-                    LogHelper.Instance.LogInfo(ex.Message);
+                    LogHelper.LogInfo(ex.Message);
                     return null;
                 }
             }
@@ -358,7 +358,7 @@ namespace CastReporting.BLL
                 }
                 catch (WebException ex)
                 {
-                    LogHelper.Instance.LogInfo(ex.Message);
+                    LogHelper.LogInfo(ex.Message);
                     return null;
                 }
             }
@@ -381,7 +381,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -398,7 +398,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -421,7 +421,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -438,7 +438,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -455,7 +455,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -472,7 +472,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -496,7 +496,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -522,7 +522,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -539,7 +539,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -555,7 +555,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -572,7 +572,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -597,7 +597,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
            
@@ -625,7 +625,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }                      
         }
@@ -650,7 +650,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -771,7 +771,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -787,7 +787,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -803,7 +803,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -819,7 +819,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -853,7 +853,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException || ex is ArgumentException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -893,7 +893,7 @@ namespace CastReporting.BLL
             }
             catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException || ex is ArgumentException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }

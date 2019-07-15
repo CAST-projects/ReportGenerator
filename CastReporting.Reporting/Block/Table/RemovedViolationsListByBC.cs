@@ -33,7 +33,7 @@ namespace CastReporting.Reporting.Block.Table
 
             if (!VersionUtil.Is18Compatible(reportData.ServerVersion))
             {
-                LogHelper.Instance.LogError("Bad version of RestAPI. Should be 1.8 at least for component REMOVED_VIOLATIONS_LIST");
+                LogHelper.LogError("Bad version of RestAPI. Should be 1.8 at least for component REMOVED_VIOLATIONS_LIST");
                 rowData.Add(Labels.NoData);
                 for (int i = 0; i < 6; i++)
                 {

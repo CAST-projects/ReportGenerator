@@ -140,8 +140,8 @@ namespace CastReporting.Reporting.Block.Table
                     }
                     catch (Exception ex)
                     {
-                        LogHelper.Instance.LogInfo(ex.Message);
-                        LogHelper.Instance.LogInfo(Labels.NoSnapshot);
+                        LogHelper.LogInfo(ex.Message);
+                        LogHelper.LogInfo(Labels.NoSnapshot);
                     }
                 }
 
