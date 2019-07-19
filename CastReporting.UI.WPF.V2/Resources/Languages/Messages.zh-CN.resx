@@ -351,4 +351,7 @@
   <data name="lblUseApiKey" xml:space="preserve">
     <value>API Key ?</value>
   </data>
+  <data name="msgServiceShouldBeRevalidated" xml:space="preserve">
+    <value>请重新验证您的网络服务连接，似乎您没有更多连接。</value>
+  </data>
 </root>

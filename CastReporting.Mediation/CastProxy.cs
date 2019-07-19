@@ -223,7 +223,7 @@ namespace CastReporting.Mediation
                         );
                
             }
-            catch(Exception ex)
+            catch(WebException ex)
             {
                  LogHelper.LogErrorFormat
                         ("Request URL '{0}' - Error execution :  {1}"

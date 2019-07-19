@@ -351,4 +351,7 @@
   <data name="lblUseApiKey" xml:space="preserve">
     <value>API Key ?</value>
   </data>
+  <data name="msgServiceShouldBeRevalidated" xml:space="preserve">
+    <value>Veuillez revalider votre connexion au service Web, il semble que vous ne soyez plus connecté.</value>
+  </data>
 </root>

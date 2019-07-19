@@ -194,10 +194,25 @@ namespace CastReporting.UI.WPF.ViewModel
                 MessagesList.Add(new MessageItem {Message = Messages.msgWSError, FileName = string.Empty});
             else
             {
-                MessagesList.Add(new MessageItem { Message = Messages.msgGenericError, FileName = string.Empty });
-                if (exception.InnerException != null)
+                if (exception.InnerException == null)
+                {
+                    MessagesList.Add(new MessageItem { Message = Messages.msgGenericError, FileName = string.Empty });
+                    return;
+                }
+
+                if (exception.InnerException.InnerException == null)
                 {
                     MessagesList.Add(new MessageItem { Message = exception.InnerException.Message, FileName = string.Empty });
+                    return;
+                }
+
+                MessagesList.Add(new MessageItem { Message = exception.InnerException.InnerException.Message, FileName = string.Empty });
+                WebException _webex = exception.InnerException.InnerException as WebException;
+                if (_webex == null) return;
+                MessagesList.Add(new MessageItem {Message = Messages.msgWSError, FileName = string.Empty});
+                if (_webex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    MessagesList.Add(new MessageItem { Message = Messages.msgServiceShouldBeRevalidated, FileName = string.Empty });
                 }
             }
                 

@@ -40,7 +40,7 @@ namespace CastReporting.UI.WPF
         public App()
         {
 #if !DEBUG
-            this.DispatcherUnhandledException += OnDispatcherUnhandledException;         
+            DispatcherUnhandledException += OnDispatcherUnhandledException;         
 #endif            
             LogHelper.SetPathLog(SettingsBLL.GetApplicationPath());
 
