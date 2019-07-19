@@ -725,6 +725,7 @@ namespace CastReporting.Repositories
             catch (WebException e)
             {
                 LogHelper.LogError(e.Message);
+                if (e.Status == WebExceptionStatus.ProtocolError) throw;
                 return null;
             }
         }
@@ -742,6 +743,7 @@ namespace CastReporting.Repositories
             catch (WebException e)
             {
                 LogHelper.LogError(e.Message);
+                if (e.Status == WebExceptionStatus.ProtocolError) throw;
             }
             
             return jsonString;
@@ -771,6 +773,7 @@ namespace CastReporting.Repositories
             catch (WebException e)
             {
                 LogHelper.LogError(e.Message);
+                if (e.Status == WebExceptionStatus.ProtocolError) throw;
                 return null;
             }
 
@@ -789,6 +792,7 @@ namespace CastReporting.Repositories
             catch (WebException e)
             {
                 LogHelper.LogError(e.Message);
+                if (e.Status == WebExceptionStatus.ProtocolError) throw;
                 return null;
             }
 
