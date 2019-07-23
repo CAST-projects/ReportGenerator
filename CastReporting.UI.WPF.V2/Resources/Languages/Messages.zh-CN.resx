@@ -352,6 +352,6 @@
     <value>API Key ?</value>
   </data>
   <data name="msgServiceShouldBeRevalidated" xml:space="preserve">
-    <value>请重新验证您的网络服务连接，似乎您没有更多连接。</value>
+    <value>请重新验证您的网络服务连接，似乎您已经断开连接</value>
   </data>
 </root>
