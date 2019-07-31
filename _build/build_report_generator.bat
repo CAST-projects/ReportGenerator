@@ -135,7 +135,6 @@ echo Building setup ...
 echo ==============================================
 set SETUPCONFIG=%WORKSPACE%\%SRCDIR%\Setup\setup.iss
 set SETUPPATH=%WORKSPACE%\%SRCDIR%\Setup\ReportGeneratorSetup.exe
-set ZIPPATH=%RESDIR%\%ID%.%VERSION%.zip
 sed.exe 's/_THE_VERSION_/%VERSION%/' %SETUPCONFIG% >%SETUPCONFIG%_tmp
 if errorlevel 1 goto endclean
 %INNODIR%\ISCC.exe /V3 %SETUPCONFIG%_tmp
@@ -148,11 +147,13 @@ if errorlevel 1 (
 :: sign executable
 call %SIGNDIR%\signtool.bat  %SETUPPATH% SHA256
 if errorlevel 1 goto endclean
-7z.exe a -y -r %ZIPPATH% %SETUPPATH%
+
+set COMPONENTPATH=%RESDIR%\%ID%.%VERSION%.exe
+copy /y %SETUPPATH% %COMPONENTPATH%
 if errorlevel 1 goto endclean
 
 echo.
-echo Package path is: %ZIPPATH%
+echo Package path is: %COMPONENTPATH%
 
 pushd %WORKSPACE%
 echo.
