@@ -144,10 +144,17 @@ if errorlevel 1 (
 	goto endclean
 )
 
-:: sign executable
+echo.
+echo ==============================================
+echo sign executable
+echo ==============================================
 call %SIGNDIR%\signtool.bat  %SETUPPATH% SHA256
 if errorlevel 1 goto endclean
 
+echo.
+echo ==============================================
+echo copying component
+echo ==============================================
 set COMPONENTPATH=%RESDIR%\%ID%.%VERSION%.exe
 copy /y %SETUPPATH% %COMPONENTPATH%
 if errorlevel 1 goto endclean
