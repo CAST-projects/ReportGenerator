@@ -111,7 +111,7 @@ namespace CastReporting.Repositories
         /// <param name="client"></param>
         public CastRepository(WSConnection connection, ICastProxy client)
         {
-            _Client = new CastProxy(connection.Login, connection.Password, connection.ApiKey, client?.GetCookieContainer());
+            _Client = new CastProxy(connection.Login, connection.Password, connection.ApiKey, connection.ServerCertificateValidation, client?.GetCookieContainer());
             
             _CurrentConnection = connection.Url;
             _CurrentApiKey = connection.ApiKey;

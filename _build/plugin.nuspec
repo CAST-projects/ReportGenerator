@@ -14,7 +14,7 @@
     <projectUrl>https://doc.castsoftware.com/display/DOCCOM/CAST+Report+Generator</projectUrl>
     <tags>RepGen</tags>
     <dependencies>
-            <dependency id="CAIP" version="8.3.4" />
+            <dependency id="CAST-RESTAPI" version="1.11.0" />
     </dependencies>
   </metadata>
 </package>
