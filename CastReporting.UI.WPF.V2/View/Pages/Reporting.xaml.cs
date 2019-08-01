@@ -139,7 +139,8 @@ namespace CastReporting.UI.WPF.View
                     Url = (string)list[0],
                     Login = (string)list[1],
                     Password = (string)list[2],
-                    ApiKey = (bool)list[3]
+                    ApiKey = (bool)list[3],
+                    ServerCertificateValidation = SettingsBLL.GetCertificateValidationStrategy()
                 };
 
                 (DataContext as ReportingVM)?.ActiveCurrentWebService(connection);

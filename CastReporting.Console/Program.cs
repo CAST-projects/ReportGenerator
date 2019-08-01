@@ -165,7 +165,11 @@ namespace CastReporting.Console
 
                     //Initialize Web services
 
-                    var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty) {ApiKey = arguments.ApiKey?.Name.Equals("true") ?? false};
+                    var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty)
+                    {
+                        ApiKey = arguments.ApiKey?.Name.Equals("true") ?? false,
+                        ServerCertificateValidation = SettingsBLL.GetCertificateValidationStrategy()
+                    };
                     using (CommonBLL commonBLL = new CommonBLL(connection))
                     {
 
@@ -412,7 +416,11 @@ namespace CastReporting.Console
                     }
                     //Initialize Web services
 
-                    var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty) {ApiKey = arguments.ApiKey?.Name.Equals("true") ?? false};
+                    var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty)
+                    {
+                        ApiKey = arguments.ApiKey?.Name.Equals("true") ?? false,
+                        ServerCertificateValidation = SettingsBLL.GetCertificateValidationStrategy()
+                    };
                     using (CommonBLL commonBLL = new CommonBLL(connection))
                     {
                         if (!commonBLL.CheckService())

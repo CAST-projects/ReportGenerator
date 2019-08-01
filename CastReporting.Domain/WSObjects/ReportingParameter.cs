@@ -87,6 +87,8 @@ namespace CastReporting.Domain
          /// </summary>
          public string CultureName { get; set; }
 
+         public string ServerCertificateValidation { get; set; }
+
          /// <summary>
          /// 
          /// </summary>
