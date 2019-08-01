@@ -15,6 +15,7 @@
     <tags>RepGen</tags>
     <dependencies>
             <dependency id="CAST-RESTAPI" version="1.11.0" />
+			<dependency id="CAIP" version="8.3.4" />
     </dependencies>
   </metadata>
 </package>
