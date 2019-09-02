@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using CastReporting.Domain;
 using CastReporting.Reporting.Block.Text;
@@ -34,19 +33,23 @@ namespace CastReporting.UnitTest.Reporting.Text
             Snapshot _snap0 = reportData.Applications[0].Snapshots.FirstOrDefault();
             TimeSpan time0 = DateTime.Now - date;
             CastDate _date0 = new CastDate { Time = time0.TotalMilliseconds };
-            Debug.Assert(_snap0 != null, "_snap0 != null");
-            _snap0.Annotation.Date = _date0;
+            if (_snap0 != null)
+            {
+                _snap0.Annotation.Date = _date0;
 
-            Snapshot _snap1 = reportData.Applications[1].Snapshots.FirstOrDefault();
-            TimeSpan time1 = DateTime.Now.AddMonths(-3) - date;
-            CastDate _date1 = new CastDate { Time = time1.TotalMilliseconds };
-            Debug.Assert(_snap1 != null, "_snap1 != null");
-            _snap1.Annotation.Date = _date1;
+                Snapshot _snap1 = reportData.Applications[1].Snapshots.FirstOrDefault();
+                TimeSpan time1 = DateTime.Now.AddMonths(-3) - date;
+                CastDate _date1 = new CastDate { Time = time1.TotalMilliseconds };
+                if (_snap1 != null)
+                {
+                    _snap1.Annotation.Date = _date1;
 
-            Snapshot[] _snapshots = new Snapshot[2];
-            _snapshots[0] = _snap0;
-            _snapshots[1] = _snap1;
-            reportData.Snapshots = _snapshots;
+                    Snapshot[] _snapshots = new Snapshot[2];
+                    _snapshots[0] = _snap0;
+                    _snapshots[1] = _snap1;
+                    reportData.Snapshots = _snapshots;
+                }
+            }
 
             var component = new PortfolioCriticalViolations();
             Dictionary<string, string> config = new Dictionary<string, string>
@@ -73,19 +76,23 @@ namespace CastReporting.UnitTest.Reporting.Text
             Snapshot _snap0 = reportData.Applications[0].Snapshots.FirstOrDefault();
             TimeSpan time0 = DateTime.Now - date;
             CastDate _date0 = new CastDate { Time = time0.TotalMilliseconds };
-            Debug.Assert(_snap0 != null, "_snap0 != null");
-            _snap0.Annotation.Date = _date0;
+            if (_snap0 != null)
+            {
+                _snap0.Annotation.Date = _date0;
 
-            Snapshot _snap1 = reportData.Applications[1].Snapshots.FirstOrDefault();
-            TimeSpan time1 = DateTime.Now.AddMonths(-3) - date;
-            CastDate _date1 = new CastDate { Time = time1.TotalMilliseconds };
-            Debug.Assert(_snap1 != null, "_snap1 != null");
-            _snap1.Annotation.Date = _date1;
+                Snapshot _snap1 = reportData.Applications[1].Snapshots.FirstOrDefault();
+                TimeSpan time1 = DateTime.Now.AddMonths(-3) - date;
+                CastDate _date1 = new CastDate { Time = time1.TotalMilliseconds };
+                if (_snap1 != null)
+                {
+                    _snap1.Annotation.Date = _date1;
 
-            Snapshot[] _snapshots = new Snapshot[2];
-            _snapshots[0] = _snap0;
-            _snapshots[1] = _snap1;
-            reportData.Snapshots = _snapshots;
+                    Snapshot[] _snapshots = new Snapshot[2];
+                    _snapshots[0] = _snap0;
+                    _snapshots[1] = _snap1;
+                    reportData.Snapshots = _snapshots;
+                }
+            }
 
             var component = new PortfolioCriticalViolations();
             Dictionary<string, string> config = new Dictionary<string, string>();

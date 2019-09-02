@@ -67,10 +67,17 @@ namespace CastReporting.Mediation
         /// <param name="cookies">The cookies. If set to <c>null</c> a container will be created.</param>
         /// <param name="autoRedirect">if set to <c>true</c> the client should handle the redirect automatically. Default value is <c>true</c></param>
         /// </summary>
-        public CastProxy(string login, string password, bool apiKey, CookieContainer cookies = null, bool autoRedirect = true)
+        public CastProxy(string login, string password, bool apiKey, bool validateCertificate, CookieContainer cookies = null, bool autoRedirect = true)
         {
             CookieContainer = cookies ?? new CookieContainer();
             AutoRedirect = autoRedirect;
+            // to debug on https with self signed certificat, disable the certificate validation in the settings
+            // add line <ServerCertificateValidation>disable</ServerCertificateValidation> in the reporting parameters section of CastReportingSetting.xml
+            if (!validateCertificate)
+            {
+                ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+            }
+
             _restApiKey = apiKey;
             if (cookies?.Count > 0)
             {
@@ -87,13 +94,7 @@ namespace CastReporting.Mediation
                 string credentials = CreateBasicAuthenticationCredentials(login, password);
                 Headers.Add(HttpRequestHeader.Authorization, credentials);
             }
-
-            // to debug on https with self signed certificat, uncomment the following to disabled certificate validation
-#if DEBUG
-            // ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
-#endif
-
-        }
+    }
 
         /// <summary>
         /// Gets or sets a value indicating whether to automatically redirect when a 301 or 302 is returned by the request.
@@ -216,16 +217,16 @@ namespace CastReporting.Mediation
 
                 _currentComplexity = previousComplexity;
 
-                LogHelper.Instance.LogDebugFormat
+                LogHelper.LogDebugFormat
                         ("Request URL '{0}' - Time elapsed : {1} "
                         , pUrl
                         , requestWatch.Elapsed.ToString()
                         );
                
             }
-            catch(Exception ex)
+            catch(WebException ex)
             {
-                 LogHelper.Instance.LogErrorFormat
+                 LogHelper.LogErrorFormat
                         ("Request URL '{0}' - Error execution :  {1}"
                         , pUrl
                         , ex.Message
@@ -281,7 +282,7 @@ namespace CastReporting.Mediation
             catch (WebException webEx)
             {
                 // AIP < 8 sends CSV data as application/vnd.ms-excel
-                LogHelper.Instance.LogInfo(webEx.Message);
+                LogHelper.LogInfo(webEx.Message);
                 return DownloadContent(pUrl, "application/vnd.ms-excel", pComplexity);
             }
         }

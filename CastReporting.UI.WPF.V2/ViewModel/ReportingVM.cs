@@ -562,7 +562,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(ex.Message));
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(ex.Message, ex.InnerException));
                 }
             }
             else
@@ -764,7 +764,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 }
                 catch (System.Net.WebException webEx)
                 {
-                    LogHelper.Instance.LogErrorFormat
+                    LogHelper.LogErrorFormat
                     ("Request URL '{0}' - Error execution :  {1}"
                         , ""
                         , webEx.Message
@@ -774,10 +774,11 @@ namespace CastReporting.UI.WPF.ViewModel
                         Messages.msgErrorGeneratingReport + " - " + webEx.Message + " - " + Messages.msgReportErrorNoRestAPI, stopWatchStep.Elapsed);
                     stopWatchGlobal.Stop();
                     System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), false);
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(webEx.Message, webEx.InnerException));
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(ex.Message));
+                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(ex.Message, ex.InnerException));
                 }
             }
         }

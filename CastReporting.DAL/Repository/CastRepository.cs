@@ -111,7 +111,7 @@ namespace CastReporting.Repositories
         /// <param name="client"></param>
         public CastRepository(WSConnection connection, ICastProxy client)
         {
-            _Client = new CastProxy(connection.Login, connection.Password, connection.ApiKey, client?.GetCookieContainer());
+            _Client = new CastProxy(connection.Login, connection.Password, connection.ApiKey, connection.ServerCertificateValidation, client?.GetCookieContainer());
             
             _CurrentConnection = connection.Url;
             _CurrentApiKey = connection.ApiKey;
@@ -149,16 +149,10 @@ namespace CastReporting.Repositories
                 var jsonString = _Client.DownloadString(requestUrl, RequestComplexity.Standard);
 
                 var serializer = new DataContractJsonSerializer(typeof(string));
-                MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
-                try
+                using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString)))
                 {
                     serializer.ReadObject(ms);
                 }
-                finally
-                {
-                    ms.Close();
-                }
-
             }
             catch
             {
@@ -491,7 +485,7 @@ namespace CastReporting.Repositories
             }
             catch (WebException webEx)
             {
-                LogHelper.Instance.LogInfo(webEx.Message);
+                LogHelper.LogInfo(webEx.Message);
                 // url for action plan has changed in API, and some old versions does not support the 2 format of the url
                 return CallWS<IEnumerable<ActionPlan>>(requestUrl2, RequestComplexity.Standard);
             }
@@ -721,21 +715,17 @@ namespace CastReporting.Repositories
             {
                 var jsonString = _Client.DownloadString(requestUrl, pComplexity);
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString));
-                try
+                using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString)))
                 {
                     T res = serializer.ReadObject(ms) as T;
                     return res;
+
                 }
-                finally
-                {
-                    ms.Close();
-                }
-                
             }
             catch (WebException e)
             {
-                LogHelper.Instance.LogError(e.Message);
+                LogHelper.LogError(e.Message);
+                if (e.Status == WebExceptionStatus.ProtocolError) throw;
                 return null;
             }
         }
@@ -752,7 +742,8 @@ namespace CastReporting.Repositories
             }
             catch (WebException e)
             {
-                LogHelper.Instance.LogError(e.Message);
+                LogHelper.LogError(e.Message);
+                if (e.Status == WebExceptionStatus.ProtocolError) throw;
             }
             
             return jsonString;
@@ -781,7 +772,8 @@ namespace CastReporting.Repositories
             }
             catch (WebException e)
             {
-                LogHelper.Instance.LogError(e.Message);
+                LogHelper.LogError(e.Message);
+                if (e.Status == WebExceptionStatus.ProtocolError) throw;
                 return null;
             }
 
@@ -799,7 +791,8 @@ namespace CastReporting.Repositories
             }
             catch (WebException e)
             {
-                LogHelper.Instance.LogError(e.Message);
+                LogHelper.LogError(e.Message);
+                if (e.Status == WebExceptionStatus.ProtocolError) throw;
                 return null;
             }
 

@@ -19,6 +19,7 @@ using CastReporting.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Cast.Util.Version;
 using Cast.Util.Log;
@@ -129,9 +130,9 @@ namespace CastReporting.BLL
                         _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasuresOld, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
                     }
                 }
-                catch (System.Net.WebException ex)
+                catch (WebException ex)
                 {
-                    LogHelper.Instance.LogInfo(ex.Message);
+                    LogHelper.LogInfo(ex.Message);
                     const string strSizingMeasuresOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                     _Snapshot.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(_Snapshot.Href, strSizingMeasuresOld, string.Empty, "$all", "$all").SelectMany(_ => _.ApplicationResults);
                 }
@@ -196,9 +197,9 @@ namespace CastReporting.BLL
                     _Snapshot.ActionsPlan = castRepsitory.GetActionPlanBySnapshot(_Snapshot.Href);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 _Snapshot.ActionsPlan = null;
             }
         }
@@ -220,9 +221,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetTransactions(_Snapshot.Href, businessCriteria, count);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
             
@@ -237,9 +238,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetResultsBackgroundFacts(snapshotHref, backgroundFacts, string.Empty, string.Empty, string.Empty);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -260,9 +261,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetResultsBackgroundFacts(snapshotHref, backgroundFacts, string.Empty, technoParam, modParam);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -277,9 +278,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetResultsSizingMeasures(snapshotHref, sizingMeasure, string.Empty, string.Empty, string.Empty);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -294,9 +295,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetResultsQualityIndicators(snapshotHref, qualityIndicator, string.Empty, string.Empty, string.Empty);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -313,9 +314,9 @@ namespace CastReporting.BLL
                 {
                     return VersionUtil.IsAdgVersion833Compliant(_Snapshot.AdgVersion) ? castRepsitory.GetResultsQualityStandardsRules(snapshotHref, standardTag, string.Empty, string.Empty, evolutionSummary) : null;
                 }
-                catch (System.Net.WebException ex)
+                catch (WebException ex)
                 {
-                    LogHelper.Instance.LogInfo(ex.Message);
+                    LogHelper.LogInfo(ex.Message);
                     return null;
                 }
             }
@@ -329,9 +330,9 @@ namespace CastReporting.BLL
                 {
                     return VersionUtil.IsAdgVersion833Compliant(_Snapshot.AdgVersion) ? castRepsitory.GetResultsQualityStandardsTags(snapshotHref, standardTag) : null;
                 }
-                catch (System.Net.WebException ex)
+                catch (WebException ex)
                 {
-                    LogHelper.Instance.LogInfo(ex.Message);
+                    LogHelper.LogInfo(ex.Message);
                     return null;
                 }
             }
@@ -355,9 +356,9 @@ namespace CastReporting.BLL
                     }
                     return metrics;
                 }
-                catch (System.Net.WebException ex)
+                catch (WebException ex)
                 {
-                    LogHelper.Instance.LogInfo(ex.Message);
+                    LogHelper.LogInfo(ex.Message);
                     return null;
                 }
             }
@@ -378,9 +379,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetCommonCategories();
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -395,9 +396,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetCommonCategoriesJson();
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -418,9 +419,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetIfpugFunctions(_Snapshot.Href, count);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -435,9 +436,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetIfpugFunctionsEvolutions(_Snapshot.Href, count);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -452,9 +453,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetOmgFunctionsEvolutions(_Snapshot.Href, count);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -469,9 +470,9 @@ namespace CastReporting.BLL
                     return castRepository.GetOmgFunctionsTechnical(_Snapshot.Href, count);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -493,9 +494,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetMetricTopArtefact(_Snapshot.Href, ruleId, count);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -519,9 +520,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetViolationsListIDbyBC(snapshotHref, ruleId, bcId, count, technos);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -536,9 +537,9 @@ namespace CastReporting.BLL
                     return castRepository.GetRemovedViolations(snapshotHref, bcId, count, criticity);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -552,9 +553,9 @@ namespace CastReporting.BLL
                     return castRepository.GetViolationsInActionPlan(snapshotHref, count);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -569,9 +570,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetTypedComponent(domainId, componentId, snapshotId);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
 
@@ -594,9 +595,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetComponents(_Snapshot.Href, businessCriteria, count);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
            
@@ -622,9 +623,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetComponentsWithProperties(snapshotHref, businessCriteria, prop1, prop2, order1, order2, count);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }                      
         }
@@ -647,9 +648,9 @@ namespace CastReporting.BLL
                     return castRepsitory.GetComponentsByModule(domainId, moduleId, snapshotId, businessCriteria, count);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -768,9 +769,9 @@ namespace CastReporting.BLL
                     return castRepository.GetAssociatedValue(domainId, snapshotId, componentId, metricId);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -784,9 +785,9 @@ namespace CastReporting.BLL
                     return castRepository.GetAssociatedValuePath(domainId, snapshotId, componentId, metricId);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -800,9 +801,9 @@ namespace CastReporting.BLL
                     return castRepository.GetAssociatedValueGroup(domainId, snapshotId, componentId, metricId);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -816,9 +817,9 @@ namespace CastReporting.BLL
                     return castRepository.GetAssociatedValueObject(domainId, snapshotId, componentId, metricId);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -850,9 +851,9 @@ namespace CastReporting.BLL
                     return codeLines;
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException || ex is ArgumentException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }
@@ -890,9 +891,9 @@ namespace CastReporting.BLL
                     return codesAndPath;
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentNullException || ex is ArgumentOutOfRangeException || ex is ArgumentException)
             {
-                LogHelper.Instance.LogInfo(ex.Message);
+                LogHelper.LogInfo(ex.Message);
                 return null;
             }
         }

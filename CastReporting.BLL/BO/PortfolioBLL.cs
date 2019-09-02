@@ -45,7 +45,7 @@ namespace CastReporting.BLL
                     }
                     catch (WebException webEx)
                     {
-                        LogHelper.Instance.LogInfo(webEx.Message);
+                        LogHelper.LogInfo(webEx.Message);
                         ignoreApps.Add(app.Name);
                     }
                 }
@@ -74,7 +74,7 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
-                            LogHelper.Instance.LogInfo(ex.Message);
+                            LogHelper.LogInfo(ex.Message);
                             ignoreApps.Add(app.Name);
                         }
                     }
@@ -97,7 +97,7 @@ namespace CastReporting.BLL
                     }
                     catch (WebException ex)
                     {
-                        LogHelper.Instance.LogInfo(ex.Message);
+                        LogHelper.LogInfo(ex.Message);
                         ignoreApps.Add(app.Name);
                     }
                 }
@@ -137,14 +137,14 @@ namespace CastReporting.BLL
                             }
                             catch (WebException ex)
                             {
-                                LogHelper.Instance.LogInfo(ex.Message);
+                                LogHelper.LogInfo(ex.Message);
                                 const string strSizingMeasureOld = "technical-size-measures,run-time-statistics,technical-debt-statistics,functional-weight-measures,critical-violation-statistics";
                                 app.SizingMeasuresResults = castRepsitory.GetResultsSizingMeasures(app.Href, strSizingMeasureOld, "$all", string.Empty, string.Empty)?.ToList();
                             }
                         }
                         catch (WebException ex)
                         {
-                            LogHelper.Instance.LogInfo(ex.Message);
+                            LogHelper.LogInfo(ex.Message);
                             ignoreApps.Add(app.Name);
                         }
                     }
@@ -167,7 +167,7 @@ namespace CastReporting.BLL
                     }
                     catch (WebException ex)
                     {
-                        LogHelper.Instance.LogInfo(ex.Message);
+                        LogHelper.LogInfo(ex.Message);
                         ignoreApps.Add(app.Name);
                     }
                 }

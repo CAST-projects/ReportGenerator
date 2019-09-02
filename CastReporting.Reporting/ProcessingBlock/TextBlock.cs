@@ -67,12 +67,12 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
         {
             TextBlock instance = BlockHelper.GetAssociatedBlockInstance<TextBlock>(blockName);
             if (null == instance) return;
-            LogHelper.Instance.LogDebugFormat("Start TextBlock generation : Type {0}", blockName);
+            LogHelper.LogDebugFormat("Start TextBlock generation : Type {0}", blockName);
             Stopwatch treatmentWatch = Stopwatch.StartNew();
             string content = instance.Content(client, options);
             ApplyContent(client, container, block, content);
             treatmentWatch.Stop();
-            LogHelper.Instance.LogDebugFormat
+            LogHelper.LogDebugFormat
             ("End TextBlock generation ({0}) in {1} ms"
                 , blockName
                 , treatmentWatch.ElapsedMilliseconds.ToString()

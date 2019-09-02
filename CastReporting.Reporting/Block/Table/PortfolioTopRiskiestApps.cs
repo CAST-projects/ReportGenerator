@@ -81,19 +81,21 @@ namespace CastReporting.Reporting.Block.Table
                     Snapshot _snapshot = _app.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
                     if (_snapshot == null) continue;
                     string strAppName = _app.Name;
-                    double? _cv = RulesViolationUtility.GetBCEvolutionSummary(_snapshot, metricId).FirstOrDefault().TotalCriticalViolations;
+                    double? _cv = RulesViolationUtility.GetBCEvolutionSummary(_snapshot, metricId).FirstOrDefault()?.TotalCriticalViolations;
 
                     double? strCurrentBCGrade = BusinessCriteriaUtility.GetSnapshotBusinessCriteriaGrade(_snapshot, (Constants.BusinessCriteria)metricId, false);
 
-                    string strLastAnalysis = Convert.ToDateTime(_snapshot.Annotation.Date.DateSnapShot.Value).ToString("MMM dd yyyy");
-
-                    dt.Rows.Add(strAppName, _cv.Value, strCurrentBCGrade, strLastAnalysis);
+                    if (_snapshot.Annotation.Date.DateSnapShot != null)
+                    {
+                        string strLastAnalysis = Convert.ToDateTime(_snapshot.Annotation.Date.DateSnapShot.Value).ToString("MMM dd yyyy");
+                        dt.Rows.Add(strAppName, _cv.Value, strCurrentBCGrade, strLastAnalysis);
+                    }
                     nbRows++;
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Instance.LogInfo(ex.Message);
-                    LogHelper.Instance.LogInfo(Labels.NoSnapshot);
+                    LogHelper.LogInfo(ex.Message);
+                    LogHelper.LogInfo(Labels.NoSnapshot);
                 }
             }
             DataView dv = dt.DefaultView;

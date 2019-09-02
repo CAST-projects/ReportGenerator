@@ -22,178 +22,138 @@ namespace Cast.Util.Log
 {
     public class LogHelper
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        private static volatile ILog _log;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private static readonly object Lock = new object();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private static LogHelper _instance;
-        public static LogHelper Instance
-        {
-            get
-            {
-                if (null != _instance) return _instance;
-                lock (Lock)
-                {
-                    if (null == _instance)
-                    {
-                        // ReSharper disable once PossibleMultipleWriteAccessInDoubleCheckLocking
-                        _instance = new LogHelper();
-                    }
-                }
-                return _instance;
-            }
-        }
-
-      
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private LogHelper()
-        {
-            if (_log == null)
-                _log = LogManager.GetLogger(typeof(LogHelper));           
-        }
+        private static readonly Lazy<ILog> Log = new Lazy<ILog>(() => LogManager.GetLogger(typeof(LogHelper)));
 
         #region METHODS - Log4Net
 
-        public void LogDebug(string message)
+        public static void LogDebug(string message)
         {
-            _log.Debug(message);
+            Log.Value.Debug(message);
         }
-        public void LogDebug(string message, Exception exception)
+        public static void LogDebug(string message, Exception exception)
         {
-            _log.Debug(message, exception);
+            Log.Value.Debug(message, exception);
         }
-        public void LogDebugFormat(string messageFormat, params object[] parameters)
+        public static void LogDebugFormat(string messageFormat, params object[] parameters)
         {
-            _log.DebugFormat(messageFormat, parameters);
+            Log.Value.DebugFormat(messageFormat, parameters);
         }
-        public void LogDebugFormat(string messageFormat, object obj)
+        public static void LogDebugFormat(string messageFormat, object obj)
         {
-            _log.DebugFormat(messageFormat, obj);
+            Log.Value.DebugFormat(messageFormat, obj);
         }
-        public void LogDebugFormat(string messageFormat, object obj1, object obj2)
+        public static void LogDebugFormat(string messageFormat, object obj1, object obj2)
         {
-            _log.DebugFormat(messageFormat, obj1, obj2);
+            Log.Value.DebugFormat(messageFormat, obj1, obj2);
         }
-        public void LogDebugFormat(string messageFormat, object obj1, object obj2, object obj3)
+        public static void LogDebugFormat(string messageFormat, object obj1, object obj2, object obj3)
         {
-            _log.DebugFormat(messageFormat, obj1, obj2, obj3);
-        }
-
-        public void LogInfo(string message)
-        {
-            _log.Info(message);
-        }
-        public void LogInfo(string message, Exception exception)
-        {
-            _log.Info(message, exception);
-        }
-        public void LogInfoFormat(string messageFormat, params object[] parameters)
-        {
-            _log.InfoFormat(messageFormat, parameters);
-        }
-        public void LogInfoFormat(string messageFormat, object obj)
-        {
-            _log.InfoFormat(messageFormat, obj);
-        }
-        public void LogInfoFormat(string messageFormat, object obj1, object obj2)
-        {
-            _log.InfoFormat(messageFormat, obj1, obj2);
-        }
-        public void LogInfoFormat(string messageFormat, object obj1, object obj2, object obj3)
-        {
-            _log.InfoFormat(messageFormat, obj1, obj2, obj3);
+            Log.Value.DebugFormat(messageFormat, obj1, obj2, obj3);
         }
 
-        public void LogWarn(string message)
+        public static void LogInfo(string message)
         {
-            _log.Warn(message);
+            Log.Value.Info(message);
         }
-        public void LogWarn(string message, Exception exception)
+        public static void LogInfo(string message, Exception exception)
         {
-            _log.Warn(message, exception);
+            Log.Value.Info(message, exception);
         }
-        public void LogWarnFormat(string messageFormat, params object[] parameters)
+        public static void LogInfoFormat(string messageFormat, params object[] parameters)
         {
-            _log.WarnFormat(messageFormat, parameters);
+            Log.Value.InfoFormat(messageFormat, parameters);
         }
-        public void LogWarnFormat(string messageFormat, object obj)
+        public static void LogInfoFormat(string messageFormat, object obj)
         {
-            _log.WarnFormat(messageFormat, obj);
+            Log.Value.InfoFormat(messageFormat, obj);
         }
-        public void LogWarnFormat(string messageFormat, object obj1, object obj2)
+        public static void LogInfoFormat(string messageFormat, object obj1, object obj2)
         {
-            _log.WarnFormat(messageFormat, obj1, obj2);
+            Log.Value.InfoFormat(messageFormat, obj1, obj2);
         }
-        public void LogWarnFormat(string messageFormat, object obj1, object obj2, object obj3)
+        public static void LogInfoFormat(string messageFormat, object obj1, object obj2, object obj3)
         {
-            _log.WarnFormat(messageFormat, obj1, obj2, obj3);
-        }
-
-        public void LogError(string message)
-        {
-            _log.Error(message);
-        }
-        public void LogError(string message, Exception exception)
-        {
-            _log.Error(message, exception);
-        }
-        public void LogErrorFormat(string messageFormat, params object[] parameters)
-        {
-            _log.ErrorFormat(messageFormat, parameters);
-        }
-        public void LogErrorFormat(string messageFormat, object obj)
-        {
-            _log.ErrorFormat(messageFormat, obj);
-        }
-        public void LogErrorFormat(string messageFormat, object obj1, object obj2)
-        {
-            _log.ErrorFormat(messageFormat, obj1, obj2);
-        }
-        public void LogErrorFormat(string messageFormat, object obj1, object obj2, object obj3)
-        {
-            _log.ErrorFormat(messageFormat, obj1, obj2, obj3);
+            Log.Value.InfoFormat(messageFormat, obj1, obj2, obj3);
         }
 
-        public void LogFatal(string message)
+        public static void LogWarn(string message)
         {
-            _log.Fatal(message);
+            Log.Value.Warn(message);
         }
-        public void LogFatal(string message, Exception exception)
+        public static void LogWarn(string message, Exception exception)
         {
-            _log.Fatal(message, exception);
+            Log.Value.Warn(message, exception);
         }
-        public void LogFatalFormat(string messageFormat, params object[] parameters)
+        public static void LogWarnFormat(string messageFormat, params object[] parameters)
         {
-            _log.FatalFormat(messageFormat, parameters);
+            Log.Value.WarnFormat(messageFormat, parameters);
         }
-        public void LogFatalFormat(string messageFormat, object obj)
+        public static void LogWarnFormat(string messageFormat, object obj)
         {
-            _log.FatalFormat(messageFormat, obj);
+            Log.Value.WarnFormat(messageFormat, obj);
         }
-        public void LogFatalFormat(string messageFormat, object obj1, object obj2)
+        public static void LogWarnFormat(string messageFormat, object obj1, object obj2)
         {
-            _log.FatalFormat(messageFormat, obj1, obj2);
+            Log.Value.WarnFormat(messageFormat, obj1, obj2);
         }
-        public void LogFatalFormat(string messageFormat, object obj1, object obj2, object obj3)
+        public static void LogWarnFormat(string messageFormat, object obj1, object obj2, object obj3)
         {
-            _log.FatalFormat(messageFormat, obj1, obj2, obj3);
+            Log.Value.WarnFormat(messageFormat, obj1, obj2, obj3);
         }
 
-        public void FlushLog()
+        public static void LogError(string message)
         {
-            var logger = _log.Logger as Logger;
+            Log.Value.Error(message);
+        }
+        public static void LogError(string message, Exception exception)
+        {
+            Log.Value.Error(message, exception);
+        }
+        public static void LogErrorFormat(string messageFormat, params object[] parameters)
+        {
+            Log.Value.ErrorFormat(messageFormat, parameters);
+        }
+        public static void LogErrorFormat(string messageFormat, object obj)
+        {
+            Log.Value.ErrorFormat(messageFormat, obj);
+        }
+        public static void LogErrorFormat(string messageFormat, object obj1, object obj2)
+        {
+            Log.Value.ErrorFormat(messageFormat, obj1, obj2);
+        }
+        public static void LogErrorFormat(string messageFormat, object obj1, object obj2, object obj3)
+        {
+            Log.Value.ErrorFormat(messageFormat, obj1, obj2, obj3);
+        }
+
+        public static void LogFatal(string message)
+        {
+            Log.Value.Fatal(message);
+        }
+        public static void LogFatal(string message, Exception exception)
+        {
+            Log.Value.Fatal(message, exception);
+        }
+        public static void LogFatalFormat(string messageFormat, params object[] parameters)
+        {
+            Log.Value.FatalFormat(messageFormat, parameters);
+        }
+        public static void LogFatalFormat(string messageFormat, object obj)
+        {
+            Log.Value.FatalFormat(messageFormat, obj);
+        }
+        public static void LogFatalFormat(string messageFormat, object obj1, object obj2)
+        {
+            Log.Value.FatalFormat(messageFormat, obj1, obj2);
+        }
+        public static void LogFatalFormat(string messageFormat, object obj1, object obj2, object obj3)
+        {
+            Log.Value.FatalFormat(messageFormat, obj1, obj2, obj3);
+        }
+
+        public static void FlushLog()
+        {
+            var logger = Log.Value.Logger as Logger;
             if (logger == null) return;
             foreach (IAppender appender in logger.Appenders)
             {
@@ -213,11 +173,6 @@ namespace Cast.Util.Log
             GlobalContext.Properties["LOGPATH"] = pathLog;
             GlobalContext.Properties["DATE"] = DateTime.Today.ToString("yyyyMMdd");
             log4net.Config.XmlConfigurator.Configure();
-            /*
-            var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
-            string configFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "log4net.config");
-            XmlConfigurator.Configure(logRepository, new FileInfo(configFilePath));
-             */
         }
 
         #endregion

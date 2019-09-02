@@ -48,7 +48,7 @@ namespace CastReporting.Reporting.Block.Table
 
             if (!VersionUtil.Is19Compatible(reportData.ServerVersion))
             {
-                LogHelper.Instance.LogError("Bad version of RestAPI. Should be 1.9 at least for component DELTA_COMPONENTS_LIST_BY_STATUS");
+                LogHelper.LogError("Bad version of RestAPI. Should be 1.9 at least for component DELTA_COMPONENTS_LIST_BY_STATUS");
                 rowData.AddRange(new[]
                 {
                     Labels.NoData,

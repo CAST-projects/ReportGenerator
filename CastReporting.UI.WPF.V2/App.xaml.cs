@@ -40,7 +40,7 @@ namespace CastReporting.UI.WPF
         public App()
         {
 #if !DEBUG
-            this.DispatcherUnhandledException += OnDispatcherUnhandledException;         
+            DispatcherUnhandledException += OnDispatcherUnhandledException;         
 #endif            
             LogHelper.SetPathLog(SettingsBLL.GetApplicationPath());
 
@@ -73,7 +73,7 @@ namespace CastReporting.UI.WPF
             else
                 currentException = e.Exception;                            
                    
-            LogHelper.Instance.LogError(Messages.msgGenericError, currentException);
+            LogHelper.LogError(Messages.msgGenericError, currentException);
             
             IMessageManager messageManager = MainWindow?.DataContext as IMessageManager;
             messageManager?.OnErrorOccured(currentException);

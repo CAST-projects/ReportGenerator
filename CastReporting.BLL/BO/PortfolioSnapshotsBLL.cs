@@ -74,7 +74,7 @@ namespace CastReporting.BLL
                         }
                         catch (WebException ex)
                         {
-                            LogHelper.Instance.LogInfo(ex.Message);
+                            LogHelper.LogInfo(ex.Message);
                             _ignore_snaps.Add(snap.Href);
                         }
                     }
@@ -109,7 +109,7 @@ namespace CastReporting.BLL
                     }
                     catch (WebException ex)
                     {
-                        LogHelper.Instance.LogInfo(ex.Message);
+                        LogHelper.LogInfo(ex.Message);
                         _ignoreSnaps.Add(snap.Href);
                     }
                 }
@@ -145,7 +145,7 @@ namespace CastReporting.BLL
                     }
                     catch (WebException ex)
                     {
-                        LogHelper.Instance.LogInfo(ex.Message);
+                        LogHelper.LogInfo(ex.Message);
                         _ignoreApps.Add(snap.Href);
                     }
                 }
@@ -176,7 +176,7 @@ namespace CastReporting.BLL
                     }
                     catch (WebException ex)
                     {
-                        LogHelper.Instance.LogInfo(ex.Message);
+                        LogHelper.LogInfo(ex.Message);
                         _ignoreSnaps.Add(snap.Href);
                     }
                 }
@@ -215,7 +215,7 @@ namespace CastReporting.BLL
                     }
                     catch (WebException ex)
                     {
-                        LogHelper.Instance.LogInfo(ex.Message);
+                        LogHelper.LogInfo(ex.Message);
                         _ignoreSnaps.Add(snap.Href);
                     }
                 }
@@ -247,7 +247,7 @@ namespace CastReporting.BLL
                     }
                     catch (WebException ex)
                     {
-                        LogHelper.Instance.LogInfo(ex.Message);
+                        LogHelper.LogInfo(ex.Message);
                         _ignoreSnaps.Add(snap.Href);
                     }
                 }
@@ -277,7 +277,7 @@ namespace CastReporting.BLL
                     }
                     catch (WebException ex)
                     {
-                        LogHelper.Instance.LogInfo(ex.Message);
+                        LogHelper.LogInfo(ex.Message);
                         _ignore_snaps.Add(snap.Href);
                     }
                 }
@@ -308,7 +308,7 @@ namespace CastReporting.BLL
                     }
                     catch (WebException ex)
                     {
-                        LogHelper.Instance.LogInfo(ex.Message);
+                        LogHelper.LogInfo(ex.Message);
                         _ignoreSnaps.Add(snap.Href);
                     }
                 }

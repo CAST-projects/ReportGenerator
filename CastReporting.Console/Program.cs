@@ -39,12 +39,12 @@ namespace CastReporting.Console
             
             SetCulture();
            
-            LogHelper.Instance.LogInfo("Application started.");
+            LogHelper.LogInfo("Application started.");
 
             Environment.ExitCode = DoWork(args, out showhelp);
 
             if (!string.IsNullOrEmpty(showhelp)) System.Console.WriteLine(showhelp);
-            LogHelper.Instance.FlushLog();
+            LogHelper.FlushLog();
 
             // Uncomment if you want to see the console during debugging
             // System.Console.ReadLine();
@@ -109,7 +109,7 @@ namespace CastReporting.Console
         /// <returns></returns>
         private static int DoWork(string[] args, out string help)
         {
-            LogHelper.Instance.LogInfo("Read arguments.");
+            LogHelper.LogInfo("Read arguments.");
             XmlCastReport arguments = ReadArguments(args, out help); 
 
             if (!string.IsNullOrEmpty(help))
@@ -126,7 +126,7 @@ namespace CastReporting.Console
 
             if (!string.IsNullOrEmpty(help))
             {
-                LogHelper.Instance.LogError(help);
+                LogHelper.LogError(help);
                 if (help.Contains("Webservice can't be access or is bad formatted."))
                 {
                     return -2;
@@ -134,7 +134,7 @@ namespace CastReporting.Console
                 return -3;
             }
 
-            LogHelper.Instance.LogInfo($"Report successfully generated in {pathFile}");
+            LogHelper.LogInfo($"Report successfully generated in {pathFile}");
             return 0;
         }
 
@@ -158,14 +158,18 @@ namespace CastReporting.Console
 
                     //Get RG settings
                     var settings = SettingsBLL.GetSetting();
-                    LogHelper.Instance.LogInfo("RG settings have been read successfully");
+                    LogHelper.LogInfo("RG settings have been read successfully");
 
                     //Initialize temporary directory
                     string workDirectory = SettingsBLL.GetApplicationPath();
 
                     //Initialize Web services
 
-                    var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty) {ApiKey = arguments.ApiKey?.Name.Equals("true") ?? false};
+                    var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty)
+                    {
+                        ApiKey = arguments.ApiKey?.Name.Equals("true") ?? false,
+                        ServerCertificateValidation = SettingsBLL.GetCertificateValidationStrategy()
+                    };
                     using (CommonBLL commonBLL = new CommonBLL(connection))
                     {
 
@@ -175,7 +179,7 @@ namespace CastReporting.Console
                             return string.Empty;
                         }
                     }
-                    LogHelper.Instance.LogInfo("Web services Initialized successfully");
+                    LogHelper.LogInfo("Web services Initialized successfully");
 
                     List<Domain.Application> _apps = new List<Domain.Application>();
                     
@@ -188,13 +192,13 @@ namespace CastReporting.Console
                     }
                     catch (Exception ex)
                     {
-                        LogHelper.Instance.LogInfo("Error occured while trying get applications for the portfolio : " + ex.Message);
+                        LogHelper.LogInfo("Error occured while trying get applications for the portfolio : " + ex.Message);
                     }
 
                     Domain.Application[] _selectedApps = _apps.ToArray<Domain.Application>();
-                    LogHelper.Instance.LogInfo("Applications in the portfolio found successfully");
+                    LogHelper.LogInfo("Applications in the portfolio found successfully");
                     string[] _appsToIgnorePortfolioResult = PortfolioBLL.BuildPortfolioResult(connection, _selectedApps);
-                    LogHelper.Instance.LogInfo("Build result for the portfolio");
+                    LogHelper.LogInfo("Build result for the portfolio");
                     List<Domain.Application> _n_apps = new List<Domain.Application>();
                     //Remove from Array the Ignored Apps
                     foreach (Domain.Application app in _selectedApps)
@@ -228,15 +232,15 @@ namespace CastReporting.Console
                     }
                     catch (Exception ex)
                     {
-                        LogHelper.Instance.LogInfo("Error occured while trying get snapshots of applications for the portfolio : " + ex.Message);
+                        LogHelper.LogInfo("Error occured while trying get snapshots of applications for the portfolio : " + ex.Message);
                     }
-                    LogHelper.Instance.LogInfo("Snapshots in the portfolio found successfully");
+                    LogHelper.LogInfo("Snapshots in the portfolio found successfully");
                     List<Snapshot> _n_snaps = new List<Snapshot>();
                     if (_snapshots == null) return reportPath;
 
                     Snapshot[] _selectedApps_snapshots = _snapshots.ToArray<Snapshot>();
                     var _snapsToIgnore = PortfolioSnapshotsBLL.BuildSnapshotResult(connection, _selectedApps_snapshots, true);
-                    LogHelper.Instance.LogInfo("Build result for snapshots in portfolio");
+                    LogHelper.LogInfo("Build result for snapshots in portfolio");
 
                     foreach (Snapshot snap in _selectedApps_snapshots)
                     {
@@ -356,7 +360,7 @@ namespace CastReporting.Console
                         {
                             docBuilder.BuildDocument();
                         }
-                        LogHelper.Instance.LogInfo("Report generated successfully");
+                        LogHelper.LogInfo("Report generated successfully");
 
                         //Set filte report              
                         SetFileName(arguments);
@@ -401,7 +405,7 @@ namespace CastReporting.Console
 
                     //Get RG settings
                     var settings = SettingsBLL.GetSetting();
-                    LogHelper.Instance.LogInfo("RG settings have been read successfully");
+                    LogHelper.LogInfo("RG settings have been read successfully");
 
                     //Initialize temporary directory
                     string workDirectory = SettingsBLL.GetApplicationPath();
@@ -412,7 +416,11 @@ namespace CastReporting.Console
                     }
                     //Initialize Web services
 
-                    var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty) {ApiKey = arguments.ApiKey?.Name.Equals("true") ?? false};
+                    var connection = new WSConnection(arguments.Webservice.Name, arguments.Username.Name, arguments.Password.Name, string.Empty)
+                    {
+                        ApiKey = arguments.ApiKey?.Name.Equals("true") ?? false,
+                        ServerCertificateValidation = SettingsBLL.GetCertificateValidationStrategy()
+                    };
                     using (CommonBLL commonBLL = new CommonBLL(connection))
                     {
                         if (!commonBLL.CheckService())
@@ -421,7 +429,7 @@ namespace CastReporting.Console
                             return string.Empty;
                         }
                     }
-                    LogHelper.Instance.LogInfo("Web services Initialized successfully");
+                    LogHelper.LogInfo("Web services Initialized successfully");
 
 
                     //Initialize Application
@@ -431,7 +439,7 @@ namespace CastReporting.Console
                         help = arguments.Application != null ? $"Application {arguments.Application.Name} can't be found." : "Application not set in arguments.";
                         return string.Empty;
                     }
-                    LogHelper.Instance.LogInfo($"Application {arguments.Application.Name} Initialized successfully");
+                    LogHelper.LogInfo($"Application {arguments.Application.Name} Initialized successfully");
 
                     //Initialize snapshots             
                     SetSnapshots(connection, application);
@@ -440,11 +448,11 @@ namespace CastReporting.Console
                         help = "There is no snapshots for this application.";
                         return string.Empty;
                     }
-                    LogHelper.Instance.LogInfo($"List of Snapshots from {arguments.Application.Name} Initialized successfully");
+                    LogHelper.LogInfo($"List of Snapshots from {arguments.Application.Name} Initialized successfully");
 
                     //Build Application results 
                     ApplicationBLL.BuildApplicationResult(connection, application);
-                    LogHelper.Instance.LogInfo($"Application {arguments.Application.Name} results built successfully");
+                    LogHelper.LogInfo($"Application {arguments.Application.Name} results built successfully");
 
 
                     //Set current snapshot
@@ -454,22 +462,22 @@ namespace CastReporting.Console
                         help = $"Current snapshot {arguments.Snapshot.Current.Name} can't be found";
                         return string.Empty;
                     }
-                    LogHelper.Instance.LogInfo($"Current snapshot {currentSnapshot.Name} initialized successfully");
+                    LogHelper.LogInfo($"Current snapshot {currentSnapshot.Name} initialized successfully");
 
                     //Build current snapshot results 
                     SnapshotBLL.BuildSnapshotResult(connection, currentSnapshot, true);
-                    LogHelper.Instance.LogInfo($"Result of current snapshot {currentSnapshot.Name} built successfully");
+                    LogHelper.LogInfo($"Result of current snapshot {currentSnapshot.Name} built successfully");
 
                     //Set previous snapshot
                     
                     Snapshot prevSnapshot = GetSnapshotOrDefault(arguments.Snapshot.Previous, arguments.Snapshot.PreviousId, application.Snapshots, -1);
                     if (prevSnapshot != null)
                     {
-                        LogHelper.Instance.LogInfo($"Previous snapshot {prevSnapshot.Name} Initialized successfully");
+                        LogHelper.LogInfo($"Previous snapshot {prevSnapshot.Name} Initialized successfully");
 
                         //Build previous snapshot results 
                         SnapshotBLL.BuildSnapshotResult(connection, prevSnapshot, false);
-                        LogHelper.Instance.LogInfo($"Result of previous snapshot {prevSnapshot.Name}  built successfully");
+                        LogHelper.LogInfo($"Result of previous snapshot {prevSnapshot.Name}  built successfully");
                     }
                     else 
                     {
@@ -478,12 +486,12 @@ namespace CastReporting.Console
                             prevSnapshot = application.Snapshots.OrderByDescending(_ => _.Annotation.Date).Where(_ => _.Annotation.Date.DateSnapShot < currentSnapshot.Annotation.Date.DateSnapShot).ElementAtOrDefault(0);
                             if (prevSnapshot == null)
                             {
-                                LogHelper.Instance.LogInfo("No Previous snapshot.");
+                                LogHelper.LogInfo("No Previous snapshot.");
                             }
                             else
                             {
                                 SnapshotBLL.BuildSnapshotResult(connection, prevSnapshot, false);
-                                LogHelper.Instance.LogInfo($"Result of previous snapshot {prevSnapshot.Name}  built successfully");
+                                LogHelper.LogInfo($"Result of previous snapshot {prevSnapshot.Name}  built successfully");
                             }
                         }
                         else
@@ -511,7 +519,7 @@ namespace CastReporting.Console
                     {
                         docBuilder.BuildDocument();
                     }
-                    LogHelper.Instance.LogInfo("Report generated successfully");
+                    LogHelper.LogInfo("Report generated successfully");
 
                     //Set filte report              
                     SetFileName(arguments);
@@ -527,7 +535,7 @@ namespace CastReporting.Console
 
                     ConvertToPdfIfNeeded(arguments, ref reportPath, tmpReportFile);
 
-                    LogHelper.Instance.LogInfo("Report moved to generation directory successfully");
+                    LogHelper.LogInfo("Report moved to generation directory successfully");
 
                     return reportPath;
                 }
@@ -561,7 +569,7 @@ namespace CastReporting.Console
                     catch (Exception e)
                     {
                         // Error if office not installed, then do not save as pdf
-                        LogHelper.Instance.LogWarn("Report cannot be saved as pdf : " + e.Message);
+                        LogHelper.LogWarn("Report cannot be saved as pdf : " + e.Message);
                         reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
                         File.Copy(tmpReportFile, reportPath, true);
                     }
@@ -579,7 +587,7 @@ namespace CastReporting.Console
                     catch (Exception e)
                     {
                         // Error if office not installed, then do not save as pdf
-                        LogHelper.Instance.LogWarn("Report cannot be saved as pdf : " + e.Message);
+                        LogHelper.LogWarn("Report cannot be saved as pdf : " + e.Message);
                         reportPath = reportPath.Replace(".pdf", Path.GetExtension(arguments.Template.Name));
                         File.Copy(tmpReportFile, reportPath, true);
                     }
