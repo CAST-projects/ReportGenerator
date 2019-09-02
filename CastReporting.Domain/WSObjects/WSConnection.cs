@@ -46,6 +46,8 @@ namespace CastReporting.Domain
             Login = login;
             Password = password;
             Name = name;
+            ApiKey = false;
+            ServerCertificateValidation = true;
         }
 
         #region PROPERTIES
@@ -157,6 +159,9 @@ namespace CastReporting.Domain
 
         [XmlIgnore]
         public bool ApiKey { get; set; }
+
+        [XmlIgnore]
+        public bool ServerCertificateValidation { get; set; }
 
         /// <summary>
         /// 

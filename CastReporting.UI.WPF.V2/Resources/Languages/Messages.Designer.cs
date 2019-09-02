@@ -700,6 +700,15 @@ namespace CastReporting.UI.WPF.Resources.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Please revalidate your web service connection, it seems you are no more connected..
+        /// </summary>
+        public static string msgServiceShouldBeRevalidated {
+            get {
+                return ResourceManager.GetString("msgServiceShouldBeRevalidated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Settings saved.
         /// </summary>
         public static string msgSettingsSaved {

@@ -46,6 +46,16 @@ namespace CastReporting.BLL
             }
         }
 
+        public static bool GetCertificateValidationStrategy()
+        {
+            using (ISettingRepository setttingRepository = new SettingsRepository())
+            {
+                string certificateValidation = setttingRepository.GetSeting().ReportingParameter.ServerCertificateValidation;
+                if (certificateValidation == null) return true;
+                return !certificateValidation.Equals("disable");
+            }
+        }
+        
         /// <summary>
         /// 
         /// </summary>
