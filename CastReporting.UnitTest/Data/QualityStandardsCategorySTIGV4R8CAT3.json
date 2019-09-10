@@ -1,0 +1,10 @@
+﻿[
+  {
+    "standard": "STIG-V4R8",
+    "id": "STIG-V-69249",
+    "name": "The application must display an explicit logoff message to users indicating the reliable termination of authenticated communications sessions.",
+    "reference": null,
+    "description": null,
+    "applicable": false
+  }
+]

@@ -69,6 +69,7 @@ namespace CastReporting.Repositories
         private const string _query_component_type = "{0}/components/{1}/snapshots/{2}";
         private const string _query_quality_standards_evolution = "{0}/results?quality-standards=(c:{1})&select=(evolutionSummary)";
         private const string _query_quality_standards_information = "{0}/quality-standards";
+        private const string _query_quality_standards_doc_applicability = "{0}/quality-standards-categories/{1}";
         private const string _query_removed_violations_by_bcid = "{0}/removed-violations?";
         private const string _query_delta_components = "{0}/components/65005?snapshot-ids=({1},{2})&status={3}";
 
@@ -611,6 +612,19 @@ namespace CastReporting.Repositories
             string query = _query_quality_standards_information;
 
             string relativeURL = string.Format(query, hRef);
+
+            return CallWS<IEnumerable<StandardTag>>(relativeURL, RequestComplexity.Standard);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<StandardTag> ICastRepsitory.GetQualityStandardsTagsApplicabilityByCategory(string domain, string category)
+        {
+            string query = _query_quality_standards_doc_applicability;
+
+            string relativeURL = string.Format(query, domain, category);
 
             return CallWS<IEnumerable<StandardTag>>(relativeURL, RequestComplexity.Standard);
         }

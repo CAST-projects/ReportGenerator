@@ -1,0 +1,18 @@
+﻿[
+  {
+    "standard": "STIG-V4R8",
+    "id": "STIG-V-69241",
+    "name": "The application must clear temporary storage and cookies when the session is terminated.",
+    "reference": null,
+    "description": null,
+    "applicable": true
+  },
+  {
+    "standard": "STIG-V4R8",
+    "id": "STIG-V-69243",
+    "name": "The application must automatically terminate the non-privileged user session and log off non-privileged users after a 15 minute idle time period has elapsed.",
+    "reference": null,
+    "description": null,
+    "applicable": true
+  }
+]

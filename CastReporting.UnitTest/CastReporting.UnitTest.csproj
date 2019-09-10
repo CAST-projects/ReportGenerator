@@ -76,6 +76,15 @@
     <None Include="Data\ComponentsWithProperties.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Data\QualityStandardsCategorySTIGV4R8CAT2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\QualityStandardsCategorySTIGV4R8CAT3.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\QualityStandardsCategorySTIGV4R8CAT1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\OmgFunctionsTechnical.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -296,6 +305,7 @@
     <Compile Include="Reporting\Graph\PortfolioGenericGraphTests.cs" />
     <Compile Include="Reporting\Tables\AETPListTests.cs" />
     <Compile Include="Reporting\Tables\AEFPListTests.cs" />
+    <Compile Include="Reporting\Tables\ListTagsDocByCategoryTests.cs" />
     <Compile Include="Reporting\Tables\QualityTagsRulesEvolutionTests.cs" />
     <Compile Include="Reporting\Tables\QualityStandardsEvolutionTests.cs" />
     <Compile Include="Reporting\Tables\RulesListLargestVariationTests.cs" />

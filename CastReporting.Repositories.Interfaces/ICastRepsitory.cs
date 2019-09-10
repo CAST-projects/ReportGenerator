@@ -87,6 +87,8 @@ namespace CastReporting.Repositories.Interfaces
 
         IEnumerable<StandardTag> GetQualityStandardsTagsDoc(string hRef);
 
+        IEnumerable<StandardTag> GetQualityStandardsTagsApplicabilityByCategory(string domain, string category);
+
         /// <summary>
         /// 
         /// </summary>
