@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CastReporting.Domain;
+using CastReporting.Reporting.Block.Table;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CastReporting.Reporting.ReportingModel;
 
@@ -36,7 +37,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
             reportData.RuleExplorer = new RuleBLLStub();
 
-            var component = new CastReporting.Reporting.Block.Table.ListTagsDocByCategory();
+            var component = new ListTagsDocByCategory();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"CAT","STIG-V4R8-CAT1" }
@@ -80,7 +81,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
             reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
             reportData.RuleExplorer = new RuleBLLStub();
 
-            var component = new CastReporting.Reporting.Block.Table.ListTagsDocByCategory();
+            var component = new ListTagsDocByCategory();
             Dictionary<string, string> config = new Dictionary<string, string>
             {
                 {"CAT","STIG-V4R8-CAT1|STIG-V4R8-CAT2|STIG-V4R8-CAT3" }
