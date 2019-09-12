@@ -22,6 +22,14 @@ namespace CastReporting.Domain.Interfaces
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="domain"></param>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        IEnumerable<StandardTag> GetQualityStandardTagsApplicabilityByCategory(string domain, string category);
+        
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="snapshotHRef"></param>
         /// <param name="ruleId"></param>
         /// <returns></returns>

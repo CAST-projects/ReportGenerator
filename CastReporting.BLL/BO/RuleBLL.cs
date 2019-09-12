@@ -25,6 +25,19 @@ namespace CastReporting.BLL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="domain"></param>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public IEnumerable<StandardTag> GetQualityStandardTagsApplicabilityByCategory(string domain, string category)
+        {
+            using (var castRepsitory = GetRepository())
+            {
+                return castRepsitory.GetQualityStandardsTagsApplicabilityByCategory(domain, category);
+            }
+        }
 
         /// <summary>
         /// 
