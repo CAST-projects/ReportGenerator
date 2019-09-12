@@ -46,21 +46,25 @@ namespace CastReporting.Reporting.Block.Table
 
             var data = new List<string>();
 
+            bool moreThanOne = categories.Count > 1;
             if (categories.Count > 0)
             {
                 foreach (var category in categories)
                 {
-                    var dataRowCat = headers.CreateDataRow();
-                    dataRowCat.Set(Labels.Tag, category);
-                    FormatHelper.AddGrayAndBold(cellProps, cellidx);
-                    cellidx++;
-                    dataRowCat.Set(Labels.Definition, "");
-                    FormatHelper.AddGrayAndBold(cellProps, cellidx);
-                    cellidx++;
-                    dataRowCat.Set(Labels.Applicability, "");
-                    FormatHelper.AddGrayAndBold(cellProps, cellidx);
-                    cellidx++;
-                    data.AddRange(dataRowCat);
+                    if (moreThanOne)
+                    {
+                        var dataRowCat = headers.CreateDataRow();
+                        dataRowCat.Set(Labels.Tag, category);
+                        FormatHelper.AddGrayAndBold(cellProps, cellidx);
+                        cellidx++;
+                        dataRowCat.Set(Labels.Definition, "");
+                        FormatHelper.AddGrayAndBold(cellProps, cellidx);
+                        cellidx++;
+                        dataRowCat.Set(Labels.Applicability, "");
+                        FormatHelper.AddGrayAndBold(cellProps, cellidx);
+                        cellidx++;
+                        data.AddRange(dataRowCat);
+                    }
                     List<StandardTag> tagsDoc = reportData.RuleExplorer.GetQualityStandardTagsApplicabilityByCategory(reportData.Application.DomainId, category).ToList();
                     foreach (var doc in tagsDoc)
                     {
@@ -71,7 +75,7 @@ namespace CastReporting.Reporting.Block.Table
                         cellidx++;
                         dataRow.Set(Labels.Applicability, doc.Applicable.Equals("true") ? Labels.Applicable : Labels.NotApplicable);
                         cellidx++;
-                        data.AddRange(dataRowCat);
+                        data.AddRange(dataRow);
                     }
                 }
             }
