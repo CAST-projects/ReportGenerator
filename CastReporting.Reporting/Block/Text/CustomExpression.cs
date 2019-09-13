@@ -15,14 +15,12 @@ namespace CastReporting.Reporting.Block.Text
         public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             string _metricFormat = options.GetOption("FORMAT", "N2");
-            string _params = options.GetOption("PARAMS", string.Empty);
+            string[] lstParams = options.GetOption("PARAMS", string.Empty).Split(' ');
             string _expr = options.GetOption("EXPR", string.Empty);
             string _snapshot = options.GetOption("SNAPSHOT", "CURRENT");
 
-            string[] lstParams = _params.Split(' ');
-
             if (reportData?.CurrentSnapshot == null) return Labels.NoData;
-            if (string.IsNullOrEmpty(_params)) return Labels.NoData;
+            if (lstParams.Length == 0) return Labels.NoData;
 
             if (_snapshot.Equals("PREVIOUS") && null != reportData.PreviousSnapshot)
             {

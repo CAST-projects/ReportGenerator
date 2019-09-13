@@ -34,6 +34,8 @@ namespace CastReporting.Reporting.Helper
                     return Labels.Violations;
                 case "CRITICAL_VIOLATIONS":
                     return Labels.ViolationsCritical;
+                case "CUSTOM":
+                    return Labels.Value;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -60,8 +62,8 @@ namespace CastReporting.Reporting.Helper
 
                 case "METRICS":
                     return MetricsUtility.GetMetricName(reportData, reportData.CurrentSnapshot, item) ?? Constants.No_Value;
+                case "CUSTOM":
                 case "MODULES":
-                    return item;
                 case "TECHNOLOGIES":
                     return item;
                 case "VIOLATIONS":
@@ -112,6 +114,10 @@ namespace CastReporting.Reporting.Helper
             int positionViolations = -1;
             List<string> criticalViolations = new List<string>();
             int positionCriticalViolations = -1;
+            List<string> customExpressions = new List<string>();
+            int positionCustomExpression = -1;
+            string[] lstParams = options.GetOption("PARAMS", string.Empty).Split(' ');
+            string[] customExprFormat = options.GetOption("FORMAT", string.Empty).Split('|');
 
             List<string> metricsToRemove = new List<string>();
 
@@ -278,6 +284,15 @@ namespace CastReporting.Reporting.Helper
                             criticalViolations.AddRange(_posConfig[i].Parameters);
                         }
                         break;
+                    case "CUSTOM_EXPRESSIONS":
+                        positionCustomExpression = i;
+                        if (_posConfig[i].Parameters.Length == 0 || lstParams.Length == 0) throw new ArgumentOutOfRangeException();
+                        customExpressions.AddRange(_posConfig[i].Parameters);
+                        if (customExprFormat.Length != customExpressions.Count)
+                        {
+                            customExprFormat = new [] {"N2"};
+                        }
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -340,7 +355,7 @@ namespace CastReporting.Reporting.Helper
                 string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
 
                 // case grade (quality indicator) or value (sizing measure or background fact)
-                if (violations.Count == 0 && criticalViolations.Count == 0)
+                if (violations.Count == 0 && criticalViolations.Count == 0 && customExpressions.Count == 0)
                 {
                     foreach (string _metricId in metrics)
                     {
@@ -380,6 +395,46 @@ namespace CastReporting.Reporting.Helper
                                 metricsToRemove.Add(_metricId);
                             }
                         }
+                    }
+                }
+
+                // case custom expressions
+                if (violations.Count == 0 && criticalViolations.Count == 0 && customExpressions.Count != 0)
+                {
+                    foreach (string expr in customExpressions)
+                    {
+                        string _metricFormat = customExprFormat[customExpressions.IndexOf(expr)];
+                        if (string.IsNullOrEmpty(_metricFormat)) _metricFormat = "N2";
+                        if (positionCustomExpression != -1) _posResults[positionCustomExpression] = expr;
+                        foreach (string snapshotParam in snapshotConfiguration)
+                        {
+                            string curValue = MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.CurrentSnapshot, expr, _metricFormat, false);
+                            string prevValue = reportData.PreviousSnapshot != null ? MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.PreviousSnapshot, expr, _metricFormat, false) : Labels.NoData;
+                            switch (snapshotParam)
+                            {
+                                case "CURRENT":
+                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), curValue);
+                                    break;
+                                case "PREVIOUS":
+                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), prevValue);
+                                    break;
+                                case "EVOL":
+                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
+                                    string evolValue = MetricsUtility.ComputeExpression(curValue + " - " + prevValue, _metricFormat, false);
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), evolValue);
+                                    break;
+                                case "EVOL_PERCENT":
+                                    if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
+                                    string evolPercentValue = FormatHelper.FormatPercent(double.Parse(MetricsUtility.ComputeExpression(curValue + " - " + prevValue, _metricFormat, false)));
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), evolPercentValue);
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
+                        }
+
                     }
                 }
 

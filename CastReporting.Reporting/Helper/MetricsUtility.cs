@@ -850,6 +850,11 @@ namespace CastReporting.Reporting
                 if (paramValue == null) return Labels.NoData;
                 expr = expr.Replace(param, paramValue.ToString());
             }
+            return ComputeExpression(expr, metricFormat, portfolioComponent);
+        }
+
+        public static string ComputeExpression(string expr, string metricFormat, bool portfolioComponent)
+        {
             DataTable dt = new DataTable();
             try
             {
