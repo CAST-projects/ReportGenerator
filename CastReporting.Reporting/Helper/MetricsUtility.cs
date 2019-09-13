@@ -2,8 +2,11 @@
 using CastReporting.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
+using Cast.Util.Log;
+using CastReporting.BLL.Computing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Helper;
 using CastReporting.Reporting.Languages;
@@ -801,6 +804,62 @@ namespace CastReporting.Reporting
                     return Labels.essentialComplexity;
                 default:
                     return string.Empty;
+            }
+        }
+
+        public static string CustomExpressionEvaluation(ReportData reportData, Dictionary<string, string> options, string[] lstParams, Snapshot snapshot, string expr, string metricFormat, bool portfolioComponent)
+        {
+            for (int i = 0; i < lstParams.Length; i += 2)
+            {
+                string param = lstParams[i + 1];
+                double? paramValue;
+
+                switch (lstParams[i])
+                {
+                    case "SZ":
+                        int sizingId = int.Parse(options.GetOption(lstParams[i + 1], "0"));
+                        if (sizingId == 0)
+                            return Labels.NoData;
+                        paramValue = MeasureUtility.GetSizingMeasure(snapshot, sizingId);
+                        break;
+
+                    case "QR":
+                        int qrId = int.Parse(options.GetOption(lstParams[i + 1], "0"));
+                        if (qrId == 0)
+                            return Labels.NoData;
+                        paramValue = BusinessCriteriaUtility.GetMetricValue(snapshot, qrId);
+                        break;
+
+                    case "BF":
+                        string bfId = options.GetOption(lstParams[i + 1], string.Empty);
+                        if (string.IsNullOrEmpty(bfId)) return Labels.NoData;
+                        Result bfValue;
+                        bfValue = reportData.SnapshotExplorer.GetBackgroundFacts(snapshot.Href, bfId).FirstOrDefault();
+                        if (bfValue != null && bfValue.ApplicationResults.Any())
+                        {
+                            paramValue = bfValue.ApplicationResults[0].DetailResult.Value;
+                        }
+                        else
+                        {
+                            return Labels.NoData;
+                        }
+                        break;
+                    default:
+                        return Labels.NoData;
+                }
+                if (paramValue == null) return Labels.NoData;
+                expr = expr.Replace(param, paramValue.ToString());
+            }
+            DataTable dt = new DataTable();
+            try
+            {
+                return double.Parse(dt.Compute(expr, "").ToString()).ToString(metricFormat);
+            }
+            catch (EvaluateException e)
+            {
+                if (portfolioComponent) return null;
+                LogHelper.LogError("Expression cannot be evaluate : " + e.Message);
+                return Labels.NoData;
             }
         }
     }
