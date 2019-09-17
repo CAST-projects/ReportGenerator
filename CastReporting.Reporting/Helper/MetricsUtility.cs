@@ -814,7 +814,7 @@ namespace CastReporting.Reporting
                 string param = lstParams[i + 1];
                 double? paramValue;
 
-                switch (lstParams[i])
+                switch (lstParams[i].ToUpper())
                 {
                     case "SZ":
                         int sizingId = int.Parse(options.GetOption(lstParams[i + 1], "0"));

@@ -34,7 +34,7 @@ namespace CastReporting.Reporting.Helper
                     return Labels.Violations;
                 case "CRITICAL_VIOLATIONS":
                     return Labels.ViolationsCritical;
-                case "CUSTOM":
+                case "CUSTOM_EXPRESSIONS":
                     return Labels.Value;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -62,7 +62,7 @@ namespace CastReporting.Reporting.Helper
 
                 case "METRICS":
                     return MetricsUtility.GetMetricName(reportData, reportData.CurrentSnapshot, item) ?? Constants.No_Value;
-                case "CUSTOM":
+                case "CUSTOM_EXPRESSIONS":
                 case "MODULES":
                 case "TECHNOLOGIES":
                     return item;
@@ -321,7 +321,7 @@ namespace CastReporting.Reporting.Helper
                 }
             }
             // implicit metrics
-            if (metrics.Count == 0)
+            if (metrics.Count == 0 && customExpressions.Count == 0)
             {
                 string[] metricConfiguration = options.GetOption("METRICS")?.Split('|');
                 if (metricConfiguration != null)
@@ -403,29 +403,33 @@ namespace CastReporting.Reporting.Helper
                 {
                     foreach (string expr in customExpressions)
                     {
-                        string _metricFormat = customExprFormat[customExpressions.IndexOf(expr)];
-                        if (string.IsNullOrEmpty(_metricFormat)) _metricFormat = "N2";
+                        int idxExpr = customExpressions.IndexOf(expr);
+                        string _metricFormat = idxExpr > customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
                         if (positionCustomExpression != -1) _posResults[positionCustomExpression] = expr;
                         foreach (string snapshotParam in snapshotConfiguration)
                         {
-                            string curValue = MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.CurrentSnapshot, expr, _metricFormat, false);
-                            string prevValue = reportData.PreviousSnapshot != null ? MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.PreviousSnapshot, expr, _metricFormat, false) : Labels.NoData;
                             switch (snapshotParam)
                             {
                                 case "CURRENT":
+                                    string curValueC = MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.CurrentSnapshot, expr, _metricFormat, false);
                                     if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.CurrentSnapshot);
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), curValue);
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), curValueC);
                                     break;
                                 case "PREVIOUS":
+                                    string prevValueP = reportData.PreviousSnapshot != null ? MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.PreviousSnapshot, expr, _metricFormat, false) : Labels.NoData;
                                     if (positionSnapshots != -1) _posResults[positionSnapshots] = SnapshotUtility.GetSnapshotNameVersion(reportData.PreviousSnapshot);
-                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), prevValue);
+                                    results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), prevValueP);
                                     break;
                                 case "EVOL":
+                                    string curValueE = MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.CurrentSnapshot, expr, _metricFormat, false);
+                                    string prevValueE = reportData.PreviousSnapshot != null ? MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.PreviousSnapshot, expr, _metricFormat, false) : Labels.NoData;
                                     if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.Evolution;
-                                    string evolValue = MetricsUtility.ComputeExpression(curValue + " - " + prevValue, _metricFormat, false);
+                                    string evolValue = MetricsUtility.ComputeExpression(curValueE + " - " + prevValueE, _metricFormat, false);
                                     results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), evolValue);
                                     break;
                                 case "EVOL_PERCENT":
+                                    string curValue = MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.CurrentSnapshot, expr, _metricFormat, false);
+                                    string prevValue = reportData.PreviousSnapshot != null ? MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.PreviousSnapshot, expr, _metricFormat, false) : Labels.NoData;
                                     if (positionSnapshots != -1) _posResults[positionSnapshots] = Labels.EvolutionPercent;
                                     string evolPercentValue = FormatHelper.FormatPercent(double.Parse(MetricsUtility.ComputeExpression(curValue + " - " + prevValue, _metricFormat, false)));
                                     results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), evolPercentValue);
