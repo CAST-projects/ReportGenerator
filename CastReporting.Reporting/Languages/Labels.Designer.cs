@@ -160,6 +160,24 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Applicability.
+        /// </summary>
+        public static string Applicability {
+            get {
+                return ResourceManager.GetString("Applicability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Applicable.
+        /// </summary>
+        public static string Applicable {
+            get {
+                return ResourceManager.GetString("Applicable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Application.
         /// </summary>
         public static string Application {
@@ -606,6 +624,15 @@ namespace CastReporting.Reporting.Languages {
         public static string Defect {
             get {
                 return ResourceManager.GetString("Defect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Definition.
+        /// </summary>
+        public static string Definition {
+            get {
+                return ResourceManager.GetString("Definition", resourceCulture);
             }
         }
         
@@ -1096,6 +1123,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Not applicable.
+        /// </summary>
+        public static string NotApplicable {
+            get {
+                return ResourceManager.GetString("NotApplicable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à No violation.
         /// </summary>
         public static string NoViolation {
@@ -1569,6 +1605,15 @@ namespace CastReporting.Reporting.Languages {
         public static string Tables {
             get {
                 return ResourceManager.GetString("Tables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Standard Quality Tag.
+        /// </summary>
+        public static string Tag {
+            get {
+                return ResourceManager.GetString("Tag", resourceCulture);
             }
         }
         

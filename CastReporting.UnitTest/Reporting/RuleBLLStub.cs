@@ -40,6 +40,30 @@ namespace CastReporting.UnitTest.Reporting
             return res;
         }
 
+        [DeploymentItem(@".\Data\QualityStandardsCategorySTIGV4R8CAT1.json", "Data")]
+        [DeploymentItem(@".\Data\QualityStandardsCategorySTIGV4R8CAT2.json", "Data")]
+        [DeploymentItem(@".\Data\QualityStandardsCategorySTIGV4R8CAT3.json", "Data")]
+        public IEnumerable<StandardTag> GetQualityStandardTagsApplicabilityByCategory(string domain, string category)
+        {
+            List<StandardTag> res = null;
+            switch (category)
+            {
+                case "STIG-V4R8-CAT1":
+                    res = TestUtility.GetSampleResult<StandardTag>(@".\Data\QualityStandardsCategorySTIGV4R8CAT1.json").ToList();
+                    break;
+                case "STIG-V4R8-CAT2":
+                    res = TestUtility.GetSampleResult<StandardTag>(@".\Data\QualityStandardsCategorySTIGV4R8CAT2.json").ToList();
+                    break;
+                case "STIG-V4R8-CAT3":
+                    res = TestUtility.GetSampleResult<StandardTag>(@".\Data\QualityStandardsCategorySTIGV4R8CAT3.json").ToList();
+                    break;
+                default:
+                    res = TestUtility.GetSampleResult<StandardTag>(@".\Data\QualityStandardsCategorySTIGV4R8CAT1.json").ToList();
+                    break;
+            }
+            return res;
+        }
+
         [DeploymentItem(@".\Data\RuleViolation1634.json", "Data")]
         [DeploymentItem(@".\Data\RuleViolation1634Previous.json", "Data")]
         public IEnumerable<Result> GetRulesViolations(string snapshotHRef, string ruleId)

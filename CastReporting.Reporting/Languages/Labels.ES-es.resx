@@ -765,4 +765,19 @@
   <data name="AssociatedValue" xml:space="preserve">
     <value>Valor asociado</value>
   </data>
+  <data name="Applicability" xml:space="preserve">
+    <value>Aplicabilidad</value>
+  </data>
+  <data name="Applicable" xml:space="preserve">
+    <value>Aplicable</value>
+  </data>
+  <data name="Definition" xml:space="preserve">
+    <value>Definición</value>
+  </data>
+  <data name="NotApplicable" xml:space="preserve">
+    <value>No aplicable</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>Etiqueta de calidad estándar</value>
+  </data>
 </root>

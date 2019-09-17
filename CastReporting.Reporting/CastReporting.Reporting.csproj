@@ -63,6 +63,7 @@
     <Compile Include="Block\Graph\TrendTechDebtPortfolio.cs" />
     <Compile Include="Block\Table\AETPList.cs" />
     <Compile Include="Block\Table\AEFPList.cs" />
+    <Compile Include="Block\Table\ListTagsDocByCategory.cs" />
     <Compile Include="Block\Table\QualityTagsRulesEvolution.cs" />
     <Compile Include="Block\Table\QualityStandardsEvolution.cs" />
     <Compile Include="Block\Table\RulesListLargestVariation.cs" />
