@@ -24,9 +24,9 @@ namespace CastReporting.Reporting.Block.Text
 
             if (_snapshot.Equals("PREVIOUS") && null != reportData.PreviousSnapshot)
             {
-                return MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.PreviousSnapshot, _expr, _metricFormat, false);
+                return MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.PreviousSnapshot, _expr, _metricFormat, null, string.Empty);
             }
-            return MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.CurrentSnapshot, _expr, _metricFormat, false);
+            return MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.CurrentSnapshot, _expr, _metricFormat, null, string.Empty);
 
         }
 

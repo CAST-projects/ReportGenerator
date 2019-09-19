@@ -29,7 +29,7 @@ namespace CastReporting.UnitTest.Reporting
         [DeploymentItem(@".\Data\BusinessValue.json", "Data")]
         public IEnumerable<Result> GetBackgroundFacts(string snapshotHref, string backgroundFacts, bool modules, bool technologies)
         {
-            string[] _sample5Gpt = {"10152", "10154", "10161"};
+            string[] _sample5Gpt = {"10152", "10154", "10161", "61111"};
             if (_sample5Gpt.Contains(backgroundFacts)) return new List<Result>();
             IEnumerable<Result> res = TestUtility.GetSampleResult<Result>(@".\Data\BusinessValue.json").ToList();
             return res;

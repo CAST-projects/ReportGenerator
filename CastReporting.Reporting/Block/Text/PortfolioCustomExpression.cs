@@ -34,7 +34,7 @@ namespace CastReporting.Reporting.Block.Text
                 Snapshot currentSnap = _app.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
                 if (currentSnap == null) continue;
 
-                string value = MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, currentSnap, _expr, _metricFormat, true);
+                string value = MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, currentSnap, _expr, _metricFormat, null, string.Empty, true);
 
                 if (!string.IsNullOrEmpty(value))
                 {

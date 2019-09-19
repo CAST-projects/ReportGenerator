@@ -947,5 +947,49 @@ namespace CastReporting.UnitTest.Reporting.Tables
             expectedData.AddRange(new List<string> { "Snap_v1.1.3 - v1.1.3", "103.81", "2.82" });
             TestUtility.AssertTableContent(table, expectedData, 3, 3);
         }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\ModulesDreamTeam.json", "Data")]
+        [DeploymentItem(@".\Data\DreamTeamSnap15MetricsCustom.json", "Data")]
+        [DeploymentItem(@".\Data\DreamTeamSnap3MetricsCustom.json", "Data")]
+        public void TestCustomExpressionsForModules()
+        {
+            ReportData reportData = TestUtility.PrepaReportData("Dream Team",
+                @".\Data\ModulesDreamTeam.json", @".\Data\DreamTeamSnap15MetricsCustom.json", "AED3/applications/7/snapshots/15", "ADGAutoSnap_Dream Team_4", "4",
+                @".\Data\ModulesDreamTeam.json", @".\Data\DreamTeamSnap3MetricsCustom.json", "AED3/applications/7/snapshots/3", "ADGAutoSnap_Dream Team_1", "1");
+            var component = new GenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "CUSTOM_EXPRESSIONS"},
+                {"ROW1", "MODULES"},
+                {"CUSTOM_EXPRESSIONS", "a/b|(c+d)/2"},
+                {"PARAMS", "Sz a SZ b QR c QR d"},
+                {"a", "67211"},
+                {"b", "10151"},
+                {"c", "60013"},
+                {"d", "60014"},
+                {"MODULES", "ALL"},
+                {"SNAPSHOTS", "CURRENT"}
+            };
+            WSConnection connection = new WSConnection
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Modules", "a/b", "(c+d)/2" });
+            expectedData.AddRange(new List<string> { "Adg", "0.44", "2.27" });
+            expectedData.AddRange(new List<string> { "Central", "No data found", "No data found" });
+            expectedData.AddRange(new List<string> { "DssAdmin", "0.22", "3.31" });
+            expectedData.AddRange(new List<string> { "Pchit", "0.15", "2.80" });
+            TestUtility.AssertTableContent(table, expectedData, 3, 5);
+        }
     }
+
 }
