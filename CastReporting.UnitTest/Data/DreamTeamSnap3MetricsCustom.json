@@ -28,7 +28,32 @@
         "result": {
           "value": 65639
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 1287
+            }
+          },
+          {
+            "technology": "C++",
+            "result": {
+              "value": 20123
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 44229
+            }
+          },
+          {
+            "technology": "PL/SQL",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
         "moduleResults": [
           {
             "number": 1,
@@ -39,7 +64,14 @@
             "result": {
               "value": 44229
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 44229
+                }
+              }
+            ]
           },
           {
             "number": 1,
@@ -50,7 +82,14 @@
             "result": {
               "value": 0
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": "PL/SQL",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
           },
           {
             "number": 1,
@@ -61,7 +100,14 @@
             "result": {
               "value": 20123
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": "C++",
+                "result": {
+                  "value": 20123
+                }
+              }
+            ]
           },
           {
             "number": 1,
@@ -72,7 +118,14 @@
             "result": {
               "value": 1287
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 1287
+                }
+              }
+            ]
           }
         ],
         "transactionResults": []
@@ -89,7 +142,26 @@
         "result": {
           "grade": 2.058925450395647
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 3.1675970997502203
+            }
+          },
+          {
+            "technology": "C++",
+            "result": {
+              "grade": 3.3564486656912345
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 2.2129656646322062
+            }
+          }
+        ],
         "moduleResults": [
           {
             "number": 1,
@@ -100,7 +172,14 @@
             "result": {
               "grade": 2.2129656646322062
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "grade": 2.2129656646322067
+                }
+              }
+            ]
           },
           {
             "number": 1,
@@ -111,7 +190,14 @@
             "result": {
               "grade": 3.3564486656912345
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": "C++",
+                "result": {
+                  "grade": 3.3564486656912345
+                }
+              }
+            ]
           },
           {
             "number": 1,
@@ -122,7 +208,14 @@
             "result": {
               "grade": 3.1675970997502203
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "grade": 3.1675970997502203
+                }
+              }
+            ]
           }
         ],
         "transactionResults": []
@@ -139,7 +232,26 @@
         "result": {
           "grade": 2.327116818075938
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "grade": 2.3333333333333335
+            }
+          },
+          {
+            "technology": "C++",
+            "result": {
+              "grade": 3.279120332391459
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "grade": 2.3333333333333335
+            }
+          }
+        ],
         "moduleResults": [
           {
             "number": 1,
@@ -150,7 +262,14 @@
             "result": {
               "grade": 2.3333333333333335
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "grade": 2.3333333333333335
+                }
+              }
+            ]
           },
           {
             "number": 1,
@@ -161,7 +280,14 @@
             "result": {
               "grade": 3.279120332391459
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": "C++",
+                "result": {
+                  "grade": 3.279120332391459
+                }
+              }
+            ]
           },
           {
             "number": 1,
@@ -172,7 +298,14 @@
             "result": {
               "grade": 2.3333333333333335
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "grade": 2.3333333333333335
+                }
+              }
+            ]
           }
         ],
         "transactionResults": []
@@ -188,7 +321,32 @@
         "result": {
           "value": 24818
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": ".NET",
+            "result": {
+              "value": 228
+            }
+          },
+          {
+            "technology": "C++",
+            "result": {
+              "value": 4480
+            }
+          },
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 20110
+            }
+          },
+          {
+            "technology": "PL/SQL",
+            "result": {
+              "value": 0
+            }
+          }
+        ],
         "moduleResults": [
           {
             "number": 1,
@@ -199,7 +357,14 @@
             "result": {
               "value": 20110
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": "JEE",
+                "result": {
+                  "value": 20110
+                }
+              }
+            ]
           },
           {
             "number": 1,
@@ -210,7 +375,14 @@
             "result": {
               "value": 0
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": "PL/SQL",
+                "result": {
+                  "value": 0
+                }
+              }
+            ]
           },
           {
             "number": 1,
@@ -221,7 +393,14 @@
             "result": {
               "value": 4480
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": "C++",
+                "result": {
+                  "value": 4480
+                }
+              }
+            ]
           },
           {
             "number": 1,
@@ -232,7 +411,14 @@
             "result": {
               "value": 228
             },
-            "technologyResults": []
+            "technologyResults": [
+              {
+                "technology": ".NET",
+                "result": {
+                  "value": 228
+                }
+              }
+            ]
           }
         ],
         "transactionResults": []

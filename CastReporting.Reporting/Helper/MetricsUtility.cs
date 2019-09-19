@@ -815,7 +815,7 @@ namespace CastReporting.Reporting
                 string _id = options.GetOption(lstParams[i + 1], "0");
                 if (string.IsNullOrEmpty(_id))
                     return Labels.NoData;
-                double? _value = GetMetricNameAndResult(reportData, snapshot, _id, module, string.Empty, true)?.result;
+                double? _value = GetMetricNameAndResult(reportData, snapshot, _id, module, technology, true)?.result;
                 if (_value == null) return Labels.NoData;
                 expr = expr.Replace(param, _value.ToString());
             }
