@@ -785,8 +785,6 @@ namespace CastReporting.Reporting.Helper
                             foreach (string techno in technologies)
                             {
                                 _posResults[positionTechnologies] = techno;
-                                string _metricAggregator = idxExpr < metricsAggregators.Length ? metricsAggregators[idxExpr] : "AVERAGE";
-                                if (string.IsNullOrEmpty(_metricAggregator)) _metricAggregator = "AVERAGE";
                                 string value = MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, lastApplicationSnapshots[_app], expr, _metricFormat, null, techno);
                                 results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
                             }

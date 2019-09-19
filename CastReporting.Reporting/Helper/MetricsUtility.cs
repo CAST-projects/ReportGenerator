@@ -6,7 +6,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using Cast.Util.Log;
-using CastReporting.BLL.Computing;
 using CastReporting.Reporting.ReportingModel;
 using CastReporting.Reporting.Helper;
 using CastReporting.Reporting.Languages;
@@ -823,8 +822,6 @@ namespace CastReporting.Reporting
         public static double? CustomExpressionEvaluationIn(ReportData reportData, Dictionary<string, string> options, string[] lstParams, Snapshot snapshot, string expr, string metricFormat, Module module, string technology, bool portfolio = false)
         {
             expr = CreateExpression(reportData, options, lstParams, snapshot, expr, module, technology);
-            DataTable dt = new DataTable();
-
             return CalculateExpression(expr, true);
         }
 

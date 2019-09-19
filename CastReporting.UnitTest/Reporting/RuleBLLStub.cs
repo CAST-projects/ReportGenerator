@@ -45,7 +45,7 @@ namespace CastReporting.UnitTest.Reporting
         [DeploymentItem(@".\Data\QualityStandardsCategorySTIGV4R8CAT3.json", "Data")]
         public IEnumerable<StandardTag> GetQualityStandardTagsApplicabilityByCategory(string domain, string category)
         {
-            List<StandardTag> res = null;
+            List<StandardTag> res;
             switch (category)
             {
                 case "STIG-V4R8-CAT1":
