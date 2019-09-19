@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CastReporting.Reporting.Block.Graph;
 using CastReporting.Reporting.ReportingModel;
 
-namespace CastReporting.UnitTest.Reporting.Tables
+namespace CastReporting.UnitTest.Reporting.Graph
 {
     [TestClass]
     public class PortfolioGenericGraphTests

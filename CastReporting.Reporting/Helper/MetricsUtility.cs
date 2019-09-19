@@ -807,19 +807,65 @@ namespace CastReporting.Reporting
             }
         }
 
+        public static string CustomExpressionEvaluationAggregated(ReportData reportData, Dictionary<string, string> options, string[] lstParams, List<Snapshot> snapshots, string expr, string metricFormat, Module module, string technology, string aggregator)
+        {
+            List<double?> results = snapshots.Select(snapshot => CustomExpressionEvaluationIn(reportData, options, lstParams, snapshot, expr, metricFormat, module, technology, true)).ToList();
+            double? res = AggregateValues(aggregator, results);
+            return res?.ToString(metricFormat) ?? Labels.NoData;
+        }
+
         public static string CustomExpressionEvaluation(ReportData reportData, Dictionary<string, string> options, string[] lstParams, Snapshot snapshot, string expr, string metricFormat, Module module, string technology, bool portfolio=false)
+        {
+            expr = CreateExpression(reportData, options, lstParams, snapshot, expr, module, technology);
+            return ComputeExpression(expr, metricFormat, portfolio);
+        }
+
+        public static double? CustomExpressionEvaluationIn(ReportData reportData, Dictionary<string, string> options, string[] lstParams, Snapshot snapshot, string expr, string metricFormat, Module module, string technology, bool portfolio = false)
+        {
+            expr = CreateExpression(reportData, options, lstParams, snapshot, expr, module, technology);
+            DataTable dt = new DataTable();
+
+            return CalculateExpression(expr, true);
+        }
+
+        private static string CreateExpression(ReportData reportData, Dictionary<string, string> options, string[] lstParams, Snapshot snapshot, string expr, Module module, string technology)
         {
             for (int i = 0; i < lstParams.Length; i += 2)
             {
                 string param = lstParams[i + 1];
                 string _id = options.GetOption(lstParams[i + 1], "0");
                 if (string.IsNullOrEmpty(_id))
-                    return Labels.NoData;
+                    return expr;
                 double? _value = GetMetricNameAndResult(reportData, snapshot, _id, module, technology, true)?.result;
-                if (_value == null) return Labels.NoData;
+                if (_value == null) return expr;
                 expr = expr.Replace(param, _value.ToString());
             }
-            return ComputeExpression(expr, metricFormat, portfolio);
+            return expr;
+        }
+
+        public static double? AggregateValues(string aggregator, List<double?> values)
+        {
+            double? res = 0;
+            switch (aggregator)
+            {
+                case "SUM":
+                    res = values.Aggregate(res, (current, result) => result.HasValue ? current + result.Value : current);
+                    break;
+                case "AVERAGE":
+                    int nbCurRes = 0;
+                    foreach (var _result in values)
+                    {
+                        if (!_result.HasValue) continue;
+                        res = res + _result.Value;
+                        nbCurRes++;
+                    }
+                    res = nbCurRes != 0 ? res / nbCurRes : null;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return res;
         }
 
         public static string ComputeExpression(string expr, string metricFormat, bool portfolioComponent)
@@ -827,13 +873,29 @@ namespace CastReporting.Reporting
             DataTable dt = new DataTable();
             try
             {
-                return double.Parse(dt.Compute(expr, "").ToString()).ToString(metricFormat);
+                double? res = double.Parse(dt.Compute(expr, "").ToString());
+                return res.Value.Equals(double.NaN) ? Labels.NoData : res.Value.ToString(metricFormat);
             }
             catch (EvaluateException e)
             {
                 if (portfolioComponent) return null;
                 LogHelper.LogError("Expression cannot be evaluate : " + e.Message);
                 return Labels.NoData;
+            }
+        }
+
+        public static double? CalculateExpression(string expr, bool portfolioComponent)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                return double.Parse(dt.Compute(expr, "").ToString());
+            }
+            catch (EvaluateException e)
+            {
+                if (portfolioComponent) return null;
+                LogHelper.LogError("Expression cannot be evaluate : " + e.Message);
+                return null;
             }
         }
     }

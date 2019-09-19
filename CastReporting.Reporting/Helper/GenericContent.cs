@@ -404,7 +404,8 @@ namespace CastReporting.Reporting.Helper
                     foreach (string expr in customExpressions)
                     {
                         int idxExpr = customExpressions.IndexOf(expr);
-                        string _metricFormat = idxExpr > customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
+                        string _metricFormat = idxExpr < customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
+                        if (string.IsNullOrEmpty(_metricFormat)) _metricFormat = "N2";
                         if (positionCustomExpression != -1) _posResults[positionCustomExpression] = expr;
                         foreach (string snapshotParam in snapshotConfiguration)
                         {
@@ -610,7 +611,8 @@ namespace CastReporting.Reporting.Helper
                     foreach (string expr in customExpressions)
                     {
                         int idxExpr = customExpressions.IndexOf(expr);
-                        string _metricFormat = idxExpr > customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
+                        string _metricFormat = idxExpr < customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
+                        if (string.IsNullOrEmpty(_metricFormat)) _metricFormat = "N2";
                         if (positionCustomExpression != -1) _posResults[positionCustomExpression] = expr;
                         foreach (Module module in modules)
                         {
@@ -830,7 +832,8 @@ namespace CastReporting.Reporting.Helper
                     foreach (string expr in customExpressions)
                     {
                         int idxExpr = customExpressions.IndexOf(expr);
-                        string _metricFormat = idxExpr > customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
+                        string _metricFormat = idxExpr < customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
+                        if (string.IsNullOrEmpty(_metricFormat)) _metricFormat = "N2";
                         if (positionCustomExpression != -1) _posResults[positionCustomExpression] = expr;
 
                         foreach (string techno in technologies)
@@ -1056,7 +1059,8 @@ namespace CastReporting.Reporting.Helper
                     foreach (string expr in customExpressions)
                     {
                         int idxExpr = customExpressions.IndexOf(expr);
-                        string _metricFormat = idxExpr > customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
+                        string _metricFormat = idxExpr < customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
+                        if (string.IsNullOrEmpty(_metricFormat)) _metricFormat = "N2";
                         if (positionCustomExpression != -1) _posResults[positionCustomExpression] = expr;
 
                         foreach (Module module in modules)
