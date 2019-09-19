@@ -96,7 +96,7 @@ namespace CastReporting.UnitTest.Reporting.Text
 
         [TestMethod]
         [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
-        [DeploymentItem(@".\Data\BackFacts.json", "Data")]
+        [DeploymentItem(@".\Data\BusinessValue.json", "Data")]
         public void TestBfContent()
         {
             CastDate currentDate = new CastDate { Time = 1484953200000 };
@@ -124,12 +124,13 @@ namespace CastReporting.UnitTest.Reporting.Text
                 {"FORMAT", "N0" }
             };
             var str = component.Content(reportData, config);
-            Assert.AreEqual("10,631", str);
+            Assert.AreEqual("7,087", str);
 
         }
 
         [TestMethod]
         [DeploymentItem(@".\Data\CurrentBCresults.json", "Data")]
+        [DeploymentItem(@".\Data\BusinessValue.json", "Data")]
         public void TestErrorContent()
         {
             CastDate currentDate = new CastDate { Time = 1484953200000 };
@@ -143,8 +144,18 @@ namespace CastReporting.UnitTest.Reporting.Text
                 {"PARAMS", "BC a BC b"},
                 {"EXPR", "(a+b)/2"},
                 {"a","60012"},
-                {"b", "60013"}
+                {"b", "61111"}
             };
+            WSConnection connection = new WSConnection
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+
             var str = component.Content(reportData, config);
             Assert.AreEqual("No data found", str);
         }

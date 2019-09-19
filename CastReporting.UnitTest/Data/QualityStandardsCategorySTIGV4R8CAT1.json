@@ -1,0 +1,34 @@
+﻿[
+{
+    "standard": "STIG-V4R8",
+    "id": "STIG-V-69567",
+    "name": "The application must only store cryptographic representations of passwords.",
+    "reference": null,
+    "description": null,
+    "applicable": false
+  },
+  {
+    "standard": "STIG-V4R8",
+    "id": "STIG-V-69569",
+    "name": "The application must transmit only cryptographically-protected passwords.",
+    "reference": null,
+    "description": null,
+    "applicable": true
+  },
+  {
+    "standard": "STIG-V4R8",
+    "id": "STIG-V-70149",
+    "name": "The application, when utilizing PKI-based authentication, must validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor.",
+    "reference": null,
+    "description": null,
+    "applicable": false
+  },
+  {
+    "standard": "STIG-V4R8",
+    "id": "STIG-V-70157",
+    "name": "The application must not display passwords/PINs as clear text.",
+    "reference": null,
+    "description": null,
+    "applicable": true
+  }
+]

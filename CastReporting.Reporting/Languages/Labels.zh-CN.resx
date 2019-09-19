@@ -765,4 +765,19 @@
   <data name="AssociatedValue" xml:space="preserve">
     <value>相关价值</value>
   </data>
+  <data name="Applicability" xml:space="preserve">
+    <value>适用性</value>
+  </data>
+  <data name="Applicable" xml:space="preserve">
+    <value>适用</value>
+  </data>
+  <data name="Definition" xml:space="preserve">
+    <value>定义</value>
+  </data>
+  <data name="NotApplicable" xml:space="preserve">
+    <value>不适用</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>标准质量标签</value>
+  </data>
 </root>

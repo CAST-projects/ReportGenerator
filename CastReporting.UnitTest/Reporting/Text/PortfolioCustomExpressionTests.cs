@@ -131,7 +131,7 @@ namespace CastReporting.UnitTest.Reporting.Text
         [DeploymentItem(@".\Data\AAD2App3Snap4Results.json", "Data")]
         [DeploymentItem(@".\Data\AADApplication2Snap.json", "Data")]
         [DeploymentItem(@".\Data\AAD2App24Snap12Results.json", "Data")]
-        [DeploymentItem(@".\Data\BackFacts.json", "Data")]
+        [DeploymentItem(@".\Data\BusinessValue.json", "Data")]
         public void TestBfContent()
         {
             List<string> snapList = new List<string> { @".\Data\AADApplication1Snap.json", @".\Data\AADApplication2Snap.json" };
@@ -181,7 +181,7 @@ namespace CastReporting.UnitTest.Reporting.Text
                 {"FORMAT", "N0" }
             };
             var str = component.Content(reportData, config);
-            Assert.AreEqual("77,335", str);
+            Assert.AreEqual("51,556", str);
 
         }
 
@@ -191,6 +191,7 @@ namespace CastReporting.UnitTest.Reporting.Text
         [DeploymentItem(@".\Data\AAD2App3Snap4Results.json", "Data")]
         [DeploymentItem(@".\Data\AADApplication2Snap.json", "Data")]
         [DeploymentItem(@".\Data\AAD2App24Snap12Results.json", "Data")]
+        [DeploymentItem(@".\Data\BusinessValue.json", "Data")]
         public void TestErrorContent()
         {
             List<string> snapList = new List<string> { @".\Data\AADApplication1Snap.json", @".\Data\AADApplication2Snap.json" };
@@ -219,6 +220,15 @@ namespace CastReporting.UnitTest.Reporting.Text
                 }
             }
 
+            WSConnection connection = new WSConnection
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
 
             var component = new PortfolioCustomExpression();
             Dictionary<string, string> config = new Dictionary<string, string>
@@ -226,7 +236,7 @@ namespace CastReporting.UnitTest.Reporting.Text
                 {"PARAMS", "QR a QR b"},
                 {"EXPR", "(a+b)/2"},
                 {"a","60012"},
-                {"b", "60013"}
+                {"b", "61111"}
             };
             var str = component.Content(reportData, config);
             Assert.AreEqual("No data found", str);

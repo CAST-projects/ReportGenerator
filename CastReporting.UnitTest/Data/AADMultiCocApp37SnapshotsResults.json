@@ -56,7 +56,20 @@
         "result": {
           "value": 13732
         },
-        "technologyResults": [],
+        "technologyResults": [
+          {
+            "technology": "JEE",
+            "result": {
+              "value": 123
+            }
+          },
+          {
+            "technology": "SQL Analyzer",
+            "result": {
+              "value": 25
+            }
+          }
+        ],
         "moduleResults": [],
         "transactionResults": []
       },

@@ -1,12 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using Cast.Util.Log;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using CastReporting.BLL.Computing;
-using CastReporting.Domain;
 using CastReporting.Reporting.Languages;
 using CastReporting.Reporting.Helper;
 
@@ -20,92 +15,21 @@ namespace CastReporting.Reporting.Block.Text
         public override string Content(ReportData reportData, Dictionary<string, string> options)
         {
             string _metricFormat = options.GetOption("FORMAT", "N2");
-            string _params = options.GetOption("PARAMS", string.Empty);
+            string[] lstParams = options.GetOption("PARAMS", string.Empty).Split(' ');
             string _expr = options.GetOption("EXPR", string.Empty);
             string _snapshot = options.GetOption("SNAPSHOT", "CURRENT");
 
-            string[] lstParams = _params.Split(' ');
-
             if (reportData?.CurrentSnapshot == null) return Labels.NoData;
-            if (string.IsNullOrEmpty(_params)) return Labels.NoData;
-            for (int i = 0; i < lstParams.Length; i += 2)
+            if (lstParams.Length == 0) return Labels.NoData;
+
+            if (_snapshot.Equals("PREVIOUS") && null != reportData.PreviousSnapshot)
             {
-                string param = lstParams[i + 1];
-                double? paramValue;
-
-                switch (lstParams[i])
-                {
-                    case "SZ":
-                        int sizingId = int.Parse(options.GetOption(lstParams[i + 1], "0"));
-                        if (sizingId == 0)
-                            return Labels.NoData;
-                        double? sizingValue;
-                        if (_snapshot.Equals("PREVIOUS") && null != reportData.PreviousSnapshot)
-                        {
-                            sizingValue = MeasureUtility.GetSizingMeasure(reportData.PreviousSnapshot, sizingId);
-                        }
-                        else
-                        {
-                            sizingValue = MeasureUtility.GetSizingMeasure(reportData.CurrentSnapshot, sizingId);
-                        }
-                        paramValue = sizingValue;
-                        break;
-
-                    case "QR":
-                        int qrId = int.Parse(options.GetOption(lstParams[i + 1], "0"));
-                        if (qrId == 0)
-                            return Labels.NoData;
-                        double? qrGrade;
-                        if (_snapshot.Equals("PREVIOUS") && null != reportData.PreviousSnapshot)
-                        {
-                            qrGrade = BusinessCriteriaUtility.GetMetricValue(reportData.PreviousSnapshot, qrId);
-                        }
-                        else
-                        {
-                            qrGrade = BusinessCriteriaUtility.GetMetricValue(reportData.CurrentSnapshot, qrId);
-                        }
-                        paramValue = qrGrade;
-                        break;
-
-                    case "BF":
-                        string bfId = options.GetOption(lstParams[i + 1], string.Empty);
-                        if (string.IsNullOrEmpty(bfId)) return Labels.NoData;
-                        Result bfValue;
-                        if (_snapshot.Equals("PREVIOUS") && null != reportData.PreviousSnapshot)
-                        {
-                            bfValue = reportData.SnapshotExplorer.GetBackgroundFacts(reportData.PreviousSnapshot.Href, bfId).FirstOrDefault();
-                        }
-                        else
-                        {
-                            bfValue = reportData.SnapshotExplorer.GetBackgroundFacts(reportData.CurrentSnapshot.Href, bfId).FirstOrDefault();
-                        }
-                        if (bfValue != null && bfValue.ApplicationResults.Any())
-                        {
-                            paramValue = bfValue.ApplicationResults[0].DetailResult.Value;
-                        }
-                        else
-                        {
-                            return Labels.NoData;
-                        }
-                        break;
-                    default:
-                        return Labels.NoData;
-                }
-                if (paramValue == null) return Labels.NoData;
-                _expr = _expr.Replace(param, paramValue.ToString());
-
+                return MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.PreviousSnapshot, _expr, _metricFormat, null, string.Empty);
             }
-            DataTable dt = new DataTable();
-            try
-            {
-                return double.Parse(dt.Compute(_expr, "").ToString()).ToString(_metricFormat);
-            }
-            catch (EvaluateException e)
-            {
-                LogHelper.LogError("Expression cannot be evaluate : " + e.Message);
-                return Labels.NoData;
-            }
+            return MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, reportData.CurrentSnapshot, _expr, _metricFormat, null, string.Empty);
+
         }
+
         #endregion METHODS
     }
 
