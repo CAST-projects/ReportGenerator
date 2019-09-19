@@ -32,6 +32,8 @@ namespace CastReporting.Reporting.Helper
                     return Labels.ViolationsCritical;
                 case "TECHNOLOGIES":
                     return Labels.Technologies;
+                case "CUSTOM_EXPRESSIONS":
+                    return Labels.Value;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -50,6 +52,8 @@ namespace CastReporting.Reporting.Helper
                     }
                     return name ?? Constants.No_Value;
                 case "APPLICATIONS":
+                case "TECHNOLOGIES":
+                case "CUSTOM_EXPRESSIONS":
                     return item;
                 case "VIOLATIONS":
                     switch (item)
@@ -75,8 +79,6 @@ namespace CastReporting.Reporting.Helper
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
-                case "TECHNOLOGIES":
-                    return item;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -100,6 +102,10 @@ namespace CastReporting.Reporting.Helper
             int positionCriticalViolations = -1;
             List<string> technologies = new List<string>();
             int positionTechnologies = -1;
+            List<string> customExpressions = new List<string>();
+            int positionCustomExpression = -1;
+            string[] lstParams = options.GetOption("PARAMS", string.Empty).Split(' ');
+            string[] customExprFormat = options.GetOption("FORMAT", string.Empty).Split('|');
 
             List<string> metricsToRemove = new List<string>();
             Dictionary<Tuple<string, string, string, string>, string> results = new Dictionary<Tuple<string, string, string, string>, string>();
@@ -200,6 +206,19 @@ namespace CastReporting.Reporting.Helper
                         }
                         _posConfig[i].Parameters = technologies.ToArray();
                         break;
+                    case "CUSTOM_EXPRESSIONS":
+                        positionCustomExpression = i;
+                        if (_posConfig[i].Parameters.Length == 0 || lstParams.Length == 0) throw new ArgumentOutOfRangeException();
+                        customExpressions.AddRange(_posConfig[i].Parameters);
+                        if (customExprFormat.Length != customExpressions.Count)
+                        {
+                            customExprFormat = new[] { "N2" };
+                        }
+                        if (metricsAggregators == null)
+                        {
+                            metricsAggregators = new[] {"AVERAGE"};
+                        }
+                        break;
 
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -207,7 +226,7 @@ namespace CastReporting.Reporting.Helper
             }
 
             // implicit metrics
-            if (metricsAggregated.Count == 0) // use metricsAggregated to get the aggregator associated to a metric
+            if (metricsAggregated.Count == 0 && customExpressions.Count == 0) // use metricsAggregated to get the aggregator associated to a metric
             {
                 string[] metricConfiguration = options.GetOption("METRICS")?.Split('|');
                 if (metricConfiguration != null)
@@ -244,7 +263,7 @@ namespace CastReporting.Reporting.Helper
                 }
 
                 // case grade (quality indicator) or value (sizing measure or background fact)
-                if (violations.Count == 0 && criticalViolations.Count == 0)
+                if (violations.Count == 0 && criticalViolations.Count == 0 && customExpressions.Count == 0)
                 {
                     foreach (string _metricId in metricsAggregated.Keys)
                     {
@@ -268,6 +287,23 @@ namespace CastReporting.Reporting.Helper
                     }
                 }
 
+                // case custom expressions
+                if (violations.Count == 0 && criticalViolations.Count == 0 && customExpressions.Count != 0)
+                {
+                    foreach (string expr in customExpressions)
+                    {
+                        int idxExpr = customExpressions.IndexOf(expr);
+                        string _metricFormat = idxExpr < customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
+                        if (string.IsNullOrEmpty(_metricFormat)) _metricFormat = "N2";
+                        string _metricAggregator = idxExpr < metricsAggregators.Length ? metricsAggregators[idxExpr] : "AVERAGE";
+                        if (string.IsNullOrEmpty(_metricAggregator)) _metricAggregator = "AVERAGE";
+                        if (positionCustomExpression != -1) _posResults[positionCustomExpression] = expr;
+                        List<Snapshot> snapshots = lastApplicationSnapshots.Keys.Select(application => lastApplicationSnapshots[application]).ToList();
+                        string value = MetricsUtility.CustomExpressionEvaluationAggregated(reportData, options, lstParams, snapshots, expr, _metricFormat, null, string.Empty, _metricAggregator);
+                        results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                    }
+                }
+                
                 // case violations
                 if (violations.Count != 0 && criticalViolations.Count == 0)
                 {
@@ -382,7 +418,7 @@ namespace CastReporting.Reporting.Helper
             {
                 string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
                 // case grade
-                if (violations.Count == 0 && criticalViolations.Count == 0)
+                if (violations.Count == 0 && criticalViolations.Count == 0 && customExpressions.Count == 0)
                 {
                     foreach (string _metricId in metricsAggregated.Keys)
                     {
@@ -403,6 +439,25 @@ namespace CastReporting.Reporting.Helper
                                 LogHelper.LogDebug(e.Message);
                                 metricsToRemove.Add(_metricId);
                             }
+                        }
+                    }
+                }
+
+                // case custom expressions
+                if (violations.Count == 0 && criticalViolations.Count == 0 && customExpressions.Count != 0)
+                {
+                    foreach (string expr in customExpressions)
+                    {
+                        int idxExpr = customExpressions.IndexOf(expr);
+                        string _metricFormat = idxExpr < customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
+                        if (string.IsNullOrEmpty(_metricFormat)) _metricFormat = "N2";
+                        if (positionCustomExpression != -1) _posResults[positionCustomExpression] = expr;
+
+                        foreach (Application application in applications) // applications, no need to aggregate here, resuls by application
+                        {
+                            _posResults[positionApplications] = application.Name;
+                            string value = MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, lastApplicationSnapshots[application], expr, _metricFormat, null, string.Empty);
+                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
                         }
                     }
                 }
@@ -530,7 +585,7 @@ namespace CastReporting.Reporting.Helper
             {
                 string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
                 // case metrics
-                if (violations.Count == 0 && criticalViolations.Count == 0)
+                if (violations.Count == 0 && criticalViolations.Count == 0 && customExpressions.Count == 0)
                 {
                     foreach (string _metricId in metricsAggregated.Keys)
                     {
@@ -555,6 +610,29 @@ namespace CastReporting.Reporting.Helper
                         }
                     }
                 }
+
+                // case custom expressions
+                if (violations.Count == 0 && criticalViolations.Count == 0 && customExpressions.Count != 0)
+                {
+                    foreach (string expr in customExpressions)
+                    {
+                        int idxExpr = customExpressions.IndexOf(expr);
+                        string _metricFormat = idxExpr < customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
+                        if (string.IsNullOrEmpty(_metricFormat)) _metricFormat = "N2";
+                        if (positionCustomExpression != -1) _posResults[positionCustomExpression] = expr;
+
+                        foreach (string techno in technologies) 
+                        {
+                            _posResults[positionTechnologies] = techno;
+                            string _metricAggregator = idxExpr < metricsAggregators.Length ? metricsAggregators[idxExpr] : "AVERAGE";
+                            if (string.IsNullOrEmpty(_metricAggregator)) _metricAggregator = "AVERAGE";
+                            List<Snapshot> snapshots = lastApplicationSnapshots.Keys.Select(application => lastApplicationSnapshots[application]).ToList();
+                            string value = MetricsUtility.CustomExpressionEvaluationAggregated(reportData, options, lstParams, snapshots, expr, _metricFormat, null, techno, _metricAggregator);
+                            results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                        }
+                    }
+                }
+
                 // case violations
                 if (violations.Count != 0 && criticalViolations.Count == 0)
                 {
@@ -662,7 +740,7 @@ namespace CastReporting.Reporting.Helper
             {
                 string[] _posResults = { string.Empty, string.Empty, string.Empty, string.Empty };
                 // case metrics
-                if (violations.Count == 0 && criticalViolations.Count == 0)
+                if (violations.Count == 0 && criticalViolations.Count == 0 && customExpressions.Count == 0)
                 {
                     foreach (string _metricId in metricsAggregated.Keys)
                     {
@@ -690,6 +768,30 @@ namespace CastReporting.Reporting.Helper
                         }
                     }
                 }
+
+                // case custom expressions
+                if (violations.Count == 0 && criticalViolations.Count == 0 && customExpressions.Count != 0)
+                {
+                    foreach (string expr in customExpressions)
+                    {
+                        int idxExpr = customExpressions.IndexOf(expr);
+                        string _metricFormat = idxExpr < customExprFormat.Length ? customExprFormat[idxExpr] : "N2";
+                        if (string.IsNullOrEmpty(_metricFormat)) _metricFormat = "N2";
+                        if (positionCustomExpression != -1) _posResults[positionCustomExpression] = expr;
+
+                        foreach (Application _app in applications)
+                        {
+                            if (positionApplications != -1) _posResults[positionApplications] = _app.Name;
+                            foreach (string techno in technologies)
+                            {
+                                _posResults[positionTechnologies] = techno;
+                                string value = MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, lastApplicationSnapshots[_app], expr, _metricFormat, null, techno);
+                                results.Add(Tuple.Create(_posResults[0], _posResults[1], _posResults[2], _posResults[3]), value);
+                            }
+                        }
+                    }
+                }
+
                 // case violations
                 if (violations.Count != 0 && criticalViolations.Count == 0)
                 {

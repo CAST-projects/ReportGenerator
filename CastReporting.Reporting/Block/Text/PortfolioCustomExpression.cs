@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
-using CastReporting.BLL.Computing;
 using CastReporting.Domain;
 using CastReporting.Reporting.Languages;
 using CastReporting.Reporting.Helper;
@@ -34,71 +31,10 @@ namespace CastReporting.Reporting.Block.Text
             for (int k = 0; k < _allApps.Length; k++)
             {
                 Application _app = _allApps[k];
-                string _appExpr = _expr;
                 Snapshot currentSnap = _app.Snapshots.OrderByDescending(_ => _.Annotation.Date.DateSnapShot).First();
                 if (currentSnap == null) continue;
-                for (int i = 0; i < lstParams.Length; i += 2)
-                {
-                    string param = lstParams[i + 1];
-                    double? paramValue;
 
-                    switch (lstParams[i])
-                    {
-                        case "SZ":
-                            int sizingId = int.Parse(options.GetOption(lstParams[i + 1], "0"));
-                            if (sizingId == 0)
-                            {
-                                paramValue = null;
-                                break;
-                            }
-                            paramValue = MeasureUtility.GetSizingMeasure(currentSnap, sizingId);
-                            break;
-
-                        case "QR":
-                            int qrId = int.Parse(options.GetOption(lstParams[i + 1], "0"));
-                            if (qrId == 0)
-                            {
-                                paramValue = null;
-                                break;
-                            }
-                            paramValue = BusinessCriteriaUtility.GetMetricValue(currentSnap, qrId);
-                            break;
-
-                        case "BF":
-                            string bfId = options.GetOption(lstParams[i + 1], string.Empty);
-                            if (string.IsNullOrEmpty(bfId))
-                            {
-                                paramValue = null;
-                                break;
-                            }
-                            var bfValue = reportData.SnapshotExplorer.GetBackgroundFacts(currentSnap.Href, bfId).FirstOrDefault();
-                            if (bfValue != null && bfValue.ApplicationResults.Any())
-                            {
-                                paramValue = bfValue.ApplicationResults[0].DetailResult.Value;
-                            }
-                            else
-                            {
-                                paramValue = null;
-                            }
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-                    if (paramValue != null)
-                    {
-                        _appExpr = _appExpr.Replace(param, paramValue.ToString());
-                    }
-                }
-                DataTable dt = new DataTable();
-                string value;
-                try
-                {
-                    value = double.Parse(dt.Compute(_appExpr, "").ToString()).ToString(_metricFormat);
-                }
-                catch (EvaluateException)
-                {
-                    value = null;
-                }
+                string value = MetricsUtility.CustomExpressionEvaluation(reportData, options, lstParams, currentSnap, _expr, _metricFormat, null, string.Empty, true);
 
                 if (!string.IsNullOrEmpty(value))
                 {
@@ -109,7 +45,6 @@ namespace CastReporting.Reporting.Block.Text
                     strValues[k] = Labels.NoData;
                 }
             }
-
 
             if (_aggregator == "SUM")
             {

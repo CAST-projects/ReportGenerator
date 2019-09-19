@@ -527,5 +527,152 @@ namespace CastReporting.UnitTest.Reporting.Tables
             TestUtility.AssertTableContent(table, expectedData, 4, 4);
         }
 
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestCustomExpressionPortfolioLevel()
+        {
+            // COL1=APPLICATIONS,ROW1=METRICS,METRICS=TECHNICAL_SIZING, APPLICATIONS=ALL,AGGREGATORS=SUM
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+
+            var component = new PortfolioGenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "APPLICATIONS" },
+                {"ROW1", "CUSTOM_EXPRESSIONS"},
+                {"CUSTOM_EXPRESSIONS", "a/b"},
+                {"PARAMS", "SZ a SZ b" },
+                {"a", "10151" },
+                {"b", "10202" },
+                {"AGGREGATORS", "AVERAGE" },
+                {"APPLICATIONS", "ALL" }
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Value", "2 Applications" });
+            expectedData.AddRange(new List<string> { "a/b", "32.30" });
+            TestUtility.AssertTableContent(table, expectedData, 2, 2);
+        }
+
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestCustomExpressionEachApplications()
+        {
+            // COL1=APPLICATIONS,ROW1=METRICS,METRICS=TECHNICAL_SIZING, APPLICATIONS=ALL,AGGREGATORS=SUM
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+
+            var component = new PortfolioGenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "APPLICATIONS" },
+                {"ROW1", "CUSTOM_EXPRESSIONS"},
+                {"CUSTOM_EXPRESSIONS", "a/b"},
+                {"PARAMS", "SZ a SZ b" },
+                {"a", "10151" },
+                {"b", "10202" },
+                {"APPLICATIONS", "EACH" }
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Value", "ReportGenerator", "AADAEDAdmin" });
+            expectedData.AddRange(new List<string> { "a/b", "61.82", "2.77" });
+            TestUtility.AssertTableContent(table, expectedData, 3, 2);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestCustomExpressionEachTechnologies()
+        {
+            // COL1=APPLICATIONS,ROW1=METRICS,METRICS=TECHNICAL_SIZING, APPLICATIONS=ALL,AGGREGATORS=SUM
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            reportData.Applications[0].Technologies = new[] { ".NET" };
+            reportData.Applications[1].Technologies = new[] { "JEE", "SQL Analyzer" };
+
+            var component = new PortfolioGenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "CUSTOM_EXPRESSIONS" },
+                {"ROW1", "TECHNOLOGIES"},
+                {"CUSTOM_EXPRESSIONS", "a/b|c"},
+                {"PARAMS", "SZ a SZ b QR c" },
+                {"a", "10151" },
+                {"b", "10202" },
+                {"c", "60012" },
+                {"TECHNOLOGIES", "EACH" }
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Technologies", "a/b", "c" });
+            expectedData.AddRange(new List<string> { ".NET", "61.82", "2.55" });
+            expectedData.AddRange(new List<string> { "JEE", "102.84", "3.32" });
+            expectedData.AddRange(new List<string> { "SQL Analyzer", "1,018.16", "3.92" });
+            TestUtility.AssertTableContent(table, expectedData, 3, 4);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\AADMultiCocApplications.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37Snapshots.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp3SnapshotsResults.json", "Data")]
+        [DeploymentItem(@".\Data\AADMultiCocApp37SnapshotsResults.json", "Data")]
+        public void TestCustomExpressionEachApplicationEachTechnologies()
+        {
+            // COL1=APPLICATIONS,ROW1=METRICS,METRICS=TECHNICAL_SIZING, APPLICATIONS=ALL,AGGREGATORS=SUM
+            List<string> snapList = new List<string> { @".\Data\AADMultiCocApp3Snapshots.json", @".\Data\AADMultiCocApp37Snapshots.json" };
+            List<string> snapResultsList = new List<string> { @".\Data\AADMultiCocApp3SnapshotsResults.json", @".\Data\AADMultiCocApp37SnapshotsResults.json" };
+            ReportData reportData = TestUtility.PrepaPortfolioReportData(@".\Data\AADMultiCocApplications.json", snapList, snapResultsList);
+            reportData.Applications[0].Technologies = new[] { ".NET" };
+            reportData.Applications[1].Technologies = new[] { "JEE", "SQL Analyzer" };
+
+            var component = new PortfolioGenericTable();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"COL1", "CUSTOM_EXPRESSIONS" },
+                {"ROW1", "TECHNOLOGIES"},
+                {"ROW11", "APPLICATIONS"},
+                {"CUSTOM_EXPRESSIONS", "a/b|c"},
+                {"PARAMS", "SZ a SZ b QR c" },
+                {"a", "10151" },
+                {"b", "10202" },
+                {"c", "60012" },
+                {"APPLICATIONS", "EACH" },
+                {"TECHNOLOGIES", "EACH" }
+            };
+
+            var table = component.Content(reportData, config);
+            var expectedData = new List<string>();
+            expectedData.AddRange(new List<string> { "Technologies", "a/b", "c" });
+            expectedData.AddRange(new List<string> { ".NET", " ", " " });
+            expectedData.AddRange(new List<string> { "    ReportGenerator", "61.82", "2.55" });
+            expectedData.AddRange(new List<string> { "    AADAEDAdmin", "No data found", "No data found" });
+            expectedData.AddRange(new List<string> { "JEE", " ", " " });
+            expectedData.AddRange(new List<string> { "    ReportGenerator", "No data found", "No data found" });
+            expectedData.AddRange(new List<string> { "    AADAEDAdmin", "102.84", "3.32" });
+            expectedData.AddRange(new List<string> { "SQL Analyzer", " ", " " });
+            expectedData.AddRange(new List<string> { "    ReportGenerator", "No data found", "No data found" });
+            expectedData.AddRange(new List<string> { "    AADAEDAdmin", "1,018.16", "3.92" });
+            TestUtility.AssertTableContent(table, expectedData, 3, 10);
+        }
     }
 }
