@@ -36,6 +36,12 @@ namespace CastReporting.Reporting.Helper
             return value;
         }
 
+        public static double? GetDoubleOption(this Dictionary<string, string> options, string key, double? defaultValue = default(double?))
+        {
+            var s = options.GetOption(key);
+            return string.IsNullOrWhiteSpace(s) ? defaultValue : double.Parse(s);
+        }
+
         public static bool GetBoolOption(this Dictionary<string, string> options, string key, bool defaultValue = default(bool)) {
             bool value;
             var s = options.GetOption(key);

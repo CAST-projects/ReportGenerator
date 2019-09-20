@@ -39,6 +39,16 @@ namespace CastReporting.Reporting.Block.Table
             string order1 = options.GetOption("ORDER1", "desc");
             string order2 = options.GetOption("ORDER2", "desc");
             int nbLimitTop = options.GetIntOption("COUNT", 50);
+            double? lower1 = options.GetDoubleOption("LOWER1", null);
+            double? greater1 = options.GetDoubleOption("GREATER1", null);
+            double? lower2 = options.GetDoubleOption("LOWER2", null);
+            double? greater2 = options.GetDoubleOption("GREATER2", null);
+
+            if (lower1 != null && greater1 == null) order1 = "asc";
+            if (lower1 == null && greater1 != null) order1 = "desc";
+
+            if (lower2 != null && greater2 == null) order2 = "asc";
+            if (lower2 == null && greater2 != null) order2 = "desc";
 
             if (!order1.ToLower().Equals("asc") && !order1.ToLower().Equals("desc")) order1 = "desc";
             if (!order2.ToLower().Equals("asc") && !order2.ToLower().Equals("desc")) order2 = "desc";
@@ -93,14 +103,31 @@ namespace CastReporting.Reporting.Block.Table
             {
                 if (SnapshotUtility.IsLatestSnapshot(reportData.Application, reportData.CurrentSnapshot))
                 {
-                    List<ComponentWithProperties> components = reportData.SnapshotExplorer.GetComponentsByProperties(reportData.CurrentSnapshot.Href, 60017, prop1, prop2, order1, order2, nbLimitTop).ToList();
-                    if (components.Count <= 0)
+                    IEnumerable<ComponentWithProperties> components = reportData.SnapshotExplorer.GetComponentsByProperties(reportData.CurrentSnapshot.Href, 60017, prop1, prop2, order1, order2, 500);
+                    if (lower1 != null)
+                    {
+                        components = components.Where(c => c.GetPropertyValue(prop1) < lower1);
+                    }
+                    if (greater1 != null)
+                    {
+                        components = components.Where(c => c.GetPropertyValue(prop1) > greater1);
+                    }
+                    if (lower2 != null)
+                    {
+                        components = components.Where(c => c.GetPropertyValue(prop2) < lower2);
+                    }
+                    if (greater2 != null)
+                    {
+                        components = components.Where(c => c.GetPropertyValue(prop2) > greater2);
+                    }
+                    List<ComponentWithProperties> results = components.Take(nbLimitTop).ToList();
+                    if (results.ToList().Count <= 0)
                     {
                         rowData.AddRange(new List<string> { Labels.NoData, string.Empty, string.Empty });
                     }
                     else
                     {
-                        foreach (ComponentWithProperties _component in components)
+                        foreach (ComponentWithProperties _component in results)
                         {
                             rowData.Add(_component.Name);
                             rowData.Add(_component.GetPropertyValueString(prop1));
