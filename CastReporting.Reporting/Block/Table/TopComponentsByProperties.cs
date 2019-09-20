@@ -43,6 +43,7 @@ namespace CastReporting.Reporting.Block.Table
             double? greater1 = options.GetDoubleOption("GREATER1", null);
             double? lower2 = options.GetDoubleOption("LOWER2", null);
             double? greater2 = options.GetDoubleOption("GREATER2", null);
+            int nbSet = options.GetIntOption("NBSET", 500);
 
             if (lower1 != null && greater1 == null) order1 = "asc";
             if (lower1 == null && greater1 != null) order1 = "desc";
@@ -103,7 +104,7 @@ namespace CastReporting.Reporting.Block.Table
             {
                 if (SnapshotUtility.IsLatestSnapshot(reportData.Application, reportData.CurrentSnapshot))
                 {
-                    IEnumerable<ComponentWithProperties> components = reportData.SnapshotExplorer.GetComponentsByProperties(reportData.CurrentSnapshot.Href, 60017, prop1, prop2, order1, order2, 500);
+                    IEnumerable<ComponentWithProperties> components = reportData.SnapshotExplorer.GetComponentsByProperties(reportData.CurrentSnapshot.Href, 60017, prop1, prop2, order1, order2, nbSet);
                     if (lower1 != null)
                     {
                         components = components.Where(c => c.GetPropertyValue(prop1) < lower1);
