@@ -71,11 +71,11 @@ Source: "../CastReporting.Reporting\TemplatesFiles/*"; DestDir: "{code:GetTempPa
 Source: "../CastReporting.Reporting\PortfolioTemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN\Application"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles\Legacy templates/*"; DestDir: "{code:GetTempPath}\Templates\Application\Legacy templates"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles\Compliance Reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Compliance Reports"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles\Components Library/*"; DestDir: "{code:GetTempPath}\Templates\Application\Components Library"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles\Function Points Reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Function Points Reports"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\TemplatesFiles\Compliance reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Compliance reports"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\TemplatesFiles\Component library/*"; DestDir: "{code:GetTempPath}\Templates\Application\Component library"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\TemplatesFiles\Function points reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Function points reports"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN\Portfolio"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\Portfolio Components Library/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio\Portfolio Components Library"; Flags: ignoreversion;
+Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\Portfolio component library/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio\Portfolio component library"; Flags: ignoreversion;
 ; NOTE:License
 Source: "../Setup/License.rtf"; DestDir: "{app}"; Flags: ignoreversion
 

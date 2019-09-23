@@ -5,8 +5,8 @@
         xmlns:converter="clr-namespace:CastReporting.UI.WPF.Converter"  
         xmlns:commands="clr-namespace:CastReporting.UI.WPF.Commands"
         ResizeMode="CanResize" 
-        Width="1327" Height="700" Icon="/CastReporting.UI.WPF;component/Resources/Images/cast.ico"
-        MinHeight="800" MinWidth="900">
+        Width="1327" Height="720" Icon="/CastReporting.UI.WPF;component/Resources/Images/cast.ico"
+        MinHeight="720" MinWidth="900">
 
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
