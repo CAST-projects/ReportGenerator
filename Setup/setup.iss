@@ -69,11 +69,12 @@ source: "../CastReporting.Console/bin/Release/Parameters/*.xml";DestDir: "{app}"
 source: "../CastReporting.DAL/CastReportingSetting.xml"; DestDir: "{code:GetSettingsPath}"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Application"; Flags: ignoreversion; AfterInstall:SaveSettings()
 Source: "../CastReporting.Reporting\PortfolioTemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles\Chinese Reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Chinese Reports"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\TemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN\Application"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles\Legacy templates/*"; DestDir: "{code:GetTempPath}\Templates\Application\Legacy templates"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles\Compliance Reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Compliance Reports"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles\Components Library/*"; DestDir: "{code:GetTempPath}\Templates\Application\Components Library"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\Chinese Reports/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio\Chinese Reports"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\TemplatesFiles\Function Points Reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Function Points Reports"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN\Portfolio"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\Portfolio Components Library/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio\Portfolio Components Library"; Flags: ignoreversion;
 ; NOTE:License
 Source: "../Setup/License.rtf"; DestDir: "{app}"; Flags: ignoreversion

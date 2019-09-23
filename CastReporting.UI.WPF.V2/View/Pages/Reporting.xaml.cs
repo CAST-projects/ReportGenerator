@@ -34,7 +34,7 @@ namespace CastReporting.UI.WPF.View
     /// </summary>
     public partial class Reporting : Page
     {
-        private static readonly List<string> ExtensionList = new List<string> {"xlsx", "docx", "pptx"};
+        private static readonly List<string> ExtensionList = new List<string> {".xlsx", ".docx", ".pptx"};
 
         public Reporting()
         {
@@ -84,7 +84,12 @@ namespace CastReporting.UI.WPF.View
                 directoryNode.Items.Add(CreateDirectoryNode(directory));
 
             foreach (var file in directoryInfo.GetFiles())
-                directoryNode.Items.Add(new TreeViewItem { Header = file.Name, Tag = file.FullName});
+            {
+                if (ExtensionList.Contains(file.Extension))
+                {
+                    directoryNode.Items.Add(new TreeViewItem { Header = file.Name, Tag = file.FullName });
+                }
+            }
 
             return directoryNode;
         }
