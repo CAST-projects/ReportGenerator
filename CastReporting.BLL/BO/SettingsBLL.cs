@@ -41,8 +41,28 @@ namespace CastReporting.BLL
             using (ISettingRepository setttingRepository = new SettingsRepository())
             {
                 string templateFilePath = setttingRepository.GetSeting().ReportingParameter.TemplatePath;
+                ReportingParameter rp = new ReportingParameter();
+                return setttingRepository.GetTemplateFileList(templateFilePath + rp.ApplicationFolderNamePath);
+            }
+        }
 
-                return setttingRepository.GetTemplateFileList(templateFilePath);
+        public static string GetApplicationTemplateRootPath()
+        {
+            using (ISettingRepository setttingRepository = new SettingsRepository())
+            {
+                string templateFilePath = setttingRepository.GetSeting().ReportingParameter.TemplatePath;
+                ReportingParameter rp = new ReportingParameter();
+                return templateFilePath + rp.ApplicationFolderNamePath;
+            }
+        }
+
+        public static string GetPortfolioTemplateRootPath()
+        {
+            using (ISettingRepository setttingRepository = new SettingsRepository())
+            {
+                string templateFilePath = setttingRepository.GetSeting().ReportingParameter.TemplatePath;
+                ReportingParameter rp = new ReportingParameter();
+                return templateFilePath + rp.PortfolioFolderNamePath;
             }
         }
 

@@ -11,6 +11,7 @@
 		<NbResultDefault>5</NbResultDefault>
 		<TemplatePath></TemplatePath>
     <PortfolioFolderNamePath></PortfolioFolderNamePath>
+	  <ApplicationFolderNamePath></ApplicationFolderNamePath>
     <CultureName>en-US</CultureName>
 	</ReportingParameter>
 	<WSConnections />

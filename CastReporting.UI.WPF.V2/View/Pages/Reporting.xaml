@@ -8,7 +8,7 @@
              xmlns:converter="clr-namespace:CastReporting.UI.WPF.Converter"       
              xmlns:commonCtrl="clr-namespace:CastReporting.UI.WPF.Common" 
              xmlns:commands="clr-namespace:CastReporting.UI.WPF.Commands"
-             mc:Ignorable="d">
+             mc:Ignorable="d" Width="850" Height="650">
 
     <Page.CommandBindings>
         <CommandBinding Command="commands:WebServiceCommand.ActivateWebService" CanExecute="ActivateWebService_CanExecute" Executed="ActivateWebService_Executed" />
@@ -93,16 +93,16 @@
             </Border>
         </Grid>
 
-        <Grid Background="#FF282828">
+        <Grid Background="#FF282828" RenderTransformOrigin="0.397,0.494" Height="460">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="418*"/>
-                <ColumnDefinition Width="418*"/>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="203*"/>
             </Grid.ColumnDefinitions>
 
-            <TabControl DockPanel.Dock="Left" Background="#FF282828"  Padding="5" Margin="0,0,0,0"
+            <TabControl Background="#FF282828"  Padding="5" Margin="0,0,0,0"
                     SelectedIndex="{Binding SelectedTab}"  
                     Grid.Row="0" 
-                    x:Name="Tabs" BorderThickness="0">
+                    x:Name="Tabs" BorderThickness="0" SelectionChanged="Tabs_SelectionChanged">
                 <TabControl.Resources>
                     <Style TargetType="TabItem">
                         <Setter Property="Template">
@@ -139,70 +139,70 @@
                         </Setter>
                     </Style>
                 </TabControl.Resources>
-                    <i:Interaction.Triggers>
+                <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding ReloadTemplatesCommand}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <TabItem Name="TabApplication" Cursor="Hand">
                     <TabItem.Header>
-                        <TextBlock Text="{x:Static label:Messages.lblHeaderApplication}" FontSize="21.333"/>
+                        <TextBlock Text="{x:Static label:Messages.lblHeaderApplication}" FontSize="21"/>
                     </TabItem.Header>
                     <Grid DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="12"/>
-                    <RowDefinition Height="64"/>
-                    <RowDefinition Height="64"/>
-                    <RowDefinition Height="64"/>
-                    <RowDefinition Height="64"/>
-                </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="12"/>
+                            <RowDefinition Height="64"/>
+                            <RowDefinition Height="64"/>
+                            <RowDefinition Height="64"/>
+                            <RowDefinition Height="64"/>
+                        </Grid.RowDefinitions>
 
-                <StackPanel Grid.Row="0" Height="50">
-                    
-                </StackPanel>
+                        <StackPanel Grid.Row="0" Height="50">
 
-                <Grid Grid.Row="1" Margin="20,0,20,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="27*"/>
-                        <ColumnDefinition Width="127*"/>
-                    </Grid.ColumnDefinitions>
-                    <ComboBox  x:Name="CbApplication" ItemsSource="{Binding Applications}"  
+                        </StackPanel>
+
+                        <Grid Grid.Row="1" Margin="20,0,20,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="27*"/>
+                                <ColumnDefinition Width="127*"/>
+                            </Grid.ColumnDefinitions>
+                            <ComboBox  x:Name="CbApplication" ItemsSource="{Binding Applications}"  
                               SelectedValue="{Binding SelectedApplication, Mode=TwoWay}" Grid.ColumnSpan="2" Margin="0,8,0,8">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding LoadSnapshotsCommand}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </ComboBox>
-                    <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding LoadSnapshotsCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ComboBox>
+                            <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
                            Content="{x:Static label:Messages.lblSelectApplication}" Visibility="{Binding SelectedItem, ElementName=CbApplication, Converter={StaticResource NullToVisibilityConverter}}" Grid.ColumnSpan="2"
                            Grid.Column="0" Margin="0,16,0,17" />
-                </Grid>
+                        </Grid>
 
-                <Grid Grid.Row="2" Margin="20,0,20,0">
-                    <ComboBox x:Name="CbSnapshots" ItemsSource="{Binding Snaphosts, Mode=OneWay}" SelectedValue="{Binding SelectedSnapshot, Mode=TwoWay}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding LoadPreviousSnapshotsCommand}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </ComboBox>
-                    <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
+                        <Grid Grid.Row="2" Margin="20,0,20,0">
+                            <ComboBox x:Name="CbSnapshots" ItemsSource="{Binding Snaphosts, Mode=OneWay}" SelectedValue="{Binding SelectedSnapshot, Mode=TwoWay}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding LoadPreviousSnapshotsCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ComboBox>
+                            <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
                            Content="{x:Static label:Messages.lblSelectCurrentSnapshot}" Visibility="{Binding SelectedItem, ElementName=CbSnapshots, Converter={StaticResource NullToVisibilityConverter}}" />
-                </Grid>
+                        </Grid>
 
-                <Grid Grid.Row="3" Margin="20,0,20,0">
-                    <ComboBox x:Name="CbPreviousSnaphots" ItemsSource="{Binding PreviousSnaphosts, Mode=OneWay}" SelectedValue="{Binding PreviousSnapshot, Mode=TwoWay}"/>
-                    <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
+                        <Grid Grid.Row="3" Margin="20,0,20,0">
+                            <ComboBox x:Name="CbPreviousSnaphots" ItemsSource="{Binding PreviousSnaphosts, Mode=OneWay}" SelectedValue="{Binding PreviousSnapshot, Mode=TwoWay}"/>
+                            <Label IsHitTestVisible="False" Style="{StaticResource ComboNoSelection}"
                            Content="{x:Static label:Messages.lblSelectPreviousSnapshot}" Visibility="{Binding SelectedItem, ElementName=CbPreviousSnaphots, Converter={StaticResource NullToVisibilityConverter}}" />
-                </Grid>
-            </Grid>
+                        </Grid>
+                    </Grid>
                 </TabItem>
 
                 <TabItem Name="TabProfile" Cursor="Hand">
                     <TabItem.Header>
-                        <TextBlock Text="{x:Static label:Messages.lblHeaderPortfolio}" FontSize="21.333"/>
+                        <TextBlock Text="{x:Static label:Messages.lblHeaderPortfolio}" FontSize="21"/>
                     </TabItem.Header>
                     <Grid DockPanel.Dock="Left" Background="#FF282828" Margin="0,0,0,0">
 
@@ -244,29 +244,31 @@
 
             </TabControl>
 
-           
 
-            <Grid  Grid.Column="1" DockPanel.Dock="Left" Background="#FF282828" Margin="0,30,0,0">
+
+            <Grid  Grid.Column="1" Background="#FF282828" Margin="0,0,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="374*"/>
+                    <ColumnDefinition Width="97*"/>
+                    <ColumnDefinition Width="49*"/>
+                    <ColumnDefinition Width="212*"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
-                    <RowDefinition Height="218*"/>
+                    <RowDefinition Height="100*"/>
                     <RowDefinition Height="80"/>
                 </Grid.RowDefinitions>
 
                 <Button  ToolTip="{x:Static label:Messages.toolTipRefreshTemplate}" Grid.Row="0" Grid.Column="0" Style="{StaticResource IcoButtonStyle}"
                                     Command="{Binding ReloadTemplatesCommand}" Click="ReloadTemplatesClicked"
-                                    Margin="20,4,0,0">
+                                    Margin="20,0,0,0">
                     <Button.Content>
                         <Image Source="/CastReporting.UI.WPF;component/Resources/Images/refresh.png" VerticalAlignment="Center" HorizontalAlignment="Center" RenderOptions.EdgeMode="Aliased"  Width="24" Height="24" Margin="0,0,2,0"/>
                     </Button.Content>
                 </Button>
-                <StackPanel Grid.Row="0" Grid.Column="1" Height="50">
-                    <TextBlock Text="{x:Static label:Messages.lblTitleTemplateSelection}" Margin="6,10,0,0" FontSize="17" Foreground="White" Height="35"/>
+                <StackPanel Grid.Row="0" Grid.Column="1" Height="50" Grid.ColumnSpan="3" Margin="10,0,45,400" Grid.RowSpan="2">
+                    <TextBlock Text="{x:Static label:Messages.lblTitleTemplateSelection}" Margin="6,0,0,0" FontSize="21" Foreground="White" Height="35"/>
                 </StackPanel>
 
                 <!--ListBox ToolTip="{x:Static label:Messages.toolTipTemplateLb}" x:Name="TemplateList" Grid.Row="1" Grid.ColumnSpan="2"
@@ -277,16 +279,21 @@
                              Margin="20,4,20,0" 
                              MouseDoubleClick="OnFileListDoubleClicked"  /-->
                 <TreeView Name="TrvStructure" TreeViewItem.Expanded="TreeViewItem_Expanded" 
-                          Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
-                          Height="Auto" Margin="20,4,20,0"
-                          SelectedItemChanged="TreeView_SelectedItemChanged"
-                          MouseDoubleClick="OnFileListDoubleClicked"/>
+                          Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"
+                          Height="Auto" Margin="20,4,20,0" FontSize="12" FontWeight="Bold"
+                          SelectedItemChanged="TreeView_SelectedItemChanged">
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="{x:Type TreeViewItem}">
+                            <EventSetter Event="MouseDoubleClick" Handler="OnFileListDoubleClicked"/>
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                </TreeView>
 
-                <StackPanel  Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,4,20,4" Width="115">
+                <StackPanel  Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,4,20,4" Width="115">
                     <Button Name="BtnApplicationReport" Style="{StaticResource StdButtonStyle}" Content="{x:Static label:Messages.btnGenerateReport}" 
                                     Command="{Binding GenerateCommand}" Click="GenerateButtonClicked"
                                     IsEnabled="{Binding IsDataFilledIn}" Margin="0,14,10,15" Width="115" />
-                   
+
 
                 </StackPanel>
             </Grid>

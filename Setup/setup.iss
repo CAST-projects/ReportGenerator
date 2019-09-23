@@ -45,7 +45,6 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "{code:GetSettingsPath}"; Permissions: users-full
 
 [Files]
-
 ; NOTE:packages/CommonServiceLocator.1.0/lib/NET35
 Source: "../packages/CommonServiceLocator.1.0/lib/NET35/Microsoft.Practices.ServiceLocation.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "../packages/CommonServiceLocator.1.0/lib/NET35/Microsoft.Practices.ServiceLocation.XML"; DestDir: "{app}"; Flags: ignoreversion
@@ -68,10 +67,14 @@ source: "../CastReporting.Console/bin/Release/CastReporting.Console.exe";DestDir
 source: "../CastReporting.Console/bin/Release/CastReporting.Console.exe.config";DestDir: "{app}"; Flags: ignoreversion
 source: "../CastReporting.Console/bin/Release/Parameters/*.xml";DestDir: "{app}"; Flags: ignoreversion
 source: "../CastReporting.DAL/CastReportingSetting.xml"; DestDir: "{code:GetSettingsPath}"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates"; Flags: ignoreversion; AfterInstall:SaveSettings()
-Source: "../CastReporting.Reporting\PortfolioTemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio"; Flags: ignoreversion; AfterInstall:SavePortfolioSettings()
-Source: "../CastReporting.Reporting\TemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN\Portfolio"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\TemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Application"; Flags: ignoreversion; AfterInstall:SaveSettings()
+Source: "../CastReporting.Reporting\PortfolioTemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\TemplatesFiles\Chinese Reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Chinese Reports"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\TemplatesFiles\Legacy templates/*"; DestDir: "{code:GetTempPath}\Templates\Application\Legacy templates"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\TemplatesFiles\Compliance Reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Compliance Reports"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\TemplatesFiles\Components Library/*"; DestDir: "{code:GetTempPath}\Templates\Application\Components Library"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\Chinese Reports/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio\Chinese Reports"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\Portfolio Components Library/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio\Portfolio Components Library"; Flags: ignoreversion;
 ; NOTE:License
 Source: "../Setup/License.rtf"; DestDir: "{app}"; Flags: ignoreversion
 
@@ -168,13 +171,8 @@ var
   S1, S2 : String;
 begin
     FileReplace(GetSettingsPath(S1) + '\CastReportingSetting.xml','<TemplatePath></TemplatePath>','<TemplatePath>' + GetTempPath(S2) + '\Templates</TemplatePath>'); 
-end;
-
-procedure SavePortfolioSettings();
-var
-  S1, S2 : String;
-begin
     FileReplace(GetSettingsPath(S1) + '\CastReportingSetting.xml','<PortfolioFolderNamePath></PortfolioFolderNamePath>','<PortfolioFolderNamePath>' + GetTempPath(S2) + '\Templates\Portfolio</PortfolioFolderNamePath>'); 
+    FileReplace(GetSettingsPath(S1) + '\CastReportingSetting.xml','<ApplicationFolderNamePath></ApplicationFolderNamePath>','<ApplicationFolderNamePath>' + GetTempPath(S2) + '\Templates\Application</ApplicationFolderNamePath>'); 
 end;
 
 // Update ReadyMemo

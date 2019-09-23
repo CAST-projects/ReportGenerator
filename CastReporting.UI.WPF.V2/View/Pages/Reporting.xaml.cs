@@ -34,14 +34,14 @@ namespace CastReporting.UI.WPF.View
     /// </summary>
     public partial class Reporting : Page
     {
+        private static readonly List<string> ExtensionList = new List<string> {"xlsx", "docx", "pptx"};
+
         public Reporting()
         {
             InitializeComponent();
-
             DataContext = new ReportingVM();
-
             Loaded += OnLoaded;
-            ListDirectory(TrvStructure, SettingsBLL.GetSetting().ReportingParameter.TemplatePath);
+            LoadTemplates();
         }
 
         public void TreeViewItem_Expanded(object sender, RoutedEventArgs e)
@@ -69,7 +69,12 @@ namespace CastReporting.UI.WPF.View
             foreach (var directory in rootDirectoryInfo.GetDirectories())
                 treeView.Items.Add(CreateDirectoryNode(directory));
             foreach (var file in rootDirectoryInfo.GetFiles())
-                treeView.Items.Add(new TreeViewItem { Header = file.Name, Tag = file.FullName });
+            {
+                if (ExtensionList.Contains(file.Extension))
+                {
+                    treeView.Items.Add(new TreeViewItem { Header = file.Name, Tag = file.FullName });
+                }
+            }
         }
 
         private static TreeViewItem CreateDirectoryNode(DirectoryInfo directoryInfo)
@@ -87,7 +92,23 @@ namespace CastReporting.UI.WPF.View
 
         private void ReloadTemplatesClicked(object sender, RoutedEventArgs e)
         {
-            ListDirectory(TrvStructure, SettingsBLL.GetSetting().ReportingParameter.TemplatePath);
+            LoadTemplates();
+        }
+
+        private void LoadTemplates()
+        {
+            ReportingVM _reportingVm = (ReportingVM) DataContext;
+            switch (_reportingVm.SelectedTab)
+            {
+                case 0:
+                    ListDirectory(TrvStructure, SettingsBLL.GetApplicationTemplateRootPath());
+                    break;
+                case 1:
+                    ListDirectory(TrvStructure, SettingsBLL.GetPortfolioTemplateRootPath());
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public WSConnection ActiveConnection { get; set; }
@@ -211,6 +232,11 @@ namespace CastReporting.UI.WPF.View
             }
             (DataContext as ReportingVM)?.InitializeFromWS();
             e.Handled = true;
+        }
+
+        private void Tabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadTemplates();
         }
     }
 }
