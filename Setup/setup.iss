@@ -73,7 +73,7 @@ Source: "../CastReporting.Reporting\TemplatesFiles\zh-CN/*"; DestDir: "{code:Get
 Source: "../CastReporting.Reporting\TemplatesFiles\Legacy templates/*"; DestDir: "{code:GetTempPath}\Templates\Application\Legacy templates"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles\Compliance reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Compliance reports"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles\Component library/*"; DestDir: "{code:GetTempPath}\Templates\Application\Component library"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles\Function points reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Function points reports"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\TemplatesFiles\Sizing reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Sizing reports"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN\Portfolio"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\Portfolio component library/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio\Portfolio component library"; Flags: ignoreversion;
 ; NOTE:License
