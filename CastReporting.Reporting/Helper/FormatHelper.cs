@@ -130,5 +130,10 @@ namespace CastReporting.Reporting.Helper
         {
             AddGrayOrBold(true, cellProps, cellidx, 0);
         }
+
+        public static void AddColorsIfCondition(bool condition, List<CellAttributes> cellProps, int cellidx, Color colorTrue, Color colorFalse)
+        {
+            cellProps.Add(condition ? new CellAttributes(cellidx, colorTrue) : new CellAttributes(cellidx, colorFalse));
+        }
     }
 }
