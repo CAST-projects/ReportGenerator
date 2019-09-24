@@ -223,3 +223,6 @@ Setup/ReportGeneratorSetup.exe
 /.vs/Cast-Reporting/v15
 /.vs/Cast-Reporting/DesignTimeBuild/.dtbcache
 /CastReporting.Reporting/TemplatesFiles/CISQ Compliance Report_ABD.docx
+/.vs/slnx.sqlite-journal
+/.vs/slnx.sqlite
+/.vs/ProjectSettings.json
