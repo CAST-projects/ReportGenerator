@@ -35,7 +35,7 @@
             </Button.Content>
         </Button>
         <StackPanel Grid.Row="0" Grid.Column="1" Height="50">
-            <TextBlock x:Name="TxtTitle"  Text="{Binding  Converter={StaticResource MessageConverter}, ConverterParameter=lblTitleMessages}" Margin="4,14,0,0" FontSize="17" Foreground="White" Height="35"/>
+            <TextBlock x:Name="TxtTitle"  Text="{Binding  Converter={StaticResource MessageConverter}, ConverterParameter=lblTitleMessages}" Margin="4,14,0,0" FontSize="21" Foreground="White" Height="35"/>
         </StackPanel>
 
         <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"

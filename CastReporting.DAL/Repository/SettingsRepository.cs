@@ -62,16 +62,17 @@ namespace CastReporting.Repositories
         /// </summary>
         /// <param name="templatePath"></param>
         /// <returns></returns>
-        List<FileInfo> ISettingRepository.GetTemplateFileList(string templatePath)
+        List<FileSystemInfo> ISettingRepository.GetTemplateFileList(string templatePath)
         {
-            List<FileInfo> result = new List<FileInfo>();
+            List<FileSystemInfo> result = new List<FileSystemInfo>();
 
             if (string.IsNullOrEmpty(templatePath)) return result;
 
             DirectoryInfo di = new DirectoryInfo(templatePath);
             if (!di.Exists) return result;
             var extensions = Settings.Default.TemplateExtensions.Split(',');
-            result = di.GetFiles().Where(f => extensions.Contains(Path.GetExtension(f.FullName).ToLower())).ToList();
+            result.AddRange(di.GetFiles().Where(f => extensions.Contains(Path.GetExtension(f.FullName).ToLower())).ToList());
+            result.AddRange(di.GetDirectories().ToList());
 
             return result;
         }

@@ -17,12 +17,15 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using CastReporting.UI.WPF.ViewModel;
-using Microsoft.Win32;
 using CastReporting.Domain;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using System.Security;
+using Cast.Util.Log;
 using CastReporting.BLL;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
+using TreeView = System.Windows.Controls.TreeView;
 
 namespace CastReporting.UI.WPF.View
 {
@@ -31,14 +34,86 @@ namespace CastReporting.UI.WPF.View
     /// </summary>
     public partial class Reporting : Page
     {
+        private static readonly List<string> ExtensionList = new List<string> {".xlsx", ".docx", ".pptx"};
+
         public Reporting()
         {
             InitializeComponent();
-
             DataContext = new ReportingVM();
+            Loaded += OnLoaded;
+            LoadTemplates();
+        }
 
-            Loaded += OnLoaded; 
+        public void TreeViewItem_Expanded(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem item = e.Source as TreeViewItem;
+            if (item?.Items.Count != 1 || !(item.Items[0] is string)) return;
+            item.Items.Clear();
 
+            DirectoryInfo _dir = item.Tag as DirectoryInfo;
+            if (_dir == null) return;
+            try
+            {
+                ListDirectory((TreeView)sender, _dir.FullName);
+            }
+            catch (Exception ex) when (ex is DirectoryNotFoundException || ex is SecurityException || ex is UnauthorizedAccessException || ex is InvalidOperationException)
+            {
+                LogHelper.LogError("Cannot expand folders : " + ex.Message);
+            }
+        }
+
+        private static void ListDirectory(TreeView treeView, string path)
+        {
+            treeView.Items.Clear();
+            var rootDirectoryInfo = new DirectoryInfo(path);
+            foreach (var directory in rootDirectoryInfo.GetDirectories())
+                treeView.Items.Add(CreateDirectoryNode(directory));
+            foreach (var file in rootDirectoryInfo.GetFiles())
+            {
+                if (ExtensionList.Contains(file.Extension))
+                {
+                    treeView.Items.Add(new TreeViewItem { Header = file.Name, Tag = file.FullName });
+                }
+            }
+        }
+
+        private static TreeViewItem CreateDirectoryNode(DirectoryInfo directoryInfo)
+        {
+            var directoryNode = new TreeViewItem { Header = directoryInfo.Name, Tag = directoryInfo.FullName };
+            foreach (var directory in directoryInfo.GetDirectories())
+                directoryNode.Items.Add(CreateDirectoryNode(directory));
+
+            foreach (var file in directoryInfo.GetFiles())
+            {
+                if (ExtensionList.Contains(file.Extension))
+                {
+                    directoryNode.Items.Add(new TreeViewItem { Header = file.Name, Tag = file.FullName });
+                }
+            }
+
+            return directoryNode;
+        }
+
+
+        private void ReloadTemplatesClicked(object sender, RoutedEventArgs e)
+        {
+            LoadTemplates();
+        }
+
+        private void LoadTemplates()
+        {
+            ReportingVM _reportingVm = (ReportingVM) DataContext;
+            switch (_reportingVm.SelectedTab)
+            {
+                case 0:
+                    ListDirectory(TrvStructure, SettingsBLL.GetApplicationTemplateRootPath());
+                    break;
+                case 1:
+                    ListDirectory(TrvStructure, SettingsBLL.GetPortfolioTemplateRootPath());
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public WSConnection ActiveConnection { get; set; }
@@ -113,8 +188,23 @@ namespace CastReporting.UI.WPF.View
         /// <param name="e"></param>
         private void OnFileListDoubleClicked(object sender, RoutedEventArgs e)
         {
-            var _selectedTemplateFile = (DataContext as ReportingVM)?.SelectedTemplateFile;
-            if (_selectedTemplateFile != null) Process.Start(_selectedTemplateFile.FullName);
+            TreeViewItem selectedTreeViewItem = (TreeViewItem)TrvStructure.SelectedItem;
+            FileInfo selectedFileInfo = new FileInfo(selectedTreeViewItem.Tag.ToString());
+            if (selectedFileInfo.Exists)
+            {
+                Process.Start(selectedFileInfo.FullName);
+            }
+        }
+
+        private void TreeView_SelectedItemChanged(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem selectedTreeViewItem = (TreeViewItem)TrvStructure.SelectedItem;
+            if (selectedTreeViewItem == null) return;
+            FileInfo selectedFileInfo = new FileInfo(selectedTreeViewItem.Tag.ToString());
+            if (selectedFileInfo.Exists)
+            {
+                ((ReportingVM) DataContext).SelectedTemplateFile = selectedFileInfo;
+            }
         }
 
         private void ActivateWebService_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
@@ -147,6 +237,11 @@ namespace CastReporting.UI.WPF.View
             }
             (DataContext as ReportingVM)?.InitializeFromWS();
             e.Handled = true;
+        }
+
+        private void Tabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadTemplates();
         }
     }
 }

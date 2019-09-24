@@ -10,7 +10,7 @@
                 <ResourceDictionary Source="/Resources/CommonResources.xaml" />
                 <ResourceDictionary Source="/Resources/ListBoxResources.xaml" />
                 <ResourceDictionary Source="/Resources/ComboBoxResources.xaml" />
-                
+                <ResourceDictionary Source="/Resources/TreeViewResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -36,13 +36,33 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <returns></returns>
-        public static List<FileInfo> GetTemplateFileList()
+        public static List<FileSystemInfo> GetTemplateFileList()
         {
             using (ISettingRepository setttingRepository = new SettingsRepository())
             {
                 string templateFilePath = setttingRepository.GetSeting().ReportingParameter.TemplatePath;
+                ReportingParameter rp = new ReportingParameter();
+                return setttingRepository.GetTemplateFileList(templateFilePath + rp.ApplicationFolderNamePath);
+            }
+        }
 
-                return setttingRepository.GetTemplateFileList(templateFilePath);
+        public static string GetApplicationTemplateRootPath()
+        {
+            using (ISettingRepository setttingRepository = new SettingsRepository())
+            {
+                string templateFilePath = setttingRepository.GetSeting().ReportingParameter.TemplatePath;
+                ReportingParameter rp = new ReportingParameter();
+                return templateFilePath + rp.ApplicationFolderNamePath;
+            }
+        }
+
+        public static string GetPortfolioTemplateRootPath()
+        {
+            using (ISettingRepository setttingRepository = new SettingsRepository())
+            {
+                string templateFilePath = setttingRepository.GetSeting().ReportingParameter.TemplatePath;
+                ReportingParameter rp = new ReportingParameter();
+                return templateFilePath + rp.PortfolioFolderNamePath;
             }
         }
 
@@ -60,7 +80,7 @@ namespace CastReporting.BLL
         /// 
         /// </summary>
         /// <returns></returns>
-        public static List<FileInfo> GetTemplateFileListPortfolio()
+        public static List<FileSystemInfo> GetTemplateFileListPortfolio()
         {
             using (ISettingRepository setttingRepository = new SettingsRepository())
             {

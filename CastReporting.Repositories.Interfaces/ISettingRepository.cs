@@ -28,7 +28,7 @@ namespace CastReporting.Repositories.Interfaces
         /// 
         /// </summary>
         /// <returns></returns>
-        List<FileInfo> GetTemplateFileList(string templateFilePath);
+        List<FileSystemInfo> GetTemplateFileList(string templateFilePath);
 
         /// <summary>
         /// 

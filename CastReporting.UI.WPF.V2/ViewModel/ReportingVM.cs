@@ -76,8 +76,8 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private IEnumerable<FileInfo> _TemplateFiles;
-        public IEnumerable<FileInfo> TemplateFiles
+        private IEnumerable<FileSystemInfo> _TemplateFiles;
+        public IEnumerable<FileSystemInfo> TemplateFiles
         {
             get { return _TemplateFiles; }
             set
@@ -89,8 +89,8 @@ namespace CastReporting.UI.WPF.ViewModel
         /// <summary>
         /// 
         /// </summary>
-        private FileInfo _SelectedTemplateFile;
-        public FileInfo SelectedTemplateFile
+        private FileSystemInfo _SelectedTemplateFile;
+        public FileSystemInfo SelectedTemplateFile
         {
             get { return _SelectedTemplateFile; }
             set
@@ -368,7 +368,7 @@ namespace CastReporting.UI.WPF.ViewModel
             LoadTemplatesCommand = new CommandHandler(ExecuteLoadTemplatesCommand, null);
             LoadTagsCommand = new CommandHandler(ExecuteLoadTagsCommand, null);
             ReloadTemplatesCommand = new CommandHandler(ExecuteReloadTemplatesCommand, null);
-            //Load Tempalte
+            //Load Template
             LoadTemplatesCommand.Execute(null);
         }
         /// <summary>
@@ -513,7 +513,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 try
                 {
                     stopWatchGlobal.Start();
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), true);
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), true);
 
                     //Set culture for the new thread
                     if (!string.IsNullOrEmpty(Setting.ReportingParameter.CultureName))
@@ -527,14 +527,14 @@ namespace CastReporting.UI.WPF.ViewModel
                     stopWatchStep.Restart();
                     ApplicationBLL.BuildApplicationResult(ActiveConnection, SelectedApplication.Application);
                     stopWatchStep.Stop();
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgBuildApplicationResult, stopWatchStep.Elapsed);
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgBuildApplicationResult, stopWatchStep.Elapsed);
 
 
                     //Get result for the previous snapshot                
                     stopWatchStep.Restart();
                     SnapshotBLL.BuildSnapshotResult(ActiveConnection, SelectedSnapshot, true);
                     stopWatchStep.Stop();
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgBuildSnapshotResult, stopWatchStep.Elapsed);
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgBuildSnapshotResult, stopWatchStep.Elapsed);
 
 
                     //Get result for the previuos snapshot                
@@ -544,7 +544,7 @@ namespace CastReporting.UI.WPF.ViewModel
                         SnapshotBLL.BuildSnapshotResult(ActiveConnection, PreviousSnapshot, false);
                         stopWatchStep.Stop();
 
-                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgBuildPreviousSnapshotResult, stopWatchStep.Elapsed);
+                        System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgBuildPreviousSnapshotResult, stopWatchStep.Elapsed);
                     }
 
                     //Launch generaion               
@@ -552,17 +552,17 @@ namespace CastReporting.UI.WPF.ViewModel
                     GenerateReport();
                     stopWatchStep.Stop();
 
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgReportGenerated, stopWatchStep.Elapsed);
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgReportGenerated, stopWatchStep.Elapsed);
 
 
                     //Show final message and unlock the screen   
                     stopWatchGlobal.Stop();
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), false);
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), false);
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(ex.Message, ex.InnerException));
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(ex.Message, ex.InnerException));
                 }
             }
             else
@@ -577,7 +577,7 @@ namespace CastReporting.UI.WPF.ViewModel
                 try
                 {
                     stopWatchGlobal.Start();
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), true);
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), true);
 
 
                     //GetActive Connection           
@@ -618,7 +618,7 @@ namespace CastReporting.UI.WPF.ViewModel
                         stopWatchStep.Restart();
                         string[] AppsToIgnorePortfolioResult = PortfolioBLL.BuildPortfolioResult(ActiveConnection, SelectedApps);
                         stopWatchStep.Stop();
-                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgBuildPortfolioResults, stopWatchStep.Elapsed);
+                        System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgBuildPortfolioResults, stopWatchStep.Elapsed);
 
                         List<Domain.Application> N_Apps = new List<Domain.Application>();
                         //Remove from Array the Ignored Apps
@@ -671,7 +671,7 @@ namespace CastReporting.UI.WPF.ViewModel
                             stopWatchStep.Restart();
                             SnapsToIgnore = PortfolioSnapshotsBLL.BuildSnapshotResult(ActiveConnection, SelectedApps_Snapshots, true);
                             stopWatchStep.Stop();
-                            System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgBuildPortfSnapshotsResults,
+                            System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgBuildPortfSnapshotsResults,
                                 stopWatchStep.Elapsed);
 
                             foreach (Snapshot snap in SelectedApps_Snapshots)
@@ -742,25 +742,25 @@ namespace CastReporting.UI.WPF.ViewModel
                                     }
                                 }
                             }
-                            System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, sb + "", null);
+                            System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, sb + "", null);
                         }
 
 
-                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgReportGenerated, stopWatchStep.Elapsed);
+                        System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgReportGenerated, stopWatchStep.Elapsed);
 
 
                         //Show final message and unlock the screen   
                         stopWatchGlobal.Stop();
-                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
+                        System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<string, TimeSpan>(MessageManager.OnReportGenerated), ReportFileName, stopWatchGlobal.Elapsed);
                     }
                     else
                     {
                         //Show final message and unlock the screen   
                         stopWatchGlobal.Stop();
-                        System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgErrorGeneratingReport + " - " + Messages.msgReportErrorNoAAD, stopWatchGlobal.Elapsed);
+                        System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep, Messages.msgErrorGeneratingReport + " - " + Messages.msgReportErrorNoAAD, stopWatchGlobal.Elapsed);
                     }
 
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), false);
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), false);
                 }
                 catch (System.Net.WebException webEx)
                 {
@@ -770,15 +770,15 @@ namespace CastReporting.UI.WPF.ViewModel
                         , webEx.Message
                     );
 
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep,
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<double, string, TimeSpan>(MessageManager.OnStepDone), progressStep,
                         Messages.msgErrorGeneratingReport + " - " + webEx.Message + " - " + Messages.msgReportErrorNoRestAPI, stopWatchStep.Elapsed);
                     stopWatchGlobal.Stop();
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), false);
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(webEx.Message, webEx.InnerException));
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<bool>(MessageManager.SetBusyMode), false);
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(webEx.Message, webEx.InnerException));
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(ex.Message, ex.InnerException));
+                    System.Windows.Application.Current.Dispatcher?.Invoke(DispatcherPriority.Normal, new Action<CastReportingException>(WorkerThreadException), new CastReportingException(ex.Message, ex.InnerException));
                 }
             }
         }
