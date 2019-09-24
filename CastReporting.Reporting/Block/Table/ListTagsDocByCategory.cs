@@ -14,6 +14,7 @@
  *
  */
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
@@ -69,11 +70,15 @@ namespace CastReporting.Reporting.Block.Table
                     foreach (var doc in tagsDoc)
                     {
                         var dataRow = headers.CreateDataRow();
+                        bool isApplicable = doc.Applicable.Equals("true");
                         dataRow.Set(Labels.Tag, doc.Key);
+                        FormatHelper.AddColorsIfCondition(isApplicable, cellProps, cellidx, Color.MintCream, Color.BlanchedAlmond);
                         cellidx++;
                         dataRow.Set(Labels.Definition, doc.Name);
+                        FormatHelper.AddColorsIfCondition(isApplicable, cellProps, cellidx, Color.MintCream, Color.BlanchedAlmond);
                         cellidx++;
-                        dataRow.Set(Labels.Applicability, doc.Applicable.Equals("true") ? Labels.Applicable : Labels.NotApplicable);
+                        dataRow.Set(Labels.Applicability, isApplicable ? Labels.Applicable : Labels.NotApplicable);
+                        FormatHelper.AddColorsIfCondition(isApplicable, cellProps, cellidx, Color.MintCream, Color.BlanchedAlmond);
                         cellidx++;
                         data.AddRange(dataRow);
                     }
