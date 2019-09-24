@@ -70,7 +70,7 @@ source: "../CastReporting.DAL/CastReportingSetting.xml"; DestDir: "{code:GetSett
 Source: "../CastReporting.Reporting\TemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Application"; Flags: ignoreversion; AfterInstall:SaveSettings()
 Source: "../CastReporting.Reporting\PortfolioTemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN\Application"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles\Legacy templates/*"; DestDir: "{code:GetTempPath}\Templates\Application\Legacy templates"; Flags: ignoreversion
+Source: "../CastReporting.Reporting\TemplatesFiles\Legacy reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Legacy reports"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles\Compliance reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Compliance reports"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles\Component library/*"; DestDir: "{code:GetTempPath}\Templates\Application\Component library"; Flags: ignoreversion
 Source: "../CastReporting.Reporting\TemplatesFiles\Sizing reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Sizing reports"; Flags: ignoreversion
