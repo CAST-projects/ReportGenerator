@@ -67,15 +67,7 @@ source: "../CastReporting.Console/bin/Release/CastReporting.Console.exe";DestDir
 source: "../CastReporting.Console/bin/Release/CastReporting.Console.exe.config";DestDir: "{app}"; Flags: ignoreversion
 source: "../CastReporting.Console/bin/Release/Parameters/*.xml";DestDir: "{app}"; Flags: ignoreversion
 source: "../CastReporting.DAL/CastReportingSetting.xml"; DestDir: "{code:GetSettingsPath}"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Application"; Flags: ignoreversion; AfterInstall:SaveSettings()
-Source: "../CastReporting.Reporting\PortfolioTemplatesFiles/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN\Application"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles\Legacy reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Legacy reports"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles\Compliance reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Compliance reports"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles\Component library/*"; DestDir: "{code:GetTempPath}\Templates\Application\Component library"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\TemplatesFiles\Sizing reports/*"; DestDir: "{code:GetTempPath}\Templates\Application\Sizing reports"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\zh-CN/*"; DestDir: "{code:GetTempPath}\Templates\zh-CN\Portfolio"; Flags: ignoreversion
-Source: "../CastReporting.Reporting\PortfolioTemplatesFiles\Portfolio component library/*"; DestDir: "{code:GetTempPath}\Templates\Portfolio\Portfolio component library"; Flags: ignoreversion;
+Source: "../CastReporting.Reporting\Templates/*"; DestDir: "{code:GetTempPath}\Templates"; Flags: ignoreversion recursesubdirs; AfterInstall:SaveSettings()
 ; NOTE:License
 Source: "../Setup/License.rtf"; DestDir: "{app}"; Flags: ignoreversion
 
