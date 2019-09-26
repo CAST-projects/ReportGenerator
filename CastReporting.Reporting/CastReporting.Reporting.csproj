@@ -222,9 +222,7 @@
       <Name>CastReporting.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TemplatesFiles\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Languages\Labels.FR-fr.resx" />
     <EmbeddedResource Include="Languages\Labels.zh-CN.resx" />
@@ -239,6 +237,59 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Templates\Application\Compliance reports\CISQ Compliance Report.docx" />
+    <None Include="Templates\Application\Compliance reports\CISQ Security Compliance Report.docx" />
+    <None Include="Templates\Application\Compliance reports\CWE Compliance Report.docx" />
+    <None Include="Templates\Application\Compliance reports\NIST-SP800-53R4 Compliance Report.docx" />
+    <None Include="Templates\Application\Compliance reports\OWASP-2013 Compliance Report.docx" />
+    <None Include="Templates\Application\Compliance reports\OWASP-2013 Detailed Report.docx" />
+    <None Include="Templates\Application\Compliance reports\OWASP-2017 Compliance Report.docx" />
+    <None Include="Templates\Application\Compliance reports\OWASP-2017 Detailed Report.docx" />
+    <None Include="Templates\Application\Compliance reports\PCI-DSS-V3.1 ComplianceReport.docx" />
+    <None Include="Templates\Application\Compliance reports\STIG V4R8 Compliance Report.docx" />
+    <None Include="Templates\Application\Compliance reports\STIG V4R8 Detailed Report.docx" />
+    <None Include="Templates\Application\Component library\1- Powerpoint-components-library.pptx" />
+    <None Include="Templates\Application\Component library\2- Word-components-library.docx" />
+    <None Include="Templates\Application\Component library\3- Excel-components-library.xlsx" />
+    <None Include="Templates\Application\Component library\Generic Graph Definition.docx" />
+    <None Include="Templates\Application\Component library\Generic Graph Definition.pptx" />
+    <None Include="Templates\Application\Component library\Generic Table Definition.docx" />
+    <None Include="Templates\Application\Component library\Generic Table Definition.pptx" />
+    <None Include="Templates\Application\Legacy reports\Assessment-sample1.docx" />
+    <None Include="Templates\Application\Legacy reports\Assessment-sample2.docx" />
+    <None Include="Templates\Application\Legacy reports\Assessment-Security1.docx" />
+    <None Include="Templates\Application\Legacy reports\Assessment-Security2.docx" />
+    <None Include="Templates\Application\Legacy reports\Executive-summary-sample1.pptx" />
+    <None Include="Templates\Application\Legacy reports\Executive-summary-sample2.pptx" />
+    <None Include="Templates\Application\Legacy reports\Executive-summary.docx" />
+    <None Include="Templates\Application\Legacy reports\Result-presentation-fr-sample2.pptx" />
+    <None Include="Templates\Application\Legacy reports\Result-presentation-sample1.pptx" />
+    <None Include="Templates\Application\Sizing reports\AEP-sample-Template.xlsx" />
+    <None Include="Templates\Application\Sizing reports\Function-points-sample.xlsx" />
+    <None Include="Templates\Portfolio\Portfolio component library\1- Portfolio-Powerpoint-components-library.pptx" />
+    <None Include="Templates\Portfolio\Portfolio component library\2- Porftolio-Word-components-library.docx" />
+    <None Include="Templates\Portfolio\Portfolio component library\Portfolio Generic Graph Definition.docx" />
+    <None Include="Templates\Portfolio\Portfolio component library\Portfolio Generic Table Definition.pptx" />
+    <None Include="Templates\zh-CN\Application\CISQ 合规报告.docx" />
+    <None Include="Templates\zh-CN\Application\CWE -Top 25 总结报告.docx" />
+    <None Include="Templates\zh-CN\Application\CWE合规报告.docx" />
+    <None Include="Templates\zh-CN\Application\NIST-SP800-53R4-Summary Report.docx" />
+    <None Include="Templates\zh-CN\Application\OWASP-2017-Top10 - 总结报告.docx" />
+    <None Include="Templates\zh-CN\Application\OWASP合规报告.docx" />
+    <None Include="Templates\zh-CN\Application\PCI-DSS-V3.1-Summary Report.docx" />
+    <None Include="Templates\zh-CN\Application\STIG V4R8 Standards- Summary Report.docx" />
+    <None Include="Templates\zh-CN\Application\STIG V4R8 Standards-DetailedReport.docx" />
+    <None Include="Templates\zh-CN\Application\中文报告模板库.docx" />
+    <None Include="Templates\zh-CN\Application\关键违规报告.docx" />
+    <None Include="Templates\zh-CN\Application\变更违规报告.docx" />
+    <None Include="Templates\zh-CN\Application\安全报告.docx" />
+    <None Include="Templates\zh-CN\Application\应用分析演进模板.pptx" />
+    <None Include="Templates\zh-CN\Application\性能报告.docx" />
+    <None Include="Templates\zh-CN\Application\所有违规报告.docx" />
+    <None Include="Templates\zh-CN\Portfolio\1- Portfolio-Powerpoint-components-library-zh.pptx" />
+    <None Include="Templates\zh-CN\Portfolio\2- Porftolio-Word-components-new-library-zh.docx" />
+    <None Include="Templates\zh-CN\Portfolio\Portfolio Generic Graph Definition-zh.docx" />
+    <None Include="Templates\zh-CN\Portfolio\Portfolio Generic Table Definition-zh.pptx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
