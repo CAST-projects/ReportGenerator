@@ -46,7 +46,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var expectedData = new List<string>
             {
-                "Standard Quality Tag","Definition","Applicability",
+                "Standards","Definition","Applicability",
                 "STIG-V-69567","The application must only store cryptographic representations of passwords.","Not applicable",
                 "STIG-V-69569","The application must transmit only cryptographically-protected passwords.","Applicable",
                 "STIG-V-70149","The application, when utilizing PKI-based authentication, must validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor.","Not applicable",
@@ -90,7 +90,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
             var expectedData = new List<string>
             {
-                "Standard Quality Tag","Definition","Applicability",
+                "Standards","Definition","Applicability",
                 "STIG-V4R8-CAT1","","",
                 "STIG-V-69567","The application must only store cryptographic representations of passwords.","Not applicable",
                 "STIG-V-69569","The application must transmit only cryptographically-protected passwords.","Applicable",
