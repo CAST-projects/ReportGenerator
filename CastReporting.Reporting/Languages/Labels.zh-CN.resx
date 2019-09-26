@@ -780,4 +780,7 @@
   <data name="Tag" xml:space="preserve">
     <value>标准质量标签</value>
   </data>
+  <data name="Standards" xml:space="preserve">
+    <value>标准</value>
+  </data>
 </root>

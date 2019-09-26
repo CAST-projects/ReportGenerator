@@ -1573,6 +1573,15 @@ namespace CastReporting.Reporting.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Standards.
+        /// </summary>
+        public static string Standards {
+            get {
+                return ResourceManager.GetString("Standards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Statistics.
         /// </summary>
         public static string Statistics {

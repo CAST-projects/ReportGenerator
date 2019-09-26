@@ -780,4 +780,7 @@
   <data name="Tag" xml:space="preserve">
     <value>Etichetta di qualità standard</value>
   </data>
+  <data name="Standards" xml:space="preserve">
+    <value>Standard</value>
+  </data>
 </root>
