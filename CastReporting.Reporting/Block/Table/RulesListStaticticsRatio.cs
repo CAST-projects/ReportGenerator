@@ -16,6 +16,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Cast.Util.Log;
+using Cast.Util.Version;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -58,6 +60,25 @@ namespace CastReporting.Reporting.Block.Table
             var headers = new HeaderDefinition();
             headers.Append(Labels.CASTRules);
             cellidx++;
+
+            if (!VersionUtil.Is111Compatible(reportData.ServerVersion))
+            {
+                LogHelper.LogError("Bad version of RestAPI. Should be 1.11 at least for component RULES_LIST_STATISTICS_RATIO");
+                var _row = headers.CreateDataRow();
+                var _data = new List<string>();
+                _row.Set(Labels.CASTRules, Labels.NoData);
+                _data.AddRange(_row);
+                _data.InsertRange(0, headers.Labels);
+                return new TableDefinition
+                {
+                    HasRowHeaders = false,
+                    HasColumnHeaders = true,
+                    NbRows = 2,
+                    NbColumns = 1,
+                    Data = _data
+                };
+            }
+
             headers.Append(lbltotal);
             cellidx++;
 

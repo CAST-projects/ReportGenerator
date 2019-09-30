@@ -24,6 +24,16 @@ namespace Cast.Util.Version
             return IsVersionCompatible("8.2.0", version);
         }
 
+        public static bool Is111Compatible(string serviceVersion)
+        {
+            return IsVersionCompatible("1.11.0.000", serviceVersion);
+        }
+
+        public static bool Is112Compatible(string serviceVersion)
+        {
+            return IsVersionCompatible("1.12.0.000", serviceVersion);
+        }
+
         public static bool Is19Compatible(string serviceVersion)
         {
             return IsVersionCompatible("1.9.0.000", serviceVersion);

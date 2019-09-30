@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
+using Cast.Util.Log;
+using Cast.Util.Version;
 using CastReporting.BLL.Computing;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
@@ -31,7 +33,22 @@ namespace CastReporting.Reporting.Block.Table
             {
                 critical = options.GetOption("CRITICAL").Equals("true");
             }
-            
+
+            if (!VersionUtil.Is111Compatible(reportData.ServerVersion))
+            {
+                LogHelper.LogError("Bad version of RestAPI. Should be 1.11 at least for component LIST_RULES_VIOLATIONS_BOOKMARKS");
+                rowData.Add(Labels.Violations);
+                rowData.Add(Labels.NoData);
+                return new TableDefinition
+                {
+                    HasRowHeaders = false,
+                    HasColumnHeaders = true,
+                    NbRows = 2,
+                    NbColumns = 1,
+                    Data = rowData
+                };
+            }
+
             List<string> qualityRules = MetricsUtility.BuildRulesList(reportData, metrics,critical);
 
             rowData.Add(Labels.Violations);

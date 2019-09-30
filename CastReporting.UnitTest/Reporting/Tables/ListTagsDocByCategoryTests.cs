@@ -19,6 +19,45 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
         [DeploymentItem(@".\Data\QualityStandardsCategorySTIGV4R8CAT1.json", "Data")]
         [DeploymentItem(@".\Data\StandardTags.json", "Data")]
+        public void TestBadServerVersion()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCTC.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            reportData = TestUtility.AddStandardTags(reportData, @".\Data\StandardTags.json");
+            WSConnection connection = new WSConnection
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+            reportData.ServerVersion = "1.11.0.000";
+            var component = new ListTagsDocByCategory();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"CAT","STIG-V4R8-CAT1" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>
+            {
+                "Standards","Definition","Applicability",
+                "No data found","",""
+            };
+
+            TestUtility.AssertTableContent(table, expectedData, 3, 2);
+
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
+        [DeploymentItem(@".\Data\QualityStandardsCategorySTIGV4R8CAT1.json", "Data")]
+        [DeploymentItem(@".\Data\StandardTags.json", "Data")]
         public void TestTagsDocForOneCategory()
         {
             CastDate currentDate = new CastDate { Time = 1484953200000 };

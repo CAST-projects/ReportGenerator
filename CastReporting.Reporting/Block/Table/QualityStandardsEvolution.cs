@@ -15,6 +15,8 @@
  */
 using System.Collections.Generic;
 using System.Linq;
+using Cast.Util.Log;
+using Cast.Util.Version;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -52,6 +54,27 @@ namespace CastReporting.Reporting.Block.Table
             cellidx++;
 
             var data = new List<string>();
+
+            if (!VersionUtil.Is111Compatible(reportData.ServerVersion) && detail)
+            {
+                LogHelper.LogError("Bad version of RestAPI. Should be 1.11 at least for component QUALITY_STANDARDS_EVOLUTION and MORE option");
+                var dataRow = headers.CreateDataRow();
+                dataRow.Set(standard, Labels.NoData);
+                dataRow.Set(lbltotal, string.Empty);
+                dataRow.Set(lbladded, string.Empty);
+                dataRow.Set(lblremoved, string.Empty);
+                data.AddRange(dataRow);
+                data.InsertRange(0, headers.Labels);
+                return new TableDefinition
+                {
+                    HasRowHeaders = false,
+                    HasColumnHeaders = true,
+                    NbRows = 2,
+                    NbColumns = 4,
+                    Data = data
+                };
+            }
+
             List<ApplicationResult> results = reportData.SnapshotExplorer.GetQualityStandardsTagsResults(reportData.CurrentSnapshot.Href,standard)?.FirstOrDefault()?.ApplicationResults?.ToList();
 
             if (results?.Count > 0)
