@@ -34,19 +34,13 @@ namespace CastReporting.Reporting.Block.Table
             if (!VersionUtil.Is18Compatible(reportData.ServerVersion))
             {
                 LogHelper.LogError("Bad version of RestAPI. Should be 1.8 at least for component REMOVED_VIOLATIONS_LIST");
-                rowData.Add(Labels.NoData);
-                for (int i = 0; i < 6; i++)
-                {
-                    rowData.Add(string.Empty);
-                }
-                return new TableDefinition
-                {
-                    HasRowHeaders = false,
-                    HasColumnHeaders = true,
-                    NbRows = 2,
-                    NbColumns = 7,
-                    Data = rowData
-                };
+                return ReturnEmptyTableDefinition(rowData);
+            }
+
+            if (!VersionUtil.Is111Compatible(reportData.ServerVersion) && criticity != "all")
+            {
+                LogHelper.LogError("Bad version of RestAPI. Should be 1.11 at least for component REMOVED_VIOLATIONS_LIST and CRITICITY option");
+                return ReturnEmptyTableDefinition(rowData);
             }
 
             List<Violation> removedViolations = reportData.SnapshotExplorer.GetRemovedViolationsbyBC(reportData.CurrentSnapshot.Href, bcId, nbLimitTop,criticity).ToList();
@@ -93,5 +87,23 @@ namespace CastReporting.Reporting.Block.Table
             return table;
 
         }
+
+        private static TableDefinition ReturnEmptyTableDefinition(List<string> rowData)
+        {
+            rowData.Add(Labels.NoData);
+            for (int i = 0; i < 6; i++)
+            {
+                rowData.Add(string.Empty);
+            }
+            return new TableDefinition
+            {
+                HasRowHeaders = false,
+                HasColumnHeaders = true,
+                NbRows = 2,
+                NbColumns = 7,
+                Data = rowData
+            };
+        }
+
     }
 }

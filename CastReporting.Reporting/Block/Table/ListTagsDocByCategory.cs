@@ -16,6 +16,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Cast.Util.Log;
+using Cast.Util.Version;
 using CastReporting.Reporting.Atrributes;
 using CastReporting.Reporting.Builder.BlockProcessing;
 using CastReporting.Reporting.ReportingModel;
@@ -46,6 +48,25 @@ namespace CastReporting.Reporting.Block.Table
             cellidx++;
 
             var data = new List<string>();
+
+            if (!VersionUtil.Is112Compatible(reportData.ServerVersion))
+            {
+                LogHelper.LogError("Bad version of RestAPI. Should be 1.12 at least for component LIST_TAGS_DOC_BYCAT");
+                var dataRow = headers.CreateDataRow();
+                dataRow.Set(Labels.Standards, Labels.NoData);
+                dataRow.Set(Labels.Definition, string.Empty);
+                dataRow.Set(Labels.Applicability, string.Empty);
+                data.AddRange(dataRow);
+                data.InsertRange(0, headers.Labels);
+                return new TableDefinition
+                {
+                    HasRowHeaders = false,
+                    HasColumnHeaders = true,
+                    NbRows = 2,
+                    NbColumns = 3,
+                    Data = data
+                };
+            }
 
             bool moreThanOne = categories.Count > 1;
             if (categories.Count > 0)

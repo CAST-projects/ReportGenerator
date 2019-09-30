@@ -16,6 +16,43 @@ namespace CastReporting.UnitTest.Reporting.Tables
 
         [TestMethod]
         [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
+        public void TestBadServerVersion()
+        {
+            CastDate currentDate = new CastDate { Time = 1484953200000 };
+            ReportData reportData = TestUtility.PrepareApplicationReportData("ReportGenerator",
+                null, @".\Data\CurrentBCTC.json", "AED/applications/3/snapshots/6", "PreVersion 1.5.0 sprint 2 shot 2", "V-1.5.0_Sprint 2_2", currentDate,
+                null, null, null, null, null, null);
+            WSConnection connection = new WSConnection
+            {
+                Url = "http://tests/CAST-RESTAPI/rest/",
+                Login = "admin",
+                Password = "cast",
+                IsActive = true,
+                Name = "Default"
+            };
+            reportData.SnapshotExplorer = new SnapshotBLLStub(connection, reportData.CurrentSnapshot);
+            reportData.RuleExplorer = new RuleBLLStub();
+            reportData.ServerVersion = "1.10.5.000";
+            var component = new CastReporting.Reporting.Block.Table.RulesListStatisticsRatio();
+            Dictionary<string, string> config = new Dictionary<string, string>
+            {
+                {"METRICS","66070" },
+                {"CRITICAL","true" }
+            };
+            var table = component.Content(reportData, config);
+
+            var expectedData = new List<string>
+            {
+                "CAST Rules",
+                "No data found"
+            };
+
+            TestUtility.AssertTableContent(table, expectedData, 1, 2);
+
+        }
+
+        [TestMethod]
+        [DeploymentItem(@".\Data\CurrentBCTC.json", "Data")]
         public void TestCriticalTCMetrics()
         {
             CastDate currentDate = new CastDate { Time = 1484953200000 };

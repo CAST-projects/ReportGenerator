@@ -65,13 +65,18 @@ namespace CastReporting.UnitTest.Reporting
             switch (bcId)
             {
                 case "60012":
-                    res = count == -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations-60011.json").ToList() : TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations-60012.json").ToList().Take(count);
-                    break;
+                    if (criticity.Equals("c"))
+                    {
+                        return count == -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations-60011.json").ToList() : TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations-60012.json").ToList().Take(1);
+                    }
+                    if (criticity.Equals("nc"))
+                    {
+                        return count == -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations-60011.json").ToList() : TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations-60012.json").ToList().Take(2);
+                    }
+                    return count == -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations-60011.json").ToList() : TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations-60012.json").ToList().Take(count);
                 default:
-                    res = count == -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations.json").ToList() : TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations.json").ToList().Take(count);
-                    break;
+                    return count == -1 ? TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations.json").ToList() : TestUtility.GetSampleResult<Violation>(@".\Data\RemovedViolations.json").ToList().Take(count);
             }
-            return res;
         }
 
         [DeploymentItem(@".\Data\ActionPlanViolations1.json", "Data")]
