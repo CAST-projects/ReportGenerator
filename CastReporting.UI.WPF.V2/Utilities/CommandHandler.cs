@@ -17,7 +17,7 @@ using System;
 using System.Windows.Input;
 // ReSharper disable FieldCanBeMadeReadOnly.Local
 
-namespace CastReporting.UI.WPF
+namespace CastReporting.UI.WPF.Common
 {
     public class CommandHandler : ICommand
     {

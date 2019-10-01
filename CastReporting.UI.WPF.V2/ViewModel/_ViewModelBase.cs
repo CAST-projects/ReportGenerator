@@ -17,6 +17,7 @@
 using CastReporting.BLL;
 using CastReporting.Domain;
 using Cast.Util;
+using CastReporting.UI.WPF.Common;
 
 namespace CastReporting.UI.WPF.ViewModel
 {

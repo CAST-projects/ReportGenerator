@@ -32,6 +32,7 @@ using System.Threading;
 using System.Windows.Input;
 using System.Windows.Threading;
 using CastReporting.UI.WPF.Resources.Languages;
+using CastReporting.UI.WPF.Common;
 using Microsoft.Office.Interop.Word;
 using Microsoft.Office.Interop.PowerPoint;
 //using Microsoft.Office.Interop.Excel;

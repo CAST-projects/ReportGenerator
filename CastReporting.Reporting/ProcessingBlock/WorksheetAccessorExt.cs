@@ -20,7 +20,7 @@ using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging;
 using OpenXmlPowerTools;
 
-namespace CastReporting.Reporting.Builder
+namespace CastReporting.Reporting.Builder.BlockProcessing
 {
     public class WorksheetAccessorExt
     {

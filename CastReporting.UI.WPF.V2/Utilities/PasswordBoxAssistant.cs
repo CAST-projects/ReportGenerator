@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace CastReporting.UI.WPF.Utilities
+namespace CastReporting.UI.WPF.Common
 {
     internal class PasswordBoxAssistant
     {

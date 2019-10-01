@@ -21,6 +21,7 @@ using CastReporting.UI.WPF.ViewModel;
 using System.Windows.Input;
 using CastReporting.UI.WPF.Resources.Languages;
 using System.Reflection;
+using CastReporting.UI.WPF.Common;
 
 namespace CastReporting.UI.WPF
 {

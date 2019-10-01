@@ -13,7 +13,7 @@
  * limitations under the License.
  *
  */
-namespace CastReporting.UI.WPF
+namespace CastReporting.UI.WPF.Common
 {
     public class CastMessage : NotifyPropertyChangedHelper
     {

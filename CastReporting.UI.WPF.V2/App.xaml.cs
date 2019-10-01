@@ -23,7 +23,7 @@ using System.Globalization;
 using System.Net;
 using System.Threading;
 using System.Windows;
-
+using CastReporting.UI.WPF.Common;
 
 
 namespace CastReporting.UI.WPF
