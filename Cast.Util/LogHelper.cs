@@ -22,6 +22,11 @@ namespace Cast.Util.Log
 {
     public class LogHelper
     {
+        private LogHelper()
+        {
+            // Avoid instanciation of the class
+        }
+
         private static readonly Lazy<ILog> Log = new Lazy<ILog>(() => LogManager.GetLogger(typeof(LogHelper)));
 
         #region METHODS - Log4Net

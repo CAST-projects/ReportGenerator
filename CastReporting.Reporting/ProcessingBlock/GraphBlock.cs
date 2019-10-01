@@ -641,11 +641,12 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
 
                             // We copied new row if needed
                             int nbDataLabels = dataLabels.Count();
-                            if (content.DataLabel.Count() > nbDataLabels)
+                            int nbContentDataLabels = content.DataLabel.Count();
+                            if (nbContentDataLabels > nbDataLabels)
                             {
                                 var idx = nbDataLabels - 1;
                                 var lastElement = dataLabels.ElementAt(idx);
-                                while (content.DataLabel.Count() > nbDataLabels)
+                                while (nbContentDataLabels > nbDataLabels)
                                 {
                                     XElement newElement = new XElement(lastElement);
                                     var idxValue = newElement.Descendants(C.idx).FirstOrDefault();
@@ -660,9 +661,10 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                             }
                             // We remove DataLabel is there are too many
                             nbDataLabels = dataLabels.Count();
-                            if (content.DataLabel.Count() < nbDataLabels)
+                            nbContentDataLabels = content.DataLabel.Count();
+                            if (nbContentDataLabels < nbDataLabels)
                             {
-                                while (content.DataLabel.Count() < nbDataLabels)
+                                while (nbContentDataLabels < nbDataLabels)
                                 {
                                     dataLabels.ElementAt(nbDataLabels - 1).Remove();
                                     nbDataLabels -= 1;
