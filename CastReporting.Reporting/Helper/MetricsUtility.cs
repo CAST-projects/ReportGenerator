@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Linq;
 using Cast.Util.Log;
 using CastReporting.Reporting.ReportingModel;
-using CastReporting.Reporting.Helper;
 using CastReporting.Reporting.Languages;
 
 namespace CastReporting.Reporting.Helper
@@ -750,7 +749,7 @@ namespace CastReporting.Reporting.Helper
 
             foreach (Tuple<string, Dictionary<int, string>> _code in codes)
             {
-                rowData.Add(Labels.FilePath + ": " + _code.Item1);
+                rowData.Add($"{Labels.FilePath}: {_code.Item1}");
                 cellProps.Add(new CellAttributes(cellidx, Color.Lavender));
                 cellidx++;
 
@@ -758,7 +757,7 @@ namespace CastReporting.Reporting.Helper
                 if (codeLines == null) return cellidx;
                 foreach (KeyValuePair<int, string> codeLine in codeLines)
                 {
-                    rowData.Add(codeLine.Key + " : " + codeLine.Value);
+                    rowData.Add($"{codeLine.Key} : {codeLine.Value}");
                     cellProps.Add(new CellAttributes(cellidx, Color.White));
                     cellidx++;
                 }
