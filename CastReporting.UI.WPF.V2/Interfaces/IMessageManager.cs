@@ -16,7 +16,7 @@
 
 using CastReporting.BLL;
 using System;
-namespace CastReporting.UI.WPF
+namespace CastReporting.UI.WPF.Common
 {
     /// <summary>
     /// 

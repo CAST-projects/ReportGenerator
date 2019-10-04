@@ -14,7 +14,7 @@
  *
  */
 
-namespace CastReporting.Mediation
+namespace CastReporting.Mediation.Interfaces
 {
     /// <summary>
     /// Indication of the duration of the request.

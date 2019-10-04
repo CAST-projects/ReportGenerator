@@ -224,7 +224,8 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                     int contentCellsCount = headerCells.Count;
 
                     table.RemoveAllChildren<OXW.TableRow>();
-                    for (int i = 0; i < content.Data.Count(); i++)
+                    int nbContentData = content.Data.Count();
+                    for (int i = 0; i < nbContentData; i++)
                     {
                         var item = content.Data.ToArray()[i];
                         if (null != item)
@@ -440,7 +441,8 @@ namespace CastReporting.Reporting.Builder.BlockProcessing
                     OXD.TableRow row = headerRowTemplate;
 
                     table?.RemoveAllChildren<OXD.TableRow>();
-                    for (int i = 0; i < content.Data.Count(); i++)
+                    int nbContentData = content.Data.Count();
+                    for (int i = 0; i < nbContentData; i++)
                     {
                         string item = content.Data.ToArray()[i];
                         OXD.TableCell cell;

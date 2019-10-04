@@ -15,7 +15,7 @@
  */
 using System.ComponentModel;
 
-namespace CastReporting.UI.WPF
+namespace CastReporting.UI.WPF.Common
 {
     public class NotifyPropertyChangedHelper : INotifyPropertyChanged
     {

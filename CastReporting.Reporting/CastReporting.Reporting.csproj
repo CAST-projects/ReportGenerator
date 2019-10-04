@@ -177,7 +177,7 @@
     <Compile Include="DocumentBuilder\IDocumentBuilder.cs" />
     <Compile Include="DocumentBuilder\PowerpointDocumentBuilder.cs" />
     <Compile Include="DocumentBuilder\WordDocumentBuilder.cs" />
-    <Compile Include="DocumentBuilder\WorksheetAccessorExt.cs" />
+    <Compile Include="ProcessingBlock\WorksheetAccessorExt.cs" />
     <Compile Include="Helper\FormatHelper.cs" />
     <Compile Include="Helper\PortfolioGenericContent.cs" />
     <Compile Include="Helper\GenericContent.cs" />

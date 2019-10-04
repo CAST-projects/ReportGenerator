@@ -19,6 +19,7 @@ using System.Windows.Input;
 using Cast.Util.Log;
 using CastReporting.BLL;
 using CastReporting.Domain;
+using CastReporting.UI.WPF.Common;
 
 namespace CastReporting.UI.WPF.ViewModel
 {

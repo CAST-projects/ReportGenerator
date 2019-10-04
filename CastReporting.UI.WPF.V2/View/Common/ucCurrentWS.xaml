@@ -6,7 +6,7 @@
              xmlns:label="clr-namespace:CastReporting.UI.WPF.Resources.Languages"
              xmlns:command="clr-namespace:CastReporting.UI.WPF.Commands"
              xmlns:converters="clr-namespace:CastReporting.UI.WPF.Converter"
-             xmlns:w="clr-namespace:CastReporting.UI.WPF.Utilities"
+             xmlns:w="clr-namespace:CastReporting.UI.WPF.Common"
              mc:Ignorable="d"
              d:DesignWidth="500">
 
