@@ -13,7 +13,9 @@
  * limitations under the License.
  *
  */
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace CastReporting.Reporting.Helper
 {
@@ -39,7 +41,18 @@ namespace CastReporting.Reporting.Helper
         public static double? GetDoubleOption(this Dictionary<string, string> options, string key, double? defaultValue = default(double?))
         {
             var s = options.GetOption(key);
-            return string.IsNullOrWhiteSpace(s) ? defaultValue : double.Parse(s);
+            if (string.IsNullOrWhiteSpace(s)) return defaultValue;
+            double var;
+            try
+            {
+                var = double.Parse(s, CultureInfo.CurrentCulture);
+            }
+            catch (FormatException)
+            {
+                var = double.Parse(s, new CultureInfo("en-US"));
+            }
+
+            return var;
         }
 
         public static bool GetBoolOption(this Dictionary<string, string> options, string key, bool defaultValue = default(bool)) {
