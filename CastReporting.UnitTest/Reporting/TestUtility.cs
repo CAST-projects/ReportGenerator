@@ -20,11 +20,22 @@ namespace CastReporting.UnitTest.Reporting
     {
         public static void SetCulture(string cultureName)
         {
-            CultureInfo ci = new CultureInfo(cultureName);
-            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
-            System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
-            Labels.Culture = ci;
+            if (cultureName.Equals("invariant"))
+            {
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+                System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+                System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+                Labels.Culture = CultureInfo.InvariantCulture;
 
+            }
+            else
+            {
+                CultureInfo ci = new CultureInfo(cultureName);
+                System.Threading.Thread.CurrentThread.CurrentCulture = ci;
+                System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
+                Labels.Culture = ci;
+                CultureInfo.CurrentCulture = ci;
+            }
         }
         /// <summary>
         /// 

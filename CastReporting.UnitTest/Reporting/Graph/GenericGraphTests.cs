@@ -13,7 +13,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
         [TestInitialize()]
         public void Initialize()
         {
-            TestUtility.SetCulture("en-US");
+            TestUtility.SetCulture("invariant");
         }
 
         [TestMethod]
@@ -599,7 +599,7 @@ namespace CastReporting.UnitTest.Reporting.Graph
                 {"METRICS", "10151|10107|10152|10154|10161" },
                 {"SNAPSHOTS", "ALL"}
             };
-            TestUtility.SetCulture("en-US");
+            TestUtility.SetCulture("invariant");
             var table = component.Content(reportData, config);
             var expectedData = new List<string>();
             expectedData.AddRange(new List<string> {"Metrics", "ADGAutoSnap_Dream Team_4 - 4", "ADGAutoSnap_Dream Team_1 - 1", "Evolution", "% Evolution" });
