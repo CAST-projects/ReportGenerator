@@ -11,7 +11,7 @@ namespace CastReporting.UnitTest.Reporting.Tables
         [TestInitialize()]
         public void Initialize()
         {
-            TestUtility.SetCulture("en-US");
+            TestUtility.SetCulture("invariant");
         }
 
         [TestMethod]
