@@ -48,7 +48,7 @@ namespace CastReporting.Reporting.Block.Text
 
             if (_aggregator == "SUM")
             {
-                double sumValues = strValues.Where(val => val != Labels.NoData).Sum(val => double.Parse(val));
+                double sumValues = strValues.Where(val => val != Labels.NoData).Sum(val => double.Parse(val, System.Globalization.CultureInfo.CurrentCulture));
                 return sumValues.ToString(_metricFormat);
             }
             else
@@ -59,7 +59,7 @@ namespace CastReporting.Reporting.Block.Text
                 {
                     if (val == Labels.NoData) continue;
                     nbValues++;
-                    sumValues += double.Parse(val);
+                    sumValues += double.Parse(val, System.Globalization.CultureInfo.CurrentCulture);
                 }
                 if (nbValues == 0) return Labels.NoData;
                 var avgValues = sumValues / nbValues;
