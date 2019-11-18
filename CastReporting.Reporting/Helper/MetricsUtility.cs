@@ -1,6 +1,7 @@
 ﻿using CastReporting.BLL.Computing.DTO;
 using CastReporting.Domain;
 using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -834,7 +835,7 @@ namespace CastReporting.Reporting.Helper
                     return expr;
                 double? _value = GetMetricNameAndResult(reportData, snapshot, _id, module, technology, true)?.result;
                 if (_value == null) return expr;
-                expr = expr.Replace(param, _value.ToString());
+                expr = expr.Replace(param, _value.Value.ToString(CultureInfo.CurrentCulture.NumberFormat));
             }
             return expr;
         }
@@ -867,9 +868,10 @@ namespace CastReporting.Reporting.Helper
         public static string ComputeExpression(string expr, string metricFormat, bool portfolioComponent)
         {
             DataTable dt = new DataTable();
+            dt.Locale = CultureInfo.CurrentCulture;
             try
             {
-                double? res = double.Parse(dt.Compute(expr, "").ToString(), System.Globalization.CultureInfo.CurrentCulture);
+                double? res = double.Parse(dt.Compute(expr, "").ToString(), CultureInfo.CurrentCulture);
                 return res.Value.Equals(double.NaN) ? Labels.NoData : res.Value.ToString(metricFormat);
             }
             catch (EvaluateException e)
@@ -883,9 +885,10 @@ namespace CastReporting.Reporting.Helper
         public static double? CalculateExpression(string expr, bool portfolioComponent)
         {
             DataTable dt = new DataTable();
+            dt.Locale = CultureInfo.CurrentCulture;
             try
             {
-                return double.Parse(dt.Compute(expr, "").ToString(), System.Globalization.CultureInfo.CurrentCulture);
+                return double.Parse(dt.Compute(expr, "").ToString(), CultureInfo.CurrentCulture);
             }
             catch (EvaluateException e)
             {
